@@ -1,0 +1,95 @@
+﻿
+<body>
+    <div class="page-title-area page-title-area-two title-img-one">
+        <div class="d-table">
+            <div class="d-table-cell">
+                <div class="page-title-text">
+                    <h2>Nueva Etapa del Proceso Legal</h2>
+                    <ul>
+                        <li>
+                            <a asp-controller="Home" asp-action="Index">Home</a>
+                        </li>
+                        <li>
+                            <i class="icofont-simple-right"></i>
+                        </li>
+                        <li>
+                            <a asp-controller="GestionCasos" asp-action="EtapasPL">Caso</a>
+                        </li>
+                        <li>
+                            <i class="icofont-simple-right"></i>
+                        </li>
+                        <li>Etapas</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Page Title -->
+
+    <br />
+    <br />
+    <br />
+
+
+    <div class="formulario contact-form contact-form-two contact-form-three">
+        <div class="container">
+            <div class="contact-wrap">
+                <form id="FormularioCaso" class="">
+                    <h2>Formulario para creación de etapa</h2>
+                    <div class="row justify-content-center">
+                        <div class="col-sm-6 col-lg-6">
+                            <div class="form-group">
+                                <input type="text" name="PruebasPL" id="BtnTipoEtapaPL" class="form-control" required data-error="Favor ingrese el dato" placeholder="Tipo de etapa">
+                                <div class="help-block with-errors"></div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-lg-6">
+                            <div class="form-group">
+                                <input type="text" name="PruebasPL" id="PruebasPL" class="form-control" required data-error="Favor ingrese el dato" placeholder="Pruebas de la etapa">
+                                <div class="help-block with-errors"></div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-12 col-lg-12">
+                            <div class="form-group">
+                                <textarea name="DetallesPL" class="form-control" id="DetallesPL" cols="30" rows="8" required data-error="Favor ingrese el dato" placeholder="Descripción"></textarea>
+                                <div class="help-block with-errors"></div>
+                            </div>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                            <label style="color:black" class="text" for="flexCheckDefault">
+                                Caso Cerrado
+                            </label>
+                        </div>
+                        <div class="col-md-12 col-lg-12">
+
+                            <div class="text-center">
+                                <!-- Button trigger modal -->
+                                <button type="submit" class="contact-btn">Registrar etapa</button>
+                            </div>
+                           
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    
+
+
+</body>
+
+
+
+
+
+
+
+
+
+
+
+
+

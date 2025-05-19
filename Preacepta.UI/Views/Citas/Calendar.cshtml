@@ -1,0 +1,239 @@
+﻿@using Praecepta.UI.Models
+@model IEnumerable<ModuloCitasVideo>
+
+<head>    
+    <link href="~/calendario/stylecalendar.css" rel="stylesheet" />
+    <link href="~/calendario/calendardaniel.css" rel="stylesheet" />
+    <title>Calendar with Events</title>
+</head>
+
+
+
+
+
+<!-- Page Title -->
+<div class="page-title-area page-title-area-two title-img-one">
+    <div class="d-table">
+        <div class="d-table-cell">
+            <div class="page-title-text">
+                <h2>Calendario y eventos</h2>
+                <ul>
+                    <li>
+                        <a asp-controller="Home" asp-action="Index">Home</a>
+                    </li>
+                    <li>
+                        <i class="icofont-simple-right"></i>
+                    </li>
+                    <li>Calendario</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End Page Title -->
+
+
+
+
+<div style="margin-bottom:10px; margin-top:10px" class="containerCalendar">
+    <div class="left">
+        <div class="calendar">
+            <div class="month">
+                <i class="fas fa-angle-left prev"></i>
+                <div class="date">december 2015</div>
+                <i class="fas fa-angle-right next"></i>
+            </div>
+            <div class="weekdays">
+                <div>Domingo</div>
+                <div>Lunes</div>
+                <div>Martes</div>
+                <div>Miércoles</div>
+                <div>Jueves</div>
+                <div>Viernes</div>
+                <div>Sabado</div>
+            </div>
+            <div class="days"></div>
+            <div class="goto-today">
+                <div class="goto">
+                    <input type="text" placeholder="mm/aaaa" class="date-input" />
+                    <button class="goto-btn">Ir</button>
+                </div>
+                <button class="today-btn">Hoy</button>
+            </div>
+        </div>
+    </div>
+    <div class="right">
+        <div class="today-date">
+            <div class="event-day">Mie</div>
+            <div class="event-date">12th december 2022</div>
+        </div>
+        <div class="events"></div>
+        <div class="add-event-wrapper">
+            <div class="add-event-header">
+                <div class="title">Añadir cita</div>
+                <i class="fas fa-times close"></i>
+            </div>
+            <div class="add-event-body">
+                <div class="add-event-input">
+                    <input type="text" placeholder="Nombre de cita" class="event-name" />
+                </div>
+                <div class="add-event-input">
+                    <input type="time" placeholder="Event Time From" class="event-time-from" />
+                </div>
+                <div class="add-event-input">
+                    <input type="time" placeholder="Event Time To" class="event-time-to" />
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                    <label style="color:black" class="text" for="flexCheckDefault">
+                        Video Conferencia
+                    </label>
+                </div>
+            </div>
+            <div class="add-event-footer">
+                <button class="add-event-btn">Confirmar</button>
+            </div>
+        </div>
+    </div>
+    <button class="add-event">
+        <i class="fas fa-plus"></i>
+    </button>
+</div>
+<div class="formulario contact-form contact-form-two contact-form-three">
+    <div class="container">
+        <div class="contact-wrap" style="display: flex; justify-content: center; align-items: center;">
+            <button style="margin-right: 5px" type="button" id="PrevioBtn" class="contact-btn" data-bs-toggle="modal" data-bs-target="#ModalCitasPasadas">
+                Citas Pasadas
+            </button>
+            <button style="margin-left: 5px" type="button" id="PrevioBtn" class="contact-btn" data-bs-toggle="modal" data-bs-target="#ModalCitasFuturas">
+                Citas Futuras
+            </button>
+        </div>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="ModalCitasFuturas" tabindex="-1" aria-labelledby="exampleModalLabel" inert">
+    <div class="modal-dialog modal-lg DanielModalCitasFuturas">
+        <div class="modal-content" style="color:black">
+            <div class="formulario contact-form contact-form-two">
+                <div class="container">
+                    <div class="contact-wrap">
+                        <h2>Revisión de datos ingresados</h2>
+                        <table id="tablaCitasFuturas" class="table">
+                            <thead>
+                                <tr>
+                                    <th>
+                                        @Html.DisplayNameFor(Model => Model.NumCita)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(Model => Model.FechaHora)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(Model => Model.Evento)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(Model => Model.tipo)
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                    if (item.FechaHora > DateTime.Now)
+                                    {
+                                        <tr>
+                                            <td>
+                                                @item.NumCita
+                                            </td>
+                                            <td>
+                                                @item.FechaHora
+                                            </td>
+                                            <td>
+                                                @item.Evento
+                                            </td>
+                                            <td>
+                                                @item.tipo
+                                            </td>                                
+                                        </tr>
+                                    }
+                                }
+                            </tbody>
+                        </table>
+
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="contact-btn" data-bs-dismiss="modal" id="Retroceso">Close</button>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="ModalCitasPasadas" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="formulario contact-form contact-form-two">
+                <div class="container">
+                    <div class="contact-wrap">
+                        <h2>Revisión de datos ingresados</h2>
+                        <table id="tablaCitasFuturas" class="table">
+                            <thead>
+                                <tr>
+                                    <th>
+                                        @Html.DisplayNameFor(Model => Model.NumCita)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(Model => Model.FechaHora)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(Model => Model.Evento)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(Model => Model.tipo)
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                    if (item.FechaHora < DateTime.Now)
+                                    {
+                                        <tr>
+                                            <td>
+                                                @item.NumCita
+                                            </td>
+                                            <td>
+                                                @item.FechaHora
+                                            </td>
+                                            <td>
+                                                @item.Evento
+                                            </td>
+                                            <td>
+                                                @item.tipo
+                                            </td>
+                                        </tr>
+                                    }
+                                }
+                            </tbody>
+                        </table>
+
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="contact-btn" data-bs-dismiss="modal" id="Retroceso">Close</button>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="~/lyso/js/jquery.min.js"></script>
+<script src="~/calendario/scriptcalendar.js"></script>
+
+
+
+

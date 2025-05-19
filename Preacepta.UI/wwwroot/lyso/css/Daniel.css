@@ -1,0 +1,70 @@
+﻿.mostrar {
+    color: black;
+    /*border: 1px solid #b69d74;*/
+}
+
+.contact-wrapDaniel {
+    max-width: 970px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.contact-form-twoDaniel .contact-wrapDaniel {
+    padding: 15px 5px;
+}
+
+.MarcoIdentiy {
+    padding-left: 500px; 
+    padding-right: 500px;
+}
+
+.LetraNegra {
+    color:black;
+}
+
+
+/*Vista FormTesmonials*/
+.clasificacion{
+     direction: rtl;
+  unicode-bidi: bidi-override;
+}
+
+.InputCalficacion {
+    display: none;
+}
+
+.LabelCalificacion {
+    color: grey;
+    font-size: 40px;
+}
+
+.LabelCalificacion:hover,
+.LabelCalificacion:hover ~ label {
+        color: orange;
+    }
+
+.InputCalficacion[type="radio"]:checked ~ label {
+    color: orange;
+}
+/*End Vista FormTesmonials*/
+
+#tooltip {
+    position: absolute;
+    background-color: #333; /* Color del fondo */
+    color: white; /* Color del texto */
+    padding: 5px; /* Espaciado interno */
+    border-radius: 5px; /* Bordes redondeados */
+    display: none; /* Oculto por defecto */
+    z-index: 1000; /* Asegura que esté por encima de otros elementos */
+}
+
+/*se usa para que todos los formulario del modulo DocsGenerator este ocultos*/
+.formulario {
+    display: none;
+}
+
+.DanielModalDocs {
+    max-width: 60%;
+    width: 70%;
+}
+

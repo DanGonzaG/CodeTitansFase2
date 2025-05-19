@@ -1,0 +1,414 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+
+    <title>@ViewData["Title"] - Praecepta.UI</title>
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="~/lyso/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/2.2.2/css/dataTables.dataTables.css" />
+    <!-- Meanmenu CSS -->
+    <link rel="stylesheet" href="~/lyso/css/meanmenu.css">
+    <!-- Icofont CSS -->
+    <link rel="stylesheet" href="~/lyso/css/icofont.min.css">
+    <!-- Nice Select CSS -->
+    <link rel="stylesheet" href="~/lyso/css/nice-select.min.css">
+    <!-- Owl Carousel CSS -->
+    <link rel="stylesheet" href="~/lyso/css/owl.carousel.min.css">
+    <link rel="stylesheet" href="~/lyso/css/owl.theme.default.min.css">
+    <!-- Magnific Popup CSS -->
+    <link rel="stylesheet" href="~/lyso/css/magnific-popup.min.css">
+    <!-- Flaticon CSS -->
+    <link rel="stylesheet" href="~/lyso/fonts/flaticon.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <!-- Animate CSS -->
+    <link rel="stylesheet" href="~/lyso/css/animate.min.css">
+    <!-- Odometer CSS -->
+    <link rel="stylesheet" href="~/lyso/css/odometer.min.css">
+    <!-- Style CSS -->
+    <link rel="stylesheet" href="~/lyso/css/style.css">
+    <!-- Responsive CSS -->
+    <link rel="stylesheet" href="~/lyso/css/responsive.css">
+    <!-- Theme Dark CSS -->
+    <link rel="stylesheet" href="~/lyso/css/theme-dark.css">
+
+    <link rel="icon" type="image/png" href="~/lyso/img/favicon.png">
+
+</head>
+<body>
+    <!-- Preloader -->
+    <div class="loader">
+        <div class="d-table">
+            <div class="d-table-cell">
+                <div class="sk-folding-cube">
+                    <div class="sk-cube1 sk-cube"></div>
+                    <div class="sk-cube2 sk-cube"></div>
+                    <div class="sk-cube4 sk-cube"></div>
+                    <div class="sk-cube3 sk-cube"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Preloader -->
+    <!-- Navbar -->
+    <div class="navbar-area fixed-top">
+        <!-- Menu For Mobile Device -->
+        <div class="mobile-nav">
+            <a asp-action="Index" class="logo">
+                <img src="~/lyso/img/PraeceptaLogo.png" alt="Logo">
+            </a>
+        </div>
+
+        <!-- Menu For Desktop Device -->
+        <div class="main-nav">
+            <div class="container">
+                <nav class="navbar navbar-expand-md navbar-light">
+                    <a class="navbar-brand" asp-controller="Home" asp-action="Index">
+                        <img src="~/lyso/img/PraeceptaLogo.png" alt="Logo">
+                    </a>
+                    <div class="collapse navbar-collapse mean-menu" id="navbarSupportedContent">
+                        <ul class="navbar-nav">
+                            <li class="nav-item">
+                                <a asp-controller="Home" asp-action="Index">Home</a>
+                            </li>
+                            <li class="nav-item">
+                                <a asp-controller="Home" asp-action="About">Nosotros</a>
+                            </li>
+                            <li class="nav-item">
+                                <a asp-controller="Home" asp-action="Attorneys">Abogados</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="#" class="nav-link dropdown-toggle">Testimonio</a>
+                                <ul class="dropdown-menu">
+                                    <li class="nav-item">
+                                        <a asp-controller="Home" asp-action="Testimonials" class="nav-link">Testimonio</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a asp-controller="Testimonials" asp-action="TestimonialsLista" class="nav-link">Lista de Testimonios</a>
+                                    </li>
+
+                                </ul>
+                            </li>
+                            <li class="nav-item">
+                                <a asp-controller="Home" asp-action="Contact" class="nav-link">Contactenos</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="#" class="nav-link dropdown-toggle">Documentos</a>
+                                <ul class="dropdown-menu">
+                                    <li class="nav-item">
+                                        <a asp-controller="DocsGenerator" asp-action="DocsGenerator" class="nav-link">Generador de Documentos</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a asp-controller="DocsGenerator" asp-action="DocsHistorial" class="nav-link">Historial de Documentos</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="#" class="nav-link dropdown">Documentos Recientes</a>
+                                        <ul class="dropdown-menu">
+                                            <li class="nav-item">
+                                                <a class="nav-link">Traspaso Vehículo : Daniel González</a>
+                                            </li> 
+                                            <li class="nav-item">
+                                                <a class="nav-link">Reclamación Herencia : Javier Cruz</a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a class="nav-link">Rectificación de Escritura : María López</a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a asp-controller="DocsGenerator" asp-action="Tutorial" class="nav-link">Tutoriales de herramienta</a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="nav-item">
+                                <a href="#" class="nav-link dropdown-toggle">Casos</a>
+                                <ul class="dropdown-menu">
+                                    <li class="nav-item" style="color: bisque">--Cliente--</li>
+                                    <li class="nav-item">
+                                        <a asp-controller="GestionCasos" asp-action="SolicitudCaso" class="nav-link">Solicitar Servicio</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a asp-controller="GestionCasos" asp-action="CasosListadoCliente" class="nav-link">Listado Casos Cliente</a>
+                                    </li>
+                                    <li class="nav-item" style="color: bisque">--Abogado--</li>
+                                    <li class="nav-item">
+                                        <a asp-controller="GestionCasos" asp-action="FormularioCaso" class="nav-link">Crear Caso</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a asp-controller="GestionCasos" asp-action="CasosListado" class="nav-link">Listado de casos</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a asp-controller="GestionCasos" asp-action="CasosCerrados" class="nav-link">Casos Cerrados</a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="nav-item">
+                                <a asp-controller="Citas" asp-action="Calendar" class="nav-link">Citas</a>
+                            </li>
+
+
+
+
+                            <!--<li class="nav-item">
+                                <a href="#" class="nav-link dropdown-toggle">Pages</a>
+                                <ul class="dropdown-menu">
+                                    <li class="nav-item">
+                                        <a href="practice.html" class="nav-link">Practice</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="practice-details.html" class="nav-link">Practice Details</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="appointment.html" class="nav-link">Appointment</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="testimonial.html" class="nav-link">Testimonial</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="faq.html" class="nav-link">FAQ</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="404.html" class="nav-link">404</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="privacy-policy.html" class="nav-link">Privacy Policy</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="terms-conditions.html" class="nav-link">Terms & Conditions</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="#" class="nav-link dropdown-toggle">Blogs</a>
+                                        <ul class="dropdown-menu">
+                                            <li class="nav-item">
+                                                <a href="blog.html" class="nav-link">Blog</a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a href="blog-details.html" class="nav-link">Blog Details</a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="#" class="nav-link dropdown-toggle">Case Studies</a>
+                                        <ul class="dropdown-menu">
+                                            <li class="nav-item">
+                                                <a href="case-study.html" class="nav-link">Case Study</a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a href="case-study-details.html" class="nav-link">Case Study Details</a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </li>-->
+                        </ul>
+                        <partial name="_LoginPartial" class="nav-link" />
+                        <!--<div class="side-nav">
+                            <a href="appointment.html">Get Appointment</a>
+                        </div>-->
+                    </div>
+                </nav>
+
+            </div>
+
+        </div>
+
+    </div>
+    <!-- End Navbar -->
+
+    <main>
+        @RenderBody()
+    </main>
+   
+
+
+
+    <!-- Footer -->
+    <footer>
+
+        <br />
+        <br />
+
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-sm-6 col-lg-4">
+                    <div class="footer-item">
+                        <div class="footer-logo">
+                            <a href="#">
+                                <img src="~/lyso/img/PraeceptaLogo.png" alt="Logo">
+                            </a>
+                            <p>Nuestro Escuadrón de Abogados siempre está aquí para brindarle el mejor y eficiente servicio. Aún así, si quieres saber más sobre nosotros y nuestra firma, puedes conectarnos a través de las redes sociales.</p>
+                            <ul>
+                                <!--<li>
+                                    <a href="https://www.youtube.com/" target="_blank">
+                                        <i class="icofont-youtube-play"></i>
+                                    </a>
+                                </li>-->
+                                <li>
+                                    <a href="https://www.facebook.com/profile.php?id=100078224463677" target="_blank">
+                                        <i class="icofont-facebook"></i>
+                                    </a>
+                                </li>
+                                <!--<li class="disabled">
+                                    <a href="https://www.instagram.com/" target="_blank">
+                                        <i class="icofont-instagram"></i>
+                                    </a>
+                                                                </li>-->
+                                <!--<li class="disabled">
+                                    <a href="https://www.twitter.com/" target="_blank">
+                                        <i class="icofont-twitter"></i>
+                                    </a>
+                                    </li>-->
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-lg-3">
+                    <div class="footer-item">
+                        <div class="footer-service">
+                            <h3>Servicios</h3>
+                            <ul>
+                                <li>
+                                    <a <a asp-controller="Home" asp-action="CaseStudyDetails">
+                                        <i class="icofont-simple-right"></i>
+                                        Derecho Civil
+                                    </a>
+                                </li>
+                                <li>
+                                    <a <a asp-controller="Home" asp-action="CaseStudyDetails">
+                                        <i class="icofont-simple-right"></i>
+                                        Derecho Penal
+                                    </a>
+                                </li>
+                                <li>
+                                    <a <a asp-controller="Home" asp-action="CaseStudyDetails">
+                                        <i class="icofont-simple-right"></i>
+                                        Derecho Laboral
+                                    </a>
+                                </li>
+                                <li>
+                                    <a <a asp-controller="Home" asp-action="CaseStudyDetails">
+                                        <i class="icofont-simple-right"></i>
+                                        Derecho Coporativo
+                                    </a>
+                                </li>
+                                <li>
+                                    <a <a asp-controller="Home" asp-action="CaseStudyDetails">
+                                        <i class="icofont-simple-right"></i>
+                                        Derecho Administrativo
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-lg-2">
+                    <div class="footer-item">
+                        <div class="footer-service">
+                            <h3>Enlaces rápidos</h3>
+                            <ul>
+                                <li>
+                                    <a asp-controller="Home" asp-action="Index">
+                                        <i class="icofont-simple-right"></i>
+                                        Home
+                                    </a>
+                                </li>
+                                <li>
+                                    <a asp-controller="Home" asp-action="About">
+                                        <i class="icofont-simple-right"></i>
+                                        About Us
+                                    </a>
+                                </li>
+                                <!--<li>
+                                    <a href="blog.html">
+                                        <i class="icofont-simple-right"></i>
+                                        Blogs
+                                    </a>
+                                </li>-->
+                                <li>
+                                    <a asp-controller="Home" asp-action="Attorneys">
+                                        <i class="icofont-simple-right"></i>
+                                        Nuestro Equipo
+                                    </a>
+                                </li>
+                                <li>
+                                    <a asp-controller="Hombe" asp-action="Testimonials">
+                                        <i class="icofont-simple-right"></i>
+                                        Testimonios
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-lg-3">
+                    <div class="footer-item">
+                        <div class="footer-find">
+                            <h3>Encuentrenos</h3>
+                            <ul>
+                                <li>
+                                    <i class="icofont-location-pin"></i>
+                                    Escazú, San Rafael, Edificio Terraforte cuarto piso.
+                                </li>
+                                <li>
+                                    <i class="icofont-ui-call"></i>
+                                   +506 8874 4858
+                                </li>
+                                <li>
+                                    <i class="icofont-at"></i>
+                                    <a href="mailto:praecepta2022@gmail.com">praecepta2022@gmail.com</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="copyright-area">
+                <div class="row justify-content-center">
+                    <div class="col-sm-7 col-lg-6">
+                        <div class="copyright-item">
+                            <p>© PraeceptaApp Owned by Praecepta</p>
+                        </div>
+                    </div>
+                    <div class="col-sm-5 col-lg-6">
+                        <div class="copyright-item copyright-right">
+                            <a href="terms-conditions.html" target="_blank">Terms & Conditions</a> <span>-</span>
+                            <a href="privacy-policy.html" target="_blank">Privacy Policy</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- End Footer -->
+    <!-- Essential JS -->
+    <script src="~/lyso/js/jquery.min.js"></script>
+    <script src="~/lyso/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.datatables.net/2.2.2/js/dataTables.js"></script>
+    <!-- Meanmenu JS -->
+    <script src="~/lyso/js/jquery.meanmenu.js"></script>
+    <!-- Nice Select JS -->
+    <script src="~/lyso/js/jquery.nice-select.min.js"></script>
+    <!-- Form Ajaxchimp JS -->
+    <script src="~/lyso/js/jquery.ajaxchimp.min.js"></script>
+    <!-- Form Validator JS -->
+    <script src="~/lyso/js/form-validator.min.js"></script>
+    <!-- Contact JS -->
+    <script src="~/lyso/js/contact-form-script.js"></script>
+    <!-- Owl Carousel JS -->
+    <script src="~/lyso/js/owl.carousel.min.js"></script>
+    <!-- Odometer JS -->
+    <script src="~/lyso/js/odometer.min.js"></script>
+    <script src="~/lyso/js/jquery.appear.min.js"></script>
+    <!-- Magnific Popup JS -->
+    <script src="~/lyso/js/jquery.magnific-popup.min.js"></script>
+    <!-- Wow JS -->
+    <script src="~/lyso/js/wow.min.js"></script>
+    <!-- Custom JS -->
+    <script src="~/lyso/js/custom.js"></script>
+    
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

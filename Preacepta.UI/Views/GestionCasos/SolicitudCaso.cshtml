@@ -1,0 +1,82 @@
+﻿<!-- Page Title -->
+<div class="page-title-area page-title-area-two title-img-one">
+    <div class="d-table">
+        <div class="d-table-cell">
+            <div class="page-title-text">
+                <h2>Solicitud de Caso</h2>
+                <ul>
+                    <li>
+                        <a asp-controller="Home" asp-action="Index">Home</a>
+                    </li>
+                    <li>
+                        <i class="icofont-simple-right"></i>
+                    </li>
+                    <li>Solicitud</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<br />
+<br />
+
+<!-- Contact Form -->
+<div class="contact-form contact-form-four pb-100">
+    <div class="container-fluid">
+        <form id="contactForm">
+            <div class="row contact-wrap">
+                <div class="col-sm-6 col-lg-6">
+                    <div class="form-group">
+                        <input type="text" name="cedula" id="cedula" class="form-control" required data-error="Favor ingrese su cédula" placeholder="Cédula">
+                        <div class="help-block with-errors"></div>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-lg-6">
+                    <div class="form-group">                        
+                        <input type="text" name="nombre" id="nombre" class="form-control" required data-error="Favor ingrese su nombre" placeholder="Nombre completo">
+                        <div class="help-block with-errors"></div>
+                    </div>
+                </div>
+
+                <div class="col-sm-6 col-lg-6">
+                    <div class="form-group">
+                        <input type="email" name="email" id="email" class="form-control" required data-error="Favor ingrese su correo" placeholder="Correro Electrónico">
+                        <div class="help-block with-errors"></div>
+                    </div>
+                </div>
+
+                <div class="col-sm-6 col-lg-6">
+                    <div class="form-group">
+                        <input type="text" name="phone_number" id="phone_number" required data-error="Favor ingrese su número telefónico" class="form-control" placeholder="Número telefónico">
+                        <div class="help-block with-errors"></div>
+                    </div>
+                </div>
+
+
+                <div class="form-group">
+                    <div class="form-check agree-label">
+                        <input name="gridCheck"
+                               value="I agree to the terms and privacy policy."
+                               class="form-check-input"
+                               type="checkbox"
+                               id="gridCheck"
+                               required>
+                        <label class="form-check-label" for="gridCheck">
+                            Acepta <a href="terms-condition.html">Terminos y Condiciones</a> & <a href="privacy-policy.html"> Politica de privacidad.</a>
+                        </label>
+                        <div class="help-block with-errors gridCheck-error"></div>
+                    </div>
+                </div>
+
+                <div class="col-md-12 col-lg-12">
+                    <div class="text-center">
+                        <button type="submit" class="contact-btn">Enviar</button>
+                    </div>
+                    <!--<div id="msgSubmit" class="h3 text-center hidden"></div>
+                    <div class="clearfix"></div>-->
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+

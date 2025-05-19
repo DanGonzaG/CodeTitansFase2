@@ -1,0 +1,23 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v8.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v8.0": {
+      "Preacepta.LN/1.0.0": {
+        "runtime": {
+          "Preacepta.LN.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "Preacepta.LN/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}

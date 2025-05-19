@@ -1,0 +1,131 @@
+﻿<!-- Page Title -->
+<div class="page-title-area page-title-area-two title-img-one">
+    <div class="d-table">
+        <div class="d-table-cell">
+            <div class="page-title-text">
+                <h2>Contáctenos</h2>
+                <ul>
+                    <li>
+                        <a asp-controller="Home" asp-action="Index">Home</a>
+                    </li>
+                    <li>
+                        <i class="icofont-simple-right"></i>
+                    </li>
+                    <li>Contáctenos</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End Page Title -->
+<!-- Contact Form -->
+<div class="contact-form contact-form-four pb-100">
+    <!-- Location -->
+    <div class="loaction-area">
+        <div class="container">
+            <div class="row location-bg">
+                <div class="col-sm-6 col-lg-4">
+                    <div class="location-item">
+                        <div class="location-icon">
+                            <i class="flaticon-pin"></i>
+                        </div>
+                        <h3>Ubicación</h3>
+                        <ul>
+                            <li>Escazú, San Rafael, Edificio Terraforte cuarto piso. Lexcounsel abogados.</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-lg-4">
+                    <div class="location-item">
+                        <div class="location-icon">
+                            <i class="flaticon-call"></i>
+                        </div>
+                        <h3>Número Telefónico</h3>
+                        <ul>
+                            <li>
+                                <a href="tel:+50688744858">+506 8874 4858</a>
+                            </li>                           
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-sm-6   col-lg-4">
+                    <div class="location-item">
+                        <div class="location-icon">
+                            <i class="flaticon-email"></i>
+                        </div>
+                        <h3>Correro Electrónico</h3>
+                        <ul>
+                            <li>
+                                <a href="mailto:praecepta2022@gmail.com">praecepta2022@gmail.com</a>
+                            </li>
+                         </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Location -->
+
+    <div class="container-fluid">
+        <form id="contactForm">
+            <div class="row contact-wrap">
+                <div class="col-sm-6 col-lg-6">
+                    <div class="form-group">
+                        <input type="text" name="cedula" id="cedula" class="form-control" required data-error="Digite el dato" placeholder="Identificación">
+                        <div class="help-block with-errors"></div>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-lg-6">
+                    <div class="form-group">
+                        <input type="text" name="name" id="name" class="form-control" required data-error="Digite el dato" placeholder="Nombre completo">
+                        <div class="help-block with-errors"></div>
+                    </div>
+                </div>
+
+                <div class="col-sm-6 col-lg-6">
+                    <div class="form-group">
+                        <input type="email" name="email" id="email" class="form-control" required data-error="Digite el dato" placeholder="Correo Electrónico">
+                        <div class="help-block with-errors"></div>
+                    </div>
+                </div>
+
+                <div class="col-sm-6 col-lg-6">
+                    <div class="form-group">
+                        <input type="text" name="phone_number" id="phone_number" required data-error="Digite el dato" class="form-control" placeholder="Número telefónico">
+                        <div class="help-block with-errors"></div>
+                    </div>
+                </div>
+
+
+                <div class="form-group">
+                    <div class="form-check agree-label">
+                        <input name="gridCheck"
+                               value="I agree to the terms and privacy policy."
+                               class="form-check-input"
+                               type="checkbox"
+                               id="gridCheck"
+                               required>
+                        <label class="form-check-label" for="gridCheck">
+                            Acepta <a href="terms-condition.html">Terminos y Condiciones</a> & <a href="privacy-policy.html"> Politica de privacidad.</a>
+                        </label>
+                        <div class="help-block with-errors gridCheck-error"></div>
+                    </div>
+                </div>
+
+                <div class="col-md-12 col-lg-12">
+                    <div class="text-center">
+                        <button type="submit" class="contact-btn">Enviar</button>
+                    </div>
+                    <!--<div id="msgSubmit" class="h3 text-center hidden"></div>
+                    <div class="clearfix"></div>-->
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<!-- End Contact Form -->
+<!-- Start Map Area -->
+<div class="map-area">
+    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d245.61935480722028!2d-84.15101610124113!3d9.941473057350633!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8fa0fb86ebffffff%3A0x67c4a0f49e7a82f9!2sEdificio%20Terraforte!5e0!3m2!1ses-419!2scr!4v1743887903167!5m2!1ses-419!2scr" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+</div>
+<!-- End Map Area -->

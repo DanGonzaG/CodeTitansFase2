@@ -1,0 +1,111 @@
+﻿@using Praecepta.UI.Models
+@model IEnumerable<ModelDocsEjemplo>
+<head>
+    <link href="~/lyso/css/mostrar.css" rel="stylesheet" />
+</head>
+
+<!-- Page Title -->
+<div class="page-title-area page-title-area-two title-img-one">
+    <div class="d-table">
+        <div class="d-table-cell">
+            <div class="page-title-text">
+                <h2>Historial de documentos legales</h2>
+                <ul>
+                    <li>
+                        <a asp-controller="Home" asp-action="Index">Home</a>
+                    </li>
+                    <li>
+                        <i class="icofont-simple-right"></i>
+                    </li>
+                    <li>Historial</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End Page Title -->
+<br />
+<br />
+<br />
+<div class="contact-form contact-form-two contact-form-three">
+    <div class="container">
+        <div class="contact-wrap">
+            <form id="contactForm" class="">
+                <h2>Filtrar el listado de documentos</h2>
+                <div class="row justify-content-center">
+                    <div class="col-sm-6 col-lg-6">
+                        <div class="form-group">
+                            <input style="color:black" type="date" name="marca" id="marca" class="form-control" required data-error="Favor ingrese el dato" placeholder="Ingrese la fecha">
+                            <div class="help-block with-errors"></div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-lg-6">
+                        <div class="form-group">
+                            <input type="text" name="marca" id="marca" class="form-control" required data-error="Favor ingrese el dato" placeholder="Ingrese el tipo de documento">
+                            <div class="help-block with-errors"></div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-lg-6">
+                        <div class="text-center">
+                            <button type="submit" class="contact-btn">Buscar</button>
+                        </div>                     
+                    </div>
+                </div>
+            </form>
+
+        </div>
+    </div>
+</div>
+<div class="formulario contact-form contact-form-two contact-form-three">
+    <div class="container">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(Model => Model.Fecha)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(Model => Model.TipoDocumento)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(Model => Model.Cliente)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(Model => Model.Abogado)
+                    </th>
+
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @item.Fecha
+                        </td>
+                        <td>
+                            @item.TipoDocumento
+                        </td>
+                        <td>
+                            @item.Cliente
+                        </td>
+                        <td>
+                            @item.Abogado
+                        </td>
+                        <td>
+                            <a class="cmn-btn" asp-controller="DocsGenerator" asp-action="DocsPrevisualizacion"><i class="fa-solid fa-eye"></i></a>
+                            <a class="cmn-btn" asp-controller="Home" asp-action="Index"><i class="fa-solid fa-download"></i></a>
+                            
+                        </td>
+                    </tr>
+                }
+               
+
+
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
