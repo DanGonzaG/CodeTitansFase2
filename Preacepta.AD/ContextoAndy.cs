@@ -7,18 +7,16 @@ using System.Threading.Tasks;
 
 namespace Preacepta.AD
 {
-    public class Contexto : DbContext
+    public class ContextoAndy : DbContext
     {
-        public Contexto(DbContextOptions<Contexto> options) : base(options) { }
-
-
+        public ContextoAndy(DbContextOptions<ContextoAndy> options) : base(options) { }
 
         //public DbSet<>
 
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-           
+
         }
     }
 }

@@ -23,6 +23,16 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<Contexto>(options =>
     options.UseSqlServer(connectionString));
 
+//Contextos para manejar mejor las ramas de GitHub, eso se hace para que cada miembro del equipo pueda manipular un contexto orintado a sus respectivos modulos
+builder.Services.AddDbContext<ContextoAlonso>(options =>
+    options.UseSqlServer(connectionString));
+
+builder.Services.AddDbContext<ContextoAndy>(options =>
+    options.UseSqlServer(connectionString));
+
+builder.Services.AddDbContext<ContextoAngie>(options =>
+    options.UseSqlServer(connectionString));
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
