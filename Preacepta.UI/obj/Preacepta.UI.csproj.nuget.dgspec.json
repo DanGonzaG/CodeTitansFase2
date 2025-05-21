@@ -28,7 +28,11 @@
         "frameworks": {
           "net8.0": {
             "targetAlias": "net8.0",
-            "projectReferences": {}
+            "projectReferences": {
+              "C:\\Preacepta\\Preacepta.Modelos\\Preacepta.Modelos.csproj": {
+                "projectPath": "C:\\Preacepta\\Preacepta.Modelos\\Preacepta.Modelos.csproj"
+              }
+            }
           }
         },
         "warningProperties": {

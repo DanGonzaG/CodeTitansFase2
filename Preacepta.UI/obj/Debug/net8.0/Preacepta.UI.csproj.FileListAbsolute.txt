@@ -155,3 +155,4 @@ C:\Preacepta\Preacepta.UI\obj\Debug\net8.0\refint\Preacepta.UI.dll
 C:\Preacepta\Preacepta.UI\obj\Debug\net8.0\Preacepta.UI.pdb
 C:\Preacepta\Preacepta.UI\obj\Debug\net8.0\Preacepta.UI.genruntimeconfig.cache
 C:\Preacepta\Preacepta.UI\obj\Debug\net8.0\ref\Preacepta.UI.dll
+C:\Preacepta\Preacepta.UI\obj\Debug\net8.0\Preacepta.UI.sourcelink.json

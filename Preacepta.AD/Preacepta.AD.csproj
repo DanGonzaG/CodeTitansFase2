@@ -18,4 +18,8 @@
     </PackageReference>
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Preacepta.Modelos\Preacepta.Modelos.csproj" />
+  </ItemGroup>
+
 </Project>

@@ -12,3 +12,4 @@ C:\Preacepta\Preacepta.AD\obj\Debug\net8.0\refint\Preacepta.AD.dll
 C:\Preacepta\Preacepta.AD\obj\Debug\net8.0\Preacepta.AD.pdb
 C:\Preacepta\Preacepta.AD\obj\Debug\net8.0\Preacepta.AD.genruntimeconfig.cache
 C:\Preacepta\Preacepta.AD\obj\Debug\net8.0\ref\Preacepta.AD.dll
+C:\Preacepta\Preacepta.AD\obj\Debug\net8.0\Preacepta.AD.sourcelink.json

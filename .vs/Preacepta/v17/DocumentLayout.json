@@ -1,36 +1,7 @@
 {
   "Version": 1,
   "WorkspaceRootPath": "C:\\Preacepta\\",
-  "Documents": [
-    {
-      "AbsoluteMoniker": "D:0:0:{18AD59F4-3C32-4F5A-9C07-4B4448F18661}|Preacepta.UI\\Preacepta.UI.csproj|c:\\preacepta\\preacepta.ui\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{18AD59F4-3C32-4F5A-9C07-4B4448F18661}|Preacepta.UI\\Preacepta.UI.csproj|solutionrelative:preacepta.ui\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{ABCA304E-D92E-43A2-A507-A94A7ADD2ADD}|Preacepta.AD\\Preacepta.AD.csproj|c:\\preacepta\\preacepta.ad\\contexto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{ABCA304E-D92E-43A2-A507-A94A7ADD2ADD}|Preacepta.AD\\Preacepta.AD.csproj|solutionrelative:preacepta.ad\\contexto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{18AD59F4-3C32-4F5A-9C07-4B4448F18661}|Preacepta.UI\\Preacepta.UI.csproj|c:\\preacepta\\preacepta.ui\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
-      "RelativeMoniker": "D:0:0:{18AD59F4-3C32-4F5A-9C07-4B4448F18661}|Preacepta.UI\\Preacepta.UI.csproj|solutionrelative:preacepta.ui\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{ABCA304E-D92E-43A2-A507-A94A7ADD2ADD}|Preacepta.AD\\Preacepta.AD.csproj|c:\\preacepta\\preacepta.ad\\contextoangie.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{ABCA304E-D92E-43A2-A507-A94A7ADD2ADD}|Preacepta.AD\\Preacepta.AD.csproj|solutionrelative:preacepta.ad\\contextoangie.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{ABCA304E-D92E-43A2-A507-A94A7ADD2ADD}|Preacepta.AD\\Preacepta.AD.csproj|c:\\preacepta\\preacepta.ad\\contextoandy.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{ABCA304E-D92E-43A2-A507-A94A7ADD2ADD}|Preacepta.AD\\Preacepta.AD.csproj|solutionrelative:preacepta.ad\\contextoandy.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{ABCA304E-D92E-43A2-A507-A94A7ADD2ADD}|Preacepta.AD\\Preacepta.AD.csproj|c:\\preacepta\\preacepta.ad\\contextoalonso.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{ABCA304E-D92E-43A2-A507-A94A7ADD2ADD}|Preacepta.AD\\Preacepta.AD.csproj|solutionrelative:preacepta.ad\\contextoalonso.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{18AD59F4-3C32-4F5A-9C07-4B4448F18661}|Preacepta.UI\\Preacepta.UI.csproj|c:\\preacepta\\preacepta.ui\\preacepta.ui.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
-      "RelativeMoniker": "D:0:0:{18AD59F4-3C32-4F5A-9C07-4B4448F18661}|Preacepta.UI\\Preacepta.UI.csproj|solutionrelative:preacepta.ui\\preacepta.ui.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
-    }
-  ],
+  "Documents": [],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
@@ -38,60 +9,8 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 3,
+          "SelectedChildIndex": -1,
           "Children": [
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "Contexto.cs",
-              "DocumentMoniker": "C:\\Preacepta\\Preacepta.AD\\Contexto.cs",
-              "RelativeDocumentMoniker": "Preacepta.AD\\Contexto.cs",
-              "ToolTip": "C:\\Preacepta\\Preacepta.AD\\Contexto.cs",
-              "RelativeToolTip": "Preacepta.AD\\Contexto.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-19T23:37:02.26Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "appsettings.json",
-              "DocumentMoniker": "C:\\Preacepta\\Preacepta.UI\\appsettings.json",
-              "RelativeDocumentMoniker": "Preacepta.UI\\appsettings.json",
-              "ToolTip": "C:\\Preacepta\\Preacepta.UI\\appsettings.json",
-              "RelativeToolTip": "Preacepta.UI\\appsettings.json",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAC3AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2025-05-19T23:10:20.226Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "ContextoAndy.cs",
-              "DocumentMoniker": "C:\\Preacepta\\Preacepta.AD\\ContextoAndy.cs",
-              "RelativeDocumentMoniker": "Preacepta.AD\\ContextoAndy.cs",
-              "ToolTip": "C:\\Preacepta\\Preacepta.AD\\ContextoAndy.cs",
-              "RelativeToolTip": "Preacepta.AD\\ContextoAndy.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAA5AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-19T21:45:29.522Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "Program.cs",
-              "DocumentMoniker": "C:\\Preacepta\\Preacepta.UI\\Program.cs",
-              "RelativeDocumentMoniker": "Preacepta.UI\\Program.cs",
-              "ToolTip": "C:\\Preacepta\\Preacepta.UI\\Program.cs",
-              "RelativeToolTip": "Preacepta.UI\\Program.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABgAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-19T21:42:44.199Z",
-              "EditorCaption": ""
-            },
             {
               "$type": "Bookmark",
               "Name": "ST:128:0:{75188d03-9892-4ae2-abf1-207126247ce5}"
@@ -111,45 +30,6 @@
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{aa2115a1-9712-457b-9047-dbb71ca2cdd2}"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "ContextoAlonso.cs",
-              "DocumentMoniker": "C:\\Preacepta\\Preacepta.AD\\ContextoAlonso.cs",
-              "RelativeDocumentMoniker": "Preacepta.AD\\ContextoAlonso.cs",
-              "ToolTip": "C:\\Preacepta\\Preacepta.AD\\ContextoAlonso.cs",
-              "RelativeToolTip": "Preacepta.AD\\ContextoAlonso.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABUAAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-19T21:42:37.344Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "ContextoAngie.cs",
-              "DocumentMoniker": "C:\\Preacepta\\Preacepta.AD\\ContextoAngie.cs",
-              "RelativeDocumentMoniker": "Preacepta.AD\\ContextoAngie.cs",
-              "ToolTip": "C:\\Preacepta\\Preacepta.AD\\ContextoAngie.cs",
-              "RelativeToolTip": "Preacepta.AD\\ContextoAngie.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAA7AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-19T21:42:24.339Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "Preacepta.UI.csproj",
-              "DocumentMoniker": "C:\\Preacepta\\Preacepta.UI\\Preacepta.UI.csproj",
-              "RelativeDocumentMoniker": "Preacepta.UI\\Preacepta.UI.csproj",
-              "ToolTip": "C:\\Preacepta\\Preacepta.UI\\Preacepta.UI.csproj",
-              "RelativeToolTip": "Preacepta.UI\\Preacepta.UI.csproj",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAB8AAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
-              "WhenOpened": "2025-05-19T02:54:26.755Z",
-              "EditorCaption": ""
             }
           ]
         }
