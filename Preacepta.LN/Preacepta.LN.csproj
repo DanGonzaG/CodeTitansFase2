@@ -6,4 +6,8 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Preacepta.AD\Preacepta.AD.csproj" />
+  </ItemGroup>
+
 </Project>

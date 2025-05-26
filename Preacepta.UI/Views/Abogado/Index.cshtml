@@ -1,0 +1,54 @@
+﻿@model IEnumerable<Preacepta.Modelos.AbstraccionesFrond.GeAbogadoDTO>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "_Layout";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Carnet)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CJuridicaNavigation)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CedulaNavigation)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IdTipoAbogadoNavigation)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Carnet)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CJuridicaNavigation.Nombre)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CedulaNavigation.Nombre)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IdTipoAbogadoNavigation.Nombre)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Cedula">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.Cedula">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.Cedula">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
