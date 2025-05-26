@@ -1,0 +1,72 @@
+﻿@model IEnumerable<Preacepta.Modelos.AbstraccionesFrond.GeNegocioDTO>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "_Layout";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Nombre)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Telefono)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Email)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Representante)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FechaConsolidacion)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Direccion1)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Direccion2)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nombre)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Telefono)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Representante)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FechaConsolidacion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Direccion1)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Direccion2)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.CJuridica">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.CJuridica">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.CJuridica">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
