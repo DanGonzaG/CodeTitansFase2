@@ -1,20 +1,30 @@
 ﻿using Preacepta.Modelos.AbstraccionesBD;
+using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 
 namespace Preacepta.Modelos.AbstraccionesFrond
 {
     public class GeAbogadoDTO
     {
-        public int Cedula { get; set; }
-       
-        public int IdTipoAbogado { get; set; }
-        
-        public int CJuridica { get; set; }
-      
-        public virtual TGeNegocio CJuridicaNavigation { get; set; } = null!;
-      
-        public virtual TGePersona CedulaNavigation { get; set; } = null!;
+        [Required(ErrorMessage = "Debe de agregar el carnet del abogado")]
+        public int Carnet { get; set; }
 
-        public virtual TGeAbogadoTipo IdTipoAbogadoNavigation { get; set; } = null!;
+        [Required(ErrorMessage = "Debe de agregar la cédula del abogado")]
+        [DisplayName("Cédula")]
+        public int Cedula { get; set; }
+
+        [Required(ErrorMessage = "Debe de seleccionar la especialidad del abogado")]
+        [DisplayName("Tipo de abogado")]
+        public int IdTipoAbogado { get; set; }
+
+        [DisplayName("Cedula Jurídica")]
+        public int CJuridica { get; set; }
+        [DisplayName("Despacho")]
+        public virtual TGeNegocio? CJuridicaNavigation { get; set; } = null!;
+        [DisplayName("Funcionario")]
+        public virtual TGePersona? CedulaNavigation { get; set; } = null!;
+        [DisplayName("Especialidad")]
+        public virtual TGeAbogadoTipo? IdTipoAbogadoNavigation { get; set; } = null!;
        
         public virtual ICollection<TCaso> TCasos { get; set; } = new List<TCaso>();
         

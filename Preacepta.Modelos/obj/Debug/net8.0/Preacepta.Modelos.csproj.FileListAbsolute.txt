@@ -1,10 +1,12 @@
 C:\Preacepta\Preacepta.Modelos\bin\Debug\net8.0\Preacepta.Modelos.deps.json
 C:\Preacepta\Preacepta.Modelos\bin\Debug\net8.0\Preacepta.Modelos.dll
 C:\Preacepta\Preacepta.Modelos\bin\Debug\net8.0\Preacepta.Modelos.pdb
+C:\Preacepta\Preacepta.Modelos\obj\Debug\net8.0\Preacepta.Modelos.csproj.AssemblyReference.cache
 C:\Preacepta\Preacepta.Modelos\obj\Debug\net8.0\Preacepta.Modelos.GeneratedMSBuildEditorConfig.editorconfig
 C:\Preacepta\Preacepta.Modelos\obj\Debug\net8.0\Preacepta.Modelos.AssemblyInfoInputs.cache
 C:\Preacepta\Preacepta.Modelos\obj\Debug\net8.0\Preacepta.Modelos.AssemblyInfo.cs
 C:\Preacepta\Preacepta.Modelos\obj\Debug\net8.0\Preacepta.Modelos.csproj.CoreCompileInputs.cache
+C:\Preacepta\Preacepta.Modelos\obj\Debug\net8.0\Preacepta.Modelos.sourcelink.json
 C:\Preacepta\Preacepta.Modelos\obj\Debug\net8.0\Preacepta.Modelos.dll
 C:\Preacepta\Preacepta.Modelos\obj\Debug\net8.0\refint\Preacepta.Modelos.dll
 C:\Preacepta\Preacepta.Modelos\obj\Debug\net8.0\Preacepta.Modelos.pdb

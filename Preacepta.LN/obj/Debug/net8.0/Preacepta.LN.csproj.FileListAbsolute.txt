@@ -1,10 +1,17 @@
 C:\Preacepta\Preacepta.LN\bin\Debug\net8.0\Preacepta.LN.deps.json
 C:\Preacepta\Preacepta.LN\bin\Debug\net8.0\Preacepta.LN.dll
 C:\Preacepta\Preacepta.LN\bin\Debug\net8.0\Preacepta.LN.pdb
+C:\Preacepta\Preacepta.LN\bin\Debug\net8.0\Preacepta.AD.dll
+C:\Preacepta\Preacepta.LN\bin\Debug\net8.0\Preacepta.Modelos.dll
+C:\Preacepta\Preacepta.LN\bin\Debug\net8.0\Preacepta.AD.pdb
+C:\Preacepta\Preacepta.LN\bin\Debug\net8.0\Preacepta.Modelos.pdb
+C:\Preacepta\Preacepta.LN\obj\Debug\net8.0\Preacepta.LN.csproj.AssemblyReference.cache
 C:\Preacepta\Preacepta.LN\obj\Debug\net8.0\Preacepta.LN.GeneratedMSBuildEditorConfig.editorconfig
 C:\Preacepta\Preacepta.LN\obj\Debug\net8.0\Preacepta.LN.AssemblyInfoInputs.cache
 C:\Preacepta\Preacepta.LN\obj\Debug\net8.0\Preacepta.LN.AssemblyInfo.cs
 C:\Preacepta\Preacepta.LN\obj\Debug\net8.0\Preacepta.LN.csproj.CoreCompileInputs.cache
+C:\Preacepta\Preacepta.LN\obj\Debug\net8.0\Preacepta.LN.sourcelink.json
+C:\Preacepta\Preacepta.LN\obj\Debug\net8.0\Preacept.1955E9BD.Up2Date
 C:\Preacepta\Preacepta.LN\obj\Debug\net8.0\Preacepta.LN.dll
 C:\Preacepta\Preacepta.LN\obj\Debug\net8.0\refint\Preacepta.LN.dll
 C:\Preacepta\Preacepta.LN\obj\Debug\net8.0\Preacepta.LN.pdb
