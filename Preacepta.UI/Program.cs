@@ -1,6 +1,21 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Preacepta.AD;
+using Preacepta.AD.Casos.BuscarXid;
+using Preacepta.AD.Casos.Crear;
+using Preacepta.AD.Casos.Editar;
+using Preacepta.AD.Casos.Eliminar;
+using Preacepta.AD.Casos.Listar;
+using Preacepta.AD.CasosEtapa.BuscarXid;
+using Preacepta.AD.CasosEtapa.Crear;
+using Preacepta.AD.CasosEtapa.Editar;
+using Preacepta.AD.CasosEtapa.Eliminar;
+using Preacepta.AD.CasosEtapa.Listar;
+using Preacepta.AD.CasosEvidencia.BuscarXid;
+using Preacepta.AD.CasosEvidencia.Crear;
+using Preacepta.AD.CasosEvidencia.Editar;
+using Preacepta.AD.CasosEvidencia.Eliminar;
+using Preacepta.AD.CasosEvidencia.Listar;
 using Preacepta.AD.CasosTipo.BuscarXid;
 using Preacepta.AD.CasosTipo.Crear;
 using Preacepta.AD.CasosTipo.Editar;
@@ -31,6 +46,29 @@ using Preacepta.AD.GePersona.Crear;
 using Preacepta.AD.GePersona.Editar;
 using Preacepta.AD.GePersona.Eliminar;
 using Preacepta.AD.GePersona.Listar;
+using Preacepta.AD.GeRedesSociales.BuscarXid;
+using Preacepta.AD.GeRedesSociales.Crear;
+using Preacepta.AD.GeRedesSociales.Editar;
+using Preacepta.AD.GeRedesSociales.Eliminar;
+using Preacepta.AD.GeRedesSociales.Listar;
+using Preacepta.LN.Casos.BuscarXid;
+using Preacepta.LN.Casos.Crear;
+using Preacepta.LN.Casos.Editar;
+using Preacepta.LN.Casos.Eliminar;
+using Preacepta.LN.Casos.Listar;
+using Preacepta.LN.Casos.ObtenerDatos;
+using Preacepta.LN.CasosEtapa.BuscarXid;
+using Preacepta.LN.CasosEtapa.Crear;
+using Preacepta.LN.CasosEtapa.Editar;
+using Preacepta.LN.CasosEtapa.Eliminar;
+using Preacepta.LN.CasosEtapa.Listar;
+using Preacepta.LN.CasosEtapa.ObtenerDatos;
+using Preacepta.LN.CasosEvidencia.BuscarXid;
+using Preacepta.LN.CasosEvidencia.Crear;
+using Preacepta.LN.CasosEvidencia.Editar;
+using Preacepta.LN.CasosEvidencia.Eliminar;
+using Preacepta.LN.CasosEvidencia.Listar;
+using Preacepta.LN.CasosEvidencia.ObtenerDatos;
 using Preacepta.LN.CasosTipo.BuscarXid;
 using Preacepta.LN.CasosTipo.Crear;
 using Preacepta.LN.CasosTipo.Editar;
@@ -67,6 +105,12 @@ using Preacepta.LN.GePersona.Editar;
 using Preacepta.LN.GePersona.Eliminar;
 using Preacepta.LN.GePersona.Listar;
 using Preacepta.LN.GePersona.ObtenerDatos;
+using Preacepta.LN.GeRedesSociales.BuscarXid;
+using Preacepta.LN.GeRedesSociales.Crear;
+using Preacepta.LN.GeRedesSociales.Editar;
+using Preacepta.LN.GeRedesSociales.Eliminar;
+using Preacepta.LN.GeRedesSociales.Listar;
+using Preacepta.LN.GeRedesSociales.ObtenerDatos;
 using Preacepta.UI.Data;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -89,7 +133,7 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<Contexto>(options =>
     options.UseSqlServer(connectionString));
 
-/*Inseccion de servicios modulo de personas*/
+/*Inseccion de servicios modulo de general-personas*/
 builder.Services.AddScoped<IListarGePersonaAD, ListarGePersonaAD>();
 builder.Services.AddScoped<IListarGePersonaLN, ListarGePersonaLN>();
 builder.Services.AddScoped<IObtenerDatosLN, ObtenerDatosLN>();
@@ -101,7 +145,7 @@ builder.Services.AddScoped<IEditarGePersonaAD, EditarGePersonaAD>();
 builder.Services.AddScoped<IEditarGePersonaLN, EditarGePersonaLN>();
 builder.Services.AddScoped<IEliminarPersonaAD, EliminarPersonaAD>();
 builder.Services.AddScoped<IEliminarPersonaLN, EliminarPersonaLN>();
-/*Inseccion de servicios modulo de Abogados Tipos*/
+/*Inseccion de servicios modulo general-Abogados Tipos*/
 builder.Services.AddScoped<IBuscarAbogadoTipoAD, BuscarAbogadoTipoAD>();
 builder.Services.AddScoped<IBuscarAbogadoTipoLN, BuscarAbogadoTipoLN> ();
 builder.Services.AddScoped<ICrearAbogadoTipoAD, CrearAbogadoTipoAD>();
@@ -113,7 +157,7 @@ builder.Services.AddScoped<IEliminarAbogadoTipoLN, EliminarAbogadoTipoLN>();
 builder.Services.AddScoped<IListarAbogadoTipoAD, ListarAbogadoTipoAD>();
 builder.Services.AddScoped<IListarAbogadoTipoLN, ListarAbogadoTipoLN>();
 builder.Services.AddScoped<IObtenerDatosAbogadoTipoLN, ObtenerDatosAbogadoTipoLN>();
-/*Inseccion de servicios modulo de Casos Tipo*/
+/*Inseccion de servicios modulo Casos-Casos Tipo*/
 builder.Services.AddScoped<IBuscarCasosTiposAD, BuscarCasosTiposAD>();
 builder.Services.AddScoped<ICrearCasosTiposAD, CrearCasosTiposAD>();
 builder.Services.AddScoped<IEditarCasosTiposAD, EditarCasosTiposAD>();
@@ -125,7 +169,7 @@ builder.Services.AddScoped<ICrearCasosTiposLN, CrearCasosTiposLN>();
 builder.Services.AddScoped<IEditarCasosTiposLN, EditarCasosTiposLN>();
 builder.Services.AddScoped<IEliminarCasosTipoLN, EliminarCasosTipoLN>();
 builder.Services.AddScoped<IListarCasosTipoLN, ListarCasosTipoLN>();
-/*Inseccion de servicios modulo de Abogados*/
+/*Inseccion de servicios modulo general- Abogados*/
 builder.Services.AddScoped<IBuscarAbogadoAD, BuscarAbogadoAD>();
 builder.Services.AddScoped<ICrearAbogadoAD, CrearAbogadoAD>();
 builder.Services.AddScoped<IEditarAbogadoAD, EditarAbogadoAD>();
@@ -137,7 +181,7 @@ builder.Services.AddScoped<IEditarAbogadoLN, EditarAbogadoLN>();
 builder.Services.AddScoped<IEliminarAbogadoLN, EliminarAbogadoLN>();
 builder.Services.AddScoped<IListarAbogadoLN, ListarAbogadoLN>();
 builder.Services.AddScoped<IObtenerDatosAbogadoLN, ObtenerDatosAbogadoLN>();
-/*Inseccion de servicios modulo de GeNegocio*/
+/*Inseccion de servicios modulo general- GeNegocio*/
 builder.Services.AddScoped<IBuscarNegocioAD, BuscarNegocioAD>();
 builder.Services.AddScoped< ICrearNegocioAD, CrearNegocioAD>();
 builder.Services.AddScoped< IEditarNegocioAD, EditarNegocioAD>();
@@ -149,7 +193,7 @@ builder.Services.AddScoped<IEditarNegocioLN, EditarNegocioLN>();
 builder.Services.AddScoped<IEliminarNegocioLN, EliminarNegocioLN>();
 builder.Services.AddScoped<IListarNegocioLN, ListarNegocioLN>();
 builder.Services.AddScoped<IObtenerDatosNegocioLN, ObtenerDatosNegocioLN>();
-/*Inseccion de servicios modulo de Provincias,Cantones y Distritos*/
+/*Inseccion de servicios tablas Provincias,Cantones y Distritos*/
 builder.Services.AddScoped<IBuscarCrDireccion1AD, BuscarCrDireccion1AD>();
 builder.Services.AddScoped<ICrearCrDireccion1AD, CrearCrDireccion1AD>();
 builder.Services.AddScoped<IEditarCrDireccion1AD, EditarCrDireccion1AD>();
@@ -161,7 +205,54 @@ builder.Services.AddScoped<IEditarCrDireccion1LN, EditarCrDireccion1LN>();
 builder.Services.AddScoped<IEliminarCrDireccion1LN, EliminarCrDireccion1LN>();
 builder.Services.AddScoped<IListarCrDireccion1LN, ListarCrDireccion1LN>();
 builder.Services.AddScoped<IObtenerDatosDireccion1LN, ObtenerDatosDireccion1LN>();
-
+/*Inseccion de servicios modulo de Casos - casos*/
+builder.Services.AddScoped<IBuscarCasosAD, BuscarCasosAD>();
+builder.Services.AddScoped<ICrearCasosAD, CrearCasosAD>();
+builder.Services.AddScoped<IEditarCasosAD, EditarCasosAD>();
+builder.Services.AddScoped<IELiminarCasosAD, ELiminarCasosAD>();
+builder.Services.AddScoped<IListarCasosAD, ListarCasosAD>();
+builder.Services.AddScoped<IBuscarCasosLN, BuscarCasosLN>();
+builder.Services.AddScoped<ICrearCasosLN, CrearCasosLN>();
+builder.Services.AddScoped<IEditarCasosLN, EditarCasosLN>();
+builder.Services.AddScoped<IELiminarCasosLN, ELiminarCasosLN>();
+builder.Services.AddScoped<IListarCasosLN, ListarCasosLN>();
+builder.Services.AddScoped<IObtenerDatosCasoLN, ObtenerDatosCasoLN>();
+/*Inseccion de servicios modulo de General - Tablas y modelos de redes sociales*/
+builder.Services.AddScoped<IBuscarRedesSocialesAD, BuscarRedesSocialesAD>();
+builder.Services.AddScoped<ICrearRedesSocialesAD, CrearRedesSocialesAD>();
+builder.Services.AddScoped<IEditarRedesSocialesAD, EditarRedesSocialesAD>();
+builder.Services.AddScoped<IEliminarRedesSocialesAD, EliminarRedesSocialesAD>();
+builder.Services.AddScoped<IListarRedesSocialesAD, ListarRedesSocialesAD>();
+builder.Services.AddScoped<IObtenerDatosRedesSocialesLN, ObtenerDatosRedesSocialesLN>();
+builder.Services.AddScoped<IBuscarRedesSocialesLN, BuscarRedesSocialesLN>();
+builder.Services.AddScoped<ICrearRedesSocialesLN, CrearRedesSocialesLN>();
+builder.Services.AddScoped<IEditarRedesSocialesLN, EditarRedesSocialesLN>();
+builder.Services.AddScoped<IEliminarRedesSocialesLN, EliminarRedesSocialesLN>();
+builder.Services.AddScoped<IListarRedesSocialesLN, ListarRedesSocialesLN>();
+/*Inseccion de servicios modulo de Casos - Tablas y modelos de CatosEtapas*/
+builder.Services.AddScoped<IBuscarCasosEtapasAD, BuscarCasosEtapasAD>();
+builder.Services.AddScoped<ICrearCasosEtapasAD, CrearCasosEtapasAD>();
+builder.Services.AddScoped<IEditarCasosEtapasAD, EditarCasosEtapasAD>();
+builder.Services.AddScoped<IEliminarCasosEtapasAD, EliminarCasosEtapasAD>();
+builder.Services.AddScoped<IListarCasosEtapasAD, ListarCasosEtapasAD>();
+builder.Services.AddScoped<IObtnerDatosCasoEtapaLN, ObtnerDatosCasoEtapaLN>();
+builder.Services.AddScoped<IBuscarCasosEtapasLN, BuscarCasosEtapasLN>();
+builder.Services.AddScoped<ICrearCasosEtapasLN, CrearCasosEtapasLN>();
+builder.Services.AddScoped<IEditarCasosEtapasLN, EditarCasosEtapasLN>();
+builder.Services.AddScoped<IEliminarCasosEtapasLN, EliminarCasosEtapasLN>();
+builder.Services.AddScoped<IListarCasosEtapasLN, ListarCasosEtapasLN>();
+/*Inseccion de servicios modulo de Casos - Tablas y modelos de CatosEvidencias*/
+builder.Services.AddScoped<IBuscarCasosEvidenciaAD, BuscarCasosEvidenciaAD>();
+builder.Services.AddScoped<ICrearCasosEvidenciaAD, CrearCasosEvidenciaAD>();
+builder.Services.AddScoped<IEditarCasosEvidenciaAD, EditarCasosEvidenciaAD>();
+builder.Services.AddScoped<IEliminarCasosEvidenciaAD, EliminarCasosEvidenciaAD>();
+builder.Services.AddScoped<IListarCasosEvidenciaAD, ListarCasosEvidenciaAD>();
+builder.Services.AddScoped<IObtnerDatosCasoEvidenciaLN, ObtnerDatosCasoEvidenciaLN>();
+builder.Services.AddScoped<IBuscarCasosEvidenciaLN, BuscarCasosEvidenciaLN>();
+builder.Services.AddScoped<ICrearCasosEvidenciaLN, CrearCasosEvidenciaLN>();
+builder.Services.AddScoped<IEditarCasosEvidenciaLN, EditarCasosEvidenciaLN>();
+builder.Services.AddScoped<IEliminarCasosEvidenciaLN, EliminarCasosEvidenciaLN>();
+builder.Services.AddScoped<IListarCasosEvidenciaLN, ListarCasosEvidenciaLN>();
 
 var app = builder.Build();
 

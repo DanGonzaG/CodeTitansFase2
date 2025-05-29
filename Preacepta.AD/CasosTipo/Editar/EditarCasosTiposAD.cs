@@ -33,7 +33,6 @@ namespace Preacepta.AD.CasosTipo.Editar
                 Console.WriteLine($"Error en EditarCasosTiposAD : {ex.Message}");
                 return -1;
             }
-
         }
     }
 }

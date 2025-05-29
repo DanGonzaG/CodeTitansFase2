@@ -34,9 +34,6 @@ namespace Preacepta.AD.CasosTipo.Crear
                 Console.WriteLine($"Error en CrearCasosTiposAD {ex.Message}");
                 return 0;
             }
-
-
         }
-
     }
 }

@@ -11,15 +11,18 @@ namespace Preacepta.Modelos.AbstraccionesFrond
         [Required(ErrorMessage = "Debe de agregar un titulo a la evidencia")]
         [DisplayName("Titulo del caso")]
         public string Titulo { get; set; } = null!;
+
         [DisplayName("Documento")]
         public int IdCaso { get; set; }
 
         public string? Archivo { get; set; }
 
         [DisplayName("Nombre del caso")]
-        public virtual TCasosEtapa IdCasoEtapa { get; set; } = null!;
+        public virtual TCasosEtapa IdCaso1 { get; set; } = null!;
 
-        [DisplayName("Id Etapa PL")]
         public virtual TCaso IdCasoNavigation { get; set; } = null!;
+
+        
+        
     }
 }

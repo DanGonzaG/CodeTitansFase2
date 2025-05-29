@@ -226,6 +226,46 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWJvZ2Fkb1xJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Preacepta/Preacepta.UI/Views/CasosEtapa/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2Fzb3NFdGFwYVxDcmVhdGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Preacepta/Preacepta.UI/Views/CasosEtapa/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2Fzb3NFdGFwYVxEZWxldGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Preacepta/Preacepta.UI/Views/CasosEtapa/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2Fzb3NFdGFwYVxEZXRhaWxzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Preacepta/Preacepta.UI/Views/CasosEtapa/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2Fzb3NFdGFwYVxFZGl0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Preacepta/Preacepta.UI/Views/CasosEtapa/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2Fzb3NFdGFwYVxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Preacepta/Preacepta.UI/Views/CasosEvidencia/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2Fzb3NFdmlkZW5jaWFcQ3JlYXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Preacepta/Preacepta.UI/Views/CasosEvidencia/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2Fzb3NFdmlkZW5jaWFcRGVsZXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Preacepta/Preacepta.UI/Views/CasosEvidencia/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2Fzb3NFdmlkZW5jaWFcRGV0YWlscy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Preacepta/Preacepta.UI/Views/CasosEvidencia/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2Fzb3NFdmlkZW5jaWFcRWRpdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Preacepta/Preacepta.UI/Views/CasosEvidencia/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2Fzb3NFdmlkZW5jaWFcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Preacepta/Preacepta.UI/Views/CasosTipo/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2Fzb3NUaXBvXENyZWF0ZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
@@ -244,6 +284,26 @@ build_metadata.AdditionalFiles.CssScope =
 
 [C:/Preacepta/Preacepta.UI/Views/CasosTipo/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2Fzb3NUaXBvXEluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Preacepta/Preacepta.UI/Views/Caso/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2Fzb1xDcmVhdGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Preacepta/Preacepta.UI/Views/Caso/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2Fzb1xEZWxldGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Preacepta/Preacepta.UI/Views/Caso/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2Fzb1xEZXRhaWxzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Preacepta/Preacepta.UI/Views/Caso/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2Fzb1xFZGl0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Preacepta/Preacepta.UI/Views/Caso/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2Fzb1xJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Preacepta/Preacepta.UI/Views/Citas/Calendar.cshtml]
@@ -344,6 +404,26 @@ build_metadata.AdditionalFiles.CssScope =
 
 [C:/Preacepta/Preacepta.UI/Views/GeNegocio/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcR2VOZWdvY2lvXEluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Preacepta/Preacepta.UI/Views/GeRedesSociales/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcR2VSZWRlc1NvY2lhbGVzXENyZWF0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Preacepta/Preacepta.UI/Views/GeRedesSociales/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcR2VSZWRlc1NvY2lhbGVzXERlbGV0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Preacepta/Preacepta.UI/Views/GeRedesSociales/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcR2VSZWRlc1NvY2lhbGVzXERldGFpbHMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Preacepta/Preacepta.UI/Views/GeRedesSociales/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcR2VSZWRlc1NvY2lhbGVzXEVkaXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Preacepta/Preacepta.UI/Views/GeRedesSociales/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcR2VSZWRlc1NvY2lhbGVzXEluZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Preacepta/Preacepta.UI/Views/GestionCasos/CasosCerrados.cshtml]

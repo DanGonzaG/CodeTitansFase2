@@ -1,0 +1,54 @@
+﻿@model IEnumerable<Preacepta.Modelos.AbstraccionesFrond.CasosEvidenciaDTO>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "_Layout";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Titulo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Archivo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IdCaso1)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IdCasoNavigation)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Titulo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Archivo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IdCaso1.Descripcion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IdCasoNavigation.Descripcion)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.IdEvidencia">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.IdEvidencia">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.IdEvidencia">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

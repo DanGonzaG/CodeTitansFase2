@@ -76,10 +76,25 @@ namespace Preacepta.UI.Controllers
         }
 
         // GET: Abogado/Create
-        public IActionResult Create()
+        public async Task<IActionResult> Create()
         {
-            ViewData["CJuridica"] = new SelectList(_listarNegocio.listar().Result, "CJuridica", "Nombre");
-            ViewData["Cedula"] = new SelectList(_listarPersona.listar().Result, "Cedula", "Cedula");
+            ViewData["CJuridica"] = (await _listarNegocio.listar())
+                .Select(n => new SelectListItem
+                {
+                    Value = n.CJuridica.ToString(),
+                    Text = $"{n.Nombre} - {n.CJuridica}"
+                })
+                .ToList();
+            //ViewData["CJuridica"] = new SelectList(_listarNegocio.listar().Result, "CJuridica", "Nombre - CJuridica");
+            //ViewData["Cedula"] = new SelectList(_listarPersona.listar().Result, "Cedula", "Cedula");
+            ViewData["Cedula"] = (await _listarPersona.listar())
+                .Select(n => new SelectListItem
+                {
+                    Value = n.Cedula.ToString(),
+                    Text = $"{n.Cedula} - {n.Nombre}"
+                })
+                .ToList();
+            //ViewData["Cedula"] = _listarPersona.listar().Result.Select(c => new { c.Cedula, DisplayText = $"{c.Cedula}-{c.Nombre}" }).ToList();
             ViewData["IdTipoAbogado"] = new SelectList(_listarAbogadoTipo.listar().Result, "IdTipoAbogado", "Nombre");
             return View();
         }
@@ -98,6 +113,7 @@ namespace Preacepta.UI.Controllers
             }
             ViewData["CJuridica"] = new SelectList(_listarNegocio.listar().Result, "CJuridica", "Nombre", tGeAbogado.CJuridica);
             ViewData["Cedula"] = new SelectList(_listarPersona.listar().Result, "Cedula", "Apellido1", tGeAbogado.Cedula);
+            //ViewData["Cedula"] = (await _listarPersona.listar()).Select(c => new { c.Cedula, DisplayText = $"{c.Cedula}-{c.Nombre}" });
             ViewData["IdTipoAbogado"] = new SelectList(_listarAbogadoTipo.listar().Result, "IdTipoAbogado", "Nombre", tGeAbogado.IdTipoAbogado);
             return View(tGeAbogado);
         }

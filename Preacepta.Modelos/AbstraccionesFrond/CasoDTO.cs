@@ -9,6 +9,9 @@ namespace Preacepta.Modelos.AbstraccionesFrond
         [DisplayName("Identificador")]
         public int IdCaso { get; set; }
 
+        [Required(ErrorMessage = "El nombre del caso es un dato requerido")]
+        public string Nombre { get; set; }
+
         public string Fecha { get; set; }
 
         [DisplayName("Id Tipo de caso")]

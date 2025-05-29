@@ -17,6 +17,6 @@ namespace Preacepta.Modelos.AbstraccionesFrond
         [DisplayName("Link")]
         public string LinkRedSocila { get; set; } = null!;
         
-        public virtual TGeAbogado CedulaNavigation { get; set; } = null!;
+        public virtual TGeAbogado? CedulaNavigation { get; set; } = null!;
     }
 }

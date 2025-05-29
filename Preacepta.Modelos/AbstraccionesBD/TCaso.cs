@@ -13,6 +13,9 @@ public partial class TCaso
     [Column("Id_caso")]
     public int IdCaso { get; set; }
 
+    [Column("Nombre")]
+    public string Nombre { get; set; }
+
     [Column(TypeName = "datetime")]
     public DateTime Fecha { get; set; }
 
