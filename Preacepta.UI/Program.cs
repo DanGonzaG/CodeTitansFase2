@@ -261,9 +261,36 @@ builder.Services.AddScoped<ICrearCasosEvidenciaLN, CrearCasosEvidenciaLN>();
 builder.Services.AddScoped<IEditarCasosEvidenciaLN, EditarCasosEvidenciaLN>();
 builder.Services.AddScoped<IEliminarCasosEvidenciaLN, EliminarCasosEvidenciaLN>();
 builder.Services.AddScoped<IListarCasosEvidenciaLN, ListarCasosEvidenciaLN>();
+/*Inseccion de servicios modulo de CitasTipo*/
+builder.Services.AddScoped<IBuscarCitasTipoAD, BuscarCitasTipoAD>();
+builder.Services.AddScoped<ICrearCitasTipoAD, CrearCitasTipoAD>();
+builder.Services.AddScoped<IEditarCitasTipoAD, EditarCitasTipoAD>();
+builder.Services.AddScoped<IEliminarCitasTipoAD, EliminarCitasTipoAD>();
+builder.Services.AddScoped<IListarCitasTipoAD, ListarCitasTipoAD>();
+builder.Services.AddScoped<IBuscarCitasTipoLN, BuscarCitasTipoLN>();
+builder.Services.AddScoped<ICrearCitasTipoLN, CrearCitasTipoLN>();
+builder.Services.AddScoped<IEditarCitasTipoLN, EditarCitasTipoLN>();
+builder.Services.AddScoped<IEliminarCitasTipoLN, EliminarCitasTipoLN>();
+builder.Services.AddScoped<IListarCitasTipoLN, ListarCitasTipoLN>();
+builder.Services.AddScoped<IObtenerDatosCitasTipoLN, ObtenerDatosCitasTipoLN>();
+/*Inseccion de servicios modulo de Citas*/
+builder.Services.AddScoped<IBuscarCitasAD, BuscarCitasAD>();
+builder.Services.AddScoped<ICrearCitasAD, CrearCitasAD>();
+builder.Services.AddScoped<IEditarCitasAD, EditarCitasAD>();
+builder.Services.AddScoped<IEliminarCitasAD, EliminarCitasAD>();
+builder.Services.AddScoped<IListarCitasAD, ListarCitasAD>();
+builder.Services.AddScoped<IBuscarCitasLN, BuscarCitasLN>();
+builder.Services.AddScoped<ICrearCitasLN, CrearCitasLN>();
+builder.Services.AddScoped<IEditarCitasLN, EditarCitasLN>();
+builder.Services.AddScoped<IEliminarCitasLN, EliminarCitasLN>();
+builder.Services.AddScoped<IListarCitasLN, ListarCitasLN>();
+builder.Services.AddScoped<IObtenerDatosCitasLN, ObtenerDatosCitasLN>();
+
+
 #endregion
 
 var app = builder.Build();
+
 
 #region Asignacion y creacion de roles
 //Verifica se lo roles existen y si no los crea todo esto sucede en el incio de la aplicacion

@@ -1,0 +1,68 @@
+﻿@model Preacepta.Modelos.AbstraccionesFrond.CitasDTO
+
+@{
+    ViewData["Title"] = "Detalles de la Cita";
+    Layout = "_Layout";
+}
+
+<h1>Detalles de la Cita</h1>
+
+<div>
+    <h4>Información de la cita</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.IdCita)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.IdCita)
+        </dd>
+
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Fecha)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Fecha)
+        </dd>
+
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Hora)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Hora)
+        </dd>
+
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.IdTipoCita)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.IdTipoCita)
+        </dd>
+
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.LinkVideo)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.LinkVideo)
+        </dd>
+
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.NombreTipoCita)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.NombreTipoCita)
+        </dd>
+
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Anfitrion)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Anfitrion)
+        </dd>
+    </dl>
+</div>
+
+<div>
+    <a asp-action="Edit" asp-route-id="@Model?.IdCita" class="btn btn-primary">Editar</a> |
+    <a asp-action="Citas/Citas" class="btn btn-secondary">Volver a la lista</a>
+</div>
