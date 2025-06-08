@@ -1,0 +1,23 @@
+﻿@model Preacepta.Modelos.AbstraccionesFrond.CitasTipoDTO
+
+@{
+    ViewData["Title"] = "Eliminar Tipo de Cita";
+    Layout = "_Layout";
+}
+
+<h2>¿Estás seguro que deseas eliminar este tipo de cita?</h2>
+<hr />
+
+<dl class="row">
+    <dt class="col-sm-2">ID</dt>
+    <dd class="col-sm-10">@Model.Id</dd>
+
+    <dt class="col-sm-2">Nombre</dt>
+    <dd class="col-sm-10">@Model.Nombre</dd>
+</dl>
+
+<form asp-action="Delete" method="post">
+    <input type="hidden" asp-for="Id" />
+    <button type="submit" class="btn btn-danger">Eliminar</button>
+    <a asp-action="Index" class="btn btn-secondary">Cancelar</a>
+</form>

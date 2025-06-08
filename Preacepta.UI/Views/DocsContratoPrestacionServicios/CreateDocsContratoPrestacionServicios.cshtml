@@ -1,0 +1,204 @@
+﻿@model Preacepta.Modelos.AbstraccionesFrond.DocsContratoPrestacionServicioDTO
+
+<head>
+    <link href="~/lyso/css/Daniel.css" rel="stylesheet" />
+</head>
+
+<!-- Page Title -->
+<div class="page-title-area page-title-area-two title-img-one">
+    <div class="d-table">
+        <div class="d-table-cell">
+            <div class="page-title-text">
+                <h2>Generador de Documentos Legales</h2>
+                <ul>
+                    <li>
+                        <a asp-controller="Home" asp-action="Index">Home</a>
+                    </li>
+                    <li>
+                        <i class="icofont-simple-right"></i>
+                    </li>
+                    <li>Generador de documento de contrato de prestacion de servicios</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End Page Title -->
+
+<br />
+<br />
+<br />
+
+<body>
+<div class="contact-form contact-form-two contact-form-three">
+    <div class="container">
+        <div class="contact-wrap">
+                <form asp-action="CreateDocsContratoPrestacionServicios" id="CreateDocsContratoPrestacionServicios">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <h2>Formulario para caso nuevo</h2>
+                <div class="row justify-content-center">
+                    <div class="col-sm-6 col-lg-6">
+                        <div class="form-group">
+                            <label asp-for="RazonSocialEmpresa" class="control-label"></label>
+                                <input asp-for="RazonSocialEmpresa" class="form-control" id="idRazonSocialEmpresa" />
+                            <span asp-validation-for="RazonSocialEmpresa" class="text-danger"></span>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-6 col-lg-6">
+                        <div class="form-group">
+                            <label asp-for="Provincia" class="control-label"></label>
+                                <select asp-for="Provincia" class="form-control" asp-items="ViewBag.Provincia" id="idProvincia"></select>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-6 col-lg-6">
+                        <div class="form-group">
+                            <label asp-for="CedulaJuridicaEmpresa" class="control-label"></label>
+                                <input asp-for="CedulaJuridicaEmpresa" class="form-control" id="idCedulaJuridicaEmpresa" />
+                            <span asp-validation-for="CedulaJuridicaEmpresa" class="text-danger"></span>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-6 col-lg-6">
+                        <div class="form-group">
+                            <label asp-for="CedulaAbogado" class="control-label"></label>
+                                <select asp-for="CedulaAbogado" class="form-control" asp-items="ViewBag.CedulaAbogado" id="idCedulaAbogado"></select>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-6 col-lg-6">
+                        <div class="form-group">
+                            <label asp-for="CedulaCliente" class="control-label"></label>
+                                <select asp-for="CedulaCliente" class="form-control" asp-items="ViewBag.CedulaCliente" id="idCedulaCliente"></select>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-6 col-lg-6">
+                        <div class="form-group">
+                            <label asp-for="TipoServicios" class="control-label"></label>
+                                <input asp-for="TipoServicios" class="form-control" id="idTipoServicios" />
+                            <span asp-validation-for="TipoServicios" class="text-danger"></span>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-6 col-lg-6">
+                        <div class="form-group">
+                            <label asp-for="FechaInicio" class="control-label"></label>
+                                <input asp-for="FechaInicio" class="form-control" id="idFechaInicio" />
+                            <span asp-validation-for="FechaInicio" class="text-danger"></span>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-6 col-lg-6">
+                        <div class="form-group">
+                            <label asp-for="FechaFinal" class="control-label"></label>
+                                <input asp-for="FechaFinal" class="form-control" id="idFechaFinal" />
+                            <span asp-validation-for="FechaFinal" class="text-danger"></span>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-6 col-lg-6">
+                        <div class="form-group">
+                            <label asp-for="MontoHonorarios" class="control-label"></label>
+                                <input asp-for="MontoHonorarios" class="form-control" id="idMontoHonorarios" />
+                            <span asp-validation-for="MontoHonorarios" class="text-danger"></span>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-6 col-lg-6">
+                        <div class="form-group">
+                            <label asp-for="InformacionConfidencial" class="control-label"></label>
+                                <input asp-for="InformacionConfidencial" class="form-control" id="idInformacionConfidencial" />
+                            <span asp-validation-for="InformacionConfidencial" class="text-danger"></span>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-6 col-lg-6">
+                        <div class="form-group">
+                            <label asp-for="CiudadFirma" class="control-label"></label>
+                                <select asp-for="CiudadFirma" class="form-control" asp-items="ViewBag.CiudadFirma" id="idCiudadFirma"></select>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-6 col-lg-6">
+                        <div class="form-group">
+                            <label asp-for="HoraFirma" class="control-label"></label>
+                                <input asp-for="HoraFirma" class="form-control" id="idHoraFirma" />
+                            <span asp-validation-for="HoraFirma" class="text-danger"></span>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-6 col-lg-6">
+                        <div class="form-group">
+                            <label asp-for="FechaFirma" class="control-label"></label>
+                                <input asp-for="FechaFirma" class="form-control" id="idFechaFirma" />
+                            <span asp-validation-for="FechaFirma" class="text-danger"></span>
+                        </div>
+                    </div>
+
+                    
+
+                    <div class="col-md-12 col-lg-12">
+
+                        <div class="text-center">
+                            <!-- Button trigger modal -->
+                            <div id="btnRevisar">
+                                <button type="button" id="PrevioBtn" class="contact-btn" data-bs-toggle="modal" data-bs-target="#PrevioModal">
+                                    Revisar
+                                </button>
+                            </div>
+                            <div class="form-group" id="btnCrearCaso">
+                                <input type="submit" value="crearDocumento" class="contact-btn" />
+                            </div>
+                            <!--<button type="submit" class="contact-btn">Submit Case</button>-->
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+
+
+<!-- Button trigger modal -->
+<!-- Modal -->
+<div class="modal fade" id="PrevioModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Revisión de datos ingresados</h5>
+                <button id="Retroceso2" type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p style="color: black"><strong>Razon social de la empresa:</strong> <span id="previoRazonSocialEmpresa"></span></p>
+                <p style="color: black"><strong>Provincia:</strong> <span id="previoProvincia"></span></p>
+                <p style="color: black"><strong>Cedula juridica de la empresa:</strong> <span id="previoCedulaJuridicaEmpresa"></span></p>
+                <p style="color: black"><strong>Cedula del abogado:</strong> <span id="previoCedulaAbogado"></span></p>
+                <p style="color: black"><strong>Cedula del cliente:</strong> <span id="previoCedulaCliente"></span></p>
+                <p style="color: black"><strong>Tipo de servicios:</strong> <span id="previoTipoServicios"></span></p>
+                <p style="color: black"><strong>Fecha de inicio:</strong> <span id="previoFechaInicio"></span></p>
+                <p style="color: black"><strong>Fecha Final:</strong> <span id="previoFechaFinal"></span></p>
+                <p style="color: black"><strong>Monto de honorarios:</strong> <span id="previoMontoHonorarios"></span></p>
+                <p style="color: black"><strong>Informacion confidencial:</strong> <span id="previoInformacionConfidencial"></span></p>
+                <p style="color: black"><strong>Ciudad de la firma:</strong> <span id="previoCiudadFirma"></span></p>
+                <p style="color: black"><strong>Hora de la firma:</strong> <span id="previoHoraFirma"></span></p>
+                <p style="color: black"><strong>Fecha de la firma:</strong> <span id="previoFechaFirma"></span></p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="contact-btn" data-bs-dismiss="modal" id="Retroceso">Hacer Cambios</button>
+                <button type="button" id="BtnConfirmar" class="contact-btn">Confirmar datos</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
+
+<script src="~/lyso/js/docsPrestacionServicios.js"></script>
