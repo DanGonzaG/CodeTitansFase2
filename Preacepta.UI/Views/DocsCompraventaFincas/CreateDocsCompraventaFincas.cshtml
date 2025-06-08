@@ -1,0 +1,291 @@
+﻿@model Preacepta.Modelos.AbstraccionesFrond.DocsCompraventaFincaDTO
+
+<head>
+    <link href="~/lyso/css/Daniel.css" rel="stylesheet" />
+</head>
+
+<!-- Page Title -->
+<div class="page-title-area page-title-area-two title-img-one">
+    <div class="d-table">
+        <div class="d-table-cell">
+            <div class="page-title-text">
+                <h2>Generador de Documentos Legales</h2>
+                <ul>
+                    <li>
+                        <a asp-controller="Home" asp-action="Index">Home</a>
+                    </li>
+                    <li>
+                        <i class="icofont-simple-right"></i>
+                    </li>
+                    <li>Compra y venta fincas</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End Page Title -->
+
+<br />
+<br />
+<br />
+<body>
+    <div class="contact-form contact-form-two contact-form-three">
+        <div class="container">
+            <div class="contact-wrap">
+                <form asp-action="CreateDocsCompraventaFincas" id="CreateDocsCompraventaFincas">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <h2>Formulario para caso nuevo</h2>
+                    <div class="row justify-content-center">
+                        <div class="col-sm-6 col-lg-6">
+                            <div class="form-group">
+                                <label asp-for="NumeroEscritura" class="control-label"></label>
+                                <input asp-for="NumeroEscritura" class="form-control" id="idNumeroEscritura" />
+                                <span asp-validation-for="NumeroEscritura" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-lg-6">
+                            <div class="form-group">
+                                <label asp-for="CedulaAbogado" class="control-label"></label>
+                                <select asp-for="CedulaAbogado" class="form-control" asp-items="ViewBag.CedulaAbogado" id="idCedulaAbogado"></select>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-lg-6">
+                            <div class="form-group">
+                                <label asp-for="CedulaVendedor" class="control-label"></label>
+                                <select asp-for="CedulaVendedor" class="form-control" asp-items="ViewBag.CedulaVendedor" id="idCedulaVendedor"></select>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-lg-6">
+                            <div class="form-group">
+                                <label asp-for="CedulaComprador" class="control-label"></label>
+                                <select asp-for="CedulaComprador" class="form-control" asp-items="ViewBag.CedulaComprador" id="idCedulaComprador"></select>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-lg-6">
+                            <div class="form-group">
+                                <label asp-for="MontoVenta" class="control-label"></label>
+                                <input asp-for="MontoVenta" class="form-control" id="idMontoVenta" />
+                                <span asp-validation-for="MontoVenta" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-lg-6">
+                            <div class="form-group">
+                                <label asp-for="PartidoFinca" class="control-label"></label>
+                                <input asp-for="PartidoFinca" class="form-control" id="idPartidoFinca" />
+                                <span asp-validation-for="PartidoFinca" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-lg-6">
+                            <div class="form-group">
+                                <label asp-for="MatriculaFinca" class="control-label"></label>
+                                <input asp-for="MatriculaFinca" class="form-control" id="idMatriculaFinca" />
+                                <span asp-validation-for="MatriculaFinca" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-lg-6">
+                            <div class="form-group">
+                                <label asp-for="NaturalezaFinca" class="control-label"></label>
+                                <input asp-for="NaturalezaFinca" class="form-control" id="idNaturalezaFinca" />
+                                <span asp-validation-for="NaturalezaFinca" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-lg-6">
+                            <div class="form-group">
+                                <label asp-for="DistritoFinca" class="control-label"></label>
+                                <select asp-for="DistritoFinca" class="form-control" asp-items="ViewBag.DistritoFinca" id="idDistritoFinca"></select>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-lg-6">
+                            <div class="form-group">
+                                <label asp-for="CantonFinca" class="control-label"></label>
+                                <input asp-for="CantonFinca" class="form-control" id="idCantonFinca" />
+                                <span asp-validation-for="CantonFinca" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-lg-6">
+                            <div class="form-group">
+                                <label asp-for="ProvinciaFinca" class="control-label"></label>
+                                <input asp-for="ProvinciaFinca" class="form-control" id="idProvinciaFinca" />
+                                <span asp-validation-for="ProvinciaFinca" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-lg-6">
+                            <div class="form-group">
+                                <label asp-for="AreaFincaM2" class="control-label"></label>
+                                <input asp-for="AreaFincaM2" class="form-control" id="idAreaFincaM2" />
+                                <span asp-validation-for="AreaFincaM2" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-lg-6">
+                            <div class="form-group">
+                                <label asp-for="PlanoCatastrado" class="control-label"></label>
+                                <input asp-for="PlanoCatastrado" class="form-control" id="idPlanoCatastrado" />
+                                <span asp-validation-for="PlanoCatastrado" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-lg-6">
+                            <div class="form-group">
+                                <label asp-for="ColindaNorte" class="control-label"></label>
+                                <input asp-for="ColindaNorte" class="form-control" id="idColindaNorte" />
+                                <span asp-validation-for="ColindaNorte" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-lg-6">
+                            <div class="form-group">
+                                <label asp-for="ColindaSur" class="control-label"></label>
+                                <input asp-for="ColindaSur" class="form-control" id="idColindaSur" />
+                                <span asp-validation-for="ColindaSur" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-lg-6">
+                            <div class="form-group">
+                                <label asp-for="ColindaEste" class="control-label"></label>
+                                <input asp-for="ColindaEste" class="form-control" id="idColindaEste" />
+                                <span asp-validation-for="ColindaEste" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-lg-6">
+                            <div class="form-group">
+                                <label asp-for="ColindaOeste" class="control-label"></label>
+                                <input asp-for="ColindaOeste" class="form-control" id="idColindaOeste" />
+                                <span asp-validation-for="ColindaOeste" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-lg-6">
+                            <div class="form-group">
+                                <label asp-for="FormaPago" class="control-label"></label>
+                                <input asp-for="FormaPago" class="form-control" id="idFormaPago" />
+                                <span asp-validation-for="FormaPago" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-lg-6">
+                            <div class="form-group">
+                                <label asp-for="MedioPago" class="control-label"></label>
+                                <input asp-for="MedioPago" class="form-control" id="idMedioPago" />
+                                <span asp-validation-for="MedioPago" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-lg-6">
+                            <div class="form-group">
+                                <label asp-for="OrigenFondos" class="control-label"></label>
+                                <input asp-for="OrigenFondos" class="form-control" id="idOrigenFondos" />
+                                <span asp-validation-for="OrigenFondos" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-lg-6">
+                            <div class="form-group">
+                                <label asp-for="LugarFirma" class="control-label"></label>
+                                <select asp-for="LugarFirma" class="form-control" asp-items="ViewBag.LugarFirma" id="idLugarFirma"></select>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-lg-6">
+                            <div class="form-group">
+                                <label asp-for="HoraFirma" class="control-label"></label>
+                                <input asp-for="HoraFirma" class="form-control" id="idHoraFirma" />
+                                <span asp-validation-for="HoraFirma" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-lg-6">
+                            <div class="form-group">
+                                <label asp-for="FechaFirma" class="control-label"></label>
+                                <input asp-for="FechaFirma" class="form-control" id="idFechaFirma" />
+                                <span asp-validation-for="FechaFirma" class="text-danger"></span>
+                            </div>
+                        </div>
+
+                        <div class="col-md-12 col-lg-12">
+
+                            <div class="text-center">
+                                <!-- Button trigger modal -->
+                                <div id="btnRevisar">
+                                    <button type="button" id="PrevioBtn" class="contact-btn" data-bs-toggle="modal" data-bs-target="#PrevioModal">
+                                        Revisar
+                                    </button>
+                                </div>
+                                <div class="form-group" id="btnCrear">
+                                    <input type="submit" value="crearDocumento" class="contact-btn" />
+                                </div>
+                                <!--<button type="submit" class="contact-btn">Submit Case</button>-->
+                            </div>
+                        </div>
+                        
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+
+
+<!-- Modal
+<div class="modal fade" id="PrevioModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal-dialog modal-lg">
+<div class="modal-content">
+<div class="formulario contact-form contact-form-two">
+<div class="container">
+<div class="contact-wrap">
+<h2>Revisión de datos ingresados</h2>
+<p style="color: black"><strong>Tipo Caso:</strong> <span id="previoTipoCaso"></span></p>
+<p style="color: black"><strong>Nombre del caso:</strong> <span id="previotitulo"></span></p>
+<p style="color: black"><strong>Pruebas Iniciales:</strong> <span id="previoPruebas"></span></p>
+<p style="color: black"><strong>Cliente:</strong> <span id="previoCliente"></span></p>
+<p style="color: black"><strong>Detalles del Caso:</strong> <span id="previoDescripcion"></span></p>
+</div>
+</div>
+</div>
+<div class="modal-footer">
+<button type="button" class="btn btn-secondary" data-bs-dismiss="modal" id="Retroceso">Close</button>
+<button type="button" class="btn btn-primary">Save changes</button>
+</div>
+</div>
+</div>
+</div> -->
+<!-- Button trigger modal -->
+<!-- Modal -->
+<div class="modal fade" id="PrevioModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Revisión de datos ingresados</h5>
+                <button id="Retroceso2" type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p style="color: black"><strong>Numero de Escritura:</strong> <span id="previoNumeroEscritura"></span></p>
+                <p style="color: black"><strong>Cedula del Abogado:</strong> <span id="previoCedulaAbogado"></span></p>
+                <p style="color: black"><strong>Cedula del Vendedor:</strong> <span id="previoCedulaVendedor"></span></p>
+                <p style="color: black"><strong>Cedula del Comprador:</strong> <span id="previoCedulaComprador"></span></p>
+                <p style="color: black"><strong>Monto de Venta:</strong> <span id="previoMontoVenta"></span></p>
+                <p style="color: black"><strong>Partido de Finca:</strong> <span id="previoPartidoFinca"></span></p>
+                <p style="color: black"><strong>Matricula de Finca:</strong> <span id="previoMatriculaFinca"></span></p>
+                <p style="color: black"><strong>Naturaleza de Finca:</strong> <span id="previoNaturalezaFinca"></span></p>
+                <p style="color: black"><strong>Distrito de Finca:</strong> <span id="previoDistritoFinca"></span></p>
+                <p style="color: black"><strong>Canton de Finca:</strong> <span id="previoCantonFinca"></span></p>
+                <p style="color: black"><strong>Provincia de Finca:</strong> <span id="previoProvinciaFinca"></span></p>
+                <p style="color: black"><strong>Area de la finca en M2:</strong> <span id="previoAreaFincaM2"></span></p>
+                <p style="color: black"><strong>Plano Catastrado:</strong> <span id="previoPlanoCatastrado"></span></p>
+                <p style="color: black"><strong>Colinda al Norte:</strong> <span id="previoColindaNorte"></span></p>
+                <p style="color: black"><strong>Colinda al Sur:</strong> <span id="previoColindaSur"></span></p>
+                <p style="color: black"><strong>Colinda al Este:</strong> <span id="previoColindaEste"></span></p>
+                <p style="color: black"><strong>Colinda al Oeste:</strong> <span id="previoColindaOeste"></span></p>
+                <p style="color: black"><strong>Forma de Pago:</strong> <span id="previoFormaPago"></span></p>
+                <p style="color: black"><strong>Medio de Pago:</strong> <span id="previoMedioPago"></span></p>
+                <p style="color: black"><strong>Origen de los fondos:</strong> <span id="previoOrigenFondos"></span></p>
+                <p style="color: black"><strong>Lugar de la Firma:</strong> <span id="previoLugarFirma"></span></p>
+                <p style="color: black"><strong>Hora de la Firma:</strong> <span id="previoHoraFirma"></span></p>
+                <p style="color: black"><strong>Fecha de la Firma:</strong> <span id="previoFechaFirma"></span></p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="contact-btn" data-bs-dismiss="modal" id="Retroceso">Hacer Cambios</button>
+                <button type="button" id="BtnConfirmar" class="contact-btn">Confirmar datos</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
+
+<script src="~/lyso/js/docsFinca.js"></script>

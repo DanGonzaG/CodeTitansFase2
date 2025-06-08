@@ -1,0 +1,60 @@
+﻿@model Preacepta.Modelos.AbstraccionesFrond.DocsAutorizacionRevisionExpedienteDTO
+
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "_Layout";
+}
+
+<h1>Edit</h1>
+
+<h4>TDocsAutorizacionRevisionExpediente</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="IdDocumento" />
+            <div class="form-group">
+                <label asp-for="Expediente" class="control-label"></label>
+                <input asp-for="Expediente" class="form-control" />
+                <span asp-validation-for="Expediente" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Delito" class="control-label"></label>
+                <input asp-for="Delito" class="form-control" />
+                <span asp-validation-for="Delito" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CedulaImputado" class="control-label"></label>
+                <select asp-for="CedulaImputado" class="form-control" asp-items="ViewBag.CedulaImputado"></select>
+                <span asp-validation-for="CedulaImputado" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Ofendido" class="control-label"></label>
+                <input asp-for="Ofendido" class="form-control" />
+                <span asp-validation-for="Ofendido" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CedulaAbogado" class="control-label"></label>
+                <select asp-for="CedulaAbogado" class="form-control" asp-items="ViewBag.CedulaAbogado"></select>
+                <span asp-validation-for="CedulaAbogado" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CedulaAsistente" class="control-label"></label>
+                <select asp-for="CedulaAsistente" class="form-control" asp-items="ViewBag.CedulaAsistente"></select>
+                <span asp-validation-for="CedulaAsistente" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

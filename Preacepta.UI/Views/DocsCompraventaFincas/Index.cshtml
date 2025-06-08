@@ -1,0 +1,168 @@
+﻿@model IEnumerable<Preacepta.Modelos.AbstraccionesFrond.DocsCompraventaFincaDTO>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "_Layout";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.NumeroEscritura)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MontoVenta)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PartidoFinca)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MatriculaFinca)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NaturalezaFinca)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CantonFinca)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ProvinciaFinca)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AreaFincaM2)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PlanoCatastrado)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ColindaNorte)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ColindaSur)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ColindaEste)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ColindaOeste)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FormaPago)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MedioPago)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.OrigenFondos)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.HoraFirma)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FechaFirma)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CedulaAbogadoNavigation)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CedulaCompradorNavigation)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CedulaVendedorNavigation)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DistritoFincaNavigation)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LugarFirmaNavigation)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.NumeroEscritura)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MontoVenta)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PartidoFinca)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MatriculaFinca)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NaturalezaFinca)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CantonFinca)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProvinciaFinca)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AreaFincaM2)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PlanoCatastrado)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ColindaNorte)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ColindaSur)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ColindaEste)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ColindaOeste)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FormaPago)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MedioPago)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.OrigenFondos)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.HoraFirma)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FechaFirma)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CedulaAbogadoNavigation.Cedula)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CedulaCompradorNavigation.Apellido1)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CedulaVendedorNavigation.Apellido1)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DistritoFincaNavigation.NombreDistrito)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LugarFirmaNavigation.NombreDistrito)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.IdDocumento">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.IdDocumento">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.IdDocumento">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

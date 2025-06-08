@@ -1,0 +1,108 @@
+﻿@model IEnumerable<Preacepta.Modelos.AbstraccionesFrond.DocsContratoPrestacionServicioDTO>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "_Layout";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.RazonSocialEmpresa)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CedulaJuridicaEmpresa)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TipoServicios)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FechaInicio)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FechaFinal)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MontoHonorarios)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.InformacionConfidencial)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.HoraFirma)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FechaFirma)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CedulaAbogadoNavigation)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CedulaClienteNavigation)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CiudadFirmaNavigation)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ProvinciaNavigation)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.RazonSocialEmpresa)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CedulaJuridicaEmpresa)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TipoServicios)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FechaInicio)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FechaFinal)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MontoHonorarios)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.InformacionConfidencial)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.HoraFirma)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FechaFirma)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CedulaAbogadoNavigation.Cedula)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CedulaClienteNavigation.Apellido1)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CiudadFirmaNavigation.NombreDistrito)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProvinciaNavigation.IdProvincia)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.IdDocumento">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.IdDocumento">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.IdDocumento">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

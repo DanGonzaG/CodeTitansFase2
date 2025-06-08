@@ -126,6 +126,22 @@
                             <li class="nav-item">
                                 <a asp-controller="Home" asp-action="Contact" class="nav-link">Contactenos</a>
                             </li>
+                            <li class="nav-item">
+                                <a href="#" class="nav-link dropdown-toggle">Documentos</a>
+                                <ul class="dropdown-menu">
+                                    <li class="nav-item">
+                                        <a asp-controller="DocsAutorizacionRevisionExpedientes" asp-action="CreateDocsAutorizacionRevisionExpedientes" class="nav-link">Documento de autorización revisión de expedientes</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a asp-controller="DocsCompraventaFincas" asp-action="CreateDocsCompraventaFincas" class="nav-link">Documento de compra y venta de fincas</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a asp-controller="DocsContratoPrestacionServicios" asp-action="CreateDocsContratoPrestacionServicios" class="nav-link">Documento de contrato de prestacion de servicios</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a asp-controller="DocsInscripcionVehiculo" asp-action="CreateDocsInscripcionVehiculo" class="nav-link">Documento de inscripción de vehículos</a>
+                                    </li>
+
                             @if (User.Identity.IsAuthenticated)
                             {
                                 @if (User.IsInRole("Abogado") || User.IsInRole("Gestor") || User.IsInRole("Cliente"))
@@ -134,6 +150,8 @@
                                         <a href="#" class="nav-link dropdown-toggle">Documentos</a>
                                         <ul class="dropdown-menu">
                                             <li class="nav-item">
+                                                <a class="nav-link">Traspaso Vehículo : Daniel González</a>
+
                                                 <a asp-controller="DocsGenerator" asp-action="DocsGenerator" class="nav-link">Generador de Documentos</a>
                                             </li>
                                             <li class="nav-item">
@@ -162,6 +180,57 @@
                                 @if (User.IsInRole("Abogado") || User.IsInRole("Gestor") || User.IsInRole("Cliente"))
                                 {
                                     <li class="nav-item">
+                                        <a asp-controller="DocsGenerator" asp-action="Tutorial" class="nav-link">Tutoriales de herramienta</a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="nav-item">
+                                <a href="#" class="nav-link dropdown-toggle">Casos</a>
+                                <ul class="dropdown-menu">
+                                    <li class="nav-item" style="color: bisque">--Cliente--</li>
+                                    <li class="nav-item">
+                                        <a asp-controller="GestionCasos" asp-action="SolicitudCaso" class="nav-link">Solicitar Servicio</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a asp-controller="GestionCasos" asp-action="CasosListadoCliente" class="nav-link">Listado Casos Cliente</a>
+                                    </li>
+                                    <li class="nav-item" style="color: bisque">--Abogado--</li>
+                                    <li class="nav-item">
+                                        <a asp-controller="GestionCasos" asp-action="FormularioCaso" class="nav-link">Crear Caso</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a asp-controller="GestionCasos" asp-action="CasosListado" class="nav-link">Listado de casos</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a asp-controller="GestionCasos" asp-action="CasosCerrados" class="nav-link">Casos Cerrados</a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="nav-item">
+                                <a asp-controller="Citas" asp-action="Calendar" class="nav-link">Citas</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="#" class="nav-link dropdown-toggle">Gestion General</a>
+                                <ul class="dropdown-menu">
+                                    <li class="nav-item">
+                                        <a asp-controller="Personas" asp-action="Index" class="nav-link">Personas</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a asp-controller="AbogadoTipo" asp-action="Index" class="nav-link">Tipos de abogados</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a asp-controller="CasosTipo" asp-action="Index" class="nav-link">Tipos de casos</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a asp-controller="Abogado" asp-action="Index" class="nav-link">Abogados</a>
+                                    </li>
+
+                                    <li class="nav-item">
+                                        <a asp-controller="GeNegocio" asp-action="Index" class="nav-link">Informacion General del Despacho</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a asp-controller="CrProvincias" asp-action="Index" class="nav-link">Provincias</a>
+
                                         <a href="#" class="nav-link dropdown-toggle">Casos</a>
                                         <ul class="dropdown-menu">
                                             <li class="nav-item" style="color: bisque">--Cliente--</li>
@@ -242,6 +311,32 @@
                                             </li>
                                         </ul>
                                     </li>
+                                    <li class="nav-item">
+                                        <a href="#" class="nav-link dropdown-toggle">Gestion de documentos</a>
+                                        <ul class="dropdown-menu">
+                                            <li class="nav-item">
+                                                <a asp-controller="DocsContratoPrestacionServicios" asp-action="Index" class="nav-link">Documento de Contrato Prestacion de Servicios</a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a asp-controller="DocsAutorizacionRevisionExpedientes" asp-action="Index" class="nav-link">Documento de Autorizacion de Revision Expedientes</a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a asp-controller="DocsCombustibles" asp-action="Index" class="nav-link">Documento de Combustibles</a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a asp-controller="DocsCompraventaFincas" asp-action="Index" class="nav-link">Documento de Compra Venta de fincas</a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a asp-controller="DocsInscripcionVehiculo" asp-action="Index" class="nav-link">Documento de inscripcion de vehiculo</a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a asp-controller="DocsMarcaVehiculo" asp-action="Index" class="nav-link">Documento de marcas de vehiculo</a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </li>
+
                                 }
                             }
                         
