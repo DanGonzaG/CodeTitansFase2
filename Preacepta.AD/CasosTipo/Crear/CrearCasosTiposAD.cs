@@ -1,9 +1,4 @@
 ﻿using Preacepta.Modelos.AbstraccionesBD;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Preacepta.AD.CasosTipo.Crear
 {
@@ -34,9 +29,6 @@ namespace Preacepta.AD.CasosTipo.Crear
                 Console.WriteLine($"Error en CrearCasosTiposAD {ex.Message}");
                 return 0;
             }
-
-
         }
-
     }
 }

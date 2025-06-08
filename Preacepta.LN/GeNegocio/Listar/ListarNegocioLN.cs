@@ -1,11 +1,5 @@
-﻿using Preacepta.AD.CasosTipo.Listar;
-using Preacepta.AD.GeNegocio.Listar;
+﻿using Preacepta.AD.GeNegocio.Listar;
 using Preacepta.Modelos.AbstraccionesFrond;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Preacepta.LN.GeNegocio.Listar
 {

@@ -19,7 +19,7 @@ namespace Preacepta.AD.CasosTipo.Listar
                 return await _contexto.TCasosTipos.Select(lista => new CasosTipoDTO
                 {
                     IdTipoCaso = lista.IdTipoCaso,
-                    Nombre = lista.Nombre,                    
+                    Nombre = lista.Nombre,
                 }).ToListAsync();
             }
             catch (Exception ex)

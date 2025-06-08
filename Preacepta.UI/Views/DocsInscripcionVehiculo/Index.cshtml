@@ -1,0 +1,156 @@
+﻿@model IEnumerable<Preacepta.Modelos.AbstraccionesFrond.DocsInscripcionVehiculoDTO>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "_Layout";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ModeloVehiculo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Categoria)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MarcaMotor)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NumeroMotor)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NumeroSerieChasis)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Vin)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Anio)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Carroceria)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PesoNeto)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PesoBruto)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Potencia)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Color)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Capacidad)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Combustible)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Cilindraje)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FechaFirma)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CedulaAbogadoNavigation)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CedulaClienteNavigation)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EstiloVehiculoNavigation)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LugarFirmaNavigation)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MarcaVehiculoNavigation)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ModeloVehiculo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Categoria)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MarcaMotor)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NumeroMotor)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NumeroSerieChasis)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Vin)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Anio)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Carroceria)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PesoNeto)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PesoBruto)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Potencia)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Color)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Capacidad)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Combustible)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Cilindraje)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FechaFirma)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CedulaAbogadoNavigation.Cedula)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CedulaClienteNavigation.Apellido1)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EstiloVehiculoNavigation.Nombre)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LugarFirmaNavigation.NombreDistrito)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MarcaVehiculoNavigation.Nombre)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.IdDocumento">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.IdDocumento">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.IdDocumento">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

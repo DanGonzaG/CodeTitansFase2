@@ -1,10 +1,4 @@
-﻿using Preacepta.AD.CasosTipo.Eliminar;
-using Preacepta.AD.GeAbogado.Eliminar;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Preacepta.AD.GeAbogado.Eliminar;
 
 namespace Preacepta.LN.GeAbogado.Eliminar
 {

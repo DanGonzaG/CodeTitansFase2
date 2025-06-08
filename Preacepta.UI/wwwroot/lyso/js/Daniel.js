@@ -1,17 +1,20 @@
 ﻿//Vista Formulario caso
-//es codigo lo que hace es almacenar los datos de form en el modal y viceversa
+//Oculta le boton de crear caso
+document.getElementById('btnCrearCaso').style.display = 'none';
+
+//este codigo en JavaScript lo que hace es almacenar los datos de form en el modal y viceversa
 document.getElementById('PrevioBtn').addEventListener('click', () => {
-    const TipoCaso = document.getElementById('TipoCaso').value;
-    const titulo = document.getElementById('titulo').value;
-    const Pruebas = document.getElementById('Pruebas').value;
-    const NomCliente = document.getElementById('NomCliente').value;
-    const descripcionCaso = document.getElementById('descripcionCaso').value;
+    const TipoCaso = document.getElementById('IdTipoCaso').value;
+    const titulo = document.getElementById('Nombre').value;
+    //const Pruebas = document.getElementById('Pruebas').value;
+    const NomCliente = document.getElementById('IdCliente').value;
+    const descripcionCaso = document.getElementById('Descripcion').value;
     
 
     // Actualiza el contenido del modal
     document.getElementById('previoTipoCaso').textContent = TipoCaso;
     document.getElementById('previotitulo').textContent = titulo;
-    document.getElementById('previoPruebas').textContent = Pruebas;
+    //document.getElementById('previoPruebas').textContent = Pruebas;
     document.getElementById('previoCliente').textContent = NomCliente;
     document.getElementById('previoDescripcion').textContent = descripcionCaso;
 
@@ -19,14 +22,39 @@ document.getElementById('PrevioBtn').addEventListener('click', () => {
     const previewModal = new bootstrap.Modal(document.getElementById('PrevioModal'));
     previewModal.show();
 
+    document.getElementById('BtnConfirmar').addEventListener('click', () => {
+        console.log('Confirmando');
+        document.getElementById('IdTipoCaso').value = TipoCaso;
+        document.getElementById('Nombre').value = titulo;
+        //document.getElementById('Pruebas').value = Pruebas;
+        document.getElementById('IdCliente').value = NomCliente;
+        document.getElementById('Descripcion').value = descripcionCaso;
+        const previewModalInstance = bootstrap.Modal.getInstance(document.getElementById('PrevioModal'));
+        if (previewModalInstance) {
+            previewModalInstance.hide(); // Cerrar modal correctamente
+            console.log('Cerrando modal');
+        };
+        const modalBackdrops = document.querySelectorAll('.modal-backdrop');
+        modalBackdrops.forEach((backdrop) => {
+            backdrop.parentNode.removeChild(backdrop); // Quitar el fondo
+        });
+        // Reactiva el scroll de la página
+        document.body.style.overflow = 'auto';
+        document.documentElement.style.overflow = 'auto';
+        document.body.style.position = 'static'; // Asegura que el body pueda desp
+
+        document.getElementById('PrevioBtn').style.display = 'none'; // oculata el boton de Revisar
+        document.getElementById('btnCrearCaso').style.display = 'block';
+    });
+
 
     document.getElementById('Retroceso').addEventListener('click', () => {
        
-        document.getElementById('TipoCaso').value = TipoCaso;
-        document.getElementById('titulo').value = titulo;
-        document.getElementById('Pruebas').value = Pruebas;
-        document.getElementById('NomCliente').value = NomCliente;
-        document.getElementById('descripcionCaso').value = descripcionCaso;
+        document.getElementById('IdTipoCaso').value = TipoCaso;
+        document.getElementById('Nombre').value = titulo;
+        //document.getElementById('Pruebas').value = Pruebas;
+        document.getElementById('IdCliente').value = NomCliente;
+        document.getElementById('Descripcion').value = descripcionCaso;
         const previewModalInstance = bootstrap.Modal.getInstance(document.getElementById('PrevioModal'));
         if (previewModalInstance) {
             previewModalInstance.hide(); // Cerrar modal correctamente
@@ -46,17 +74,18 @@ document.getElementById('PrevioBtn').addEventListener('click', () => {
 
         console.log('Cerrando el modal y eliminando el fondo...');
 
+     
 
 
     });
 
     document.getElementById('Retroceso2').addEventListener('click', () => {
 
-        document.getElementById('TipoCaso').value = TipoCaso;
-        document.getElementById('titulo').value = titulo;
-        document.getElementById('Pruebas').value = Pruebas;
-        document.getElementById('NomCliente').value = NomCliente;
-        document.getElementById('descripcionCaso').value = descripcionCaso;
+        document.getElementById('IdTipoCaso').value = TipoCaso;
+        document.getElementById('Nombre').value = titulo;
+        //document.getElementById('Pruebas').value = Pruebas;
+        document.getElementById('IdCliente').value = NomCliente;
+        document.getElementById('Descripcion').value = descripcionCaso;
         const previewModalInstance = bootstrap.Modal.getInstance(document.getElementById('PrevioModal'));
         if (previewModalInstance) {
             previewModalInstance.hide(); // Cerrar modal correctamente
@@ -75,11 +104,13 @@ document.getElementById('PrevioBtn').addEventListener('click', () => {
 
 
         console.log('Cerrando el modal y eliminando el fondo...');
-
-
-
     });
+
+    
 });
+
+
+
 
 /*
 //Vista DocsGenerator

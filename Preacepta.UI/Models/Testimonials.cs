@@ -11,7 +11,7 @@ namespace Praecepta.UI.Models
         public string NomCliente { get; set; }
         public int Identificacion { get; set; }
         public string Telefono { get; set; }
-        public string Comentario {  get; set; }
+        public string Comentario { get; set; }
         public int Calificacion { get; set; }
 
     }

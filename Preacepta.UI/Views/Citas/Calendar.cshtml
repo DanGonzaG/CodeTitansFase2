@@ -1,7 +1,9 @@
 ﻿@using Praecepta.UI.Models
-@model IEnumerable<ModuloCitasVideo>
+@model IEnumerable<Preacepta.Modelos.AbstraccionesFrond.CitasDTO>
 
-<head>    
+
+
+<head>
     <link href="~/calendario/stylecalendar.css" rel="stylesheet" />
     <link href="~/calendario/calendardaniel.css" rel="stylesheet" />
     <title>Calendar with Events</title>
@@ -67,37 +69,45 @@
             <div class="event-day">Mie</div>
             <div class="event-date">12th december 2022</div>
         </div>
+        <form asp-controller="Citas" asp-action="Create" method="post">
+             @Html.AntiForgeryToken()
         <div class="events"></div>
-        <div class="add-event-wrapper">
+            <!--<div class="add-event-wrapper">-->
             <div class="add-event-header">
                 <div class="title">Añadir cita</div>
                 <i class="fas fa-times close"></i>
             </div>
             <div class="add-event-body">
                 <div class="add-event-input">
-                    <input type="text" placeholder="Nombre de cita" class="event-name" />
+                    <input name="Hora" type="time" placeholder="Hora" class="event-time-from" />
                 </div>
                 <div class="add-event-input">
-                    <input type="time" placeholder="Event Time From" class="event-time-from" />
+                    <input name="Fecha" type="date" placeholder="Fecha" class="event-date" />
+                </div>
+
+                <div class="add-event-input">
+                    <input type="url" name="LinkVideo" placeholder="Link de videoconferencia" />
                 </div>
                 <div class="add-event-input">
-                    <input type="time" placeholder="Event Time To" class="event-time-to" />
+                    <input type="text" name="Anfitrion" placeholder="Anfitrión" />
                 </div>
-                <div class="form-check">
-                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                    <label style="color:black" class="text" for="flexCheckDefault">
-                        Video Conferencia
-                    </label>
                 </div>
-            </div>
             <div class="add-event-footer">
-                <button class="add-event-btn">Confirmar</button>
+                <input type="submit" value="Crear" class="btn btn-primary" />
+                <a asp-action="Calendar" class="btn btn-secondary">Cancelar</a>
             </div>
-        </div>
+            <!--</--div>-->
+        </form>
     </div>
-    <button class="add-event">
+    <button class="add-event" id="btnAddCita" title="Añadir cita">
         <i class="fas fa-plus"></i>
     </button>
+
+    <!-- Botón de ver lista -->
+    <a href="/Citas/Citas" class="add-event" title="Ver lista de citas" style="right: 70px;">
+        <i class="fas fa-list"></i>
+    </a>
+   
 </div>
 <div class="formulario contact-form contact-form-two contact-form-three">
     <div class="container">
@@ -123,38 +133,21 @@
                         <table id="tablaCitasFuturas" class="table">
                             <thead>
                                 <tr>
-                                    <th>
-                                        @Html.DisplayNameFor(Model => Model.NumCita)
-                                    </th>
-                                    <th>
-                                        @Html.DisplayNameFor(Model => Model.FechaHora)
-                                    </th>
-                                    <th>
-                                        @Html.DisplayNameFor(Model => Model.Evento)
-                                    </th>
-                                    <th>
-                                        @Html.DisplayNameFor(Model => Model.tipo)
-                                    </th>
+                                    <th>ID Cita</th>
+                                    <th>Fecha y Hora</th>
+                                    <th>Tipo de Cita</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 @foreach (var item in Model)
                                 {
-                                    if (item.FechaHora > DateTime.Now)
+                                    var fechaCompleta = new DateTime(item.Fecha.Year, item.Fecha.Month, item.Fecha.Day, item.Hora.Hour, item.Hora.Minute, 0);
+                                    if (fechaCompleta >= DateTime.Now)
                                     {
                                         <tr>
-                                            <td>
-                                                @item.NumCita
-                                            </td>
-                                            <td>
-                                                @item.FechaHora
-                                            </td>
-                                            <td>
-                                                @item.Evento
-                                            </td>
-                                            <td>
-                                                @item.tipo
-                                            </td>                                
+                                            <td>@item.IdCita</td>
+                                            <td>@($"{item.Fecha:dd/MM/yyyy} {item.Hora:HH:mm}")</td>
+                                            <td>@item.NombreTipoCita</td>
                                         </tr>
                                     }
                                 }
@@ -179,41 +172,24 @@
                 <div class="container">
                     <div class="contact-wrap">
                         <h2>Revisión de datos ingresados</h2>
-                        <table id="tablaCitasFuturas" class="table">
+                        <table id="tablaCitasPasadas" class="table">
                             <thead>
                                 <tr>
-                                    <th>
-                                        @Html.DisplayNameFor(Model => Model.NumCita)
-                                    </th>
-                                    <th>
-                                        @Html.DisplayNameFor(Model => Model.FechaHora)
-                                    </th>
-                                    <th>
-                                        @Html.DisplayNameFor(Model => Model.Evento)
-                                    </th>
-                                    <th>
-                                        @Html.DisplayNameFor(Model => Model.tipo)
-                                    </th>
+                                    <th>ID Cita</th>
+                                    <th>Fecha y Hora</th>
+                                    <th>Tipo de Cita</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 @foreach (var item in Model)
                                 {
-                                    if (item.FechaHora < DateTime.Now)
+                                    var fechaCompleta = new DateTime(item.Fecha.Year, item.Fecha.Month, item.Fecha.Day, item.Hora.Hour, item.Hora.Minute, 0);
+                                    if (fechaCompleta < DateTime.Now)
                                     {
                                         <tr>
-                                            <td>
-                                                @item.NumCita
-                                            </td>
-                                            <td>
-                                                @item.FechaHora
-                                            </td>
-                                            <td>
-                                                @item.Evento
-                                            </td>
-                                            <td>
-                                                @item.tipo
-                                            </td>
+                                            <td>@item.IdCita</td>
+                                            <td>@($"{item.Fecha:dd/MM/yyyy} {item.Hora:HH:mm}")</td>
+                                            <td>@item.NombreTipoCita</td>
                                         </tr>
                                     }
                                 }
@@ -231,9 +207,34 @@
     </div>
 </div>
 
-<script src="~/lyso/js/jquery.min.js"></script>
+
+
+<!-- Scripts -->
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
 <script src="~/calendario/scriptcalendar.js"></script>
 
+<script>
+    $(document).ready(function () {
+      const $tablaFuturas = $('#tablaCitasFuturas');
+      const $tablaPasadas = $('#tablaCitasPasadas');
 
+      // Inicializar DataTable solo si la tabla existe y aún no ha sido inicializada
+      if ($tablaFuturas.length && !$.fn.DataTable.isDataTable($tablaFuturas)) {
+        $tablaFuturas.DataTable({
+          language: {
+            url: '//cdn.datatables.net/plug-ins/1.13.4/i18n/es-ES.json'
+          }
+        });
+      }
 
+      if ($tablaPasadas.length && !$.fn.DataTable.isDataTable($tablaPasadas)) {
+        $tablaPasadas.DataTable({
+          language: {
+            url: '//cdn.datatables.net/plug-ins/1.13.4/i18n/es-ES.json'
+          }
+        });
+      }
+    });
+</script>
 

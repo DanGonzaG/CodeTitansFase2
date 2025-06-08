@@ -1,10 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Preacepta.Modelos.AbstraccionesFrond;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Preacepta.AD.GeAbogado.Listar
 {
@@ -29,8 +24,8 @@ namespace Preacepta.AD.GeAbogado.Listar
                     IdTipoAbogado = lista.IdTipoAbogado,
                     IdTipoAbogadoNavigation = lista.IdTipoAbogadoNavigation,
                     Carnet = lista.Carnet,
-                    CJuridica = lista.CJuridica,                    
-                    
+                    CJuridica = lista.CJuridica,
+
                 }).ToListAsync();
             }
             catch (Exception ex)

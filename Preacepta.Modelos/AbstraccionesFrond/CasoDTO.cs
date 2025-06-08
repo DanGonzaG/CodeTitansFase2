@@ -9,7 +9,11 @@ namespace Preacepta.Modelos.AbstraccionesFrond
         [DisplayName("Identificador")]
         public int IdCaso { get; set; }
 
-        public string Fecha { get; set; }
+        [Required(ErrorMessage = "El nombre del caso es un dato requerido")]
+        [DisplayName("Nombre de Caso")]
+        public string Nombre { get; set; }
+
+        public string? Fecha { get; set; }
 
         [DisplayName("Id Tipo de caso")]
         public int IdTipoCaso { get; set; }
@@ -17,6 +21,7 @@ namespace Preacepta.Modelos.AbstraccionesFrond
         [Required(ErrorMessage = "Debe de agregar una descripción del caso")]
         public string Descripcion { get; set; } = null!;
 
+        [Required(ErrorMessage = "Seleccione un funcionario")]
         [DisplayName("Id Abogado")]
         public int IdAbogado { get; set; }
 
@@ -25,14 +30,15 @@ namespace Preacepta.Modelos.AbstraccionesFrond
 
         public bool Activo { get; set; }
 
+
         [DisplayName("Abogado")]
-        public virtual TGeAbogado IdAbogadoNavigation { get; set; } = null!;
+        public virtual TGeAbogado? IdAbogadoNavigation { get; set; } = null!;
 
         [DisplayName("Cliente")]
-        public virtual TGePersona IdClienteNavigation { get; set; } = null!;
+        public virtual TGePersona? IdClienteNavigation { get; set; } = null!;
 
         [DisplayName("Tipo de caso")]
-        public virtual TCasosTipo IdTipoCasoNavigation { get; set; } = null!;
+        public virtual TCasosTipo? IdTipoCasoNavigation { get; set; } = null!;
 
         public virtual ICollection<TCasosEtapa> TCasosEtapas { get; set; } = new List<TCasosEtapa>();
 
