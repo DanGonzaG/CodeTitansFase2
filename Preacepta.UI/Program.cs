@@ -11,6 +11,26 @@ using Preacepta.AD.CrDireccion1.Crear;
 using Preacepta.AD.CrDireccion1.Editar;
 using Preacepta.AD.CrDireccion1.Eliminar;
 using Preacepta.AD.CrDireccion1.Listar;
+using Preacepta.AD.DocPoderesEspecialesJudiciales.Buscar;
+using Preacepta.AD.DocPoderesEspecialesJudiciales.Crear;
+using Preacepta.AD.DocPoderesEspecialesJudiciales.Editar;
+using Preacepta.AD.DocPoderesEspecialesJudiciales.Eliminar;
+using Preacepta.AD.DocPoderesEspecialesJudiciales.Listar;
+using Preacepta.AD.DocsOpcionCompraventaVehiculo.Buscar;
+using Preacepta.AD.DocsOpcionCompraventaVehiculo.Crear;
+using Preacepta.AD.DocsOpcionCompraventaVehiculo.Editar;
+using Preacepta.AD.DocsOpcionCompraventaVehiculo.Eliminar;
+using Preacepta.AD.DocsOpcionCompraventaVehiculo.Listar;
+using Preacepta.AD.DocsPagare.Buscar;
+using Preacepta.AD.DocsPagare.Crear;
+using Preacepta.AD.DocsPagare.Editar;
+using Preacepta.AD.DocsPagare.Eliminar;
+using Preacepta.AD.DocsPagare.Listar;
+using Preacepta.AD.DocsTipoVehiculo.Buscar;
+using Preacepta.AD.DocsTipoVehiculo.Crear;
+using Preacepta.AD.DocsTipoVehiculo.Editar;
+using Preacepta.AD.DocsTipoVehiculo.Eliminar;
+using Preacepta.AD.DocsTipoVehiculo.Listar;
 using Preacepta.AD.GeAbogado.BuscarXid;
 using Preacepta.AD.GeAbogado.Crear;
 using Preacepta.AD.GeAbogado.Editar;
@@ -31,6 +51,11 @@ using Preacepta.AD.GePersona.Crear;
 using Preacepta.AD.GePersona.Editar;
 using Preacepta.AD.GePersona.Eliminar;
 using Preacepta.AD.GePersona.Listar;
+using Preacepta.AD.Testimonios.Buscar;
+using Preacepta.AD.Testimonios.Crear;
+using Preacepta.AD.Testimonios.Editar;
+using Preacepta.AD.Testimonios.Eliminar;
+using Preacepta.AD.Testimonios.Listar;
 using Preacepta.LN.CasosTipo.BuscarXid;
 using Preacepta.LN.CasosTipo.Crear;
 using Preacepta.LN.CasosTipo.Editar;
@@ -43,6 +68,30 @@ using Preacepta.LN.CrDireccion1.Editar;
 using Preacepta.LN.CrDireccion1.Eliminar;
 using Preacepta.LN.CrDireccion1.Listar;
 using Preacepta.LN.CrDireccion1.ObtenerDatos;
+using Preacepta.LN.DocPoderesEspecialesJudiciales.Buscar;
+using Preacepta.LN.DocPoderesEspecialesJudiciales.Crear;
+using Preacepta.LN.DocPoderesEspecialesJudiciales.Editar;
+using Preacepta.LN.DocPoderesEspecialesJudiciales.Eliminar;
+using Preacepta.LN.DocPoderesEspecialesJudiciales.Listar;
+using Preacepta.LN.DocPoderesEspecialesJudiciales.ObtenerDatos;
+using Preacepta.LN.DocsOpcionCompraventaVehiculo.Buscar;
+using Preacepta.LN.DocsOpcionCompraventaVehiculo.Crear;
+using Preacepta.LN.DocsOpcionCompraventaVehiculo.Editar;
+using Preacepta.LN.DocsOpcionCompraventaVehiculo.Eliminar;
+using Preacepta.LN.DocsOpcionCompraventaVehiculo.Listar;
+using Preacepta.LN.DocsOpcionCompraventaVehiculo.ObtenerDatos;
+using Preacepta.LN.DocsPagare.Buscar;
+using Preacepta.LN.DocsPagare.Crear;
+using Preacepta.LN.DocsPagare.Editar;
+using Preacepta.LN.DocsPagare.Eliminar;
+using Preacepta.LN.DocsPagare.Listar;
+using Preacepta.LN.DocsPagare.ObtenerDatos;
+using Preacepta.LN.DocsTipoVehiculo.Buscar;
+using Preacepta.LN.DocsTipoVehiculo.Crear;
+using Preacepta.LN.DocsTipoVehiculo.Editar;
+using Preacepta.LN.DocsTipoVehiculo.Eliminar;
+using Preacepta.LN.DocsTipoVehiculo.Listar;
+using Preacepta.LN.DocsTipoVehiculo.ObtenerDatos;
 using Preacepta.LN.GeAbogado.BuscarXid;
 using Preacepta.LN.GeAbogado.Crear;
 using Preacepta.LN.GeAbogado.Editar;
@@ -67,6 +116,12 @@ using Preacepta.LN.GePersona.Editar;
 using Preacepta.LN.GePersona.Eliminar;
 using Preacepta.LN.GePersona.Listar;
 using Preacepta.LN.GePersona.ObtenerDatos;
+using Preacepta.LN.Testimonios.Buscar;
+using Preacepta.LN.Testimonios.Crear;
+using Preacepta.LN.Testimonios.Editar;
+using Preacepta.LN.Testimonios.Eliminar;
+using Preacepta.LN.Testimonios.Listar;
+using Preacepta.LN.Testimonios.ObtenerDatos;
 using Preacepta.UI.Data;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -161,6 +216,283 @@ builder.Services.AddScoped<IEditarCrDireccion1LN, EditarCrDireccion1LN>();
 builder.Services.AddScoped<IEliminarCrDireccion1LN, EliminarCrDireccion1LN>();
 builder.Services.AddScoped<IListarCrDireccion1LN, ListarCrDireccion1LN>();
 builder.Services.AddScoped<IObtenerDatosDireccion1LN, ObtenerDatosDireccion1LN>();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*Insersion de servicios modulo de testimonios*/
+builder.Services.AddScoped<IBuscarTestAD, BuscarTestAD>();
+builder.Services.AddScoped<ICrearTestAD, CrearTestAD>();
+builder.Services.AddScoped<IEditarTestAD, EditarTestAD>();
+builder.Services.AddScoped<IEliminarTestAD, EliminarTestAD>();
+builder.Services.AddScoped<IListarTestAD, ListarTestAD>();
+builder.Services.AddScoped<IBuscarTestLN, BuscarTestLN>();
+builder.Services.AddScoped<ICrearTestLN, CrearTestLN>();
+builder.Services.AddScoped<IEditarTestLN, EditarTestLN>();
+builder.Services.AddScoped<IEliminarTestLN, EliminarTestLN>();
+builder.Services.AddScoped<IListarTestLN, ListarTestLN>();
+builder.Services.AddScoped<IObtenerDatosTestLN, ObtenerDatosTestLN>();
+
+// Servicios DocPoderesEspecialesJudiciales
+builder.Services.AddScoped<IBuscarPoderJudAD, BuscarPoderJudAD>();
+builder.Services.AddScoped<ICrearPoderJudAD, CrearPoderJudAD>();
+builder.Services.AddScoped<IEditarPoderJudAD, EditarPoderJudAD>();
+builder.Services.AddScoped<IEliminarPoderJudAD, EliminarPoderJudAD>();
+builder.Services.AddScoped<IListarPoderJudAD, ListarPoderJudAD>();
+builder.Services.AddScoped<IBuscarPoderJudLN, BuscarPoderJudLN>();
+builder.Services.AddScoped<ICrearPoderJudLN, CrearPoderJudLN>();
+builder.Services.AddScoped<IEditarPoderJudLN, EditarPoderJudLN>();
+builder.Services.AddScoped<IEliminarPoderJudLN, EliminarPoderJudLN>();
+builder.Services.AddScoped<IListarPoderJudLN, ListarPoderJudLN>();
+builder.Services.AddScoped<IObtenerDatosPoderJudLN, ObtenerDatosPoderJudLN>();
+
+// Servicios DocsOpcionCompraventaVehiculo
+builder.Services.AddScoped<IBuscarDocCVAD, BuscarDocCVAD>();
+builder.Services.AddScoped<ICrearDocCVAD, CrearDocCVAD>();
+builder.Services.AddScoped<IEditarDocCVAD, EditarDocCVAD>();
+builder.Services.AddScoped<IEliminarDocCVAD, EliminarDocCVAD>();
+builder.Services.AddScoped<IListarDocCVAD, ListarDocCVAD>();
+builder.Services.AddScoped<IBuscarDocCVLN, BuscarDocCVLN>();
+builder.Services.AddScoped<ICrearDocCVLN, CrearDocCVLN>();
+builder.Services.AddScoped<IEditarDocCVLN, EditarDocCVLN>();
+builder.Services.AddScoped<IEliminarDocCVLN, EliminarDocCVLN>();
+builder.Services.AddScoped<IListarDocCVLN, ListarDocCVLN>();
+builder.Services.AddScoped<IObtenerDatosDocsCV, ObtenerDatosDocsCV>();
+
+// Servicios DocsPagare
+builder.Services.AddScoped<IBuscarPagareAD, BuscarPagareAD>();
+builder.Services.AddScoped<ICrearPagareAD, CrearPagareAD>();
+builder.Services.AddScoped<IEditarPagareAD, EditarPagareAD>();
+builder.Services.AddScoped<IEliminarPagareAD, EliminarPagareAD>();
+builder.Services.AddScoped<IListarPagareAD, ListarPagareAD>();
+builder.Services.AddScoped<IBuscarPagareLN, BuscarPagareLN>();
+builder.Services.AddScoped<ICrearPagareLN, CrearPagareLN>();
+builder.Services.AddScoped<IEditarPagareLN, EditarPagareLN>();
+builder.Services.AddScoped<IEliminarPagareLN, EliminarPagareLN>();
+builder.Services.AddScoped<IListarPagareLN, ListarPagareLN>();
+builder.Services.AddScoped<IObtenerDatosPagareLN, ObtenerDatosPagareLN>();
+
+builder.Services.AddScoped<Preacepta.AD.DocsPagare.Eliminar.EliminarPagareAD>();
+
+// Servicios DocsTipoVehiculo
+builder.Services.AddScoped<IBuscarTipoVehiculoAD, BuscarTipoVehiculoAD>();
+builder.Services.AddScoped<ICrearTipoVehiculoAD, CrearTipoVehiculoAD>();
+builder.Services.AddScoped<IEditarTipoVehiculoAD, EditarTipoVehiculoAD>();
+builder.Services.AddScoped<IEliminarTipoVehiculoAD, EliminarTipoVehiculoAD>();
+builder.Services.AddScoped<IListarTipoVehiculoAD, ListarTipoVehiculoAD>();
+builder.Services.AddScoped<IBuscarTipoVehiculoLN, BuscarTipoVehiculoLN>();
+builder.Services.AddScoped<ICrearTipoVehiculoLN, CrearTipoVehiculoLN>();
+builder.Services.AddScoped<IEditarTipoVehiculoLN, EditarTipoVehiculoLN>();
+builder.Services.AddScoped<IEliminarTipoVehiculoLN, EliminarTipoVehiculoLN>();
+builder.Services.AddScoped<IListarTipoVehiculoLN, ListarTipoVehiculoLN>();
+builder.Services.AddScoped<IObtenerDatosTipoVehiculoLN, ObtenerDatosTipoVehiculoLN>();
+
+builder.Services.AddScoped<Preacepta.AD.DocsTipoVehiculo.Eliminar.EliminarTipoVehiculoAD>();
+
 
 
 var app = builder.Build();

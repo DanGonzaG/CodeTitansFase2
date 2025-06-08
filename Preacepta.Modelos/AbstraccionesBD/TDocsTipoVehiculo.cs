@@ -10,6 +10,8 @@ namespace Preacepta.Modelos.AbstraccionesBD;
 public partial class TDocsTipoVehiculo
 {
     [Key]
+
+    [Column("Id")]
     public int Id { get; set; }
 
     [StringLength(50)]

@@ -71,9 +71,9 @@ public partial class Contexto : DbContext
 
     public virtual DbSet<TTestimonio> TTestimonios { get; set; }
 
-    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+    /*protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.
-        => optionsBuilder.UseSqlServer("Server=DANLAPTOPASUS\\DEVELOPERSERVER;Database=PreaceptaBD;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=True");
+        => optionsBuilder.UseSqlServer("Server=DANLAPTOPASUS\\DEVELOPERSERVER;Database=PreaceptaBD;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=True");*/
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -339,6 +339,8 @@ public partial class Contexto : DbContext
         modelBuilder.Entity<TDocsTipoVehiculo>(entity =>
         {
             entity.HasKey(e => e.Id).HasName("PK_T_TipoVehiculo");
+
+            entity.Property(e => e.Id).ValueGeneratedOnAdd();
         });
 
         modelBuilder.Entity<TGeAbogado>(entity =>
@@ -386,6 +388,11 @@ public partial class Contexto : DbContext
             entity.HasOne(d => d.IdClienteNavigation).WithMany(p => p.TTestimonios)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_T_Testimonios_T_GePersonas");
+
+            entity.Property(e => e.Activo)
+                .IsRequired()
+                .HasDefaultValue(true);
+
         });
 
         OnModelCreatingPartial(modelBuilder);

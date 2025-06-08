@@ -84,10 +84,10 @@
                                 <a href="#" class="nav-link dropdown-toggle">Testimonio</a>
                                 <ul class="dropdown-menu">
                                     <li class="nav-item">
-                                        <a asp-controller="Home" asp-action="Testimonials" class="nav-link">Testimonio</a>
+                                        <a asp-controller="TTestimonios" asp-action="Testimonials" class="nav-link">Testimonio</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a asp-controller="Testimonials" asp-action="TestimonialsLista" class="nav-link">Lista de Testimonios</a>
+                                        <a asp-controller="TTestimonios" asp-action="TestimonialsLista" class="nav-link">Lista de Testimonios</a>
                                     </li>
 
                                 </ul>
@@ -98,6 +98,11 @@
                             <li class="nav-item">
                                 <a href="#" class="nav-link dropdown-toggle">Documentos</a>
                                 <ul class="dropdown-menu">
+
+                                    <li class="nav-item">
+                                        <a asp-controller="DocsOpcionCompraventaVehiculoes" asp-action="CreateDocsOpcionCompraventaVehiculoes" class="nav-link">Generador de Documento para la compra y venta de vehiculos</a>
+                                    </li>
+
                                     <li class="nav-item">
                                         <a asp-controller="DocsGenerator" asp-action="DocsGenerator" class="nav-link">Generador de Documentos</a>
                                     </li>
@@ -174,6 +179,21 @@
                                     </li>
                                     <li class="nav-item">
                                         <a asp-controller="CrDistritos" asp-action="Index" class="nav-link">Distritos</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a asp-controller="TTestimonios" asp-action="Index" class="nav-link">Lista de Testimonios</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" asp-controller="DocsOpcionCompraventaVehiculoes" asp-action="Index">Compra y venta Vehiculos</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" asp-controller="TDocsPoderesEspecialesJudiciales" asp-action="Index">Poderes especiales judiciales</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" asp-controller="TDocsPagares" asp-action="Index">Pagares</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" asp-controller="TDocsTipoVehiculoes" asp-action="Index">Tipo de Vehiculos</a>
                                     </li>
                                 </ul>
                             </li>
