@@ -45,7 +45,6 @@ namespace Preacepta.LN.Citas.ObtenerDatos
                 IdTipoCita = Formulario.IdTipoCita,
                 LinkVideo = Formulario.LinkVideo,
                 Anfitrion = Formulario.Anfitrion,
-
             };
         }
         public async Task<List<CitasDTO>> ListarCitasAsync()

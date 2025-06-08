@@ -25,15 +25,21 @@ namespace Preacepta.AD.Citas.Listar
                 return await _contexto.TCitas
                     .Include(c => c.IdTipoCitaNavigation)
                     .Include(c => c.AnfitrionNavigation)
+                    .ThenInclude(a => a.CedulaNavigation)
                     .Select(cita => new CitasDTO
                 {
                     IdCita = cita.IdCita,
                     Fecha = cita.Fecha,
                     Hora = cita.Hora,
                     IdTipoCita = cita.IdTipoCita,
-                    Anfitrion = cita.AnfitrionNavigation != null ? cita.AnfitrionNavigation.Cedula : null,
+                    Anfitrion = cita.Anfitrion,
+                    LinkVideo = cita.LinkVideo,
+                    AnfitrionNavigation = cita.AnfitrionNavigation,
+                    IdTipoCitaNavigation = cita.IdTipoCitaNavigation,
+
+                    /*Anfitrion = cita.AnfitrionNavigation != null ? cita.AnfitrionNavigation.Cedula : null,
                         LinkVideo = cita.LinkVideo,
-                    NombreTipoCita = cita.IdTipoCitaNavigation.Nombre
+                    NombreTipoCita = cita.IdTipoCitaNavigation.Nombre*/
 
                 }).ToListAsync();
             }
