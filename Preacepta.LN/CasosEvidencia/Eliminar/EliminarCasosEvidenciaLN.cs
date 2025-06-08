@@ -1,10 +1,4 @@
-﻿using Preacepta.AD.CasosEtapa.Eliminar;
-using Preacepta.AD.CasosEvidencia.Eliminar;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Preacepta.AD.CasosEvidencia.Eliminar;
 
 namespace Preacepta.LN.CasosEvidencia.Eliminar
 {

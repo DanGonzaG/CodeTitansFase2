@@ -1,10 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Preacepta.Modelos.AbstraccionesFrond;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Preacepta.AD.CasosEvidencia.Listar
 {
@@ -29,7 +24,7 @@ namespace Preacepta.AD.CasosEvidencia.Listar
                     Titulo = lista.Titulo,
                     IdCasoNavigation = lista.IdCasoNavigation,
                     IdCaso1 = lista.IdCaso1
-                    
+
                 }).ToListAsync();
             }
             catch (Exception ex)

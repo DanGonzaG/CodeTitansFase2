@@ -1,10 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Preacepta.Modelos.AbstraccionesBD;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Preacepta.AD.Casos.BuscarXid
 {
@@ -23,7 +18,9 @@ namespace Preacepta.AD.Casos.BuscarXid
             {
                 var lista = await _contexto.TCasos
                 .Include(t => t.IdAbogadoNavigation)
+                .ThenInclude(a => a.CedulaNavigation)
                 .Include(t => t.IdClienteNavigation)
+                .ThenInclude(a => a.Direccion1Navigation)
                 .Include(t => t.IdTipoCasoNavigation)
                 .FirstOrDefaultAsync(m => m.IdCaso == id);
                 return lista;

@@ -71,9 +71,35 @@
                     </a>
                     <div class="collapse navbar-collapse mean-menu" id="navbarSupportedContent">
                         <ul class="navbar-nav">
-                            <li class="nav-item">
-                                <a asp-controller="Home" asp-action="Index">Home</a>
-                            </li>
+                            @if (User.Identity.IsAuthenticated == false)
+                            {
+                                <li class="nav-item">
+                                    <a asp-controller="Home" asp-action="Index">Home</a>
+                                </li>
+                            }
+
+                            @if (User.Identity.IsAuthenticated)
+                            {
+                                @if (User.IsInRole("Abogado") || User.IsInRole("Gestor"))
+                                {
+                                    <li class="nav-item">
+                                        <a href="#" class="nav-link dropdown-toggle">Home</a>
+                                        <ul class="dropdown-menu">
+                                            <li class="nav-item">
+                                                <a asp-controller="Home" asp-action="Index" class="nav-link">Inicio</a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a asp-controller="Personas" asp-action="CrearPersona" class="nav-link">Nuevo Cliente</a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a asp-controller="Abogado" asp-action="CrearAbogado" class="nav-link">Nuevo Abogado</a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                }
+                            }
+
+
                             <li class="nav-item">
                                 <a asp-controller="Home" asp-action="About">Nosotros</a>
                             </li>
@@ -86,109 +112,135 @@
                                     <li class="nav-item">
                                         <a asp-controller="Home" asp-action="Testimonials" class="nav-link">Testimonio</a>
                                     </li>
-                                    <li class="nav-item">
-                                        <a asp-controller="Testimonials" asp-action="TestimonialsLista" class="nav-link">Lista de Testimonios</a>
-                                    </li>
-
+                                    @(User.Identity.IsAuthenticated)
+                                    {
+                                        @if (User.IsInRole("Abogado") || User.IsInRole("Gestor"))
+                                        {
+                                            <li class="nav-item">
+                                                <a asp-controller="Testimonials" asp-action="TestimonialsLista" class="nav-link">Lista de Testimonios</a>
+                                            </li>
+                                        }
+                                    }
                                 </ul>
                             </li>
                             <li class="nav-item">
                                 <a asp-controller="Home" asp-action="Contact" class="nav-link">Contactenos</a>
                             </li>
-                            <li class="nav-item">
-                                <a href="#" class="nav-link dropdown-toggle">Documentos</a>
-                                <ul class="dropdown-menu">
+                            @if (User.Identity.IsAuthenticated)
+                            {
+                                @if (User.IsInRole("Abogado") || User.IsInRole("Gestor") || User.IsInRole("Cliente"))
+                                {
                                     <li class="nav-item">
-                                        <a asp-controller="DocsGenerator" asp-action="DocsGenerator" class="nav-link">Generador de Documentos</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a asp-controller="DocsGenerator" asp-action="DocsHistorial" class="nav-link">Historial de Documentos</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="#" class="nav-link dropdown">Documentos Recientes</a>
+                                        <a href="#" class="nav-link dropdown-toggle">Documentos</a>
                                         <ul class="dropdown-menu">
                                             <li class="nav-item">
-                                                <a class="nav-link">Traspaso Vehículo : Daniel González</a>
-                                            </li> 
-                                            <li class="nav-item">
-                                                <a class="nav-link">Reclamación Herencia : Javier Cruz</a>
+                                                <a asp-controller="DocsGenerator" asp-action="DocsGenerator" class="nav-link">Generador de Documentos</a>
                                             </li>
                                             <li class="nav-item">
-                                                <a class="nav-link">Rectificación de Escritura : María López</a>
+                                                <a asp-controller="DocsGenerator" asp-action="DocsHistorial" class="nav-link">Historial de Documentos</a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a href="#" class="nav-link dropdown">Documentos Recientes</a>
+                                                <ul class="dropdown-menu">
+                                                    <li class="nav-item">
+                                                        <a class="nav-link">Traspaso Vehículo : Daniel González</a>
+                                                    </li>
+                                                    <li class="nav-item">
+                                                        <a class="nav-link">Reclamación Herencia : Javier Cruz</a>
+                                                    </li>
+                                                    <li class="nav-item">
+                                                        <a class="nav-link">Rectificación de Escritura : María López</a>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a asp-controller="DocsGenerator" asp-action="Tutorial" class="nav-link">Tutoriales de herramienta</a>
                                             </li>
                                         </ul>
                                     </li>
+                                }
+                                @if (User.IsInRole("Abogado") || User.IsInRole("Gestor") || User.IsInRole("Cliente"))
+                                {
                                     <li class="nav-item">
-                                        <a asp-controller="DocsGenerator" asp-action="Tutorial" class="nav-link">Tutoriales de herramienta</a>
+                                        <a href="#" class="nav-link dropdown-toggle">Casos</a>
+                                        <ul class="dropdown-menu">
+                                            <li class="nav-item" style="color: bisque">--Cliente--</li>
+                                            <li class="nav-item">
+                                                <a asp-controller="GestionCasos" asp-action="SolicitudCaso" class="nav-link">Solicitar Servicio</a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a asp-controller="GestionCasos" asp-action="CasosListadoCliente" class="nav-link">Listado Casos Cliente</a>
+                                            </li>
+                                            <li class="nav-item" style="color: bisque">--Abogado--</li>
+                                            <li class="nav-item">
+                                                <a asp-controller="Caso" asp-action="FormularioCaso" class="nav-link">Crear Caso</a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a asp-controller="Caso" asp-action="CasosListado" class="nav-link">Listado de casos</a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a asp-controller="GestionCasos" asp-action="CasosCerrados" class="nav-link">Casos Cerrados</a>
+                                            </li>
+                                        </ul>
                                     </li>
-                                </ul>
-                            </li>
-                            <li class="nav-item">
-                                <a href="#" class="nav-link dropdown-toggle">Casos</a>
-                                <ul class="dropdown-menu">
-                                    <li class="nav-item" style="color: bisque">--Cliente--</li>
+                                }
+                                @if (User.IsInRole("Abogado") || User.IsInRole("Gestor") || User.IsInRole("Cliente"))
+                                {
                                     <li class="nav-item">
-                                        <a asp-controller="GestionCasos" asp-action="SolicitudCaso" class="nav-link">Solicitar Servicio</a>
+                                        <a asp-controller="Citas" asp-action="Calendar" class="nav-link">Citas</a>
                                     </li>
+                                }
+                                @if (User.IsInRole("Gestor"))
+                                {
                                     <li class="nav-item">
-                                        <a asp-controller="GestionCasos" asp-action="CasosListadoCliente" class="nav-link">Listado Casos Cliente</a>
+                                        <a href="#" class="nav-link dropdown-toggle">Gestion General</a>
+                                        <ul class="dropdown-menu">
+                                            <li class="nav-item">
+                                                <a asp-controller="Personas" asp-action="Index" class="nav-link">Personas</a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a asp-controller="Personas" asp-action="Register" class="nav-link">Registro Personas</a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a asp-controller="AbogadoTipo" asp-action="Index" class="nav-link">Tipos de abogados</a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a asp-controller="CasosTipo" asp-action="Index" class="nav-link">Tipos de casos</a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a asp-controller="Caso" asp-action="Index" class="nav-link">Casos</a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a asp-controller="CasosEtapa" asp-action="Index" class="nav-link">Casos Etapas</a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a asp-controller="CasosEvidencia" asp-action="Index" class="nav-link">Casos evidencias</a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a asp-controller="Abogado" asp-action="Index" class="nav-link">Abogados</a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a asp-controller="GeRedesSociales" asp-action="Index" class="nav-link">Abogados Redes Sociales</a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a asp-controller="GeNegocio" asp-action="Index" class="nav-link">Informacion General del Despacho</a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a asp-controller="CrProvincias" asp-action="Index" class="nav-link">Provincias</a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a asp-controller="CrCantones" asp-action="Index" class="nav-link">Cantones</a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a asp-controller="CrDistritos" asp-action="Index" class="nav-link">Distritos</a>
+                                            </li>
+                                        </ul>
                                     </li>
-                                    <li class="nav-item" style="color: bisque">--Abogado--</li>
-                                    <li class="nav-item">
-                                        <a asp-controller="GestionCasos" asp-action="FormularioCaso" class="nav-link">Crear Caso</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a asp-controller="GestionCasos" asp-action="CasosListado" class="nav-link">Listado de casos</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a asp-controller="GestionCasos" asp-action="CasosCerrados" class="nav-link">Casos Cerrados</a>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li class="nav-item">
-                                <a asp-controller="Citas" asp-action="Calendar" class="nav-link">Citas</a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="#" class="nav-link dropdown-toggle">Gestion General</a>
-                                <ul class="dropdown-menu">
-                                    <li class="nav-item">
-                                        <a asp-controller="Personas" asp-action="Index" class="nav-link">Personas</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a asp-controller="AbogadoTipo" asp-action="Index" class="nav-link">Tipos de abogados</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a asp-controller="CasosTipo" asp-action="Index" class="nav-link">Tipos de casos</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a asp-controller="Caso" asp-action="Index" class="nav-link">Casos</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a asp-controller="CasosEtapa" asp-action="Index" class="nav-link">Casos Etapas</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a asp-controller="CasosEvidencia" asp-action="Index" class="nav-link">Casos evidencias</a>
-                                    </li>
-                                     <li class="nav-item">
-                                        <a asp-controller="Abogado" asp-action="Index" class="nav-link">Abogados</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a asp-controller="GeRedesSociales" asp-action="Index" class="nav-link">Abogados Redes Sociales</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a asp-controller="GeNegocio" asp-action="Index" class="nav-link">Informacion General del Despacho</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a asp-controller="CrProvincias" asp-action="Index" class="nav-link">Provincias</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a asp-controller="CrCantones" asp-action="Index" class="nav-link">Cantones</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a asp-controller="CrDistritos" asp-action="Index" class="nav-link">Distritos</a>
-                                    </li>
-                                </ul>
-                            </li>
+                                }
+                            }
+                        
+                            
+                          
 
 
 
@@ -262,7 +314,7 @@
     <main>
         @RenderBody()
     </main>
-   
+
 
 
 
@@ -395,7 +447,7 @@
                                 </li>
                                 <li>
                                     <i class="icofont-ui-call"></i>
-                                   +506 8874 4858
+                                    +506 8874 4858
                                 </li>
                                 <li>
                                     <i class="icofont-at"></i>
@@ -436,9 +488,9 @@
     <script src="~/lyso/js/jquery.ajaxchimp.min.js"></script>
     <!-- Form Validator JS -->
     <script src="~/lyso/js/form-validator.min.js"></script>
-    <!-- Contact JS -->
-    <script src="~/lyso/js/contact-form-script.js"></script>
-    <!-- Owl Carousel JS -->
+    <!-- Contact JS
+    <script src="~/lyso/js/contact-form-script.js"></script>-->
+    <!-- Owl Carousel JS-->
     <script src="~/lyso/js/owl.carousel.min.js"></script>
     <!-- Odometer JS -->
     <script src="~/lyso/js/odometer.min.js"></script>
@@ -449,7 +501,7 @@
     <script src="~/lyso/js/wow.min.js"></script>
     <!-- Custom JS -->
     <script src="~/lyso/js/custom.js"></script>
-    
+
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>

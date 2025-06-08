@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Preacepta.AD;
 using Preacepta.LN.CrDireccion1.BuscarXid;
@@ -11,11 +7,11 @@ using Preacepta.LN.CrDireccion1.Crear;
 using Preacepta.LN.CrDireccion1.Editar;
 using Preacepta.LN.CrDireccion1.Eliminar;
 using Preacepta.LN.CrDireccion1.Listar;
-using Preacepta.Modelos.AbstraccionesBD;
 using Preacepta.Modelos.AbstraccionesFrond;
 
 namespace Preacepta.UI.Controllers
 {
+    [Authorize(Roles = "Gestor")]
     public class CrProvinciasController : Controller
     {
         private readonly IBuscarCrDireccion1LN _buscar;
@@ -23,7 +19,7 @@ namespace Preacepta.UI.Controllers
         private readonly IEditarCrDireccion1LN _editar;
         private readonly IEliminarCrDireccion1LN _eliminar;
         private readonly IListarCrDireccion1LN _listar;
-        
+
 
         public CrProvinciasController(Contexto context,
             IBuscarCrDireccion1LN buscar,
@@ -118,7 +114,7 @@ namespace Preacepta.UI.Controllers
                     await _editar.EditarProvincia(tCrProvincia);
                 }
                 catch (DbUpdateConcurrencyException)
-                {    
+                {
                     return NotFound();
                 }
                 return RedirectToAction(nameof(Index));

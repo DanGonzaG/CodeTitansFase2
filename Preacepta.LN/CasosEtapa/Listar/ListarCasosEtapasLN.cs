@@ -1,11 +1,5 @@
 ﻿using Preacepta.AD.CasosEtapa.Listar;
-using Preacepta.AD.CasosTipo.Listar;
 using Preacepta.Modelos.AbstraccionesFrond;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Preacepta.LN.CasosEtapa.Listar
 {
@@ -23,5 +17,13 @@ namespace Preacepta.LN.CasosEtapa.Listar
             List<CasosEtapaDTO> lista = await _listar.listar();
             return lista;
         }
+
+        public async Task<List<CasosEtapaDTO>> listarXcaso(int id)
+        {
+            List<CasosEtapaDTO> lista = await _listar.listarXcaso(id);
+            return lista;
+        }
+
+
     }
 }

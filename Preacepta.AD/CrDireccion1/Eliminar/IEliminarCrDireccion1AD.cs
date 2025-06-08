@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Preacepta.AD.CrDireccion1.Eliminar
+﻿namespace Preacepta.AD.CrDireccion1.Eliminar
 {
     public interface IEliminarCrDireccion1AD
     {

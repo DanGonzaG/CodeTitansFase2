@@ -1,10 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Preacepta.Modelos.AbstraccionesBD;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Preacepta.AD.GeAbogado.BuscarXid
 {
@@ -30,7 +25,25 @@ namespace Preacepta.AD.GeAbogado.BuscarXid
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Error en BuscarAbogadoAD, no se encontro id: {ex.Message}");
+                Console.WriteLine($"Error en BuscarAbogadoAD metodo buscar, no se encontro carnet: {ex.Message}");
+                return null;
+            }
+        }
+
+        public async Task<TGeAbogado?> buscarXcarnet(int carnet)
+        {
+            try
+            {
+                var lista = await _contexto.TGeAbogados
+                .Include(t => t.CJuridicaNavigation)
+                .Include(t => t.CedulaNavigation)
+                .Include(t => t.IdTipoAbogadoNavigation)
+                .FirstOrDefaultAsync(m => m.Carnet == carnet);
+                return lista;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error en BuscarAbogadoAD metodo buscarXcarnet, no se encontro carnet: {ex.Message}");
                 return null;
             }
 

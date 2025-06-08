@@ -1,5 +1,4 @@
 using Microsoft.AspNetCore.Mvc;
-using Praecepta.UI.Models;
 using Preacepta.UI.Models;
 using System.Diagnostics;
 
@@ -30,7 +29,7 @@ namespace Praecepta.UI.Controllers
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
 
-        public IActionResult About() 
+        public IActionResult About()
         {
             return View();
         }
@@ -55,7 +54,7 @@ namespace Praecepta.UI.Controllers
             return View();
         }
 
-        
+
         public IActionResult CaseStudyDetails()
         {
             return View("Practice/CaseStudyDetails");
@@ -66,7 +65,7 @@ namespace Praecepta.UI.Controllers
             return View("AttorneyDetails/AttorneyDetails");
         }
 
-    
+
 
 
 

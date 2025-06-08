@@ -1,42 +1,47 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using Preacepta.AD;
 using Preacepta.LN.Casos.BuscarXid;
 using Preacepta.LN.Casos.Crear;
 using Preacepta.LN.Casos.Editar;
 using Preacepta.LN.Casos.Eliminar;
 using Preacepta.LN.Casos.Listar;
-using Preacepta.Modelos.AbstraccionesBD;
+using Preacepta.LN.CasosTipo.Listar;
+using Preacepta.LN.GeAbogado.Listar;
+using Preacepta.LN.GePersona.Listar;
 using Preacepta.Modelos.AbstraccionesFrond;
 
 namespace Preacepta.UI.Controllers
 {
     public class CasoController : Controller
     {
-        private readonly Contexto _context;
         private readonly IBuscarCasosLN _buscar;
         private readonly ICrearCasosLN _crear;
         private readonly IEditarCasosLN _editar;
         private readonly IELiminarCasosLN _eLiminar;
         private readonly IListarCasosLN _listar;
 
-        public CasoController(Contexto context,
+        private readonly IListarAbogadoLN _listarAbogados;
+        private readonly IListarGePersonaLN _listarGePersona;
+        private readonly IListarCasosTipoLN _listarCasosTipoLN;
+
+        public CasoController(
             IBuscarCasosLN buscar,
             ICrearCasosLN crear,
             IEditarCasosLN editar,
             IELiminarCasosLN eLiminar,
-            IListarCasosLN listar)
+            IListarCasosLN listar,
+            IListarAbogadoLN listarAbogados,
+            IListarGePersonaLN listarGePersona,
+            IListarCasosTipoLN listarCasosTipoLN)
         {
-            _context = context;
             _buscar = buscar;
             _crear = crear;
             _editar = editar;
             _listar = listar;
+            _listarAbogados = listarAbogados;
+            _listarGePersona = listarGePersona;
+            _listarCasosTipoLN = listarCasosTipoLN;
         }
 
         // GET: Caso
@@ -64,11 +69,28 @@ namespace Preacepta.UI.Controllers
         }
 
         // GET: Caso/Create
-        public IActionResult Create()
+        public async Task<IActionResult> Create()
         {
-            ViewData["IdAbogado"] = new SelectList(_context.TGeAbogados, "Cedula", "Nombre");
-            ViewData["IdCliente"] = new SelectList(_context.TGePersonas, "Cedula", "Nombre");
-            ViewData["IdTipoCaso"] = new SelectList(_context.TCasosTipos, "IdTipoCaso", "Nombre");
+            //ViewData["IdAbogado"] = new SelectList(_listarAbogados.listar().Result, "Cedula", "CedulaNavigation.Nombre");
+            //ViewData["IdCliente"] = new SelectList(_listarGePersona.listar().Result, "Cedula", "Nombre");
+
+            ViewData["IdTipoCaso"] = new SelectList(_listarCasosTipoLN.listar().Result, "IdTipoCaso", "Nombre");
+
+            ViewData["IdAbogado"] = (await _listarAbogados.listar())
+                .Select(n => new SelectListItem
+                {
+                    Value = n.Cedula.ToString(),
+                    Text = $"{n.Carnet} - Abogado(a) {n.CedulaNavigation.Nombre}"
+                })
+                .ToList();
+
+            ViewData["IdCliente"] = (await _listarGePersona.listar())
+               .Select(n => new SelectListItem
+               {
+                   Value = n.Cedula.ToString(),
+                   Text = $"{n.Cedula} - {n.Nombre} {n.Apellido1} {n.Apellido2}"
+               })
+               .ToList();
             return View();
         }
 
@@ -77,16 +99,30 @@ namespace Preacepta.UI.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("IdCaso,Fecha,IdTipoCaso,Descripcion,IdAbogado,IdCliente,Activo")] CasoDTO tCaso)
+        public async Task<IActionResult> Create([Bind("IdCaso,Nombre,Fecha,IdTipoCaso,Descripcion,IdAbogado,IdCliente,Activo")] CasoDTO tCaso)
         {
             if (ModelState.IsValid)
             {
                 await _crear.Crear(tCaso);
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["IdAbogado"] = new SelectList(_context.TGeAbogados, "Cedula", "Nombre", tCaso.IdAbogado);
-            ViewData["IdCliente"] = new SelectList(_context.TGePersonas, "Cedula", "Nombre", tCaso.IdCliente);
-            ViewData["IdTipoCaso"] = new SelectList(_context.TCasosTipos, "IdTipoCaso", "Nombre", tCaso.IdTipoCaso);
+            ViewData["IdTipoCaso"] = new SelectList(_listarCasosTipoLN.listar().Result, "IdTipoCaso", "Nombre");
+
+            ViewData["IdAbogado"] = (await _listarAbogados.listar())
+                .Select(n => new SelectListItem
+                {
+                    Value = n.Cedula.ToString(),
+                    Text = $"{n.Carnet} - Abogado(a) {n.CedulaNavigation.Nombre}"
+                })
+                .ToList();
+
+            ViewData["IdCliente"] = (await _listarGePersona.listar())
+               .Select(n => new SelectListItem
+               {
+                   Value = n.Cedula.ToString(),
+                   Text = $"{n.Cedula} - {n.Nombre} {n.Apellido1} {n.Apellido2}"
+               })
+               .ToList();
             return View(tCaso);
         }
 
@@ -103,9 +139,23 @@ namespace Preacepta.UI.Controllers
             {
                 return NotFound();
             }
-            ViewData["IdAbogado"] = new SelectList(_context.TGeAbogados, "Cedula", "Cedula", tCaso.IdAbogado);
-            ViewData["IdCliente"] = new SelectList(_context.TGePersonas, "Cedula", "Apellido1", tCaso.IdCliente);
-            ViewData["IdTipoCaso"] = new SelectList(_context.TCasosTipos, "IdTipoCaso", "Nombre", tCaso.IdTipoCaso);
+            ViewData["IdTipoCaso"] = new SelectList(_listarCasosTipoLN.listar().Result, "IdTipoCaso", "Nombre");
+
+            ViewData["IdAbogado"] = (await _listarAbogados.listar())
+               .Select(n => new SelectListItem
+               {
+                   Value = n.Cedula.ToString(),
+                   Text = $"{n.Carnet} - Abogado(a) {n.CedulaNavigation.Nombre}"
+               })
+               .ToList();
+
+            ViewData["IdCliente"] = (await _listarGePersona.listar())
+               .Select(n => new SelectListItem
+               {
+                   Value = n.Cedula.ToString(),
+                   Text = $"{n.Cedula} - {n.Nombre} {n.Apellido1} {n.Apellido2}"
+               })
+               .ToList();
             return View(tCaso);
         }
 
@@ -114,7 +164,7 @@ namespace Preacepta.UI.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("IdCaso,Fecha,IdTipoCaso,Descripcion,IdAbogado,IdCliente,Activo")] CasoDTO tCaso)
+        public async Task<IActionResult> Edit(int id, [Bind("IdCaso,Nombre,Fecha,IdTipoCaso,Descripcion,IdAbogado,IdCliente,Activo")] CasoDTO tCaso)
         {
             if (id != tCaso.IdCaso)
             {
@@ -125,18 +175,32 @@ namespace Preacepta.UI.Controllers
             {
                 try
                 {
-                   await _editar.Editar(tCaso);
+                    await _editar.Editar(tCaso);
                 }
                 catch (DbUpdateConcurrencyException)
                 {
                     return NotFound();
-                    
+
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["IdAbogado"] = new SelectList(_context.TGeAbogados, "Cedula", "Cedula", tCaso.IdAbogado);
-            ViewData["IdCliente"] = new SelectList(_context.TGePersonas, "Cedula", "Apellido1", tCaso.IdCliente);
-            ViewData["IdTipoCaso"] = new SelectList(_context.TCasosTipos, "IdTipoCaso", "Nombre", tCaso.IdTipoCaso);
+            ViewData["IdTipoCaso"] = new SelectList(_listarCasosTipoLN.listar().Result, "IdTipoCaso", "Nombre");
+
+            ViewData["IdAbogado"] = (await _listarAbogados.listar())
+               .Select(n => new SelectListItem
+               {
+                   Value = n.Cedula.ToString(),
+                   Text = $"{n.Carnet} - Abogado(a) {n.CedulaNavigation.Nombre}"
+               })
+               .ToList();
+
+            ViewData["IdCliente"] = (await _listarGePersona.listar())
+               .Select(n => new SelectListItem
+               {
+                   Value = n.Cedula.ToString(),
+                   Text = $"{n.Cedula} - {n.Nombre} {n.Apellido1} {n.Apellido2}"
+               })
+               .ToList();
             return View(tCaso);
         }
 
@@ -162,8 +226,108 @@ namespace Preacepta.UI.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-           await _eLiminar.Eliminar(id);
-            return RedirectToAction(nameof(Index));
+            if (id <= 0)
+            {
+                return BadRequest("ID no válido.");
+            }
+            try
+            {
+                await _eLiminar.Eliminar(id);
+                return RedirectToAction(nameof(Index));
+            }
+            catch (NullReferenceException ex)
+            {
+                Console.WriteLine($"Error de referencia nula: {ex.Message}");
+                return RedirectToAction(nameof(Index));
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Otro error: {ex.Message}");
+                return RedirectToAction(nameof(Index));
+            }
+
+
+        }
+
+
+        // GET: Caso/Create
+        public async Task<IActionResult> FormularioCaso()
+        {
+            ViewData["IdTipoCaso"] = new SelectList(_listarCasosTipoLN.listar().Result, "IdTipoCaso", "Nombre");
+
+            ViewData["IdAbogado"] = (await _listarAbogados.listar())
+               .Select(n => new SelectListItem
+               {
+                   Value = n.Cedula.ToString(),
+                   Text = $"{n.Carnet} - Abogado(a) {n.CedulaNavigation.Nombre}"
+               })
+               .ToList();
+
+            ViewData["IdCliente"] = (await _listarGePersona.listar())
+               .Select(n => new SelectListItem
+               {
+                   Value = n.Cedula.ToString(),
+                   Text = $"{n.Cedula} - {n.Nombre} {n.Apellido1} {n.Apellido2}"
+               })
+               .ToList();
+            return View();
+        }
+
+        // POST: Caso/Create
+        // To protect from overposting attacks, enable the specific properties you want to bind to.
+        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> FormularioCaso([Bind("Nombre,IdTipoCaso,Descripcion,IdAbogado,IdCliente")] CasoDTO tCaso)
+        {
+            if (ModelState.IsValid)
+            {
+                await _crear.Crear(tCaso);
+                return RedirectToAction(nameof(Index));
+            }
+            ViewData["IdTipoCaso"] = new SelectList(_listarCasosTipoLN.listar().Result, "IdTipoCaso", "Nombre");
+
+            ViewData["IdAbogado"] = (await _listarAbogados.listar())
+               .Select(n => new SelectListItem
+               {
+                   Value = n.Cedula.ToString(),
+                   Text = $"{n.Carnet} - Abogado(a) {n.CedulaNavigation.Nombre}"
+               })
+               .ToList();
+
+            ViewData["IdCliente"] = (await _listarGePersona.listar())
+               .Select(n => new SelectListItem
+               {
+                   Value = n.Cedula.ToString(),
+                   Text = $"{n.Cedula} - {n.Nombre} {n.Apellido1} {n.Apellido2}"
+               })
+               .ToList();
+            return View(tCaso);
+        }
+
+
+        // GET: ListarCasos
+        public async Task<IActionResult> CasosListado()
+        {
+            //var contexto = _context.TCasos.Include(t => t.IdAbogadoNavigation).Include(t => t.IdClienteNavigation).Include(t => t.IdTipoCasoNavigation);
+            return View(await _listar.listar());
+        }
+
+        // GET: Caso/Details/5
+        public async Task<IActionResult> EtapasPL(int id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var tCaso = await _buscar.buscar(id);
+            if (tCaso == null)
+            {
+                return NotFound();
+            }
+
+            return View(tCaso);
         }
     }
 }

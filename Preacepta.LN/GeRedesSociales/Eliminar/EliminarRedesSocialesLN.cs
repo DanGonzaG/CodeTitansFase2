@@ -1,10 +1,4 @@
-﻿using Preacepta.AD.CasosTipo.Eliminar;
-using Preacepta.AD.GeRedesSociales.Eliminar;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Preacepta.AD.GeRedesSociales.Eliminar;
 
 namespace Preacepta.LN.GeRedesSociales.Eliminar
 {

@@ -1,14 +1,7 @@
-﻿using Preacepta.AD.CasosTipo.BuscarXid;
-using Preacepta.AD.GeAbogado.BuscarXid;
-using Preacepta.LN.CasosTipo.ObtenerDatos;
+﻿using Preacepta.AD.GeAbogado.BuscarXid;
 using Preacepta.LN.GeAbogado.ObtenerDatos;
 using Preacepta.Modelos.AbstraccionesBD;
 using Preacepta.Modelos.AbstraccionesFrond;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Preacepta.LN.GeAbogado.BuscarXid
 {
@@ -39,11 +32,29 @@ namespace Preacepta.LN.GeAbogado.BuscarXid
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Error en BuscarAbogadoLN: {ex.Message}");
+                Console.WriteLine($"Error en BuscarAbogadoLNmetodo buscar: {ex.Message}");
                 return null;
             }
+        }
 
-
+        public async Task<GeAbogadoDTO?> buscarXcarnet(int carnet)
+        {
+            try
+            {
+                TGeAbogado? resultadoBusqueda = await _buscar.buscarXcarnet(carnet);
+                if (resultadoBusqueda == null)
+                {
+                    Console.WriteLine("No se encontró el carnet del abogado.");
+                    return null;
+                }
+                GeAbogadoDTO obtenerDatos = _obtenerDatosLN.ObtenerDeDB(resultadoBusqueda);
+                return obtenerDatos;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error en BuscarAbogadoLN metodo buscarXcarnet: {ex.Message}");
+                return null;
+            }
         }
     }
 }

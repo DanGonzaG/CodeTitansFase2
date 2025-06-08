@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -11,11 +8,11 @@ using Preacepta.LN.GeRedesSociales.Crear;
 using Preacepta.LN.GeRedesSociales.Editar;
 using Preacepta.LN.GeRedesSociales.Eliminar;
 using Preacepta.LN.GeRedesSociales.Listar;
-using Preacepta.Modelos.AbstraccionesBD;
 using Preacepta.Modelos.AbstraccionesFrond;
 
 namespace Preacepta.UI.Controllers
 {
+    [Authorize(Roles = "Gestor")]
     public class GeRedesSocialesController : Controller
     {
         private readonly Contexto _context;
@@ -124,9 +121,9 @@ namespace Preacepta.UI.Controllers
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                   
+
                     return NotFound();
-                    
+
                 }
                 return RedirectToAction(nameof(Index));
             }

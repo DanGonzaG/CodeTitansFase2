@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Preacepta.AD;
@@ -11,6 +12,7 @@ using Preacepta.Modelos.AbstraccionesFrond;
 
 namespace Preacepta.UI.Controllers
 {
+    [Authorize(Roles = "Gestor")]
     public class CasosEvidenciaController : Controller
     {
         private readonly Contexto _context;
@@ -118,13 +120,13 @@ namespace Preacepta.UI.Controllers
             {
                 try
                 {
-                    await _editar.Editar(tCasosEvidencia);                   
+                    await _editar.Editar(tCasosEvidencia);
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                  
-                        return NotFound();
-                  
+
+                    return NotFound();
+
                 }
                 return RedirectToAction(nameof(Index));
             }

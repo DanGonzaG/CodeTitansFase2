@@ -1,10 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Preacepta.Modelos.AbstraccionesBD;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Preacepta.AD.GePersona.BuscarXid
 {
@@ -23,7 +18,25 @@ namespace Preacepta.AD.GePersona.BuscarXid
             {
                 var tGePersona = await _contexto.TGePersonas
                     .Include(t => t.Direccion1Navigation)
+                    .ThenInclude(a => a.IdCatonNavigation)
                     .FirstOrDefaultAsync(m => m.Cedula == id);
+                return tGePersona;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error en BuscarXidGePersonaAD, no se encontro id: {ex.Message}");
+                return null;
+            }
+        }
+
+        public async Task<TGePersona?> buscarXcorreo(string correo)
+        {
+            try
+            {
+                var tGePersona = await _contexto.TGePersonas
+                    .Include(t => t.Direccion1Navigation)
+                    .ThenInclude(a => a.IdCatonNavigation)
+                    .FirstOrDefaultAsync(m => m.Email == correo);
                 return tGePersona;
             }
             catch (Exception ex)

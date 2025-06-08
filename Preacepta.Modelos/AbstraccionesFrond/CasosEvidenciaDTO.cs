@@ -22,7 +22,7 @@ namespace Preacepta.Modelos.AbstraccionesFrond
 
         public virtual TCaso IdCasoNavigation { get; set; } = null!;
 
-        
-        
+
+
     }
 }

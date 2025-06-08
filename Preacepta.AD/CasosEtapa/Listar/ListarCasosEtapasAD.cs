@@ -1,10 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Preacepta.Modelos.AbstraccionesFrond;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Preacepta.AD.CasosEtapa.Listar
 {
@@ -29,7 +24,30 @@ namespace Preacepta.AD.CasosEtapa.Listar
                     Descripcion = lista.Descripcion,
                     IdCaso = lista.IdCaso,
                     IdCasoNavigation = lista.IdCasoNavigation,
-                    Activo = lista.Activo                    
+                    Activo = lista.Activo
+                }).ToListAsync();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error al obtener datos {ex.Message}");
+                return new List<CasosEtapaDTO>();
+            }
+
+        }
+
+        public async Task<List<CasosEtapaDTO>> listarXcaso(int id)
+        {
+            try
+            {
+                return await _contexto.TCasosEtapas.Where(a => a.IdCaso == id).Select(lista => new CasosEtapaDTO
+                {
+                    IdEtapaPl = lista.IdEtapaPl,
+                    Nombre = lista.Nombre,
+                    Fecha = lista.Fecha.ToString("dd-MM-yyyy"),
+                    Descripcion = lista.Descripcion,
+                    IdCaso = lista.IdCaso,
+                    IdCasoNavigation = lista.IdCasoNavigation,
+                    Activo = lista.Activo
                 }).ToListAsync();
             }
             catch (Exception ex)

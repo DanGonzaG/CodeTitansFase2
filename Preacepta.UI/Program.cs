@@ -115,24 +115,32 @@ using Preacepta.UI.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
-var connectionString = builder.Configuration.GetConnectionString("Server") ?? throw new InvalidOperationException("Conexion a base datos bajo el nombre Server no funciona");
-Console.WriteLine($"Cadena de conexión utilizada: {connectionString}");
+// Agrega la conexion en un var
+var connectionString = builder.Configuration.GetConnectionString("Server")
+    ?? throw new InvalidOperationException("Conexion a base datos bajo el nombre Server no funciona");
+Console.WriteLine($"Cadena de conexiï¿½n utilizada: {connectionString}"); //muestra el mensaje
 
+#region Base de Datos
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlServer(connectionString));
 
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
 //Servicio de contenexion con Autenticacion de Entity
-builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = false)
+builder.Services.AddDefaultIdentity<IdentityUser>(
+    options => options.SignIn.RequireConfirmedAccount = false)
+    .AddRoles<IdentityRole>() //activa el servicio de roles
     .AddEntityFrameworkStores<ApplicationDbContext>();
+
+
 builder.Services.AddControllersWithViews();
 
 //Servicio de contenexion con Base de datos PreaceptaBD
 builder.Services.AddDbContext<Contexto>(options =>
     options.UseSqlServer(connectionString));
+#endregion
 
+#region Inyeccion de modulos
 /*Inseccion de servicios modulo de general-personas*/
 builder.Services.AddScoped<IListarGePersonaAD, ListarGePersonaAD>();
 builder.Services.AddScoped<IListarGePersonaLN, ListarGePersonaLN>();
@@ -147,7 +155,7 @@ builder.Services.AddScoped<IEliminarPersonaAD, EliminarPersonaAD>();
 builder.Services.AddScoped<IEliminarPersonaLN, EliminarPersonaLN>();
 /*Inseccion de servicios modulo general-Abogados Tipos*/
 builder.Services.AddScoped<IBuscarAbogadoTipoAD, BuscarAbogadoTipoAD>();
-builder.Services.AddScoped<IBuscarAbogadoTipoLN, BuscarAbogadoTipoLN> ();
+builder.Services.AddScoped<IBuscarAbogadoTipoLN, BuscarAbogadoTipoLN>();
 builder.Services.AddScoped<ICrearAbogadoTipoAD, CrearAbogadoTipoAD>();
 builder.Services.AddScoped<ICrearAbogadoTipoLN, CrearAbogadoTipoLN>();
 builder.Services.AddScoped<IEditarAbogadoTipoAD, EditarAbogadoTipoAD>();
@@ -183,8 +191,8 @@ builder.Services.AddScoped<IListarAbogadoLN, ListarAbogadoLN>();
 builder.Services.AddScoped<IObtenerDatosAbogadoLN, ObtenerDatosAbogadoLN>();
 /*Inseccion de servicios modulo general- GeNegocio*/
 builder.Services.AddScoped<IBuscarNegocioAD, BuscarNegocioAD>();
-builder.Services.AddScoped< ICrearNegocioAD, CrearNegocioAD>();
-builder.Services.AddScoped< IEditarNegocioAD, EditarNegocioAD>();
+builder.Services.AddScoped<ICrearNegocioAD, CrearNegocioAD>();
+builder.Services.AddScoped<IEditarNegocioAD, EditarNegocioAD>();
 builder.Services.AddScoped<IEliminarNegocioAD, EliminarNegocioAD>();
 builder.Services.AddScoped<IListarNegocioAD, ListarNegocioAD>();
 builder.Services.AddScoped<IBuscarNegocioLN, BuscarNegocioLN>();
@@ -253,8 +261,56 @@ builder.Services.AddScoped<ICrearCasosEvidenciaLN, CrearCasosEvidenciaLN>();
 builder.Services.AddScoped<IEditarCasosEvidenciaLN, EditarCasosEvidenciaLN>();
 builder.Services.AddScoped<IEliminarCasosEvidenciaLN, EliminarCasosEvidenciaLN>();
 builder.Services.AddScoped<IListarCasosEvidenciaLN, ListarCasosEvidenciaLN>();
+#endregion
 
 var app = builder.Build();
+
+#region Asignacion y creacion de roles
+//Verifica se lo roles existen y si no los crea todo esto sucede en el incio de la aplicacion
+using (var scope = app.Services.CreateScope())
+{
+    var roles = scope.ServiceProvider.GetRequiredService<RoleManager<IdentityRole>>();
+    if (!await roles.RoleExistsAsync("Gestor") || !await roles.RoleExistsAsync("Abogado") || !await roles.RoleExistsAsync("Cliente"))
+    {
+        await roles.CreateAsync(new IdentityRole("Gestor"));
+        await roles.CreateAsync(new IdentityRole("Abogado"));
+        await roles.CreateAsync(new IdentityRole("Cliente"));
+    }
+}
+#endregion
+
+#region Creacion de usario root
+using (var scope = app.Services.CreateScope())
+{
+    var userManager = scope.ServiceProvider.GetRequiredService<UserManager<IdentityUser>>();
+    var roleManager = scope.ServiceProvider.GetRequiredService<RoleManager<IdentityRole>>();
+    var config = scope.ServiceProvider.GetRequiredService<IConfiguration>();
+
+
+    var rootEmail = config["GestorSettings:Email"];
+    var rootPassword = config["GestorSettings:Password"];
+
+    // Asegurarse de que el rol Admin existe
+    if (!await roleManager.RoleExistsAsync("Gestor"))
+    {
+        await roleManager.CreateAsync(new IdentityRole("Gestor"));
+    }
+
+    // Crear usuario root si no existe
+    if (await userManager.FindByEmailAsync(rootEmail) == null)
+    {
+        var rootUser = new IdentityUser
+        {
+            UserName = rootEmail,
+            Email = rootEmail,
+            EmailConfirmed = true
+        };
+
+        await userManager.CreateAsync(rootUser, rootPassword);
+        await userManager.AddToRoleAsync(rootUser, "Gestor");
+    }
+}
+#endregion
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())

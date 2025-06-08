@@ -1,13 +1,6 @@
 ﻿using Preacepta.AD.Casos.Editar;
-using Preacepta.AD.CasosTipo.Editar;
 using Preacepta.LN.Casos.ObtenerDatos;
-using Preacepta.LN.CasosTipo.ObtenerDatos;
 using Preacepta.Modelos.AbstraccionesFrond;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Preacepta.LN.Casos.Editar
 {
@@ -32,7 +25,7 @@ namespace Preacepta.LN.Casos.Editar
 
             try
             {
-                int bandera = await _editar.Editar(_obtenerDatosLN.ObtenerDeFront(editar));
+                int bandera = await _editar.Editar(_obtenerDatosLN.ObtenerDeFrontEditar(editar));
                 return bandera;
 
             }

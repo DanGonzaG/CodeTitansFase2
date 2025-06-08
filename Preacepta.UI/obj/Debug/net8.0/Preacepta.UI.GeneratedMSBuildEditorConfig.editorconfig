@@ -206,6 +206,10 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWJvZ2Fkb1RpcG9cSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Preacepta/Preacepta.UI/Views/Abogado/CrearAbogado.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWJvZ2Fkb1xDcmVhckFib2dhZG8uY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Preacepta/Preacepta.UI/Views/Abogado/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWJvZ2Fkb1xDcmVhdGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
@@ -240,6 +244,14 @@ build_metadata.AdditionalFiles.CssScope =
 
 [C:/Preacepta/Preacepta.UI/Views/CasosEtapa/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2Fzb3NFdGFwYVxFZGl0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Preacepta/Preacepta.UI/Views/CasosEtapa/EtapasPL.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2Fzb3NFdGFwYVxFdGFwYXNQTC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Preacepta/Preacepta.UI/Views/CasosEtapa/FormularioEtapaPL.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2Fzb3NFdGFwYVxGb3JtdWxhcmlvRXRhcGFQTC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Preacepta/Preacepta.UI/Views/CasosEtapa/Index.cshtml]
@@ -286,6 +298,10 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2Fzb3NUaXBvXEluZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Preacepta/Preacepta.UI/Views/Caso/CasosListado.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2Fzb1xDYXNvc0xpc3RhZG8uY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Preacepta/Preacepta.UI/Views/Caso/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2Fzb1xDcmVhdGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
@@ -300,6 +316,10 @@ build_metadata.AdditionalFiles.CssScope =
 
 [C:/Preacepta/Preacepta.UI/Views/Caso/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2Fzb1xFZGl0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Preacepta/Preacepta.UI/Views/Caso/FormularioCaso.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2Fzb1xGb3JtdWxhcmlvQ2Fzby5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Preacepta/Preacepta.UI/Views/Caso/Index.cshtml]
@@ -496,6 +516,10 @@ build_metadata.AdditionalFiles.CssScope =
 
 [C:/Preacepta/Preacepta.UI/Views/Home/Testimonials.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxUZXN0aW1vbmlhbHMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Preacepta/Preacepta.UI/Views/Personas/CrearPersona.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGVyc29uYXNcQ3JlYXJQZXJzb25hLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Preacepta/Preacepta.UI/Views/Personas/Create.cshtml]

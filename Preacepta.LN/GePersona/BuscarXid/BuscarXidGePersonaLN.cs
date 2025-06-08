@@ -2,12 +2,6 @@
 using Preacepta.LN.GePersona.ObtenerDatos;
 using Preacepta.Modelos.AbstraccionesBD;
 using Preacepta.Modelos.AbstraccionesFrond;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net.NetworkInformation;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Preacepta.LN.GePersona.BuscarXid
 {
@@ -22,7 +16,7 @@ namespace Preacepta.LN.GePersona.BuscarXid
             _obtenerDatosLN = obtnerDatosLN;
         }
 
-        public async Task <GePersonaDTO?> buscar (int id) 
+        public async Task<GePersonaDTO?> buscar(int id)
         {
             try
             {
@@ -35,12 +29,34 @@ namespace Preacepta.LN.GePersona.BuscarXid
                 GePersonaDTO gePersonaDTO = _obtenerDatosLN.ObtenerDeDB(gePersona);
                 return gePersonaDTO;
             }
-            catch (Exception ex) 
+            catch (Exception ex)
             {
                 Console.WriteLine($"Error en BuscarXidGePersonaLN: {ex.Message}");
                 return null;
             }
-            
+
+
+        }
+
+        public async Task<GePersonaDTO?> buscarXcorreo(string correo)
+        {
+            try
+            {
+                TGePersona? gePersona = await _buscarXidGePersonaAD.buscarXcorreo(correo);
+                if (gePersona == null)
+                {
+                    Console.WriteLine("No se encontró la persona.");
+                    return null;
+                }
+                GePersonaDTO gePersonaDTO = _obtenerDatosLN.ObtenerDeDB(gePersona);
+                return gePersonaDTO;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error en BuscarXidGePersonaLN: {ex.Message}");
+                return null;
+            }
+
 
         }
     }

@@ -1,11 +1,5 @@
 ﻿using Preacepta.Modelos.AbstraccionesBD;
 using Preacepta.Modelos.AbstraccionesFrond;
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Preacepta.LN.Casos.ObtenerDatos
 {
@@ -17,6 +11,7 @@ namespace Preacepta.LN.Casos.ObtenerDatos
             {
                 IdCaso = datos.IdCaso,
                 Fecha = datos.Fecha.ToString("dd-MM-yyyy"),
+                Nombre = datos.Nombre,
                 IdTipoCaso = datos.IdTipoCaso,
                 Descripcion = datos.Descripcion,
                 IdAbogado = datos.IdAbogado,
@@ -30,12 +25,31 @@ namespace Preacepta.LN.Casos.ObtenerDatos
 
 
         /*metodo para obtner los datos de los formularios y pasarlos al modelo de acceso a datos*/
-        public TCaso ObtenerDeFront(CasoDTO datos)
+        public TCaso ObtenerDeFrontCrear(CasoDTO datos)
+        {
+            return new TCaso
+            {
+                //IdCaso = datos.IdCaso,
+                Fecha = DateTime.Now,
+                Nombre = datos.Nombre,
+                IdTipoCaso = datos.IdTipoCaso,
+                Descripcion = datos.Descripcion,
+                IdAbogado = datos.IdAbogado,
+                IdCliente = datos.IdCliente,
+                Activo = true,
+                IdAbogadoNavigation = datos.IdAbogadoNavigation,
+                IdClienteNavigation = datos.IdClienteNavigation,
+                IdTipoCasoNavigation = datos.IdTipoCasoNavigation,
+            };
+        }
+
+        public TCaso ObtenerDeFrontEditar(CasoDTO datos)
         {
             return new TCaso
             {
                 IdCaso = datos.IdCaso,
-                Fecha = DateTime.Now,
+                Fecha = DateTime.Parse(datos.Fecha),
+                Nombre = datos.Nombre,
                 IdTipoCaso = datos.IdTipoCaso,
                 Descripcion = datos.Descripcion,
                 IdAbogado = datos.IdAbogado,

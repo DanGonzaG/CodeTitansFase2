@@ -1,11 +1,5 @@
 ﻿using Preacepta.Modelos.AbstraccionesBD;
 using Preacepta.Modelos.AbstraccionesFrond;
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Preacepta.LN.CasosEtapa.ObtenerDatos
 {
@@ -37,7 +31,7 @@ namespace Preacepta.LN.CasosEtapa.ObtenerDatos
                 Descripcion = datos.Descripcion,
                 IdCaso = datos.IdCaso,
                 IdCasoNavigation = datos.IdCasoNavigation,
-                Activo = datos.Activo
+                Activo = true
             };
         }
     }

@@ -9,14 +9,14 @@ namespace Preacepta.Modelos.AbstraccionesFrond
         [DisplayName("Identificador")]
         public int IdRs { get; set; }
 
-        [Required(ErrorMessage ="Debe de seleccionar un abogado")]
+        [Required(ErrorMessage = "Debe de seleccionar un abogado")]
         [DisplayName("Cédula")]
         public int Cedula { get; set; }
 
         [Required(ErrorMessage = "Debe de agregar un link de acceso a las redes sociales")]
         [DisplayName("Link")]
         public string LinkRedSocila { get; set; } = null!;
-        
+
         public virtual TGeAbogado? CedulaNavigation { get; set; } = null!;
     }
 }

@@ -1,13 +1,6 @@
 ﻿using Preacepta.AD.CasosTipo.Crear;
-using Preacepta.AD.GeAbogadoTipo.Crear;
 using Preacepta.LN.CasosTipo.ObtenerDatos;
-using Preacepta.LN.GeAbogadoTipo.ObtenerDatos;
 using Preacepta.Modelos.AbstraccionesFrond;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Preacepta.LN.CasosTipo.Crear
 {

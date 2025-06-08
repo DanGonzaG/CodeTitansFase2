@@ -1,10 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Preacepta.Modelos.AbstraccionesFrond;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Preacepta.AD.GeRedesSociales.Listar
 {
@@ -27,7 +22,7 @@ namespace Preacepta.AD.GeRedesSociales.Listar
                     CedulaNavigation = lista.CedulaNavigation,
                     IdRs = lista.IdRs,
                     LinkRedSocila = lista.LinkRedSocila,
-                    
+
 
                 }).ToListAsync();
             }

@@ -1,13 +1,6 @@
-﻿using Preacepta.AD.CasosTipo.Editar;
-using Preacepta.AD.GeRedesSociales.Editar;
-using Preacepta.LN.CasosTipo.ObtenerDatos;
+﻿using Preacepta.AD.GeRedesSociales.Editar;
 using Preacepta.LN.GeRedesSociales.ObtenerDatos;
 using Preacepta.Modelos.AbstraccionesFrond;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Preacepta.LN.GeRedesSociales.Editar
 {

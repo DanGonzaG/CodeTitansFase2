@@ -1,9 +1,4 @@
 ﻿using Preacepta.Modelos.AbstraccionesBD;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Preacepta.AD.GeNegocio.Crear
 {
@@ -34,8 +29,6 @@ namespace Preacepta.AD.GeNegocio.Crear
                 Console.WriteLine($"Error en CrearNegocioAD {ex.Message}");
                 return 0;
             }
-
-
         }
     }
 }

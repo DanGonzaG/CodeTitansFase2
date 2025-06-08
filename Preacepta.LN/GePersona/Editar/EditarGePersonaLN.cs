@@ -1,11 +1,6 @@
 ﻿using Preacepta.AD.GePersona.Editar;
 using Preacepta.LN.GePersona.ObtenerDatos;
 using Preacepta.Modelos.AbstraccionesFrond;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Preacepta.LN.GePersona.Editar
 {
@@ -29,7 +24,7 @@ namespace Preacepta.LN.GePersona.Editar
 
             try
             {
-                int bandera = await _editarGePersonaAD.editar(_obtenerDatosLN.ObtenerDeFront(gePersonaDTO));
+                int bandera = await _editarGePersonaAD.editar(_obtenerDatosLN.ObtenerDeFrontEditar(gePersonaDTO));
                 return bandera;
 
             }

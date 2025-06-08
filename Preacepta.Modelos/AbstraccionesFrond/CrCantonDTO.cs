@@ -1,12 +1,7 @@
 ﻿using Preacepta.Modelos.AbstraccionesBD;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Preacepta.Modelos.AbstraccionesFrond
 {
@@ -23,10 +18,10 @@ namespace Preacepta.Modelos.AbstraccionesFrond
 
         [Required(ErrorMessage = "Digite el nombre del cantón")]
         [DisplayName("Nombre")]
-        [MaxLength(100,ErrorMessage = "Solo puede ingresar 100 caracteres")]
+        [MaxLength(100, ErrorMessage = "Solo puede ingresar 100 caracteres")]
         public string? NombreCanton { get; set; }
 
-        
+
         [DisplayName("Provincia")]
         public virtual TCrProvincia? IdProvinciaNavigation { get; set; }
 

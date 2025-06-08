@@ -1,13 +1,6 @@
 ﻿using Preacepta.AD.CasosEtapa.Crear;
-using Preacepta.AD.CasosTipo.Crear;
 using Preacepta.LN.CasosEtapa.ObtenerDatos;
-using Preacepta.LN.CasosTipo.ObtenerDatos;
 using Preacepta.Modelos.AbstraccionesFrond;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Preacepta.LN.CasosEtapa.Crear
 {

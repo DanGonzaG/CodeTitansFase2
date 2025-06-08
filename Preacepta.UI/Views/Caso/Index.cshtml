@@ -19,12 +19,10 @@
             <th>
                 @Html.DisplayNameFor(model => model.Nombre)
             </th>
-            <th>
+            <!--<th>
                 @Html.DisplayNameFor(model => model.Descripcion)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Activo)
-            </th>
+            </th>-->
+           
             <th>
                 @Html.DisplayNameFor(model => model.IdAbogadoNavigation)
             </th>
@@ -33,6 +31,9 @@
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.IdTipoCasoNavigation)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Activo)
             </th>
             <th></th>
         </tr>
@@ -46,21 +47,22 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.Nombre)
                 </td>
-            <td>
+            <!--<td>
                 @Html.DisplayFor(modelItem => item.Descripcion)
+                </td>-->
+            
+            <td>
+                @Html.DisplayFor(modelItem => item.IdAbogadoNavigation.CedulaNavigation.Nombre)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Activo)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.IdAbogadoNavigation.Cedula)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.IdClienteNavigation.Apellido1)
+                @Html.DisplayFor(modelItem => item.IdClienteNavigation.Nombre)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.IdTipoCasoNavigation.Nombre)
             </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Activo)
+                </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.IdCaso">Edit</a> |
                 <a asp-action="Details" asp-route-id="@item.IdCaso">Details</a> |

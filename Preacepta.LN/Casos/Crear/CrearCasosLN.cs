@@ -1,13 +1,6 @@
 ﻿using Preacepta.AD.Casos.Crear;
-using Preacepta.AD.CasosTipo.Crear;
 using Preacepta.LN.Casos.ObtenerDatos;
-using Preacepta.LN.CasosTipo.ObtenerDatos;
 using Preacepta.Modelos.AbstraccionesFrond;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Preacepta.LN.Casos.Crear
 {
@@ -32,7 +25,7 @@ namespace Preacepta.LN.Casos.Crear
             }
             try
             {
-                int bandera = await _crear.crear(_obtenerDatosLN.ObtenerDeFront(crear));
+                int bandera = await _crear.crear(_obtenerDatosLN.ObtenerDeFrontCrear(crear));
                 if (bandera == null)
                 {
                     Console.WriteLine("Conversion de CrearCasosLN-CasoDTO fallido");
