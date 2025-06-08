@@ -9,9 +9,9 @@ namespace Preacepta.LN.DocsPagare.Eliminar
 {
     public class EliminarPagareLN : IEliminarPagareLN
     {
-        private EliminarPagareAD _eliminar;
+        private IEliminarPagareAD _eliminar;
 
-        public EliminarPagareLN(EliminarPagareAD eliminar)
+        public EliminarPagareLN(IEliminarPagareAD eliminar)
         {
             _eliminar = eliminar;
         }

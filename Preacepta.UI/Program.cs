@@ -233,6 +233,28 @@ using Preacepta.LN.GeRedesSociales.Eliminar;
 using Preacepta.LN.GeRedesSociales.Listar;
 using Preacepta.LN.GeRedesSociales.ObtenerDatos;
 using Preacepta.UI.Data;
+using Preacepta.AD.CitasTipo.BuscarXid;
+using Preacepta.AD.CitasTipo.Crear;
+using Preacepta.AD.CitasTipo.Editar;
+using Preacepta.AD.CitasTipo.Eliminar;
+using Preacepta.AD.CitasTipo.Listar;
+using Preacepta.LN.CitasTipo.BuscarXid;
+using Preacepta.LN.CitasTipo.Crear;
+using Preacepta.LN.CitasTipo.Editar;
+using Preacepta.LN.CitasTipo.Eliminar;
+using Preacepta.LN.CitasTipo.Listar;
+using Preacepta.LN.CitasTipo.ObtenerDatos;
+using Preacepta.AD.Citas.BuscarXid;
+using Preacepta.AD.Citas.Crear;
+using Preacepta.AD.Citas.Editar;
+using Preacepta.AD.Citas.Eliminar;
+using Preacepta.AD.Citas.Listar;
+using Preacepta.LN.Citas.BuscarXid;
+using Preacepta.LN.Citas.Crear;
+using Preacepta.LN.Citas.Editar;
+using Preacepta.LN.Citas.Eliminar;
+using Preacepta.LN.Citas.Listar;
+using Preacepta.LN.Citas.ObtenerDatos;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -490,7 +512,6 @@ builder.Services.AddScoped<IEditarTestLN, EditarTestLN>();
 builder.Services.AddScoped<IEliminarTestLN, EliminarTestLN>();
 builder.Services.AddScoped<IListarTestLN, ListarTestLN>();
 builder.Services.AddScoped<IObtenerDatosTestLN, ObtenerDatosTestLN>();
-
 // Servicios DocPoderesEspecialesJudiciales
 builder.Services.AddScoped<IBuscarPoderJudAD, BuscarPoderJudAD>();
 builder.Services.AddScoped<ICrearPoderJudAD, CrearPoderJudAD>();
@@ -503,7 +524,6 @@ builder.Services.AddScoped<IEditarPoderJudLN, EditarPoderJudLN>();
 builder.Services.AddScoped<IEliminarPoderJudLN, EliminarPoderJudLN>();
 builder.Services.AddScoped<IListarPoderJudLN, ListarPoderJudLN>();
 builder.Services.AddScoped<IObtenerDatosPoderJudLN, ObtenerDatosPoderJudLN>();
-
 // Servicios DocsOpcionCompraventaVehiculo
 builder.Services.AddScoped<IBuscarDocCVAD, BuscarDocCVAD>();
 builder.Services.AddScoped<ICrearDocCVAD, CrearDocCVAD>();
@@ -516,7 +536,6 @@ builder.Services.AddScoped<IEditarDocCVLN, EditarDocCVLN>();
 builder.Services.AddScoped<IEliminarDocCVLN, EliminarDocCVLN>();
 builder.Services.AddScoped<IListarDocCVLN, ListarDocCVLN>();
 builder.Services.AddScoped<IObtenerDatosDocsCV, ObtenerDatosDocsCV>();
-
 // Servicios DocsPagare
 builder.Services.AddScoped<IBuscarPagareAD, BuscarPagareAD>();
 builder.Services.AddScoped<ICrearPagareAD, CrearPagareAD>();
@@ -530,7 +549,7 @@ builder.Services.AddScoped<IEliminarPagareLN, EliminarPagareLN>();
 builder.Services.AddScoped<IListarPagareLN, ListarPagareLN>();
 builder.Services.AddScoped<IObtenerDatosPagareLN, ObtenerDatosPagareLN>();
 
-builder.Services.AddScoped<Preacepta.AD.DocsPagare.Eliminar.EliminarPagareAD>();
+//builder.Services.AddScoped<Preacepta.AD.DocsPagare.Eliminar.EliminarPagareAD>();
 
 // Servicios DocsTipoVehiculo
 builder.Services.AddScoped<IBuscarTipoVehiculoAD, BuscarTipoVehiculoAD>();
@@ -545,15 +564,9 @@ builder.Services.AddScoped<IEliminarTipoVehiculoLN, EliminarTipoVehiculoLN>();
 builder.Services.AddScoped<IListarTipoVehiculoLN, ListarTipoVehiculoLN>();
 builder.Services.AddScoped<IObtenerDatosTipoVehiculoLN, ObtenerDatosTipoVehiculoLN>();
 
-builder.Services.AddScoped<Preacepta.AD.DocsTipoVehiculo.Eliminar.EliminarTipoVehiculoAD>();
+//builder.Services.AddScoped<Preacepta.AD.DocsTipoVehiculo.Eliminar.EliminarTipoVehiculoAD>();
 #endregion
-
-
-
-
-
 var app = builder.Build();
-
 
 #region Asignacion y creacion de roles
 //Verifica se lo roles existen y si no los crea todo esto sucede en el incio de la aplicacion

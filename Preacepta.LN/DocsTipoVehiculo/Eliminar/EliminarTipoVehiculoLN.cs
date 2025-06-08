@@ -9,9 +9,9 @@ namespace Preacepta.LN.DocsTipoVehiculo.Eliminar
 {
     public class EliminarTipoVehiculoLN : IEliminarTipoVehiculoLN
     {
-        private readonly EliminarTipoVehiculoAD _eliminar;
+        private readonly IEliminarTipoVehiculoAD _eliminar;
 
-        public EliminarTipoVehiculoLN(EliminarTipoVehiculoAD eliminar)
+        public EliminarTipoVehiculoLN(IEliminarTipoVehiculoAD eliminar)
         {
             _eliminar = eliminar;
         }

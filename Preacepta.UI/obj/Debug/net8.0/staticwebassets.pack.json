@@ -785,6 +785,10 @@
       "PackagePath": "staticwebassets\\lyso\\js\\Daniel.js"
     },
     {
+      "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lyso\\js\\DocsCompraVentaVehiculos.js",
+      "PackagePath": "staticwebassets\\lyso\\js\\DocsCompraVentaVehiculos.js"
+    },
+    {
       "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lyso\\js\\bootstrap.bundle.min.js",
       "PackagePath": "staticwebassets\\lyso\\js\\bootstrap.bundle.min.js"
     },
@@ -795,6 +799,22 @@
     {
       "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lyso\\js\\custom.js",
       "PackagePath": "staticwebassets\\lyso\\js\\custom.js"
+    },
+    {
+      "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lyso\\js\\docsAutorizacionRevision.js",
+      "PackagePath": "staticwebassets\\lyso\\js\\docsAutorizacionRevision.js"
+    },
+    {
+      "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lyso\\js\\docsFinca.js",
+      "PackagePath": "staticwebassets\\lyso\\js\\docsFinca.js"
+    },
+    {
+      "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lyso\\js\\docsInscripciondeVehiculo.js",
+      "PackagePath": "staticwebassets\\lyso\\js\\docsInscripciondeVehiculo.js"
+    },
+    {
+      "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lyso\\js\\docsPrestacionServicios.js",
+      "PackagePath": "staticwebassets\\lyso\\js\\docsPrestacionServicios.js"
     },
     {
       "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lyso\\js\\form-validator.min.js",
