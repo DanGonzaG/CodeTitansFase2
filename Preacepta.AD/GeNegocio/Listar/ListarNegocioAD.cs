@@ -1,10 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Preacepta.Modelos.AbstraccionesFrond;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Preacepta.AD.GeNegocio.Listar
 {
@@ -31,7 +26,7 @@ namespace Preacepta.AD.GeNegocio.Listar
                     Telefono = lista.Telefono,
                     Direccion1 = lista.Direccion1,
                     Direccion2 = lista.Direccion2,
-                    
+
                 }).ToListAsync();
             }
             catch (Exception ex)

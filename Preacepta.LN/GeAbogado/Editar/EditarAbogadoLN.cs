@@ -1,13 +1,6 @@
-﻿using Preacepta.AD.CasosTipo.Editar;
-using Preacepta.AD.GeAbogado.Editar;
-using Preacepta.LN.CasosTipo.ObtenerDatos;
+﻿using Preacepta.AD.GeAbogado.Editar;
 using Preacepta.LN.GeAbogado.ObtenerDatos;
 using Preacepta.Modelos.AbstraccionesFrond;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Preacepta.LN.GeAbogado.Editar
 {

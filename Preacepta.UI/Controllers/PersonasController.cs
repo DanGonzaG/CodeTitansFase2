@@ -1,165 +1,73 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using Preacepta.AD;
 using Preacepta.LN.CrDireccion1.Listar;
 using Preacepta.LN.GePersona.BuscarXid;
 using Preacepta.LN.GePersona.Crear;
 using Preacepta.LN.GePersona.Editar;
 using Preacepta.LN.GePersona.Eliminar;
 using Preacepta.LN.GePersona.Listar;
-using Preacepta.Modelos.AbstraccionesBD;
 using Preacepta.Modelos.AbstraccionesFrond;
 
-namespace Preacepta.UI.Controllers;
-
-public class PersonasController : Controller
+namespace Preacepta.UI.Controllers
 {
-    private readonly IListarGePersonaLN _listarPersona;
-    private readonly IBuscarXidGePersonaLN _buscarPersona;
-    private readonly ICrearGePersonaLN _crearPesona;
-    private readonly IEditarGePersonaLN _editarPersona;
-    private readonly IEliminarPersonaLN _eliminarPersona;
-    private readonly IListarCrDireccion1LN _listarDireccion;
-
-    public PersonasController(IListarGePersonaLN listarGePersonaLN,
-        IBuscarXidGePersonaLN buscarXidGePersonaLN,
-        ICrearGePersonaLN crearGePersonaLN,
-        IEditarGePersonaLN editarGePersonaLN,
-        IEliminarPersonaLN eliminarPersonaLN,
-        IListarCrDireccion1LN listarDireccion)
+    [Authorize(Roles = "Gestor")]
+    public class PersonasController : Controller
     {
-        _listarPersona = listarGePersonaLN;
-        _buscarPersona = buscarXidGePersonaLN;
-        _crearPesona = crearGePersonaLN;
-        _editarPersona = editarGePersonaLN;
-        _eliminarPersona = eliminarPersonaLN;
-        _listarDireccion = listarDireccion;
-    }
+        private readonly IListarGePersonaLN _listarPersona;
+        private readonly IBuscarXidGePersonaLN _buscarPersona;
+        private readonly ICrearGePersonaLN _crearPesona;
+        private readonly IEditarGePersonaLN _editarPersona;
+        private readonly IEliminarPersonaLN _eliminarPersona;
+        private readonly IListarCrDireccion1LN _listarDireccion;
 
-    // GET: TGePersonas
-    public async Task<IActionResult> Index()
-    {
-        //var contexto = _context.TGePersonas.Include(t => t.Direccion1Navigation);
-        return View(await _listarPersona.listar());
-    }
 
-    // GET: TGePersonas/Details/5
-    public async Task<IActionResult> Details(int id)
-    {
-        if (id == null)
+        public PersonasController(IListarGePersonaLN listarGePersonaLN,
+            IBuscarXidGePersonaLN buscarXidGePersonaLN,
+            ICrearGePersonaLN crearGePersonaLN,
+            IEditarGePersonaLN editarGePersonaLN,
+            IEliminarPersonaLN eliminarPersonaLN,
+            IListarCrDireccion1LN listarDireccion)
         {
-            return NotFound();
+            _listarPersona = listarGePersonaLN;
+            _buscarPersona = buscarXidGePersonaLN;
+            _crearPesona = crearGePersonaLN;
+            _editarPersona = editarGePersonaLN;
+            _eliminarPersona = eliminarPersonaLN;
+            _listarDireccion = listarDireccion;
         }
 
-        /*var tGePersona = await _context.TGePersonas
-            .Include(t => t.Direccion1Navigation)
-            .FirstOrDefaultAsync(m => m.Cedula == id);*/
-        var tGePersona = await _buscarPersona.buscar(id);
-        if (tGePersona == null)
+        // GET: TGePersonas
+        public async Task<IActionResult> Index()
         {
-            return NotFound();
+            return View(await _listarPersona.listar());
         }
 
-        return View(tGePersona);
-    }
-
-    // GET: TGePersonas/Create
-    public IActionResult Create()
-    {
-
-        ViewData["Direccion1"] = new SelectList(_listarDireccion.listarDistritos().Result, "IdDistrito", "NombreDistrito");
-
-        ViewBag.EstadoCivil = new List<SelectListItem>
+        // GET: TGePersonas/Details/5
+        public async Task<IActionResult> Details(int id)
         {
-            new SelectListItem { Text = "Soltero", Value = "Soltero" },
-            new SelectListItem { Text = "Casado", Value = "Casado" },
-            new SelectListItem { Text = "Divorciado", Value = "Divorciado" },
-            new SelectListItem { Text = "Viudo", Value = "Viudo" }
-        };
-
-        return View();
-    }
-
-    // POST: TGePersonas/Create
-    // To protect from overposting attacks, enable the specific properties you want to bind to.
-    // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-    [HttpPost]
-    [ValidateAntiForgeryToken]
-    public async Task<IActionResult> Create([Bind("Cedula,Nombre,Apellido1,Apellido2,FechaNacimiento,Edad,EstadoCivil,Oficio,Direccion1,Direccion2,FechaRegistro,Telefono1,Telefono2,Activo,Email")] GePersonaDTO tGePersona)
-    {
-        if (ModelState.IsValid)
-        {
-            /*_context.Add(tGePersona);
-            await _context.SaveChangesAsync();*/
-            await _crearPesona.crear(tGePersona);
-            return RedirectToAction(nameof(Index));
-        }
-        ViewData["Direccion1"] = new SelectList(_listarDireccion.listarDistritos().Result, "IdDistrito", "NombreDistrito", tGePersona.Direccion1);
-
-        ViewBag.EstadoCivil = new List<SelectListItem>
-        {
-            new SelectListItem { Text = "Soltero", Value = "Soltero" },
-            new SelectListItem { Text = "Casado", Value = "Casado" },
-            new SelectListItem { Text = "Divorciado", Value = "Divorciado" },
-            new SelectListItem { Text = "Viudo", Value = "Viudo" }
-        };
-        return View(tGePersona);
-    }
-
-    // GET: TGePersonas/Edit/5
-    public async Task<IActionResult> Edit(int id)
-    {
-        if (id == null)
-        {
-            return NotFound();
-        }
-
-        var tGePersona = await _buscarPersona.buscar(id);
-        if (tGePersona == null)
-        {
-            return NotFound();
-        }
-        ViewData["Direccion1"] = new SelectList(_listarDireccion.listarDistritos().Result, "IdDistrito", "NombreDistrito", tGePersona.Direccion1);
-
-        ViewBag.EstadoCivil = new List<SelectListItem>
-        {
-            new SelectListItem { Text = "Soltero", Value = "Soltero" },
-            new SelectListItem { Text = "Casado", Value = "Casado" },
-            new SelectListItem { Text = "Divorciado", Value = "Divorciado" },
-            new SelectListItem { Text = "Viudo", Value = "Viudo" }
-        };
-
-        return View(tGePersona);
-    }
-
-    // POST: TGePersonas/Edit/5
-    // To protect from overposting attacks, enable the specific properties you want to bind to.
-    // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-    [HttpPost]
-    [ValidateAntiForgeryToken]
-    public async Task<IActionResult> Edit(int id, [Bind("Cedula,Nombre,Apellido1,Apellido2,FechaNacimiento,Edad,EstadoCivil,Oficio,Direccion1,Direccion2,Telefono1,Telefono2,FechaRegistro,Activo,Email")] GePersonaDTO tGePersona)
-    {
-        if (id != tGePersona.Cedula)
-        {
-            return NotFound();
-        }
-
-        if (ModelState.IsValid)
-        {
-            try
-            {
-                await _editarPersona.editar(tGePersona);
-            }
-            catch (DbUpdateConcurrencyException)
+            if (id == null)
             {
                 return NotFound();
             }
-            return RedirectToAction(nameof(Index));
-        }
-        ViewData["Direccion1"] = new SelectList(_listarDireccion.listarDistritos().Result, "IdDistrito", "NombreDistrito", tGePersona.Direccion1);
 
-        ViewBag.EstadoCivil = new List<SelectListItem>
+            var tGePersona = await _buscarPersona.buscar(id);
+            if (tGePersona == null)
+            {
+                return NotFound();
+            }
+
+            return View(tGePersona);
+        }
+
+        // GET: TGePersonas/Create
+        public IActionResult Create()
+        {
+
+            ViewData["Direccion1"] = new SelectList(_listarDireccion.listarDistritos().Result, "IdDistrito", "NombreDistrito");
+
+            ViewBag.EstadoCivil = new List<SelectListItem>
         {
             new SelectListItem { Text = "Soltero", Value = "Soltero" },
             new SelectListItem { Text = "Casado", Value = "Casado" },
@@ -167,34 +75,205 @@ public class PersonasController : Controller
             new SelectListItem { Text = "Viudo", Value = "Viudo" }
         };
 
-        return View(tGePersona);
-    }
-
-    // GET: TGePersonas/Delete/5
-    public async Task<IActionResult> Delete(int id)
-    {
-        if (id == null)
-        {
-            return NotFound();
+            return View();
         }
 
-        var tGePersona = await _buscarPersona.buscar(id);
-        if (tGePersona == null)
+        // POST: TGePersonas/Create
+        // To protect from overposting attacks, enable the specific properties you want to bind to.
+        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Create([Bind("Cedula,Nombre,Apellido1,Apellido2,FechaNacimiento,Edad,EstadoCivil,Oficio,Direccion1,Direccion2,FechaRegistro,Telefono1,Telefono2,Activo,Email,Password,ConfirmPassword")] GePersonaDTO tGePersona)
         {
-            return NotFound();
+            if (ModelState.IsValid)
+            {
+                /*_context.Add(tGePersona);
+                await _context.SaveChangesAsync();*/
+                await _crearPesona.crear(tGePersona);
+                return RedirectToAction(nameof(Index));
+            }
+            ViewData["Direccion1"] = new SelectList(_listarDireccion.listarDistritos().Result, "IdDistrito", "NombreDistrito", tGePersona.Direccion1);
+
+            ViewBag.EstadoCivil = new List<SelectListItem>
+        {
+            new SelectListItem { Text = "Soltero", Value = "Soltero" },
+            new SelectListItem { Text = "Casado", Value = "Casado" },
+            new SelectListItem { Text = "Divorciado", Value = "Divorciado" },
+            new SelectListItem { Text = "Viudo", Value = "Viudo" }
+        };
+            return View(tGePersona);
         }
 
-        return View(tGePersona);
-    }
+        // GET: TGePersonas/Edit/5
+        public async Task<IActionResult> Edit(int id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
 
-    // POST: TGePersonas/Delete/5
-    [HttpPost, ActionName("Delete")]
-    [ValidateAntiForgeryToken]
-    public async Task<IActionResult> DeleteConfirmed(int id)
-    {
+            var tGePersona = await _buscarPersona.buscar(id);
+            if (tGePersona == null)
+            {
+                return NotFound();
+            }
+            ViewData["Direccion1"] = new SelectList(_listarDireccion.listarDistritos().Result, "IdDistrito", "NombreDistrito", tGePersona.Direccion1);
 
-        await _eliminarPersona.eliminar(id);
-        return RedirectToAction(nameof(Index));
+            ViewBag.EstadoCivil = new List<SelectListItem>
+        {
+            new SelectListItem { Text = "Soltero", Value = "Soltero" },
+            new SelectListItem { Text = "Casado", Value = "Casado" },
+            new SelectListItem { Text = "Divorciado", Value = "Divorciado" },
+            new SelectListItem { Text = "Viudo", Value = "Viudo" }
+        };
+
+            return View(tGePersona);
+        }
+
+        // POST: TGePersonas/Edit/5
+        // To protect from overposting attacks, enable the specific properties you want to bind to.
+        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Edit(int id, [Bind("Cedula,Nombre,Apellido1,Apellido2,FechaNacimiento,Edad,EstadoCivil,Oficio,Direccion1,Direccion2,Telefono1,Telefono2,FechaRegistro,Activo,Email")] GePersonaDTO tGePersona)
+        {
+            if (id != tGePersona.Cedula)
+            {
+                return NotFound();
+            }
+
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    await _editarPersona.editar(tGePersona);
+                }
+                catch (DbUpdateConcurrencyException)
+                {
+                    return NotFound();
+                }
+                return RedirectToAction(nameof(Index));
+            }
+            ViewData["Direccion1"] = new SelectList(_listarDireccion.listarDistritos().Result, "IdDistrito", "NombreDistrito", tGePersona.Direccion1);
+
+            ViewBag.EstadoCivil = new List<SelectListItem>
+        {
+            new SelectListItem { Text = "Soltero", Value = "Soltero" },
+            new SelectListItem { Text = "Casado", Value = "Casado" },
+            new SelectListItem { Text = "Divorciado", Value = "Divorciado" },
+            new SelectListItem { Text = "Viudo", Value = "Viudo" }
+        };
+
+            return View(tGePersona);
+        }
+
+        // GET: TGePersonas/Delete/5
+        public async Task<IActionResult> Delete(int id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var tGePersona = await _buscarPersona.buscar(id);
+            if (tGePersona == null)
+            {
+                return NotFound();
+            }
+
+            return View(tGePersona);
+        }
+
+        // POST: TGePersonas/Delete/5
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> DeleteConfirmed(int id)
+        {
+
+            await _eliminarPersona.eliminar(id);
+            return RedirectToAction(nameof(Index));
+        }
+
+        // GET: TGePersonas/CrearPersona, muestra el formulario de CrearPersona.cshtml
+        public IActionResult CrearPersona()
+        {
+
+            ViewData["Direccion1"] = new SelectList(_listarDireccion.listarDistritos().Result, "IdDistrito", "NombreDistrito");
+
+            ViewBag.EstadoCivil = new List<SelectListItem>
+        {
+            new SelectListItem { Text = "Soltero", Value = "Soltero" },
+            new SelectListItem { Text = "Casado", Value = "Casado" },
+            new SelectListItem { Text = "Divorciado", Value = "Divorciado" },
+            new SelectListItem { Text = "Viudo", Value = "Viudo" }
+        };
+
+            return View();
+        }
+
+        // POST: TGePersonas/CrearPersona, controller para la vista de CrearPersona.cshtml
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> CrearPersona([Bind("Cedula,Nombre,Apellido1,Apellido2,FechaNacimiento,Edad,EstadoCivil,Oficio,Direccion1,Direccion2,FechaRegistro,Telefono1,Telefono2,Activo,Email,Password,ConfirmPassword")] GePersonaDTO tGePersona)
+        {
+            var existe = await _buscarPersona.buscar(tGePersona.Cedula);
+            if (existe == null)
+            {
+                var correo = await _buscarPersona.buscarXcorreo(tGePersona.Email);
+                if (correo == null)
+                {
+                    if (ModelState.IsValid)
+                    {
+                        await _crearPesona.crear(tGePersona);
+                        return RedirectToAction(nameof(Index));
+                    }
+                    ViewData["Direccion1"] = new SelectList(_listarDireccion.listarDistritos().Result, "IdDistrito", "NombreDistrito", tGePersona.Direccion1);
+
+                    ViewBag.EstadoCivil = new List<SelectListItem>
+            {
+                new SelectListItem { Text = "Soltero", Value = "Soltero" },
+                new SelectListItem { Text = "Casado", Value = "Casado" },
+                new SelectListItem { Text = "Divorciado", Value = "Divorciado" },
+                new SelectListItem { Text = "Viudo", Value = "Viudo" }
+            };
+                    return View(tGePersona);
+                }
+                else if (correo.Email == tGePersona.Email)
+                {
+
+
+                    ViewData["Direccion1"] = new SelectList(_listarDireccion.listarDistritos().Result, "IdDistrito", "NombreDistrito", tGePersona.Direccion1);
+
+                    ViewBag.EstadoCivil = new List<SelectListItem>
+                {
+                    new SelectListItem { Text = "Soltero", Value = "Soltero" },
+                    new SelectListItem { Text = "Casado", Value = "Casado" },
+                    new SelectListItem { Text = "Divorciado", Value = "Divorciado" },
+                    new SelectListItem { Text = "Viudo", Value = "Viudo" }
+                };
+                    TempData["ErrorEmail"] = "Correo Electronico ya registrado en el sistema";
+                    return View(tGePersona);
+                }
+            }
+            if (existe.Cedula == tGePersona.Cedula)
+            {
+                ViewData["Direccion1"] = new SelectList(_listarDireccion.listarDistritos().Result, "IdDistrito", "NombreDistrito", tGePersona.Direccion1);
+
+                ViewBag.EstadoCivil = new List<SelectListItem>
+        {
+            new SelectListItem { Text = "Soltero", Value = "Soltero" },
+            new SelectListItem { Text = "Casado", Value = "Casado" },
+            new SelectListItem { Text = "Divorciado", Value = "Divorciado" },
+            new SelectListItem { Text = "Viudo", Value = "Viudo" }
+        };
+
+                TempData["ErrorCedula"] = "Cedula ya registrada en el sistema";
+                return View(tGePersona);
+            }
+            return View(tGePersona);
+        }
     }
 }
+
+
 

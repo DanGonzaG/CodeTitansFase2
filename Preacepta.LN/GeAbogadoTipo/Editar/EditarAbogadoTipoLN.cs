@@ -1,13 +1,6 @@
 ﻿using Preacepta.AD.GeAbogadoTipo.Editar;
-using Preacepta.AD.GePersona.Editar;
 using Preacepta.LN.GeAbogadoTipo.ObtenerDatos;
-using Preacepta.LN.GePersona.ObtenerDatos;
 using Preacepta.Modelos.AbstraccionesFrond;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Preacepta.LN.GeAbogadoTipo.Editar
 {
@@ -16,7 +9,7 @@ namespace Preacepta.LN.GeAbogadoTipo.Editar
         private readonly IEditarAbogadoTipoAD _editar;
         private readonly IObtenerDatosAbogadoTipoLN _obtenerDatosLN;
 
-        public EditarAbogadoTipoLN(IEditarAbogadoTipoAD editarAbogadoTipoAD, 
+        public EditarAbogadoTipoLN(IEditarAbogadoTipoAD editarAbogadoTipoAD,
             IObtenerDatosAbogadoTipoLN obtenerDatosAbogadoTipoLN)
         {
             _editar = editarAbogadoTipoAD;

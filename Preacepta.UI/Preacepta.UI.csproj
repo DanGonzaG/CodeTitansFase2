@@ -8,6 +8,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Remove="Areas\Identity\Pages\Account\Register2.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Include="wwwroot\lyso\fonts\PNG\.DS_Store" />
   </ItemGroup>
 

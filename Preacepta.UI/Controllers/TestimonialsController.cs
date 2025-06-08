@@ -1,13 +1,15 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Praecepta.UI.Models;
 
 namespace Praecepta.UI.Controllers
 {
+    [Authorize(Roles = "Gestor")]
     public class TestimonialsController : Controller
     {
         public IActionResult TestimonialsLista()
         {
-            List < Testimonials > lista = ListaQuemadaTestimonials;
+            List<Testimonials> lista = ListaQuemadaTestimonials;
             return View(lista);
         }
 

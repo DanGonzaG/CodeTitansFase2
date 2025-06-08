@@ -465,6 +465,18 @@
       "PackagePath": "staticwebassets\\lyso\\img\\PraeceptaLogo.png"
     },
     {
+      "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lyso\\img\\PraeceptaLogo2.png",
+      "PackagePath": "staticwebassets\\lyso\\img\\PraeceptaLogo2.png"
+    },
+    {
+      "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lyso\\img\\PreaceptaLogoColorNegro.png",
+      "PackagePath": "staticwebassets\\lyso\\img\\PreaceptaLogoColorNegro.png"
+    },
+    {
+      "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lyso\\img\\PreaceptaLogoColorNegro3.png",
+      "PackagePath": "staticwebassets\\lyso\\img\\PreaceptaLogoColorNegro3.png"
+    },
+    {
       "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lyso\\img\\about\\1-1.jpg",
       "PackagePath": "staticwebassets\\lyso\\img\\about\\1-1.jpg"
     },

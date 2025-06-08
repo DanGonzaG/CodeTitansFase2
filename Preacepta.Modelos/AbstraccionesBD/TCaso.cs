@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 //using Microsoft.EntityFrameworkCore;
 
@@ -12,6 +10,9 @@ public partial class TCaso
     [Key]
     [Column("Id_caso")]
     public int IdCaso { get; set; }
+
+    [Column("Nombre")]
+    public string Nombre { get; set; }
 
     [Column(TypeName = "datetime")]
     public DateTime Fecha { get; set; }

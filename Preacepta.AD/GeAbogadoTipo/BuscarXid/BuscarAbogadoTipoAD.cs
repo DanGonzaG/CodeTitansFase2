@@ -1,10 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
-using Preacepta.Modelos.AbstraccionesBD;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Preacepta.Modelos.AbstraccionesBD;
 
 namespace Preacepta.AD.GeAbogadoTipo.BuscarXid
 {

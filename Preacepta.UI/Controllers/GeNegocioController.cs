@@ -1,18 +1,18 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using Preacepta.AD;
+using Preacepta.LN.CrDireccion1.Listar;
 using Preacepta.LN.GeNegocio.BuscarXId;
+using Preacepta.LN.GeNegocio.Crear;
 using Preacepta.LN.GeNegocio.Editar;
 using Preacepta.LN.GeNegocio.Eliminar;
 using Preacepta.LN.GeNegocio.Listar;
-using Preacepta.LN.GeNegocio.Crear;
-using Preacepta.Modelos.AbstraccionesBD;
 using Preacepta.Modelos.AbstraccionesFrond;
-using Microsoft.AspNetCore.Mvc.Rendering;
-using Preacepta.LN.CrDireccion1.Listar;
 
 namespace Preacepta.UI.Controllers
 {
+    [Authorize(Roles = "Gestor")]
     public class GeNegocioController : Controller
     {
         private readonly IBuscarNegocioLN _buscar;
@@ -123,8 +123,8 @@ namespace Preacepta.UI.Controllers
                     await _crear.Crear(tGeNegocio);
                 }
                 catch (DbUpdateConcurrencyException)
-                {                    
-                        return NotFound();                    
+                {
+                    return NotFound();
                 }
                 return RedirectToAction(nameof(Index));
             }
@@ -154,9 +154,9 @@ namespace Preacepta.UI.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-           await _eliminar.Eliminar(id);
+            await _eliminar.Eliminar(id);
             return RedirectToAction(nameof(Index));
         }
-       
+
     }
 }
