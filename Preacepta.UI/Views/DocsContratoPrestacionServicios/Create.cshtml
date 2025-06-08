@@ -1,0 +1,90 @@
+﻿@model Preacepta.Modelos.AbstraccionesFrond.DocsContratoPrestacionServicioDTO
+
+@{
+    ViewData["Title"] = "Create";
+    Layout = "_Layout";
+}
+
+<h1>Create</h1>
+
+<h4>TDocsContratoPrestacionServicio</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="RazonSocialEmpresa" class="control-label"></label>
+                <input asp-for="RazonSocialEmpresa" class="form-control" />
+                <span asp-validation-for="RazonSocialEmpresa" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Provincia" class="control-label"></label>
+                <select asp-for="Provincia" class ="form-control" asp-items="ViewBag.Provincia"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="CedulaJuridicaEmpresa" class="control-label"></label>
+                <input asp-for="CedulaJuridicaEmpresa" class="form-control" />
+                <span asp-validation-for="CedulaJuridicaEmpresa" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CedulaAbogado" class="control-label"></label>
+                <select asp-for="CedulaAbogado" class ="form-control" asp-items="ViewBag.CedulaAbogado"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="CedulaCliente" class="control-label"></label>
+                <select asp-for="CedulaCliente" class ="form-control" asp-items="ViewBag.CedulaCliente"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="TipoServicios" class="control-label"></label>
+                <input asp-for="TipoServicios" class="form-control" />
+                <span asp-validation-for="TipoServicios" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="FechaInicio" class="control-label"></label>
+                <input asp-for="FechaInicio" class="form-control" />
+                <span asp-validation-for="FechaInicio" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="FechaFinal" class="control-label"></label>
+                <input asp-for="FechaFinal" class="form-control" />
+                <span asp-validation-for="FechaFinal" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="MontoHonorarios" class="control-label"></label>
+                <input asp-for="MontoHonorarios" class="form-control" />
+                <span asp-validation-for="MontoHonorarios" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="InformacionConfidencial" class="control-label"></label>
+                <input asp-for="InformacionConfidencial" class="form-control" />
+                <span asp-validation-for="InformacionConfidencial" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CiudadFirma" class="control-label"></label>
+                <select asp-for="CiudadFirma" class ="form-control" asp-items="ViewBag.CiudadFirma"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="HoraFirma" class="control-label"></label>
+                <input asp-for="HoraFirma" class="form-control" />
+                <span asp-validation-for="HoraFirma" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="FechaFirma" class="control-label"></label>
+                <input asp-for="FechaFirma" class="form-control" />
+                <span asp-validation-for="FechaFirma" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

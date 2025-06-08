@@ -80,7 +80,7 @@
 
                             @if (User.Identity.IsAuthenticated)
                             {
-                                @if (User.IsInRole("Abogado") || User.IsInRole("Gestor"))
+                                @if (User.IsInRole("Gestor") || User.IsInRole("Abogado"))
                                 {
                                     <li class="nav-item">
                                         <a href="#" class="nav-link dropdown-toggle">Home</a>
@@ -99,7 +99,6 @@
                                 }
                             }
 
-
                             <li class="nav-item">
                                 <a asp-controller="Home" asp-action="About">Nosotros</a>
                             </li>
@@ -110,17 +109,20 @@
                                 <a href="#" class="nav-link dropdown-toggle">Testimonio</a>
                                 <ul class="dropdown-menu">
                                     <li class="nav-item">
-                                        <a asp-controller="Home" asp-action="Testimonials" class="nav-link">Testimonio</a>
+                                        <a asp-controller="TTestimonios" asp-action="Testimonials" class="nav-link">Testimonio</a>
                                     </li>
-                                    @(User.Identity.IsAuthenticated)
+
+                                    @if (User.Identity.IsAuthenticated)
                                     {
-                                        @if (User.IsInRole("Abogado") || User.IsInRole("Gestor"))
+                                        @if (User.IsInRole("Gestor") || User.IsInRole("Abogado"))
                                         {
                                             <li class="nav-item">
-                                                <a asp-controller="Testimonials" asp-action="TestimonialsLista" class="nav-link">Lista de Testimonios</a>
+                                                <a asp-controller="TTestimonios" asp-action="TestimonialsLista" class="nav-link">Lista de Testimonios</a>
                                             </li>
                                         }
                                     }
+
+
                                 </ul>
                             </li>
                             <li class="nav-item">
@@ -128,38 +130,65 @@
                             </li>
                             @if (User.Identity.IsAuthenticated)
                             {
-                                @if (User.IsInRole("Abogado") || User.IsInRole("Gestor") || User.IsInRole("Cliente"))
+                                @if (User.IsInRole("Gestor") || User.IsInRole("Abogado"))
                                 {
                                     <li class="nav-item">
                                         <a href="#" class="nav-link dropdown-toggle">Documentos</a>
                                         <ul class="dropdown-menu">
+
                                             <li class="nav-item">
-                                                <a asp-controller="DocsGenerator" asp-action="DocsGenerator" class="nav-link">Generador de Documentos</a>
-                                            </li>
-                                            <li class="nav-item">
-                                                <a asp-controller="DocsGenerator" asp-action="DocsHistorial" class="nav-link">Historial de Documentos</a>
-                                            </li>
-                                            <li class="nav-item">
-                                                <a href="#" class="nav-link dropdown">Documentos Recientes</a>
+                                                <a href="#" class="nav-link dropdown-toggle">Documentos</a>
                                                 <ul class="dropdown-menu">
                                                     <li class="nav-item">
-                                                        <a class="nav-link">Traspaso Vehículo : Daniel González</a>
+                                                        <a asp-controller="DocsOpcionCompraventaVehiculoes" asp-action="CreateDocsOpcionCompraventaVehiculoes" class="nav-link">Generador de Documento para la compra y venta de vehiculos</a>
+                                                    </li>
+
+                                                    <li class="nav-item">
+                                                        <a asp-controller="DocsAutorizacionRevisionExpedientes" asp-action="CreateDocsAutorizacionRevisionExpedientes" class="nav-link">Documento de autorización revisión de expedientes</a>
                                                     </li>
                                                     <li class="nav-item">
-                                                        <a class="nav-link">Reclamación Herencia : Javier Cruz</a>
+                                                        <a asp-controller="DocsCompraventaFincas" asp-action="CreateDocsCompraventaFincas" class="nav-link">Documento de compra y venta de fincas</a>
                                                     </li>
                                                     <li class="nav-item">
-                                                        <a class="nav-link">Rectificación de Escritura : María López</a>
+                                                        <a asp-controller="DocsContratoPrestacionServicios" asp-action="CreateDocsContratoPrestacionServicios" class="nav-link">Documento de contrato de prestacion de servicios</a>
+                                                    </li>
+                                                    <li class="nav-item">
+                                                        <a asp-controller="DocsInscripcionVehiculo" asp-action="CreateDocsInscripcionVehiculo" class="nav-link">Documento de inscripción de vehículos</a>
+                                                    </li>
+                                                    <a asp-controller="DocsGenerator" asp-action="DocsGenerator" class="nav-link">Generador de Documentos</a>
+
+                                                    <li class="nav-item">
+                                                        <a asp-controller="DocsGenerator" asp-action="DocsHistorial" class="nav-link">Historial de Documentos</a>
+                                                    </li>
+                                                    <li class="nav-item">
+                                                        <a href="#" class="nav-link dropdown">Documentos Recientes</a>
+                                                        <ul class="dropdown-menu">
+                                                            <li class="nav-item">
+                                                                <a class="nav-link">Traspaso Vehículo : Daniel González</a>
+                                                            </li>
+                                                            <li class="nav-item">
+                                                                <a class="nav-link">Reclamación Herencia : Javier Cruz</a>
+                                                            </li>
+                                                            <li class="nav-item">
+                                                                <a class="nav-link">Rectificación de Escritura : María López</a>
+                                                            </li>
+                                                        </ul>
+                                                    </li>
+                                                    <li class="nav-item">
+                                                        <a asp-controller="DocsGenerator" asp-action="Tutorial" class="nav-link">Tutoriales de herramienta</a>
                                                     </li>
                                                 </ul>
-                                            </li>
-                                            <li class="nav-item">
-                                                <a asp-controller="DocsGenerator" asp-action="Tutorial" class="nav-link">Tutoriales de herramienta</a>
                                             </li>
                                         </ul>
                                     </li>
                                 }
-                                @if (User.IsInRole("Abogado") || User.IsInRole("Gestor") || User.IsInRole("Cliente"))
+                            }
+
+
+
+                            @if (User.Identity.IsAuthenticated)
+                            {
+                                @if (User.IsInRole("Gestor") || User.IsInRole("Abogado"))
                                 {
                                     <li class="nav-item">
                                         <a href="#" class="nav-link dropdown-toggle">Casos</a>
@@ -184,17 +213,27 @@
                                         </ul>
                                     </li>
                                 }
-                                @if (User.IsInRole("Abogado") || User.IsInRole("Gestor") || User.IsInRole("Cliente"))
+                            }
+                            @if (User.Identity.IsAuthenticated)
+                            {
+                                @if (User.IsInRole("Cliente") || User.IsInRole("Abogado") || User.IsInRole("Gestor"))
                                 {
                                     <li class="nav-item">
                                         <a asp-controller="Citas" asp-action="Calendar" class="nav-link">Citas</a>
                                     </li>
                                 }
+                            }
+
+                            @if (User.Identity.IsAuthenticated)
+                            {
                                 @if (User.IsInRole("Gestor"))
                                 {
                                     <li class="nav-item">
                                         <a href="#" class="nav-link dropdown-toggle">Gestion General</a>
                                         <ul class="dropdown-menu">
+                                            <li class="nav-item">
+                                                <a asp-controller="Citas" asp-action="Calendar" class="nav-link">Citas</a>
+                                            </li>
                                             <li class="nav-item">
                                                 <a asp-controller="Personas" asp-action="Index" class="nav-link">Personas</a>
                                             </li>
@@ -240,17 +279,50 @@
                                             <li class="nav-item">
                                                 <a asp-controller="CitasTipo" asp-action="Index" class="nav-link">CitasTipo</a>
                                             </li>
+                                            <li class="nav-item">
+                                                <a href="#" class="nav-link dropdown-toggle">Gestion de documentos</a>
+                                                <ul class="dropdown-menu">
+                                                    <li class="nav-item">
+                                                        <a asp-controller="DocsContratoPrestacionServicios" asp-action="Index" class="nav-link">Documento de Contrato Prestacion de Servicios</a>
+                                                    </li>
+                                                    <li class="nav-item">
+                                                        <a asp-controller="DocsAutorizacionRevisionExpedientes" asp-action="Index" class="nav-link">Documento de Autorizacion de Revision Expedientes</a>
+                                                    </li>
+                                                    <li class="nav-item">
+                                                        <a asp-controller="DocsCombustibles" asp-action="Index" class="nav-link">Documento de Combustibles</a>
+                                                    </li>
+                                                    <li class="nav-item">
+                                                        <a asp-controller="DocsCompraventaFincas" asp-action="Index" class="nav-link">Documento de Compra Venta de fincas</a>
+                                                    </li>
+                                                    <li class="nav-item">
+                                                        <a asp-controller="DocsInscripcionVehiculo" asp-action="Index" class="nav-link">Documento de inscripcion de vehiculo</a>
+                                                    </li>
+                                                    <li class="nav-item">
+                                                        <a asp-controller="DocsMarcaVehiculo" asp-action="Index" class="nav-link">Documento de marcas de vehiculo</a>
+                                                    </li>
+
+
+                                                    <li class="nav-item">
+                                                        <a class="nav-link" asp-controller="DocsOpcionCompraventaVehiculoes" asp-action="Index">Compra y venta Vehiculos</a>
+                                                    </li>
+                                                    <li class="nav-item">
+                                                        <a class="nav-link" asp-controller="TDocsPoderesEspecialesJudiciales" asp-action="Index">Poderes especiales judiciales</a>
+                                                    </li>
+                                                    <li class="nav-item">
+                                                        <a class="nav-link" asp-controller="TDocsPagares" asp-action="Index">Pagares</a>
+                                                    </li>
+                                                    <li class="nav-item">
+                                                        <a class="nav-link" asp-controller="TDocsTipoVehiculoes" asp-action="Index">Tipo de Vehiculos</a>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a asp-controller="TTestimonios" asp-action="Index" class="nav-link">Lista de Testimonios</a>
+                                            </li>
                                         </ul>
                                     </li>
                                 }
                             }
-                        
-                            
-                          
-
-
-
-
                             <!--<li class="nav-item">
                                 <a href="#" class="nav-link dropdown-toggle">Pages</a>
                                 <ul class="dropdown-menu">
@@ -370,31 +442,31 @@
                             <h3>Servicios</h3>
                             <ul>
                                 <li>
-                                    <a <a asp-controller="Home" asp-action="CaseStudyDetails">
+                                    <a asp-controller="Home" asp-action="CaseStudyDetails">
                                         <i class="icofont-simple-right"></i>
                                         Derecho Civil
                                     </a>
                                 </li>
                                 <li>
-                                    <a <a asp-controller="Home" asp-action="CaseStudyDetails">
+                                    <a asp-controller="Home" asp-action="CaseStudyDetails">
                                         <i class="icofont-simple-right"></i>
                                         Derecho Penal
                                     </a>
                                 </li>
                                 <li>
-                                    <a <a asp-controller="Home" asp-action="CaseStudyDetails">
+                                    <a asp-controller="Home" asp-action="CaseStudyDetails">
                                         <i class="icofont-simple-right"></i>
                                         Derecho Laboral
                                     </a>
                                 </li>
                                 <li>
-                                    <a <a asp-controller="Home" asp-action="CaseStudyDetails">
+                                    <a asp-controller="Home" asp-action="CaseStudyDetails">
                                         <i class="icofont-simple-right"></i>
                                         Derecho Coporativo
                                     </a>
                                 </li>
                                 <li>
-                                    <a <a asp-controller="Home" asp-action="CaseStudyDetails">
+                                    <a asp-controller="Home" asp-action="CaseStudyDetails">
                                         <i class="icofont-simple-right"></i>
                                         Derecho Administrativo
                                     </a>

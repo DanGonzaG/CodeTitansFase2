@@ -62,14 +62,13 @@
                     <option value="TraspasoMotocicleta">Traspaso de Motocicleta</option>
                 </select>
             </div>-->
+           
+            <div class="row justify-content-center">
             <div class="form-group">
                 <h2 class="w-100">Selecciona un Formulario</h2>
-                <select id="selector" name="selector" class="form-control" onchange="mostrarFormulario()" required data-error="Favor seleccione una opción">
-                    <option value="" disabled selected>Seleccione una marca</option>
-                    <option value="TraspasoVehiculo">Traspaso de Vehículo</option>
-                    <option value="TraspasoMotocicleta">Traspaso de Motocicleta</option>
-                </select>
+                <a asp-controller="DocsInscripcionVehiculo" asp-action="CreateDocsInscripcionVehiculo">Inscripcion de Vehiculo</a>
                 <div class="help-block with-errors"></div>
+            </div>
             </div>
             <div>
                 <br />
@@ -77,6 +76,7 @@
         </div>
     </div>
 </div>
+
 
 <div id="TraspasoVehiculo" class="formulario contact-form contact-form-two contact-form-three">
     <div class="container">
