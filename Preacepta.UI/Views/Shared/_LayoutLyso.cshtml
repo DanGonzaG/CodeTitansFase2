@@ -99,7 +99,16 @@
                                 <a href="#" class="nav-link dropdown-toggle">Documentos</a>
                                 <ul class="dropdown-menu">
                                     <li class="nav-item">
-                                        <a asp-controller="DocsGenerator" asp-action="DocsGenerator" class="nav-link">Generador de Documentos</a>
+                                        <a asp-controller="DocsAutorizacionRevisionExpedientes" asp-action="CreateDocsAutorizacionRevisionExpedientes" class="nav-link">Documento de autorización revisión de expedientes</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a asp-controller="DocsCompraventaFincas" asp-action="CreateDocsCompraventaFincas" class="nav-link">Documento de compra y venta de fincas</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a asp-controller="DocsContratoPrestacionServicios" asp-action="CreateDocsContratoPrestacionServicios" class="nav-link">Documento de contrato de prestacion de servicios</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a asp-controller="DocsInscripcionVehiculo" asp-action="CreateDocsInscripcionVehiculo" class="nav-link">Documento de inscripción de vehículos</a>
                                     </li>
                                     <li class="nav-item">
                                         <a asp-controller="DocsGenerator" asp-action="DocsHistorial" class="nav-link">Historial de Documentos</a>
@@ -109,7 +118,7 @@
                                         <ul class="dropdown-menu">
                                             <li class="nav-item">
                                                 <a class="nav-link">Traspaso Vehículo : Daniel González</a>
-                                            </li> 
+                                            </li>
                                             <li class="nav-item">
                                                 <a class="nav-link">Reclamación Herencia : Javier Cruz</a>
                                             </li>
@@ -160,9 +169,10 @@
                                     <li class="nav-item">
                                         <a asp-controller="CasosTipo" asp-action="Index" class="nav-link">Tipos de casos</a>
                                     </li>
-                                     <li class="nav-item">
+                                    <li class="nav-item">
                                         <a asp-controller="Abogado" asp-action="Index" class="nav-link">Abogados</a>
                                     </li>
+
                                     <li class="nav-item">
                                         <a asp-controller="GeNegocio" asp-action="Index" class="nav-link">Informacion General del Despacho</a>
                                     </li>
@@ -174,6 +184,29 @@
                                     </li>
                                     <li class="nav-item">
                                         <a asp-controller="CrDistritos" asp-action="Index" class="nav-link">Distritos</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="#" class="nav-link dropdown-toggle">Gestion de documentos</a>
+                                        <ul class="dropdown-menu">
+                                            <li class="nav-item">
+                                                <a asp-controller="DocsContratoPrestacionServicios" asp-action="Index" class="nav-link">Documento de Contrato Prestacion de Servicios</a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a asp-controller="DocsAutorizacionRevisionExpedientes" asp-action="Index" class="nav-link">Documento de Autorizacion de Revision Expedientes</a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a asp-controller="DocsCombustibles" asp-action="Index" class="nav-link">Documento de Combustibles</a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a asp-controller="DocsCompraventaFincas" asp-action="Index" class="nav-link">Documento de Compra Venta de fincas</a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a asp-controller="DocsInscripcionVehiculo" asp-action="Index" class="nav-link">Documento de inscripcion de vehiculo</a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a asp-controller="DocsMarcaVehiculo" asp-action="Index" class="nav-link">Documento de marcas de vehiculo</a>
+                                            </li>
+                                        </ul>
                                     </li>
                                 </ul>
                             </li>
@@ -250,7 +283,7 @@
     <main>
         @RenderBody()
     </main>
-   
+
 
 
 
@@ -383,7 +416,7 @@
                                 </li>
                                 <li>
                                     <i class="icofont-ui-call"></i>
-                                   +506 8874 4858
+                                    +506 8874 4858
                                 </li>
                                 <li>
                                     <i class="icofont-at"></i>
@@ -437,7 +470,7 @@
     <script src="~/lyso/js/wow.min.js"></script>
     <!-- Custom JS -->
     <script src="~/lyso/js/custom.js"></script>
-    
+
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>

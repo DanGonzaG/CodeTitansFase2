@@ -1,0 +1,55 @@
+﻿@model Preacepta.Modelos.AbstraccionesFrond.DocsAutorizacionRevisionExpedienteDTO
+
+@{
+    ViewData["Title"] = "Details";
+    Layout = "_Layout";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>TDocsAutorizacionRevisionExpediente</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Expediente)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Expediente)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Delito)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Delito)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Ofendido)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Ofendido)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.CedulaAbogadoNavigation)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.CedulaAbogadoNavigation.Cedula)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.CedulaAsistenteNavigation)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.CedulaAsistenteNavigation.Apellido1)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.CedulaImputadoNavigation)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.CedulaImputadoNavigation.Apellido1)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model?.IdDocumento">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

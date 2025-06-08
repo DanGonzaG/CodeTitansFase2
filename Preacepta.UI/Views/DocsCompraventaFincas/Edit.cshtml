@@ -1,0 +1,145 @@
+﻿@model Preacepta.Modelos.AbstraccionesFrond.DocsCompraventaFincaDTO
+
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "_Layout";
+}
+
+<h1>Edit</h1>
+
+<h4>TDocsCompraventaFinca</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="IdDocumento" />
+            <div class="form-group">
+                <label asp-for="NumeroEscritura" class="control-label"></label>
+                <input asp-for="NumeroEscritura" class="form-control" />
+                <span asp-validation-for="NumeroEscritura" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CedulaAbogado" class="control-label"></label>
+                <select asp-for="CedulaAbogado" class="form-control" asp-items="ViewBag.CedulaAbogado"></select>
+                <span asp-validation-for="CedulaAbogado" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CedulaVendedor" class="control-label"></label>
+                <select asp-for="CedulaVendedor" class="form-control" asp-items="ViewBag.CedulaVendedor"></select>
+                <span asp-validation-for="CedulaVendedor" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CedulaComprador" class="control-label"></label>
+                <select asp-for="CedulaComprador" class="form-control" asp-items="ViewBag.CedulaComprador"></select>
+                <span asp-validation-for="CedulaComprador" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="MontoVenta" class="control-label"></label>
+                <input asp-for="MontoVenta" class="form-control" />
+                <span asp-validation-for="MontoVenta" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PartidoFinca" class="control-label"></label>
+                <input asp-for="PartidoFinca" class="form-control" />
+                <span asp-validation-for="PartidoFinca" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="MatriculaFinca" class="control-label"></label>
+                <input asp-for="MatriculaFinca" class="form-control" />
+                <span asp-validation-for="MatriculaFinca" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="NaturalezaFinca" class="control-label"></label>
+                <input asp-for="NaturalezaFinca" class="form-control" />
+                <span asp-validation-for="NaturalezaFinca" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DistritoFinca" class="control-label"></label>
+                <select asp-for="DistritoFinca" class="form-control" asp-items="ViewBag.DistritoFinca"></select>
+                <span asp-validation-for="DistritoFinca" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CantonFinca" class="control-label"></label>
+                <input asp-for="CantonFinca" class="form-control" />
+                <span asp-validation-for="CantonFinca" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ProvinciaFinca" class="control-label"></label>
+                <input asp-for="ProvinciaFinca" class="form-control" />
+                <span asp-validation-for="ProvinciaFinca" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="AreaFincaM2" class="control-label"></label>
+                <input asp-for="AreaFincaM2" class="form-control" />
+                <span asp-validation-for="AreaFincaM2" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PlanoCatastrado" class="control-label"></label>
+                <input asp-for="PlanoCatastrado" class="form-control" />
+                <span asp-validation-for="PlanoCatastrado" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ColindaNorte" class="control-label"></label>
+                <input asp-for="ColindaNorte" class="form-control" />
+                <span asp-validation-for="ColindaNorte" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ColindaSur" class="control-label"></label>
+                <input asp-for="ColindaSur" class="form-control" />
+                <span asp-validation-for="ColindaSur" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ColindaEste" class="control-label"></label>
+                <input asp-for="ColindaEste" class="form-control" />
+                <span asp-validation-for="ColindaEste" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ColindaOeste" class="control-label"></label>
+                <input asp-for="ColindaOeste" class="form-control" />
+                <span asp-validation-for="ColindaOeste" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="FormaPago" class="control-label"></label>
+                <input asp-for="FormaPago" class="form-control" />
+                <span asp-validation-for="FormaPago" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="MedioPago" class="control-label"></label>
+                <input asp-for="MedioPago" class="form-control" />
+                <span asp-validation-for="MedioPago" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="OrigenFondos" class="control-label"></label>
+                <input asp-for="OrigenFondos" class="form-control" />
+                <span asp-validation-for="OrigenFondos" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="LugarFirma" class="control-label"></label>
+                <select asp-for="LugarFirma" class="form-control" asp-items="ViewBag.LugarFirma"></select>
+                <span asp-validation-for="LugarFirma" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="HoraFirma" class="control-label"></label>
+                <input asp-for="HoraFirma" class="form-control" />
+                <span asp-validation-for="HoraFirma" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="FechaFirma" class="control-label"></label>
+                <input asp-for="FechaFirma" class="form-control" />
+                <span asp-validation-for="FechaFirma" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

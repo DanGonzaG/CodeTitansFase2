@@ -11,6 +11,36 @@ using Preacepta.AD.CrDireccion1.Crear;
 using Preacepta.AD.CrDireccion1.Editar;
 using Preacepta.AD.CrDireccion1.Eliminar;
 using Preacepta.AD.CrDireccion1.Listar;
+using Preacepta.AD.DocsAutorizacionRevisionExpediente.BuscarXid;
+using Preacepta.AD.DocsAutorizacionRevisionExpediente.Crear;
+using Preacepta.AD.DocsAutorizacionRevisionExpediente.Editar;
+using Preacepta.AD.DocsAutorizacionRevisionExpediente.Eliminar;
+using Preacepta.AD.DocsAutorizacionRevisionExpediente.Listar;
+using Preacepta.AD.DocsCombustible.BuscarXid;
+using Preacepta.AD.DocsCombustible.Crear;
+using Preacepta.AD.DocsCombustible.Editar;
+using Preacepta.AD.DocsCombustible.Eliminar;
+using Preacepta.AD.DocsCombustible.Listar;
+using Preacepta.AD.DocsCompraventaFinca.BuscarXid;
+using Preacepta.AD.DocsCompraventaFinca.Crear;
+using Preacepta.AD.DocsCompraventaFinca.Editar;
+using Preacepta.AD.DocsCompraventaFinca.Eliminar;
+using Preacepta.AD.DocsCompraventaFinca.Listar;
+using Preacepta.AD.DocsContratoPrestacionServicios.BuscarXid;
+using Preacepta.AD.DocsContratoPrestacionServicios.Crear;
+using Preacepta.AD.DocsContratoPrestacionServicios.Editar;
+using Preacepta.AD.DocsContratoPrestacionServicios.Eliminar;
+using Preacepta.AD.DocsContratoPrestacionServicios.Listar;
+using Preacepta.AD.DocsInscripcionVehiculo.BuscarXid;
+using Preacepta.AD.DocsInscripcionVehiculo.Crear;
+using Preacepta.AD.DocsInscripcionVehiculo.Editar;
+using Preacepta.AD.DocsInscripcionVehiculo.Eliminar;
+using Preacepta.AD.DocsInscripcionVehiculo.Listar;
+using Preacepta.AD.DocsMarcaVehiculo.BuscarXid;
+using Preacepta.AD.DocsMarcaVehiculo.Crear;
+using Preacepta.AD.DocsMarcaVehiculo.Editar;
+using Preacepta.AD.DocsMarcaVehiculo.Eliminar;
+using Preacepta.AD.DocsMarcaVehiculo.Listar;
 using Preacepta.AD.GeAbogado.BuscarXid;
 using Preacepta.AD.GeAbogado.Crear;
 using Preacepta.AD.GeAbogado.Editar;
@@ -43,6 +73,42 @@ using Preacepta.LN.CrDireccion1.Editar;
 using Preacepta.LN.CrDireccion1.Eliminar;
 using Preacepta.LN.CrDireccion1.Listar;
 using Preacepta.LN.CrDireccion1.ObtenerDatos;
+using Preacepta.LN.DocsAutorizacionRevisionExpediente.BuscarXid;
+using Preacepta.LN.DocsAutorizacionRevisionExpediente.Crear;
+using Preacepta.LN.DocsAutorizacionRevisionExpediente.Editar;
+using Preacepta.LN.DocsAutorizacionRevisionExpediente.Eliminar;
+using Preacepta.LN.DocsAutorizacionRevisionExpediente.Listar;
+using Preacepta.LN.DocsAutorizacionRevisionExpediente.ObtenerDatos;
+using Preacepta.LN.DocsCombustible.BuscarXid;
+using Preacepta.LN.DocsCombustible.Crear;
+using Preacepta.LN.DocsCombustible.Editar;
+using Preacepta.LN.DocsCombustible.Eliminar;
+using Preacepta.LN.DocsCombustible.Listar;
+using Preacepta.LN.DocsCombustible.ObtenerDatos;
+using Preacepta.LN.DocsCompraventaFinca.BuscarXid;
+using Preacepta.LN.DocsCompraventaFinca.Crear;
+using Preacepta.LN.DocsCompraventaFinca.Editar;
+using Preacepta.LN.DocsCompraventaFinca.Eliminar;
+using Preacepta.LN.DocsCompraventaFinca.Listar;
+using Preacepta.LN.DocsCompraventaFinca.ObtenerDatos;
+using Preacepta.LN.DocsContratoPrestacionServicios.BuscarXid;
+using Preacepta.LN.DocsContratoPrestacionServicios.Crear;
+using Preacepta.LN.DocsContratoPrestacionServicios.Editar;
+using Preacepta.LN.DocsContratoPrestacionServicios.Eliminar;
+using Preacepta.LN.DocsContratoPrestacionServicios.Listar;
+using Preacepta.LN.DocsContratoPrestacionServicios.ObtenerDatos;
+using Preacepta.LN.DocsInscripcionVehiculo.BuscarXid;
+using Preacepta.LN.DocsInscripcionVehiculo.Crear;
+using Preacepta.LN.DocsInscripcionVehiculo.Editar;
+using Preacepta.LN.DocsInscripcionVehiculo.Eliminar;
+using Preacepta.LN.DocsInscripcionVehiculo.Listar;
+using Preacepta.LN.DocsInscripcionVehiculo.ObtenerDatos;
+using Preacepta.LN.DocsMarcaVehiculo.BuscarXid;
+using Preacepta.LN.DocsMarcaVehiculo.Crear;
+using Preacepta.LN.DocsMarcaVehiculo.Editar;
+using Preacepta.LN.DocsMarcaVehiculo.Eliminar;
+using Preacepta.LN.DocsMarcaVehiculo.Listar;
+using Preacepta.LN.DocsMarcaVehiculo.ObtenerDatos;
 using Preacepta.LN.GeAbogado.BuscarXid;
 using Preacepta.LN.GeAbogado.Crear;
 using Preacepta.LN.GeAbogado.Editar;
@@ -162,6 +228,124 @@ builder.Services.AddScoped<IEliminarCrDireccion1LN, EliminarCrDireccion1LN>();
 builder.Services.AddScoped<IListarCrDireccion1LN, ListarCrDireccion1LN>();
 builder.Services.AddScoped<IObtenerDatosDireccion1LN, ObtenerDatosDireccion1LN>();
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*Inseccion de servicios modulo de documento de prestacion de servicios*/
+builder.Services.AddScoped<IBuscarDocsContratoPrestacionServiciosAD, BuscarDocsContratoPrestacionServiciosAD>();
+builder.Services.AddScoped<ICrearDocsContratoPrestacionServiciosAD, CrearDocsContratoPrestacionServiciosAD>();
+builder.Services.AddScoped<IEditarDocsContratoPrestacionServiciosAD, EditarDocsContratoPrestacionServiciosAD>();
+builder.Services.AddScoped<IEliminarDocsContratoPrestacionServiciosAD, EliminarDocsContratoPrestacionServiciosAD>();
+builder.Services.AddScoped<IListarDocsContratoPrestacionServiciosAD, ListarDocsContratoPrestacionServiciosAD>();
+builder.Services.AddScoped<IObtenerDatosDocsContratoPrestacionServiciosLN, ObtenerDatosDocsContratoPrestacionServiciosLN>();
+builder.Services.AddScoped<IBuscarDocsContratoPrestacionServiciosLN, BuscarDocsContratoPrestacionServiciosLN>();
+builder.Services.AddScoped<ICrearDocsContratoPrestacionServiciosLN, CrearDocsContratoPrestacionServiciosLN>();
+builder.Services.AddScoped<IEditarDocsContratoPrestacionServiciosLN, EditarDocsContratoPrestacionServiciosLN>();
+builder.Services.AddScoped<IEliminarDocsContratoPrestacionServiciosLN, EliminarDocsContratoPrestacionServiciosLN>();
+builder.Services.AddScoped<IListarDocsContratoPrestacionServiciosLN, ListarDocsContratoPrestacionServiciosLN>();
+/*Inseccion de servicios modulo de documento de autorizacion revision expediente*/
+builder.Services.AddScoped<IBuscarDocsAutorizacionRevisionExpedienteAD, BuscarDocsAutorizacionRevisionExpedienteAD>();
+builder.Services.AddScoped<ICrearDocsAutorizacionRevisionExpedienteAD, CrearDocsAutorizacionRevisionExpedienteAD>();
+builder.Services.AddScoped<IEditarDocsAutorizacionRevisionExpedienteAD, EditarDocsAutorizacionRevisionExpedienteAD>();
+builder.Services.AddScoped<IEliminarDocsAutorizacionRevisionExpedienteAD, EliminarDocsAutorizacionRevisionExpedienteAD>();
+builder.Services.AddScoped<IListarDocsAutorizacionRevisionExpedienteAD, ListarDocsAutorizacionRevisionExpedienteAD>();
+builder.Services.AddScoped<IObtenerDocsAutorizacionRevisionExpedienteLN, ObtenerDocsAutorizacionRevisionExpedienteLN>();
+builder.Services.AddScoped<IBuscarDocsAutorizacionRevisionExpedienteLN, BuscarDocsAutorizacionRevisionExpedienteLN>();
+builder.Services.AddScoped<ICrearDocsAutorizacionRevisionExpedienteLN, CrearDocsAutorizacionRevisionExpedienteLN>();
+builder.Services.AddScoped<IEditarDocsAutorizacionRevisionExpedienteLN, EditarDocsAutorizacionRevisionExpedienteLN>();
+builder.Services.AddScoped<IEliminarDocsAutorizacionRevisionExpedienteLN, EliminarDocsAutorizacionRevisionExpedienteLN>();
+builder.Services.AddScoped<IListarDocsAutorizacionRevisionExpedienteLN, ListarDocsAutorizacionRevisionExpedienteLN>();
+/*Inseccion de servicios modulo de documento de combustibles*/
+builder.Services.AddScoped<IBuscarDocsCombustibleAD, BuscarDocsCombustibleAD>();
+builder.Services.AddScoped<ICrearDocsCombustibleAD, CrearDocsCombustibleAD>();
+builder.Services.AddScoped<IEditarDocsCombustibleAD, EditarDocsCombustibleAD>();
+builder.Services.AddScoped<IEliminarDocsCombustibleAD, EliminarDocsCombustibleAD>();
+builder.Services.AddScoped<IListarDocsCombustibleAD, ListarDocsCombustibleAD>();
+builder.Services.AddScoped<IObtenerDatosDocsCombustibleLN, ObtenerDatosDocsCombustibleLN>();
+builder.Services.AddScoped<IBuscarDocsCombustibleLN, BuscarDocsCombustibleLN>();
+builder.Services.AddScoped<ICrearDocsCombustibleLN, CrearDocsCombustibleLN>();
+builder.Services.AddScoped<IEditarDocsCombustibleLN, EditarDocsCombustibleLN>();
+builder.Services.AddScoped<IEliminarDocsCombustibleLN, EliminarDocsCombustibleLN>();
+builder.Services.AddScoped<IListarDocsCombustibleLN, ListarDocsCombustibleLN>();
+/*Inseccion de servicios modulo de documento de compraventafinca*/
+builder.Services.AddScoped<IBuscarDocsCompraventaFincaAD, BuscarDocsCompraventaFincaAD>();
+builder.Services.AddScoped<ICrearDocsCompraventaFincaAD, CrearDocsCompraventaFincaAD>();
+builder.Services.AddScoped<IEditarDocsCompraventaFincaAD, EditarDocsCompraventaFincaAD>();
+builder.Services.AddScoped<IEliminarDocsCompraventaFincaAD, EliminarDocsCompraventaFincaAD>();
+builder.Services.AddScoped<IListarDocsCompraventaFincaAD, ListarDocsCompraventaFincaAD>();
+builder.Services.AddScoped<IObtenerDatosDocsCompraventaFincaLN, ObtenerDatosDocsCompraventaFincaLN>();
+builder.Services.AddScoped<IBuscarDocsCompraventaFincaLN, BuscarDocsCompraventaFincaLN>();
+builder.Services.AddScoped<ICrearDocsCompraventaFincaLN, CrearDocsCompraventaFincaLN>();
+builder.Services.AddScoped<IEditarDocsCompraventaFincaLN, EditarDocsCompraventaFincaLN>();
+builder.Services.AddScoped<IEliminarDocsCompraventaFincaLN, EliminarDocsCompraventaFincaLN>();
+builder.Services.AddScoped<IListarDocsCompraventaFincaLN, ListarDocsCompraventaFincaLN>();
+/*Inseccion de servicios modulo de documento de incripcion de vehiculo*/
+builder.Services.AddScoped<IBuscarDocsInscripcionVehiculoAD, BuscarDocsInscripcionVehiculoAD>();
+builder.Services.AddScoped<ICrearDocsInscripcionVehiculoAD, CrearDocsInscripcionVehiculoAD>();
+builder.Services.AddScoped<IEditarDocsInscripcionVehiculoAD, EditarDocsInscripcionVehiculoAD>();
+builder.Services.AddScoped<IEliminarDocsInscripcionVehiculoAD, EliminarDocsInscripcionVehiculoAD>();
+builder.Services.AddScoped<IListarDocsInscripcionVehiculoAD, ListarDocsInscripcionVehiculoAD>();
+builder.Services.AddScoped<IObtenerDatosDocsInscripcionVehiculoTipoLN, ObtenerDatosDocsInscripcionVehiculoTipoLN>();
+builder.Services.AddScoped<IBuscarDocsInscripcionVehiculoLN, BuscarDocsInscripcionVehiculoLN>();
+builder.Services.AddScoped<ICrearDocsInscripcionVehiculoLN, CrearDocsInscripcionVehiculoLN>();
+builder.Services.AddScoped<IEditarDocsInscripcionVehiculoLN, EditarDocsInscripcionVehiculoLN>();
+builder.Services.AddScoped<IEliminarDocsInscripcionVehiculoLN, EliminarDocsInscripcionVehiculoLN>();
+builder.Services.AddScoped<IListarDocsInscripcionVehiculoLN, ListarDocsInscripcionVehiculoLN>();
+/*Inseccion de servicios modulo de documento de marcas de vehiculo*/
+builder.Services.AddScoped<IBuscarDocsMarcaVehiculoAD, BuscarDocsMarcaVehiculoAD>();
+builder.Services.AddScoped<ICrearDocsMarcaVehiculoAD, CrearDocsMarcaVehiculoAD>();
+builder.Services.AddScoped<IEditarDocsMarcaVehiculoAD, EditarDocsMarcaVehiculoAD>();
+builder.Services.AddScoped<IEliminarDocsMarcaVehiculoAD, EliminarDocsMarcaVehiculoAD>();
+builder.Services.AddScoped<IListarDocsMarcaVehiculoAD, ListarDocsMarcaVehiculoAD>();
+builder.Services.AddScoped<IObtenerDatosDocsMarcaVehiculoLN, ObtenerDatosDocsMarcaVehiculoLN>();
+builder.Services.AddScoped<IBuscarDocsMarcaVehiculoLN, BuscarDocsMarcaVehiculoLN>();
+builder.Services.AddScoped<ICrearDocsMarcaVehiculoLN, CrearDocsMarcaVehiculoLN>();
+builder.Services.AddScoped<IEditarDocsMarcaVehiculoLN, EditarDocsMarcaVehiculoLN>();
+builder.Services.AddScoped<IEliminarDocsMarcaVehiculoLN, EliminarDocsMarcaVehiculoLN>();
+builder.Services.AddScoped<IListarDocsMarcaVehiculoLN, ListarDocsMarcaVehiculoLN>();
 
 var app = builder.Build();
 

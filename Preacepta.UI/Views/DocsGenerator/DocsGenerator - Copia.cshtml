@@ -1,0 +1,404 @@
+﻿<head>
+    <link href="~/lyso/css/Daniel.css" rel="stylesheet" />
+</head>
+
+<!-- Page Title -->
+<div class="page-title-area page-title-area-two title-img-one">
+    <div class="d-table">
+        <div class="d-table-cell">
+            <div class="page-title-text">
+                <h2>Generador de Documentos Legales</h2>
+                <ul>
+                    <li>
+                        <a asp-controller="Home" asp-action="Index">Home</a>
+                    </li>
+                    <li>
+                        <i class="icofont-simple-right"></i>
+                    </li>
+                    <li>Generador de documentos</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End Page Title -->
+
+<br />
+<br />
+<br />
+<div class="contact-form contact-form-two">
+    <div class="container">
+        <div class="contact-wrap">
+            <form id="contactForm" class="">
+                <h2>Filtrar Formulario</h2>
+                <div class="row justify-content-center">
+                    <div class="col-sm-6 col-lg-6">
+                        <div class="form-group">
+                            <input type="text" name="marca" id="marca" class="form-control" required data-error="Favor ingrese el dato" placeholder="">
+                            <div class="help-block with-errors"></div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-lg-6">
+                        <div class="text-center">
+                            <button type="submit" class="contact-btn">Buscar</button>
+                        </div>                       
+                    </div>
+                </div>
+            </form>
+
+        </div>
+    </div>
+</div>
+<div class="contact-form contact-form-two contact-form-three">
+    <div class="container">
+        <div class="contact-wrap">
+            <!--<div class="mostrar">
+                <h2 class="w-100">Selecciona un Formulario</h2>
+                <label for="selector" class="w-100">Elige una opción:</label>
+                <select id="selector" onchange="mostrarFormulario()" class="w-100">
+                    <option value="">-- Selecciona --</option>
+                    <option value="TraspasoVehiculo">Traspaso de Vehículo</option>
+                    <option value="TraspasoMotocicleta">Traspaso de Motocicleta</option>
+                </select>
+            </div>-->
+            <div class="form-group">
+                <h2 class="w-100">Selecciona un Formulario</h2>
+                <select id="selector" name="selector" class="form-control" onchange="mostrarFormulario()" required data-error="Favor seleccione una opción">
+                    <option value="" disabled selected>Seleccione una marca</option>
+                    <option value="TraspasoVehiculo">Traspaso de Vehículo</option>
+                    <option value="TraspasoMotocicleta">Traspaso de Motocicleta</option>
+                </select>
+                <div class="help-block with-errors"></div>
+            </div>
+            <div>
+                <br />
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="TraspasoVehiculo" class="formulario contact-form contact-form-two contact-form-three">
+    <div class="container">
+        <div id="MensajeFormularioVehiculo" class="contact-wrap" style="position:relative">
+            <form id="contactForm" class="">
+                <h2>Traspaso Vehículo</h2>
+                <div class="row justify-content-center">
+                    <div class="col-sm-6 col-lg-6">
+                        <div class="form-group">
+                            <select name="marca" id="marca" class="form-control" required data-error="Favor seleccione una opción">
+                                <option value="" disabled selected>Seleccione una marca</option>
+                                <option value="marca1">Toyota</option>
+                                <option value="marca2">Hundai</option>
+                                <option value="marca3">Nissan</option>
+                                <option value="marca4">Suzuki</option>
+                                <option value="marca5">Honda</option>
+                                <option value="marca6">Kia</option>
+                            </select>
+                            <div class="help-block with-errors"></div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-lg-6">
+                        <div class="form-group">
+                            <input type="text" name="placa" id="placa" class="form-control" required data-error="Favor ingrese el dato" placeholder="Número de Placa">
+                            <div class="help-block with-errors"></div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-lg-6">
+                        <div class="form-group">
+                            <input type="text" name="chasis" id="chasis" required data-error="Favor ingrese el dato" class="form-control" placeholder="Número de Chasis">
+                            <div class="help-block with-errors"></div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-lg-6">
+                        <div class="form-group">
+                            <select name="AutoEstilo" id="AutoEstilo" class="form-control" required data-error="Favor seleccione una opción">
+                                <option value="" disabled selected>Seleccione un Estilo</option>
+                                <option value="estilo1">Sedan</option>
+                                <option value="estilo2">Hatchback</option>
+                                <option value="estilo3">SUV</option>
+                                <option value="estilo4">Pick-up</option>
+                                <option value="estilo5">Minivans</option>
+                                <option value="estilo6">Camion</option>
+                            </select>
+                            <div class="help-block with-errors"></div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-lg-6">
+                        <div class="form-group">
+                            <input type="text" name="CantPuertas" id="CantPuertas" class="form-control" required data-error="Favor ingrese el dato" placeholder="Cantidad de Puertas">
+                            <div class="help-block with-errors"></div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-lg-6">
+                        <div class="form-group">
+                            <input type="text" name="anyo" id="anyo" class="form-control" required data-error="Favor ingrese el dato" placeholder="Año">
+                            <div class="help-block with-errors"></div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-lg-6">
+                        <div class="form-group">
+                            <select name="MarcaMotor" id="MarcaMotor" class="form-control" required data-error="Favor seleccione una opción">
+                                <option value="" disabled selected>Seleccione una marca de motor</option>
+                                <option value="marcaMotor1">Toyota</option>
+                                <option value="marcaMotor2">Hundai</option>
+                                <option value="marcaMotor3">Nissan</option>
+                                <option value="marcaMotor4">Suzuki</option>
+                                <option value="marcaMotor5">Honda</option>
+                                <option value="marcaMotor6">Kia</option>
+                            </select>
+                            <div class="help-block with-errors"></div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-lg-6">
+                        <div class="form-group">
+                            <input type="text" name="NumMotor" id="NumMotor" class="form-control" required data-error="Favor ingrese el dato" placeholder="Número de Motor">
+                            <div class="help-block with-errors"></div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-lg-6">
+                        <div class="form-group">
+                            <input type="text" name="colorAuto" id="ColorAuto" class="form-control" required data-error="Favor ingrese el dato" placeholder="Color de Vehículo">
+                            <div class="help-block with-errors"></div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-lg-6">
+                        <div class="form-group">
+                            <select name="combustible" id="combustible" class="form-control" required data-error="Favor seleccione una opción">
+                                <option value="" disabled selected>Seleccione tipo de combustible</option>
+                                <option value="combustible1">Eléctrico</option>
+                                <option value="combustible2">Disel</option>
+                                <option value="combustible3">Híbrido</option>
+                                <option value="combustible4">Gasolina</option>
+                            </select>
+                            <div class="help-block with-errors"></div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-lg-6">
+                        <div class="form-group">
+                            <input type="text" name="capacidad" id="capacidad" class="form-control" required data-error="Favor ingrese el dato" placeholder="Capacidad">
+                            <div class="help-block with-errors"></div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-lg-6">
+                        <div class="form-group">
+                            <input type="text" name="MarcaMotor" id="MarcaMotor" required data-error="Favor ingrese el dato" class="form-control" placeholder="Marca de motor">
+                            <div class="help-block with-errors"></div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-lg-6">
+                        <div class="form-group">
+                            <input type="text" name="cilindraje" id="cilindraje" class="form-control" required data-error="Favor ingrese el dato" placeholder="Cilindraje (CC)">
+                            <div class="help-block with-errors"></div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-lg-6">
+                        <div class="form-group">
+                            <select name="grabamen" id="grabamen" class="form-control" required data-error="Favor seleccione una opción">
+                                <option value="" disabled selected>Grabámenes</option>
+                                <option value="si">Sí</option>
+                                <option value="no">No</option>
+                            </select>
+                            <div class="help-block with-errors"></div>
+                        </div>
+                    </div>
+                    <div class="col-md-12 col-lg-12">
+                        <div class="form-group">
+                            <textarea name="message" class="form-control" id="message" cols="30" rows="8" required data-error="Write your message" placeholder="Otras descripciones"></textarea>
+                            <div class="help-block with-errors"></div>
+                        </div>
+                    </div>
+                    <div class="col-md-12 col-lg-12">
+                        <div class="text-center">
+                            <!--<button type="submit" class="contact-btn">Previsualizar Documento</button>-->
+                            <button type="button" class="contact-btn" data-bs-toggle="modal" data-bs-target="#exampleModal">Previsualizar Documento</button>
+                        </div>                      
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div id="TraspasoMotocicleta" class="formulario contact-form contact-form-two contact-form-three">
+    <div class="container">
+        <div class="contact-wrap">
+            <form id="contactForm" class="">
+                <h2>Traspaso Motocicleta</h2>
+                <div class="row justify-content-center">
+                    <div class="col-sm-6 col-lg-6">
+                        <div class="form-group">
+                            <select name="marcaMoto" id="marcaMoto" class="form-control" required data-error="Favor seleccione una opción">
+                                <option value="" disabled selected>Seleccione una marca</option>
+                                <option value="marcaMoto1">Honda</option>
+                                <option value="marcaMoto2">Freedom</option>
+                                <option value="marcaMoto3">Katana</option>
+                                <option value="marcaMoto4">Suzuki</option>
+                                <option value="marcaMoto5">Dukati</option>
+                                <option value="marcaMoto6">BMW</option>
+                            </select>
+                            <div class="help-block with-errors"></div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-lg-6">
+                        <div class="form-group">
+                            <input type="text" name="placaMoto" id="placaMoto" class="form-control" required data-error="Favor ingrese el dato" placeholder="Número de Placa">
+                            <div class="help-block with-errors"></div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-lg-6">
+                        <div class="form-group">
+                            <input type="text" name="chasisMoto" id="chasisMoto" required data-error="Favor ingrese el dato" class="form-control" placeholder="Número de Chasis">
+                            <div class="help-block with-errors"></div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-lg-6">
+
+                        <div class="form-group">
+                            <select name="MotoEstilo" id="MotoEstilo" class="form-control" required data-error="Favor seleccione una opción">
+                                <option value="" disabled selected>Seleccione un Estilo</option>
+                                <option value="estiloMoto1">Scooter</option>
+                                <option value="estiloMoto2">Pistera</option>
+                                <option value="estiloMoto3">Doble Proposito</option>
+                                <option value="estiloMoto4">Electrica</option>
+                                <option value="estiloMoto5">Minivans</option>
+                                <option value="estiloMoto6">Enduro</option>
+                            </select>
+                            <div class="help-block with-errors"></div>
+                        </div>
+
+                    </div>
+
+                    <div class="col-sm-6 col-lg-6">
+                        <div class="form-group">
+                            <input type="text" name="anyoMoto" id="anyoMoto" class="form-control" required data-error="Favor ingrese el dato" placeholder="Año">
+                            <div class="help-block with-errors"></div>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-6 col-lg-6">
+                        <div class="form-group">
+                            <input type="text" name="NumMotorMoto" id="NumMotorMoto" class="form-control" required data-error="Favor ingrese el dato" placeholder="Número de Motor">
+                            <div class="help-block with-errors"></div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-lg-6">
+                        <div class="form-group">
+                            <input type="text" name="colorMoto" id="ColorMoto" class="form-control" required data-error="Favor ingrese el dato" placeholder="Color de Motocicleta">
+                            <div class="help-block with-errors"></div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-lg-6">
+
+                        <div class="form-group">
+                            <select name="combustibleMoto" id="combustibleMoto" class="form-control" required data-error="Favor seleccione una opción">
+                                <option value="" disabled selected>Seleccione tipo de combustible</option>
+                                <option value="combustible1">Eléctrico</option>
+                                <option value="combustible2">Aceite-gas</option>
+                                <option value="combustible3">Gasolina</option>
+                            </select>
+                            <div class="help-block with-errors"></div>
+                        </div>
+
+                    </div>
+                    <div class="col-sm-6 col-lg-6">
+                        <div class="form-group">
+                            <input type="text" name="capacidad" id="capacidad" class="form-control" required data-error="Favor ingrese el dato" placeholder="Capacidad">
+                            <div class="help-block with-errors"></div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-lg-6">
+                        <div class="form-group">
+                            <select name="grabamen" id="grabamen" class="form-control" required data-error="Favor seleccione una opción">
+                                <option value="" disabled selected>Grabámenes</option>
+                                <option value="si">Sí</option>
+                                <option value="no">No</option>
+                            </select>
+                            <div class="help-block with-errors"></div>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-6 col-lg-6">
+                        <div class="form-group">
+                            <input type="text" name="cilindrajeMoto" id="cilindrajeMoto" class="form-control" required data-error="Favor ingrese el dato" placeholder="Cilindraje (CC)">
+                            <div class="help-block with-errors"></div>
+                        </div>
+                    </div>
+                    <div class="col-md-12 col-lg-12">
+                        <div class="form-group">
+                            <textarea name="message" class="form-control" id="message" cols="30" rows="8" required data-error="Write your message" placeholder="Otras descripciones"></textarea>
+                            <div class="help-block with-errors"></div>
+                        </div>
+                    </div>
+                    <div class="col-md-12 col-lg-12">
+                        <div class="text-center">
+                            <!--<button type="submit" class="contact-btn">Previsualizar DocumentonNO</button>-->                            
+                            <button type="button" class="contact-btn" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                Previsualizar Documento
+                            </button>
+                        </div>                       
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+
+<div id="tooltip">Crear un documento notarial para traspasar un inmuble tipo auntomovil a otro propietario.</div>
+
+
+<!--modal para previsualizar el documento-->
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg DanielModalDocs">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Vista previa de documento</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">              
+                @Html.Partial("_documentos")
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="contact-btn" data-bs-dismiss="modal">Volver a formulario</button>
+                <button type="button" class="contact-btn">Crear documento</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--Vista DocsGenerator
+este codigo lo que hace es mostrar solo el formulario seleccionado en dropdown-->
+<script>
+    function mostrarFormulario() {
+        // Oculta todos los formularios
+        const formularios = document.querySelectorAll('.formulario');
+        formularios.forEach(formulario => formulario.style.display = 'none');
+
+        // Muestra el formulario seleccionado
+        const seleccion = document.getElementById('selector').value;
+        if (seleccion) {
+            document.getElementById(seleccion).style.display = 'block';
+        }
+    }
+
+    const FormMoto = document.getElementById("MensajeFormularioVehiculo");
+    const tooltip = document.getElementById("tooltip");
+
+
+    FormMoto.addEventListener("mouseover", (event) => {
+        const { x, y, height } = event.target.getBoundingClientRect();
+        tooltip.style.left = `${x}px`;
+        tooltip.style.top = `${y + height + 5}px`;
+        tooltip.style.display = "block";
+    });
+
+    FormMoto.addEventListener("mouseout", () => {
+        tooltip.style.display = "none";
+    });
+</script>
+
+
+
+
