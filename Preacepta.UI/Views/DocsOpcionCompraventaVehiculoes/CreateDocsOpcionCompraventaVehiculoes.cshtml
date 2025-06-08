@@ -1,0 +1,370 @@
+﻿@model Preacepta.Modelos.AbstraccionesFrond.DocsOpcionCompraventaVehiculoDTO
+
+<head>
+    <link href="~/lyso/css/Daniel.css" rel="stylesheet" />
+</head>
+
+<!-- Page Title -->
+<div class="page-title-area page-title-area-two title-img-one">
+    <div class="d-table">
+        <div class="d-table-cell">
+            <div class="page-title-text">
+                <h2>Generador de Documentos Legales</h2>
+                <ul>
+                    <li>
+                        <a asp-controller="Home" asp-action="Index">Home</a>
+                    </li>
+                    <li>
+                        <i class="icofont-simple-right"></i>
+                    </li>
+                    <li>Generador de documentos</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End Page Title -->
+<body>
+<div class="contact-form contact-form-two contact-form-three">
+    <div class="container">
+        <div class="contact-wrap">
+            <form asp-action="CreateDocsOpcionCompraventaVehiculoes" id="CreateDocsOpcionCompraventaVehiculoes">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <h2>Formulario para caso nuevo</h2>
+                <div class="row justify-content-center">
+                    <div class="col-sm-6 col-lg-6">
+                        <div class="form-group">
+                            <label asp-for="NumeroEscritura" class="control-label"></label>
+                            <input asp-for="NumeroEscritura" class="form-control" id="idNumeroEscritura" />
+                            <span asp-validation-for="NumeroEscritura" class="text-danger"></span>
+                        </div>
+                    </div>
+                        <div class="col-sm-6 col-lg-6">
+                            <div class="form-group">
+                                <label asp-for="CedulaAbogado" class="control-label"></label>
+                                <select id="idCedulaAbogado" asp-for="CedulaAbogado" class="form-control" asp-items="ViewBag.CedulaAbogado"></select>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-lg-6">
+                            <div class="form-group">
+                                <label asp-for="CedulaPropietario" class="control-label"></label>
+                                <select id="idCedulaPropietario" asp-for="CedulaPropietario" class="form-control" asp-items="ViewBag.CedulaPropietario"></select>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-lg-6">
+                            <div class="form-group">
+                                <label asp-for="CedulaComprador" class="control-label"></label>
+                                <select id="idCedulaComprador" asp-for="CedulaComprador" class="form-control" asp-items="ViewBag.CedulaComprador"></select>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-lg-6">
+                            <div class="form-group">
+                                <label asp-for="PlacaVehiculo" class="control-label"></label>
+                                <input id="idPlacaVehiculo" asp-for="PlacaVehiculo" class="form-control" />
+                                <span asp-validation-for="PlacaVehiculo" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-lg-6">
+                            <div class="form-group">
+                                <label asp-for="MarcaVehiculo" class="control-label"></label>
+                                <select id="idMarcaVehiculo" asp-for="MarcaVehiculo" class="form-control" asp-items="ViewBag.MarcaVehiculo"></select>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-lg-6">
+                            <div class="form-group">
+                                <label asp-for="TipoVehiculo" class="control-label"></label>
+                                <select id="idTipoVehiculo" asp-for="TipoVehiculo" class="form-control" asp-items="ViewBag.TipoVehiculo"></select>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-lg-6">
+                            <div class="form-group">
+                                <label asp-for="ModeloVehiculo" class="control-label"></label>
+                                <input id="idModeloVehiculo" asp-for="ModeloVehiculo" class="form-control" />
+                                <span asp-validation-for="ModeloVehiculo" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-lg-6">
+                            <div class="form-group">
+                                <label asp-for="Carroceria" class="control-label"></label>
+                                <input id="idCarroceria" asp-for="Carroceria" class="form-control" />
+                                <span asp-validation-for="Carroceria" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-lg-6">
+                            <div class="form-group">
+                                <label asp-for="Categoria" class="control-label"></label>
+                                <input id="idCategoria" asp-for="Categoria" class="form-control" />
+                                <span asp-validation-for="Categoria" class="text-danger"></span>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-6 col-lg-6">
+                            <div class="form-group">
+                                <label asp-for="Chasis" class="control-label"></label>
+                                <input id="idChasis" asp-for="Chasis" class="form-control" />
+                                <span asp-validation-for="Chasis" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-lg-6">
+                            <div class="form-group">
+                                <label asp-for="Serie" class="control-label"></label>
+                                <input id="idSerie" asp-for="Serie" class="form-control" />
+                                <span asp-validation-for="Serie" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-lg-6">
+                            <div class="form-group">
+                                <label asp-for="Vin" class="control-label"></label>
+                                <input id="idVin" asp-for="Vin" class="form-control" />
+                                <span asp-validation-for="Vin" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-lg-6">
+                            <div class="form-group">
+                                <label asp-for="MarcaMotor" class="control-label"></label>
+                                <select id="idMarcaMotor" asp-for="MarcaMotor" class="form-control" asp-items="ViewBag.MarcaMotor"></select>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-lg-6">
+                            <div class="form-group">
+                                <label asp-for="NumeroMotor" class="control-label"></label>
+                                <input id="idNumeroMotor" asp-for="NumeroMotor" class="form-control" />
+                                <span asp-validation-for="NumeroMotor" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-lg-6">
+                            <div class="form-group">
+                                <label asp-for="Color" class="control-label"></label>
+                                <input id="idColor" asp-for="Color" class="form-control" />
+                                <span asp-validation-for="Color" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-lg-6">
+                            <div class="form-group">
+                                <label asp-for="Combustible" class="control-label"></label>
+                                <select id="idCombustible" asp-for="Combustible" class="form-control" asp-items="ViewBag.Combustible"></select>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-lg-6">
+                            <div class="form-group">
+                                <label asp-for="Anio" class="control-label"></label>
+                                <input id="idAnio" asp-for="Anio" class="form-control" />
+                                <span asp-validation-for="Anio" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-lg-6">
+                            <div class="form-group">
+                                <label asp-for="Capacidad" class="control-label"></label>
+                                <input id="idCapacidad" asp-for="Capacidad" class="form-control" />
+                                <span asp-validation-for="Capacidad" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-lg-6">
+                            <div class="form-group">
+                                <label asp-for="Cilindraje" class="control-label"></label>
+                                <input id="idCilindraje" asp-for="Cilindraje" class="form-control" />
+                                <span asp-validation-for="Cilindraje" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-lg-6">
+                            <div class="form-group">
+                                <label asp-for="Precio" class="control-label"></label>
+                                <input id="idPrecio" asp-for="Precio" class="form-control" />
+                                <span asp-validation-for="Precio" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-lg-6">
+                            <div class="form-group">
+                                <label asp-for="MonedaPrecio" class="control-label"></label>
+                                <input id="idMonedaPrecio" asp-for="MonedaPrecio" class="form-control" />
+                                <span asp-validation-for="MonedaPrecio" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-lg-6">
+                            <div class="form-group">
+                                <label asp-for="PlazoOpcionAnios" class="control-label"></label>
+                                <input id="idPlazoOpcionAnios" asp-for="PlazoOpcionAnios" class="form-control" />
+                                <span asp-validation-for="PlazoOpcionAnios" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-lg-6">
+                            <div class="form-group">
+                                <label asp-for="FechaInicio" class="control-label"></label>
+                                <input id="idFechaInicio" asp-for="FechaInicio" class="form-control" />
+                                <span asp-validation-for="FechaInicio" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-lg-6">
+                            <div class="form-group">
+                                <label asp-for="MontoSenal" class="control-label"></label>
+                                <input id="idMontoSenal" asp-for="MontoSenal" class="form-control" />
+                                <span asp-validation-for="MontoSenal" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-lg-6">
+                            <div class="form-group">
+                                <label asp-for="MonedaSenal" class="control-label"></label>
+                                <input id="idMonedaSenal" asp-for="MonedaSenal" class="form-control" />
+                                <span asp-validation-for="MonedaSenal" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-lg-6">
+                            <div class="form-group">
+                                <label asp-for="MontoADevolver" class="control-label"></label>
+                                <input id="idMontoADevolver" asp-for="MontoADevolver" class="form-control" />
+                                <span asp-validation-for="MontoADevolver" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-lg-6">
+                            <div class="form-group">
+                                <label asp-for="MontoAPerder" class="control-label"></label>
+                                <input id="idMontoAPerder" asp-for="MontoAPerder" class="form-control" />
+                                <span asp-validation-for="MontoAPerder" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-lg-6">
+                            <div class="form-group">
+                                <label asp-for="MonedaMontoPerdido" class="control-label"></label>
+                                <input id="idMonedaMontoPerdido" asp-for="MonedaMontoPerdido" class="form-control" />
+                                <span asp-validation-for="MonedaMontoPerdido" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-lg-6">
+                            <div class="form-group">
+                                <label asp-for="GastosTraspasoPagadosPor" class="control-label"></label>
+                                <input id="idGastosTraspasoPagadosPor" asp-for="GastosTraspasoPagadosPor" class="form-control" />
+                                <span asp-validation-for="GastosTraspasoPagadosPor" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-lg-6">
+                            <div class="form-group">
+                                <label asp-for="LugarFirma" class="control-label"></label>
+                                <select id="idLugarFirma" asp-for="LugarFirma" class="form-control" asp-items="ViewBag.LugarFirma"></select>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-lg-6">
+                            <div class="form-group">
+                                <label asp-for="HoraFirma" class="control-label"></label>
+                                <input id="idHoraFirma" asp-for="HoraFirma" class="form-control" />
+                                <span asp-validation-for="HoraFirma" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-lg-6">
+                            <div class="form-group">
+                                <label asp-for="FechaFirma" class="control-label"></label>
+                                <input id="idFechaFirma" asp-for="FechaFirma" class="form-control" />
+                                <span asp-validation-for="FechaFirma" class="text-danger"></span>
+                            </div>
+                        </div>
+
+
+                    <div class="col-md-12 col-lg-12">
+
+                        <div class="text-center">
+                            <!-- Button trigger modal -->
+                            <div id="btnRevisar">
+                                <button type="button" id="PrevioBtn" class="contact-btn" data-bs-toggle="modal" data-bs-target="#PrevioModal">
+                                    Revisar
+                                </button>
+                            </div>
+                            <div class="form-group" id="btnCrearCaso">
+                                <input type="submit" value="Crear Caso" class="contact-btn" />
+                            </div>
+                            <!--<button type="submit" class="contact-btn">Submit Case</button>-->
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+
+
+<!-- Modal
+<div class="modal fade" id="PrevioModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal-dialog modal-lg">
+<div class="modal-content">
+<div class="formulario contact-form contact-form-two">
+<div class="container">
+<div class="contact-wrap">
+<h2>Revisión de datos ingresados</h2>
+<p style="color: black"><strong>Tipo Caso:</strong> <span id="previoTipoCaso"></span></p>
+<p style="color: black"><strong>Nombre del caso:</strong> <span id="previotitulo"></span></p>
+<p style="color: black"><strong>Pruebas Iniciales:</strong> <span id="previoPruebas"></span></p>
+<p style="color: black"><strong>Cliente:</strong> <span id="previoCliente"></span></p>
+<p style="color: black"><strong>Detalles del Caso:</strong> <span id="previoDescripcion"></span></p>
+</div>
+</div>
+</div>
+<div class="modal-footer">
+<button type="button" class="btn btn-secondary" data-bs-dismiss="modal" id="Retroceso">Close</button>
+<button type="button" class="btn btn-primary">Save changes</button>
+</div>
+</div>
+</div>
+</div> -->
+<!-- Button trigger modal -->
+<!-- Modal -->
+<div class="modal fade" id="PrevioModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Revisión de datos ingresados</h5>
+                <button id="Retroceso2" type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p style="color: black"><strong>Cédula Abogado:</strong> <span id="previoCedulaAbogado"></span></p>
+                <p style="color: black"><strong>Cédula Propietario:</strong> <span id="previoCedulaPropietario"></span></p>
+                <p style="color: black"><strong>Cédula Comprador:</strong> <span id="previoCedulaComprador"></span></p>
+                <p style="color: black"><strong>Placa Vehículo:</strong> <span id="previoPlacaVehiculo"></span></p>
+                <p style="color: black"><strong>Marca Vehículo:</strong> <span id="previoMarcaVehiculo"></span></p>
+                <p style="color: black"><strong>Tipo Vehículo:</strong> <span id="previoTipoVehiculo"></span></p>
+                <p style="color: black"><strong>Modelo Vehículo:</strong> <span id="previoModeloVehiculo"></span></p>
+                <p style="color: black"><strong>Carrocería:</strong> <span id="previoCarroceria"></span></p>
+                <p style="color: black"><strong>Categoría:</strong> <span id="previoCategoria"></span></p>
+                <p style="color: black"><strong>Chasis:</strong> <span id="previoChasis"></span></p>
+                <p style="color: black"><strong>Serie:</strong> <span id="previoSerie"></span></p>
+                <p style="color: black"><strong>VIN:</strong> <span id="previoVin"></span></p>
+                <p style="color: black"><strong>Marca Motor:</strong> <span id="previoMarcaMotor"></span></p>
+                <p style="color: black"><strong>Número Motor:</strong> <span id="previoNumeroMotor"></span></p>
+                <p style="color: black"><strong>Color:</strong> <span id="previoColor"></span></p>
+                <p style="color: black"><strong>Combustible:</strong> <span id="previoCombustible"></span></p>
+                <p style="color: black"><strong>Año:</strong> <span id="previoAnio"></span></p>
+                <p style="color: black"><strong>Capacidad:</strong> <span id="previoCapacidad"></span></p>
+                <p style="color: black"><strong>Cilindraje:</strong> <span id="previoCilindraje"></span></p>
+                <p style="color: black"><strong>Precio:</strong> <span id="previoPrecio"></span></p>
+                <p style="color: black"><strong>Moneda Precio:</strong> <span id="previoMonedaPrecio"></span></p>
+                <p style="color: black"><strong>Plazo Opción (Años):</strong> <span id="previoPlazoOpcionAnios"></span></p>
+                <p style="color: black"><strong>Fecha Inicio:</strong> <span id="previoFechaInicio"></span></p>
+                <p style="color: black"><strong>Monto Señal:</strong> <span id="previoMontoSenal"></span></p>
+                <p style="color: black"><strong>Moneda Señal:</strong> <span id="previoMonedaSenal"></span></p>
+                <p style="color: black"><strong>Monto a Devolver:</strong> <span id="previoMontoADevolver"></span></p>
+                <p style="color: black"><strong>Monto a Perder:</strong> <span id="previoMontoAPerder"></span></p>
+                <p style="color: black"><strong>Moneda Monto Perdido:</strong> <span id="previoMonedaMontoPerdido"></span></p>
+                <p style="color: black"><strong>Gastos Traspaso Pagados Por:</strong> <span id="previoGastosTraspasoPagadosPor"></span></p>
+                <p style="color: black"><strong>Lugar Firma:</strong> <span id="previoLugarFirma"></span></p>
+                <p style="color: black"><strong>Hora Firma:</strong> <span id="previoHoraFirma"></span></p>
+                <p style="color: black"><strong>Fecha Firma:</strong> <span id="previoFechaFirma"></span></p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="contact-btn" data-bs-dismiss="modal" id="Retroceso">Hacer Cambios</button>
+                <button type="button" id="BtnConfirmar" class="contact-btn">Confirmar datos</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
+<script src="~/lyso/js/DocsCompraVentaVehiculos.js"></script>
+
+
+
+
+
+
+

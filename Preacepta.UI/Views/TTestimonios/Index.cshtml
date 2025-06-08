@@ -1,0 +1,63 @@
+﻿@model IEnumerable<Preacepta.Modelos.AbstraccionesFrond.TTestimonioDTO>
+
+@{
+    ViewData["Title"] = "Testimonios";
+    Layout = "_Layout";
+}
+
+<h1>Listado de Testimonios</h1>
+
+<!-- Mensaje de depuración -->
+<div class="alert alert-info">
+    Total de testimonios: @(Model?.Count() ?? 0)
+</div>
+
+
+    <table class="table table-striped">
+        <thead class="thead-dark">
+            <tr>
+                <th>@Html.DisplayNameFor(model => model.Fecha)</th>
+                <th>@Html.DisplayNameFor(model => model.Comentario)</th>
+                <th>@Html.DisplayNameFor(model => model.Evaluacion)</th>
+                <th>@Html.DisplayNameFor(model => model.Activo)</th>
+                <th>Cliente</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@Html.DisplayFor(modelItem => item.Fecha)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Comentario)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Evaluacion)</td>
+                    <td>
+                        <span class="badge @(item.Activo ? "badge-success" : "badge-secondary")">
+                            @(item.Activo ? "Activo" : "Inactivo")
+                        </span>
+                    </td>
+                    <td>
+                        @if (item.IdClienteNavigation != null)
+                        {
+                            @($"{item.IdClienteNavigation.Nombre} {item.IdClienteNavigation.Apellido1}")
+                        }
+                        else
+                        {
+                            <span class="text-muted">N/A</span>
+                        }
+                    </td>
+                    <td>
+                        <div class="btn-group">
+                            <a asp-action="Edit" asp-route-id="@item.IdTestimonio" class="btn btn-sm btn-outline-primary">Editar</a>
+                            <a asp-action="Details" asp-route-id="@item.IdTestimonio" class="btn btn-sm btn-outline-info">Detalles</a>
+                            <a asp-action="Delete" asp-route-id="@item.IdTestimonio" class="btn btn-sm btn-outline-danger">Eliminar</a>
+                        </div>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+<p>
+    <a asp-action="Create" class="btn btn-primary">Crear Nuevo Testimonio</a>
+</p>

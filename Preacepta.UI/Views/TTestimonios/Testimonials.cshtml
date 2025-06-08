@@ -1,0 +1,156 @@
+﻿@model IEnumerable<Preacepta.Modelos.AbstraccionesFrond.TTestimonioDTO>
+
+<!-- Page Title -->
+<div class="page-title-area title-img-one">
+    <div class="d-table">
+        <div class="d-table-cell">
+            <div class="page-title-text">
+                <h2>Testimonios</h2>
+                <ul>
+                    <li>
+                        <a asp-controller="Home" asp-action="Index">Home</a>
+                    </li>
+                    <li>
+                        <i class="icofont-simple-right"></i>
+                    </li>
+                    <li>Testimonios</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End Page Title -->
+<!-- Testimonial -->
+<div class="testimonial-area pt-100">
+    <div class="container">
+        <div class="row">
+            @{
+                var colores = new[] { "#ff7675", "#74b9ff", "#55efc4", "#ffeaa7", "#a29bfe" };
+                var letras = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+
+                // Verificar si hay testimonios antes de mostrar
+                if (Model != null && Model.Any())
+                {
+                    <!-- Contenedor principal de testimonios -->
+                    <div class="testimonios-container">
+                        @foreach (var testimonio in Model)
+                        {
+                            var nombreCliente = testimonio.IdClienteNavigation?.Nombre ?? "Cliente";
+                            var apellidoCliente = testimonio.IdClienteNavigation?.Apellido1 ?? "";
+                            var letra = nombreCliente.FirstOrDefault();
+                            var color = colores[testimonio.IdCliente % colores.Length];
+                            var nombreCompleto = $"{nombreCliente} {apellidoCliente}".Trim();
+
+                            <div class="testimonial-item @(!testimonio.Activo ? "testimonio-inactivo" : "")">
+                                <div class="testimonial-wrap">
+                                    <p>@testimonio.Comentario</p>
+                                    <div class="testimonial-info">
+                                        <div class="avatar-circle" style="background-color: @color;">
+                                            <span class="avatar-inicial">@letra</span>
+                                        </div>
+                                        <div class="testimonial-right">
+                                            <h3>@nombreCompleto</h3>
+                                            <span>@(testimonio.Fecha != null ? DateTime.Parse(testimonio.Fecha).ToString("dd/MM/yyyy") : "Fecha no disponible")</span>
+                                            @if (testimonio.Evaluacion.HasValue)
+                                            {
+                                                <div class="rating">
+                                                    @for (int j = 0; j < testimonio.Evaluacion.Value; j++)
+                                                    {
+                                                        <i class="icofont-star"></i>
+                                                    }
+                                                </div>
+                                            }
+                                            @if (!testimonio.Activo)
+                                            {
+                                                <div class="estado-testimonio">(Inactivo)</div>
+                                            }
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                }
+                else
+                {
+                    <div class="col-12 text-center">
+                        <div class="alert alert-info">
+                            No hay testimonios disponibles actualmente.
+                        </div>
+                    </div>
+                }
+            }
+        </div>
+
+        <div class="testimonial-more">
+            <a class="cmn-btn" asp-controller="TTestimonios" asp-action="TestimonialForm">Añadir testimonio</a>
+        </div>
+    </div>
+</div>
+<!-- End Testimonial -->
+
+<style>
+    .testimonios-container {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+        gap: 30px;
+        width: 100%;
+    }
+
+    .testimonial-item {
+        margin-bottom: 30px;
+    }
+
+    .testimonial-wrap {
+        background: #fff;
+        padding: 30px;
+        border-radius: 5px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        height: 100%;
+    }
+
+    .avatar-circle {
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        margin-right: 15px;
+    }
+
+    .avatar-inicial {
+        color: white;
+        font-size: 24px;
+        font-weight: bold;
+    }
+
+    .rating {
+        color: #ffc107;
+        margin-top: 5px;
+    }
+
+    .testimonio-inactivo {
+        opacity: 0.7;
+        background-color: #f8f9fa;
+        border-left: 4px solid #dc3545;
+        padding-left: 10px;
+    }
+
+    .estado-testimonio {
+        color: #dc3545;
+        font-size: 0.8em;
+        font-style: italic;
+        margin-top: 5px;
+    }
+
+    .testimonial-info {
+        display: flex;
+        align-items: center;
+        margin-top: 20px;
+    }
+
+    .testimonial-right {
+        flex: 1;
+    }
+</style>

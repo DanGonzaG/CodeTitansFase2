@@ -1,0 +1,126 @@
+﻿@model IEnumerable<Preacepta.Modelos.AbstraccionesFrond.DocsPagareDTO>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "_Layout";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.MontoNumerico)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SociedadDeudor)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CedulaJuridicaSociedad)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AcreedorNombre)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CedulaJuridicaAcreedor)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AcreedorDomicilio)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FechaFirma)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.HoraFirma)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FechaVencimiento)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.InteresFormula)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.InteresTasaActual)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.InteresBase)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.UbicacionFirma)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CedulaDeudorNavigation)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CedulaFiadorNavigation)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LugarPagoNavigation)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.MontoNumerico)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SociedadDeudor)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CedulaJuridicaSociedad)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AcreedorNombre)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CedulaJuridicaAcreedor)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AcreedorDomicilio)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FechaFirma)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.HoraFirma)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FechaVencimiento)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.InteresFormula)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.InteresTasaActual)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.InteresBase)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UbicacionFirma)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CedulaDeudorNavigation.Apellido1)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CedulaFiadorNavigation.Apellido1)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LugarPagoNavigation.NombreDistrito)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.IdDocumento">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.IdDocumento">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.IdDocumento">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
