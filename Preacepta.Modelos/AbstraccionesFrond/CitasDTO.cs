@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Preacepta.Modelos.AbstraccionesBD;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -13,8 +14,16 @@ namespace Preacepta.Modelos.AbstraccionesFrond
         public DateOnly Fecha { get; set; }
         public TimeOnly Hora { get; set; }
         public int IdTipoCita { get; set; }
-        public int? Anfitrion { get; set; }
+        public int Anfitrion { get; set; }
         public string? LinkVideo { get; set; }
+
+        public virtual TGeAbogado? AnfitrionNavigation { get; set; } = null!;
+
+
+        public virtual TCitasTipo? IdTipoCitaNavigation { get; set; } = null!;
+
+
+        public virtual ICollection<TCitasCliente>? TCitasClientes { get; set; } = new List<TCitasCliente>();
 
         // Campo adicional informativo (navegación)
         public string? NombreTipoCita { get; set; }

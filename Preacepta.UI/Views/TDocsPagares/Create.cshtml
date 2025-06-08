@@ -1,0 +1,109 @@
+﻿@model Preacepta.Modelos.AbstraccionesFrond.DocsPagareDTO
+
+@{
+    ViewData["Title"] = "Create";
+    Layout = "_Layout";
+}
+
+<h1>Create</h1>
+
+<h4>TDocsPagare</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="MontoNumerico" class="control-label"></label>
+                <input asp-for="MontoNumerico" class="form-control" />
+                <span asp-validation-for="MontoNumerico" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CedulaDeudor" class="control-label"></label>
+                <select asp-for="CedulaDeudor" class ="form-control" asp-items="ViewBag.CedulaDeudor"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="SociedadDeudor" class="control-label"></label>
+                <input asp-for="SociedadDeudor" class="form-control" />
+                <span asp-validation-for="SociedadDeudor" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CedulaJuridicaSociedad" class="control-label"></label>
+                <input asp-for="CedulaJuridicaSociedad" class="form-control" />
+                <span asp-validation-for="CedulaJuridicaSociedad" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="AcreedorNombre" class="control-label"></label>
+                <input asp-for="AcreedorNombre" class="form-control" />
+                <span asp-validation-for="AcreedorNombre" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CedulaJuridicaAcreedor" class="control-label"></label>
+                <input asp-for="CedulaJuridicaAcreedor" class="form-control" />
+                <span asp-validation-for="CedulaJuridicaAcreedor" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="AcreedorDomicilio" class="control-label"></label>
+                <input asp-for="AcreedorDomicilio" class="form-control" />
+                <span asp-validation-for="AcreedorDomicilio" class="text-danger"></span>
+            </div>
+
+            <!--Div de Fecha y Hora Firma-->
+            <!--<div class="form-group">
+                <label asp-for="FechaFirma" class="control-label"></label>
+                <input asp-for="FechaFirma" class="form-control" />
+                <span asp-validation-for="FechaFirma" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="HoraFirma" class="control-label"></label>
+                <input asp-for="HoraFirma" class="form-control" />
+                <span asp-validation-for="HoraFirma" class="text-danger"></span>
+            </div>-->
+
+            <div class="form-group">
+                <label asp-for="FechaVencimiento" class="control-label"></label>
+                <input asp-for="FechaVencimiento" class="form-control" />
+                <span asp-validation-for="FechaVencimiento" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="InteresFormula" class="control-label"></label>
+                <input asp-for="InteresFormula" class="form-control" />
+                <span asp-validation-for="InteresFormula" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="InteresTasaActual" class="control-label"></label>
+                <input asp-for="InteresTasaActual" class="form-control" />
+                <span asp-validation-for="InteresTasaActual" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="InteresBase" class="control-label"></label>
+                <input asp-for="InteresBase" class="form-control" />
+                <span asp-validation-for="InteresBase" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="LugarPago" class="control-label"></label>
+                <select asp-for="LugarPago" class ="form-control" asp-items="ViewBag.LugarPago"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="CedulaFiador" class="control-label"></label>
+                <select asp-for="CedulaFiador" class ="form-control" asp-items="ViewBag.CedulaFiador"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="UbicacionFirma" class="control-label"></label>
+                <input asp-for="UbicacionFirma" class="form-control" />
+                <span asp-validation-for="UbicacionFirma" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
