@@ -1,0 +1,221 @@
+﻿@model Preacepta.Modelos.AbstraccionesFrond.CasoUnionEtapasPL
+<!-- Page Title -->
+<div class="page-title-area title-img-one">
+    <div class="d-table">
+        <div class="d-table-cell">
+            <div class="page-title-text">
+                <h2>Detalles y Etapas del proceso legal</h2>
+                <ul>
+                    <li>
+                        <a asp-controller="Home" asp-action="Index">Home</a>
+                    </li>
+                    <li>
+                        <i class="icofont-simple-right"></i>
+                    </li>
+                    <li>
+                        <a asp-controller="GestionCasos" asp-action="CasosListado">Listado</a>
+                    </li>
+                    <li>
+                        <i class="icofont-simple-right"></i>
+                    </li>
+                    <li>Etapas</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End Page Title -->
+<!-- Attorney Details -->
+<div class="attorney-details pt-100 pb-70">
+    <div class="container">
+        <div class="row align-items-center justify-content-center">
+            <div class="col-lg-5">
+                <div class="attor-details-item">
+                    <!--<img style="width:100%" src="~/lyso/img/testimonial/Cliente.jpg" alt="Details">-->
+                    <img style="width:100%" src="~/lyso/img/PreaceptaLogoColorNegro.png" alt="Details">
+                    <div class="attor-details-left">
+                        <br />
+                        <div class="attor-social-details">
+                            <h3>Información del Cliente</h3>
+                            
+                            <ul>
+                                <li>
+                                    <i class="flaticon-login"></i>
+                                    <!--<a href="tel:+07554332322">-->
+                                    @Model.casoDTO.IdClienteNavigation.Nombre @Model.casoDTO.IdClienteNavigation.Apellido1 @Model.casoDTO.IdClienteNavigation.Apellido2
+                                    <!--</a>-->
+                                </li>
+                                <li>
+                                    <i class="flaticon-login"></i>
+                                    <!--<a href="tel:+07554332322">-->
+                                    @Model.casoDTO.IdClienteNavigation.Cedula
+                                    <!--</a>-->
+                                </li>
+                                <li>
+                                    <i class="flaticon-call"></i>
+                                    <!--<a href="tel:+07554332322">-->
+                                    @Model.casoDTO.IdClienteNavigation.Telefono1 / @Model.casoDTO.IdClienteNavigation.Telefono2
+                                    <!--</a>-->
+                                </li>
+                                <li>
+                                    <i class="flaticon-email"></i>
+                                    <!--<a href="mailto:hello@lyzo.com">-->
+                                    @Model.casoDTO.IdClienteNavigation.Email
+                                    <!--</a>-->
+                                </li>
+                                <li>
+                                    <i class="flaticon-age"></i>
+                                    <!--<a href="mailto:hello@lyzo.com">-->
+                                    Edad: @Model.casoDTO.IdClienteNavigation.Edad
+                                    <!--</a>-->
+                                </li>
+                                <li>
+                                    <i class="flaticon-pin"></i>
+                                    @Model.casoDTO?.IdClienteNavigation?.Direccion1Navigation.NombreDistrito
+                                    @Model.casoDTO?.IdClienteNavigation?.Direccion2
+                                    
+                                </li>
+                            </ul>
+                        </div>
+                       
+                    </div>
+                   
+                </div>
+            </div>
+            <div class="col-lg-7">
+                <div class="attor-details-item">
+                    <div class="attor-details-right">
+                        <div class="attor-details-name">
+                            <h2>@Model.casoDTO.Nombre</h2> <!--TituloCaso-->
+                            <span>@Model.casoDTO.IdTipoCasoNavigation.Nombre</span> <!--Tipo Caso-->
+                            <p>Funcionario @Model.casoDTO.IdAbogadoNavigation.CedulaNavigation.Nombre
+                                @Model.casoDTO.IdAbogadoNavigation.CedulaNavigation.Apellido1
+                                @Model.casoDTO.IdAbogadoNavigation.CedulaNavigation.Apellido2
+                            </p> <!--Abogado-->
+                            <p>Carnet @Model.casoDTO.IdAbogadoNavigation.Carnet</p> <!--Licencia-->
+                            <p>Inicio @Model.casoDTO.Fecha</p>
+                        </div>
+                        <div class="attor-details-things">
+                            <h3>Descripcion</h3> <!--Descripcion del caso-->
+                            <p>@Model.casoDTO.Descripcion</p>
+                            
+                        </div>
+                        <div class="attor-details-things">
+                            <h3>Pruebas Iniciales</h3>
+                            <ul>
+                                <li>Documentos legales</li>
+                                <li>Correos electrónicos</li>
+                                
+                            </ul>
+                        </div>
+                        <div class="attor-details-things"> 
+                            <<form asp-controller="CasosEtapa" asp-action="FormularioEtapaPL" method="get"> >
+                                <input type="hidden" name="IdCaso" value="@Model.casoDTO.IdCaso">
+                                <button type ="submit" class="contact-btn">Nueva Etapa Procesal</button>
+                            </form>
+                            <!--<bottom type="button" class="contact-btn"><a style="color:white" asp-controller="CasosEtapa" asp-action="FormularioEtapaPL" asp-route-id="@Model.casoDTO.IdCaso">Nueva Etapa Procesal</a></bottom>-->
+
+                        </div>
+                        <div class="attor-details-things">
+                            <bottom type="button" class="contact-btn">Descargar Caso Completo</bottom>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End Attorney Details -->
+<!-- Lista con Etapas del proceso legal -->
+<div class="contact-form contact-form-two pb-100">
+    <div class="container">
+        <div class="contact-wrap">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.listarCasoEtapas.FirstOrDefault().Fecha)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.listarCasoEtapas.FirstOrDefault().IdCasoNavigation)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.listarCasoEtapas.FirstOrDefault().Nombre)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.listarCasoEtapas.FirstOrDefault().Descripcion)
+                        </th>
+                     
+                    
+                        <th>
+                            @Html.DisplayNameFor(model => model.listarCasoEtapas.FirstOrDefault().Activo)
+                        </th>
+                        <th>Proceso Legal</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model.listarCasoEtapas)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Fecha)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.IdCasoNavigation.Nombre)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Nombre)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Descripcion)
+                            </td>
+                         
+                          
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Activo)
+                            </td>
+                            <td>
+                                <button type="button" id="PrevioBtn" class="contact-btn" data-bs-toggle="modal" data-bs-target="#PrevioModal">
+                                Detalles
+                            </button>
+
+                            </td>
+                        </tr>
+                    }
+
+
+                </tbody>
+            </table>
+  
+        </div>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="PrevioModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="formulario contact-form contact-form-two">
+                <div class="container">
+                    <div class="contact-wrap" style="color: black">
+                        <h2>Detalles de Etapa del Proceso Legal</h2>
+                        <p style="color: black"><strong>Descripcion:</strong> <p>Revisión inicial de documentos del caso.</p> </p>
+                        <p style="color: black"><strong>Fecha de Etapa:</strong><p>02-Apr-25</p> </p>
+                        <p style="color: black"><strong>Numero de Etapa:</strong><p>10001</p> </p>
+                        <p style="color: black"><strong>Pruebas:</strong> <p>Copia del contrato firmado</p> </p>
+                        <p style="color: black"><strong>Detalles:</strong><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.</p> </p>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="contact-btn" id="BtnObtenerPDF">Descargar</button>
+                <button type="button" class="contact-btn" id="BtnModificarPL">Modificar</button>
+                <button type="button" class="contact-btn" id="BtnModificarPL">Eliminar</button>
+                <button type="button" class="contact-btn" data-bs-dismiss="modal" id="Retroceso">Cerrar</button>
+               
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End Lista con Etapas del proceso legal -->
+

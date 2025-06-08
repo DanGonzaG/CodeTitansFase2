@@ -1,9 +1,10 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Praecepta.UI.Models.ModuloCasos;
 
 namespace Praecepta.UI.Controllers
 {
+    [Authorize(Roles = "Gestor")]
     public class GestionCasosController : Controller
     {
 
@@ -21,13 +22,13 @@ namespace Praecepta.UI.Controllers
             return View(lista);
         }
 
-        
+
         public ActionResult FormularioCaso()
         {
             return View();
         }
 
-        
+
         public ActionResult CasosCerrados()
         {
             List<ModelCasos> lista = CasosQuemados.OrderBy(a => a.FechaInicio).ToList();
@@ -35,7 +36,7 @@ namespace Praecepta.UI.Controllers
         }
 
         public ActionResult FormularioEtapaPL()
-        {            
+        {
             return View();
         }
 

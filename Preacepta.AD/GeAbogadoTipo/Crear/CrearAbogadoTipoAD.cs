@@ -1,9 +1,4 @@
 ﻿using Preacepta.Modelos.AbstraccionesBD;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Preacepta.AD.GeAbogadoTipo.Crear
 {
@@ -29,13 +24,13 @@ namespace Preacepta.AD.GeAbogadoTipo.Crear
                 int guardado = await _contexto.SaveChangesAsync();
                 return guardado;
             }
-            catch (Exception ex) 
+            catch (Exception ex)
             {
                 Console.WriteLine($"Error en CrearAbogadoTipoAD {ex.Message}");
                 return 0;
             }
 
-            
+
         }
     }
 }

@@ -1,14 +1,7 @@
 ﻿using Preacepta.AD.CasosTipo.BuscarXid;
-using Preacepta.AD.GeAbogadoTipo.BuscarXid;
 using Preacepta.LN.CasosTipo.ObtenerDatos;
-using Preacepta.LN.GeAbogadoTipo.ObtenerDatos;
 using Preacepta.Modelos.AbstraccionesBD;
 using Preacepta.Modelos.AbstraccionesFrond;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Preacepta.LN.CasosTipo.BuscarXid
 {

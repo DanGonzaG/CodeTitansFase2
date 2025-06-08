@@ -1,9 +1,10 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Praecepta.UI.Models;
 
 namespace Praecepta.UI.Controllers
 {
+    [Authorize(Roles = "Gestor")]
     public class CitasController : Controller
     {
         // GET: CitasController

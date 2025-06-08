@@ -1,9 +1,4 @@
 ﻿using Preacepta.Modelos.AbstraccionesBD;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Preacepta.AD.GePersona.Crear
 {
@@ -11,12 +6,12 @@ namespace Preacepta.AD.GePersona.Crear
     {
         private readonly Contexto _contexto;
 
-        public CrearGePersonaAD (Contexto contexto) 
+        public CrearGePersonaAD(Contexto contexto)
         {
             _contexto = contexto;
         }
 
-        public async Task<int> crear(TGePersona gePersona)  
+        public async Task<int> crear(TGePersona gePersona)
         {
             await _contexto.TGePersonas.AddAsync(gePersona);
             int guardado = await _contexto.SaveChangesAsync();

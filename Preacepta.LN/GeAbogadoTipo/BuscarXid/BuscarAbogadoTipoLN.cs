@@ -10,7 +10,7 @@ namespace Preacepta.LN.GeAbogadoTipo.BuscarXid
         private readonly IBuscarAbogadoTipoAD _buscar;
         private readonly IObtenerDatosAbogadoTipoLN _obtenerDatosLN;
 
-        public BuscarAbogadoTipoLN(IBuscarAbogadoTipoAD buscarAbogadoTipoAD, 
+        public BuscarAbogadoTipoLN(IBuscarAbogadoTipoAD buscarAbogadoTipoAD,
             IObtenerDatosAbogadoTipoLN obtnerDatosLN)
         {
             _buscar = buscarAbogadoTipoAD;

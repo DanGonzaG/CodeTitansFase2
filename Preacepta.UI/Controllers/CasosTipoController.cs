@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Preacepta.AD;
 using Preacepta.LN.CasosTipo.BuscarXid;
@@ -10,6 +11,7 @@ using Preacepta.Modelos.AbstraccionesFrond;
 
 namespace Preacepta.UI.Controllers
 {
+    [Authorize(Roles = "Gestor")]
     public class CasosTipoController : Controller
     {
         private readonly Contexto _context;

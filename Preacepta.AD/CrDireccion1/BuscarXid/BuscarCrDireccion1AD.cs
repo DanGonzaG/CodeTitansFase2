@@ -1,10 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Preacepta.Modelos.AbstraccionesBD;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Preacepta.AD.CrDireccion1.BuscarXid
 {
@@ -52,7 +47,9 @@ namespace Preacepta.AD.CrDireccion1.BuscarXid
         {
             try
             {
-                var lista = await _contexto.TCrDistritos.FindAsync(id);
+                var lista = await _contexto.TCrDistritos
+                .Include(t => t.IdCatonNavigation)
+                .FirstOrDefaultAsync(m => m.IdDistrito == id);
                 return lista;
             }
             catch (Exception ex)
@@ -61,5 +58,19 @@ namespace Preacepta.AD.CrDireccion1.BuscarXid
                 return null;
             }
         }
+
+        /*public async Task<String> UbicacionCompleta(int numCanton) 
+        {
+            var canton = (from TCrDistrito in _contexto.TCrDistritos
+                          join TCrCantone in _contexto.TCrCantones on TCrDistrito.IdCaton equals TCrCantone.IdCanton
+                          join TCrProvincia in _contexto.TCrProvincias on TCrCantone.IdProvincia equals TCrProvincia.IdProvincia
+                          select new TCrDistrito
+                          {
+                              IdCaton = TCrDistrito.IdCaton,
+                              NombreDistrito = TCrDistrito.NombreDistrito,
+                              IdCatonNavigation = TCrDistrito.IdCatonNavigation
+
+                          })
+        }*/
     }
 }

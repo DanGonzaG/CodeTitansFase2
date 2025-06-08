@@ -11,7 +11,7 @@ namespace Preacepta.Modelos.AbstraccionesFrond
 
         [Required(ErrorMessage = "Debe de agregar nombre de la nueva especialdad del abogado")]
         public string Nombre { get; set; } = null!;
-        
+
         public virtual ICollection<TGeAbogado> TGeAbogados { get; set; } = new List<TGeAbogado>();
     }
 }

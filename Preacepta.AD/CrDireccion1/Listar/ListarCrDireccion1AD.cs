@@ -1,10 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Preacepta.Modelos.AbstraccionesFrond;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Preacepta.AD.CrDireccion1.Listar
 {
@@ -21,11 +16,12 @@ namespace Preacepta.AD.CrDireccion1.Listar
         {
             try
             {
-                return await _contexto.TCrProvincias.Select(lista => new CrProvinciaDTO
-                {
-                    IdProvincia = lista.IdProvincia,
-                    NombreProvincia = lista.NombreProvincia,                    
-                }).ToListAsync();
+                return await _contexto.TCrProvincias
+                    .Select(lista => new CrProvinciaDTO
+                    {
+                        IdProvincia = lista.IdProvincia,
+                        NombreProvincia = lista.NombreProvincia,
+                    }).ToListAsync();
             }
             catch (Exception ex)
             {
@@ -38,13 +34,15 @@ namespace Preacepta.AD.CrDireccion1.Listar
         {
             try
             {
-                return await _contexto.TCrCantones.Select(lista => new CrCantonDTO
-                {
-                   IdCanton = lista.IdCanton,
-                   IdProvincia = lista.IdCanton,
-                   NombreCanton = lista.NombreCanton,
-                   IdProvinciaNavigation = lista.IdProvinciaNavigation,
-                }).ToListAsync();
+                return await _contexto.TCrCantones
+                    .Include(a => a.IdProvinciaNavigation)
+                    .Select(lista => new CrCantonDTO
+                    {
+                        IdCanton = lista.IdCanton,
+                        IdProvincia = lista.IdCanton,
+                        NombreCanton = lista.NombreCanton,
+                        IdProvinciaNavigation = lista.IdProvinciaNavigation,
+                    }).ToListAsync();
             }
             catch (Exception ex)
             {
@@ -57,13 +55,15 @@ namespace Preacepta.AD.CrDireccion1.Listar
         {
             try
             {
-                return await _contexto.TCrDistritos.Select(lista => new CrDistritoDTO
-                {
-                    IdDistrito= lista.IdDistrito,
-                    IdCaton = lista.IdCaton,
-                    IdCatonNavigation = lista.IdCatonNavigation,
-                    NombreDistrito = lista.NombreDistrito,
-                }).ToListAsync();
+                return await _contexto.TCrDistritos
+                    .Include(a => a.IdCatonNavigation)
+                    .Select(lista => new CrDistritoDTO
+                    {
+                        IdDistrito = lista.IdDistrito,
+                        IdCaton = lista.IdCaton,
+                        IdCatonNavigation = lista.IdCatonNavigation,
+                        NombreDistrito = lista.NombreDistrito,
+                    }).ToListAsync();
             }
             catch (Exception ex)
             {

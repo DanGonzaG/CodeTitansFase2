@@ -38,6 +38,9 @@
 
     <link rel="icon" type="image/png" href="~/lyso/img/favicon.png">
 
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    
+
 </head>
 <body>
     <!-- Preloader -->
@@ -62,6 +65,7 @@
     </main>
 
 
+   
     
     <!-- End Footer -->
     <!-- Essential JS -->
@@ -75,8 +79,8 @@
     <script src="~/lyso/js/jquery.ajaxchimp.min.js"></script>
     <!-- Form Validator JS -->
     <script src="~/lyso/js/form-validator.min.js"></script>
-    <!-- Contact JS -->
-    <script src="~/lyso/js/contact-form-script.js"></script>
+    <!-- Contact JS
+    <script src="~/lyso/js/contact-form-script.js"></script>-->
     <!-- Owl Carousel JS -->
     <script src="~/lyso/js/owl.carousel.min.js"></script>
     <!-- Odometer JS -->
@@ -88,6 +92,9 @@
     <script src="~/lyso/js/wow.min.js"></script>
     <!-- Custom JS -->
     <script src="~/lyso/js/custom.js"></script>
+
+
+   
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>

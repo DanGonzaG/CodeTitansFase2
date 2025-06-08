@@ -77,13 +77,7 @@
         </dt>
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.FechaRegistro)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Activo)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Activo)
-        </dd>
+        </dd>  
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.Email)
         </dt>
@@ -96,6 +90,13 @@
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.Direccion1Navigation.NombreDistrito)
         </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Activo)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Activo)
+        </dd>
+
     </dl>
     
     <form asp-action="Delete">
