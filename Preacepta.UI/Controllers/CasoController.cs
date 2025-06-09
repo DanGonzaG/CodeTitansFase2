@@ -8,6 +8,7 @@ using Preacepta.LN.Casos.Eliminar;
 using Preacepta.LN.Casos.Listar;
 using Preacepta.LN.CasosTipo.Listar;
 using Preacepta.LN.GeAbogado.Listar;
+using Preacepta.LN.GePersona.BuscarXid;
 using Preacepta.LN.GePersona.Listar;
 using Preacepta.Modelos.AbstraccionesFrond;
 
@@ -24,6 +25,7 @@ namespace Preacepta.UI.Controllers
         private readonly IListarAbogadoLN _listarAbogados;
         private readonly IListarGePersonaLN _listarGePersona;
         private readonly IListarCasosTipoLN _listarCasosTipoLN;
+        private readonly IBuscarXidGePersonaLN _buscarPersona;
 
         public CasoController(
             IBuscarCasosLN buscar,
@@ -33,7 +35,8 @@ namespace Preacepta.UI.Controllers
             IListarCasosLN listar,
             IListarAbogadoLN listarAbogados,
             IListarGePersonaLN listarGePersona,
-            IListarCasosTipoLN listarCasosTipoLN)
+            IListarCasosTipoLN listarCasosTipoLN,
+            IBuscarXidGePersonaLN buscarPersona)
         {
             _buscar = buscar;
             _crear = crear;
@@ -42,7 +45,7 @@ namespace Preacepta.UI.Controllers
             _listarAbogados = listarAbogados;
             _listarGePersona = listarGePersona;
             _listarCasosTipoLN = listarCasosTipoLN;
-        }
+            _buscarPersona = buscarPersona;
 
         // GET: Caso
         public async Task<IActionResult> Index()
@@ -309,6 +312,9 @@ namespace Preacepta.UI.Controllers
         // GET: ListarCasos
         public async Task<IActionResult> CasosListado()
         {
+            var abogado = await _buscarPersona.buscarXcorreo(User.Identity.Name);
+            var listaCasos = _listar.listarXabogado(abogado.Cedula);
+            
             //var contexto = _context.TCasos.Include(t => t.IdAbogadoNavigation).Include(t => t.IdClienteNavigation).Include(t => t.IdTipoCasoNavigation);
             return View(await _listar.listar());
         }

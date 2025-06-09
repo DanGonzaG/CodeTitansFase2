@@ -5,5 +5,6 @@ namespace Preacepta.LN.Casos.Listar
     public interface IListarCasosLN
     {
         Task<List<CasoDTO>> listar();
+        Task<List<CasoDTO>> listarXabogado(int cedula);
     }
 }
