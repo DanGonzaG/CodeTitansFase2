@@ -46,6 +46,7 @@ namespace Preacepta.UI.Controllers
             _listarGePersona = listarGePersona;
             _listarCasosTipoLN = listarCasosTipoLN;
             _buscarPersona = buscarPersona;
+        }
 
         // GET: Caso
         public async Task<IActionResult> Index()
@@ -312,10 +313,24 @@ namespace Preacepta.UI.Controllers
         // GET: ListarCasos
         public async Task<IActionResult> CasosListado()
         {
-            var abogado = await _buscarPersona.buscarXcorreo(User.Identity.Name);
-            var listaCasos = _listar.listarXabogado(abogado.Cedula);
-            
+            //var abogado = await _buscarPersona.buscarXcorreo(User.Identity.Name);
+            //var listaCasos = _listar.listarXabogado(abogado.Cedula);
+
             //var contexto = _context.TCasos.Include(t => t.IdAbogadoNavigation).Include(t => t.IdClienteNavigation).Include(t => t.IdTipoCasoNavigation);
+
+            if (User.IsInRole("Gestor")) 
+            {
+                return View(await _listar.listar());
+            }
+
+            if (User.IsInRole("Abogado"))
+            {
+                var abogado = await _buscarPersona.buscarXcorreo(User.Identity.Name);
+                var listaCasos = _listar.listarXabogado(abogado.Cedula);
+                return View(listaCasos);
+            }
+
+
             return View(await _listar.listar());
         }
 

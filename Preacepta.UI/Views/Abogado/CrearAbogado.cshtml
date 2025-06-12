@@ -2,6 +2,28 @@
 
 <head>
     <link href="~/lyso/css/Daniel.css" rel="stylesheet" />
+    <style>
+        #provincia + .nice-select,
+        #canton + .nice-select,
+        #distrito + .nice-select {
+            display: none !important;
+        }
+
+
+        .selectDaniel {
+            background-color: transparent;
+            border: 1px solid #b69d74;
+            border-radius: 0;
+            height: 60px;
+            padding-left: 30px;
+            color: #333333;
+            font-size: 15px;
+            width: 100%;
+        }
+    
+
+
+    </style>
 </head>
 <!-- Page Title -->
 <body>
@@ -42,11 +64,17 @@
                                 <input asp-for="personaDTO.Cedula" class="form-control" />
                                 <span asp-validation-for="personaDTO.Cedula" class="text-danger"></span>
 
-                                                               
+
                                 @if (TempData["ErrorCedula"] != null)
                                 {
                                     <span class="text-danger">@TempData["ErrorCedula"]</span>
                                 }
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-lg-6">
+                            <div class="form-group">
+                                <label asp-for="geAbogadoDTO.IdTipoAbogado" class="control-label"></label>
+                                <select asp-for="geAbogadoDTO.IdTipoAbogado" class="form-control" asp-items="ViewBag.IdTipoAbogado"></select>
                             </div>
                         </div>
                         <div class="col-sm-6 col-lg-6">
@@ -60,12 +88,7 @@
                                 }
                             </div>
                         </div>
-                        <div class="col-sm-6 col-lg-6">
-                            <div class="form-group">
-                                <label asp-for="geAbogadoDTO.IdTipoAbogado" class="control-label"></label>
-                                <select asp-for="geAbogadoDTO.IdTipoAbogado" class="form-control" asp-items="ViewBag.IdTipoAbogado"></select>
-                            </div>
-                        </div>
+
                         <div class="col-sm-6 col-lg-6">
                             <div class="form-group">
                                 <label asp-for="geAbogadoDTO.CJuridica" class="control-label"></label>
@@ -96,14 +119,14 @@
                         <div class="col-sm-6 col-lg-6">
                             <div class="form-group">
                                 <label asp-for="personaDTO.FechaNacimiento" class="control-label"></label>
-                                <input type="date" asp-for="personaDTO.FechaNacimiento" class="form-control" />
+                                <input id="InputFechaNacimiento" type="date" asp-for="personaDTO.FechaNacimiento" class="form-control" />
                                 <span asp-validation-for="personaDTO.FechaNacimiento" class="text-danger"></span>
                             </div>
                         </div>
                         <div class="col-sm-6 col-lg-6">
                             <div class="form-group">
                                 <label asp-for="personaDTO.Edad" class="control-label"></label>
-                                <input asp-for="personaDTO.Edad" class="form-control" />
+                                <input id="InputEdad" asp-for="personaDTO.Edad" class="form-control" />
                                 <span asp-validation-for="personaDTO.Edad" class="text-danger"></span>
                             </div>
                         </div>
@@ -123,10 +146,36 @@
                         </div>
                         <div class="col-sm-6 col-lg-6">
                             <div class="form-group">
+                                <label for="provincia">Provincia:</label>
+                                <select class="selectDaniel" id="provincia" name="provincia">
+                                    <option value="">Seleccione un cantón</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-lg-6">
+                            <div class="form-group">
+                                <label for="canton">Cantón:</label>
+                                <select class="selectDaniel" id="canton" name="canton" disabled>
+                                    <option value="">Seleccione un cantón</option>
+                                </select>
+
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-lg-6">
+                            <div class="form-group">
+                                <label for="distrito">Distrito:</label>
+                                <select class="selectDaniel" id="distrito" name="personaDTO.Direccion1" asp-for="personaDTO.Direccion1" disabled>
+                                    <option value="">Seleccione un distrito</option>
+                                </select>
+
+                            </div>
+                        </div>
+                        <!--<div class="col-sm-6 col-lg-6">
+                            <div class="form-group">
                                 <label asp-for="personaDTO.Direccion1" class="control-label"></label>
                                 <select asp-for="personaDTO.Direccion1" class="form-control" asp-items="ViewBag.Direccion1" style="overflow:auto"></select>
                             </div>
-                        </div>
+                        </div>-->
                         <div class="col-sm-6 col-lg-6">
                             <div class="form-group">
                                 <label asp-for="personaDTO.Direccion2" class="control-label"></label>
@@ -176,7 +225,7 @@
                                 <span asp-validation-for=personaDTO.ConfirmPassword class="text-danger"></span>
                             </div>
                         </div>
-                       
+
 
                         <div class="col-md-12 col-lg-12">
 
@@ -194,7 +243,114 @@
 </body>
 
 
+<script src="~/lyso/js/calculoedad.js"></script>
 
+<script>
+    document.querySelectorAll("#provincia + .nice-select, #canton + .nice-select, #distrito + .nice-select")
+        .forEach(el => el.style.display = "none");
+
+
+
+
+
+
+    document.addEventListener("DOMContentLoaded", function () {
+        fetch("/Ubicacion/Provincias")
+            .then(response => response.json())
+            .then(data => {
+                console.log("Provincias obtenidas:", data);
+                const selectProvincia = document.getElementById("provincia");
+
+                let optionsHtml = '<option value="">Seleccione una provincia</option>';
+                data.forEach(provincia => {
+                    optionsHtml += `<option value="${provincia.idProvincia}">${provincia.nombreProvincia}</option>`;
+                });
+
+                selectProvincia.innerHTML = optionsHtml;
+                selectProvincia.style.display = "block";
+
+                //Actualizar Nice Select después de agregar las opciones
+                $('#provincia').niceSelect('update');
+            });
+    });
+
+    document.getElementById("provincia").addEventListener("change", function () {
+        const idProvincia = this.value;
+        const selectCanton = document.getElementById("canton");
+
+        console.log("Evento change ejecutado");
+        console.log("Valor seleccionado:", idProvincia);
+
+        selectCanton.innerHTML = '<option value="">Seleccione un cantón</option>';
+
+        if (idProvincia) {
+            fetch(`/Ubicacion/Cantones/${idProvincia}`)
+                .then(response => response.json())
+                .then(data => {
+                    console.log("Cantones obtenidos:", data);
+
+                    let optionsHtml = '<option value="">Seleccione un cantón</option>';
+                    data.forEach(canton => {
+                        optionsHtml += `<option value="${canton.idCanton}">${canton.nombreCanton}</option>`;
+                    });
+
+                    selectCanton.innerHTML = optionsHtml;
+                    selectCanton.disabled = false;
+                    selectCanton.style.display = "block";
+
+                    // actuliza el nice select
+                    $('#canton').niceSelect('update');
+                })
+                .catch(error => {
+                    console.error("Error al obtener cantones:", error);
+                    selectCanton.innerHTML = '<option value="">Error al cargar los cantones</option>';
+                    selectCanton.disabled = true;
+                });
+
+        } else {
+            selectCanton.disabled = true;
+            document.getElementById("distrito").disabled = true;
+        }
+    });
+
+    document.getElementById("canton").addEventListener("change", function () {
+        const idCanton = this.value;
+        const selectDistrito = document.getElementById("distrito");
+
+        console.log("Evento change ejecutado");
+        console.log("Valor seleccionado:", idCanton);
+
+        selectDistrito.innerHTML = '<option value="">Seleccione un distrito</option>';
+
+        if (idCanton) {
+            fetch(`/Ubicacion/Distritos/${idCanton}`)
+                .then(response => response.json())
+                .then(data => {
+                    console.log("Distritos obtenidos:", data);
+
+                    let optionsHtml = '<option value="">Seleccione un distrito</option>';
+                    data.forEach(distrito => {
+                        optionsHtml += `<option value="${distrito.idDistrito}">${distrito.nombreDistrito}</option>`;
+                    });
+
+                    selectDistrito.innerHTML = optionsHtml;
+                    selectDistrito.disabled = false;
+                    selectDistrito.style.display = "block";
+
+                    // actuliza el nice select
+                    $('#canton').niceSelect('update');
+                })
+                .catch(error => {
+                    console.error("Error al obtener cantones:", error);
+                    selectDistrito.innerHTML = '<option value="">Error al cargar los distritos</option>';
+                    selectDistrito.disabled = true;
+                });
+
+        } else {
+            selectDistrito.disabled = true;
+        }
+    });
+</script>
 
 
 

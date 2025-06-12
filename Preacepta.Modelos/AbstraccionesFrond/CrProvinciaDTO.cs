@@ -7,7 +7,7 @@ namespace Preacepta.Modelos.AbstraccionesFrond
     public class CrProvinciaDTO
     {
         [Required(ErrorMessage = "Debe ingresar el código de provincia")]
-        [DisplayName("Código Provicia")]
+        [DisplayName("Código Provincia")]
         public int IdProvincia { get; set; }
 
         [Required(ErrorMessage = "Debe ingresar el nombre de la provincia")]

@@ -51,6 +51,7 @@ namespace Preacepta.LN.GeAbogado.Crear
 
         public async Task<int> Crear(PersonaUnionAbogado crear)
         {
+            crear.geAbogadoDTO.Cedula = crear.personaDTO.Cedula;
             if (crear == null)
             {
                 Console.WriteLine("Error: Objeto nulo.");

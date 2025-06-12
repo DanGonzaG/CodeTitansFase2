@@ -128,8 +128,22 @@
 <!-- End Attorney Details -->
 <!-- Lista con Etapas del proceso legal -->
 <div class="contact-form contact-form-two pb-100">
+
+
+    <div class="attor-details-item" style="display: flex; justify-content: center; align-items: center">
+        <div class="attor-details-right">
+            <div class="attor-details-things">
+                <h3>Etapas del Proceso Legal</h3>
+            </div>
+        </div>
+    </div>
+
+     
+                  
+    
     <div class="container">
         <div class="contact-wrap">
+            
             <table class="table">
                 <thead>
                     <tr>
@@ -142,9 +156,9 @@
                         <th>
                             @Html.DisplayNameFor(model => model.listarCasoEtapas.FirstOrDefault().Nombre)
                         </th>
-                        <th>
+                        <!--<th>
                             @Html.DisplayNameFor(model => model.listarCasoEtapas.FirstOrDefault().Descripcion)
-                        </th>
+                        </th>-->
                      
                     
                         <th>
@@ -166,11 +180,9 @@
                             <td>
                                 @Html.DisplayFor(modelItem => item.Nombre)
                             </td>
-                            <td>
+                            <!--<td>
                                 @Html.DisplayFor(modelItem => item.Descripcion)
-                            </td>
-                         
-                          
+                            </td>-->
                             <td>
                                 @Html.DisplayFor(modelItem => item.Activo)
                             </td>

@@ -1,4 +1,4 @@
-﻿@model Preacepta.Modelos.AbstraccionesFrond.PersonaUnionAbogado
+﻿@model Preacepta.Modelos.AbstraccionesFrond.GePersonaDTO
 
 <head>
     <link href="~/lyso/css/Daniel.css" rel="stylesheet" />
@@ -40,9 +40,9 @@
 
                         <div class="col-sm-6 col-lg-6">
                             <div class="form-group">
-                                <label asp-for="personaDTO.Cedula" class="control-label"></label>
-                                <input asp-for="personaDTO.Cedula" class="form-control" />
-                                <span asp-validation-for="personaDTO.Cedula" class="text-danger"></span>
+                                <label asp-for="Cedula" class="control-label"></label>
+                                <input asp-for="Cedula" class="form-control" />
+                                <span asp-validation-for="Cedula" class="text-danger"></span>
 
                                                                
                                 @if (TempData["ErrorCedula"] != null)
@@ -53,86 +53,86 @@
                         </div>
                         <div class="col-sm-6 col-lg-6">
                             <div class="form-group">
-                                <label asp-for="personaDTO.Nombre" class="control-label"></label>
-                                <input asp-for="personaDTO.Nombre" class="form-control" />
-                                <span asp-validation-for="personaDTO.Nombre" class="text-danger"></span>
+                                <label asp-for="Nombre" class="control-label"></label>
+                                <input asp-for="Nombre" class="form-control" />
+                                <span asp-validation-for="Nombre" class="text-danger"></span>
                             </div>
                         </div>
                         <div class="col-sm-6 col-lg-6">
                             <div class="form-group">
-                                <label asp-for="personaDTO.Apellido1" class="control-label"></label>
-                                <input asp-for="personaDTO.Apellido1" class="form-control" />
-                                <span asp-validation-for="personaDTO.Apellido1" class="text-danger"></span>
+                                <label asp-for="Apellido1" class="control-label"></label>
+                                <input asp-for="Apellido1" class="form-control" />
+                                <span asp-validation-for="Apellido1" class="text-danger"></span>
                             </div>
                         </div>
                         <div class="col-sm-6 col-lg-6">
                             <div class="form-group">
-                                <label asp-for="personaDTO.Apellido2" class="control-label"></label>
-                                <input asp-for="personaDTO.Apellido2" class="form-control" />
-                                <span asp-validation-for="personaDTO.Apellido2" class="text-danger"></span>
+                                <label asp-for="Apellido2" class="control-label"></label>
+                                <input asp-for="Apellido2" class="form-control" />
+                                <span asp-validation-for="Apellido2" class="text-danger"></span>
                             </div>
                         </div>
                         <div class="col-sm-6 col-lg-6">
                             <div class="form-group">
-                                <label asp-for="personaDTO.FechaNacimiento" class="control-label"></label>
-                                <input type="date" asp-for="personaDTO.FechaNacimiento" class="form-control" />
-                                <span asp-validation-for="personaDTO.FechaNacimiento" class="text-danger"></span>
+                                <label asp-for="FechaNacimiento" class="control-label"></label>
+                                <input id="InputFechaNacimiento" type="date" asp-for="FechaNacimiento" class="form-control" />
+                                <span asp-validation-for="FechaNacimiento" class="text-danger"></span>
                             </div>
                         </div>
                         <div class="col-sm-6 col-lg-6">
                             <div class="form-group">
-                                <label asp-for="personaDTO.Edad" class="control-label"></label>
-                                <input asp-for="personaDTO.Edad" class="form-control" />
-                                <span asp-validation-for="personaDTO.Edad" class="text-danger"></span>
+                                <label asp-for="Edad" class="control-label"></label>
+                                <input id="InputEdad" asp-for="Edad" class="form-control" />
+                                <span asp-validation-for="Edad" class="text-danger"></span>
                             </div>
                         </div>
                         <div class="col-sm-6 col-lg-6">
                             <div class="form-group">
-                                <label asp-for="personaDTO.EstadoCivil" class="control-label"></label>
-                                <select asp-for="personaDTO.EstadoCivil" asp-items="ViewBag.EstadoCivil" class="form-control"></select>
-                                <span asp-validation-for="personaDTO.EstadoCivil" class="text-danger"></span>
+                                <label asp-for="EstadoCivil" class="control-label"></label>
+                                <select asp-for="EstadoCivil" asp-items="ViewBag.EstadoCivil" class="form-control"></select>
+                                <span asp-validation-for="EstadoCivil" class="text-danger"></span>
                             </div>
                         </div>
                         <div class="col-sm-6 col-lg-6">
                             <div class="form-group">
-                                <label asp-for="personaDTO.Oficio" class="control-label"></label>
-                                <input asp-for="personaDTO.Oficio" class="form-control" />
-                                <span asp-validation-for="personaDTO.Oficio" class="text-danger"></span>
+                                <label asp-for="Oficio" class="control-label"></label>
+                                <input asp-for="Oficio" class="form-control" />
+                                <span asp-validation-for="Oficio" class="text-danger"></span>
                             </div>
                         </div>
                         <div class="col-sm-6 col-lg-6">
                             <div class="form-group">
-                                <label asp-for="personaDTO.Direccion1" class="control-label"></label>
-                                <select asp-for="personaDTO.Direccion1" class="form-control" asp-items="ViewBag.Direccion1" style="overflow:auto"></select>
+                                <label asp-for="Direccion1" class="control-label"></label>
+                                <select asp-for="Direccion1" class="form-control" asp-items="ViewBag.Direccion1" style="overflow:auto"></select>
                             </div>
                         </div>
                         <div class="col-sm-6 col-lg-6">
                             <div class="form-group">
-                                <label asp-for="personaDTO.Direccion2" class="control-label"></label>
-                                <input asp-for="personaDTO.Direccion2" class="form-control" />
-                                <span asp-validation-for="personaDTO.Direccion2" class="text-danger"></span>
+                                <label asp-for="Direccion2" class="control-label"></label>
+                                <input asp-for="Direccion2" class="form-control" />
+                                <span asp-validation-for="Direccion2" class="text-danger"></span>
                             </div>
                         </div>
                         <div class="col-sm-6 col-lg-6">
                             <div class="form-group">
-                                <label asp-for="personaDTO.Telefono1" class="control-label"></label>
-                                <input asp-for="personaDTO.Telefono1" class="form-control" />
-                                <span asp-validation-for="personaDTO.Telefono1" class="text-danger"></span>
+                                <label asp-for="Telefono1" class="control-label"></label>
+                                <input asp-for="Telefono1" class="form-control" />
+                                <span asp-validation-for="Telefono1" class="text-danger"></span>
                             </div>
                         </div>
                         <div class="col-sm-6 col-lg-6">
                             <div class="form-group">
-                                <label asp-for="personaDTO.Telefono2" class="control-label"></label>
-                                <input asp-for="personaDTO.Telefono2" class="form-control" />
-                                <span asp-validation-for="personaDTO.Telefono2" class="text-danger"></span>
+                                <label asp-for="Telefono2" class="control-label"></label>
+                                <input asp-for="Telefono2" class="form-control" />
+                                <span asp-validation-for="Telefono2" class="text-danger"></span>
                             </div>
                         </div>
                         <div class="col-sm-6 col-lg-6">
                             <!--<div class="form-floating mb-3">-->
                             <div class="form-group">
-                                <label asp-for="personaDTO.Email">Correro electrónico</label>
-                                <input asp-for="personaDTO.Email" class="form-control" autocomplete="username" aria-required="true" placeholder="name@example.com" />
-                                <span asp-validation-for="personaDTO.Email" class="text-danger"></span>
+                                <label asp-for="Email">Correro electrónico</label>
+                                <input asp-for="Email" class="form-control" autocomplete="username" aria-required="true" placeholder="name@example.com" />
+                                <span asp-validation-for="Email" class="text-danger"></span>
                                 @if (TempData["ErrorEmail"] != null)
                                 {
                                     <span class="text-danger">@TempData["ErrorEmail"]</span>
@@ -142,17 +142,17 @@
                         <div class="col-sm-6 col-lg-6">
                             <!--<div class="form-floating mb-3">-->
                             <div class="form-group">
-                                <label asp-for="personaDTO.Password">Contraseña</label>
-                                <input asp-for="personaDTO.Password" class="form-control" autocomplete="new-password" aria-required="true" placeholder="password" />
-                                <span asp-validation-for="personaDTO.Password" class="text-danger"></span>
+                                <label asp-for="Password">Contraseña</label>
+                                <input asp-for="Password" class="form-control" autocomplete="new-password" aria-required="true" placeholder="password" />
+                                <span asp-validation-for="Password" class="text-danger"></span>
                             </div>
                         </div>
                         <div class="col-sm-6 col-lg-6">
                             <!--<div class="form-floating mb-3">-->
                             <div class="form-group">
-                                <label asp-for="personaDTO.ConfirmPassword">Confirmacion de contraseña</label>
-                                <input asp-for="personaDTO.ConfirmPassword" class="form-control" autocomplete="new-password" aria-required="true" placeholder="password" />
-                                <span asp-validation-for="personaDTO.ConfirmPassword" class="text-danger"></span>
+                                <label asp-for="ConfirmPassword">Confirmacion de contraseña</label>
+                                <input asp-for="ConfirmPassword" class="form-control" autocomplete="new-password" aria-required="true" placeholder="password" />
+                                <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
                             </div>
                         </div>
                         <!--<div class="col-sm-6 col-lg-6"></div>
@@ -183,6 +183,8 @@
     </div>
 </body>
 
+
+<script src="~/lyso/js/calculoedad.js"></script>
 
 
 
