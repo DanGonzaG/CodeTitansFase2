@@ -797,6 +797,10 @@
       "PackagePath": "staticwebassets\\lyso\\js\\DocsCompraVentaVehiculos.js"
     },
     {
+      "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lyso\\js\\FiltrarCasosXId.js",
+      "PackagePath": "staticwebassets\\lyso\\js\\FiltrarCasosXId.js"
+    },
+    {
       "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lyso\\js\\FiltroProvinicaCantonDistrito.js",
       "PackagePath": "staticwebassets\\lyso\\js\\FiltroProvinicaCantonDistrito.js"
     },

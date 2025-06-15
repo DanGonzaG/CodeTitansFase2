@@ -3,20 +3,16 @@
   "WorkspaceRootPath": "C:\\Preacepta\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{18AD59F4-3C32-4F5A-9C07-4B4448F18661}|Preacepta.UI\\Preacepta.UI.csproj|c:\\preacepta\\preacepta.ui\\views\\caso\\casoslistado.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{18AD59F4-3C32-4F5A-9C07-4B4448F18661}|Preacepta.UI\\Preacepta.UI.csproj|solutionrelative:preacepta.ui\\views\\caso\\casoslistado.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{18AD59F4-3C32-4F5A-9C07-4B4448F18661}|Preacepta.UI\\Preacepta.UI.csproj|c:\\preacepta\\preacepta.ui\\wwwroot\\lyso\\js\\filtrarcasosxid.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
-      "RelativeMoniker": "D:0:0:{18AD59F4-3C32-4F5A-9C07-4B4448F18661}|Preacepta.UI\\Preacepta.UI.csproj|solutionrelative:preacepta.ui\\wwwroot\\lyso\\js\\filtrarcasosxid.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{18AD59F4-3C32-4F5A-9C07-4B4448F18661}|Preacepta.UI\\Preacepta.UI.csproj|c:\\preacepta\\preacepta.ui\\wwwroot\\lyso\\js\\daniel.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
-      "RelativeMoniker": "D:0:0:{18AD59F4-3C32-4F5A-9C07-4B4448F18661}|Preacepta.UI\\Preacepta.UI.csproj|solutionrelative:preacepta.ui\\wwwroot\\lyso\\js\\daniel.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+      "AbsoluteMoniker": "D:0:0:{18AD59F4-3C32-4F5A-9C07-4B4448F18661}|Preacepta.UI\\Preacepta.UI.csproj|c:\\preacepta\\preacepta.ui\\views\\casosetapa\\etapaspl.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{18AD59F4-3C32-4F5A-9C07-4B4448F18661}|Preacepta.UI\\Preacepta.UI.csproj|solutionrelative:preacepta.ui\\views\\casosetapa\\etapaspl.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{18AD59F4-3C32-4F5A-9C07-4B4448F18661}|Preacepta.UI\\Preacepta.UI.csproj|c:\\preacepta\\preacepta.ui\\wwwroot\\lyso\\css\\daniel.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
       "RelativeMoniker": "D:0:0:{18AD59F4-3C32-4F5A-9C07-4B4448F18661}|Preacepta.UI\\Preacepta.UI.csproj|solutionrelative:preacepta.ui\\wwwroot\\lyso\\css\\daniel.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{18AD59F4-3C32-4F5A-9C07-4B4448F18661}|Preacepta.UI\\Preacepta.UI.csproj|c:\\preacepta\\preacepta.ui\\views\\caso\\casoslistado.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{18AD59F4-3C32-4F5A-9C07-4B4448F18661}|Preacepta.UI\\Preacepta.UI.csproj|solutionrelative:preacepta.ui\\views\\caso\\casoslistado.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     }
   ],
   "DocumentGroupContainers": [
@@ -26,76 +22,43 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 8,
+          "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "FiltrarCasosXId.js",
-              "DocumentMoniker": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lyso\\js\\FiltrarCasosXId.js",
-              "RelativeDocumentMoniker": "Preacepta.UI\\wwwroot\\lyso\\js\\FiltrarCasosXId.js",
-              "ToolTip": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lyso\\js\\FiltrarCasosXId.js",
-              "RelativeToolTip": "Preacepta.UI\\wwwroot\\lyso\\js\\FiltrarCasosXId.js",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAACEAAAADAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
-              "WhenOpened": "2025-06-15T22:41:19.916Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:128:0:{75188d03-9892-4ae2-abf1-207126247ce5}"
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:129:0:{75188d03-9892-4ae2-abf1-207126247ce5}"
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:128:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:129:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{aa2115a1-9712-457b-9047-dbb71ca2cdd2}"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "Daniel.js",
-              "DocumentMoniker": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lyso\\js\\Daniel.js",
-              "RelativeDocumentMoniker": "Preacepta.UI\\wwwroot\\lyso\\js\\Daniel.js",
-              "ToolTip": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lyso\\js\\Daniel.js",
-              "RelativeToolTip": "Preacepta.UI\\wwwroot\\lyso\\js\\Daniel.js",
-              "ViewState": "AgIAADYAAAAAAAAAAAAAAGAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
-              "WhenOpened": "2025-06-15T22:40:25.345Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
               "Title": "Daniel.css",
               "DocumentMoniker": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lyso\\css\\Daniel.css",
               "RelativeDocumentMoniker": "Preacepta.UI\\wwwroot\\lyso\\css\\Daniel.css",
               "ToolTip": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lyso\\css\\Daniel.css",
               "RelativeToolTip": "Preacepta.UI\\wwwroot\\lyso\\css\\Daniel.css",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABQAAAALAAAAAAAAAA==",
+              "ViewState": "AgIAADkAAAAAAAAAAAAAAF0AAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
-              "WhenOpened": "2025-06-15T22:15:08.587Z",
+              "WhenOpened": "2025-06-15T23:12:09.103Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 0,
+              "Title": "EtapasPL.cshtml",
+              "DocumentMoniker": "C:\\Preacepta\\Preacepta.UI\\Views\\CasosEtapa\\EtapasPL.cshtml",
+              "RelativeDocumentMoniker": "Preacepta.UI\\Views\\CasosEtapa\\EtapasPL.cshtml",
+              "ToolTip": "C:\\Preacepta\\Preacepta.UI\\Views\\CasosEtapa\\EtapasPL.cshtml",
+              "RelativeToolTip": "Preacepta.UI\\Views\\CasosEtapa\\EtapasPL.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAEAAAATAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-06-15T23:07:36.326Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
               "Title": "CasosListado.cshtml",
               "DocumentMoniker": "C:\\Preacepta\\Preacepta.UI\\Views\\Caso\\CasosListado.cshtml",
               "RelativeDocumentMoniker": "Preacepta.UI\\Views\\Caso\\CasosListado.cshtml",
               "ToolTip": "C:\\Preacepta\\Preacepta.UI\\Views\\Caso\\CasosListado.cshtml",
               "RelativeToolTip": "Preacepta.UI\\Views\\Caso\\CasosListado.cshtml",
-              "ViewState": "AgIAAG8AAAAAAAAAAAAAAIkAAAA0AAAAAAAAAA==",
+              "ViewState": "AgIAAGMAAAAAAAAAAAAAAF4AAAAbAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
               "WhenOpened": "2025-06-14T23:50:29.19Z",
               "EditorCaption": ""

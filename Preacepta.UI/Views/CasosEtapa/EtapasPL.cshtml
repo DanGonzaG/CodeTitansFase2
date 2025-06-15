@@ -1,14 +1,6 @@
 ﻿@model Preacepta.Modelos.AbstraccionesFrond.CasoUnionEtapasPL
 <!-- Page Title -->
-<style>
-    .EtapaPLestilos {
-        width: 200px; /* Ajusta el ancho según tus necesidades */
-        height: 50px; /* Ajusta la altura según tus necesidades */
-        text-align: center;
-        font-size: 16px;
-        padding: 10px;
-    }
-</style>
+<link href="~/lyso/css/daniel.css" rel="stylesheet" />
 
 <div class="page-title-area title-img-one">
     <div class="d-table">
@@ -126,7 +118,7 @@
                                     <div class="attor-details-things">
                                         <form asp-controller="CasosEtapa" asp-action="FormularioEtapaPL" method="get">
                                             <input type="hidden" name="IdCaso" value="@Model.casoDTO.IdCaso">
-                                            <button type="submit" class="contact-btn EtapaPLestilos" style="width:50%">Nueva Etapa Procesal</button>
+                                            <button type="submit" class="contact-btn EtapaPLestilos">Nueva Etapa Procesal</button>
                                         </form>
                                         <!--<bottom type="button" class="contact-btn"><a style="color:white" asp-controller="CasosEtapa" asp-action="FormularioEtapaPL" asp-route-id="@Model.casoDTO.IdCaso">Nueva Etapa Procesal</a></bottom>-->
 
@@ -135,7 +127,7 @@
                             }
                             
                             <div class="attor-details-things">
-                                <bottom type="button" class="contact-btn EtapaPLestilos" style="width:50% ">Descargar Caso Completo</bottom>
+                                <bottom type="button" class="contact-btn EtapaPLestilos">Descargar Caso Completo</bottom>
                             </div>
                         </div>
                         
