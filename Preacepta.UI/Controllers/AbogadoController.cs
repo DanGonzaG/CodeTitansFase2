@@ -334,7 +334,7 @@ namespace Preacepta.UI.Controllers
             return View();
         }
 
-        // POST: Abogado/Create
+        // POST: Abogado/CrearAbogado
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
@@ -350,12 +350,12 @@ namespace Preacepta.UI.Controllers
                 ViewData["Direccion1"] = new SelectList(_listarDireccion.listarDistritos().Result, "IdDistrito", "NombreDistrito", tGeAbogado.personaDTO.Direccion1);
 
                 ViewBag.EstadoCivil = new List<SelectListItem>
-                {
-                    new SelectListItem { Text = "Soltero", Value = "Soltero" },
-                    new SelectListItem { Text = "Casado", Value = "Casado" },
-                    new SelectListItem { Text = "Divorciado", Value = "Divorciado" },
-                    new SelectListItem { Text = "Viudo", Value = "Viudo" }
-                };
+        {
+            new SelectListItem { Text = "Soltero", Value = "Soltero" },
+            new SelectListItem { Text = "Casado", Value = "Casado" },
+            new SelectListItem { Text = "Divorciado", Value = "Divorciado" },
+            new SelectListItem { Text = "Viudo", Value = "Viudo" }
+        };
 
                 ViewData["CJuridica"] = (await _listarNegocio.listar())
                  .Select(n => new SelectListItem
@@ -388,12 +388,12 @@ namespace Preacepta.UI.Controllers
                 ViewData["Direccion1"] = new SelectList(_listarDireccion.listarDistritos().Result, "IdDistrito", "NombreDistrito", tGeAbogado.personaDTO.Direccion1);
 
                 ViewBag.EstadoCivil = new List<SelectListItem>
-                {
-                    new SelectListItem { Text = "Soltero", Value = "Soltero" },
-                    new SelectListItem { Text = "Casado", Value = "Casado" },
-                    new SelectListItem { Text = "Divorciado", Value = "Divorciado" },
-                    new SelectListItem { Text = "Viudo", Value = "Viudo" }
-                };
+        {
+            new SelectListItem { Text = "Soltero", Value = "Soltero" },
+            new SelectListItem { Text = "Casado", Value = "Casado" },
+            new SelectListItem { Text = "Divorciado", Value = "Divorciado" },
+            new SelectListItem { Text = "Viudo", Value = "Viudo" }
+        };
 
                 ViewData["CJuridica"] = (await _listarNegocio.listar())
                 .Select(n => new SelectListItem
@@ -426,12 +426,12 @@ namespace Preacepta.UI.Controllers
                 ViewData["Direccion1"] = new SelectList(_listarDireccion.listarDistritos().Result, "IdDistrito", "NombreDistrito", tGeAbogado.personaDTO.Direccion1);
 
                 ViewBag.EstadoCivil = new List<SelectListItem>
-                        {
-                            new SelectListItem { Text = "Soltero", Value = "Soltero" },
-                            new SelectListItem { Text = "Casado", Value = "Casado" },
-                            new SelectListItem { Text = "Divorciado", Value = "Divorciado" },
-                            new SelectListItem { Text = "Viudo", Value = "Viudo" }
-                        };
+                {
+                    new SelectListItem { Text = "Soltero", Value = "Soltero" },
+                    new SelectListItem { Text = "Casado", Value = "Casado" },
+                    new SelectListItem { Text = "Divorciado", Value = "Divorciado" },
+                    new SelectListItem { Text = "Viudo", Value = "Viudo" }
+                };
 
                 ViewData["CJuridica"] = (await _listarNegocio.listar())
                 .Select(n => new SelectListItem
@@ -458,6 +458,7 @@ namespace Preacepta.UI.Controllers
             #region validacion de formulario
             if (ModelState.IsValid)
             {
+                tGeAbogado.geAbogadoDTO.Cedula = tGeAbogado.personaDTO.Cedula;
                 await _crear.Crear(tGeAbogado);
                 return RedirectToAction(nameof(Index));
             }
@@ -465,12 +466,12 @@ namespace Preacepta.UI.Controllers
             ViewData["Direccion1"] = new SelectList(_listarDireccion.listarDistritos().Result, "IdDistrito", "NombreDistrito", tGeAbogado.personaDTO.Direccion1);
 
             ViewBag.EstadoCivil = new List<SelectListItem>
-                {
-                    new SelectListItem { Text = "Soltero", Value = "Soltero" },
-                    new SelectListItem { Text = "Casado", Value = "Casado" },
-                    new SelectListItem { Text = "Divorciado", Value = "Divorciado" },
-                    new SelectListItem { Text = "Viudo", Value = "Viudo" }
-                };
+        {
+            new SelectListItem { Text = "Soltero", Value = "Soltero" },
+            new SelectListItem { Text = "Casado", Value = "Casado" },
+            new SelectListItem { Text = "Divorciado", Value = "Divorciado" },
+            new SelectListItem { Text = "Viudo", Value = "Viudo" }
+        };
 
             ViewData["CJuridica"] = (await _listarNegocio.listar())
                  .Select(n => new SelectListItem

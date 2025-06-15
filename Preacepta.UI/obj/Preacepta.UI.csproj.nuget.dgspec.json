@@ -1,20 +1,24 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Preacepta\\Preacepta.UI\\Preacepta.UI.csproj": {}
+    "C:\\Praecepta2\\Preacepta.UI\\Preacepta.UI.csproj": {}
   },
   "projects": {
-    "C:\\Preacepta\\Preacepta.AD\\Preacepta.AD.csproj": {
+    "C:\\Praecepta2\\Preacepta.AD\\Preacepta.AD.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Preacepta\\Preacepta.AD\\Preacepta.AD.csproj",
+        "projectUniqueName": "C:\\Praecepta2\\Preacepta.AD\\Preacepta.AD.csproj",
         "projectName": "Preacepta.AD",
-        "projectPath": "C:\\Preacepta\\Preacepta.AD\\Preacepta.AD.csproj",
-        "packagesPath": "C:\\Users\\DanGG\\.nuget\\packages\\",
-        "outputPath": "C:\\Preacepta\\Preacepta.AD\\obj\\",
+        "projectPath": "C:\\Praecepta2\\Preacepta.AD\\Preacepta.AD.csproj",
+        "packagesPath": "C:\\Users\\MIRIAM\\.nuget\\packages\\",
+        "outputPath": "C:\\Praecepta2\\Preacepta.AD\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "C:\\Users\\DanGG\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\MIRIAM\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -22,15 +26,14 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "C:\\Preacepta\\Preacepta.Modelos\\Preacepta.Modelos.csproj": {
-                "projectPath": "C:\\Preacepta\\Preacepta.Modelos\\Preacepta.Modelos.csproj"
+              "C:\\Praecepta2\\Preacepta.Modelos\\Preacepta.Modelos.csproj": {
+                "projectPath": "C:\\Praecepta2\\Preacepta.Modelos\\Preacepta.Modelos.csproj"
               }
             }
           }
@@ -87,17 +90,21 @@
         }
       }
     },
-    "C:\\Preacepta\\Preacepta.LN\\Preacepta.LN.csproj": {
+    "C:\\Praecepta2\\Preacepta.LN\\Preacepta.LN.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Preacepta\\Preacepta.LN\\Preacepta.LN.csproj",
+        "projectUniqueName": "C:\\Praecepta2\\Preacepta.LN\\Preacepta.LN.csproj",
         "projectName": "Preacepta.LN",
-        "projectPath": "C:\\Preacepta\\Preacepta.LN\\Preacepta.LN.csproj",
-        "packagesPath": "C:\\Users\\DanGG\\.nuget\\packages\\",
-        "outputPath": "C:\\Preacepta\\Preacepta.LN\\obj\\",
+        "projectPath": "C:\\Praecepta2\\Preacepta.LN\\Preacepta.LN.csproj",
+        "packagesPath": "C:\\Users\\MIRIAM\\.nuget\\packages\\",
+        "outputPath": "C:\\Praecepta2\\Preacepta.LN\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "C:\\Users\\DanGG\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\MIRIAM\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -105,15 +112,14 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "C:\\Preacepta\\Preacepta.AD\\Preacepta.AD.csproj": {
-                "projectPath": "C:\\Preacepta\\Preacepta.AD\\Preacepta.AD.csproj"
+              "C:\\Praecepta2\\Preacepta.AD\\Preacepta.AD.csproj": {
+                "projectPath": "C:\\Praecepta2\\Preacepta.AD\\Preacepta.AD.csproj"
               }
             }
           }
@@ -152,17 +158,21 @@
         }
       }
     },
-    "C:\\Preacepta\\Preacepta.Modelos\\Preacepta.Modelos.csproj": {
+    "C:\\Praecepta2\\Preacepta.Modelos\\Preacepta.Modelos.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Preacepta\\Preacepta.Modelos\\Preacepta.Modelos.csproj",
+        "projectUniqueName": "C:\\Praecepta2\\Preacepta.Modelos\\Preacepta.Modelos.csproj",
         "projectName": "Preacepta.Modelos",
-        "projectPath": "C:\\Preacepta\\Preacepta.Modelos\\Preacepta.Modelos.csproj",
-        "packagesPath": "C:\\Users\\DanGG\\.nuget\\packages\\",
-        "outputPath": "C:\\Preacepta\\Preacepta.Modelos\\obj\\",
+        "projectPath": "C:\\Praecepta2\\Preacepta.Modelos\\Preacepta.Modelos.csproj",
+        "packagesPath": "C:\\Users\\MIRIAM\\.nuget\\packages\\",
+        "outputPath": "C:\\Praecepta2\\Preacepta.Modelos\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "C:\\Users\\DanGG\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\MIRIAM\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -170,7 +180,6 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -219,17 +228,21 @@
         }
       }
     },
-    "C:\\Preacepta\\Preacepta.UI\\Preacepta.UI.csproj": {
+    "C:\\Praecepta2\\Preacepta.UI\\Preacepta.UI.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Preacepta\\Preacepta.UI\\Preacepta.UI.csproj",
+        "projectUniqueName": "C:\\Praecepta2\\Preacepta.UI\\Preacepta.UI.csproj",
         "projectName": "Preacepta.UI",
-        "projectPath": "C:\\Preacepta\\Preacepta.UI\\Preacepta.UI.csproj",
-        "packagesPath": "C:\\Users\\DanGG\\.nuget\\packages\\",
-        "outputPath": "C:\\Preacepta\\Preacepta.UI\\obj\\",
+        "projectPath": "C:\\Praecepta2\\Preacepta.UI\\Preacepta.UI.csproj",
+        "packagesPath": "C:\\Users\\MIRIAM\\.nuget\\packages\\",
+        "outputPath": "C:\\Praecepta2\\Preacepta.UI\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "C:\\Users\\DanGG\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\MIRIAM\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -237,21 +250,20 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "C:\\Preacepta\\Preacepta.AD\\Preacepta.AD.csproj": {
-                "projectPath": "C:\\Preacepta\\Preacepta.AD\\Preacepta.AD.csproj"
+              "C:\\Praecepta2\\Preacepta.AD\\Preacepta.AD.csproj": {
+                "projectPath": "C:\\Praecepta2\\Preacepta.AD\\Preacepta.AD.csproj"
               },
-              "C:\\Preacepta\\Preacepta.LN\\Preacepta.LN.csproj": {
-                "projectPath": "C:\\Preacepta\\Preacepta.LN\\Preacepta.LN.csproj"
+              "C:\\Praecepta2\\Preacepta.LN\\Preacepta.LN.csproj": {
+                "projectPath": "C:\\Praecepta2\\Preacepta.LN\\Preacepta.LN.csproj"
               },
-              "C:\\Preacepta\\Preacepta.Modelos\\Preacepta.Modelos.csproj": {
-                "projectPath": "C:\\Preacepta\\Preacepta.Modelos\\Preacepta.Modelos.csproj"
+              "C:\\Praecepta2\\Preacepta.Modelos\\Preacepta.Modelos.csproj": {
+                "projectPath": "C:\\Praecepta2\\Preacepta.Modelos\\Preacepta.Modelos.csproj"
               }
             }
           }
@@ -271,6 +283,10 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "dependencies": {
+            "DinkToPdf": {
+              "target": "Package",
+              "version": "[1.0.8, )"
+            },
             "Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore": {
               "target": "Package",
               "version": "[8.0.16, )"
