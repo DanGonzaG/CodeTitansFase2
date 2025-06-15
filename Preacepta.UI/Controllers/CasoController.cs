@@ -11,6 +11,7 @@ using Preacepta.LN.GeAbogado.Listar;
 using Preacepta.LN.GePersona.BuscarXid;
 using Preacepta.LN.GePersona.Listar;
 using Preacepta.Modelos.AbstraccionesFrond;
+using System.Security.Claims;
 
 namespace Preacepta.UI.Controllers
 {
@@ -318,23 +319,23 @@ namespace Preacepta.UI.Controllers
 
             //var contexto = _context.TCasos.Include(t => t.IdAbogadoNavigation).Include(t => t.IdClienteNavigation).Include(t => t.IdTipoCasoNavigation);
 
-            if (User.IsInRole("Gestor")) 
+            var usuario = (ClaimsIdentity)User.Identity;
+            var rol = usuario.FindFirst(ClaimTypes.Role)?.Value;
+            var persona = await _buscarPersona.buscarXcorreo(User.Identity.Name);
+
+            return rol switch
             {
-                return View(await _listar.listar());
-            }
-
-            if (User.IsInRole("Abogado"))
-            {
-                var abogado = await _buscarPersona.buscarXcorreo(User.Identity.Name);
-                var listaCasos = _listar.listarXabogado(abogado.Cedula);
-                return View(listaCasos);
-            }
+                "Gestor" => View(await _listar.listar()),
+                "Abogado" => View(await _listar.listarXabogado(persona.Cedula)),
+                "Cliente" => View(await _listar.listarXcliente(persona.Cedula)),
+                _ => View(new List<CasoDTO>())
 
 
-            return View(await _listar.listar());
+            };  
         }
 
-        // GET: Caso/Details/5
+
+        // GET: Caso/EtapasPL/5
         public async Task<IActionResult> EtapasPL(int id)
         {
             if (id == null)

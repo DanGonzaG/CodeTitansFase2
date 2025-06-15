@@ -333,10 +333,7 @@ namespace Preacepta.UI.Controllers
         {
 
 
-            #region View data Direccion, Estado Civil, Cedula juridica, cedula y tipo abogado
-            ViewData["Direccion1"] = new SelectList(_listarDireccion.listarDistritos().Result, "IdDistrito", "NombreDistrito");
-
-            ViewData["Provincia"] = new SelectList(_listarDireccion.listarProvincias().Result, "IdProvincia", "NombreProvincia");
+            #region View data Direccion, Estado Civil, Cedula juridica, cedula y tipo abogado                 
 
             ViewBag.EstadoCivil = new List<SelectListItem>
             {
@@ -391,8 +388,7 @@ namespace Preacepta.UI.Controllers
                         }
                         else
                         {
-                            #region ErrorCarnetExistente
-                            ViewData["Direccion1"] = new SelectList(_listarDireccion.listarDistritos().Result, "IdDistrito", "NombreDistrito", tGeAbogado.personaDTO.Direccion1);
+                            #region ErrorCarnetExistente                            
                             ViewBag.EstadoCivil = new List<SelectListItem>
                             {
                                 new SelectListItem { Text = "Soltero", Value = "Soltero" },
@@ -495,8 +491,7 @@ namespace Preacepta.UI.Controllers
                     return View(tGeAbogado);
                     #endregion
                 }
-            }
-            ViewData["Direccion1"] = new SelectList(_listarDireccion.listarDistritos().Result, "IdDistrito", "NombreDistrito", tGeAbogado.personaDTO.Direccion1);
+            }            
 
             ViewBag.EstadoCivil = new List<SelectListItem>
             {

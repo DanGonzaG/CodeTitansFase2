@@ -102,10 +102,36 @@
                         </div>
                         <div class="col-sm-6 col-lg-6">
                             <div class="form-group">
+                                <label for="provincia">Provincia:</label>
+                                <select class="selectDaniel" id="provincia" name="provincia">
+                                    <option value="">Seleccione un cantón</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-lg-6">
+                            <div class="form-group">
+                                <label for="canton">Cantón:</label>
+                                <select class="selectDaniel" id="canton" name="canton" disabled>
+                                    <option value="">Seleccione un cantón</option>
+                                </select>
+
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-lg-6">
+                            <div class="form-group">
+                                <label for="distrito">Distrito:</label>
+                                <select class="selectDaniel" id="distrito" name="Direccion1" asp-for="Direccion1" disabled>
+                                    <option value="">Seleccione un distrito</option>
+                                </select>
+
+                            </div>
+                        </div>
+                        <!--<div class="col-sm-6 col-lg-6">
+                            <div class="form-group">
                                 <label asp-for="Direccion1" class="control-label"></label>
                                 <select asp-for="Direccion1" class="form-control" asp-items="ViewBag.Direccion1" style="overflow:auto"></select>
                             </div>
-                        </div>
+                        </div>-->
                         <div class="col-sm-6 col-lg-6">
                             <div class="form-group">
                                 <label asp-for="Direccion2" class="control-label"></label>
@@ -143,7 +169,7 @@
                             <!--<div class="form-floating mb-3">-->
                             <div class="form-group">
                                 <label asp-for="Password">Contraseña</label>
-                                <input asp-for="Password" class="form-control" autocomplete="new-password" aria-required="true" placeholder="password" />
+                                <input asp-for="Password" class="form-control" autocomplete="new-password" aria-required="true"/>
                                 <span asp-validation-for="Password" class="text-danger"></span>
                             </div>
                         </div>
@@ -151,7 +177,7 @@
                             <!--<div class="form-floating mb-3">-->
                             <div class="form-group">
                                 <label asp-for="ConfirmPassword">Confirmacion de contraseña</label>
-                                <input asp-for="ConfirmPassword" class="form-control" autocomplete="new-password" aria-required="true" placeholder="password" />
+                                <input asp-for="ConfirmPassword" class="form-control" autocomplete="new-password" aria-required="true"/>
                                 <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
                             </div>
                         </div>
@@ -185,6 +211,7 @@
 
 
 <script src="~/lyso/js/calculoedad.js"></script>
+<script src="~/lyso/js/filtroprovinicacantondistrito.js"></script>
 
 
 

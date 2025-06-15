@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "cmq9CY3ggVLxSjeKFSKX06LZyKDPOR8ubGEfwvwSvXk=",
+  "Hash": "fgrdiIDBQdrjI6l0dLLMuUERuP+/i6E5t7fsXmiyfN8=",
   "Source": "Preacepta.UI",
   "BasePath": "_content/Preacepta.UI",
   "Mode": "Default",
@@ -3948,6 +3948,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\lyso\\js\\docsPrestacionServicios.js"
+    },
+    {
+      "Identity": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lyso\\js\\FiltroProvinicaCantonDistrito.js",
+      "SourceId": "Preacepta.UI",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\",
+      "BasePath": "_content/Preacepta.UI",
+      "RelativePath": "lyso/js/FiltroProvinicaCantonDistrito.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\lyso\\js\\FiltroProvinicaCantonDistrito.js"
     },
     {
       "Identity": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lyso\\js\\form-validator.min.js",

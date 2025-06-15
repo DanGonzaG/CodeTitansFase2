@@ -187,23 +187,23 @@
 
 
                             @if (User.Identity.IsAuthenticated)
-                            {
-                                @if (User.IsInRole("Gestor") || User.IsInRole("Abogado"))
-                                {
+                            {                               
                                     <li class="nav-item">
                                         <a href="#" class="nav-link dropdown-toggle">Casos</a>
-                                        <ul class="dropdown-menu">
-                                            <li class="nav-item" style="color: bisque">--Cliente--</li>
+                                        <ul class="dropdown-menu">                                           
                                             <li class="nav-item">
                                                 <a asp-controller="GestionCasos" asp-action="SolicitudCaso" class="nav-link">Solicitar Servicio</a>
                                             </li>
-                                            <li class="nav-item">
+                                            <!--<li class="nav-item">
                                                 <a asp-controller="GestionCasos" asp-action="CasosListadoCliente" class="nav-link">Listado Casos Cliente</a>
-                                            </li>
-                                            <li class="nav-item" style="color: bisque">--Abogado--</li>
+                                        </li>-->
+                                            
+                                        @if (User.IsInRole("Gestor") || User.IsInRole("Abogado"))
+                                        {
                                             <li class="nav-item">
                                                 <a asp-controller="Caso" asp-action="FormularioCaso" class="nav-link">Crear Caso</a>
                                             </li>
+                                        }
                                             <li class="nav-item">
                                                 <a asp-controller="Caso" asp-action="CasosListado" class="nav-link">Listado de casos</a>
                                             </li>
@@ -212,7 +212,7 @@
                                             </li>
                                         </ul>
                                     </li>
-                                }
+                                
                             }
                             @if (User.Identity.IsAuthenticated)
                             {
