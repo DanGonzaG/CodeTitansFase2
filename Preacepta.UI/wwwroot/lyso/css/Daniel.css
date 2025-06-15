@@ -19,7 +19,7 @@
 }
 
 .LetraNegra {
-    color:black;
+    color:black !important;
 }
 
 
@@ -58,13 +58,29 @@
     z-index: 1000; /* Asegura que esté por encima de otros elementos */
 }
 
-/*se usa para que todos los formulario del modulo DocsGenerator este ocultos*/
-.formulario {
-    display: none;
-}
 
 .DanielModalDocs {
     max-width: 60%;
     width: 70%;
+}
+
+
+/*estos estilos se en los formularios de abagado y persona(cliente) o cualquier otro donde se usar como parte del formulario las opciones de provincia, canton y distrito*/
+#provincia + .nice-select,
+#canton + .nice-select,
+#distrito + .nice-select {
+    display: none !important;
+}
+
+
+.selectDaniel {
+    background-color: transparent;
+    border: 1px solid #b69d74;
+    border-radius: 0;
+    height: 60px;
+    padding-left: 30px;
+    color: #333333;
+    font-size: 15px;
+    width: 100%;
 }
 
