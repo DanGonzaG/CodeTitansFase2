@@ -95,23 +95,20 @@
                                 <select asp-for="DistritoFinca" class="form-control" asp-items="ViewBag.DistritoFinca" id="idDistritoFinca"></select>
                             </div>
                         </div>
-                        <br />
-                        <br />
-                        <br />
                         <div class="col-sm-6 col-lg-6">
                             <div class="form-group">
                                 <label asp-for="CantonFinca" class="control-label"></label>
-                                <select asp-for="CantonFinca" class="form-control" asp-items="ViewBag.CantonesFinca" id="idCantonFinca"></select>
+                                <input asp-for="CantonFinca" class="form-control" id="idCantonFinca" />
+                                <span asp-validation-for="CantonFinca" class="text-danger"></span>
                             </div>
                         </div>
                         <div class="col-sm-6 col-lg-6">
                             <div class="form-group">
                                 <label asp-for="ProvinciaFinca" class="control-label"></label>
-                                <select asp-for="ProvinciaFinca" class="form-control" asp-items="ViewBag.ProvinciaFinca" id="idProvinciaFinca"></select>
+                                <input asp-for="ProvinciaFinca" class="form-control" id="idProvinciaFinca" />
                                 <span asp-validation-for="ProvinciaFinca" class="text-danger"></span>
                             </div>
                         </div>
-
                         <div class="col-sm-6 col-lg-6">
                             <div class="form-group">
                                 <label asp-for="AreaFincaM2" class="control-label"></label>
@@ -205,8 +202,8 @@
                                         Revisar
                                     </button>
                                 </div>
-                                <div class="form-group" id="btnCrearCaso">
-                                    <input type="submit" value="Crear Documento" class="contact-btn" />
+                                <div class="form-group" id="btnCrear">
+                                    <input type="submit" value="crearDocumento" class="contact-btn" />
                                 </div>
                                 <!--<button type="submit" class="contact-btn">Submit Case</button>-->
                             </div>
@@ -220,6 +217,29 @@
 </body>
 
 
+<!-- Modal
+<div class="modal fade" id="PrevioModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal-dialog modal-lg">
+<div class="modal-content">
+<div class="formulario contact-form contact-form-two">
+<div class="container">
+<div class="contact-wrap">
+<h2>Revisión de datos ingresados</h2>
+<p style="color: black"><strong>Tipo Caso:</strong> <span id="previoTipoCaso"></span></p>
+<p style="color: black"><strong>Nombre del caso:</strong> <span id="previotitulo"></span></p>
+<p style="color: black"><strong>Pruebas Iniciales:</strong> <span id="previoPruebas"></span></p>
+<p style="color: black"><strong>Cliente:</strong> <span id="previoCliente"></span></p>
+<p style="color: black"><strong>Detalles del Caso:</strong> <span id="previoDescripcion"></span></p>
+</div>
+</div>
+</div>
+<div class="modal-footer">
+<button type="button" class="btn btn-secondary" data-bs-dismiss="modal" id="Retroceso">Close</button>
+<button type="button" class="btn btn-primary">Save changes</button>
+</div>
+</div>
+</div>
+</div> -->
 <!-- Button trigger modal -->
 <!-- Modal -->
 <div class="modal fade" id="PrevioModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">

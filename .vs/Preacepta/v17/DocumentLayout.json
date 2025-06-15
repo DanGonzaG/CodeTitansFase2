@@ -1,53 +1,32 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Praecepta2\\",
+  "WorkspaceRootPath": "C:\\Preacepta\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{18AD59F4-3C32-4F5A-9C07-4B4448F18661}|Preacepta.UI\\Preacepta.UI.csproj|c:\\praecepta2\\preacepta.ui\\views\\shared\\_layoutlyso.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{18AD59F4-3C32-4F5A-9C07-4B4448F18661}|Preacepta.UI\\Preacepta.UI.csproj|solutionrelative:preacepta.ui\\views\\shared\\_layoutlyso.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{18AD59F4-3C32-4F5A-9C07-4B4448F18661}|Preacepta.UI\\Preacepta.UI.csproj|c:\\praecepta2\\preacepta.ui\\views\\docsautorizacionrevisionexpedientes\\createdocsautorizacionrevisionexpedientes.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{18AD59F4-3C32-4F5A-9C07-4B4448F18661}|Preacepta.UI\\Preacepta.UI.csproj|solutionrelative:preacepta.ui\\views\\docsautorizacionrevisionexpedientes\\createdocsautorizacionrevisionexpedientes.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{18AD59F4-3C32-4F5A-9C07-4B4448F18661}|Preacepta.UI\\Preacepta.UI.csproj|c:\\praecepta2\\preacepta.ui\\controllers\\docsautorizacionrevisionexpedientescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{18AD59F4-3C32-4F5A-9C07-4B4448F18661}|Preacepta.UI\\Preacepta.UI.csproj|solutionrelative:preacepta.ui\\controllers\\docsautorizacionrevisionexpedientescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{18AD59F4-3C32-4F5A-9C07-4B4448F18661}|Preacepta.UI\\Preacepta.UI.csproj|c:\\praecepta2\\preacepta.ui\\wwwroot\\lyso\\js\\docsautorizacionrevision.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
-      "RelativeMoniker": "D:0:0:{18AD59F4-3C32-4F5A-9C07-4B4448F18661}|Preacepta.UI\\Preacepta.UI.csproj|solutionrelative:preacepta.ui\\wwwroot\\lyso\\js\\docsautorizacionrevision.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{18AD59F4-3C32-4F5A-9C07-4B4448F18661}|Preacepta.UI\\Preacepta.UI.csproj|c:\\praecepta2\\preacepta.ui\\wwwroot\\lyso\\docsmachotes\\autorizacionexpedientemachote.html||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{18AD59F4-3C32-4F5A-9C07-4B4448F18661}|Preacepta.UI\\Preacepta.UI.csproj|solutionrelative:preacepta.ui\\wwwroot\\lyso\\docsmachotes\\autorizacionexpedientemachote.html||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{18AD59F4-3C32-4F5A-9C07-4B4448F18661}|Preacepta.UI\\Preacepta.UI.csproj|c:\\praecepta2\\preacepta.ui\\wwwroot\\lyso\\js\\docsprueba.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
-      "RelativeMoniker": "D:0:0:{18AD59F4-3C32-4F5A-9C07-4B4448F18661}|Preacepta.UI\\Preacepta.UI.csproj|solutionrelative:preacepta.ui\\wwwroot\\lyso\\js\\docsprueba.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+      "AbsoluteMoniker": "D:0:0:{ABCA304E-D92E-43A2-A507-A94A7ADD2ADD}|Preacepta.AD\\Preacepta.AD.csproj|c:\\preacepta\\preacepta.ad\\contexto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{ABCA304E-D92E-43A2-A507-A94A7ADD2ADD}|Preacepta.AD\\Preacepta.AD.csproj|solutionrelative:preacepta.ad\\contexto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
-      "VerticalTabListWidth": 203,
+      "VerticalTabListWidth": 256,
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 6,
+          "SelectedChildIndex": 0,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "docsPrueba.js",
-              "DocumentMoniker": "C:\\Praecepta2\\Preacepta.UI\\wwwroot\\lyso\\js\\docsPrueba.js",
-              "RelativeDocumentMoniker": "Preacepta.UI\\wwwroot\\lyso\\js\\docsPrueba.js",
-              "ToolTip": "C:\\Praecepta2\\Preacepta.UI\\wwwroot\\lyso\\js\\docsPrueba.js",
-              "RelativeToolTip": "Preacepta.UI\\wwwroot\\lyso\\js\\docsPrueba.js",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAEAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
-              "WhenOpened": "2025-06-15T12:10:47.104Z",
-              "IsPinned": true,
+              "DocumentIndex": 0,
+              "Title": "Contexto.cs",
+              "DocumentMoniker": "C:\\Preacepta\\Preacepta.AD\\Contexto.cs",
+              "RelativeDocumentMoniker": "Preacepta.AD\\Contexto.cs",
+              "ToolTip": "C:\\Preacepta\\Preacepta.AD\\Contexto.cs",
+              "RelativeToolTip": "Preacepta.AD\\Contexto.cs",
+              "ViewState": "AgIAACQAAAAAAAAAAAA0wEYAAAAEAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-08T23:33:05.075Z",
               "EditorCaption": ""
             },
             {
@@ -69,71 +48,6 @@
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{aa2115a1-9712-457b-9047-dbb71ca2cdd2}"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "_LayoutLyso.cshtml",
-              "DocumentMoniker": "C:\\Praecepta2\\Preacepta.UI\\Views\\Shared\\_LayoutLyso.cshtml",
-              "RelativeDocumentMoniker": "Preacepta.UI\\Views\\Shared\\_LayoutLyso.cshtml",
-              "ToolTip": "C:\\Praecepta2\\Preacepta.UI\\Views\\Shared\\_LayoutLyso.cshtml",
-              "RelativeToolTip": "Preacepta.UI\\Views\\Shared\\_LayoutLyso.cshtml",
-              "ViewState": "AgIAABwBAAAAkJmZmZn5vykBAABZAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-06-15T21:53:48.429Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "AutorizacionExpedienteMachote.html",
-              "DocumentMoniker": "C:\\Praecepta2\\Preacepta.UI\\wwwroot\\lyso\\DocsMachotes\\AutorizacionExpedienteMachote.html",
-              "RelativeDocumentMoniker": "Preacepta.UI\\wwwroot\\lyso\\DocsMachotes\\AutorizacionExpedienteMachote.html",
-              "ToolTip": "C:\\Praecepta2\\Preacepta.UI\\wwwroot\\lyso\\DocsMachotes\\AutorizacionExpedienteMachote.html",
-              "RelativeToolTip": "Preacepta.UI\\wwwroot\\lyso\\DocsMachotes\\AutorizacionExpedienteMachote.html",
-              "ViewState": "AgIAAC0AAAAAAAAAAABAvTwAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001512|",
-              "WhenOpened": "2025-06-15T14:28:59.147Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "docsAutorizacionRevision.js",
-              "DocumentMoniker": "C:\\Praecepta2\\Preacepta.UI\\wwwroot\\lyso\\js\\docsAutorizacionRevision.js",
-              "RelativeDocumentMoniker": "Preacepta.UI\\wwwroot\\lyso\\js\\docsAutorizacionRevision.js",
-              "ToolTip": "C:\\Praecepta2\\Preacepta.UI\\wwwroot\\lyso\\js\\docsAutorizacionRevision.js",
-              "RelativeToolTip": "Preacepta.UI\\wwwroot\\lyso\\js\\docsAutorizacionRevision.js",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAKkAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
-              "WhenOpened": "2025-06-14T19:42:43.211Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "CreateDocsAutorizacionRevisionExpedientes.cshtml",
-              "DocumentMoniker": "C:\\Praecepta2\\Preacepta.UI\\Views\\DocsAutorizacionRevisionExpedientes\\CreateDocsAutorizacionRevisionExpedientes.cshtml",
-              "RelativeDocumentMoniker": "Preacepta.UI\\Views\\DocsAutorizacionRevisionExpedientes\\CreateDocsAutorizacionRevisionExpedientes.cshtml",
-              "ToolTip": "C:\\Praecepta2\\Preacepta.UI\\Views\\DocsAutorizacionRevisionExpedientes\\CreateDocsAutorizacionRevisionExpedientes.cshtml",
-              "RelativeToolTip": "Preacepta.UI\\Views\\DocsAutorizacionRevisionExpedientes\\CreateDocsAutorizacionRevisionExpedientes.cshtml",
-              "ViewState": "AgIAABsAAACAZmZmZmYkwD0AAAB7AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-06-14T19:42:07.801Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "DocsAutorizacionRevisionExpedientesController.cs",
-              "DocumentMoniker": "C:\\Praecepta2\\Preacepta.UI\\Controllers\\DocsAutorizacionRevisionExpedientesController.cs",
-              "RelativeDocumentMoniker": "Preacepta.UI\\Controllers\\DocsAutorizacionRevisionExpedientesController.cs",
-              "ToolTip": "C:\\Praecepta2\\Preacepta.UI\\Controllers\\DocsAutorizacionRevisionExpedientesController.cs",
-              "RelativeToolTip": "Preacepta.UI\\Controllers\\DocsAutorizacionRevisionExpedientesController.cs",
-              "ViewState": "AgIAAMQAAAAAzszMzMwowMgAAAAJAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-14T19:41:52.418Z",
-              "EditorCaption": ""
             }
           ]
         }

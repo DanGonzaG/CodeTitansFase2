@@ -174,8 +174,6 @@ namespace Preacepta.UI.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-
-        // DE AQUI EN ADELANTE VAN MIS METODOS
         // GET: TDocsInscripcionVehiculo/Create
         public IActionResult CreateDocsInscripcionVehiculo()
         {

@@ -78,9 +78,9 @@
                                 </li>
                             }
 
-                            @if (User.Identity.IsAuthenticated) //solo para solicitar usuario autenticado
+                            @if (User.Identity.IsAuthenticated)
                             {
-                                @if (User.IsInRole("Gestor") || User.IsInRole("Abogado")) //segun el rol de la persona, ya sea gestor o abogado
+                                @if (User.IsInRole("Gestor") || User.IsInRole("Abogado"))
                                 {
                                     <li class="nav-item">
                                         <a href="#" class="nav-link dropdown-toggle">Home</a>
@@ -280,45 +280,26 @@
                                                 <a asp-controller="CitasTipo" asp-action="Index" class="nav-link">CitasTipo</a>
                                             </li>
                                             <li class="nav-item">
-                                                <a href="#" class="nav-link dropdown-toggle">Gestion de documentos</a> 
+                                                <a href="#" class="nav-link dropdown-toggle">Gestion de documentos</a>
                                                 <ul class="dropdown-menu">
                                                     <li class="nav-item">
-                                                        <a asp-controller="DocsContratoPrestacionServicios" asp-action="Index" class="nav-link"
-                                                           title="Contrato para prestación de servicios entre partes.">
-                                                            Documento de Contrato Prestacion de Servicios
-                                                        </a>
+                                                        <a asp-controller="DocsContratoPrestacionServicios" asp-action="Index" class="nav-link">Documento de Contrato Prestacion de Servicios</a>
                                                     </li>
                                                     <li class="nav-item">
-                                                        <a asp-controller="DocsAutorizacionRevisionExpedientes" asp-action="Index" class="nav-link"
-                                                           title="Autorización para revisar expedientes específicos.">
-                                                            Documento de Autorizacion de Revision Expedientes
-                                                        </a>
+                                                        <a asp-controller="DocsAutorizacionRevisionExpedientes" asp-action="Index" class="nav-link">Documento de Autorizacion de Revision Expedientes</a>
                                                     </li>
                                                     <li class="nav-item">
-                                                        <a asp-controller="DocsCombustibles" asp-action="Index" class="nav-link"
-                                                           title="Documento relacionado con el uso o distribución de combustibles.">
-                                                            Documento de Combustibles
-                                                        </a>
+                                                        <a asp-controller="DocsCombustibles" asp-action="Index" class="nav-link">Documento de Combustibles</a>
                                                     </li>
                                                     <li class="nav-item">
-                                                        <a asp-controller="DocsCompraventaFincas" asp-action="Index" class="nav-link"
-                                                           title="Contrato de compraventa de fincas o terrenos.">
-                                                            Documento de Compra Venta de fincas
-                                                        </a>
+                                                        <a asp-controller="DocsCompraventaFincas" asp-action="Index" class="nav-link">Documento de Compra Venta de fincas</a>
                                                     </li>
                                                     <li class="nav-item">
-                                                        <a asp-controller="DocsInscripcionVehiculo" asp-action="Index" class="nav-link"
-                                                           title="Trámite de inscripción de un vehículo.">
-                                                            Documento de inscripcion de vehiculo
-                                                        </a>
+                                                        <a asp-controller="DocsInscripcionVehiculo" asp-action="Index" class="nav-link">Documento de inscripcion de vehiculo</a>
                                                     </li>
                                                     <li class="nav-item">
-                                                        <a asp-controller="DocsMarcaVehiculo" asp-action="Index" class="nav-link"
-                                                           title="Documentación relacionada con la marca del vehículo.">
-                                                            Documento de marcas de vehiculo
-                                                        </a>
+                                                        <a asp-controller="DocsMarcaVehiculo" asp-action="Index" class="nav-link">Documento de marcas de vehiculo</a>
                                                     </li>
-
 
 
                                                     <li class="nav-item">

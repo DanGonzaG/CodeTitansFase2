@@ -60,15 +60,15 @@ namespace Preacepta.Modelos.AbstraccionesFrond
         public DateOnly FechaFirma { get; set; }
 
         [DisplayName("Abogado")]
-        public virtual TGeAbogado? CedulaAbogadoNavigation { get; set; } = null!;
+        public virtual TGeAbogado CedulaAbogadoNavigation { get; set; } = null!;
 
         [DisplayName("Cliente")]
-        public virtual TGePersona? CedulaClienteNavigation { get; set; } = null!;
+        public virtual TGePersona CedulaClienteNavigation { get; set; } = null!;
 
         [DisplayName("Ciudad")]
-        public virtual TCrDistrito? CiudadFirmaNavigation { get; set; } = null!;
+        public virtual TCrDistrito CiudadFirmaNavigation { get; set; } = null!;
 
         [DisplayName("Provincia")]
-        public virtual TCrProvincia? ProvinciaNavigation { get; set; } = null!;
+        public virtual TCrProvincia ProvinciaNavigation { get; set; } = null!;
     }
 }

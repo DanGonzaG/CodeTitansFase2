@@ -8,6 +8,6 @@ build_property.PlatformNeutralAssembly =
 build_property.EnforceExtendedAnalyzerRules = 
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = Preacepta.LN
-build_property.ProjectDir = C:\Praecepta2\Preacepta.LN\
+build_property.ProjectDir = C:\Preacepta\Preacepta.LN\
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 

@@ -1,871 +1,863 @@
 {
   "Files": [
     {
-      "Id": "C:\\Praecepta2\\Preacepta.UI\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\Preacepta.UI.bundle.scp.css",
+      "Id": "C:\\Preacepta\\Preacepta.UI\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\Preacepta.UI.bundle.scp.css",
       "PackagePath": "staticwebassets\\Preacepta.UI.bundle.scp.css"
     },
     {
-      "Id": "C:\\Praecepta2\\Preacepta.UI\\wwwroot\\Calendario\\CalendarDaniel.css",
+      "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\Calendario\\CalendarDaniel.css",
       "PackagePath": "staticwebassets\\Calendario\\CalendarDaniel.css"
     },
     {
-      "Id": "C:\\Praecepta2\\Preacepta.UI\\wwwroot\\Calendario\\scriptCalendar.js",
+      "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\Calendario\\scriptCalendar.js",
       "PackagePath": "staticwebassets\\Calendario\\scriptCalendar.js"
     },
     {
-      "Id": "C:\\Praecepta2\\Preacepta.UI\\wwwroot\\Calendario\\styleCalendar.css",
+      "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\Calendario\\styleCalendar.css",
       "PackagePath": "staticwebassets\\Calendario\\styleCalendar.css"
     },
     {
-      "Id": "C:\\Praecepta2\\Preacepta.UI\\wwwroot\\css\\site.css",
+      "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\css\\site.css",
       "PackagePath": "staticwebassets\\css\\site.css"
     },
     {
-      "Id": "C:\\Praecepta2\\Preacepta.UI\\wwwroot\\favicon.ico",
+      "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\favicon.ico",
       "PackagePath": "staticwebassets\\favicon.ico"
     },
     {
-      "Id": "C:\\Praecepta2\\Preacepta.UI\\wwwroot\\js\\site.js",
+      "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\js\\site.js",
       "PackagePath": "staticwebassets\\js\\site.js"
     },
     {
-      "Id": "C:\\Praecepta2\\Preacepta.UI\\wwwroot\\lib\\bootstrap\\LICENSE",
+      "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lib\\bootstrap\\LICENSE",
       "PackagePath": "staticwebassets\\lib\\bootstrap"
     },
     {
-      "Id": "C:\\Praecepta2\\Preacepta.UI\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css",
+      "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css"
     },
     {
-      "Id": "C:\\Praecepta2\\Preacepta.UI\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css.map",
+      "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css.map"
     },
     {
-      "Id": "C:\\Praecepta2\\Preacepta.UI\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css",
+      "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css"
     },
     {
-      "Id": "C:\\Praecepta2\\Preacepta.UI\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css.map",
+      "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css.map"
     },
     {
-      "Id": "C:\\Praecepta2\\Preacepta.UI\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css",
+      "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css"
     },
     {
-      "Id": "C:\\Praecepta2\\Preacepta.UI\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css.map",
+      "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css.map"
     },
     {
-      "Id": "C:\\Praecepta2\\Preacepta.UI\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css",
+      "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css"
     },
     {
-      "Id": "C:\\Praecepta2\\Preacepta.UI\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css.map",
+      "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css.map"
     },
     {
-      "Id": "C:\\Praecepta2\\Preacepta.UI\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css",
+      "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css"
     },
     {
-      "Id": "C:\\Praecepta2\\Preacepta.UI\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css.map",
+      "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css.map"
     },
     {
-      "Id": "C:\\Praecepta2\\Preacepta.UI\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css",
+      "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css"
     },
     {
-      "Id": "C:\\Praecepta2\\Preacepta.UI\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css.map",
+      "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css.map"
     },
     {
-      "Id": "C:\\Praecepta2\\Preacepta.UI\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css",
+      "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css"
     },
     {
-      "Id": "C:\\Praecepta2\\Preacepta.UI\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css.map",
+      "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css.map"
     },
     {
-      "Id": "C:\\Praecepta2\\Preacepta.UI\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css",
+      "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css"
     },
     {
-      "Id": "C:\\Praecepta2\\Preacepta.UI\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css.map",
+      "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css.map"
     },
     {
-      "Id": "C:\\Praecepta2\\Preacepta.UI\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css",
+      "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css"
     },
     {
-      "Id": "C:\\Praecepta2\\Preacepta.UI\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css.map",
+      "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css.map"
     },
     {
-      "Id": "C:\\Praecepta2\\Preacepta.UI\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css",
+      "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css"
     },
     {
-      "Id": "C:\\Praecepta2\\Preacepta.UI\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css.map",
+      "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css.map"
     },
     {
-      "Id": "C:\\Praecepta2\\Preacepta.UI\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css",
+      "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css"
     },
     {
-      "Id": "C:\\Praecepta2\\Preacepta.UI\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css.map",
+      "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css.map"
     },
     {
-      "Id": "C:\\Praecepta2\\Preacepta.UI\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css",
+      "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css"
     },
     {
-      "Id": "C:\\Praecepta2\\Preacepta.UI\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css.map",
+      "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css.map"
     },
     {
-      "Id": "C:\\Praecepta2\\Preacepta.UI\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.css",
+      "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.css",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.css"
     },
     {
-      "Id": "C:\\Praecepta2\\Preacepta.UI\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.css.map",
+      "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.css.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.css.map"
     },
     {
-      "Id": "C:\\Praecepta2\\Preacepta.UI\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.min.css",
+      "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.min.css",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.min.css"
     },
     {
-      "Id": "C:\\Praecepta2\\Preacepta.UI\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.min.css.map",
+      "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.min.css.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.min.css.map"
     },
     {
-      "Id": "C:\\Praecepta2\\Preacepta.UI\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css",
+      "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css"
     },
     {
-      "Id": "C:\\Praecepta2\\Preacepta.UI\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css.map",
+      "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css.map"
     },
     {
-      "Id": "C:\\Praecepta2\\Preacepta.UI\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css",
+      "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css"
     },
     {
-      "Id": "C:\\Praecepta2\\Preacepta.UI\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css.map",
+      "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css.map"
     },
     {
-      "Id": "C:\\Praecepta2\\Preacepta.UI\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js",
+      "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js"
     },
     {
-      "Id": "C:\\Praecepta2\\Preacepta.UI\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js.map",
+      "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js.map"
     },
     {
-      "Id": "C:\\Praecepta2\\Preacepta.UI\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js",
+      "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js"
     },
     {
-      "Id": "C:\\Praecepta2\\Preacepta.UI\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js.map",
+      "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js.map"
     },
     {
-      "Id": "C:\\Praecepta2\\Preacepta.UI\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js",
+      "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js"
     },
     {
-      "Id": "C:\\Praecepta2\\Preacepta.UI\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js.map",
+      "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js.map"
     },
     {
-      "Id": "C:\\Praecepta2\\Preacepta.UI\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js",
+      "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js"
     },
     {
-      "Id": "C:\\Praecepta2\\Preacepta.UI\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js.map",
+      "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js.map"
     },
     {
-      "Id": "C:\\Praecepta2\\Preacepta.UI\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.js",
+      "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.js",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.js"
     },
     {
-      "Id": "C:\\Praecepta2\\Preacepta.UI\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.js.map",
+      "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.js.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.js.map"
     },
     {
-      "Id": "C:\\Praecepta2\\Preacepta.UI\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.min.js",
+      "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.min.js",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.min.js"
     },
     {
-      "Id": "C:\\Praecepta2\\Preacepta.UI\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.min.js.map",
+      "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.min.js.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.min.js.map"
     },
     {
-      "Id": "C:\\Praecepta2\\Preacepta.UI\\wwwroot\\lib\\jquery-validation-unobtrusive\\LICENSE.txt",
+      "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lib\\jquery-validation-unobtrusive\\LICENSE.txt",
       "PackagePath": "staticwebassets\\lib\\jquery-validation-unobtrusive\\LICENSE.txt"
     },
     {
-      "Id": "C:\\Praecepta2\\Preacepta.UI\\wwwroot\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.js",
+      "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.js",
       "PackagePath": "staticwebassets\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.js"
     },
     {
-      "Id": "C:\\Praecepta2\\Preacepta.UI\\wwwroot\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.min.js",
+      "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.min.js",
       "PackagePath": "staticwebassets\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.min.js"
     },
     {
-      "Id": "C:\\Praecepta2\\Preacepta.UI\\wwwroot\\lib\\jquery-validation\\LICENSE.md",
+      "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lib\\jquery-validation\\LICENSE.md",
       "PackagePath": "staticwebassets\\lib\\jquery-validation\\LICENSE.md"
     },
     {
-      "Id": "C:\\Praecepta2\\Preacepta.UI\\wwwroot\\lib\\jquery-validation\\dist\\additional-methods.js",
+      "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lib\\jquery-validation\\dist\\additional-methods.js",
       "PackagePath": "staticwebassets\\lib\\jquery-validation\\dist\\additional-methods.js"
     },
     {
-      "Id": "C:\\Praecepta2\\Preacepta.UI\\wwwroot\\lib\\jquery-validation\\dist\\additional-methods.min.js",
+      "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lib\\jquery-validation\\dist\\additional-methods.min.js",
       "PackagePath": "staticwebassets\\lib\\jquery-validation\\dist\\additional-methods.min.js"
     },
     {
-      "Id": "C:\\Praecepta2\\Preacepta.UI\\wwwroot\\lib\\jquery-validation\\dist\\jquery.validate.js",
+      "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lib\\jquery-validation\\dist\\jquery.validate.js",
       "PackagePath": "staticwebassets\\lib\\jquery-validation\\dist\\jquery.validate.js"
     },
     {
-      "Id": "C:\\Praecepta2\\Preacepta.UI\\wwwroot\\lib\\jquery-validation\\dist\\jquery.validate.min.js",
+      "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lib\\jquery-validation\\dist\\jquery.validate.min.js",
       "PackagePath": "staticwebassets\\lib\\jquery-validation\\dist\\jquery.validate.min.js"
     },
     {
-      "Id": "C:\\Praecepta2\\Preacepta.UI\\wwwroot\\lib\\jquery\\LICENSE.txt",
+      "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lib\\jquery\\LICENSE.txt",
       "PackagePath": "staticwebassets\\lib\\jquery\\LICENSE.txt"
     },
     {
-      "Id": "C:\\Praecepta2\\Preacepta.UI\\wwwroot\\lib\\jquery\\dist\\jquery.js",
+      "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lib\\jquery\\dist\\jquery.js",
       "PackagePath": "staticwebassets\\lib\\jquery\\dist\\jquery.js"
     },
     {
-      "Id": "C:\\Praecepta2\\Preacepta.UI\\wwwroot\\lib\\jquery\\dist\\jquery.min.js",
+      "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lib\\jquery\\dist\\jquery.min.js",
       "PackagePath": "staticwebassets\\lib\\jquery\\dist\\jquery.min.js"
     },
     {
-      "Id": "C:\\Praecepta2\\Preacepta.UI\\wwwroot\\lib\\jquery\\dist\\jquery.min.map",
+      "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lib\\jquery\\dist\\jquery.min.map",
       "PackagePath": "staticwebassets\\lib\\jquery\\dist\\jquery.min.map"
     },
     {
-      "Id": "C:\\Praecepta2\\Preacepta.UI\\wwwroot\\lyso\\DocsMachotes\\AutorizacionExpedienteMachote.html",
-      "PackagePath": "staticwebassets\\lyso\\DocsMachotes\\AutorizacionExpedienteMachote.html"
-    },
-    {
-      "Id": "C:\\Praecepta2\\Preacepta.UI\\wwwroot\\lyso\\css\\Daniel.css",
+      "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lyso\\css\\Daniel.css",
       "PackagePath": "staticwebassets\\lyso\\css\\Daniel.css"
     },
     {
-      "Id": "C:\\Praecepta2\\Preacepta.UI\\wwwroot\\lyso\\css\\animate.min.css",
+      "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lyso\\css\\animate.min.css",
       "PackagePath": "staticwebassets\\lyso\\css\\animate.min.css"
     },
     {
-      "Id": "C:\\Praecepta2\\Preacepta.UI\\wwwroot\\lyso\\css\\bootstrap.min.css",
+      "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lyso\\css\\bootstrap.min.css",
       "PackagePath": "staticwebassets\\lyso\\css\\bootstrap.min.css"
     },
     {
-      "Id": "C:\\Praecepta2\\Preacepta.UI\\wwwroot\\lyso\\css\\icofont.min.css",
+      "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lyso\\css\\icofont.min.css",
       "PackagePath": "staticwebassets\\lyso\\css\\icofont.min.css"
     },
     {
-      "Id": "C:\\Praecepta2\\Preacepta.UI\\wwwroot\\lyso\\css\\magnific-popup.min.css",
+      "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lyso\\css\\magnific-popup.min.css",
       "PackagePath": "staticwebassets\\lyso\\css\\magnific-popup.min.css"
     },
     {
-      "Id": "C:\\Praecepta2\\Preacepta.UI\\wwwroot\\lyso\\css\\meanmenu.css",
+      "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lyso\\css\\meanmenu.css",
       "PackagePath": "staticwebassets\\lyso\\css\\meanmenu.css"
     },
     {
-      "Id": "C:\\Praecepta2\\Preacepta.UI\\wwwroot\\lyso\\css\\nice-select.min.css",
+      "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lyso\\css\\nice-select.min.css",
       "PackagePath": "staticwebassets\\lyso\\css\\nice-select.min.css"
     },
     {
-      "Id": "C:\\Praecepta2\\Preacepta.UI\\wwwroot\\lyso\\css\\odometer.min.css",
+      "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lyso\\css\\odometer.min.css",
       "PackagePath": "staticwebassets\\lyso\\css\\odometer.min.css"
     },
     {
-      "Id": "C:\\Praecepta2\\Preacepta.UI\\wwwroot\\lyso\\css\\owl.carousel.min.css",
+      "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lyso\\css\\owl.carousel.min.css",
       "PackagePath": "staticwebassets\\lyso\\css\\owl.carousel.min.css"
     },
     {
-      "Id": "C:\\Praecepta2\\Preacepta.UI\\wwwroot\\lyso\\css\\owl.theme.default.min.css",
+      "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lyso\\css\\owl.theme.default.min.css",
       "PackagePath": "staticwebassets\\lyso\\css\\owl.theme.default.min.css"
     },
     {
-      "Id": "C:\\Praecepta2\\Preacepta.UI\\wwwroot\\lyso\\css\\responsive.css",
+      "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lyso\\css\\responsive.css",
       "PackagePath": "staticwebassets\\lyso\\css\\responsive.css"
     },
     {
-      "Id": "C:\\Praecepta2\\Preacepta.UI\\wwwroot\\lyso\\css\\responsive.css.map",
+      "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lyso\\css\\responsive.css.map",
       "PackagePath": "staticwebassets\\lyso\\css\\responsive.css.map"
     },
     {
-      "Id": "C:\\Praecepta2\\Preacepta.UI\\wwwroot\\lyso\\css\\responsive.scss",
+      "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lyso\\css\\responsive.scss",
       "PackagePath": "staticwebassets\\lyso\\css\\responsive.scss"
     },
     {
-      "Id": "C:\\Praecepta2\\Preacepta.UI\\wwwroot\\lyso\\css\\style.css",
+      "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lyso\\css\\style.css",
       "PackagePath": "staticwebassets\\lyso\\css\\style.css"
     },
     {
-      "Id": "C:\\Praecepta2\\Preacepta.UI\\wwwroot\\lyso\\css\\style.css.map",
+      "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lyso\\css\\style.css.map",
       "PackagePath": "staticwebassets\\lyso\\css\\style.css.map"
     },
     {
-      "Id": "C:\\Praecepta2\\Preacepta.UI\\wwwroot\\lyso\\css\\style.scss",
+      "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lyso\\css\\style.scss",
       "PackagePath": "staticwebassets\\lyso\\css\\style.scss"
     },
     {
-      "Id": "C:\\Praecepta2\\Preacepta.UI\\wwwroot\\lyso\\css\\theme-dark.css",
+      "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lyso\\css\\theme-dark.css",
       "PackagePath": "staticwebassets\\lyso\\css\\theme-dark.css"
     },
     {
-      "Id": "C:\\Praecepta2\\Preacepta.UI\\wwwroot\\lyso\\css\\theme-dark.css.map",
+      "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lyso\\css\\theme-dark.css.map",
       "PackagePath": "staticwebassets\\lyso\\css\\theme-dark.css.map"
     },
     {
-      "Id": "C:\\Praecepta2\\Preacepta.UI\\wwwroot\\lyso\\css\\theme-dark.scss",
+      "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lyso\\css\\theme-dark.scss",
       "PackagePath": "staticwebassets\\lyso\\css\\theme-dark.scss"
     },
     {
-      "Id": "C:\\Praecepta2\\Preacepta.UI\\wwwroot\\lyso\\fonts\\Flaticon.eot",
+      "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lyso\\fonts\\Flaticon.eot",
       "PackagePath": "staticwebassets\\lyso\\fonts\\Flaticon.eot"
     },
     {
-      "Id": "C:\\Praecepta2\\Preacepta.UI\\wwwroot\\lyso\\fonts\\Flaticon.svg",
+      "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lyso\\fonts\\Flaticon.svg",
       "PackagePath": "staticwebassets\\lyso\\fonts\\Flaticon.svg"
     },
     {
-      "Id": "C:\\Praecepta2\\Preacepta.UI\\wwwroot\\lyso\\fonts\\Flaticon.ttf",
+      "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lyso\\fonts\\Flaticon.ttf",
       "PackagePath": "staticwebassets\\lyso\\fonts\\Flaticon.ttf"
     },
     {
-      "Id": "C:\\Praecepta2\\Preacepta.UI\\wwwroot\\lyso\\fonts\\Flaticon.woff",
+      "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lyso\\fonts\\Flaticon.woff",
       "PackagePath": "staticwebassets\\lyso\\fonts\\Flaticon.woff"
     },
     {
-      "Id": "C:\\Praecepta2\\Preacepta.UI\\wwwroot\\lyso\\fonts\\Flaticon.woff2",
+      "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lyso\\fonts\\Flaticon.woff2",
       "PackagePath": "staticwebassets\\lyso\\fonts\\Flaticon.woff2"
     },
     {
-      "Id": "C:\\Praecepta2\\Preacepta.UI\\wwwroot\\lyso\\fonts\\PNG\\advocate.png",
+      "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lyso\\fonts\\PNG\\advocate.png",
       "PackagePath": "staticwebassets\\lyso\\fonts\\PNG\\advocate.png"
     },
     {
-      "Id": "C:\\Praecepta2\\Preacepta.UI\\wwwroot\\lyso\\fonts\\PNG\\agreement.png",
+      "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lyso\\fonts\\PNG\\agreement.png",
       "PackagePath": "staticwebassets\\lyso\\fonts\\PNG\\agreement.png"
     },
     {
-      "Id": "C:\\Praecepta2\\Preacepta.UI\\wwwroot\\lyso\\fonts\\PNG\\briefcase.png",
+      "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lyso\\fonts\\PNG\\briefcase.png",
       "PackagePath": "staticwebassets\\lyso\\fonts\\PNG\\briefcase.png"
     },
     {
-      "Id": "C:\\Praecepta2\\Preacepta.UI\\wwwroot\\lyso\\fonts\\PNG\\contract.png",
+      "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lyso\\fonts\\PNG\\contract.png",
       "PackagePath": "staticwebassets\\lyso\\fonts\\PNG\\contract.png"
     },
     {
-      "Id": "C:\\Praecepta2\\Preacepta.UI\\wwwroot\\lyso\\fonts\\PNG\\court house.png",
+      "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lyso\\fonts\\PNG\\court house.png",
       "PackagePath": "staticwebassets\\lyso\\fonts\\PNG\\court house.png"
     },
     {
-      "Id": "C:\\Praecepta2\\Preacepta.UI\\wwwroot\\lyso\\fonts\\PNG\\court.png",
+      "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lyso\\fonts\\PNG\\court.png",
       "PackagePath": "staticwebassets\\lyso\\fonts\\PNG\\court.png"
     },
     {
-      "Id": "C:\\Praecepta2\\Preacepta.UI\\wwwroot\\lyso\\fonts\\PNG\\criminal.png",
+      "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lyso\\fonts\\PNG\\criminal.png",
       "PackagePath": "staticwebassets\\lyso\\fonts\\PNG\\criminal.png"
     },
     {
-      "Id": "C:\\Praecepta2\\Preacepta.UI\\wwwroot\\lyso\\fonts\\PNG\\diplomacy.png",
+      "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lyso\\fonts\\PNG\\diplomacy.png",
       "PackagePath": "staticwebassets\\lyso\\fonts\\PNG\\diplomacy.png"
     },
     {
-      "Id": "C:\\Praecepta2\\Preacepta.UI\\wwwroot\\lyso\\fonts\\PNG\\evidence.png",
+      "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lyso\\fonts\\PNG\\evidence.png",
       "PackagePath": "staticwebassets\\lyso\\fonts\\PNG\\evidence.png"
     },
     {
-      "Id": "C:\\Praecepta2\\Preacepta.UI\\wwwroot\\lyso\\fonts\\PNG\\investigation.png",
+      "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lyso\\fonts\\PNG\\investigation.png",
       "PackagePath": "staticwebassets\\lyso\\fonts\\PNG\\investigation.png"
     },
     {
-      "Id": "C:\\Praecepta2\\Preacepta.UI\\wwwroot\\lyso\\fonts\\PNG\\judge.png",
+      "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lyso\\fonts\\PNG\\judge.png",
       "PackagePath": "staticwebassets\\lyso\\fonts\\PNG\\judge.png"
     },
     {
-      "Id": "C:\\Praecepta2\\Preacepta.UI\\wwwroot\\lyso\\fonts\\PNG\\jury.png",
+      "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lyso\\fonts\\PNG\\jury.png",
       "PackagePath": "staticwebassets\\lyso\\fonts\\PNG\\jury.png"
     },
     {
-      "Id": "C:\\Praecepta2\\Preacepta.UI\\wwwroot\\lyso\\fonts\\PNG\\justice.png",
+      "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lyso\\fonts\\PNG\\justice.png",
       "PackagePath": "staticwebassets\\lyso\\fonts\\PNG\\justice.png"
     },
     {
-      "Id": "C:\\Praecepta2\\Preacepta.UI\\wwwroot\\lyso\\fonts\\PNG\\legal document.png",
+      "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lyso\\fonts\\PNG\\legal document.png",
       "PackagePath": "staticwebassets\\lyso\\fonts\\PNG\\legal document.png"
     },
     {
-      "Id": "C:\\Praecepta2\\Preacepta.UI\\wwwroot\\lyso\\fonts\\PNG\\legislation.png",
+      "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lyso\\fonts\\PNG\\legislation.png",
       "PackagePath": "staticwebassets\\lyso\\fonts\\PNG\\legislation.png"
     },
     {
-      "Id": "C:\\Praecepta2\\Preacepta.UI\\wwwroot\\lyso\\fonts\\PNG\\oath.png",
+      "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lyso\\fonts\\PNG\\oath.png",
       "PackagePath": "staticwebassets\\lyso\\fonts\\PNG\\oath.png"
     },
     {
-      "Id": "C:\\Praecepta2\\Preacepta.UI\\wwwroot\\lyso\\fonts\\PNG\\police.png",
+      "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lyso\\fonts\\PNG\\police.png",
       "PackagePath": "staticwebassets\\lyso\\fonts\\PNG\\police.png"
     },
     {
-      "Id": "C:\\Praecepta2\\Preacepta.UI\\wwwroot\\lyso\\fonts\\PNG\\suspect.png",
+      "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lyso\\fonts\\PNG\\suspect.png",
       "PackagePath": "staticwebassets\\lyso\\fonts\\PNG\\suspect.png"
     },
     {
-      "Id": "C:\\Praecepta2\\Preacepta.UI\\wwwroot\\lyso\\fonts\\PNG\\trial.png",
+      "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lyso\\fonts\\PNG\\trial.png",
       "PackagePath": "staticwebassets\\lyso\\fonts\\PNG\\trial.png"
     },
     {
-      "Id": "C:\\Praecepta2\\Preacepta.UI\\wwwroot\\lyso\\fonts\\PNG\\witness.png",
+      "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lyso\\fonts\\PNG\\witness.png",
       "PackagePath": "staticwebassets\\lyso\\fonts\\PNG\\witness.png"
     },
     {
-      "Id": "C:\\Praecepta2\\Preacepta.UI\\wwwroot\\lyso\\fonts\\flaticon.css",
+      "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lyso\\fonts\\flaticon.css",
       "PackagePath": "staticwebassets\\lyso\\fonts\\flaticon.css"
     },
     {
-      "Id": "C:\\Praecepta2\\Preacepta.UI\\wwwroot\\lyso\\fonts\\icofont.eot",
+      "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lyso\\fonts\\icofont.eot",
       "PackagePath": "staticwebassets\\lyso\\fonts\\icofont.eot"
     },
     {
-      "Id": "C:\\Praecepta2\\Preacepta.UI\\wwwroot\\lyso\\fonts\\icofont.svg",
+      "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lyso\\fonts\\icofont.svg",
       "PackagePath": "staticwebassets\\lyso\\fonts\\icofont.svg"
     },
     {
-      "Id": "C:\\Praecepta2\\Preacepta.UI\\wwwroot\\lyso\\fonts\\icofont.ttf",
+      "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lyso\\fonts\\icofont.ttf",
       "PackagePath": "staticwebassets\\lyso\\fonts\\icofont.ttf"
     },
     {
-      "Id": "C:\\Praecepta2\\Preacepta.UI\\wwwroot\\lyso\\fonts\\icofont.woff",
+      "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lyso\\fonts\\icofont.woff",
       "PackagePath": "staticwebassets\\lyso\\fonts\\icofont.woff"
     },
     {
-      "Id": "C:\\Praecepta2\\Preacepta.UI\\wwwroot\\lyso\\fonts\\icofont.woff2",
+      "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lyso\\fonts\\icofont.woff2",
       "PackagePath": "staticwebassets\\lyso\\fonts\\icofont.woff2"
     },
     {
-      "Id": "C:\\Praecepta2\\Preacepta.UI\\wwwroot\\lyso\\img\\Imagen1.png",
+      "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lyso\\img\\Imagen1.png",
       "PackagePath": "staticwebassets\\lyso\\img\\Imagen1.png"
     },
     {
-      "Id": "C:\\Praecepta2\\Preacepta.UI\\wwwroot\\lyso\\img\\PraeceptaLogo.png",
+      "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lyso\\img\\PraeceptaLogo.png",
       "PackagePath": "staticwebassets\\lyso\\img\\PraeceptaLogo.png"
     },
     {
-      "Id": "C:\\Praecepta2\\Preacepta.UI\\wwwroot\\lyso\\img\\PraeceptaLogo2.png",
+      "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lyso\\img\\PraeceptaLogo2.png",
       "PackagePath": "staticwebassets\\lyso\\img\\PraeceptaLogo2.png"
     },
     {
-      "Id": "C:\\Praecepta2\\Preacepta.UI\\wwwroot\\lyso\\img\\PreaceptaLogoColorNegro.png",
+      "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lyso\\img\\PreaceptaLogoColorNegro.png",
       "PackagePath": "staticwebassets\\lyso\\img\\PreaceptaLogoColorNegro.png"
     },
     {
-      "Id": "C:\\Praecepta2\\Preacepta.UI\\wwwroot\\lyso\\img\\PreaceptaLogoColorNegro3.png",
+      "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lyso\\img\\PreaceptaLogoColorNegro3.png",
       "PackagePath": "staticwebassets\\lyso\\img\\PreaceptaLogoColorNegro3.png"
     },
     {
-      "Id": "C:\\Praecepta2\\Preacepta.UI\\wwwroot\\lyso\\img\\about\\1-1.jpg",
+      "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lyso\\img\\about\\1-1.jpg",
       "PackagePath": "staticwebassets\\lyso\\img\\about\\1-1.jpg"
     },
     {
-      "Id": "C:\\Praecepta2\\Preacepta.UI\\wwwroot\\lyso\\img\\about\\1-lyzo.jpg",
+      "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lyso\\img\\about\\1-lyzo.jpg",
       "PackagePath": "staticwebassets\\lyso\\img\\about\\1-lyzo.jpg"
     },
     {
-      "Id": "C:\\Praecepta2\\Preacepta.UI\\wwwroot\\lyso\\img\\about\\2.jpg",
+      "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lyso\\img\\about\\2.jpg",
       "PackagePath": "staticwebassets\\lyso\\img\\about\\2.jpg"
     },
     {
-      "Id": "C:\\Praecepta2\\Preacepta.UI\\wwwroot\\lyso\\img\\attorney-details\\1.jpg",
+      "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lyso\\img\\attorney-details\\1.jpg",
       "PackagePath": "staticwebassets\\lyso\\img\\attorney-details\\1.jpg"
     },
     {
-      "Id": "C:\\Praecepta2\\Preacepta.UI\\wwwroot\\lyso\\img\\blog-details\\1.jpg",
+      "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lyso\\img\\blog-details\\1.jpg",
       "PackagePath": "staticwebassets\\lyso\\img\\blog-details\\1.jpg"
     },
     {
-      "Id": "C:\\Praecepta2\\Preacepta.UI\\wwwroot\\lyso\\img\\blog-details\\2.jpg",
+      "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lyso\\img\\blog-details\\2.jpg",
       "PackagePath": "staticwebassets\\lyso\\img\\blog-details\\2.jpg"
     },
     {
-      "Id": "C:\\Praecepta2\\Preacepta.UI\\wwwroot\\lyso\\img\\blog-details\\3.jpg",
+      "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lyso\\img\\blog-details\\3.jpg",
       "PackagePath": "staticwebassets\\lyso\\img\\blog-details\\3.jpg"
     },
     {
-      "Id": "C:\\Praecepta2\\Preacepta.UI\\wwwroot\\lyso\\img\\blog-details\\4.jpg",
+      "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lyso\\img\\blog-details\\4.jpg",
       "PackagePath": "staticwebassets\\lyso\\img\\blog-details\\4.jpg"
     },
     {
-      "Id": "C:\\Praecepta2\\Preacepta.UI\\wwwroot\\lyso\\img\\case-details\\1.jpg",
+      "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lyso\\img\\case-details\\1.jpg",
       "PackagePath": "staticwebassets\\lyso\\img\\case-details\\1.jpg"
     },
     {
-      "Id": "C:\\Praecepta2\\Preacepta.UI\\wwwroot\\lyso\\img\\contact-bg.png",
+      "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lyso\\img\\contact-bg.png",
       "PackagePath": "staticwebassets\\lyso\\img\\contact-bg.png"
     },
     {
-      "Id": "C:\\Praecepta2\\Preacepta.UI\\wwwroot\\lyso\\img\\favicon.png",
+      "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lyso\\img\\favicon.png",
       "PackagePath": "staticwebassets\\lyso\\img\\favicon.png"
     },
     {
-      "Id": "C:\\Praecepta2\\Preacepta.UI\\wwwroot\\lyso\\img\\home-one\\1.jpg",
+      "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lyso\\img\\home-one\\1.jpg",
       "PackagePath": "staticwebassets\\lyso\\img\\home-one\\1.jpg"
     },
     {
-      "Id": "C:\\Praecepta2\\Preacepta.UI\\wwwroot\\lyso\\img\\home-one\\10-Daniel.png",
+      "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lyso\\img\\home-one\\10-Daniel.png",
       "PackagePath": "staticwebassets\\lyso\\img\\home-one\\10-Daniel.png"
     },
     {
-      "Id": "C:\\Praecepta2\\Preacepta.UI\\wwwroot\\lyso\\img\\home-one\\10.png",
+      "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lyso\\img\\home-one\\10.png",
       "PackagePath": "staticwebassets\\lyso\\img\\home-one\\10.png"
     },
     {
-      "Id": "C:\\Praecepta2\\Preacepta.UI\\wwwroot\\lyso\\img\\home-one\\11.png",
+      "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lyso\\img\\home-one\\11.png",
       "PackagePath": "staticwebassets\\lyso\\img\\home-one\\11.png"
     },
     {
-      "Id": "C:\\Praecepta2\\Preacepta.UI\\wwwroot\\lyso\\img\\home-one\\12.png",
+      "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lyso\\img\\home-one\\12.png",
       "PackagePath": "staticwebassets\\lyso\\img\\home-one\\12.png"
     },
     {
-      "Id": "C:\\Praecepta2\\Preacepta.UI\\wwwroot\\lyso\\img\\home-one\\2.png",
+      "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lyso\\img\\home-one\\2.png",
       "PackagePath": "staticwebassets\\lyso\\img\\home-one\\2.png"
     },
     {
-      "Id": "C:\\Praecepta2\\Preacepta.UI\\wwwroot\\lyso\\img\\home-one\\3.png",
+      "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lyso\\img\\home-one\\3.png",
       "PackagePath": "staticwebassets\\lyso\\img\\home-one\\3.png"
     },
     {
-      "Id": "C:\\Praecepta2\\Preacepta.UI\\wwwroot\\lyso\\img\\home-one\\4.png",
+      "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lyso\\img\\home-one\\4.png",
       "PackagePath": "staticwebassets\\lyso\\img\\home-one\\4.png"
     },
     {
-      "Id": "C:\\Praecepta2\\Preacepta.UI\\wwwroot\\lyso\\img\\home-one\\5-Daniel.jpg",
+      "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lyso\\img\\home-one\\5-Daniel.jpg",
       "PackagePath": "staticwebassets\\lyso\\img\\home-one\\5-Daniel.jpg"
     },
     {
-      "Id": "C:\\Praecepta2\\Preacepta.UI\\wwwroot\\lyso\\img\\home-one\\5.jpg",
+      "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lyso\\img\\home-one\\5.jpg",
       "PackagePath": "staticwebassets\\lyso\\img\\home-one\\5.jpg"
     },
     {
-      "Id": "C:\\Praecepta2\\Preacepta.UI\\wwwroot\\lyso\\img\\home-one\\6.png",
+      "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lyso\\img\\home-one\\6.png",
       "PackagePath": "staticwebassets\\lyso\\img\\home-one\\6.png"
     },
     {
-      "Id": "C:\\Praecepta2\\Preacepta.UI\\wwwroot\\lyso\\img\\home-one\\7.png",
+      "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lyso\\img\\home-one\\7.png",
       "PackagePath": "staticwebassets\\lyso\\img\\home-one\\7.png"
     },
     {
-      "Id": "C:\\Praecepta2\\Preacepta.UI\\wwwroot\\lyso\\img\\home-one\\8.png",
+      "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lyso\\img\\home-one\\8.png",
       "PackagePath": "staticwebassets\\lyso\\img\\home-one\\8.png"
     },
     {
-      "Id": "C:\\Praecepta2\\Preacepta.UI\\wwwroot\\lyso\\img\\home-one\\9.png",
+      "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lyso\\img\\home-one\\9.png",
       "PackagePath": "staticwebassets\\lyso\\img\\home-one\\9.png"
     },
     {
-      "Id": "C:\\Praecepta2\\Preacepta.UI\\wwwroot\\lyso\\img\\home-one\\blog\\1.jpg",
+      "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lyso\\img\\home-one\\blog\\1.jpg",
       "PackagePath": "staticwebassets\\lyso\\img\\home-one\\blog\\1.jpg"
     },
     {
-      "Id": "C:\\Praecepta2\\Preacepta.UI\\wwwroot\\lyso\\img\\home-one\\blog\\2.jpg",
+      "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lyso\\img\\home-one\\blog\\2.jpg",
       "PackagePath": "staticwebassets\\lyso\\img\\home-one\\blog\\2.jpg"
     },
     {
-      "Id": "C:\\Praecepta2\\Preacepta.UI\\wwwroot\\lyso\\img\\home-one\\blog\\3.jpg",
+      "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lyso\\img\\home-one\\blog\\3.jpg",
       "PackagePath": "staticwebassets\\lyso\\img\\home-one\\blog\\3.jpg"
     },
     {
-      "Id": "C:\\Praecepta2\\Preacepta.UI\\wwwroot\\lyso\\img\\home-one\\blog\\4.jpg",
+      "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lyso\\img\\home-one\\blog\\4.jpg",
       "PackagePath": "staticwebassets\\lyso\\img\\home-one\\blog\\4.jpg"
     },
     {
-      "Id": "C:\\Praecepta2\\Preacepta.UI\\wwwroot\\lyso\\img\\home-one\\blog\\5.jpg",
+      "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lyso\\img\\home-one\\blog\\5.jpg",
       "PackagePath": "staticwebassets\\lyso\\img\\home-one\\blog\\5.jpg"
     },
     {
-      "Id": "C:\\Praecepta2\\Preacepta.UI\\wwwroot\\lyso\\img\\home-one\\blog\\6.jpg",
+      "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lyso\\img\\home-one\\blog\\6.jpg",
       "PackagePath": "staticwebassets\\lyso\\img\\home-one\\blog\\6.jpg"
     },
     {
-      "Id": "C:\\Praecepta2\\Preacepta.UI\\wwwroot\\lyso\\img\\home-one\\blog\\7.jpg",
+      "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lyso\\img\\home-one\\blog\\7.jpg",
       "PackagePath": "staticwebassets\\lyso\\img\\home-one\\blog\\7.jpg"
     },
     {
-      "Id": "C:\\Praecepta2\\Preacepta.UI\\wwwroot\\lyso\\img\\home-one\\blog\\8.jpg",
+      "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lyso\\img\\home-one\\blog\\8.jpg",
       "PackagePath": "staticwebassets\\lyso\\img\\home-one\\blog\\8.jpg"
     },
     {
-      "Id": "C:\\Praecepta2\\Preacepta.UI\\wwwroot\\lyso\\img\\home-one\\blog\\9.jpg",
+      "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lyso\\img\\home-one\\blog\\9.jpg",
       "PackagePath": "staticwebassets\\lyso\\img\\home-one\\blog\\9.jpg"
     },
     {
-      "Id": "C:\\Praecepta2\\Preacepta.UI\\wwwroot\\lyso\\img\\home-one\\contact-bg.jpg",
+      "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lyso\\img\\home-one\\contact-bg.jpg",
       "PackagePath": "staticwebassets\\lyso\\img\\home-one\\contact-bg.jpg"
     },
     {
-      "Id": "C:\\Praecepta2\\Preacepta.UI\\wwwroot\\lyso\\img\\home-one\\footer.jpg",
+      "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lyso\\img\\home-one\\footer.jpg",
       "PackagePath": "staticwebassets\\lyso\\img\\home-one\\footer.jpg"
     },
     {
-      "Id": "C:\\Praecepta2\\Preacepta.UI\\wwwroot\\lyso\\img\\home-one\\location-bg.jpg",
+      "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lyso\\img\\home-one\\location-bg.jpg",
       "PackagePath": "staticwebassets\\lyso\\img\\home-one\\location-bg.jpg"
     },
     {
-      "Id": "C:\\Praecepta2\\Preacepta.UI\\wwwroot\\lyso\\img\\home-one\\newsletter.png",
+      "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lyso\\img\\home-one\\newsletter.png",
       "PackagePath": "staticwebassets\\lyso\\img\\home-one\\newsletter.png"
     },
     {
-      "Id": "C:\\Praecepta2\\Preacepta.UI\\wwwroot\\lyso\\img\\home-one\\portfolio\\1.jpg",
+      "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lyso\\img\\home-one\\portfolio\\1.jpg",
       "PackagePath": "staticwebassets\\lyso\\img\\home-one\\portfolio\\1.jpg"
     },
     {
-      "Id": "C:\\Praecepta2\\Preacepta.UI\\wwwroot\\lyso\\img\\home-one\\portfolio\\2.jpg",
+      "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lyso\\img\\home-one\\portfolio\\2.jpg",
       "PackagePath": "staticwebassets\\lyso\\img\\home-one\\portfolio\\2.jpg"
     },
     {
-      "Id": "C:\\Praecepta2\\Preacepta.UI\\wwwroot\\lyso\\img\\home-one\\portfolio\\3.jpg",
+      "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lyso\\img\\home-one\\portfolio\\3.jpg",
       "PackagePath": "staticwebassets\\lyso\\img\\home-one\\portfolio\\3.jpg"
     },
     {
-      "Id": "C:\\Praecepta2\\Preacepta.UI\\wwwroot\\lyso\\img\\home-one\\portfolio\\4.jpg",
+      "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lyso\\img\\home-one\\portfolio\\4.jpg",
       "PackagePath": "staticwebassets\\lyso\\img\\home-one\\portfolio\\4.jpg"
     },
     {
-      "Id": "C:\\Praecepta2\\Preacepta.UI\\wwwroot\\lyso\\img\\home-one\\portfolio\\5.jpg",
+      "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lyso\\img\\home-one\\portfolio\\5.jpg",
       "PackagePath": "staticwebassets\\lyso\\img\\home-one\\portfolio\\5.jpg"
     },
     {
-      "Id": "C:\\Praecepta2\\Preacepta.UI\\wwwroot\\lyso\\img\\home-one\\portfolio\\6.jpg",
+      "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lyso\\img\\home-one\\portfolio\\6.jpg",
       "PackagePath": "staticwebassets\\lyso\\img\\home-one\\portfolio\\6.jpg"
     },
     {
-      "Id": "C:\\Praecepta2\\Preacepta.UI\\wwwroot\\lyso\\img\\home-one\\portfolio\\7.jpg",
+      "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lyso\\img\\home-one\\portfolio\\7.jpg",
       "PackagePath": "staticwebassets\\lyso\\img\\home-one\\portfolio\\7.jpg"
     },
     {
-      "Id": "C:\\Praecepta2\\Preacepta.UI\\wwwroot\\lyso\\img\\home-one\\portfolio\\8.jpg",
+      "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lyso\\img\\home-one\\portfolio\\8.jpg",
       "PackagePath": "staticwebassets\\lyso\\img\\home-one\\portfolio\\8.jpg"
     },
     {
-      "Id": "C:\\Praecepta2\\Preacepta.UI\\wwwroot\\lyso\\img\\home-one\\portfolio\\9.jpg",
+      "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lyso\\img\\home-one\\portfolio\\9.jpg",
       "PackagePath": "staticwebassets\\lyso\\img\\home-one\\portfolio\\9.jpg"
     },
     {
-      "Id": "C:\\Praecepta2\\Preacepta.UI\\wwwroot\\lyso\\img\\home-one\\team\\1.JPG",
+      "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lyso\\img\\home-one\\team\\1.JPG",
       "PackagePath": "staticwebassets\\lyso\\img\\home-one\\team\\1.JPG"
     },
     {
-      "Id": "C:\\Praecepta2\\Preacepta.UI\\wwwroot\\lyso\\img\\home-one\\team\\2.jpg",
+      "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lyso\\img\\home-one\\team\\2.jpg",
       "PackagePath": "staticwebassets\\lyso\\img\\home-one\\team\\2.jpg"
     },
     {
-      "Id": "C:\\Praecepta2\\Preacepta.UI\\wwwroot\\lyso\\img\\home-one\\team\\3.jpg",
+      "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lyso\\img\\home-one\\team\\3.jpg",
       "PackagePath": "staticwebassets\\lyso\\img\\home-one\\team\\3.jpg"
     },
     {
-      "Id": "C:\\Praecepta2\\Preacepta.UI\\wwwroot\\lyso\\img\\home-one\\team\\4.jpg",
+      "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lyso\\img\\home-one\\team\\4.jpg",
       "PackagePath": "staticwebassets\\lyso\\img\\home-one\\team\\4.jpg"
     },
     {
-      "Id": "C:\\Praecepta2\\Preacepta.UI\\wwwroot\\lyso\\img\\home-one\\team\\5.jpg",
+      "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lyso\\img\\home-one\\team\\5.jpg",
       "PackagePath": "staticwebassets\\lyso\\img\\home-one\\team\\5.jpg"
     },
     {
-      "Id": "C:\\Praecepta2\\Preacepta.UI\\wwwroot\\lyso\\img\\home-one\\team\\6.jpg",
+      "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lyso\\img\\home-one\\team\\6.jpg",
       "PackagePath": "staticwebassets\\lyso\\img\\home-one\\team\\6.jpg"
     },
     {
-      "Id": "C:\\Praecepta2\\Preacepta.UI\\wwwroot\\lyso\\img\\home-one\\team\\7.jpg",
+      "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lyso\\img\\home-one\\team\\7.jpg",
       "PackagePath": "staticwebassets\\lyso\\img\\home-one\\team\\7.jpg"
     },
     {
-      "Id": "C:\\Praecepta2\\Preacepta.UI\\wwwroot\\lyso\\img\\home-one\\team\\8.jpg",
+      "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lyso\\img\\home-one\\team\\8.jpg",
       "PackagePath": "staticwebassets\\lyso\\img\\home-one\\team\\8.jpg"
     },
     {
-      "Id": "C:\\Praecepta2\\Preacepta.UI\\wwwroot\\lyso\\img\\home-two\\1.png",
+      "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lyso\\img\\home-two\\1.png",
       "PackagePath": "staticwebassets\\lyso\\img\\home-two\\1.png"
     },
     {
-      "Id": "C:\\Praecepta2\\Preacepta.UI\\wwwroot\\lyso\\img\\home-two\\4.png",
+      "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lyso\\img\\home-two\\4.png",
       "PackagePath": "staticwebassets\\lyso\\img\\home-two\\4.png"
     },
     {
-      "Id": "C:\\Praecepta2\\Preacepta.UI\\wwwroot\\lyso\\img\\home-two\\5.jpg",
+      "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lyso\\img\\home-two\\5.jpg",
       "PackagePath": "staticwebassets\\lyso\\img\\home-two\\5.jpg"
     },
     {
-      "Id": "C:\\Praecepta2\\Preacepta.UI\\wwwroot\\lyso\\img\\home-two\\6.jpg",
+      "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lyso\\img\\home-two\\6.jpg",
       "PackagePath": "staticwebassets\\lyso\\img\\home-two\\6.jpg"
     },
     {
-      "Id": "C:\\Praecepta2\\Preacepta.UI\\wwwroot\\lyso\\img\\home-two\\home-slider\\1.jpg",
+      "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lyso\\img\\home-two\\home-slider\\1.jpg",
       "PackagePath": "staticwebassets\\lyso\\img\\home-two\\home-slider\\1.jpg"
     },
     {
-      "Id": "C:\\Praecepta2\\Preacepta.UI\\wwwroot\\lyso\\img\\home-two\\home-slider\\2.png",
+      "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lyso\\img\\home-two\\home-slider\\2.png",
       "PackagePath": "staticwebassets\\lyso\\img\\home-two\\home-slider\\2.png"
     },
     {
-      "Id": "C:\\Praecepta2\\Preacepta.UI\\wwwroot\\lyso\\img\\home-two\\home-slider\\3.png",
+      "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lyso\\img\\home-two\\home-slider\\3.png",
       "PackagePath": "staticwebassets\\lyso\\img\\home-two\\home-slider\\3.png"
     },
     {
-      "Id": "C:\\Praecepta2\\Preacepta.UI\\wwwroot\\lyso\\img\\home-two\\home-slider\\4.png",
+      "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lyso\\img\\home-two\\home-slider\\4.png",
       "PackagePath": "staticwebassets\\lyso\\img\\home-two\\home-slider\\4.png"
     },
     {
-      "Id": "C:\\Praecepta2\\Preacepta.UI\\wwwroot\\lyso\\img\\logo.png",
+      "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lyso\\img\\logo.png",
       "PackagePath": "staticwebassets\\lyso\\img\\logo.png"
     },
     {
-      "Id": "C:\\Praecepta2\\Preacepta.UI\\wwwroot\\lyso\\img\\night.png",
+      "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lyso\\img\\night.png",
       "PackagePath": "staticwebassets\\lyso\\img\\night.png"
     },
     {
-      "Id": "C:\\Praecepta2\\Preacepta.UI\\wwwroot\\lyso\\img\\sunny.png",
+      "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lyso\\img\\sunny.png",
       "PackagePath": "staticwebassets\\lyso\\img\\sunny.png"
     },
     {
-      "Id": "C:\\Praecepta2\\Preacepta.UI\\wwwroot\\lyso\\img\\testimonial\\1.jpg",
+      "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lyso\\img\\testimonial\\1.jpg",
       "PackagePath": "staticwebassets\\lyso\\img\\testimonial\\1.jpg"
     },
     {
-      "Id": "C:\\Praecepta2\\Preacepta.UI\\wwwroot\\lyso\\img\\testimonial\\2.jpg",
+      "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lyso\\img\\testimonial\\2.jpg",
       "PackagePath": "staticwebassets\\lyso\\img\\testimonial\\2.jpg"
     },
     {
-      "Id": "C:\\Praecepta2\\Preacepta.UI\\wwwroot\\lyso\\img\\testimonial\\3.jpg",
+      "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lyso\\img\\testimonial\\3.jpg",
       "PackagePath": "staticwebassets\\lyso\\img\\testimonial\\3.jpg"
     },
     {
-      "Id": "C:\\Praecepta2\\Preacepta.UI\\wwwroot\\lyso\\img\\testimonial\\4.jpg",
+      "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lyso\\img\\testimonial\\4.jpg",
       "PackagePath": "staticwebassets\\lyso\\img\\testimonial\\4.jpg"
     },
     {
-      "Id": "C:\\Praecepta2\\Preacepta.UI\\wwwroot\\lyso\\img\\testimonial\\5.jpg",
+      "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lyso\\img\\testimonial\\5.jpg",
       "PackagePath": "staticwebassets\\lyso\\img\\testimonial\\5.jpg"
     },
     {
-      "Id": "C:\\Praecepta2\\Preacepta.UI\\wwwroot\\lyso\\img\\testimonial\\6.jpg",
+      "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lyso\\img\\testimonial\\6.jpg",
       "PackagePath": "staticwebassets\\lyso\\img\\testimonial\\6.jpg"
     },
     {
-      "Id": "C:\\Praecepta2\\Preacepta.UI\\wwwroot\\lyso\\img\\testimonial\\Cliente.jpg",
+      "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lyso\\img\\testimonial\\Cliente.jpg",
       "PackagePath": "staticwebassets\\lyso\\img\\testimonial\\Cliente.jpg"
     },
     {
-      "Id": "C:\\Praecepta2\\Preacepta.UI\\wwwroot\\lyso\\img\\tutorial\\Imagen2.png",
+      "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lyso\\img\\tutorial\\Imagen2.png",
       "PackagePath": "staticwebassets\\lyso\\img\\tutorial\\Imagen2.png"
     },
     {
-      "Id": "C:\\Praecepta2\\Preacepta.UI\\wwwroot\\lyso\\img\\tutorial\\Imagen3.png",
+      "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lyso\\img\\tutorial\\Imagen3.png",
       "PackagePath": "staticwebassets\\lyso\\img\\tutorial\\Imagen3.png"
     },
     {
-      "Id": "C:\\Praecepta2\\Preacepta.UI\\wwwroot\\lyso\\img\\tutorial\\Imagen4.png",
+      "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lyso\\img\\tutorial\\Imagen4.png",
       "PackagePath": "staticwebassets\\lyso\\img\\tutorial\\Imagen4.png"
     },
     {
-      "Id": "C:\\Praecepta2\\Preacepta.UI\\wwwroot\\lyso\\js\\Daniel.js",
+      "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lyso\\js\\Daniel.js",
       "PackagePath": "staticwebassets\\lyso\\js\\Daniel.js"
     },
     {
-      "Id": "C:\\Praecepta2\\Preacepta.UI\\wwwroot\\lyso\\js\\DocsCompraVentaVehiculos.js",
+      "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lyso\\js\\DocsCompraVentaVehiculos.js",
       "PackagePath": "staticwebassets\\lyso\\js\\DocsCompraVentaVehiculos.js"
     },
     {
-      "Id": "C:\\Praecepta2\\Preacepta.UI\\wwwroot\\lyso\\js\\bootstrap.bundle.min.js",
+      "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lyso\\js\\bootstrap.bundle.min.js",
       "PackagePath": "staticwebassets\\lyso\\js\\bootstrap.bundle.min.js"
     },
     {
-      "Id": "C:\\Praecepta2\\Preacepta.UI\\wwwroot\\lyso\\js\\contact-form-script.js",
+      "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lyso\\js\\contact-form-script.js",
       "PackagePath": "staticwebassets\\lyso\\js\\contact-form-script.js"
     },
     {
-      "Id": "C:\\Praecepta2\\Preacepta.UI\\wwwroot\\lyso\\js\\custom.js",
+      "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lyso\\js\\custom.js",
       "PackagePath": "staticwebassets\\lyso\\js\\custom.js"
     },
     {
-      "Id": "C:\\Praecepta2\\Preacepta.UI\\wwwroot\\lyso\\js\\docsAutorizacionRevision.js",
+      "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lyso\\js\\docsAutorizacionRevision.js",
       "PackagePath": "staticwebassets\\lyso\\js\\docsAutorizacionRevision.js"
     },
     {
-      "Id": "C:\\Praecepta2\\Preacepta.UI\\wwwroot\\lyso\\js\\docsFinca.js",
+      "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lyso\\js\\docsFinca.js",
       "PackagePath": "staticwebassets\\lyso\\js\\docsFinca.js"
     },
     {
-      "Id": "C:\\Praecepta2\\Preacepta.UI\\wwwroot\\lyso\\js\\docsInscripciondeVehiculo.js",
+      "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lyso\\js\\docsInscripciondeVehiculo.js",
       "PackagePath": "staticwebassets\\lyso\\js\\docsInscripciondeVehiculo.js"
     },
     {
-      "Id": "C:\\Praecepta2\\Preacepta.UI\\wwwroot\\lyso\\js\\docsPrestacionServicios.js",
+      "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lyso\\js\\docsPrestacionServicios.js",
       "PackagePath": "staticwebassets\\lyso\\js\\docsPrestacionServicios.js"
     },
     {
-      "Id": "C:\\Praecepta2\\Preacepta.UI\\wwwroot\\lyso\\js\\docsPrueba.js",
-      "PackagePath": "staticwebassets\\lyso\\js\\docsPrueba.js"
-    },
-    {
-      "Id": "C:\\Praecepta2\\Preacepta.UI\\wwwroot\\lyso\\js\\form-validator.min.js",
+      "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lyso\\js\\form-validator.min.js",
       "PackagePath": "staticwebassets\\lyso\\js\\form-validator.min.js"
     },
     {
-      "Id": "C:\\Praecepta2\\Preacepta.UI\\wwwroot\\lyso\\js\\jquery.ajaxchimp.min.js",
+      "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lyso\\js\\jquery.ajaxchimp.min.js",
       "PackagePath": "staticwebassets\\lyso\\js\\jquery.ajaxchimp.min.js"
     },
     {
-      "Id": "C:\\Praecepta2\\Preacepta.UI\\wwwroot\\lyso\\js\\jquery.appear.min.js",
+      "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lyso\\js\\jquery.appear.min.js",
       "PackagePath": "staticwebassets\\lyso\\js\\jquery.appear.min.js"
     },
     {
-      "Id": "C:\\Praecepta2\\Preacepta.UI\\wwwroot\\lyso\\js\\jquery.magnific-popup.min.js",
+      "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lyso\\js\\jquery.magnific-popup.min.js",
       "PackagePath": "staticwebassets\\lyso\\js\\jquery.magnific-popup.min.js"
     },
     {
-      "Id": "C:\\Praecepta2\\Preacepta.UI\\wwwroot\\lyso\\js\\jquery.meanmenu.js",
+      "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lyso\\js\\jquery.meanmenu.js",
       "PackagePath": "staticwebassets\\lyso\\js\\jquery.meanmenu.js"
     },
     {
-      "Id": "C:\\Praecepta2\\Preacepta.UI\\wwwroot\\lyso\\js\\jquery.min.js",
+      "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lyso\\js\\jquery.min.js",
       "PackagePath": "staticwebassets\\lyso\\js\\jquery.min.js"
     },
     {
-      "Id": "C:\\Praecepta2\\Preacepta.UI\\wwwroot\\lyso\\js\\jquery.nice-select.min.js",
+      "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lyso\\js\\jquery.nice-select.min.js",
       "PackagePath": "staticwebassets\\lyso\\js\\jquery.nice-select.min.js"
     },
     {
-      "Id": "C:\\Praecepta2\\Preacepta.UI\\wwwroot\\lyso\\js\\map.js",
+      "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lyso\\js\\map.js",
       "PackagePath": "staticwebassets\\lyso\\js\\map.js"
     },
     {
-      "Id": "C:\\Praecepta2\\Preacepta.UI\\wwwroot\\lyso\\js\\odometer.min.js",
+      "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lyso\\js\\odometer.min.js",
       "PackagePath": "staticwebassets\\lyso\\js\\odometer.min.js"
     },
     {
-      "Id": "C:\\Praecepta2\\Preacepta.UI\\wwwroot\\lyso\\js\\owl.carousel.min.js",
+      "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lyso\\js\\owl.carousel.min.js",
       "PackagePath": "staticwebassets\\lyso\\js\\owl.carousel.min.js"
     },
     {
-      "Id": "C:\\Praecepta2\\Preacepta.UI\\wwwroot\\lyso\\js\\wow.min.js",
+      "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lyso\\js\\wow.min.js",
       "PackagePath": "staticwebassets\\lyso\\js\\wow.min.js"
     },
     {
