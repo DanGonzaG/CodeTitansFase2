@@ -2,7 +2,7 @@
 
 //Oculta le boton de crear caso
 
-document.getElementById('btnCrear').style.display = 'none';
+document.getElementById('btnCrearCaso').style.display = 'none';
 
 //este codigo en JavaScript lo que hace es almacenar los datos de form en el modal y viceversa
 
