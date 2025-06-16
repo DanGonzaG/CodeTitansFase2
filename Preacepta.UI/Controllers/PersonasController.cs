@@ -213,6 +213,7 @@ namespace Preacepta.UI.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> CrearPersona([Bind("Cedula,Nombre,Apellido1,Apellido2,FechaNacimiento,Edad,EstadoCivil,Oficio,Direccion1,Direccion2,FechaRegistro,Telefono1,Telefono2,Activo,Email,Password,ConfirmPassword")] GePersonaDTO tGePersona)
+
         {            
             if (ModelState.IsValid)//validacion de formulario
             {
@@ -264,7 +265,9 @@ namespace Preacepta.UI.Controllers
                 new SelectListItem { Text = "Divorciado", Value = "Divorciado" },
                 new SelectListItem { Text = "Viudo", Value = "Viudo" }
             };
+
             return View(tGePersona);
+
         }
     }
 }

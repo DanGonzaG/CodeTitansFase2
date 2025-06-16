@@ -92,21 +92,22 @@ namespace Preacepta.Modelos.AbstraccionesFrond
         public TimeOnly HoraFirma { get; set; }
 
         [DisplayName("Fecha de Firma")]
+        [DataType(DataType.Date)]
         public DateOnly FechaFirma { get; set; }
 
         [DisplayName("Abogado")]
-        public virtual TGeAbogado CedulaAbogadoNavigation { get; set; } = null!;
+        public virtual TGeAbogado? CedulaAbogadoNavigation { get; set; } = null!;
 
         [DisplayName("Comprador")]
-        public virtual TGePersona CedulaCompradorNavigation { get; set; } = null!;
+        public virtual TGePersona? CedulaCompradorNavigation { get; set; } = null!;
 
         [DisplayName("Vendedor")]
-        public virtual TGePersona CedulaVendedorNavigation { get; set; } = null!;
+        public virtual TGePersona? CedulaVendedorNavigation { get; set; } = null!;
 
         [DisplayName("Distrito de la Finca")]
-        public virtual TCrDistrito DistritoFincaNavigation { get; set; } = null!;
+        public virtual TCrDistrito? DistritoFincaNavigation { get; set; } = null!;
 
         [DisplayName("Lugar de Firma")]
-        public virtual TCrDistrito LugarFirmaNavigation { get; set; } = null!;
+        public virtual TCrDistrito? LugarFirmaNavigation { get; set; } = null!;
     }
 }

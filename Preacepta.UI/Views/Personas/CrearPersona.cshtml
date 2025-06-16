@@ -44,7 +44,6 @@
                                 <input asp-for="Cedula" class="form-control" />
                                 <span asp-validation-for="Cedula" class="text-danger"></span>
 
-                                                               
                                 @if (TempData["ErrorCedula"] != null)
                                 {
                                     <span class="text-danger">@TempData["ErrorCedula"]</span>
@@ -75,6 +74,7 @@
                         <div class="col-sm-6 col-lg-6">
                             <div class="form-group">
                                 <label asp-for="FechaNacimiento" class="control-label"></label>
+
                                 <input id="InputFechaNacimiento" type="date" asp-for="FechaNacimiento" class="form-control" />
                                 <span asp-validation-for="FechaNacimiento" class="text-danger"></span>
                             </div>
@@ -82,6 +82,7 @@
                         <div class="col-sm-6 col-lg-6">
                             <div class="form-group">
                                 <label asp-for="Edad" class="control-label"></label>
+
                                 <input id="InputEdad" asp-for="Edad" class="form-control" />
                                 <span asp-validation-for="Edad" class="text-danger"></span>
                             </div>
@@ -102,6 +103,7 @@
                         </div>
                         <div class="col-sm-6 col-lg-6">
                             <div class="form-group">
+
                                 <label for="provincia">Provincia:</label>
                                 <select class="selectDaniel" id="provincia" name="provincia">
                                     <option value="">Seleccione un cantón</option>
@@ -110,6 +112,7 @@
                         </div>
                         <div class="col-sm-6 col-lg-6">
                             <div class="form-group">
+                              
                                 <label for="canton">Cantón:</label>
                                 <select class="selectDaniel" id="canton" name="canton" disabled>
                                     <option value="">Seleccione un cantón</option>
@@ -169,6 +172,7 @@
                             <!--<div class="form-floating mb-3">-->
                             <div class="form-group">
                                 <label asp-for="Password">Contraseña</label>
+
                                 <input asp-for="Password" class="form-control" autocomplete="new-password" aria-required="true"/>
                                 <span asp-validation-for="Password" class="text-danger"></span>
                             </div>
@@ -177,6 +181,7 @@
                             <!--<div class="form-floating mb-3">-->
                             <div class="form-group">
                                 <label asp-for="ConfirmPassword">Confirmacion de contraseña</label>
+
                                 <input asp-for="ConfirmPassword" class="form-control" autocomplete="new-password" aria-required="true"/>
                                 <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
                             </div>

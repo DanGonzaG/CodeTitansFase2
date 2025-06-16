@@ -34,12 +34,12 @@ namespace Preacepta.Modelos.AbstraccionesFrond
         public int CedulaAsistente { get; set; }
 
         [DisplayName("Abogado")]
-        public virtual TGeAbogado CedulaAbogadoNavigation { get; set; } = null!;
+        public virtual TGeAbogado? CedulaAbogadoNavigation { get; set; } = null!;
 
         [DisplayName("Asistente")]
-        public virtual TGePersona CedulaAsistenteNavigation { get; set; } = null!;
+        public virtual TGePersona? CedulaAsistenteNavigation { get; set; } = null!;
 
         [DisplayName("Imputado")]
-        public virtual TGePersona CedulaImputadoNavigation { get; set; } = null!;
+        public virtual TGePersona? CedulaImputadoNavigation { get; set; } = null!;
     }
 }

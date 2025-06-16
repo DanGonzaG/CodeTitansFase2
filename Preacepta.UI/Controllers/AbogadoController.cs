@@ -485,6 +485,7 @@ namespace Preacepta.UI.Controllers
                         })
                         .ToList();
 
+
                     ViewData["IdTipoAbogado"] = new SelectList(_listarAbogadoTipo.listar().Result, "IdTipoAbogado", "Nombre");
 
                     TempData["ErrorCedula"] = "Cedula ya registrada en el sistema";
@@ -494,6 +495,7 @@ namespace Preacepta.UI.Controllers
             }            
 
             ViewBag.EstadoCivil = new List<SelectListItem>
+
             {
                 new SelectListItem { Text = "Soltero", Value = "Soltero" },
                 new SelectListItem { Text = "Casado", Value = "Casado" },

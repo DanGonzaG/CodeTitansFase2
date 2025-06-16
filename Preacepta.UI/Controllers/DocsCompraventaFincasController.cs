@@ -181,8 +181,10 @@ namespace Preacepta.UI.Controllers
         {
             ViewData["CedulaAbogado"] = new SelectList(_context.TGeAbogados, "Cedula", "Cedula");
             ViewData["CedulaComprador"] = new SelectList(_context.TGePersonas, "Cedula", "Apellido1");
-            ViewData["CedulaVendedor"] = new SelectList(_context.TGePersonas, "Cedula", "Apellido1");
+            ViewData["CedulaVendedor"] = new SelectList(_context.TGePersonas, "Cedula", "Apellido1"); //llamar a listar provincias, cantones provincias
+            ViewData["ProvinciaFinca"] = new SelectList(_context.TCrProvincias, "IdProvincia", "NombreProvincia");
             ViewData["DistritoFinca"] = new SelectList(_context.TCrDistritos, "IdDistrito", "NombreDistrito");
+            ViewData["CantonesFinca"] = new SelectList(_context.TCrCantones, "IdCanton", "NombreCanton");
             ViewData["LugarFirma"] = new SelectList(_context.TCrDistritos, "IdDistrito", "NombreDistrito");
             return View();
         }
@@ -202,7 +204,9 @@ namespace Preacepta.UI.Controllers
             ViewData["CedulaAbogado"] = new SelectList(_context.TGeAbogados, "Cedula", "Cedula", tDocsCompraventaFinca.CedulaAbogado);
             ViewData["CedulaComprador"] = new SelectList(_context.TGePersonas, "Cedula", "Apellido1", tDocsCompraventaFinca.CedulaComprador);
             ViewData["CedulaVendedor"] = new SelectList(_context.TGePersonas, "Cedula", "Apellido1", tDocsCompraventaFinca.CedulaVendedor);
+            ViewData["ProvinciaFinca"] = new SelectList(_context.TCrProvincias, "IdProvincia", "NombreProvincia", tDocsCompraventaFinca.ProvinciaFinca);
             ViewData["DistritoFinca"] = new SelectList(_context.TCrDistritos, "IdDistrito", "NombreDistrito", tDocsCompraventaFinca.DistritoFinca);
+            ViewData["CantonesFinca"] = new SelectList(_context.TCrCantones, "IdCanton", "NombreCanton", tDocsCompraventaFinca.CantonFinca);
             ViewData["LugarFirma"] = new SelectList(_context.TCrDistritos, "IdDistrito", "NombreDistrito", tDocsCompraventaFinca.LugarFirma);
             return View(tDocsCompraventaFinca);
         }
