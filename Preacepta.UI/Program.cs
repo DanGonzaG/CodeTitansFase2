@@ -255,6 +255,10 @@ using Preacepta.LN.Citas.Editar;
 using Preacepta.LN.Citas.Eliminar;
 using Preacepta.LN.Citas.Listar;
 using Preacepta.LN.Citas.ObtenerDatos;
+using DinkToPdf;
+using DinkToPdf.Contracts;
+using Preacepta.UI.Services; // importa servicio
+
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -563,6 +567,9 @@ builder.Services.AddScoped<IEditarTipoVehiculoLN, EditarTipoVehiculoLN>();
 builder.Services.AddScoped<IEliminarTipoVehiculoLN, EliminarTipoVehiculoLN>();
 builder.Services.AddScoped<IListarTipoVehiculoLN, ListarTipoVehiculoLN>();
 builder.Services.AddScoped<IObtenerDatosTipoVehiculoLN, ObtenerDatosTipoVehiculoLN>();
+
+//servicios para DInktoPdf, crear pdfs
+builder.Services.AddSingleton(typeof(IConverter), PdfConverterService.GetConverter());
 
 //builder.Services.AddScoped<Preacepta.AD.DocsTipoVehiculo.Eliminar.EliminarTipoVehiculoAD>();
 #endregion

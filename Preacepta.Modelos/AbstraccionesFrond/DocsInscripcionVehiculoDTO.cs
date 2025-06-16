@@ -88,21 +88,22 @@ namespace Preacepta.Modelos.AbstraccionesFrond
         public int LugarFirma { get; set; }
 
         [DisplayName("Fecha de Firma")]
+        [DataType(DataType.Date)]
         public DateOnly FechaFirma { get; set; }
 
         [DisplayName("Abogado")]
-        public virtual TGeAbogado CedulaAbogadoNavigation { get; set; } = null!;
+        public virtual TGeAbogado? CedulaAbogadoNavigation { get; set; } = null!;
 
         [DisplayName("Cliente")]
-        public virtual TGePersona CedulaClienteNavigation { get; set; } = null!;
+        public virtual TGePersona? CedulaClienteNavigation { get; set; } = null!;
 
         [DisplayName("Estilo del Vehículo")]
-        public virtual TDocsTipoVehiculo EstiloVehiculoNavigation { get; set; } = null!;
+        public virtual TDocsTipoVehiculo? EstiloVehiculoNavigation { get; set; } = null!;
 
         [DisplayName("Lugar de Firma")]
-        public virtual TCrDistrito LugarFirmaNavigation { get; set; } = null!;
+        public virtual TCrDistrito? LugarFirmaNavigation { get; set; } = null!;
 
         [DisplayName("Marca del Vehículo")]
-        public virtual TDocsMarcaVehiculo MarcaVehiculoNavigation { get; set; } = null!;
+        public virtual TDocsMarcaVehiculo? MarcaVehiculoNavigation { get; set; } = null!;
     }
 }

@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using DinkToPdf;
+using DinkToPdf.Contracts;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Preacepta.AD;
@@ -13,11 +15,13 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Text;
 
 namespace Preacepta.UI.Controllers
 {
     public class DocsAutorizacionRevisionExpedientesController : Controller
     {
+        private readonly IConverter _converter;
         private readonly Contexto _context;
         private readonly IBuscarDocsAutorizacionRevisionExpedienteLN _buscar;
         private readonly ICrearDocsAutorizacionRevisionExpedienteLN _crear;
@@ -25,13 +29,15 @@ namespace Preacepta.UI.Controllers
         private readonly IEliminarDocsAutorizacionRevisionExpedienteLN _eliminar;
         private readonly IListarDocsAutorizacionRevisionExpedienteLN _listar;
 
-        public DocsAutorizacionRevisionExpedientesController(Contexto context,
+        public DocsAutorizacionRevisionExpedientesController(IConverter converter,
+            Contexto context,
             IBuscarDocsAutorizacionRevisionExpedienteLN buscar,
             ICrearDocsAutorizacionRevisionExpedienteLN crear,
             IEditarDocsAutorizacionRevisionExpedienteLN editar,
             IEliminarDocsAutorizacionRevisionExpedienteLN eliminar,
             IListarDocsAutorizacionRevisionExpedienteLN listar)
         {
+            _converter = converter;
             _context = context;
             _buscar = buscar;
             _crear = crear;
@@ -171,8 +177,8 @@ namespace Preacepta.UI.Controllers
         public IActionResult CreateDocsAutorizacionRevisionExpedientes()
         {
             ViewData["CedulaAbogado"] = new SelectList(_context.TGeAbogados, "Cedula", "Cedula");
-            ViewData["CedulaAsistente"] = new SelectList(_context.TGePersonas, "Cedula", "Apellido1");
-            ViewData["CedulaImputado"] = new SelectList(_context.TGePersonas, "Cedula", "Apellido1");
+            ViewData["CedulaAsistente"] = new SelectList(_context.TGePersonas, "Cedula", "Cedula");
+            ViewData["CedulaImputado"] = new SelectList(_context.TGePersonas, "Cedula", "Cedula");
             return View();
         }
 
@@ -193,6 +199,43 @@ namespace Preacepta.UI.Controllers
             ViewData["CedulaImputado"] = new SelectList(_context.TGePersonas, "Cedula", "Apellido1", tDocsAutorizacionRevisionExpediente.CedulaImputado);
             return View(tDocsAutorizacionRevisionExpediente);
         }
+
+        [HttpGet]
+        public IActionResult PrevisualizarPDF(string expediente, string delito, string cedulaImputado, string ofendido, string cedulaAbogado, string cedulaAsistente)
+        {
+            var templatePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "lyso", "DocsMachotes", "AutorizacionExpedienteMachote.html");
+            var htmlTemplate = System.IO.File.ReadAllText(templatePath);
+
+            // Reemplazar marcadores con los datos del formulario
+            htmlTemplate = htmlTemplate
+                .Replace("{{EXPEDIENTE}}", expediente)
+                .Replace("{{DELITO}}", delito)
+                .Replace("{{CEDULA_IMPUTADO}}", cedulaImputado)
+                .Replace("{{OFENDIDO}}", ofendido)
+                .Replace("{{CEDULA_ABOGADO}}", cedulaAbogado)
+                .Replace("{{CEDULA_ASISTENTE}}", cedulaAsistente);
+
+            var doc = new HtmlToPdfDocument()
+            {
+                GlobalSettings = new GlobalSettings
+                {
+                    PaperSize = PaperKind.A4,
+                    Orientation = Orientation.Portrait
+                },
+                Objects = {
+            new ObjectSettings
+            {
+                HtmlContent = htmlTemplate,
+                WebSettings = { DefaultEncoding = "utf-8" }
+            }
+        }
+            };
+
+            var pdf = _converter.Convert(doc);
+
+            return File(pdf, "application/pdf");
+        }
+
 
     }
 }
