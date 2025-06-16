@@ -58,7 +58,7 @@
         <!-- Menu For Mobile Device -->
         <div class="mobile-nav">
             <a asp-action="Index" class="logo">
-                <img src="~/lyso/img/PraeceptaLogo.png" alt="Logo">
+                <img src="~/lyso/img/PraeceptaLogoCortado.png" alt="Logo">
             </a>
         </div>
 
@@ -67,7 +67,7 @@
             <div class="container">
                 <nav class="navbar navbar-expand-md navbar-light">
                     <a class="navbar-brand" asp-controller="Home" asp-action="Index">
-                        <img src="~/lyso/img/PraeceptaLogo.png" alt="Logo">
+                        <img src="~/lyso/img/PraeceptaLogoCortado.png" alt="Logo">
                     </a>
                     <div class="collapse navbar-collapse mean-menu" id="navbarSupportedContent">
                         <ul class="navbar-nav">
@@ -187,23 +187,23 @@
 
 
                             @if (User.Identity.IsAuthenticated)
-                            {
-                                @if (User.IsInRole("Gestor") || User.IsInRole("Abogado"))
-                                {
+                            {                               
                                     <li class="nav-item">
                                         <a href="#" class="nav-link dropdown-toggle">Casos</a>
-                                        <ul class="dropdown-menu">
-                                            <li class="nav-item" style="color: bisque">--Cliente--</li>
+                                        <ul class="dropdown-menu">                                           
                                             <li class="nav-item">
                                                 <a asp-controller="GestionCasos" asp-action="SolicitudCaso" class="nav-link">Solicitar Servicio</a>
                                             </li>
-                                            <li class="nav-item">
+                                            <!--<li class="nav-item">
                                                 <a asp-controller="GestionCasos" asp-action="CasosListadoCliente" class="nav-link">Listado Casos Cliente</a>
-                                            </li>
-                                            <li class="nav-item" style="color: bisque">--Abogado--</li>
+                                        </li>-->
+                                            
+                                        @if (User.IsInRole("Gestor") || User.IsInRole("Abogado"))
+                                        {
                                             <li class="nav-item">
                                                 <a asp-controller="Caso" asp-action="FormularioCaso" class="nav-link">Crear Caso</a>
                                             </li>
+                                        }
                                             <li class="nav-item">
                                                 <a asp-controller="Caso" asp-action="CasosListado" class="nav-link">Listado de casos</a>
                                             </li>
@@ -212,7 +212,7 @@
                                             </li>
                                         </ul>
                                     </li>
-                                }
+                                
                             }
                             @if (User.Identity.IsAuthenticated)
                             {
@@ -427,7 +427,7 @@
                     <div class="footer-item">
                         <div class="footer-logo">
                             <a href="#">
-                                <img src="~/lyso/img/PraeceptaLogo.png" alt="Logo">
+                                <img src="~/lyso/img/PraeceptaLogoCortado.png" alt="Logo">
                             </a>
                             <p>Nuestro Escuadrón de Abogados siempre está aquí para brindarle el mejor y eficiente servicio. Aún así, si quieres saber más sobre nosotros y nuestra firma, puedes conectarnos a través de las redes sociales.</p>
                             <ul>
