@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using Preacepta.AD;
 using Preacepta.LN.CrDireccion1.Listar;
 using Preacepta.LN.GeAbogado.BuscarXid;
 using Preacepta.LN.GeAbogado.Crear;
@@ -12,12 +13,14 @@ using Preacepta.LN.GeAbogadoTipo.Listar;
 using Preacepta.LN.GeNegocio.Listar;
 using Preacepta.LN.GePersona.BuscarXid;
 using Preacepta.LN.GePersona.Listar;
+using Preacepta.Modelos.AbstraccionesBD;
 using Preacepta.Modelos.AbstraccionesFrond;
 
 
 namespace Preacepta.UI.Controllers
 {
     [Authorize]
+    
     public class AbogadoController : Controller
     {
         //crud Gestion General Abodados
@@ -71,6 +74,29 @@ namespace Preacepta.UI.Controllers
             //Listar los distritos
             _listarDireccion = listarDireccion;
         }
+
+        /*[HttpGet("Provincias")]
+        public async Task<IActionResult> ObtenerProvincias()
+        {
+            var provincias = await _listarDireccion.listarProvincias();
+            return Ok(provincias);
+        }
+
+        [HttpGet("Cantones/{provinciaId}")]
+        public async Task<IActionResult> ObtenerCantones(int provinciaId)
+        {
+            var cantones = await _listarDireccion.listarCantonesXprovincia(provinciaId);
+                
+            return Ok(cantones);
+        }
+
+        [HttpGet("Distritos/{cantonId}")]
+        public async Task<IActionResult> ObtenerDistritos(int cantonId)
+        {
+            var distritos = await _listarDireccion.listarDistritosXCanton(cantonId);
+            return Ok(distritos);
+        }*/
+
 
         // GET: Abogado
         public async Task<IActionResult> Index()
@@ -189,6 +215,8 @@ namespace Preacepta.UI.Controllers
                 return NotFound();
             }
 
+
+
             ViewData["Direccion1"] = new SelectList(_listarDireccion.listarDistritos().Result, "IdDistrito", "NombreDistrito", tGeAbogado.CedulaNavigation.Direccion1);
 
             ViewBag.EstadoCivil = new List<SelectListItem>
@@ -304,15 +332,16 @@ namespace Preacepta.UI.Controllers
         public async Task<IActionResult> CrearAbogado()
         {
 
-            ViewData["Direccion1"] = new SelectList(_listarDireccion.listarDistritos().Result, "IdDistrito", "NombreDistrito");
+
+            #region View data Direccion, Estado Civil, Cedula juridica, cedula y tipo abogado                 
 
             ViewBag.EstadoCivil = new List<SelectListItem>
-        {
-            new SelectListItem { Text = "Soltero", Value = "Soltero" },
-            new SelectListItem { Text = "Casado", Value = "Casado" },
-            new SelectListItem { Text = "Divorciado", Value = "Divorciado" },
+            {
+                new SelectListItem { Text = "Soltero", Value = "Soltero" },
+                new SelectListItem { Text = "Casado", Value = "Casado" },
+                new SelectListItem { Text = "Divorciado", Value = "Divorciado" },
             new SelectListItem { Text = "Viudo", Value = "Viudo" }
-        };
+            };
 
             ViewData["CJuridica"] = (await _listarNegocio.listar())
                 .Select(n => new SelectListItem
@@ -331,101 +360,71 @@ namespace Preacepta.UI.Controllers
                 .ToList();
 
             ViewData["IdTipoAbogado"] = new SelectList(_listarAbogadoTipo.listar().Result, "IdTipoAbogado", "Nombre");
+            #endregion
             return View();
         }
 
-        // POST: Abogado/Create
+        // POST: Abogado/CrearAbogado
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> CrearAbogado([Bind("personaDTO,geAbogadoDTO")] PersonaUnionAbogado tGeAbogado)
         {
-            #region validacion de persona
-            //Verifica que la persona no este en el sistema verificanco que la cédula no exista
-            int cedula = tGeAbogado.personaDTO.Cedula;
-            var existe = await _buscar.buscar(cedula);
-            if (existe != null)
+
+            if (ModelState.IsValid)//validacion de formulario
             {
-                ViewData["Direccion1"] = new SelectList(_listarDireccion.listarDistritos().Result, "IdDistrito", "NombreDistrito", tGeAbogado.personaDTO.Direccion1);
-
-                ViewBag.EstadoCivil = new List<SelectListItem>
+                var existe = await _buscarPersona.buscar(tGeAbogado.personaDTO.Cedula);
+                if (existe == null)//valida si hay un cedula igual registrada
                 {
-                    new SelectListItem { Text = "Soltero", Value = "Soltero" },
-                    new SelectListItem { Text = "Casado", Value = "Casado" },
-                    new SelectListItem { Text = "Divorciado", Value = "Divorciado" },
-                    new SelectListItem { Text = "Viudo", Value = "Viudo" }
-                };
-
-                ViewData["CJuridica"] = (await _listarNegocio.listar())
-                 .Select(n => new SelectListItem
-                 {
-                     Value = n.CJuridica.ToString(),
-                     Text = $"{n.Nombre} - {n.CJuridica}"
-                 })
-                 .ToList();
-
-                ViewData["Cedula"] = (await _listarPersona.listar())
-                    .Select(n => new SelectListItem
+                    var correo = await _buscarPersona.buscarXcorreo(tGeAbogado.personaDTO.Email);
+                    if (correo == null)//valida si hay un correo igual registrado
                     {
-                        Value = n.Cedula.ToString(),
-                        Text = $"{n.Cedula} - {n.Nombre}"
-                    })
-                    .ToList();
+                        var carnet = await _buscar.buscarXcarnet(tGeAbogado.geAbogadoDTO.Carnet);
+                        if (carnet == null)
+                        {                            
+                            await _crear.Crear(tGeAbogado);//llamado de los LN y AD para crear la persona
+                            return RedirectToAction(nameof(Index));
+                        }
+                        else
+                        {
+                            #region ErrorCarnetExistente                            
+                            ViewBag.EstadoCivil = new List<SelectListItem>
+                            {
+                                new SelectListItem { Text = "Soltero", Value = "Soltero" },
+                                new SelectListItem { Text = "Casado", Value = "Casado" },
+                                new SelectListItem { Text = "Divorciado", Value = "Divorciado" },
+                                new SelectListItem { Text = "Viudo", Value = "Viudo" }
+                            };
 
-                ViewData["IdTipoAbogado"] = new SelectList(_listarAbogadoTipo.listar().Result, "IdTipoAbogado", "Nombre");
+                            ViewData["CJuridica"] = (await _listarNegocio.listar())
+                            .Select(n => new SelectListItem
+                            {
+                                Value = n.CJuridica.ToString(),
+                                Text = $"{n.Nombre} - {n.CJuridica}"
+                            })
+                            .ToList();
 
-                TempData["ErrorCedula"] = "Cedula ya registrada en el sistema";
-                return View(tGeAbogado);
-            }
-            #endregion
+                            ViewData["Cedula"] = (await _listarPersona.listar())
+                                .Select(n => new SelectListItem
+                                {
+                                    Value = n.Cedula.ToString(),
+                                    Text = $"{n.Cedula} - {n.Nombre}"
+                                })
+                                .ToList();
 
-            #region Verificacion de carnet de abogado
-            //Evita que se repitan los carnets los cuales son únicos por cada abado en el país
-            var carnet = await _buscar.buscarXcarnet(tGeAbogado.geAbogadoDTO.Carnet);
-            if (carnet != null)
-            {
-                ViewData["Direccion1"] = new SelectList(_listarDireccion.listarDistritos().Result, "IdDistrito", "NombreDistrito", tGeAbogado.personaDTO.Direccion1);
-
-                ViewBag.EstadoCivil = new List<SelectListItem>
-                {
-                    new SelectListItem { Text = "Soltero", Value = "Soltero" },
-                    new SelectListItem { Text = "Casado", Value = "Casado" },
-                    new SelectListItem { Text = "Divorciado", Value = "Divorciado" },
-                    new SelectListItem { Text = "Viudo", Value = "Viudo" }
-                };
-
-                ViewData["CJuridica"] = (await _listarNegocio.listar())
-                .Select(n => new SelectListItem
-                {
-                    Value = n.CJuridica.ToString(),
-                    Text = $"{n.Nombre} - {n.CJuridica}"
-                })
-                .ToList();
-
-                ViewData["Cedula"] = (await _listarPersona.listar())
-                    .Select(n => new SelectListItem
+                            ViewData["IdTipoAbogado"] = new SelectList(_listarAbogadoTipo.listar().Result, "IdTipoAbogado", "Nombre");
+                            TempData["ErrorCarnet"] = "El carnet ya se encuentra registrado en el sistema";
+                            return View(tGeAbogado);
+                            #endregion
+                        }
+                    }
+                    else
                     {
-                        Value = n.Cedula.ToString(),
-                        Text = $"{n.Cedula} - {n.Nombre}"
-                    })
-                    .ToList();
+                        #region ErrorCorreoExistente
+                        ViewData["Direccion1"] = new SelectList(_listarDireccion.listarDistritos().Result, "IdDistrito", "NombreDistrito", tGeAbogado.personaDTO.Direccion1);
 
-                ViewData["IdTipoAbogado"] = new SelectList(_listarAbogadoTipo.listar().Result, "IdTipoAbogado", "Nombre");
-                TempData["ErrorCarnet"] = "El carnet ya se encuentra registrado en el sistema";
-                return View(tGeAbogado);
-            }
-            #endregion
-
-            #region Verificacion de correo
-
-            //Evita que se repitan los correos los cuales deben ser unicos para la autenticación
-            var correo = await _buscarPersona.buscarXcorreo(tGeAbogado.personaDTO.Email);
-            if (correo != null)
-            {
-                ViewData["Direccion1"] = new SelectList(_listarDireccion.listarDistritos().Result, "IdDistrito", "NombreDistrito", tGeAbogado.personaDTO.Direccion1);
-
-                ViewBag.EstadoCivil = new List<SelectListItem>
+                        ViewBag.EstadoCivil = new List<SelectListItem>
                         {
                             new SelectListItem { Text = "Soltero", Value = "Soltero" },
                             new SelectListItem { Text = "Casado", Value = "Casado" },
@@ -433,52 +432,84 @@ namespace Preacepta.UI.Controllers
                             new SelectListItem { Text = "Viudo", Value = "Viudo" }
                         };
 
-                ViewData["CJuridica"] = (await _listarNegocio.listar())
-                .Select(n => new SelectListItem
+                        ViewData["CJuridica"] = (await _listarNegocio.listar())
+                            .Select(n => new SelectListItem
+                            {
+                                Value = n.CJuridica.ToString(),
+                                Text = $"{n.Nombre} - {n.CJuridica}"
+                            })
+                            .ToList();
+
+                        ViewData["Cedula"] = (await _listarPersona.listar())
+                            .Select(n => new SelectListItem
+                            {
+                                Value = n.Cedula.ToString(),
+                                Text = $"{n.Cedula} - {n.Nombre}"
+                            })
+                            .ToList();
+
+                        ViewData["IdTipoAbogado"] = new SelectList(_listarAbogadoTipo.listar().Result, "IdTipoAbogado", "Nombre");
+
+                        TempData["ErrorEmail"] = "Correo Electronico ya registrado en el sistema";
+                        return View(tGeAbogado);
+                        #endregion
+
+                    }
+                }
+                else
                 {
-                    Value = n.CJuridica.ToString(),
-                    Text = $"{n.Nombre} - {n.CJuridica}"
-                })
-                .ToList();
+                    #region ErrorCedulaExistente
+                    ViewData["Direccion1"] = new SelectList(_listarDireccion.listarDistritos().Result, "IdDistrito", "NombreDistrito", tGeAbogado.personaDTO.Direccion1);
 
-                ViewData["Cedula"] = (await _listarPersona.listar())
-                    .Select(n => new SelectListItem
-                    {
-                        Value = n.Cedula.ToString(),
-                        Text = $"{n.Cedula} - {n.Nombre}"
-                    })
-                    .ToList();
+                    ViewBag.EstadoCivil = new List<SelectListItem>
+                        {
+                            new SelectListItem { Text = "Soltero", Value = "Soltero" },
+                            new SelectListItem { Text = "Casado", Value = "Casado" },
+                            new SelectListItem { Text = "Divorciado", Value = "Divorciado" },
+                            new SelectListItem { Text = "Viudo", Value = "Viudo" }
+                        };
 
-                ViewData["IdTipoAbogado"] = new SelectList(_listarAbogadoTipo.listar().Result, "IdTipoAbogado", "Nombre");
-                TempData["ErrorEmail"] = "Correo Electronico ya registrado en el sistema";
-                return View(tGeAbogado);
-            }
-            #endregion
+                    ViewData["CJuridica"] = (await _listarNegocio.listar())
+                        .Select(n => new SelectListItem
+                        {
+                            Value = n.CJuridica.ToString(),
+                            Text = $"{n.Nombre} - {n.CJuridica}"
+                        })
+                        .ToList();
 
-            #region validacion de formulario
-            if (ModelState.IsValid)
-            {
-                await _crear.Crear(tGeAbogado);
-                return RedirectToAction(nameof(Index));
-            }
+                    ViewData["Cedula"] = (await _listarPersona.listar())
+                        .Select(n => new SelectListItem
+                        {
+                            Value = n.Cedula.ToString(),
+                            Text = $"{n.Cedula} - {n.Nombre}"
+                        })
+                        .ToList();
 
-            ViewData["Direccion1"] = new SelectList(_listarDireccion.listarDistritos().Result, "IdDistrito", "NombreDistrito", tGeAbogado.personaDTO.Direccion1);
+
+                    ViewData["IdTipoAbogado"] = new SelectList(_listarAbogadoTipo.listar().Result, "IdTipoAbogado", "Nombre");
+
+                    TempData["ErrorCedula"] = "Cedula ya registrada en el sistema";
+                    return View(tGeAbogado);
+                    #endregion
+                }
+            }            
 
             ViewBag.EstadoCivil = new List<SelectListItem>
-                {
-                    new SelectListItem { Text = "Soltero", Value = "Soltero" },
-                    new SelectListItem { Text = "Casado", Value = "Casado" },
-                    new SelectListItem { Text = "Divorciado", Value = "Divorciado" },
-                    new SelectListItem { Text = "Viudo", Value = "Viudo" }
-                };
+
+            {
+                new SelectListItem { Text = "Soltero", Value = "Soltero" },
+                new SelectListItem { Text = "Casado", Value = "Casado" },
+                new SelectListItem { Text = "Divorciado", Value = "Divorciado" },
+                new SelectListItem { Text = "Viudo", Value = "Viudo" }
+            };
 
             ViewData["CJuridica"] = (await _listarNegocio.listar())
-                 .Select(n => new SelectListItem
-                 {
-                     Value = n.CJuridica.ToString(),
-                     Text = $"{n.Nombre} - {n.CJuridica}"
-                 })
-                 .ToList();
+                            .Select(n => new SelectListItem
+                            {
+                                Value = n.CJuridica.ToString(),
+                                Text = $"{n.Nombre} - {n.CJuridica}"
+                            })
+                            .ToList();
 
             ViewData["Cedula"] = (await _listarPersona.listar())
                 .Select(n => new SelectListItem
@@ -490,12 +521,7 @@ namespace Preacepta.UI.Controllers
 
             ViewData["IdTipoAbogado"] = new SelectList(_listarAbogadoTipo.listar().Result, "IdTipoAbogado", "Nombre");
             return View(tGeAbogado);
-            #endregion
-
         }
-
-
-
     }
 }
 

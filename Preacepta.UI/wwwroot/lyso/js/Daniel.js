@@ -47,7 +47,6 @@ document.getElementById('PrevioBtn').addEventListener('click', () => {
         document.getElementById('btnCrearCaso').style.display = 'block';
     });
 
-
     document.getElementById('Retroceso').addEventListener('click', () => {
        
         document.getElementById('IdTipoCaso').value = TipoCaso;
@@ -70,13 +69,8 @@ document.getElementById('PrevioBtn').addEventListener('click', () => {
         document.documentElement.style.overflow = 'auto';
         document.body.style.position = 'static'; // Asegura que el body pueda desp
 
-
-
         console.log('Cerrando el modal y eliminando el fondo...');
-
      
-
-
     });
 
     document.getElementById('Retroceso2').addEventListener('click', () => {
@@ -101,8 +95,6 @@ document.getElementById('PrevioBtn').addEventListener('click', () => {
         document.documentElement.style.overflow = 'auto';
         document.body.style.position = 'static'; // Asegura que el body pueda desp
 
-
-
         console.log('Cerrando el modal y eliminando el fondo...');
     });
 
@@ -112,17 +104,3 @@ document.getElementById('PrevioBtn').addEventListener('click', () => {
 
 
 
-/*
-//Vista DocsGenerator
-//este codigo lo que hace es mostrar solo el formulario seleccionado en dropdown
-function mostrarFormulario() {
-    // Oculta todos los formularios
-    const formularios = document.querySelectorAll('.formulario');
-    formularios.forEach(formulario => formulario.style.display = 'none');
-
-    // Muestra el formulario seleccionado
-    const seleccion = document.getElementById('selector').value;
-    if (seleccion) {
-        document.getElementById(seleccion).style.display = 'block';
-    }
-}*/

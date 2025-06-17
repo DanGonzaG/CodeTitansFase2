@@ -42,11 +42,17 @@
                                 <input asp-for="personaDTO.Cedula" class="form-control" />
                                 <span asp-validation-for="personaDTO.Cedula" class="text-danger"></span>
 
-                                                               
+
                                 @if (TempData["ErrorCedula"] != null)
                                 {
                                     <span class="text-danger">@TempData["ErrorCedula"]</span>
                                 }
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-lg-6">
+                            <div class="form-group">
+                                <label asp-for="geAbogadoDTO.IdTipoAbogado" class="control-label"></label>
+                                <select asp-for="geAbogadoDTO.IdTipoAbogado" class="form-control" asp-items="ViewBag.IdTipoAbogado"></select>
                             </div>
                         </div>
                         <div class="col-sm-6 col-lg-6">
@@ -60,12 +66,7 @@
                                 }
                             </div>
                         </div>
-                        <div class="col-sm-6 col-lg-6">
-                            <div class="form-group">
-                                <label asp-for="geAbogadoDTO.IdTipoAbogado" class="control-label"></label>
-                                <select asp-for="geAbogadoDTO.IdTipoAbogado" class="form-control" asp-items="ViewBag.IdTipoAbogado"></select>
-                            </div>
-                        </div>
+
                         <div class="col-sm-6 col-lg-6">
                             <div class="form-group">
                                 <label asp-for="geAbogadoDTO.CJuridica" class="control-label"></label>
@@ -96,14 +97,14 @@
                         <div class="col-sm-6 col-lg-6">
                             <div class="form-group">
                                 <label asp-for="personaDTO.FechaNacimiento" class="control-label"></label>
-                                <input type="date" asp-for="personaDTO.FechaNacimiento" class="form-control" />
+                                <input id="InputFechaNacimiento" type="date" asp-for="personaDTO.FechaNacimiento" class="form-control" />
                                 <span asp-validation-for="personaDTO.FechaNacimiento" class="text-danger"></span>
                             </div>
                         </div>
                         <div class="col-sm-6 col-lg-6">
                             <div class="form-group">
                                 <label asp-for="personaDTO.Edad" class="control-label"></label>
-                                <input asp-for="personaDTO.Edad" class="form-control" />
+                                <input id="InputEdad" asp-for="personaDTO.Edad" class="form-control" />
                                 <span asp-validation-for="personaDTO.Edad" class="text-danger"></span>
                             </div>
                         </div>
@@ -123,10 +124,36 @@
                         </div>
                         <div class="col-sm-6 col-lg-6">
                             <div class="form-group">
+                                <label for="provincia">Provincia:</label>
+                                <select class="selectDaniel" id="provincia" name="provincia">
+                                    <option value="">Seleccione un cantón</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-lg-6">
+                            <div class="form-group">
+                                <label for="canton">Cantón:</label>
+                                <select class="selectDaniel" id="canton" name="canton" disabled>
+                                    <option value="">Seleccione un cantón</option>
+                                </select>
+
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-lg-6">
+                            <div class="form-group">
+                                <label for="distrito">Distrito:</label>
+                                <select class="selectDaniel" id="distrito" name="personaDTO.Direccion1" asp-for="personaDTO.Direccion1" disabled>
+                                    <option value="">Seleccione un distrito</option>
+                                </select>
+
+                            </div>
+                        </div>
+                        <!--<div class="col-sm-6 col-lg-6">
+                            <div class="form-group">
                                 <label asp-for="personaDTO.Direccion1" class="control-label"></label>
                                 <select asp-for="personaDTO.Direccion1" class="form-control" asp-items="ViewBag.Direccion1" style="overflow:auto"></select>
                             </div>
-                        </div>
+                        </div>-->
                         <div class="col-sm-6 col-lg-6">
                             <div class="form-group">
                                 <label asp-for="personaDTO.Direccion2" class="control-label"></label>
@@ -176,7 +203,7 @@
                                 <span asp-validation-for=personaDTO.ConfirmPassword class="text-danger"></span>
                             </div>
                         </div>
-                       
+
 
                         <div class="col-md-12 col-lg-12">
 
@@ -194,6 +221,8 @@
 </body>
 
 
+<script src="~/lyso/js/calculoedad.js"></script>
+<script src="~/lyso/js/filtroprovinicacantondistrito.js"></script>
 
 
 
