@@ -151,6 +151,30 @@ namespace Preacepta.UI.Controllers
                 await _eliminar.eliminar(id);
                 return RedirectToAction(nameof(Index));
             }
+
+
+        public IActionResult CreateDocsPoderesEspecialesJudiciales()
+        {
+            return View();
         }
+
+        // POST: TDocsPoderesEspecialesJudiciales/Create
+        // To protect from overposting attacks, enable the specific properties you want to bind to.
+        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> CreateDocsPoderesEspecialesJudiciales([Bind("IdDoc,Fecha,IdAbogado,IdCliente,Texto")] DocsPoderesEspecialesJudicialeDTO tDocsPoderesEspecialesJudiciale)
+        {
+            if (ModelState.IsValid)
+            {
+                tDocsPoderesEspecialesJudiciale.Fecha = DateTime.Today.ToString("yyyy-MM-dd");
+
+                await _crear.crear(tDocsPoderesEspecialesJudiciale);
+                return RedirectToAction(nameof(Index));
+            }
+            return View(tDocsPoderesEspecialesJudiciale);
+        }
+        
+    }
 
     }

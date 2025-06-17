@@ -100,10 +100,22 @@
                             <td>
                                 <div>
                                     <!-- Botón Reportar -->
-                                    <button type="button" class="contact-btn btn-reportar" style="width: 90%; margin-bottom: 2px"
-                                            data-id="@item.IdTestimonio">
-                                        Reportar
-                                    </button>
+                                    @if (item.Activo)
+                                    {
+                                        <button type="button" class="contact-btn btn-reportar" style="width: 90%; margin-bottom: 2px"
+                                                data-id="@item.IdTestimonio">
+                                            Reportar
+                                        </button>
+                                    }
+
+                                    <!--Boton activar-->
+                                    @if (item.Activo == false)
+                                    {
+                                        <button type="button" class="contact-btn btn-activar" style="width: 90%; margin-bottom: 2px"
+                                                data-id="@item.IdTestimonio">
+                                            Activar
+                                        </button>
+                                    }
 
                                     <!-- Botón Eliminar -->
                                     <button type="button" class="contact-btn btn-eliminar" style="width: 90%"
@@ -174,6 +186,45 @@
                         .fail(function () {
                             alert('Error al eliminar el testimonio');
                         });
+                }
+            });
+        });
+
+        //Funcion Activar
+             $(document).ready(function () {
+            // Activar testimonio
+            $('.btn-activar').click(function () {
+                var id = $(this).data('id');
+                var $btn = $(this);
+                var $row = $btn.closest('tr');
+
+                if (confirm('¿Está seguro de activar este testimonio?')) {
+                    $btn.prop('disabled', true).html('<i class="fas fa-spinner fa-spin"></i> Activando...');
+
+                    $.ajax({
+                        url: '@Url.Action("Activar", "TTestimonios")',
+                        type: 'POST',
+                        data: { id: id },
+                        headers: {
+                            'RequestVerificationToken': $('input[name="__RequestVerificationToken"]').val()
+                        },
+                        success: function (response) {
+                            if (response.success) {
+                                $row.find('td:eq(4)').text('Activo'); // Cambia texto de estado
+                                $btn.remove(); // Quita botón "Activar"
+                                toastr.success(response.message);
+                            } else {
+                                toastr.error(response.message);
+                            }
+                        },
+                        error: function (xhr) {
+                            toastr.error("Error de conexión con el servidor");
+                            console.error("Error:", xhr.responseText);
+                        },
+                        complete: function () {
+                            $btn.prop('disabled', false).text('Activar');
+                        }
+                    });
                 }
             });
         });

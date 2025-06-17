@@ -153,5 +153,30 @@ namespace Preacepta.UI.Controllers
             await _eliminar.eliminar(id);
             return RedirectToAction(nameof(Index));
         }
+
+        //Creacion de paagare
+        public IActionResult CreateDocsPagares()
+        {
+            return View();
+        }
+
+        // POST: TDocsPagares/Create
+        // To protect from overposting attacks, enable the specific properties you want to bind to.
+        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> CreateDocsPagares([Bind("IdDocumento,MontoNumerico,CedulaDeudor,SociedadDeudor,CedulaJuridicaSociedad,AcreedorNombre,CedulaJuridicaAcreedor,AcreedorDomicilio,FechaFirma,HoraFirma,FechaVencimiento,InteresFormula,InteresTasaActual,InteresBase,LugarPago,CedulaFiador,UbicacionFirma")] DocsPagareDTO tDocsPagare)
+        {
+            if (ModelState.IsValid)
+            {
+                tDocsPagare.FechaFirma = DateTime.Today.ToString("yyyy-MM-dd");
+                tDocsPagare.HoraFirma = DateTime.Now.ToString("HH:mm"); ;
+
+                await _crear.crear(tDocsPagare);
+                return RedirectToAction(nameof(Index));
+            }
+            return View(tDocsPagare);
+        }
+
     }
 }

@@ -1,5 +1,17 @@
 ﻿@model Preacepta.Modelos.AbstraccionesFrond.TTestimonioDTO
 
+@if (!ViewData.ModelState.IsValid)
+{
+    <div class="alert alert-danger">
+        <ul>
+            @foreach (var error in ViewData.ModelState.Values.SelectMany(v => v.Errors))
+            {
+                <li>@error.ErrorMessage</li>
+            }
+        </ul>
+    </div>
+}
+
 <!-- Page Title -->
 <head>
     <link href="~/lyso/css/daniel.css" rel="stylesheet" />
@@ -35,7 +47,7 @@
             <!-- Campos ocultos para los datos que ya tienes en el controlador -->
             <input type="hidden" asp-for="IdCliente" />
             <input type="hidden" asp-for="Fecha" />
-            <input type="hidden" asp-for="Activo" />
+            <input type="hidden" asp-for="Activo" value="true" />
 
             <div class="row contact-wrap">
                 <div class="col-sm-6 col-lg-6">

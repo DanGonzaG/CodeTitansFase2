@@ -149,5 +149,26 @@ namespace Preacepta.UI.Controllers
             await _eliminar.eliminar(id);
             return RedirectToAction(nameof(Index));
         }
+
+        //Meto del generation
+        public IActionResult CreateGeneratorDocsTipoVehiculoes()
+        {
+            return View();
+        }
+
+        // POST: TDocsTipoVehiculoes/Create
+        // To protect from overposting attacks, enable the specific properties you want to bind to.
+        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> c([Bind("Id,Nombre")] DocsTipoVehiculoDTO tDocsTipoVehiculo)
+        {
+            if (ModelState.IsValid)
+            {
+                await _crear.crear(tDocsTipoVehiculo);
+                return RedirectToAction(nameof(Index));
+            }
+            return View(tDocsTipoVehiculo);
+        }
     }
 }

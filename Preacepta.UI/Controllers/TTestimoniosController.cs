@@ -212,27 +212,27 @@ namespace Preacepta.UI.Controllers
 
         // POST: TTestimonios/Delete2
         [HttpPost]
-            public async Task<IActionResult> Delete2(int id)
+        public async Task<IActionResult> Delete2(int id)
+        {
+            try
             {
-                try
-                {
-                    await _eliminar.eliminar(id);
-                    TempData["SuccessMessage"] = "Testimonio eliminado correctamente";
-                }
-                catch (Exception ex)
-                {
-                    TempData["ErrorMessage"] = "Error al eliminar el testimonio";
-                    // Log the exception
-                }
-                return RedirectToAction(nameof(TestimonialsLista));
+                await _eliminar.eliminar(id);
+                TempData["SuccessMessage"] = "Testimonio eliminado correctamente";
             }
+            catch (Exception ex)
+            {
+                TempData["ErrorMessage"] = "Error al eliminar el testimonio";
+                // Log the exception
+            }
+            return RedirectToAction(nameof(TestimonialsLista));
+        }
 
         //TestimonialForm
 
         [HttpGet]
         public async Task<IActionResult> TestimonialForm()
         {
-            int idCliente = 123456789;
+            int idCliente = 101010101;
             var cliente = await _buscar.BuscarClientePorId(idCliente);
 
             var model = new TTestimonioDTO
@@ -240,12 +240,10 @@ namespace Preacepta.UI.Controllers
                 IdCliente = idCliente,
                 Fecha = DateTime.Today.ToString("yyyy-MM-dd"),
                 Activo = true,
-                // Asigna el cliente obtenido o crea una nueva instancia si es necesario
                 IdClienteNavigation = cliente != null ? new TGePersona
                 {
                     Cedula = cliente.Cedula,
                     Nombre = cliente.Nombre
-                    // Agrega otras propiedades necesarias
                 } : null
             };
 
@@ -256,17 +254,79 @@ namespace Preacepta.UI.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> TestimonialForm([Bind("IdTestimonio,Fecha,IdCliente,Comentario,Evaluacion,Activo")] TTestimonioDTO tTestimonio)
         {
-            if (ModelState.IsValid)
-            {
-                tTestimonio.Fecha = DateTime.Today.ToString("yyyy-MM-dd");
-                tTestimonio.Activo = true;
-                tTestimonio.IdCliente = 123456789;
+            // Forzar valores importantes
+            tTestimonio.Activo = true; // Esto ya lo tienes
+            tTestimonio.Fecha = DateTime.Today.ToString("yyyy-MM-dd");
+            tTestimonio.IdCliente = 101010101;
 
-                await _crear.crear(tTestimonio);
-                return RedirectToAction("Index"); // Redirige donde desees
+            // DEBUG: Agrega este log
+            Console.WriteLine($"Valor Activo en Controller (antes de conversión): {tTestimonio.Activo}");
+
+            if (!ModelState.IsValid)
+            {
+                // Recargar datos de navegación si es necesario
+                return View(tTestimonio);
             }
 
-            return View(tTestimonio);
+            try
+            {
+                // DEBUG: Verifica los valores antes de enviar
+                Console.WriteLine($"Valores a insertar - Activo: {tTestimonio.Activo}, Fecha: {tTestimonio.Fecha}");
+
+                await _crear.crear(tTestimonio);
+                return RedirectToAction("Testimonials");
+            }
+            catch (Exception ex)
+            {
+                // Log detallado del error
+                Console.WriteLine($"Error al crear testimonio: {ex.ToString()}");
+                ModelState.AddModelError("", "Error al guardar el testimonio. Por favor intente nuevamente.");
+                return View(tTestimonio);
+            }
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Activar(int id)
+        {
+            try
+            {
+                var testimonioExistente = await _buscar.buscar(id);
+                if (testimonioExistente == null)
+                {
+                    return Json(new { success = false, message = "Testimonio no encontrado" });
+                }
+
+                // Solo actualiza el campo Activo
+                var testimonioActualizado = new TTestimonioDTO
+                {
+                    IdTestimonio = id,
+                    Activo = true,
+                    // Mantener los mismos valores para los demás campos
+                    Fecha = testimonioExistente.Fecha,
+                    IdCliente = testimonioExistente.IdCliente,
+                    Comentario = testimonioExistente.Comentario,
+                    Evaluacion = testimonioExistente.Evaluacion
+                };
+
+                var resultado = await _editar.editar(testimonioActualizado);
+
+                if (resultado > 0)
+                {
+                    return Json(new { success = true, message = "Testimonio Actiavado correctamente" });
+                }
+                return Json(new { success = false, message = "No se pudo actualizar el testimonio" });
+            }
+            catch (Exception ex)
+            {
+                return Json(new
+                {
+                    success = false,
+                    message = "Error interno al reportar",
+                    error = ex.Message,
+                    inner = ex.InnerException?.Message
+                });
+            }
         }
     }
 }

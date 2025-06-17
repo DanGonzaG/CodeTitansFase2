@@ -314,38 +314,20 @@
                 <button id="Retroceso2" type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <p style="color: black"><strong>Cédula Abogado:</strong> <span id="previoCedulaAbogado"></span></p>
-                <p style="color: black"><strong>Cédula Propietario:</strong> <span id="previoCedulaPropietario"></span></p>
-                <p style="color: black"><strong>Cédula Comprador:</strong> <span id="previoCedulaComprador"></span></p>
-                <p style="color: black"><strong>Placa Vehículo:</strong> <span id="previoPlacaVehiculo"></span></p>
-                <p style="color: black"><strong>Marca Vehículo:</strong> <span id="previoMarcaVehiculo"></span></p>
-                <p style="color: black"><strong>Tipo Vehículo:</strong> <span id="previoTipoVehiculo"></span></p>
-                <p style="color: black"><strong>Modelo Vehículo:</strong> <span id="previoModeloVehiculo"></span></p>
-                <p style="color: black"><strong>Carrocería:</strong> <span id="previoCarroceria"></span></p>
-                <p style="color: black"><strong>Categoría:</strong> <span id="previoCategoria"></span></p>
-                <p style="color: black"><strong>Chasis:</strong> <span id="previoChasis"></span></p>
-                <p style="color: black"><strong>Serie:</strong> <span id="previoSerie"></span></p>
-                <p style="color: black"><strong>VIN:</strong> <span id="previoVin"></span></p>
-                <p style="color: black"><strong>Marca Motor:</strong> <span id="previoMarcaMotor"></span></p>
-                <p style="color: black"><strong>Número Motor:</strong> <span id="previoNumeroMotor"></span></p>
-                <p style="color: black"><strong>Color:</strong> <span id="previoColor"></span></p>
-                <p style="color: black"><strong>Combustible:</strong> <span id="previoCombustible"></span></p>
-                <p style="color: black"><strong>Año:</strong> <span id="previoAnio"></span></p>
-                <p style="color: black"><strong>Capacidad:</strong> <span id="previoCapacidad"></span></p>
-                <p style="color: black"><strong>Cilindraje:</strong> <span id="previoCilindraje"></span></p>
-                <p style="color: black"><strong>Precio:</strong> <span id="previoPrecio"></span></p>
-                <p style="color: black"><strong>Moneda Precio:</strong> <span id="previoMonedaPrecio"></span></p>
-                <p style="color: black"><strong>Plazo Opción (Años):</strong> <span id="previoPlazoOpcionAnios"></span></p>
-                <p style="color: black"><strong>Fecha Inicio:</strong> <span id="previoFechaInicio"></span></p>
-                <p style="color: black"><strong>Monto Señal:</strong> <span id="previoMontoSenal"></span></p>
-                <p style="color: black"><strong>Moneda Señal:</strong> <span id="previoMonedaSenal"></span></p>
-                <p style="color: black"><strong>Monto a Devolver:</strong> <span id="previoMontoADevolver"></span></p>
-                <p style="color: black"><strong>Monto a Perder:</strong> <span id="previoMontoAPerder"></span></p>
-                <p style="color: black"><strong>Moneda Monto Perdido:</strong> <span id="previoMonedaMontoPerdido"></span></p>
-                <p style="color: black"><strong>Gastos Traspaso Pagados Por:</strong> <span id="previoGastosTraspasoPagadosPor"></span></p>
-                <p style="color: black"><strong>Lugar Firma:</strong> <span id="previoLugarFirma"></span></p>
-                <p style="color: black"><strong>Hora Firma:</strong> <span id="previoHoraFirma"></span></p>
-                <p style="color: black"><strong>Fecha Firma:</strong> <span id="previoFechaFirma"></span></p>
+                <p style="color: black"><strong>Monto Numérico:</strong> <span id="previoMontoNumerico"></span></p>
+                <p style="color: black"><strong>Cédula Deudor:</strong> <span id="previoCedulaDeudor"></span></p>
+                <p style="color: black"><strong>Sociedad Deudor:</strong> <span id="previoSociedadDeudor"></span></p>
+                <p style="color: black"><strong>Cédula Jurídica Sociedad:</strong> <span id="previoCedulaJuridicaSociedad"></span></p>
+                <p style="color: black"><strong>Nombre Acreedor:</strong> <span id="previoAcreedorNombre"></span></p>
+                <p style="color: black"><strong>Cédula Jurídica Acreedor:</strong> <span id="previoCedulaJuridicaAcreedor"></span></p>
+                <p style="color: black"><strong>Domicilio Acreedor:</strong> <span id="previoAcreedorDomicilio"></span></p>
+                <p style="color: black"><strong>Fecha de Vencimiento:</strong> <span id="previoFechaVencimiento"></span></p>
+                <p style="color: black"><strong>Fórmula de Interés:</strong> <span id="previoInteresFormula"></span></p>
+                <p style="color: black"><strong>Tasa de Interés Actual:</strong> <span id="previoInteresTasaActual"></span></p>
+                <p style="color: black"><strong>Base de Interés:</strong> <span id="previoInteresBase"></span></p>
+                <p style="color: black"><strong>Lugar de Pago:</strong> <span id="previoLugarPago"></span></p>
+                <p style="color: black"><strong>Cédula Fiador:</strong> <span id="previoCedulaFiador"></span></p>
+                <p style="color: black"><strong>Ubicación de Firma:</strong> <span id="previoUbicacionFirma"></span></p>
             </div>
             <div class="modal-footer">
                 <button type="button" class="contact-btn" data-bs-dismiss="modal" id="Retroceso">Hacer Cambios</button>
@@ -360,7 +342,7 @@
         await Html.RenderPartialAsync("_ValidationScriptsPartial");
     }
 }
-<script src="~/lyso/js/DocsCompraVentaVehiculos.js"></script>
+<script src="~/lyso/js/DocsPagares.js"></script>
 
 
 
