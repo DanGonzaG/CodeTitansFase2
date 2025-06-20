@@ -246,6 +246,14 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2Fzb3NFdGFwYVxFZGl0LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Preacepta/Preacepta.UI/Views/CasosEtapa/EditarEtapaPL.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2Fzb3NFdGFwYVxFZGl0YXJFdGFwYVBMLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Preacepta/Preacepta.UI/Views/CasosEtapa/EliminarEtapaPL.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2Fzb3NFdGFwYVxFbGltaW5hckV0YXBhUEwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Preacepta/Preacepta.UI/Views/CasosEtapa/EtapasPL.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2Fzb3NFdGFwYVxFdGFwYXNQTC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 

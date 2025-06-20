@@ -1,8 +1,12 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Preacepta.LN.CrDireccion1.Listar;
+
+
 
 namespace Preacepta.UI.Controllers
 {
+    [Authorize]
     [Route("Ubicacion")]
     public class UbicacionController : Controller
     {

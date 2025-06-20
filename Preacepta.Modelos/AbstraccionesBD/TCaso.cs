@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 //using Microsoft.EntityFrameworkCore;
 
@@ -12,6 +13,7 @@ public partial class TCaso
     public int IdCaso { get; set; }
 
     [Column("Nombre")]
+    [DisplayName("Nombre del Caso")]
     public string Nombre { get; set; }
 
     [Column(TypeName = "datetime")]

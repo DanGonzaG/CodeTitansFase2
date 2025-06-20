@@ -257,6 +257,14 @@
       "PackagePath": "staticwebassets\\lib\\jquery\\dist\\jquery.min.map"
     },
     {
+      "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lyso\\DescargaCasos\\DescargaEtapaPL.html",
+      "PackagePath": "staticwebassets\\lyso\\DescargaCasos\\DescargaEtapaPL.html"
+    },
+    {
+      "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lyso\\DocsMachotes\\AutorizacionExpedienteMachote.html",
+      "PackagePath": "staticwebassets\\lyso\\DocsMachotes\\AutorizacionExpedienteMachote.html"
+    },
+    {
       "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lyso\\css\\Daniel.css",
       "PackagePath": "staticwebassets\\lyso\\css\\Daniel.css"
     },
@@ -805,6 +813,14 @@
       "PackagePath": "staticwebassets\\lyso\\js\\FiltroProvinicaCantonDistrito.js"
     },
     {
+      "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lyso\\js\\Mensajes.js",
+      "PackagePath": "staticwebassets\\lyso\\js\\Mensajes.js"
+    },
+    {
+      "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lyso\\js\\MostrarDetallesPL.js",
+      "PackagePath": "staticwebassets\\lyso\\js\\MostrarDetallesPL.js"
+    },
+    {
       "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lyso\\js\\bootstrap.bundle.min.js",
       "PackagePath": "staticwebassets\\lyso\\js\\bootstrap.bundle.min.js"
     },
@@ -831,6 +847,10 @@
     {
       "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lyso\\js\\docsPrestacionServicios.js",
       "PackagePath": "staticwebassets\\lyso\\js\\docsPrestacionServicios.js"
+    },
+    {
+      "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lyso\\js\\docsPrueba.js",
+      "PackagePath": "staticwebassets\\lyso\\js\\docsPrueba.js"
     },
     {
       "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lyso\\js\\form-validator.min.js",

@@ -75,30 +75,12 @@ namespace Preacepta.UI.Controllers
             _listarDireccion = listarDireccion;
         }
 
-        /*[HttpGet("Provincias")]
-        public async Task<IActionResult> ObtenerProvincias()
-        {
-            var provincias = await _listarDireccion.listarProvincias();
-            return Ok(provincias);
-        }
-
-        [HttpGet("Cantones/{provinciaId}")]
-        public async Task<IActionResult> ObtenerCantones(int provinciaId)
-        {
-            var cantones = await _listarDireccion.listarCantonesXprovincia(provinciaId);
-                
-            return Ok(cantones);
-        }
-
-        [HttpGet("Distritos/{cantonId}")]
-        public async Task<IActionResult> ObtenerDistritos(int cantonId)
-        {
-            var distritos = await _listarDireccion.listarDistritosXCanton(cantonId);
-            return Ok(distritos);
-        }*/
-
+        /********************************************************************************************************************************************************************/
+                                                                             //controller de Framework\\
+        /********************************************************************************************************************************************************************/
 
         // GET: Abogado
+        [Authorize(Roles = "Gestor")]
         public async Task<IActionResult> Index()
         {
             //var contexto = _context.TGeAbogados.Include(t => t.CJuridicaNavigation).Include(t => t.CedulaNavigation).Include(t => t.IdTipoAbogadoNavigation);
@@ -123,6 +105,7 @@ namespace Preacepta.UI.Controllers
         }
 
         // GET: Abogado/Create
+        [Authorize(Roles = "Gestor")]
         public async Task<IActionResult> Create()
         {
 
@@ -161,6 +144,7 @@ namespace Preacepta.UI.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Gestor")]
         public async Task<IActionResult> Create([Bind("Carnet,Cedula,IdTipoAbogado,CJuridica")] PersonaUnionAbogado tGeAbogado)
         {
             if (ModelState.IsValid)
@@ -200,6 +184,7 @@ namespace Preacepta.UI.Controllers
         }
 
         // GET: Abogado/Edit/5
+        [Authorize(Roles = "Gestor")]
         public async Task<IActionResult> Edit(int id)
         {
             if (id == null)
@@ -251,6 +236,7 @@ namespace Preacepta.UI.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Gestor")]
         public async Task<IActionResult> Edit(int id, [Bind("Carnet,Cedula,IdTipoAbogado,CJuridica")] GeAbogadoDTO tGeAbogado)
         {
             if (id != tGeAbogado.Cedula)
@@ -302,6 +288,7 @@ namespace Preacepta.UI.Controllers
         }
 
         // GET: Abogado/Delete/5
+        [Authorize(Roles = "Gestor")]
         public async Task<IActionResult> Delete(int id)
         {
             if (id == null)
@@ -321,6 +308,7 @@ namespace Preacepta.UI.Controllers
         // POST: Abogado/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Gestor")]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             await _eliminar.Eliminar(id);
@@ -328,7 +316,13 @@ namespace Preacepta.UI.Controllers
         }
 
 
+
+        /********************************************************************************************************************************************************************/
+                                                                         //controller personalizados\\
+        /********************************************************************************************************************************************************************/
+
         // GET: Abogado/Create
+        [Authorize(Roles = "Gestor, Abogado")]
         public async Task<IActionResult> CrearAbogado()
         {
 
@@ -369,6 +363,7 @@ namespace Preacepta.UI.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Gestor, Abogado")]
         public async Task<IActionResult> CrearAbogado([Bind("personaDTO,geAbogadoDTO")] PersonaUnionAbogado tGeAbogado)
         {
 

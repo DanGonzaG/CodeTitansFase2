@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Preacepta.LN.Casos.BuscarXid;
@@ -49,7 +50,12 @@ namespace Preacepta.UI.Controllers
             _buscarPersona = buscarPersona;
         }
 
+        /********************************************************************************************************************************************************************/
+        //controller de Framework\\
+        /********************************************************************************************************************************************************************/
+
         // GET: Caso
+        [Authorize(Roles = "Gestor")]
         public async Task<IActionResult> Index()
         {
             //var contexto = _context.TCasos.Include(t => t.IdAbogadoNavigation).Include(t => t.IdClienteNavigation).Include(t => t.IdTipoCasoNavigation);
@@ -57,6 +63,7 @@ namespace Preacepta.UI.Controllers
         }
 
         // GET: Caso/Details/5
+        [Authorize(Roles = "Gestor")]
         public async Task<IActionResult> Details(int id)
         {
             if (id == null)
@@ -74,6 +81,7 @@ namespace Preacepta.UI.Controllers
         }
 
         // GET: Caso/Create
+        [Authorize(Roles = "Gestor")]
         public async Task<IActionResult> Create()
         {
             //ViewData["IdAbogado"] = new SelectList(_listarAbogados.listar().Result, "Cedula", "CedulaNavigation.Nombre");
@@ -104,6 +112,7 @@ namespace Preacepta.UI.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Gestor")]
         public async Task<IActionResult> Create([Bind("IdCaso,Nombre,Fecha,IdTipoCaso,Descripcion,IdAbogado,IdCliente,Activo")] CasoDTO tCaso)
         {
             if (ModelState.IsValid)
@@ -132,6 +141,7 @@ namespace Preacepta.UI.Controllers
         }
 
         // GET: Caso/Edit/5
+        [Authorize(Roles = "Gestor")]
         public async Task<IActionResult> Edit(int id)
         {
             if (id == null)
@@ -169,6 +179,7 @@ namespace Preacepta.UI.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Gestor")]
         public async Task<IActionResult> Edit(int id, [Bind("IdCaso,Nombre,Fecha,IdTipoCaso,Descripcion,IdAbogado,IdCliente,Activo")] CasoDTO tCaso)
         {
             if (id != tCaso.IdCaso)
@@ -210,6 +221,7 @@ namespace Preacepta.UI.Controllers
         }
 
         // GET: Caso/Delete/5
+        [Authorize(Roles = "Gestor")]
         public async Task<IActionResult> Delete(int id)
         {
             if (id == null)
@@ -229,6 +241,7 @@ namespace Preacepta.UI.Controllers
         // POST: Caso/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Gestor")]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             if (id <= 0)
@@ -255,7 +268,12 @@ namespace Preacepta.UI.Controllers
         }
 
 
-        // GET: Caso/Create
+        /********************************************************************************************************************************************************************/
+        //controller de personalizados\\
+        /********************************************************************************************************************************************************************/
+
+        // GET: Caso/FormularioCaso
+        [Authorize(Roles = "Gestor, Abogado")]
         public async Task<IActionResult> FormularioCaso()
         {
             ViewData["IdTipoCaso"] = new SelectList(_listarCasosTipoLN.listar().Result, "IdTipoCaso", "Nombre");
@@ -278,11 +296,12 @@ namespace Preacepta.UI.Controllers
             return View();
         }
 
-        // POST: Caso/Create
+        // POST: Caso/FormularioCaso
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Gestor, Abogado")]
         public async Task<IActionResult> FormularioCaso([Bind("Nombre,IdTipoCaso,Descripcion,IdAbogado,IdCliente")] CasoDTO tCaso)
         {
             if (ModelState.IsValid)
@@ -312,6 +331,7 @@ namespace Preacepta.UI.Controllers
 
 
         // GET: ListarCasos
+        [Authorize(Roles = "Gestor, Abogado, Cliente")]
         public async Task<IActionResult> CasosListado()
         {
             //var abogado = await _buscarPersona.buscarXcorreo(User.Identity.Name);
@@ -329,13 +349,12 @@ namespace Preacepta.UI.Controllers
                 "Abogado" => View(await _listar.listarXabogado(persona.Cedula)),
                 "Cliente" => View(await _listar.listarXcliente(persona.Cedula)),
                 _ => View(new List<CasoDTO>())
-
-
             };  
         }
 
 
         // GET: Caso/EtapasPL/5
+        /*[Authorize(Roles = "Gestor, Abogado, Cliente")]
         public async Task<IActionResult> EtapasPL(int id)
         {
             if (id == null)
@@ -350,6 +369,6 @@ namespace Preacepta.UI.Controllers
             }
 
             return View(tCaso);
-        }
+        }*/
     }
 }
