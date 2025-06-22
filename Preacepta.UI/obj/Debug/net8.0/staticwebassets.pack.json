@@ -741,6 +741,18 @@
       "PackagePath": "staticwebassets\\lyso\\img\\home-two\\home-slider\\4.png"
     },
     {
+      "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lyso\\img\\iconoAbogado.png",
+      "PackagePath": "staticwebassets\\lyso\\img\\iconoAbogado.png"
+    },
+    {
+      "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lyso\\img\\iconoPersona.jpg",
+      "PackagePath": "staticwebassets\\lyso\\img\\iconoPersona.jpg"
+    },
+    {
+      "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lyso\\img\\iconoPersona.png",
+      "PackagePath": "staticwebassets\\lyso\\img\\iconoPersona.png"
+    },
+    {
       "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lyso\\img\\logo.png",
       "PackagePath": "staticwebassets\\lyso\\img\\logo.png"
     },

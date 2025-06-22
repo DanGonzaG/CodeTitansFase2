@@ -12,7 +12,7 @@ using Preacepta.Modelos.AbstraccionesFrond;
 
 namespace Preacepta.UI.Controllers
 {
-    [Authorize(Roles = "Gestor")]
+    [Authorize]
     public class PersonasController : Controller
     {
         private readonly IListarGePersonaLN _listarPersona;
@@ -38,13 +38,108 @@ namespace Preacepta.UI.Controllers
             _listarDireccion = listarDireccion;
         }
 
+
+        /********************************************************************************************************************************************************************/
+        //controller personalizados\\
+        /********************************************************************************************************************************************************************/
+
+        #region Crear persona GET
+        // GET: TGePersonas/CrearPersona, muestra el formulario de CrearPersona.cshtml
+        [Authorize(Roles = "Gestor, Abogado")]
+        public IActionResult CrearPersona()
+        {
+            ViewData["Direccion1"] = new SelectList(_listarDireccion.listarDistritos().Result, "IdDistrito", "NombreDistrito");
+
+            ViewBag.EstadoCivil = new List<SelectListItem>
+            {
+                new SelectListItem { Text = "Soltero", Value = "Soltero" },
+                new SelectListItem { Text = "Casado", Value = "Casado" },
+                new SelectListItem { Text = "Divorciado", Value = "Divorciado" },
+                new SelectListItem { Text = "Viudo", Value = "Viudo" }
+            };
+            return View();
+        }
+        #endregion
+
+        #region Crear persona POST
+        // POST: TGePersonas/CrearPersona, controller para la vista de CrearPersona.cshtml
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Gestor, Abogado")]
+        public async Task<IActionResult> CrearPersona([Bind("Cedula,Nombre,Apellido1,Apellido2,FechaNacimiento,Edad,EstadoCivil,Oficio,Direccion1,Direccion2,FechaRegistro,Telefono1,Telefono2,Activo,Email,Password,ConfirmPassword")] GePersonaDTO tGePersona)
+
+        {
+            if (ModelState.IsValid)//validacion de formulario
+            {
+                var existe = await _buscarPersona.buscar(tGePersona.Cedula);
+                if (existe == null)//valida si hay un cedula igual registrada
+                {
+                    var correo = await _buscarPersona.buscarXcorreo(tGePersona.Email);
+                    if (correo == null)//valida si hay un correo igual registrado
+                    {
+                        await _crearPesona.crear(tGePersona);//llamado de los LN y AD para crear la persona
+                        return RedirectToAction(nameof(Index));
+                    }
+                    else
+                    {
+                        ViewData["Direccion1"] = new SelectList(_listarDireccion.listarDistritos().Result, "IdDistrito", "NombreDistrito", tGePersona.Direccion1);
+
+                        ViewBag.EstadoCivil = new List<SelectListItem>
+                        {
+                            new SelectListItem { Text = "Soltero", Value = "Soltero" },
+                            new SelectListItem { Text = "Casado", Value = "Casado" },
+                            new SelectListItem { Text = "Divorciado", Value = "Divorciado" },
+                            new SelectListItem { Text = "Viudo", Value = "Viudo" }
+                        };
+                        TempData["ErrorEmail"] = "Correo Electronico ya registrado en el sistema";
+                        return View(tGePersona);
+                    }
+                }
+                else
+                {
+                    ViewData["Direccion1"] = new SelectList(_listarDireccion.listarDistritos().Result, "IdDistrito", "NombreDistrito", tGePersona.Direccion1);
+
+                    ViewBag.EstadoCivil = new List<SelectListItem>
+                    {
+                        new SelectListItem { Text = "Soltero", Value = "Soltero" },
+                        new SelectListItem { Text = "Casado", Value = "Casado" },
+                        new SelectListItem { Text = "Divorciado", Value = "Divorciado" },
+                        new SelectListItem { Text = "Viudo", Value = "Viudo" }
+                    };
+                    TempData["ErrorCedula"] = "Cedula ya registrada en el sistema";
+                    return View(tGePersona);
+                }
+            }
+            ViewData["Direccion1"] = new SelectList(_listarDireccion.listarDistritos().Result, "IdDistrito", "NombreDistrito", tGePersona.Direccion1);
+
+            ViewBag.EstadoCivil = new List<SelectListItem>
+            {
+                new SelectListItem { Text = "Soltero", Value = "Soltero" },
+                new SelectListItem { Text = "Casado", Value = "Casado" },
+                new SelectListItem { Text = "Divorciado", Value = "Divorciado" },
+                new SelectListItem { Text = "Viudo", Value = "Viudo" }
+            };
+
+            return View(tGePersona);
+
+        }
+        #endregion
+
+
+        /********************************************************************************************************************************************************************/
+        //controller de Framework\\
+        /********************************************************************************************************************************************************************/
+
+
         // GET: TGePersonas
+        [Authorize(Roles = "Gestor")]
         public async Task<IActionResult> Index()
         {
             return View(await _listarPersona.listar());
         }
 
         // GET: TGePersonas/Details/5
+        [Authorize(Roles = "Gestor")]
         public async Task<IActionResult> Details(int id)
         {
             if (id == null)
@@ -62,6 +157,7 @@ namespace Preacepta.UI.Controllers
         }
 
         // GET: TGePersonas/Create
+        [Authorize(Roles = "Gestor")]
         public IActionResult Create()
         {
 
@@ -83,6 +179,7 @@ namespace Preacepta.UI.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Gestor")]
         public async Task<IActionResult> Create([Bind("Cedula,Nombre,Apellido1,Apellido2,FechaNacimiento,Edad,EstadoCivil,Oficio,Direccion1,Direccion2,FechaRegistro,Telefono1,Telefono2,Activo,Email,Password,ConfirmPassword")] GePersonaDTO tGePersona)
         {
             if (ModelState.IsValid)
@@ -105,6 +202,7 @@ namespace Preacepta.UI.Controllers
         }
 
         // GET: TGePersonas/Edit/5
+        [Authorize(Roles = "Gestor")]
         public async Task<IActionResult> Edit(int id)
         {
             if (id == null)
@@ -135,6 +233,7 @@ namespace Preacepta.UI.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Gestor")]
         public async Task<IActionResult> Edit(int id, [Bind("Cedula,Nombre,Apellido1,Apellido2,FechaNacimiento,Edad,EstadoCivil,Oficio,Direccion1,Direccion2,Telefono1,Telefono2,FechaRegistro,Activo,Email")] GePersonaDTO tGePersona)
         {
             if (id != tGePersona.Cedula)
@@ -168,6 +267,7 @@ namespace Preacepta.UI.Controllers
         }
 
         // GET: TGePersonas/Delete/5
+        [Authorize(Roles = "Gestor")]
         public async Task<IActionResult> Delete(int id)
         {
             if (id == null)
@@ -187,6 +287,7 @@ namespace Preacepta.UI.Controllers
         // POST: TGePersonas/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Gestor")]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
 
@@ -194,81 +295,8 @@ namespace Preacepta.UI.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        // GET: TGePersonas/CrearPersona, muestra el formulario de CrearPersona.cshtml
-        public IActionResult CrearPersona()
-        {
-            ViewData["Direccion1"] = new SelectList(_listarDireccion.listarDistritos().Result, "IdDistrito", "NombreDistrito");
 
-            ViewBag.EstadoCivil = new List<SelectListItem>
-            {
-                new SelectListItem { Text = "Soltero", Value = "Soltero" },
-                new SelectListItem { Text = "Casado", Value = "Casado" },
-                new SelectListItem { Text = "Divorciado", Value = "Divorciado" },
-                new SelectListItem { Text = "Viudo", Value = "Viudo" }
-            };
-            return View();
-        }
-
-        // POST: TGePersonas/CrearPersona, controller para la vista de CrearPersona.cshtml
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> CrearPersona([Bind("Cedula,Nombre,Apellido1,Apellido2,FechaNacimiento,Edad,EstadoCivil,Oficio,Direccion1,Direccion2,FechaRegistro,Telefono1,Telefono2,Activo,Email,Password,ConfirmPassword")] GePersonaDTO tGePersona)
-
-        {            
-            if (ModelState.IsValid)//validacion de formulario
-            {
-                var existe = await _buscarPersona.buscar(tGePersona.Cedula);
-                if (existe == null)//valida si hay un cedula igual registrada
-                {
-                    var correo = await _buscarPersona.buscarXcorreo(tGePersona.Email);
-                    if (correo == null)//valida si hay un correo igual registrado
-                    {
-                        await _crearPesona.crear(tGePersona);//llamado de los LN y AD para crear la persona
-                        return RedirectToAction(nameof(Index));
-                    }
-                    else 
-                    {
-                        ViewData["Direccion1"] = new SelectList(_listarDireccion.listarDistritos().Result, "IdDistrito", "NombreDistrito", tGePersona.Direccion1);
-
-                        ViewBag.EstadoCivil = new List<SelectListItem>
-                        {
-                            new SelectListItem { Text = "Soltero", Value = "Soltero" },
-                            new SelectListItem { Text = "Casado", Value = "Casado" },
-                            new SelectListItem { Text = "Divorciado", Value = "Divorciado" },
-                            new SelectListItem { Text = "Viudo", Value = "Viudo" }
-                        };
-                        TempData["ErrorEmail"] = "Correo Electronico ya registrado en el sistema";
-                        return View(tGePersona);
-                    }
-                }
-                else 
-                {
-                    ViewData["Direccion1"] = new SelectList(_listarDireccion.listarDistritos().Result, "IdDistrito", "NombreDistrito", tGePersona.Direccion1);
-
-                    ViewBag.EstadoCivil = new List<SelectListItem>
-                    {
-                        new SelectListItem { Text = "Soltero", Value = "Soltero" },
-                        new SelectListItem { Text = "Casado", Value = "Casado" },
-                        new SelectListItem { Text = "Divorciado", Value = "Divorciado" },
-                        new SelectListItem { Text = "Viudo", Value = "Viudo" }
-                    };
-                    TempData["ErrorCedula"] = "Cedula ya registrada en el sistema";
-                    return View(tGePersona);
-                }       
-            }
-            ViewData["Direccion1"] = new SelectList(_listarDireccion.listarDistritos().Result, "IdDistrito", "NombreDistrito", tGePersona.Direccion1);
-
-            ViewBag.EstadoCivil = new List<SelectListItem>
-            {
-                new SelectListItem { Text = "Soltero", Value = "Soltero" },
-                new SelectListItem { Text = "Casado", Value = "Casado" },
-                new SelectListItem { Text = "Divorciado", Value = "Divorciado" },
-                new SelectListItem { Text = "Viudo", Value = "Viudo" }
-            };
-
-            return View(tGePersona);
-
-        }
+        
     }
 }
 

@@ -21,9 +21,14 @@
 document.getElementById("provincia").addEventListener("change", function () {
     const idProvincia = this.value;
     const selectCanton = document.getElementById("canton");
+    const inputCanton = document.getElementById('inputCanton')
 
     console.log("Evento change ejecutado");
     console.log("Valor seleccionado:", idProvincia);
+
+    selectCanton.style.display = "none";
+    inputCanton.style.display = "block";
+    inputCanton.disabled = true;
 
     selectCanton.innerHTML = '<option value="">Seleccione un cantón</option>';
 
@@ -39,8 +44,9 @@ document.getElementById("provincia").addEventListener("change", function () {
                 });
 
                 selectCanton.innerHTML = optionsHtml;
-                selectCanton.disabled = false;
+                selectCanton.disabled = false;                
                 selectCanton.style.display = "block";
+                inputCanton.style.display = "none";
 
                 // actuliza el nice select
                 $('#canton').niceSelect('update');
@@ -49,6 +55,7 @@ document.getElementById("provincia").addEventListener("change", function () {
                 console.error("Error al obtener cantones:", error);
                 selectCanton.innerHTML = '<option value="">Error al cargar los cantones</option>';
                 selectCanton.disabled = true;
+                
             });
 
     } else {
@@ -57,12 +64,17 @@ document.getElementById("provincia").addEventListener("change", function () {
     }
 });
 
-document.getElementById("canton").addEventListener("change", function () {
+document.getElementById("canton").addEventListener("change", function () {    
     const idCanton = this.value;
     const selectDistrito = document.getElementById("distrito");
+    const inputDistrito = document.getElementById('inputDistrito')
 
     console.log("Evento change ejecutado");
     console.log("Valor seleccionado:", idCanton);
+
+    selectDistrito.style.display = "none";
+    inputDistrito.style.display = "block";
+    inputDistrito.disabled = true;
 
     selectDistrito.innerHTML = '<option value="">Seleccione un distrito</option>';
 
@@ -79,7 +91,8 @@ document.getElementById("canton").addEventListener("change", function () {
 
                 selectDistrito.innerHTML = optionsHtml;
                 selectDistrito.disabled = false;
-                selectDistrito.style.display = "block";
+                selectDistrito.style.display = "block";                
+                inputDistrito.style.display = "none";
 
                 // actuliza el nice select
                 $('#canton').niceSelect('update');

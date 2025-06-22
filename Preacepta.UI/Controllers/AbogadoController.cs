@@ -318,10 +318,10 @@ namespace Preacepta.UI.Controllers
 
 
         /********************************************************************************************************************************************************************/
-                                                                         //controller personalizados\\
+        //controller personalizados\\
         /********************************************************************************************************************************************************************/
 
-        // GET: Abogado/Create
+        // GET: Abogado/CrearAbogado
         [Authorize(Roles = "Gestor, Abogado")]
         public async Task<IActionResult> CrearAbogado()
         {
