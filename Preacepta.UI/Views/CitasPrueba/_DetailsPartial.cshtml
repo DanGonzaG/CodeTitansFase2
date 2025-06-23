@@ -1,7 +1,7 @@
 ﻿@model Preacepta.Modelos.AbstraccionesFrond.CitasDTO
 
-<div class="custom-details-container">
-    <h4 class="mb-3">Información de la cita</h4>
+<div class="custom-modal-content">
+    <h4 class="mt-2 mb-3">Información de la cita</h4>
     <input type="hidden" id="citaSeleccionadaId" value="@Model.IdCita" />
 
     <dl class="row">
@@ -45,22 +45,33 @@
         </dd>
     </dl>
 
-    <div class="d-flex justify-content-end gap-2 mt-3">
+    <div class="modal-buttons">
         <button class="btn-gold" onclick="mostrarEditarCitaDesdeDetalle('@Model.IdCita')">Editar</button>
         <button class="btn-gray" onclick="mostrarModalEliminarCita(@Model.IdCita)">Eliminar</button>
-        <button class="btn-gray" onclick="window.history.back()">Cerrar</button>
+        <button class="btn-gray" onclick="document.getElementById('modalDetalleCita').style.display = 'none'">Cerrar</button>
     </div>
 </div>
 
 <style>
-    .custom-details-container {
-        max-width: 600px;
-        margin: 40px auto;
-        background: #fff;
-        padding: 20px 30px;
+    /* Ya tienes estas clases, solo las dejo para referencia */
+
+    .custom-modal-content {
+        background: #ffffff;
+        color: #222222;
+        padding: 25px 30px;
         border-radius: 10px;
-        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+        width: 100%;
+        max-width: 500px;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+        margin: 40px auto; /* Para centrar verticalmente con margen arriba/abajo */
         font-family: sans-serif;
+    }
+
+    .modal-buttons {
+        display: flex;
+        justify-content: flex-end;
+        gap: 10px;
+        margin-top: 25px;
     }
 
     .btn-gold {
@@ -70,7 +81,6 @@
         padding: 10px 18px;
         border-radius: 8px;
         cursor: pointer;
-        transition: background-color 0.3s ease;
     }
 
     .btn-gray {
@@ -80,7 +90,6 @@
         padding: 10px 18px;
         border-radius: 8px;
         cursor: pointer;
-        transition: background-color 0.3s ease;
     }
 
     .btn-gold:hover {
@@ -89,15 +98,5 @@
 
     .btn-gray:hover {
         background-color: #bbb;
-    }
-
-    dl dt {
-        font-weight: 600;
-        color: #444;
-    }
-
-    dl dd {
-        margin-bottom: 15px;
-        color: #555;
     }
 </style>

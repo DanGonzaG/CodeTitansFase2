@@ -36,12 +36,15 @@ namespace Preacepta.AD.Citas.Listar
                     LinkVideo = cita.LinkVideo,
                     AnfitrionNavigation = cita.AnfitrionNavigation,
                     IdTipoCitaNavigation = cita.IdTipoCitaNavigation,
+                        NombreTipoCita = cita.IdTipoCitaNavigation != null
+                     ? cita.IdTipoCitaNavigation.Nombre
+                     : null
 
-                    /*Anfitrion = cita.AnfitrionNavigation != null ? cita.AnfitrionNavigation.Cedula : null,
-                        LinkVideo = cita.LinkVideo,
-                    NombreTipoCita = cita.IdTipoCitaNavigation.Nombre*/
+                        /*Anfitrion = cita.AnfitrionNavigation != null ? cita.AnfitrionNavigation.Cedula : null,
+                            LinkVideo = cita.LinkVideo,
+                        NombreTipoCita = cita.IdTipoCitaNavigation.Nombre*/
 
-                }).ToListAsync();
+                    }).ToListAsync();
             }
             catch (Exception ex)
             {

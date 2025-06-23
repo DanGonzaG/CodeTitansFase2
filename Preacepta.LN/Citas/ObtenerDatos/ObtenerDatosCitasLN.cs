@@ -11,7 +11,6 @@ using System.Threading.Tasks;
 namespace Preacepta.LN.Citas.ObtenerDatos
 
 {
-
     public class ObtenerDatosCitasLN : IObtenerDatosCitasLN
     {
         private readonly Contexto _contexto;
@@ -29,7 +28,8 @@ namespace Preacepta.LN.Citas.ObtenerDatos
                 IdTipoCita = baseDatos.IdTipoCita,
                 LinkVideo = baseDatos.LinkVideo,
                 Anfitrion = baseDatos.Anfitrion,
-                NombreTipoCita = baseDatos.IdTipoCitaNavigation?.Nombre
+                NombreTipoCita = baseDatos.IdTipoCitaNavigation?.Nombre,
+                NombreAnfitrion = $"{baseDatos.AnfitrionNavigation?.CedulaNavigation?.Nombre} {baseDatos.AnfitrionNavigation?.CedulaNavigation?.Apellido1} {baseDatos.AnfitrionNavigation?.CedulaNavigation?.Apellido2}"
             };
         }
 
@@ -51,6 +51,14 @@ namespace Preacepta.LN.Citas.ObtenerDatos
         {
             var citasDb = await _contexto.TCitas
                 .Include(c => c.IdTipoCitaNavigation) // si quieres incluir la navegación para NombreTipoCita
+                .ToListAsync();
+
+            return citasDb.Select(c => ObtenerDeDB(c)).ToList();
+        }
+        public async Task<List<CitasDTO>> ListarAnfitrionAsync()
+        {
+            var citasDb = await _contexto.TCitas
+                .Include(c => c.AnfitrionNavigation) // si quieres incluir la navegación para Anfitrion
                 .ToListAsync();
 
             return citasDb.Select(c => ObtenerDeDB(c)).ToList();

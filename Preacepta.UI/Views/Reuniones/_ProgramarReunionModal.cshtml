@@ -1,0 +1,141 @@
+﻿<div id="modalProgramar" class="custom-modal">
+    <div class="custom-modal-content">
+        <h2 style="margin-top: 0;">Programar Reunión</h2>
+
+        <form id="formProgramarReunion">
+            <div class="form-group">
+                <label for="FechaInicio">Fecha y hora de inicio:</label>
+                <input type="datetime-local" id="FechaInicio" name="FechaInicio" required>
+            </div>
+
+            <div class="form-group">
+                <label for="Duracion">Duración (minutos):</label>
+                <input type="number" id="Duracion" name="Duracion" value="30" min="1" required>
+            </div>
+
+            <div class="form-group">
+                <label for="Tema">Tema:</label>
+                <input type="text" id="Tema" name="Tema" value="Reunión con cliente" required>
+            </div>
+
+            <div class="modal-buttons">
+                <button type="submit" class="btn-gold">Crear reunión</button>
+                <button type="button" id="btnCerrarModal" class="btn-gray">Cerrar</button>
+            </div>
+        </form>
+        <div id="resultado" style="margin-top: 15px;"></div>
+    </div>
+</div>
+
+<style>
+    .custom-modal {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background-color: rgba(0,0,0,0.6);
+        z-index: 9999;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-family: sans-serif;
+    }
+
+    .custom-modal-content {
+        background: #ffffff;
+        color: #222222;
+        padding: 25px 30px;
+        border-radius: 10px;
+        width: 100%;
+        max-width: 500px;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+    }
+
+    .custom-modal-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 20px;
+    }
+
+        .custom-modal-header h2 {
+            margin: 0;
+            font-size: 20px;
+        }
+
+    .close-btn {
+        background: transparent;
+        border: none;
+        font-size: 24px;
+        cursor: pointer;
+        color: #999;
+    }
+
+    .form-group {
+        margin-bottom: 20px;
+    }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 6px;
+            font-weight: 500;
+            color: #333;
+            text-align: left;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 10px 12px;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 20px;
+            background-color: #f9f9f9;
+            color: #222;
+            font-size: 14px;
+        }
+
+            .form-group input:focus {
+                outline: none;
+                border-color: #999;
+            }
+
+    .modal-buttons {
+        display: flex;
+        justify-content: flex-end;
+        gap: 10px;
+        margin-top: 25px;
+    }
+
+    .btn-gold {
+        background-color: #d4af37;
+        color: white;
+        border: none;
+        padding: 10px 18px;
+        border-radius: 8px;
+        cursor: pointer;
+    }
+
+    .btn-gray {
+        background-color: #ccc;
+        color: #333;
+        border: none;
+        padding: 10px 18px;
+        border-radius: 8px;
+        cursor: pointer;
+    }
+
+    .btn-gold:hover {
+        background-color: #c59e2f;
+    }
+
+    .btn-gray:hover {
+        background-color: #bbb;
+    }
+
+    .resultado {
+        margin-top: 15px;
+        font-weight: bold;
+    }
+</style>
