@@ -51,6 +51,31 @@ namespace Preacepta.AD.CrDireccion1.Listar
             }
         }
 
+        public async Task<List<CrCantonDTO>> listarCantonesXprovincia(int id)
+        {
+            try
+            {
+                return await _contexto.TCrCantones
+
+                    .Include(a => a.IdProvinciaNavigation)
+                    .Where(a => a.IdProvincia == id)
+                    .Select(lista => new CrCantonDTO                    
+                    {
+                        IdCanton = lista.IdCanton,
+                        IdProvincia = lista.IdCanton,
+                        NombreCanton = lista.NombreCanton,
+                        IdProvinciaNavigation = lista.IdProvinciaNavigation,
+                    })
+                    
+                    .ToListAsync();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error al obtener datos de ListarCrDireccion1AD-listarCantones {ex.Message}");
+                return new List<CrCantonDTO>();
+            }
+        }
+
         public async Task<List<CrDistritoDTO>> listarDistritos()
         {
             try
@@ -64,6 +89,29 @@ namespace Preacepta.AD.CrDireccion1.Listar
                         IdCatonNavigation = lista.IdCatonNavigation,
                         NombreDistrito = lista.NombreDistrito,
                     }).ToListAsync();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error al obtener datos de ListarCrDireccion1AD-listarDistritos {ex.Message}");
+                return new List<CrDistritoDTO>();
+            }
+        }
+
+        public async Task<List<CrDistritoDTO>> listarDistritosXcantones(int id)
+        {
+            try
+            {
+                return await _contexto.TCrDistritos
+                    .Include(a => a.IdCatonNavigation)
+                    .Where(a => a.IdCaton == id)
+                    .Select(lista => new CrDistritoDTO
+                    {
+                        IdDistrito = lista.IdDistrito,
+                        IdCaton = lista.IdCaton,
+                        IdCatonNavigation = lista.IdCatonNavigation,
+                        NombreDistrito = lista.NombreDistrito,
+                    })                    
+                    .ToListAsync();
             }
             catch (Exception ex)
             {

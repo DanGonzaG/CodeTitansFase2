@@ -461,12 +461,16 @@
       "PackagePath": "staticwebassets\\lyso\\img\\Imagen1.png"
     },
     {
-      "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lyso\\img\\PraeceptaLogo.png",
-      "PackagePath": "staticwebassets\\lyso\\img\\PraeceptaLogo.png"
-    },
-    {
       "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lyso\\img\\PraeceptaLogo2.png",
       "PackagePath": "staticwebassets\\lyso\\img\\PraeceptaLogo2.png"
+    },
+    {
+      "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lyso\\img\\PraeceptaLogoCortado.png",
+      "PackagePath": "staticwebassets\\lyso\\img\\PraeceptaLogoCortado.png"
+    },
+    {
+      "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lyso\\img\\PraeceptaLogoSinCorte.png",
+      "PackagePath": "staticwebassets\\lyso\\img\\PraeceptaLogoSinCorte.png"
     },
     {
       "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lyso\\img\\PreaceptaLogoColorNegro.png",
@@ -781,12 +785,20 @@
       "PackagePath": "staticwebassets\\lyso\\img\\tutorial\\Imagen4.png"
     },
     {
+      "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lyso\\js\\CalculoEdad.js",
+      "PackagePath": "staticwebassets\\lyso\\js\\CalculoEdad.js"
+    },
+    {
       "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lyso\\js\\Daniel.js",
       "PackagePath": "staticwebassets\\lyso\\js\\Daniel.js"
     },
     {
       "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lyso\\js\\DocsCompraVentaVehiculos.js",
       "PackagePath": "staticwebassets\\lyso\\js\\DocsCompraVentaVehiculos.js"
+    },
+    {
+      "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lyso\\js\\FiltroProvinicaCantonDistrito.js",
+      "PackagePath": "staticwebassets\\lyso\\js\\FiltroProvinicaCantonDistrito.js"
     },
     {
       "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lyso\\js\\bootstrap.bundle.min.js",
