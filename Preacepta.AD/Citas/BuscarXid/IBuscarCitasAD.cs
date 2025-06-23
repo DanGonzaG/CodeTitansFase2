@@ -10,5 +10,7 @@ namespace Preacepta.AD.Citas.BuscarXid
     public interface IBuscarCitasAD
     {
         Task<TCita?> buscar(int id);
+        Task<List<TCita>> obtenerTodas();
+
     }
 }
