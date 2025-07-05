@@ -8,8 +8,10 @@ C:\Preacepta\Preacepta.UI\bin\Debug\net8.0\Preacepta.UI.dll
 C:\Preacepta\Preacepta.UI\bin\Debug\net8.0\Preacepta.UI.pdb
 C:\Preacepta\Preacepta.UI\bin\Debug\net8.0\Azure.Core.dll
 C:\Preacepta\Preacepta.UI\bin\Debug\net8.0\Azure.Identity.dll
+C:\Preacepta\Preacepta.UI\bin\Debug\net8.0\BouncyCastle.Cryptography.dll
 C:\Preacepta\Preacepta.UI\bin\Debug\net8.0\DinkToPdf.dll
 C:\Preacepta\Preacepta.UI\bin\Debug\net8.0\Humanizer.dll
+C:\Preacepta\Preacepta.UI\bin\Debug\net8.0\MailKit.dll
 C:\Preacepta\Preacepta.UI\bin\Debug\net8.0\Microsoft.AspNetCore.Cryptography.Internal.dll
 C:\Preacepta\Preacepta.UI\bin\Debug\net8.0\Microsoft.AspNetCore.Cryptography.KeyDerivation.dll
 C:\Preacepta\Preacepta.UI\bin\Debug\net8.0\Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore.dll
@@ -65,6 +67,7 @@ C:\Preacepta\Preacepta.UI\bin\Debug\net8.0\Microsoft.VisualStudio.Web.CodeGenera
 C:\Preacepta\Preacepta.UI\bin\Debug\net8.0\Microsoft.VisualStudio.Web.CodeGeneration.Utils.dll
 C:\Preacepta\Preacepta.UI\bin\Debug\net8.0\Microsoft.VisualStudio.Web.CodeGenerators.Mvc.dll
 C:\Preacepta\Preacepta.UI\bin\Debug\net8.0\Microsoft.Win32.SystemEvents.dll
+C:\Preacepta\Preacepta.UI\bin\Debug\net8.0\MimeKit.dll
 C:\Preacepta\Preacepta.UI\bin\Debug\net8.0\Mono.TextTemplating.dll
 C:\Preacepta\Preacepta.UI\bin\Debug\net8.0\Newtonsoft.Json.dll
 C:\Preacepta\Preacepta.UI\bin\Debug\net8.0\NuGet.Common.dll
@@ -89,6 +92,7 @@ C:\Preacepta\Preacepta.UI\bin\Debug\net8.0\System.IdentityModel.Tokens.Jwt.dll
 C:\Preacepta\Preacepta.UI\bin\Debug\net8.0\System.Memory.Data.dll
 C:\Preacepta\Preacepta.UI\bin\Debug\net8.0\System.Reflection.MetadataLoadContext.dll
 C:\Preacepta\Preacepta.UI\bin\Debug\net8.0\System.Runtime.Caching.dll
+C:\Preacepta\Preacepta.UI\bin\Debug\net8.0\System.Security.Cryptography.Pkcs.dll
 C:\Preacepta\Preacepta.UI\bin\Debug\net8.0\System.Security.Cryptography.ProtectedData.dll
 C:\Preacepta\Preacepta.UI\bin\Debug\net8.0\System.Security.Permissions.dll
 C:\Preacepta\Preacepta.UI\bin\Debug\net8.0\System.Windows.Extensions.dll
@@ -240,6 +244,7 @@ C:\Preacepta\Preacepta.UI\bin\Debug\net8.0\runtimes\win-x86\native\Microsoft.Dat
 C:\Preacepta\Preacepta.UI\bin\Debug\net8.0\runtimes\win\lib\net7.0\Microsoft.Win32.SystemEvents.dll
 C:\Preacepta\Preacepta.UI\bin\Debug\net8.0\runtimes\win\lib\net7.0\System.Drawing.Common.dll
 C:\Preacepta\Preacepta.UI\bin\Debug\net8.0\runtimes\win\lib\net6.0\System.Runtime.Caching.dll
+C:\Preacepta\Preacepta.UI\bin\Debug\net8.0\runtimes\win\lib\net8.0\System.Security.Cryptography.Pkcs.dll
 C:\Preacepta\Preacepta.UI\bin\Debug\net8.0\runtimes\win\lib\net7.0\System.Security.Cryptography.ProtectedData.dll
 C:\Preacepta\Preacepta.UI\bin\Debug\net8.0\runtimes\win\lib\net7.0\System.Windows.Extensions.dll
 C:\Preacepta\Preacepta.UI\bin\Debug\net8.0\Preacepta.AD.dll

@@ -64,7 +64,12 @@ document.getElementById("provincia").addEventListener("change", function () {
     }
 });
 
-document.getElementById("canton").addEventListener("change", function () {    
+document.getElementById("canton").addEventListener("change", function () {
+   /* document.getElementById("distrito").addEventListener("change", function () {
+        const inputDistrito = document.getElementById("inputDistrito");
+        inputDistrito.value = this.value; // Guarda el ID numérico del distrito seleccionado
+        console.log(inputDistrito);
+    });*/
     const idCanton = this.value;
     const selectDistrito = document.getElementById("distrito");
     const inputDistrito = document.getElementById('inputDistrito')
@@ -106,4 +111,7 @@ document.getElementById("canton").addEventListener("change", function () {
     } else {
         selectDistrito.disabled = true;
     }
+    /*document.querySelector("form").addEventListener("submit", function () {
+        document.getElementById("inputDistrito").disabled = false;
+    });*/
 });

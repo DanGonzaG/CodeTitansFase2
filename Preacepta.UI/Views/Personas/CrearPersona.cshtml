@@ -48,7 +48,7 @@
                         </div>
                         <div class="col-sm-6 col-lg-6">
                             <div class="form-group">
-                                <input asp-for="Cedula" class="form-control" />
+                                <input type="number" asp-for="Cedula" class="form-control" />
                                 <span asp-validation-for="Cedula" class="text-danger"></span>
                                 @if (TempData["ErrorCedula"] != null)
                                 {
@@ -111,6 +111,22 @@
                                 <span asp-validation-for="Edad" class="text-danger"></span>
                             </div>
                         </div>
+                    
+                        <div class="col-sm-6 col-lg-6">
+                            <div class="form-group">
+                                <label asp-for="Genero" class="control-label"></label>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-lg-6">
+                            <div class="form-group">
+                                 <select asp-for="Genero" class="form-control" asp-items="ViewBag.Genero"></select>
+                                <span asp-validation-for="Genero" class="text-danger"></span>
+                            </div>
+                        </div>
+                            <br />
+                        <br />
+                        <br />
+                        <br />
                         <div class="col-sm-6 col-lg-6">
                             <div class="form-group">
                                 <label asp-for="Oficio" class="control-label"></label>
@@ -166,10 +182,10 @@
                         </div>
                         <div class="col-sm-6 col-lg-6">
                             <div class="form-group">
-                                <select class="selectDaniel" id="distrito" name="personaDTO.Direccion1" asp-for="Direccion1" disabled>
+                                <select class="selectDaniel" id="distrito" name="Direccion1" asp-for="Direccion1" disabled>
                                     <option value="">Seleccione un distrito</option>
                                 </select>
-                                <input id="inputDistrito" asp-for="Direccion1" class="form-control" readonly />
+                                <input id="inputDistrito" name="Direccion1" asp-for="Direccion1" class="form-control" readonly />
                             </div>
                         </div>
                         <div class="col-sm-6 col-lg-6">
@@ -245,14 +261,11 @@
                                 <input asp-for="ConfirmPassword" class="form-control" autocomplete="new-password" aria-required="true" placeholder="ej. 123Abd$" />
                                 <span asp-validation-for=ConfirmPassword class="text-danger"></span>
                             </div>
-                        </div>
-                        <br />
-                        <br />
-                        <div class="col-md-12 col-lg-12">
-
+                        </div>                     
+                        <div class="col-md-12 col-lg-12" style="margin-top: 100px">
                             <div class="text-center">
                                 <div class="form-group">
-                                    <input type="submit" value="Create" class="contact-btn" />
+                                    <input type="submit" value="Crear" class="contact-btn" />
                                 </div>
                             </div>
                         </div>
@@ -263,6 +276,11 @@
     </div>
 </body>
 
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
 
 <script src="~/lyso/js/calculoedad.js"></script>
 <script src="~/lyso/js/filtroprovinicacantondistrito.js"></script>

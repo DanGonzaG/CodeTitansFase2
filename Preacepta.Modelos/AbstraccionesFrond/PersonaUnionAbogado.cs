@@ -4,5 +4,6 @@
     {
         public GePersonaDTO personaDTO { get; set; }
         public GeAbogadoDTO geAbogadoDTO { get; set; }
+        
     }
 }

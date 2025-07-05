@@ -325,6 +325,10 @@
       "PackagePath": "staticwebassets\\lyso\\css\\style.css.map"
     },
     {
+      "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lyso\\css\\style.min.css",
+      "PackagePath": "staticwebassets\\lyso\\css\\style.min.css"
+    },
+    {
       "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lyso\\css\\style.scss",
       "PackagePath": "staticwebassets\\lyso\\css\\style.scss"
     },
@@ -823,6 +827,10 @@
     {
       "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lyso\\js\\FiltroProvinicaCantonDistrito.js",
       "PackagePath": "staticwebassets\\lyso\\js\\FiltroProvinicaCantonDistrito.js"
+    },
+    {
+      "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lyso\\js\\FiltroProvinicaCantonDistritoEditarUsuario.js",
+      "PackagePath": "staticwebassets\\lyso\\js\\FiltroProvinicaCantonDistritoEditarUsuario.js"
     },
     {
       "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lyso\\js\\Mensajes.js",

@@ -48,6 +48,9 @@ public partial class TGePersona
     [StringLength(100)]
     public string Email { get; set; } = null!;
 
+    [StringLength(10)]
+    public string Genero { get; set; } = null!;
+
     [ForeignKey("Direccion1")]
     [InverseProperty("TGePersonas")]
     public virtual TCrDistrito Direccion1Navigation { get; set; } = null!;

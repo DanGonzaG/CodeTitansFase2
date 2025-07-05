@@ -1,0 +1,92 @@
+﻿@page
+@model CambiarUbicacionModel;
+@{
+    ViewData["Title"] = "Información de dirección";
+    ViewData["ActivePage"] = ManageNavPages.CambiarUbicacion;
+
+}
+
+<style>
+    select {
+        display: block !important;
+        visibility: visible !important;
+    }
+</style>
+
+
+<h2>@ViewData["Title"]</h2>
+
+<section>
+    <div class="row LetraNegra form-group" style="margin-bottom:1px">
+        <div class="seccion-titulo">Dirrecion actual</div>
+        <div class="col form-group">
+            <label asp-for="ProvinciaPersona" class="form-label"></label>
+            <input asp-for="ProvinciaPersona" class="form-control" placeholder="Elija un usuario." readonly />
+        </div>
+        <div class="col form-group">
+            <label asp-for="CantonPersona" class="form-label"></label>
+            <input asp-for="CantonPersona" class="form-control" placeholder="Elija un usuario." readonly />
+        </div>
+        <div class="col form-group">
+            <label asp-for="DistritoPersona" class="form-label"></label>
+            <input asp-for="DistritoPersona" class="form-control" placeholder="Elija un usuario." readonly />
+        </div>
+    </div>
+    <div class="row LetraNegra">
+        <div class="col form-group">
+            <label asp-for="Direccion2Persona" class="control-label"></label>
+            <textarea asp-for="Direccion2Persona" class="form-control" cols="6"></textarea>
+        </div>
+    </div>
+</section>
+<section>
+    <div class="row">
+        <div class="seccion-titulo">Actualizar información de ubicación</div>
+        <form class="LetraNegra" id="profile-form" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger" role="alert"></div>
+            <div class="form-floating mb-3">
+                <div class="form-group">
+                    <label for="provincia">Provincia:</label>
+                    <select class="selectDaniel" id="provincia" name="provincia">
+                        <option value="">Seleccione una provincia</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-floating mb-3">
+                <div class="form-group">
+                    <label for="canton">Cantón:</label>
+                    <select class="selectDaniel" id="canton" name="canton" disabled>
+                        <option value="">Seleccione un cantón</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-floating mb-3">
+                <div class="form-group">
+                    <label for="distrito">Distrito:</label>
+                    <select class="selectDaniel" id="distrito" name="Input.Distrito" asp-for="Input.Distrito" disabled>
+                        <option value="">Seleccione un distrito</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-floating mb-3">
+                <div class="form-group">
+                    <label asp-for="Input.Direccion2" class="control-label"></label>
+                    <textarea asp-for="Input.Direccion2" class="form-control" cols="6"></textarea>
+                    <span asp-validation-for="Input.Direccion2" class="text-danger"></span>
+                </div>
+            </div>
+            <button id="update-profile-button" type="submit" class="w-100 contact-btn btn-lg">Guardar cambios</button>
+        </form>
+    </div>
+</section>
+
+
+
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
+<script src="~/lyso/js/filtroprovinicacantondistritoeditarusuario.js"></script>
+
+
+

@@ -36,6 +36,7 @@ namespace Preacepta.AD.GePersona.BuscarXid
                 var tGePersona = await _contexto.TGePersonas
                     .Include(t => t.Direccion1Navigation)
                     .ThenInclude(a => a.IdCatonNavigation)
+                    .ThenInclude (b => b.IdProvinciaNavigation)
                     .FirstOrDefaultAsync(m => m.Email == correo);
                 return tGePersona;
             }

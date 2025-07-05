@@ -112,6 +112,21 @@
                         </div>
                         <div class="col-sm-6 col-lg-6">
                             <div class="form-group">
+                                <label asp-for="personaDTO.Genero" class="control-label"></label>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-lg-6">
+                            <div class="form-group">
+                                <select asp-for="personaDTO.Genero" class="form-control" asp-items="ViewBag.Genero"></select>
+                                <span asp-validation-for="personaDTO.Genero" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <br />
+                        <br />
+                        <br />
+                        <br />
+                        <div class="col-sm-6 col-lg-6">
+                            <div class="form-group">
                                 <label asp-for="personaDTO.Oficio" class="control-label"></label>
                             </div>
                         </div>
@@ -289,10 +304,8 @@
                                 <input asp-for="personaDTO.ConfirmPassword" class="form-control" autocomplete="new-password" aria-required="true" placeholder="ej. 123Abd$" />
                                 <span asp-validation-for=personaDTO.ConfirmPassword class="text-danger"></span>
                             </div>
-                        </div>
-                        <br />
-                        <br />
-                        <div class="col-md-12 col-lg-12">
+                        </div>                     
+                        <div class="col-md-12 col-lg-12" style="margin-top: 100px">
 
                             <div class="text-center">
                                 <div class="form-group">

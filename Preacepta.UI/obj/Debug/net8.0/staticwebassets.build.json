@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "M5UitcPe1ECIkQRW2oLHE1KQBeGZ6Lqe6tMXlnzEr7I=",
+  "Hash": "AnaQc+kCVZ4IhgXJ07Ugg4K8GlCDidaf7dxzbrIuXXM=",
   "Source": "Preacepta.UI",
   "BasePath": "_content/Preacepta.UI",
   "Mode": "Default",
@@ -1535,6 +1535,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\lyso\\css\\style.css.map"
+    },
+    {
+      "Identity": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lyso\\css\\style.min.css",
+      "SourceId": "Preacepta.UI",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\",
+      "BasePath": "_content/Preacepta.UI",
+      "RelativePath": "lyso/css/style.min.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\lyso\\css\\style.min.css"
     },
     {
       "Identity": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lyso\\css\\style.scss",
@@ -4100,6 +4119,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\lyso\\js\\FiltroProvinicaCantonDistrito.js"
+    },
+    {
+      "Identity": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lyso\\js\\FiltroProvinicaCantonDistritoEditarUsuario.js",
+      "SourceId": "Preacepta.UI",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\",
+      "BasePath": "_content/Preacepta.UI",
+      "RelativePath": "lyso/js/FiltroProvinicaCantonDistritoEditarUsuario.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\lyso\\js\\FiltroProvinicaCantonDistritoEditarUsuario.js"
     },
     {
       "Identity": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lyso\\js\\form-validator.min.js",

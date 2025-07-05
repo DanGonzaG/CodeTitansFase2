@@ -57,6 +57,11 @@ namespace Preacepta.UI.Controllers
                 new SelectListItem { Text = "Divorciado", Value = "Divorciado" },
                 new SelectListItem { Text = "Viudo", Value = "Viudo" }
             };
+            ViewBag.Genero = new List<SelectListItem>
+                        {
+                            new SelectListItem { Text = "Femenino", Value = "Femenino" },
+                            new SelectListItem { Text = "Masculino", Value = "Masculino" },
+                        };
             return View();
         }
         #endregion
@@ -66,7 +71,7 @@ namespace Preacepta.UI.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize(Roles = "Gestor, Abogado")]
-        public async Task<IActionResult> CrearPersona([Bind("Cedula,Nombre,Apellido1,Apellido2,FechaNacimiento,Edad,EstadoCivil,Oficio,Direccion1,Direccion2,FechaRegistro,Telefono1,Telefono2,Activo,Email,Password,ConfirmPassword")] GePersonaDTO tGePersona)
+        public async Task<IActionResult> CrearPersona([Bind("Cedula,Nombre,Apellido1,Apellido2,FechaNacimiento,Edad,EstadoCivil,Oficio,Direccion1,Direccion2,FechaRegistro,Telefono1,Telefono2,Activo,Email,Password,ConfirmPassword,Genero")] GePersonaDTO tGePersona)
 
         {
             if (ModelState.IsValid)//validacion de formulario
@@ -91,6 +96,13 @@ namespace Preacepta.UI.Controllers
                             new SelectListItem { Text = "Divorciado", Value = "Divorciado" },
                             new SelectListItem { Text = "Viudo", Value = "Viudo" }
                         };
+
+                        ViewBag.Genero = new List<SelectListItem>
+                        {
+                            new SelectListItem { Text = "Femenino", Value = "Femenino" },
+                            new SelectListItem { Text = "Masculino", Value = "Masculino" },                           
+                        };
+
                         TempData["ErrorEmail"] = "Correo Electronico ya registrado en el sistema";
                         return View(tGePersona);
                     }
@@ -106,6 +118,11 @@ namespace Preacepta.UI.Controllers
                         new SelectListItem { Text = "Divorciado", Value = "Divorciado" },
                         new SelectListItem { Text = "Viudo", Value = "Viudo" }
                     };
+                    ViewBag.Genero = new List<SelectListItem>
+                        {
+                            new SelectListItem { Text = "Femenino", Value = "Femenino" },
+                            new SelectListItem { Text = "Masculino", Value = "Masculino" },
+                        };
                     TempData["ErrorCedula"] = "Cedula ya registrada en el sistema";
                     return View(tGePersona);
                 }
@@ -119,11 +136,16 @@ namespace Preacepta.UI.Controllers
                 new SelectListItem { Text = "Divorciado", Value = "Divorciado" },
                 new SelectListItem { Text = "Viudo", Value = "Viudo" }
             };
+            ViewBag.Genero = new List<SelectListItem>
+                        {
+                            new SelectListItem { Text = "Femenino", Value = "Femenino" },
+                            new SelectListItem { Text = "Masculino", Value = "Masculino" },
+                        };
 
             return View(tGePersona);
 
         }
-        #endregion
+        #endregion      
 
 
         /********************************************************************************************************************************************************************/
@@ -170,6 +192,11 @@ namespace Preacepta.UI.Controllers
             new SelectListItem { Text = "Divorciado", Value = "Divorciado" },
             new SelectListItem { Text = "Viudo", Value = "Viudo" }
         };
+            ViewBag.Genero = new List<SelectListItem>
+                        {
+                            new SelectListItem { Text = "Femenino", Value = "Femenino" },
+                            new SelectListItem { Text = "Masculino", Value = "Masculino" },
+                        };
 
             return View();
         }
@@ -198,6 +225,11 @@ namespace Preacepta.UI.Controllers
             new SelectListItem { Text = "Divorciado", Value = "Divorciado" },
             new SelectListItem { Text = "Viudo", Value = "Viudo" }
         };
+            ViewBag.Genero = new List<SelectListItem>
+                        {
+                            new SelectListItem { Text = "Femenino", Value = "Femenino" },
+                            new SelectListItem { Text = "Masculino", Value = "Masculino" },
+                        };
             return View(tGePersona);
         }
 
@@ -224,6 +256,11 @@ namespace Preacepta.UI.Controllers
             new SelectListItem { Text = "Divorciado", Value = "Divorciado" },
             new SelectListItem { Text = "Viudo", Value = "Viudo" }
         };
+            ViewBag.Genero = new List<SelectListItem>
+                        {
+                            new SelectListItem { Text = "Femenino", Value = "Femenino" },
+                            new SelectListItem { Text = "Masculino", Value = "Masculino" },
+                        };
 
             return View(tGePersona);
         }
@@ -234,7 +271,7 @@ namespace Preacepta.UI.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize(Roles = "Gestor")]
-        public async Task<IActionResult> Edit(int id, [Bind("Cedula,Nombre,Apellido1,Apellido2,FechaNacimiento,Edad,EstadoCivil,Oficio,Direccion1,Direccion2,Telefono1,Telefono2,FechaRegistro,Activo,Email")] GePersonaDTO tGePersona)
+        public async Task<IActionResult> Edit(int id, [Bind("Cedula,Nombre,Apellido1,Apellido2,FechaNacimiento,Edad,EstadoCivil,Oficio,Direccion1,Direccion2,Telefono1,Telefono2,FechaRegistro,Activo,Genero,Email,Password,ConfirmPassword")] GePersonaDTO tGePersona)
         {
             if (id != tGePersona.Cedula)
             {
@@ -262,7 +299,11 @@ namespace Preacepta.UI.Controllers
             new SelectListItem { Text = "Divorciado", Value = "Divorciado" },
             new SelectListItem { Text = "Viudo", Value = "Viudo" }
         };
-
+            ViewBag.Genero = new List<SelectListItem>
+                        {
+                            new SelectListItem { Text = "Femenino", Value = "Femenino" },
+                            new SelectListItem { Text = "Masculino", Value = "Masculino" },
+                        };
             return View(tGePersona);
         }
 

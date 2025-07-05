@@ -138,5 +138,42 @@ namespace Preacepta.AD.Casos.Listar
 
         }
 
+        public async Task<CasoDTO> listarXultimaFecha()
+        {
+            try
+            {
+                return await _contexto.TCasos
+                    .Include(c => c.IdAbogadoNavigation)
+                    .ThenInclude(a => a.CedulaNavigation)
+                    .ThenInclude(a => a.Direccion1Navigation)
+                    .Include(c => c.IdClienteNavigation)
+                    .ThenInclude(a => a.Direccion1Navigation)
+                    .Include(c => c.IdTipoCasoNavigation)                    
+                    .OrderByDescending(f => f.Fecha)
+                    .Select(lista => new CasoDTO
+                    {
+                        IdCaso = lista.IdCaso,
+                        Fecha = lista.Fecha.ToString("dd-MM-yyyy"),
+                        Nombre = lista.Nombre,
+                        IdTipoCaso = lista.IdTipoCaso,
+                        Descripcion = lista.Descripcion,
+                        IdAbogado = lista.IdAbogado,
+                        IdCliente = lista.IdCliente,
+                        Activo = lista.Activo,
+                        IdAbogadoNavigation = lista.IdAbogadoNavigation,
+                        IdClienteNavigation = lista.IdClienteNavigation,
+                        IdTipoCasoNavigation = lista.IdTipoCasoNavigation,
+                    })
+                    .FirstOrDefaultAsync();
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error al obtener datos, clase ListarCasosAD {ex.Message}");
+                return new CasoDTO();
+            }
+
+        }
+
     }
 }
