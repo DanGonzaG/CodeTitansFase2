@@ -25,7 +25,7 @@ namespace Preacepta.LN.CasosEtapa.Crear
             }
             try
             {
-                int bandera = await _crear.crear(_obtenerDatosLN.ObtenerDeFront(crear));
+                int bandera = await _crear.crear(_obtenerDatosLN.ObtenerDeFrontCrear(crear));
                 if (bandera == null)
                 {
                     Console.WriteLine("Conversion de CasosEtapaDTO fallido");

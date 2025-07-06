@@ -9,6 +9,7 @@
         return
     }
 
+    //Desactiva la tecla enter pero la asocia con el boton de filtro
     search.addEventListener("keypress", (e) => {
         if (e.key === "Enter") {
             e.preventDefault(); // Evita la acción predeterminada

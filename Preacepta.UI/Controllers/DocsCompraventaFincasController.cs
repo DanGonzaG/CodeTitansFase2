@@ -7,6 +7,7 @@ using Preacepta.LN.DocsCompraventaFinca.Crear;
 using Preacepta.LN.DocsCompraventaFinca.Editar;
 using Preacepta.LN.DocsCompraventaFinca.Eliminar;
 using Preacepta.LN.DocsCompraventaFinca.Listar;
+using Preacepta.LN.GePersona.BuscarXid;
 using Preacepta.Modelos.AbstraccionesBD;
 using Preacepta.Modelos.AbstraccionesFrond;
 using System;
@@ -24,6 +25,7 @@ namespace Preacepta.UI.Controllers
         private readonly IEditarDocsCompraventaFincaLN _editar;
         private readonly IEliminarDocsCompraventaFincaLN _eliminar;
         private readonly IListarDocsCompraventaFincaLN _listar;
+        private readonly IBuscarXidGePersonaLN _buscarPersona;
 
         public DocsCompraventaFincasController(Contexto context,
             IBuscarDocsCompraventaFincaLN buscar,
@@ -196,6 +198,7 @@ namespace Preacepta.UI.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> CreateDocsCompraventaFincas([Bind("IdDocumento,NumeroEscritura,CedulaAbogado,CedulaVendedor,CedulaComprador,MontoVenta,PartidoFinca,MatriculaFinca,NaturalezaFinca,DistritoFinca,CantonFinca,ProvinciaFinca,AreaFincaM2,PlanoCatastrado,ColindaNorte,ColindaSur,ColindaEste,ColindaOeste,FormaPago,MedioPago,OrigenFondos,LugarFirma,HoraFirma,FechaFirma")] DocsCompraventaFincaDTO tDocsCompraventaFinca)
         {
+            var vendedor = await _buscarPersona.buscar(tDocsCompraventaFinca.CedulaVendedor);
             if (ModelState.IsValid)
             {
                 await _crear.Crear(tDocsCompraventaFinca);

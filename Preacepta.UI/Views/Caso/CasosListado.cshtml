@@ -10,7 +10,7 @@
                 <h2>Casos Legales Activos</h2>
                 <ul>
                     <li>
-                        <a asp-controller="Home" asp-action="Index">Home</a>
+                        <a asp-controller="Home" asp-action="Index">Página Principal</a>
                     </li>
                     <li>
                         <i class="icofont-simple-right"></i>
@@ -54,7 +54,7 @@
 </div>
 
 
-<div class="contact-form contact-form-two contact-form-three">
+<div class="contact-form contact-form-two contact-form-three LetraNegra">
     <div class="container">
         <div class="contact-wrap">
             <table class="table">
@@ -90,41 +90,63 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach (var item in Model)
-                    {                        
-                        <tr class="losCasosFiltrados" idCaso="@item.IdCaso" nombreCaso="@item.Nombre">
-                            <td>
-                                @Html.DisplayFor(modelItem => item.IdCaso)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.Fecha)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.Nombre)
-                            </td>
-                            <!--<td>
-                            @Html.DisplayFor(modelItem => item.Descripcion)
-                            </td>-->
-                            <!--<td>
-                            @Html.DisplayFor(modelItem => item.Activo)
-                            </td>-->
-                            <td>
-                                @Html.DisplayFor(modelItem => item.IdAbogadoNavigation.CedulaNavigation.Nombre)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.IdClienteNavigation.Nombre)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.IdTipoCasoNavigation.Nombre)
-                            </td>
-                            <td>
-                                <a class="cmn-btn" asp-controller="CasosEtapa" asp-action="EtapasPL"
-                                   asp-route-id="@item.IdCaso">
-                                    <img width="30" src="~/lyso/fonts/png/court.png" />
-                                </a>
+                    @if(Model.Any())
+                    {
+                        @foreach (var item in Model)
+                        {
+                            if(item.Activo == true)
+                            {
+                                <tr class="losCasosFiltrados" idCaso="@item.IdCaso" nombreCaso="@item.Nombre">
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.IdCaso)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Fecha)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Nombre)
+                                    </td>
+                                    <!--<td>
+                                    @Html.DisplayFor(modelItem => item.Descripcion)
+                                    </td>-->
+                                    <!--<td>
+                                    @Html.DisplayFor(modelItem => item.Activo)
+                                    </td>-->
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.IdAbogadoNavigation.CedulaNavigation.Nombre)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.IdClienteNavigation.Nombre)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.IdTipoCasoNavigation.Nombre)
+                                    </td>
+                                    <td>
+                                        <a class="cmn-btn" asp-controller="CasosEtapa" asp-action="EtapasPL"
+                                           asp-route-id="@item.IdCaso">
+                                            <!--<img width="25" src="~/lyso/fonts/png/court.png" />-->
+                                            Detalles
+                                        </a>
+                                    </td>
+                                </tr>
+                            }
+                            
+                        }
+                    }
+                    else
+                    {
+                        <tr>
+                            <td colspan="7">
+                                <div class="col-12 text-center">
+                                    <div class="alert alert-info">
+                                        No cuenta con casos activos en el despacho
+                                    </div>
+                                </div>
                             </td>
                         </tr>
                     }
+
+                   
                 </tbody>
 
             </table>
@@ -135,4 +157,7 @@
     </div>
 </div>
 
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
+<script src="~/lyso/js/configuraciontablas.js"></script>
 <script src="~/lyso/js/filtrarcasosxid.js"></script>

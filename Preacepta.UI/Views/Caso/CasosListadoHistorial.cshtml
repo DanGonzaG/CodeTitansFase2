@@ -1,0 +1,160 @@
+﻿@model IEnumerable<Preacepta.Modelos.AbstraccionesFrond.CasoDTO>
+<head>
+    <link href="~/lyso/css/daniel.css" rel="stylesheet" />
+</head>
+<!-- Page Title -->
+<div class="page-title-area page-title-area-two title-img-one">
+    <div class="d-table">
+        <div class="d-table-cell">
+            <div class="page-title-text">
+                <h2>Casos Legales Cerrados</h2>
+                <ul>
+                    <li>
+                        <a asp-controller="Home" asp-action="Index">Página Principal</a>
+                    </li>
+                    <li>
+                        <i class="icofont-simple-right"></i>
+                    </li>
+                    <li>Historial de casos</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<br />
+<br />
+<br />
+
+<div class="contact-form contact-form-two">
+    <div class="container">
+        <div class="contact-wrap">
+            <form id="FormularioCaso" class="">
+                <h2>Lista de casos cerrados</h2>
+                <div class="row justify-content-center">
+                    <div class="col-md-12 col-lg-12">
+                        <div class="form-group">
+                            <input name="BusquedaCaso" class="form-control LetraNegra" id="InputBusquedaCaso" placeholder="Filtrar por número de caso">
+                            <div class="help-block with-errors"></div>
+                        </div>
+                    </div>
+                    <div class="col-md-12 col-lg-12">
+                        <div class="text-center">
+                            <button type="button" id="BtnBuscarCaso" class="contact-btn">
+                                Filtrar
+                            </button>
+                        </div>
+                        <div id="msgSubmit" class="h3 text-center hidden"></div>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+<div class="contact-form contact-form-two contact-form-three LetraNegra">
+    <div class="container">
+        <div class="contact-wrap">
+            <table class="table" id="listaCasosCerrados">
+                <thead>
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.IdCaso)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Fecha)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Nombre)
+                        </th>
+                        <!--<th>
+                        @Html.DisplayNameFor(model => model.Descripcion)
+                        </th>-->
+                        <!--<th>
+                        @Html.DisplayNameFor(model => model.Activo)
+                        </th>-->
+                        <th>
+                            @Html.DisplayNameFor(model => model.IdAbogadoNavigation)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.IdClienteNavigation)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.IdTipoCasoNavigation)
+                        </th>
+                        <th>
+                            Detalles y Etapas
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (Model.Any())
+                    {
+                        @foreach (var item in Model)
+                        {
+                            if (item.Activo == false)
+                            {
+                                <tr class="losCasosFiltrados" idCaso="@item.IdCaso" nombreCaso="@item.Nombre">
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.IdCaso)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Fecha)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Nombre)
+                                    </td>
+                                    <!--<td>
+                                    @Html.DisplayFor(modelItem => item.Descripcion)
+                                    </td>-->
+                                    <!--<td>
+                                    @Html.DisplayFor(modelItem => item.Activo)
+                                    </td>-->
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.IdAbogadoNavigation.CedulaNavigation.Nombre)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.IdClienteNavigation.Nombre)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.IdTipoCasoNavigation.Nombre)
+                                    </td>
+                                    <td>
+                                        <a class="cmn-btn" asp-controller="CasosEtapa" asp-action="EtapasPL"
+                                           asp-route-id="@item.IdCaso">
+                                            <!--<img width="25" src="~/lyso/fonts/png/court.png" />-->
+                                            Detalles
+                                        </a>
+                                    </td>
+                                </tr>
+                            }
+
+                        }
+                    }
+                    else
+                    {
+                        <tr>
+                            <td colspan="7">
+                                <div class="col-12 text-center">
+                                    <div class="alert alert-info">
+                                        No cuenta con casos en el despacho
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+            <div class="help-shape">
+                <img src="~/lyso/img/home-one/6.png" alt="Shape">
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
+<script src="~/lyso/js/configuraciontablas.js"></script>
+<script src="~/lyso/js/filtrarcasosxid.js"></script>
