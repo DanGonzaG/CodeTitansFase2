@@ -2,6 +2,7 @@
 
 <head>
     <link href="~/lyso/css/Daniel.css" rel="stylesheet" />
+    <link href="~/lyso/css/daniel.css" rel="stylesheet" />
 </head>
 <!-- Page Title -->
 <body>
@@ -41,7 +42,7 @@
                     <h2>Formulario para crear cliente</h2>
                     <div class="row justify-content-center">
                         <div class="seccion-titulo">Información del personal</div>
-                        <div class="col-sm-6 col-lg-6">
+                        <div class="col-sm-6 col-lg-6 centro">
                             <div class="form-group">
                                 <label asp-for="Cedula" class="control-label"></label>
                             </div>
@@ -56,7 +57,7 @@
                                 }
                             </div>
                         </div>
-                        <div class="col-sm-6 col-lg-6">
+                        <div class="col-sm-6 col-lg-6 centro">
                             <div class="form-group">
                                 <label asp-for="Nombre" class="control-label"></label>
                             </div>
@@ -67,7 +68,7 @@
                                 <span asp-validation-for="Nombre" class="text-danger"></span>
                             </div>
                         </div>
-                        <div class="col-sm-6 col-lg-6">
+                        <div class="col-sm-6 col-lg-6 centro">
                             <div class="form-group">
                                 <label asp-for="Apellido1" class="control-label"></label>
                             </div>
@@ -78,7 +79,7 @@
                                 <span asp-validation-for="Apellido1" class="text-danger"></span>
                             </div>
                         </div>
-                        <div class="col-sm-6 col-lg-6">
+                        <div class="col-sm-6 col-lg-6 centro">
                             <div class="form-group">
                                 <label asp-for="Apellido2" class="control-label"></label>
                             </div>
@@ -89,7 +90,7 @@
                                 <span asp-validation-for="Apellido2" class="text-danger"></span>
                             </div>
                         </div>
-                        <div class="col-sm-6 col-lg-6">
+                        <div class="col-sm-6 col-lg-6 centro">
                             <div class="form-group">
                                 <label asp-for="FechaNacimiento" class="control-label"></label>
                             </div>
@@ -100,7 +101,7 @@
                                 <span asp-validation-for="FechaNacimiento" class="text-danger"></span>
                             </div>
                         </div>
-                        <div class="col-sm-6 col-lg-1">
+                        <div class="col-sm-6 col-lg-1 centro" style="text-align:center">
                             <div class="form-group">
                                 <label asp-for="Edad" class="control-label"></label>
                             </div>
@@ -112,7 +113,7 @@
                             </div>
                         </div>
                     
-                        <div class="col-sm-6 col-lg-6">
+                        <div class="col-sm-6 col-lg-6 centro">
                             <div class="form-group">
                                 <label asp-for="Genero" class="control-label"></label>
                             </div>
@@ -127,7 +128,7 @@
                         <br />
                         <br />
                         <br />
-                        <div class="col-sm-6 col-lg-6">
+                        <div class="col-sm-6 col-lg-6 centro">
                             <div class="form-group">
                                 <label asp-for="Oficio" class="control-label"></label>
                             </div>
@@ -138,7 +139,7 @@
                                 <span asp-validation-for="Oficio" class="text-danger"></span>
                             </div>
                         </div>
-                        <div class="col-sm-6 col-lg-6">
+                        <div class="col-sm-6 col-lg-6 centro">
                             <div class="form-group">
                                 <label asp-for="EstadoCivil" class="control-label"></label>
                             </div>
@@ -150,7 +151,7 @@
                             </div>
                         </div>
                         <div class="seccion-titulo">Información del Dirreción</div>
-                        <div class="col-sm-6 col-lg-6">
+                        <div class="col-sm-6 col-lg-6 centro">
                             <div class="form-group">
                                 <label for="provincia">Provincia:</label>
                             </div>
@@ -162,7 +163,7 @@
                                 </select>
                             </div>
                         </div>
-                        <div class="col-sm-6 col-lg-6">
+                        <div class="col-sm-6 col-lg-6 centro">
                             <div class="form-group">
                                 <label for="canton">Cantón:</label>
                             </div>
@@ -175,7 +176,7 @@
                                 <input id="inputCanton" asp-for="Direccion1" class="form-control" readonly />
                             </div>
                         </div>
-                        <div class="col-sm-6 col-lg-6">
+                        <div class="col-sm-6 col-lg-6 centro">
                             <div class="form-group">
                                 <label for="distrito">Distrito:</label>
                             </div>
@@ -188,7 +189,7 @@
                                 <input id="inputDistrito" name="Direccion1" asp-for="Direccion1" class="form-control" readonly />
                             </div>
                         </div>
-                        <div class="col-sm-6 col-lg-6">
+                        <div class="col-sm-6 col-lg-6 centro">
                             <div class="form-group">
                                 <label asp-for="Direccion2" class="control-label"></label>
                             </div>
@@ -200,7 +201,7 @@
                             </div>
                         </div>                        
                         <div class="seccion-titulo">Contactos</div>
-                        <div class="col-sm-6 col-lg-6">
+                        <div class="col-sm-6 col-lg-6 centro">
                             <div class="form-group">
                                 <label asp-for="Telefono1" class="control-label"></label>
                             </div>
@@ -211,7 +212,7 @@
                                 <span asp-validation-for="Telefono1" class="text-danger"></span>
                             </div>
                         </div>
-                        <div class="col-sm-6 col-lg-6">
+                        <div class="col-sm-6 col-lg-6 centro">
                             <div class="form-group">
                                 <label asp-for="Telefono2" class="control-label"></label>
                             </div>
@@ -223,7 +224,7 @@
                             </div>
                         </div>
                         <div class="seccion-titulo">Autenticacion para el sistema</div>
-                        <div class="col-sm-6 col-lg-6">
+                        <div class="col-sm-6 col-lg-6 centro">
                             <div class="form-group">
                                 <label asp-for="Email">Correro electrónico</label>
                             </div>
@@ -238,7 +239,7 @@
                                 }
                             </div>
                         </div>
-                        <div class="col-sm-6 col-lg-6">
+                        <div class="col-sm-6 col-lg-6 centro">
                             <!--<div class="form-floating mb-3">-->
                             <div class="form-group">
                                 <label asp-for="Password">Contraseña</label>
@@ -250,7 +251,7 @@
                                 <span asp-validation-for="Password" class="text-danger"></span>
                             </div>
                         </div>
-                        <div class="col-sm-6 col-lg-6">
+                        <div class="col-sm-6 col-lg-6 centro">
                             <!--<div class="form-floating mb-3">-->
                             <div class="form-group">
                                 <label asp-for="ConfirmPassword">Confirmación de contraseña</label>

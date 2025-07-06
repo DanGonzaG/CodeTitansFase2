@@ -10,6 +10,6 @@ namespace Preacepta.AD.Casos.Listar
 
         Task<List<CasoDTO>> listarXcliente(int cedula);
 
-        Task<CasoDTO> listarXultimaFecha();
+        Task<CasoDTO> listarXultimaFecha(int cedula);
     }
 }

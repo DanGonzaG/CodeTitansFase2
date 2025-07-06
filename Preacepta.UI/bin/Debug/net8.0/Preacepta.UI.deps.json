@@ -2685,6 +2685,7 @@
       },
       "Preacepta.LN/1.0.0": {
         "dependencies": {
+          "DinkToPdf": "1.0.8",
           "Preacepta.AD": "1.0.0"
         },
         "runtime": {

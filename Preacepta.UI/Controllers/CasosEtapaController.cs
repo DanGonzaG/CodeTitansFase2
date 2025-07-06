@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Preacepta.AD;
 using Preacepta.LN.Casos.BuscarXid;
+using Preacepta.LN.Casos.Editar;
 using Preacepta.LN.Casos.Listar;
 using Preacepta.LN.CasosEtapa.BuscarXid;
 using Preacepta.LN.CasosEtapa.Crear;
@@ -15,6 +16,7 @@ using Preacepta.LN.CasosEtapa.Listar;
 using Preacepta.LN.GeAbogado.BuscarXid;
 using Preacepta.Modelos.AbstraccionesBD;
 using Preacepta.Modelos.AbstraccionesFrond;
+using System.Runtime.InteropServices;
 
 namespace Preacepta.UI.Controllers
 {
@@ -28,6 +30,7 @@ namespace Preacepta.UI.Controllers
         private readonly IListarCasosEtapasLN _listar;
         private readonly IBuscarCasosLN _buscarCaso;
         private readonly IListarCasosLN _listarCasos;
+        private readonly IEditarCasosLN _editarCaso;
         
         private readonly IConverter _converter;
 
@@ -38,6 +41,7 @@ namespace Preacepta.UI.Controllers
             IListarCasosEtapasLN listar,
             IBuscarCasosLN buscarCaso,
             IListarCasosLN listarCasos,
+            IEditarCasosLN editarCaso,
 
             IConverter converter)
         {
@@ -48,6 +52,7 @@ namespace Preacepta.UI.Controllers
             _listar = listar;
             _buscarCaso = buscarCaso;
             _listarCasos = listarCasos;
+            _editarCaso = editarCaso;
 
             _converter = converter;
 
@@ -106,13 +111,24 @@ namespace Preacepta.UI.Controllers
         [Authorize(Roles = "Gestor, Abogado")]
         public async Task<IActionResult> FormularioEtapaPL([Bind("IdEtapaPl,Fecha,Nombre,Descripcion,IdCaso,Activo")] CasosEtapaDTO tCasosEtapa, int IdCaso)
         {
+            var caso = await _buscarCaso.buscar(IdCaso);
+            if(caso == null) 
+            {
+                return NotFound();
+            }
 
             if (ModelState.IsValid)
             {
                 await _crear.Crear(tCasosEtapa);
-                return RedirectToAction("EtapasPL", "CasosEtapa", new { id = IdCaso });
+                if (tCasosEtapa.Activo == true) 
+                {
+                    caso.Activo = false;
+                    await _editarCaso.Editar(caso);
+                }
+                TempData["CasoCerrado"] = "El caso fue cerrado y se encuentra en Casos cerrados";
+                return RedirectToAction("CasosListado", "CasosListado", new { id = IdCaso });
             }
-            var caso = await _buscarCaso.buscar(IdCaso);
+            
             ViewBag.IdCaso = caso.IdCaso;
             ViewBag.NombreCaso = caso.Nombre;
             return View(tCasosEtapa);
@@ -273,10 +289,7 @@ namespace Preacepta.UI.Controllers
                 .Replace("{{DIA}}", DateTime.Now.ToString("dd"))
                 .Replace("{{NombreMes}}", DateTime.Now.ToString("MMMM"))
                 .Replace("{{ANYO}}", DateTime.Now.ToString("yyyy"))
-                .Replace("{{HoraActual}}", DateTime.Now.ToString("HH:mm"))
-                ;
-
-
+                .Replace("{{HoraActual}}", DateTime.Now.ToString("HH:mm"));
 
             var doc = new HtmlToPdfDocument()
             {

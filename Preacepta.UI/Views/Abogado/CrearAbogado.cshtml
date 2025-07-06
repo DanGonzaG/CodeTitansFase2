@@ -1,7 +1,7 @@
 ﻿@model Preacepta.Modelos.AbstraccionesFrond.PersonaUnionAbogado
 
 <head>
-    <link href="~/lyso/css/Daniel.css" rel="stylesheet" />    
+    <link href="~/lyso/css/Daniel.css" rel="stylesheet" />
 </head>
 <!-- Page Title -->
 <body>
@@ -40,8 +40,8 @@
                     <h2>Formulario para crear abogado</h2>
                     <div class="row justify-content-center">
                         <div class="seccion-titulo">Información del personal</div>
-                        <div class="col-sm-6 col-lg-6">
-                            <div class="form-group">
+                        <div class="col-sm-6 col-lg-6 centro">
+                            <div class="form-group centro">
                                 <label asp-for="personaDTO.Cedula" class="control-label"></label>
                             </div>
                         </div>
@@ -55,7 +55,7 @@
                                 }
                             </div>
                         </div>
-                        <div class="col-sm-6 col-lg-6">
+                        <div class="col-sm-6 col-lg-6 centro">
                             <div class="form-group">
                                 <label asp-for="personaDTO.Nombre" class="control-label"></label>
                             </div>
@@ -66,7 +66,7 @@
                                 <span asp-validation-for="personaDTO.Nombre" class="text-danger"></span>
                             </div>
                         </div>
-                        <div class="col-sm-6 col-lg-6">
+                        <div class="col-sm-6 col-lg-6 centro">
                             <div class="form-group">
                                 <label asp-for="personaDTO.Apellido1" class="control-label"></label>
                             </div>
@@ -77,7 +77,7 @@
                                 <span asp-validation-for="personaDTO.Apellido1" class="text-danger"></span>
                             </div>
                         </div>
-                        <div class="col-sm-6 col-lg-6">
+                        <div class="col-sm-6 col-lg-6 centro">
                             <div class="form-group">
                                 <label asp-for="personaDTO.Apellido2" class="control-label"></label>
                             </div>
@@ -88,7 +88,7 @@
                                 <span asp-validation-for="personaDTO.Apellido2" class="text-danger"></span>
                             </div>
                         </div>
-                        <div class="col-sm-6 col-lg-6">
+                        <div class="col-sm-6 col-lg-6 centro">
                             <div class="form-group">
                                 <label asp-for="personaDTO.FechaNacimiento" class="control-label"></label>
                             </div>
@@ -99,7 +99,7 @@
                                 <span asp-validation-for="personaDTO.FechaNacimiento" class="text-danger"></span>
                             </div>
                         </div>
-                        <div class="col-sm-6 col-lg-1">
+                        <div class="col-sm-6 col-lg-1 centro">
                             <div class="form-group">
                                 <label asp-for="personaDTO.Edad" class="control-label"></label>
                             </div>
@@ -110,7 +110,7 @@
                                 <span asp-validation-for="personaDTO.Edad" class="text-danger"></span>
                             </div>
                         </div>
-                        <div class="col-sm-6 col-lg-6">
+                        <div class="col-sm-6 col-lg-6 centro">
                             <div class="form-group">
                                 <label asp-for="personaDTO.Genero" class="control-label"></label>
                             </div>
@@ -125,7 +125,7 @@
                         <br />
                         <br />
                         <br />
-                        <div class="col-sm-6 col-lg-6">
+                        <div class="col-sm-6 col-lg-6 centro">
                             <div class="form-group">
                                 <label asp-for="personaDTO.Oficio" class="control-label"></label>
                             </div>
@@ -136,7 +136,7 @@
                                 <span asp-validation-for="personaDTO.Oficio" class="text-danger"></span>
                             </div>
                         </div>
-                        <div class="col-sm-6 col-lg-6">
+                        <div class="col-sm-6 col-lg-6 centro">
                             <div class="form-group">
                                 <label asp-for="personaDTO.EstadoCivil" class="control-label"></label>
                             </div>
@@ -148,32 +148,34 @@
                             </div>
                         </div>
                         <div class="seccion-titulo">Información del Dirreción</div>
-                        <div class="col-sm-6 col-lg-6">
+                        <div class="col-sm-6 col-lg-6 centro">
                             <div class="form-group">
                                 <label for="provincia">Provincia:</label>
                             </div>
                         </div>
-                            <div class="col-sm-6 col-lg-6">
-                                <div class="form-group">
-                                    <select class="selectDaniel" id="provincia" name="provincia">
-                                        <option value="">Seleccione una provincia</option>
-                                    </select>
-                                </div>
-                            </div>
                         <div class="col-sm-6 col-lg-6">
+                            <div class="form-group">
+                                <select class="selectDaniel" id="provincia" name="provincia">
+                                    <option value="">Seleccione una provincia</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-6 col-lg-6 centro">
                             <div class="form-group">
                                 <label for="canton">Cantón:</label>
                             </div>
                         </div>
                         <div class="col-sm-6 col-lg-6">
-                            <div class="form-group" >
+                            <div class="form-group">
                                 <select class="selectDaniel" id="canton" name="canton" disabled>
                                     <option value="">Seleccione un cantón</option>
                                 </select>
                                 <input id="inputCanton" asp-for="personaDTO.Direccion1" class="form-control" readonly />
                             </div>
                         </div>
-                        <div class="col-sm-6 col-lg-6">
+
+                        <div class="col-sm-6 col-lg-6 centro">
                             <div class="form-group">
                                 <label for="distrito">Distrito:</label>
                             </div>
@@ -186,7 +188,8 @@
                                 <input id="inputDistrito" asp-for="personaDTO.Direccion1" class="form-control" readonly />
                             </div>
                         </div>
-                        <div class="col-sm-6 col-lg-6">
+
+                        <div class="col-sm-6 col-lg-6 centro">
                             <div class="form-group">
                                 <label asp-for="personaDTO.Direccion2" class="control-label"></label>
                             </div>
@@ -199,7 +202,8 @@
                         </div>
                         <div class="seccion-titulo">Información del profesional</div>
 
-                        <div class="col-sm-6 col-lg-6">
+
+                        <div class="col-sm-6 col-lg-6 centro">
                             <div class="form-group">
                                 <label asp-for="geAbogadoDTO.CJuridica" class="control-label"></label>
                             </div>
@@ -212,8 +216,8 @@
                         <br />
                         <br />
                         <br />
-                        <br />                       
-                        <div class="col-sm-6 col-lg-6">
+                        <br />
+                        <div class="col-sm-6 col-lg-6 centro">
                             <div class="form-group">
                                 <label asp-for="geAbogadoDTO.IdTipoAbogado" class="control-label"></label>
                             </div>
@@ -226,8 +230,8 @@
                         <br />
                         <br />
                         <br />
-                        <br />                        
-                        <div class="col-sm-6 col-lg-6">
+                        <br />
+                        <div class="col-sm-6 col-lg-6 centro">
                             <div class="form-group">
                                 <label asp-for="geAbogadoDTO.Carnet" class="control-label"></label>
                             </div>
@@ -243,7 +247,7 @@
                             </div>
                         </div>
                         <div class="seccion-titulo">Contactos</div>
-                        <div class="col-sm-6 col-lg-6">
+                        <div class="col-sm-6 col-lg-6 centro">
                             <div class="form-group">
                                 <label asp-for="personaDTO.Telefono1" class="control-label"></label>
                             </div>
@@ -254,7 +258,7 @@
                                 <span asp-validation-for="personaDTO.Telefono1" class="text-danger"></span>
                             </div>
                         </div>
-                        <div class="col-sm-6 col-lg-6">
+                        <div class="col-sm-6 col-lg-6 centro">
                             <div class="form-group">
                                 <label asp-for="personaDTO.Telefono2" class="control-label"></label>
                             </div>
@@ -266,7 +270,7 @@
                             </div>
                         </div>
                         <div class="seccion-titulo">Autenticacion para el sistema</div>
-                        <div class="col-sm-6 col-lg-6">
+                        <div class="col-sm-6 col-lg-6 centro">
                             <div class="form-group">
                                 <label asp-for="personaDTO.Email">Correro electrónico</label>
                             </div>
@@ -281,19 +285,19 @@
                                 }
                             </div>
                         </div>
-                        <div class="col-sm-6 col-lg-6">
-                        <!--<div class="form-floating mb-3">-->
-                        <div class="form-group">
-                            <label asp-for="personaDTO.Password">Contraseña</label>
+                        <div class="col-sm-6 col-lg-6 centro">
+                            <!--<div class="form-floating mb-3">-->
+                            <div class="form-group">
+                                <label asp-for="personaDTO.Password">Contraseña</label>
+                            </div>
                         </div>
-                    </div>
-                    <div class="col-sm-6 col-lg-6">
-                        <div class="form-group">
+                        <div class="col-sm-6 col-lg-6">
+                            <div class="form-group">
                                 <input asp-for="personaDTO.Password" class="form-control" autocomplete="new-password" aria-required="true" placeholder="ej. 123Abd$" />
-                            <span asp-validation-for="personaDTO.Password" class="text-danger"></span>
+                                <span asp-validation-for="personaDTO.Password" class="text-danger"></span>
+                            </div>
                         </div>
-                    </div>
-                        <div class="col-sm-6 col-lg-6">
+                        <div class="col-sm-6 col-lg-6 centro">
                             <!--<div class="form-floating mb-3">-->
                             <div class="form-group">
                                 <label asp-for="personaDTO.ConfirmPassword">Confirmación de contraseña</label>
@@ -304,12 +308,12 @@
                                 <input asp-for="personaDTO.ConfirmPassword" class="form-control" autocomplete="new-password" aria-required="true" placeholder="ej. 123Abd$" />
                                 <span asp-validation-for=personaDTO.ConfirmPassword class="text-danger"></span>
                             </div>
-                        </div>                     
+                        </div>
                         <div class="col-md-12 col-lg-12" style="margin-top: 100px">
 
                             <div class="text-center">
                                 <div class="form-group">
-                                    <input type="submit" value="Create" class="contact-btn" />
+                                    <input type="submit" value="Crear" class="contact-btn btn-lg" style="width:30%" />
                                 </div>
                             </div>
                         </div>

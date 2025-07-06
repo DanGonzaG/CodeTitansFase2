@@ -138,7 +138,9 @@ namespace Preacepta.AD.Casos.Listar
 
         }
 
-        public async Task<CasoDTO> listarXultimaFecha()
+
+        /*este metodo se usa para mostrar los ultimos casos creados en la tabla Tcasos*/
+        public async Task<CasoDTO> listarXultimaFecha(int cedula)
         {
             try
             {
@@ -148,8 +150,8 @@ namespace Preacepta.AD.Casos.Listar
                     .ThenInclude(a => a.Direccion1Navigation)
                     .Include(c => c.IdClienteNavigation)
                     .ThenInclude(a => a.Direccion1Navigation)
-                    .Include(c => c.IdTipoCasoNavigation)                    
-                    .OrderByDescending(f => f.Fecha)
+                    .Include(c => c.IdTipoCasoNavigation)
+                    .Where(a => a.IdAbogado == cedula)
                     .Select(lista => new CasoDTO
                     {
                         IdCaso = lista.IdCaso,

@@ -421,13 +421,13 @@ caption {
 
 th {
     vertical-align: middle;
-    text-align: center;
-    text-align: -webkit-match-parent
+    text-align: center !important;
+    text-align: -webkit-match-parent;
 }
 
 td {
     vertical-align: middle;
-    text-align: center;
+    text-align: center !important;
 }
 
 tbody, td, tfoot, th, thead, tr {

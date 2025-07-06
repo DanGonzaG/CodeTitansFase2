@@ -257,6 +257,18 @@
       "PackagePath": "staticwebassets\\lib\\jquery\\dist\\jquery.min.map"
     },
     {
+      "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lyso\\DescargaCasos\\CasoPlantilla2.html",
+      "PackagePath": "staticwebassets\\lyso\\DescargaCasos\\CasoPlantilla2.html"
+    },
+    {
+      "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lyso\\DescargaCasos\\CasoPlantillaPrincipalFem.html",
+      "PackagePath": "staticwebassets\\lyso\\DescargaCasos\\CasoPlantillaPrincipalFem.html"
+    },
+    {
+      "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lyso\\DescargaCasos\\CasoPlantillaPrincipalMasc.html",
+      "PackagePath": "staticwebassets\\lyso\\DescargaCasos\\CasoPlantillaPrincipalMasc.html"
+    },
+    {
       "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lyso\\DescargaCasos\\DescargaEtapaPL.html",
       "PackagePath": "staticwebassets\\lyso\\DescargaCasos\\DescargaEtapaPL.html"
     },
@@ -467,6 +479,10 @@
     {
       "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lyso\\fonts\\icofont.woff2",
       "PackagePath": "staticwebassets\\lyso\\fonts\\icofont.woff2"
+    },
+    {
+      "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lyso\\img\\FormCasoNuevo.png",
+      "PackagePath": "staticwebassets\\lyso\\img\\FormCasoNuevo.png"
     },
     {
       "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lyso\\img\\Imagen1.png",
@@ -811,6 +827,10 @@
     {
       "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lyso\\js\\CalculoEdad.js",
       "PackagePath": "staticwebassets\\lyso\\js\\CalculoEdad.js"
+    },
+    {
+      "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lyso\\js\\ConfiguracionTablas.js",
+      "PackagePath": "staticwebassets\\lyso\\js\\ConfiguracionTablas.js"
     },
     {
       "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lyso\\js\\Daniel.js",

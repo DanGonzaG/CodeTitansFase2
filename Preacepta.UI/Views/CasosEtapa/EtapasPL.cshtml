@@ -124,7 +124,7 @@
                                 {
                                     <div class="attor-details-things">
                                         <form asp-controller="CasosEtapa" asp-action="FormularioEtapaPL" method="get">
-                                            <input type="hidden" name="IdCaso" value="@Model.casoDTO.IdCaso">
+                                            <input type="hidden" name="IdCaso" value="@Model.casoDTO.IdCaso" />
                                             <button type="submit" class="contact-btn EtapaPLestilos">Nueva Etapa Procesal</button>
                                         </form>
                                         <!--<bottom type="button" class="contact-btn"><a style="color:white" asp-controller="CasosEtapa" asp-action="FormularioEtapaPL" asp-route-id="@Model.casoDTO.IdCaso">Nueva Etapa Procesal</a></bottom>-->
@@ -134,8 +134,15 @@
                             }
 
                             <div class="attor-details-things">
-                                <bottom type="button" class="contact-btn EtapaPLestilos">Descargar Caso Completo</bottom>
+                                <!--<bottom type="button" class="contact-btn EtapaPLestilos">Descargar Caso Completo</bottom>-->
+                                <form asp-controller="Caso" asp-action="DescargarCasoCompleto" method="get">
+                                    <input type="hidden" name="IdCaso" value="@Model.casoDTO.IdCaso" />
+                                    <button type="submit" class="contact-btn EtapaPLestilos">Descargar</button>
+                                </form>
                             </div>
+
+                            
+
                         </div>
 
                     </div>
@@ -296,6 +303,23 @@
             Swal.fire({
                 title: 'Etapas del Proceso',
                 text: '@TempData["MensajeEliminacion"]',
+                icon: 'success',
+                confirmButtonText: 'Continuar',
+                customClass: {
+                    confirmButton: 'contact-btn' // Clase CSS personalizada
+                }
+            });
+        });
+    </script>
+}
+
+@if (TempData["CasoCerrado"] != null)
+{
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            Swal.fire({
+                title: 'Etapas del Proceso',
+                text: '@TempData["CasoCerrado"]',
                 icon: 'success',
                 confirmButtonText: 'Continuar',
                 customClass: {

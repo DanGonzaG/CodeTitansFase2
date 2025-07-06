@@ -187,32 +187,31 @@
 
 
                             @if (User.Identity.IsAuthenticated)
-                            {                               
-                                    <li class="nav-item">
-                                        <a href="#" class="nav-link dropdown-toggle">Casos</a>
-                                        <ul class="dropdown-menu">                                           
-                                            <li class="nav-item">
-                                                <a asp-controller="GestionCasos" asp-action="SolicitudCaso" class="nav-link">Solicitar Servicio</a>
-                                            </li>
-                                            <!--<li class="nav-item">
+                            {
+                                <li class="nav-item">
+                                    <a href="#" class="nav-link dropdown-toggle">Casos</a>
+                                    <ul class="dropdown-menu">
+                                        <li class="nav-item">
+                                            <a asp-controller="GestionCasos" asp-action="SolicitudCaso" class="nav-link">Solicitar Servicio</a>
+                                        </li>
+                                        <!--<li class="nav-item">
                                                 <a asp-controller="GestionCasos" asp-action="CasosListadoCliente" class="nav-link">Listado Casos Cliente</a>
                                         </li>-->
-                                            
                                         @if (User.IsInRole("Gestor") || User.IsInRole("Abogado"))
                                         {
                                             <li class="nav-item">
                                                 <a asp-controller="Caso" asp-action="FormularioCaso" class="nav-link">Crear Caso</a>
                                             </li>
                                         }
-                                            <li class="nav-item">
-                                                <a asp-controller="Caso" asp-action="CasosListado" class="nav-link">Listado de casos</a>
-                                            </li>
-                                            <li class="nav-item">
-                                                <a asp-controller="GestionCasos" asp-action="CasosCerrados" class="nav-link">Casos Cerrados</a>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                
+                                        <li class="nav-item">
+                                            <a asp-controller="Caso" asp-action="CasosListado" class="nav-link">Listado de casos</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a asp-controller="Caso" asp-action="CasosListadoHistorial" class="nav-link">Casos Cerrados</a>
+                                        </li>                                       
+                                    </ul>
+                                </li>
+
                             }
                             @if (User.Identity.IsAuthenticated)
                             {
@@ -280,7 +279,7 @@
                                                 <a asp-controller="CitasTipo" asp-action="Index" class="nav-link">CitasTipo</a>
                                             </li>
                                             <li class="nav-item">
-                                                <a href="#" class="nav-link dropdown-toggle">Gestion de documentos</a> 
+                                                <a href="#" class="nav-link dropdown-toggle">Gestion de documentos</a>
                                                 <ul class="dropdown-menu">
                                                     <li class="nav-item">
                                                         <a asp-controller="DocsContratoPrestacionServicios" asp-action="Index" class="nav-link"
@@ -574,7 +573,7 @@
     </footer>
     <!-- End Footer -->
     <!-- Essential JS -->
-    <script src="~/lyso/js/jquery.min.js"></script>
+    <script src="~/lyso/js/jquery.min.js"></script>    
     <script src="~/lyso/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.datatables.net/2.2.2/js/dataTables.js"></script>
     <!-- Meanmenu JS -->
@@ -600,6 +599,12 @@
     <script src="~/lyso/js/custom.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
+
     @await RenderSectionAsync("Scripts", required: false)
+
+    <script>
+        console.log("🧪 Sección Scripts llegó al layout.");
+    </script>
+
 </body>
 </html>

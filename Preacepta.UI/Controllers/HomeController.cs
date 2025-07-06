@@ -85,7 +85,7 @@ namespace Praecepta.UI.Controllers
             {
                 var persona = await _buscarPersona.buscarXcorreo(correo);
                 var abogado = await _buscarAbogado.buscar(persona.Cedula);
-                var ultimoCaso = await _listarUlimoCaso.listarXultimaFecha();
+                var ultimoCaso = await _listarUlimoCaso.listarXultimaFecha(persona.Cedula);
                 PersonaAbogadoCasoDocCita perfilCompleto = new PersonaAbogadoCasoDocCita();
                 perfilCompleto.personaDTO = persona;
                 perfilCompleto.geAbogadoDTO = abogado;

@@ -8,6 +8,6 @@ namespace Preacepta.LN.Casos.Listar
         Task<List<CasoDTO>> listarXabogado(int cedula);
         Task<List<CasoDTO>> listarXcliente(int cedula);
 
-        Task<CasoDTO> listarXultimaFecha();
+        Task<CasoDTO> listarXultimaFecha(int cedula);
     }
 }

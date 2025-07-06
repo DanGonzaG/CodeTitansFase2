@@ -54,7 +54,7 @@
 </div>
 
 
-<div class="contact-form contact-form-two contact-form-three">
+<div class="contact-form contact-form-two contact-form-three LetraNegra">
     <div class="container">
         <div class="contact-wrap">
             <table class="table">
@@ -94,39 +94,43 @@
                     {
                         @foreach (var item in Model)
                         {
-                            <tr class="losCasosFiltrados" idCaso="@item.IdCaso" nombreCaso="@item.Nombre">
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.IdCaso)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.Fecha)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.Nombre)
-                                </td>
-                                <!--<td>
-                                @Html.DisplayFor(modelItem => item.Descripcion)
-                                </td>-->
-                                <!--<td>
-                                @Html.DisplayFor(modelItem => item.Activo)
-                                </td>-->
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.IdAbogadoNavigation.CedulaNavigation.Nombre)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.IdClienteNavigation.Nombre)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.IdTipoCasoNavigation.Nombre)
-                                </td>
-                                <td>
-                                    <a class="cmn-btn" asp-controller="CasosEtapa" asp-action="EtapasPL"
-                                       asp-route-id="@item.IdCaso">
-                                        <!--<img width="25" src="~/lyso/fonts/png/court.png" />-->
-                                        Detalles
-                                    </a>
-                                </td>
-                            </tr>
+                            if(item.Activo == true)
+                            {
+                                <tr class="losCasosFiltrados" idCaso="@item.IdCaso" nombreCaso="@item.Nombre">
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.IdCaso)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Fecha)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Nombre)
+                                    </td>
+                                    <!--<td>
+                                    @Html.DisplayFor(modelItem => item.Descripcion)
+                                    </td>-->
+                                    <!--<td>
+                                    @Html.DisplayFor(modelItem => item.Activo)
+                                    </td>-->
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.IdAbogadoNavigation.CedulaNavigation.Nombre)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.IdClienteNavigation.Nombre)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.IdTipoCasoNavigation.Nombre)
+                                    </td>
+                                    <td>
+                                        <a class="cmn-btn" asp-controller="CasosEtapa" asp-action="EtapasPL"
+                                           asp-route-id="@item.IdCaso">
+                                            <!--<img width="25" src="~/lyso/fonts/png/court.png" />-->
+                                            Detalles
+                                        </a>
+                                    </td>
+                                </tr>
+                            }
+                            
                         }
                     }
                     else
@@ -153,4 +157,7 @@
     </div>
 </div>
 
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
+<script src="~/lyso/js/configuraciontablas.js"></script>
 <script src="~/lyso/js/filtrarcasosxid.js"></script>
