@@ -5,9 +5,11 @@ using Preacepta.LN.CitasTipo.Editar;
 using Preacepta.LN.CitasTipo.Eliminar;
 using Preacepta.Modelos.AbstraccionesFrond;
 using Preacepta.Modelos.AbstraccionesBD;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Preacepta.UI.Controllers
 {
+    [Authorize(Roles = "Gestor")]
     public class CitasTipoController : Controller
     {
         private readonly IListarCitasTipoLN _listarLN;

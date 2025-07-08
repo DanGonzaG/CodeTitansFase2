@@ -1,0 +1,33 @@
+﻿@model Preacepta.Modelos.AbstraccionesFrond.CitasDTO
+
+<form asp-action="Create" asp-controller="Citas" method="post">
+    @Html.AntiForgeryToken()
+    <div class="add-event-header">
+        <div class="title">Añadir cita</div>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+    </div>
+
+    <div class="add-event-body">
+        <div class="mb-3">
+            <label for="Fecha" class="form-label">Fecha</label>
+            <input asp-for="Fecha" class="form-control" type="date" required />
+        </div>
+        <div class="mb-3">
+            <label for="Hora" class="form-label">Hora</label>
+            <input asp-for="Hora" class="form-control" type="time" required />
+        </div>
+        <div class="mb-3">
+            <label for="LinkVideo" class="form-label">Link de videoconferencia</label>
+            <input asp-for="LinkVideo" class="form-control" type="url" />
+        </div>
+        <div class="mb-3">
+            <label for="Anfitrion" class="form-label">Anfitrión</label>
+            <input asp-for="Anfitrion" class="form-control" type="text" />
+        </div>
+    </div>
+
+    <div class="add-event-footer d-flex justify-content-between">
+        <input type="submit" value="Crear" class="btn btn-primary" />
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+    </div>
+</form>

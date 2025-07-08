@@ -180,22 +180,19 @@
                             </div>
                         </div>
 
-
-                    <div class="col-md-12 col-lg-12">
-
-                        <div class="text-center">
-                            <!-- Button trigger modal -->
-                            <div id="btnRevisar">
-                                <button type="button" id="PrevioBtn" class="contact-btn" data-bs-toggle="modal" data-bs-target="#PrevioModal">
-                                    Revisar
-                                </button>
+                        <div class="col-md-12 col-lg-12">
+                            <div class="text-center d-flex justify-content-center gap-3">
+                                <div class="form-group" id="btnCrearCaso">
+                                    <input type="submit" value="Crear Documento" class="contact-btn" />
+                                </div>
+                                <div class="form-group">
+                                    <button type="button" id="btnPrevisualizar" class="contact-btn">
+                                        Previsualizar PDF
+                                    </button>
+                                </div>
                             </div>
-                            <div class="form-group" id="btnCrearCaso">
-                                <input type="submit" value="Crear Caso" class="contact-btn" />
-                            </div>
-                            <!--<button type="submit" class="contact-btn">Submit Case</button>-->
                         </div>
-                    </div>
+                    
                 </div>
             </form>
         </div>
@@ -203,46 +200,6 @@
 </div>
 </body>
 
-<!-- Button trigger modal -->
-<!-- Modal -->
-<div class="modal fade" id="PrevioModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Revisión de datos ingresados</h5>
-                <button id="Retroceso2" type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <p style="color: black"><strong>Cedula del Cliente:</strong> <span id="previoCedulaCliente"></span></p>
-                <p style="color: black"><strong>Cedula del Abogado:</strong> <span id="previoCedulaAbogado"></span></p>
-                <p style="color: black"><strong>Marca del Vehiculo:</strong> <span id="previoMarcaVehiculo"></span></p>
-                <p style="color: black"><strong>Estilo del Vehiculo:</strong> <span id="previoEstiloVehiculo"></span></p>
-                <p style="color: black"><strong>Modelo del Vehiculo:</strong> <span id="previoModeloVehiculo"></span></p>
-                <p style="color: black"><strong>Categoria:</strong> <span id="previoCategoria"></span></p>
-                <p style="color: black"><strong>Marca del motor:</strong> <span id="previoMarcaMotor"></span></p>
-                <p style="color: black"><strong>Numero de Motor:</strong> <span id="previoNumeroMotor"></span></p>
-                <p style="color: black"><strong>Número de Serie del Chasis:</strong> <span id="previoNumeroSerieChasis"></span></p>
-                <p style="color: black"><strong>VIN del Vehículo:</strong> <span id="previoVin"></span></p>
-                <p style="color: black"><strong>Año del Vehículo:</strong> <span id="previoAnio"></span></p>
-                <p style="color: black"><strong>Tipo de Carrocería:</strong> <span id="previoCarroceria"></span></p>
-                <p style="color: black"><strong>Peso Neto:</strong> <span id="previoPesoNeto"></span></p>
-                <p style="color: black"><strong>Peso Bruto:</strong> <span id="previoPesoBruto"></span></p>
-                <p style="color: black"><strong>Potencia del Motor:</strong> <span id="previoPotencia"></span></p>
-                <p style="color: black"><strong>Color del Vehículo:</strong> <span id="previoColor"></span></p>
-                <p style="color: black"><strong>Capacidad del Vehículo:</strong> <span id="previoCapacidad"></span></p>
-                <p style="color: black"><strong>Tipo de Combustible:</strong> <span id="previoCombustible"></span></p>
-                <p style="color: black"><strong>Cilindraje del Motor:</strong> <span id="previoCilindraje"></span></p>
-                <p style="color: black"><strong>Lugar de Firma:</strong> <span id="previoLugarFirma"></span></p>
-                <p style="color: black"><strong>Fecha de Firma:</strong> <span id="previoFechaFirma"></span></p>
-
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="contact-btn" data-bs-dismiss="modal" id="Retroceso">Hacer Cambios</button>
-                <button type="button" id="BtnConfirmar" class="contact-btn">Confirmar datos</button>
-            </div>
-        </div>
-    </div>
-</div>
 
 @section Scripts {
     @{

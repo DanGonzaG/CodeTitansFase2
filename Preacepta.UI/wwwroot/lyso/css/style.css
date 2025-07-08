@@ -1,4 +1,4 @@
-/*
+﻿/*
 @File: Lyzo Template Style
 
 * This file contains the styling for the actual template, this
@@ -481,8 +481,8 @@ button:focus {
   color: #ffffff;
   background-color: #b69d74;
   font-weight: 600;
-  font-size: 16px;
-  padding: 14px 30px;
+  font-size: 13px;
+  padding: 9px 23px; /* antes 16px 40px */
   position: relative;
   z-index: 1;
 }
@@ -1051,9 +1051,6 @@ button:focus {
   box-shadow: none;
   border: 1px solid #ffffff;
 }
-.contact-wrap .form-group ::-moz-placeholder {
-  color: #ababab;
-}
 .contact-wrap .form-group ::placeholder {
   color: #ababab;
 }
@@ -1067,10 +1064,10 @@ button:focus {
 
 .contact-btn {
   font-weight: 600;
-  font-size: 16px;
+  font-size: 14px;
   color: #ffffff;
   background-color: #b69d74;
-  padding: 16px 40px;
+  padding: 10px 24px; /* antes 16px 40px */
   border: 0;
   position: relative;
   z-index: 1;
@@ -1123,7 +1120,7 @@ button:focus {
   color: #dc3545;
   margin-top: 25px;
   margin-bottom: 0;
-  font-size: 24px;
+  /*font-size: 24px;*/
 }
 
 .text-success {
@@ -1303,9 +1300,6 @@ button:focus {
 .newsletter-area .newsletter-form .validation-danger {
   color: #dc3545;
   margin-top: 10px;
-}
-.newsletter-area .newsletter-form ::-moz-placeholder {
-  color: #a9a3a3;
 }
 .newsletter-area .newsletter-form ::placeholder {
   color: #a9a3a3;
@@ -1777,7 +1771,7 @@ footer .copyright-area .copyright-right {
 }
 
 .title-img-one {
-    background-image: url("../img/about/1-1.jpg");
+  background-image: url("../img/about/1-1.jpg");
 }
 
 .page-title-area {
@@ -3029,12 +3023,8 @@ footer .copyright-area .copyright-right {
 /*-- End Location --*/
 /*-- Contact --*/
 .page-title-area-two {
-  height: 550px;
+  height: 350px;
 }
-.page-title-area-two .page-title-text {
-  margin-top: 15px;
-}
-
 .contact-form-four {
   background-image: url("../img/contact-bg.png");
 }
@@ -3150,6 +3140,21 @@ footer .copyright-area .copyright-right {
 .sk-folding-cube .sk-cube4:before {
   animation-delay: 0.9s;
 }
+
+@-webkit-keyframes sk-foldCubeAngle {
+  0%, 10% {
+    transform: perspective(140px) rotateX(-180deg);
+    opacity: 0;
+  }
+  25%, 75% {
+    transform: perspective(140px) rotateX(0deg);
+    opacity: 1;
+  }
+  90%, 100% {
+    transform: perspective(140px) rotateY(180deg);
+    opacity: 0;
+  }
+}
 @keyframes sk-foldCubeAngle {
   0%, 10% {
     transform: perspective(140px) rotateX(-180deg);
@@ -3220,4 +3225,4 @@ footer .copyright-area .copyright-right {
 .buy-now-btn:hover {
   color: #ffffff;
   background-color: #94be5d;
-}/*# sourceMappingURL=style.css.map */
+}

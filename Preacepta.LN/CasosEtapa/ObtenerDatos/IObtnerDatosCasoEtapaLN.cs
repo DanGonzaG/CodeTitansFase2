@@ -6,6 +6,7 @@ namespace Preacepta.LN.CasosEtapa.ObtenerDatos
     public interface IObtnerDatosCasoEtapaLN
     {
         CasosEtapaDTO ObtenerDeDB(TCasosEtapa datos);
-        TCasosEtapa ObtenerDeFront(CasosEtapaDTO datos);
+        TCasosEtapa ObtenerDeFrontCrear(CasosEtapaDTO datos);
+        TCasosEtapa ObtenerDeFrontEditar(CasosEtapaDTO datos);
     }
 }

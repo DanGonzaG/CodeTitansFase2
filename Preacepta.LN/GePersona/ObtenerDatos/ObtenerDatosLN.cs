@@ -26,6 +26,7 @@ namespace Preacepta.LN.GePersona.ObtenerDatos
                 Activo = gePersona.Activo,
                 Telefono1 = gePersona.Telefono1,
                 Telefono2 = gePersona.Telefono2,
+                Genero = gePersona.Genero
             };
         }
 
@@ -51,13 +52,14 @@ namespace Preacepta.LN.GePersona.ObtenerDatos
                 Activo = true,
                 Telefono1 = gePersona.Telefono1,
                 Telefono2 = gePersona.Telefono2,
+                Genero = gePersona.Genero
             };
         }
 
         public TGePersona ObtenerDeFrontEditar(GePersonaDTO gePersona)
         {
             return new TGePersona
-            {
+            {                
                 Cedula = gePersona.Cedula,
                 Nombre = gePersona.Nombre,
                 Apellido1 = gePersona.Apellido1,
@@ -70,11 +72,12 @@ namespace Preacepta.LN.GePersona.ObtenerDatos
                 Direccion1Navigation = gePersona.Direccion1Navigation,
                 Direccion2 = gePersona.Direccion2,
                 Email = gePersona.Email,
-                //FechaRegistro = DateTime.Now,
+                FechaRegistro = DateTime.Now,
                 Activo = gePersona.Activo,
                 Telefono1 = gePersona.Telefono1,
                 Telefono2 = gePersona.Telefono2,
+                Genero = gePersona.Genero
             };
-        }
+        }        
     }
 }

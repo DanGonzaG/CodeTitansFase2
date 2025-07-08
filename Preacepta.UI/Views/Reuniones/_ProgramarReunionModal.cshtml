@@ -1,0 +1,53 @@
+﻿<head>
+    <link href="~/lyso/css/Daniel.css" rel="stylesheet" />
+    <link href="~/calendario/stylecalendar.css" rel="stylesheet" />
+</head>
+
+<div id="modalProgramar" class="custom-modal">
+        <div class="contact-form contact-form-two contact-form-three LetraNegra">
+            <div class="container">
+                <div class="contact-wrap">
+            <h4 class="mb-4">Programar Reunión</h4>
+
+            <form asp-controller="CrearReunion" asp-action="Crear" method="post" id="formReunion">
+ 
+             <!-- Fecha -->
+                    <div class="form-group mb-3">
+                            <label for="FechaInicio" class="control-label">Fecha y hora de inicio:</label>
+                            <input type="datetime-local" id="FechaInicio" name="FechaInicio" class="form-control" required />
+                        </div>
+                   
+
+                    <!-- Duración -->
+                         <div class="form-group mb-3">
+                            <label for="Duracion" class="control-label">Duración (minutos):</label>
+                            <input type="number" id="Duracion" name="Duracion" value="30" min="1" class="form-control" required />
+                        </div>
+                   
+
+                    <!-- Tema -->
+                    <div class="form-group mb-3">
+                            <label for="Tema" class="control-label">Tema:</label>
+                            <input type="text" id="Tema" name="Tema" value="Reunión con cliente" class="form-control" required />
+                        </div>
+                    
+
+                    <!-- Participantes -->
+                    <div class="form-group mb-3">
+                            <label for="Participantes" class="control-label">Participantes (correos):</label>
+                            <input type="text" id="Participantes" name="Participantes" class="form-control"
+                                   placeholder="ej: cliente@email.com, abogado@email.com" />
+                        </div>
+
+                    <!-- Botones -->
+                    <div class="text-center mt-4">
+                        <button type="submit" class="contact-btn">Crear reunión</button>
+                        <button type="button" id="btnCerrarModal" class="contact-btn">Cerrar</button>
+                    </div>
+
+                    </form>
+
+                    <div id="resultado" class="mt-3 text-center fw-bold"></div>
+                </div>
+            </div>
+    </div>

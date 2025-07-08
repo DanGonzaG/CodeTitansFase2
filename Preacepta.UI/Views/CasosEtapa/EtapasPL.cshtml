@@ -1,14 +1,12 @@
 ﻿@model Preacepta.Modelos.AbstraccionesFrond.CasoUnionEtapasPL
 <!-- Page Title -->
-<style>
-    .EtapaPLestilos {
-        width: 200px; /* Ajusta el ancho según tus necesidades */
-        height: 50px; /* Ajusta la altura según tus necesidades */
-        text-align: center;
-        font-size: 16px;
-        padding: 10px;
-    }
-</style>
+<link href="~/lyso/css/daniel.css" rel="stylesheet" />
+
+
+
+
+
+
 
 <div class="page-title-area title-img-one">
     <div class="d-table">
@@ -17,18 +15,18 @@
                 <h2>Detalles y Etapas del proceso legal</h2>
                 <ul>
                     <li>
-                        <a asp-controller="Home" asp-action="Index">Home</a>
+                        <a asp-controller="Home" asp-action="Index">Página Principal</a>
                     </li>
                     <li>
                         <i class="icofont-simple-right"></i>
                     </li>
                     <li>
-                        <a asp-controller="GestionCasos" asp-action="CasosListado">Listado</a>
+                        <a asp-controller="Caso" asp-action="CasosListado">Casos</a>
                     </li>
                     <li>
                         <i class="icofont-simple-right"></i>
                     </li>
-                    <li>Etapas</li>
+                    <li>Etapas del caso</li>
                 </ul>
             </div>
         </div>
@@ -47,7 +45,7 @@
                         <br />
                         <div class="attor-social-details">
                             <h3>Información del Cliente</h3>
-                            
+
                             <ul>
                                 <li>
                                     <i class="flaticon-login"></i>
@@ -83,13 +81,13 @@
                                     <i class="flaticon-pin"></i>
                                     @Model.casoDTO?.IdClienteNavigation?.Direccion1Navigation.NombreDistrito
                                     @Model.casoDTO?.IdClienteNavigation?.Direccion2
-                                    
+
                                 </li>
                             </ul>
                         </div>
-                       
+
                     </div>
-                   
+
                 </div>
             </div>
             <div class="col-lg-7">
@@ -98,7 +96,8 @@
                         <div class="attor-details-name">
                             <h2>@Model.casoDTO.Nombre</h2> <!--TituloCaso-->
                             <span>@Model.casoDTO.IdTipoCasoNavigation.Nombre</span> <!--Tipo Caso-->
-                            <p>Funcionario @Model.casoDTO.IdAbogadoNavigation.CedulaNavigation.Nombre
+                            <p>
+                                Funcionario @Model.casoDTO.IdAbogadoNavigation.CedulaNavigation.Nombre
                                 @Model.casoDTO.IdAbogadoNavigation.CedulaNavigation.Apellido1
                                 @Model.casoDTO.IdAbogadoNavigation.CedulaNavigation.Apellido2
                             </p> <!--Abogado-->
@@ -108,37 +107,44 @@
                         <div class="attor-details-things">
                             <h3>Descripcion</h3> <!--Descripcion del caso-->
                             <p>@Model.casoDTO.Descripcion</p>
-                            
+
                         </div>
                         <div class="attor-details-things">
                             <h3>Pruebas Iniciales</h3>
                             <ul>
                                 <li>Documentos legales</li>
                                 <li>Correos electrónicos</li>
-                                
+
                             </ul>
                         </div>
                         <div>
-                            @if(User.Identity.IsAuthenticated)
+                            @if (User.Identity.IsAuthenticated)
                             {
                                 if (User.IsInRole("Abogado") || User.IsInRole("Gestor"))
                                 {
                                     <div class="attor-details-things">
                                         <form asp-controller="CasosEtapa" asp-action="FormularioEtapaPL" method="get">
-                                            <input type="hidden" name="IdCaso" value="@Model.casoDTO.IdCaso">
-                                            <button type="submit" class="contact-btn EtapaPLestilos" style="width:50%">Nueva Etapa Procesal</button>
+                                            <input type="hidden" name="IdCaso" value="@Model.casoDTO.IdCaso" />
+                                            <button type="submit" class="contact-btn EtapaPLestilos">Nueva Etapa Procesal</button>
                                         </form>
                                         <!--<bottom type="button" class="contact-btn"><a style="color:white" asp-controller="CasosEtapa" asp-action="FormularioEtapaPL" asp-route-id="@Model.casoDTO.IdCaso">Nueva Etapa Procesal</a></bottom>-->
 
                                     </div>
                                 }
                             }
-                            
+
                             <div class="attor-details-things">
-                                <bottom type="button" class="contact-btn EtapaPLestilos" style="width:50% ">Descargar Caso Completo</bottom>
+                                <!--<bottom type="button" class="contact-btn EtapaPLestilos">Descargar Caso Completo</bottom>-->
+                                <form asp-controller="Caso" asp-action="DescargarCasoCompleto" method="get">
+                                    <input type="hidden" name="IdCaso" value="@Model.casoDTO.IdCaso" />
+                                    <button type="submit" class="contact-btn EtapaPLestilos">Descargar</button>
+                                </form>
                             </div>
+
+                            
+
                         </div>
-                        
+
                     </div>
                 </div>
             </div>
@@ -158,12 +164,11 @@
         </div>
     </div>
 
-     
-                  
-    
+
+
+
     <div class="container">
         <div class="contact-wrap">
-            
             <table class="table">
                 <thead>
                     <tr>
@@ -171,16 +176,14 @@
                             @Html.DisplayNameFor(model => model.listarCasoEtapas.FirstOrDefault().Fecha)
                         </th>
                         <th>
-                            @Html.DisplayNameFor(model => model.listarCasoEtapas.FirstOrDefault().IdCasoNavigation)
+                            @Html.DisplayNameFor(model => model.listarCasoEtapas.FirstOrDefault().IdCasoNavigation.Nombre)
                         </th>
                         <th>
                             @Html.DisplayNameFor(model => model.listarCasoEtapas.FirstOrDefault().Nombre)
                         </th>
                         <!--<th>
-                            @Html.DisplayNameFor(model => model.listarCasoEtapas.FirstOrDefault().Descripcion)
+                        @Html.DisplayNameFor(model => model.listarCasoEtapas.FirstOrDefault().Descripcion)
                         </th>-->
-                     
-                    
                         <th>
                             @Html.DisplayNameFor(model => model.listarCasoEtapas.FirstOrDefault().Activo)
                         </th>
@@ -188,37 +191,50 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach (var item in Model.listarCasoEtapas)
+                    @if (Model.listarCasoEtapas.Any())
+                    {
+                        @foreach (var item in Model.listarCasoEtapas)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Fecha)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.IdCasoNavigation.Nombre)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Nombre)
+                                </td>
+                                <!--<td>
+                                @Html.DisplayFor(modelItem => item.Descripcion)
+                                </td>-->
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Activo)
+                                </td>
+                                <td>
+                                    <button value="@item.IdEtapaPl" type="button" id="PrevioBtn" class="contact-btn" data-bs-toggle="modal" data-bs-target="#PrevioModal">
+                                        Detalles
+                                    </button>
+
+                                </td>
+                            </tr>
+                        }
+                    }
+                    else
                     {
                         <tr>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.Fecha)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.IdCasoNavigation.Nombre)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.Nombre)
-                            </td>
-                            <!--<td>
-                                @Html.DisplayFor(modelItem => item.Descripcion)
-                            </td>-->
-                            <td>
-                                @Html.DisplayFor(modelItem => item.Activo)
-                            </td>
-                            <td>
-                                <button type="button" id="PrevioBtn" class="contact-btn" data-bs-toggle="modal" data-bs-target="#PrevioModal">
-                                Detalles
-                            </button>
-
+                            <td colspan="5">
+                                <div class="col-12 text-center">
+                                    <div class="alert alert-info">
+                                        El caso no cuenta con etapas de procesos legales.
+                                    </div>
+                                </div>
                             </td>
                         </tr>
+
                     }
-
-
                 </tbody>
             </table>
-  
         </div>
     </div>
 </div>
@@ -231,23 +247,86 @@
                 <div class="container">
                     <div class="contact-wrap" style="color: black">
                         <h2>Detalles de Etapa del Proceso Legal</h2>
-                        <p style="color: black"><strong>Descripcion:</strong> <p>Revisión inicial de documentos del caso.</p> </p>
-                        <p style="color: black"><strong>Fecha de Etapa:</strong><p>02-Apr-25</p> </p>
-                        <p style="color: black"><strong>Numero de Etapa:</strong><p>10001</p> </p>
-                        <p style="color: black"><strong>Pruebas:</strong> <p>Copia del contrato firmado</p> </p>
-                        <p style="color: black"><strong>Detalles:</strong><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.</p> </p>
+                        <p id="Nombre"></p>
+                        <p id="FechaEtapa"></p>
+                        <p id="NumeroEtapa"></p>
+                        <p id="CasoId"></p>
+                        <p id="DescripcionEtapa"></p>
                     </div>
                 </div>
             </div>
-            <div class="modal-footer">
-                <button type="button" class="contact-btn" id="BtnObtenerPDF">Descargar</button>
-                <button type="button" class="contact-btn" id="BtnModificarPL">Modificar</button>
-                <button type="button" class="contact-btn" id="BtnModificarPL">Eliminar</button>
+            <div class="modal-footer">               
+                <form asp-controller="CasosEtapa" asp-action="DescargaPDFetapaPL" method="get">
+                    <input id="inputDescargaEtapaPL" type="hidden" value="" name="id" />
+                    <button type="submit" class="contact-btn">Descargar</button>
+                </form>
+                <form asp-controller="CasosEtapa" asp-action="EditarEtapaPL" method="get">
+                    <input id="inputEditEtapaPL" type="hidden" value="" name="id" />
+                    <button type="submit" class="contact-btn">Modificar</button>
+                </form>
+                <form asp-controller="CasosEtapa" asp-action="EliminarEtapaPL" method="get">
+                    <input id="inputDeleteEtapaPL" type="hidden" value="" name="id" />
+                    <button type="submit" class="contact-btn">Eliminar</button>
+                </form>
                 <button type="button" class="contact-btn" data-bs-dismiss="modal" id="Retroceso">Cerrar</button>
-               
+
             </div>
         </div>
     </div>
 </div>
 <!-- End Lista con Etapas del proceso legal -->
+
+<script src="~/lyso/js/mostrardetallespl.js"></script>
+
+
+@if (TempData["MensajeModificacion"] != null)
+{
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            Swal.fire({
+                title: 'Etapas del Proceso',
+                text: '@TempData["MensajeModificacion"]',
+                icon: 'success',
+                confirmButtonText: 'Continuar',
+                customClass: {
+                    confirmButton: 'contact-btn' // Clase CSS personalizada
+                }
+            });
+        });
+    </script>
+}
+
+@if (TempData["MensajeEliminacion"] != null)
+{
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            Swal.fire({
+                title: 'Etapas del Proceso',
+                text: '@TempData["MensajeEliminacion"]',
+                icon: 'success',
+                confirmButtonText: 'Continuar',
+                customClass: {
+                    confirmButton: 'contact-btn' // Clase CSS personalizada
+                }
+            });
+        });
+    </script>
+}
+
+@if (TempData["CasoCerrado"] != null)
+{
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            Swal.fire({
+                title: 'Etapas del Proceso',
+                text: '@TempData["CasoCerrado"]',
+                icon: 'success',
+                confirmButtonText: 'Continuar',
+                customClass: {
+                    confirmButton: 'contact-btn' // Clase CSS personalizada
+                }
+            });
+        });
+    </script>
+}
 

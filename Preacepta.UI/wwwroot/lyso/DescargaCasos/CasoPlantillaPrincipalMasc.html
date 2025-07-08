@@ -1,0 +1,66 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Autorización de Expediente</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            font-size: 12pt;
+            line-height: 1.5;
+            margin: 40px;
+        }
+
+        h4 {
+            margin-top: 20px;
+            text-align: center;
+            text-decoration: underline;
+        }
+
+        .firmas {
+            margin-top: 60px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div style="text-align: center; border-bottom: 1px solid #000; padding-bottom: 10px; margin-bottom: 20px;">
+        <img src="data:imagen/png;base64,{{LOGO}}" alt="Logo" style="height: 60px;" />
+        <h2 style="margin: 0;">{{NombreBufete}}</h2>
+        <p style="margin: 0;">Cédula Jurídica - {{CedulaJuridica}}</p>
+        <p style="margin: 0;">Cédula Jurídica - {{TelefonoDespacho}}</p>
+        <p style="margin: 0;">Cédula Jurídica - {{EmailDespacho}}</p>
+    </div>
+
+    <div style="margin-bottom:5px; margin-top:5px">
+        <p>
+            El cliente {{NombreCliente}} {{Apellido1Cliente}} {{Apellido2Cliente}} portador de la identificación {{IdCliente}}, es representado
+            por este despacho y su caso es precedido por el funcionario {{NombreAbogado}} {{Apellido1Abogado}} {{Apellido2Abogado}}, carnet {{Carnet}}.
+            Por consiguiente se hace constar que el presente consiste el su totalidad el caso número {{idCaso}}.
+            A continuación los detalles del mismo.
+        </p>
+    </div>
+
+    <div style="margin-bottom:5px; margin-top:5px">
+        <p><strong>Fecha de creación:</strong> {{FechaIncio}}</p>
+        <p><strong>Num. de caso:</strong> {{idCaso}}</p>
+        <p><strong>Nombre del caso:</strong> {{NombreCaso}}</p>
+        <p><strong>Tipo de caso:</strong> {{TipoDeCaso}}</p>
+        <p><strong>Descripción del caso:</strong></p>
+        <p>{{Descripcion}}</p>
+    </div>
+
+    <div style="margin-bottom:5px; margin-top:5px">
+        <p>
+            El proceso legal con el despacho tiene un total de {{contadorEtapas}} etapas del proceso legal, las cuales representan los pasos realizados por
+            los abogados desde su inicio hasta su cierre. Las etapas del proceso legal se detallan a continuación.
+        </p>
+    </div>
+    {{ETAPAS}}
+
+    <p>
+        Para uso de este despacho o uso de nuestro cliente este documento se emite el dia {{nombreDIA}} {{DIA}} de {{NombreMes}}
+        del {{ANYO}} a las {{HoraActual}}.
+    </p>
+</body>
+</html>

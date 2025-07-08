@@ -16,7 +16,7 @@ public partial class TCita
     public TimeOnly Hora { get; set; }
 
     [Column("Id_TipoCita")]
-    public int IdTipoCita { get; set; }
+    public int? IdTipoCita { get; set; }
 
     public int Anfitrion { get; set; }
 
@@ -28,8 +28,11 @@ public partial class TCita
 
     [ForeignKey("IdTipoCita")]
     [InverseProperty("TCita")]
-    public virtual TCitasTipo IdTipoCitaNavigation { get; set; } = null!;
+    public virtual TCitasTipo? IdTipoCitaNavigation { get; set; }
 
     [InverseProperty("IdCitaNavigation")]
     public virtual ICollection<TCitasCliente> TCitasClientes { get; set; } = new List<TCitasCliente>();
+
+    public virtual ICollection<TDocumentosCita> DocumentosCita { get; set; } = new List<TDocumentosCita>();
+
 }

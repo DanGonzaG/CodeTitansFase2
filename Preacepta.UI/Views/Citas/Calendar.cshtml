@@ -1,17 +1,12 @@
 ﻿@using Praecepta.UI.Models
 @model IEnumerable<Preacepta.Modelos.AbstraccionesFrond.CitasDTO>
 
-
-
 <head>
     <link href="~/calendario/stylecalendar.css" rel="stylesheet" />
     <link href="~/calendario/calendardaniel.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css">
     <title>Calendar with Events</title>
 </head>
-
-
-
-
 
 <!-- Page Title -->
 <div class="page-title-area page-title-area-two title-img-one">
@@ -20,12 +15,8 @@
             <div class="page-title-text">
                 <h2>Calendario y eventos</h2>
                 <ul>
-                    <li>
-                        <a asp-controller="Home" asp-action="Index">Home</a>
-                    </li>
-                    <li>
-                        <i class="icofont-simple-right"></i>
-                    </li>
+                    <li><a asp-controller="Home" asp-action="Index">Home</a></li>
+                    <li><i class="icofont-simple-right"></i></li>
                     <li>Calendario</li>
                 </ul>
             </div>
@@ -33,9 +24,6 @@
     </div>
 </div>
 <!-- End Page Title -->
-
-
-
 
 <div style="margin-bottom:10px; margin-top:10px" class="containerCalendar">
     <div class="left">
@@ -64,51 +52,37 @@
             </div>
         </div>
     </div>
+
     <div class="right">
         <div class="today-date">
             <div class="event-day">Mie</div>
-            <div class="event-date">12th december 2022</div>
+            <div class="event-date">12th diciembre 2022</div>
         </div>
-        <form asp-controller="Citas" asp-action="Create" method="post">
-             @Html.AntiForgeryToken()
-        <div class="events"></div>
-            <!--<div class="add-event-wrapper">-->
-            <div class="add-event-header">
-                <div class="title">Añadir cita</div>
-                <i class="fas fa-times close"></i>
-            </div>
-            <div class="add-event-body">
-                <div class="add-event-input">
-                    <input name="Hora" type="time" placeholder="Hora" class="event-time-from" />
-                </div>
-                <div class="add-event-input">
-                    <input name="Fecha" type="date" placeholder="Fecha" class="event-date" />
-                </div>
 
-                <div class="add-event-input">
-                    <input type="url" name="LinkVideo" placeholder="Link de videoconferencia" />
+        <div class="events">
+            @foreach (var cita in Model)
+            {
+                <div class="event" data-id="@cita.IdCita">
+                    <span>@cita.NombreTipoCita</span>
                 </div>
-                <div class="add-event-input">
-                    <input type="text" name="Anfitrion" placeholder="Anfitrión" />
-                </div>
-                </div>
-            <div class="add-event-footer">
-                <input type="submit" value="Crear" class="btn btn-primary" />
-                <a asp-action="Calendar" class="btn btn-secondary">Cancelar</a>
+            }
+        </div>
+        @if (User.IsInRole("Abogado") || User.IsInRole("Admin"))
+{
+        <div style="display: flex; gap: 10px; align-items: center;">
+            <button class="add-event" id="btnAbrirModal" title="Crear nueva cita">
+                <i class="fas fa-plus"></i>
+            </button>
+
+            <button id="btnAbrirModalReunion" class="add-event" title="Programar Videollamada" style="right: 110px;"> 
+                <i class="fas fa-video"></i>
+            </button>
+            <div id="modalContainer"></div>
             </div>
-            <!--</--div>-->
-        </form>
+        }
     </div>
-    <button class="add-event" id="btnAddCita" title="Añadir cita">
-        <i class="fas fa-plus"></i>
-    </button>
-
-    <!-- Botón de ver lista -->
-    <a href="/Citas/Citas" class="add-event" title="Ver lista de citas" style="right: 70px;">
-        <i class="fas fa-list"></i>
-    </a>
-   
 </div>
+        
 <div class="formulario contact-form contact-form-two contact-form-three">
     <div class="container">
         <div class="contact-wrap" style="display: flex; justify-content: center; align-items: center;">
@@ -122,8 +96,74 @@
     </div>
 </div>
 
-<!-- Modal -->
-<div class="modal fade" id="ModalCitasFuturas" tabindex="-1" aria-labelledby="exampleModalLabel" inert">
+
+<!-- Modal para crear cita -->
+<div class="custom-modal" id="crearCitaModal" style="display: none;">
+    <div class="container">
+        <div class="contact-wrap">
+
+            <div class="page-title-text mb-4">
+                <h5 class="modal-title">Crear Nueva Cita</h5>
+
+            </div>
+            <div class="modal-body" id="crearCitaModalBody">
+        </div>
+    </div>
+</div>
+</div>
+<!-- Modal para Detalles de Cita -->
+<div id="modalDetalleCita" class="custom-modal" style="display:none;">
+        <div class="container">
+            <div class="contact-wrap">
+
+                <div class="page-title-text mb-4">
+                    <h5>Detalles de la Cita</h5>
+                </div>
+
+                <div id="detalleCitaBody" class="modal-body">
+                    <!-- Aquí se cargará el contenido de los detalles -->
+                </div>
+      
+            </div>
+        </div>
+    </div>
+
+<!-- Modal Editar Cita -->
+<div id="modalEditarCita" class="custom-modal" style="display:none;">
+    <div class="container">
+        <div class="contact-wrap">
+
+            <div class="page-title-text mb-4">
+                <h5>Editar Cita</h5>
+            </div>
+
+            <div id="editarCitaBody" class="modal-body">
+                <!-- Aquí se cargará dinámicamente el partial view _EditPartial -->
+            </div>
+
+        </div>
+    </div>
+</div>
+<!-- Modal de Confirmación para eliminar Cita -->
+<div id="modalEliminarCita" class="custom-modal" style="display:none;">
+    <div class="container">
+        <div class="contact-wrap">
+
+            <div class="page-title-text mb-4">
+                <h5>Eliminar Cita</h5>
+            </div>
+
+            <div id="eliminarCitaBody" class="modal-body">
+                <!-- Aquí se cargará dinámicamente el partial view _DeletePartial -->
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="modalContainer"></div>
+
+<!-- Modal Citas Futuras -->
+<div class="modal fade" id="ModalCitasFuturas" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg DanielModalCitasFuturas">
         <div class="modal-content" style="color:black">
             <div class="formulario contact-form contact-form-two">
@@ -153,18 +193,17 @@
                                 }
                             </tbody>
                         </table>
-
+                        <div class="modal-footer">
+                            <button type="button" class="contact-btn" data-bs-dismiss="modal" id="Retroceso">Cerrar</button>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="contact-btn" data-bs-dismiss="modal" id="Retroceso">Close</button>
-
             </div>
         </div>
     </div>
 </div>
 
+<!-- Modal Citas Pasadas -->
 <div class="modal fade" id="ModalCitasPasadas" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
@@ -195,46 +234,30 @@
                                 }
                             </tbody>
                         </table>
-
+                        <div class="modal-footer">
+                            <button type="button" class="contact-btn" data-bs-dismiss="modal" id="Retroceso">Cerrar</button>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="contact-btn" data-bs-dismiss="modal" id="Retroceso">Close</button>
-
             </div>
         </div>
     </div>
 </div>
 
+@section Scripts {
+    <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
+    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
 
-
-<!-- Scripts -->
-<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-<script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
-<script src="~/calendario/scriptcalendar.js"></script>
-
+    <script src="~/calendario/scriptcalendar.js"></script>
+    <script src="~/lyso/js/programarReunion.js"></script>
+    <script src="~/lyso/js/Calendar-init.js"></script>
+}
 <script>
-    $(document).ready(function () {
-      const $tablaFuturas = $('#tablaCitasFuturas');
-      const $tablaPasadas = $('#tablaCitasPasadas');
-
-      // Inicializar DataTable solo si la tabla existe y aún no ha sido inicializada
-      if ($tablaFuturas.length && !$.fn.DataTable.isDataTable($tablaFuturas)) {
-        $tablaFuturas.DataTable({
-          language: {
-            url: '//cdn.datatables.net/plug-ins/1.13.4/i18n/es-ES.json'
-          }
-        });
-      }
-
-      if ($tablaPasadas.length && !$.fn.DataTable.isDataTable($tablaPasadas)) {
-        $tablaPasadas.DataTable({
-          language: {
-            url: '//cdn.datatables.net/plug-ins/1.13.4/i18n/es-ES.json'
-          }
-        });
-      }
-    });
+    const fechasConCita = [
+    @foreach (var cita in Model)
+    {
+        <text>"@cita.Fecha.ToString("yyyy-MM-dd")",</text>
+    }
+        ];
 </script>
-
