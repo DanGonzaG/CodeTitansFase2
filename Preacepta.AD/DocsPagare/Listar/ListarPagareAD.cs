@@ -50,7 +50,13 @@ namespace Preacepta.AD.DocsPagare.Listar
         {
             try
             {
-                return await _contexto.TDocsPagares.Select(doc => new DocsPagareDTO
+                // 1) Trae TODO desde la BD
+                var raws = await _contexto.TDocsPagares
+                                         .AsNoTracking()
+                                         .ToListAsync();
+
+                // 2) Proyecta en memoria y formatea strings
+                var lista = raws.Select(doc => new DocsPagareDTO
                 {
                     IdDocumento = doc.IdDocumento,
                     MontoNumerico = doc.MontoNumerico,
@@ -60,26 +66,33 @@ namespace Preacepta.AD.DocsPagare.Listar
                     AcreedorNombre = doc.AcreedorNombre,
                     CedulaJuridicaAcreedor = doc.CedulaJuridicaAcreedor,
                     AcreedorDomicilio = doc.AcreedorDomicilio,
+
+                    // >>> Aquí usa la propiedad HoraFirma (TimeOnly),
+                    //     no FechaFirma, para formatear la hora:
                     FechaFirma = doc.FechaFirma.ToString("yyyy-MM-dd"),
-                    HoraFirma = doc.FechaFirma.ToString("HH:mm"),
+                    HoraFirma = doc.HoraFirma.ToString("HH:mm"),
                     FechaVencimiento = doc.FechaVencimiento.ToString("yyyy-MM-dd"),
+
                     InteresFormula = doc.InteresFormula,
                     InteresTasaActual = doc.InteresTasaActual,
                     InteresBase = doc.InteresBase,
                     LugarPago = doc.LugarPago,
                     CedulaFiador = doc.CedulaFiador,
                     UbicacionFirma = doc.UbicacionFirma,
+
                     CedulaDeudorNavigation = doc.CedulaDeudorNavigation,
                     CedulaFiadorNavigation = doc.CedulaFiadorNavigation,
                     LugarPagoNavigation = doc.LugarPagoNavigation
-                }).ToListAsync();
+                })
+                .ToList();
+
+                return lista;
             }
             catch (Exception ex)
             {
                 Console.WriteLine($"Error al obtener datos {ex.Message}");
                 return new List<DocsPagareDTO>();
             }
-
         }
     }
 }

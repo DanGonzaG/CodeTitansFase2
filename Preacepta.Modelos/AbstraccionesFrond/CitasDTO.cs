@@ -35,5 +35,11 @@ namespace Preacepta.Modelos.AbstraccionesFrond
         public DateTime FechaHora => Fecha.ToDateTime (Hora);
 
         public IEnumerable<SelectListItem>? TiposDeCita { get; set; }
+
+        public int? IdCliente { get; set; }
+        public List<string>? NombresClientes { get; set; }
+
+        public List<DocumentosCitaDTO>? Documentos { get; set; }
+
     }
 }

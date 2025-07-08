@@ -1,9 +1,14 @@
 ﻿@model Preacepta.Modelos.AbstraccionesFrond.CitasDTO
 
-@{
-    ViewData["Title"] = "Editar Cita";
-    Layout = null; // Ideal si esto se carga en un modal por AJAX
-}
+<head>
+    <link href="~/lyso/css/Daniel.css" rel="stylesheet" />
+    <link href="~/calendario/stylecalendar.css" rel="stylesheet" />
+</head>
+
+<div class="contact-form contact-form-two contact-form-three LetraNegra">
+    <div class="container">
+        <div class="contact-wrap">
+            <h4 class="mb-4">Editar Cita</h4>
 
 <form asp-controller="Citas" asp-action="Edit" method="post" id="formEditarCita">
     @Html.AntiForgeryToken()
@@ -11,20 +16,20 @@
 
     <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
 
-    <div class="form-group mb-3">
-        <label asp-for="Fecha" class="form-label"></label>
-        <input asp-for="Fecha" type="date" class="form-control" />
+    <div class="form-group">
+        <label asp-for="Fecha" class="control-label"></label>
+        <input asp-for="Fecha" class="form-control" type="date" />
         <span asp-validation-for="Fecha" class="text-danger"></span>
     </div>
 
     <div class="form-group mb-3">
-        <label asp-for="Hora" class="form-label"></label>
-        <input asp-for="Hora" type="time" class="form-control" />
+        <label asp-for="Hora" class="control-label"></label>
+        <input asp-for="Hora" class="form-control" type="time" />
         <span asp-validation-for="Hora" class="text-danger"></span>
     </div>
 
     <div class="form-group mb-3">
-        <label asp-for="IdTipoCita" class="form-label">Tipo de Cita:</label>
+        <label asp-for="IdTipoCita" class="control-label">Tipo de Cita:</label>
         <select asp-for="IdTipoCita" class="form-control" asp-items="ViewBag.TipoCitaList">
             <option value="">-- Seleccione Tipo de Cita --</option>
         </select>
@@ -32,30 +37,22 @@
     </div>
 
     <div class="form-group mb-3">
-        <label asp-for="NombreAnfitrion" class="form-label">Anfitrión</label>
+        <label asp-for="NombreAnfitrion" class="control-label">Anfitrión</label>
         <input asp-for="NombreAnfitrion" class="form-control" readonly />
         <input type="hidden" asp-for="Anfitrion" />
     </div>
 
     <div class="form-group mb-3">
-        <label asp-for="LinkVideo" class="form-label"></label>
+        <label asp-for="LinkVideo" class="control-label"></label>
         <input asp-for="LinkVideo" class="form-control" />
         <span asp-validation-for="LinkVideo" class="text-danger"></span>
     </div>
 
-    <div class="d-flex justify-content-end gap-2 mt-4">
-        <input type="submit" value="Guardar" class="btn btn-gold" />
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                <div class="text-center mt-4">
+                    <input type="submit" value="Guardar" class="contact-btn" />
+                    <button type="button" class="contact-btn" onclick="cerrarModal('modaEditarCita', true)">Cerrar</button>
     </div>
 </form>
-<style>
-.btn-gold {
-    background-color: #c59d5f;
-    color: white;
-    border: none;
-}
-.btn-gold:hover {
-    background-color: #b48b4e;
-    color: white;
-}
-</style>
+        </div>
+    </div>
+</div>

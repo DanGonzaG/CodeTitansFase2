@@ -16,7 +16,7 @@ namespace Preacepta.Modelos.AbstraccionesFrond
         [Required(ErrorMessage = "Dato requerido")]
         public int IdTestimonio { get; set; }
 
-        public string Fecha { get; set; }
+        public string? Fecha { get; set; }
 
         [DisplayName("Id del cliente")]
         [Required(ErrorMessage = "Dato requerido")]
