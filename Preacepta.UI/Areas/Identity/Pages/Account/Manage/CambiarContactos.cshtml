@@ -1,0 +1,47 @@
+﻿@page
+@model Preacepta.UI.Areas.Identity.Pages.Account.Manage.CambiarContactosModel
+@{
+    ViewData["Title"] = "Información de contactos";
+    ViewData["ActivePage"] = ManageNavPages.CambiarContactos;
+
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<div class="row">
+    <form class="LetraNegra" id="profile-form" method="post">
+        <div asp-validation-summary="ModelOnly" class="text-danger" role="alert"></div>
+        <div class="form-floating mb-3">
+            <div class="form-group">
+                <label asp-for="Input.Email" class="form-label"></label>
+                <input asp-for="Input.Email" class="form-control" placeholder="Elija un usuario." readonly />
+            </div>
+        </div>
+            <div class="form-floating mb-3">
+                <div class="form-group">
+                    <label asp-for="Input.Telefono1" class="control-label"></label>
+                <input asp-for="Input.Telefono1" class="form-control" />
+                <span asp-validation-for="Input.Telefono1" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-floating mb-3">
+                <div class="form-group">
+                <label asp-for="Input.Telefono2" class="control-label"></label>
+                <input asp-for="Input.Telefono2" class="form-control" />
+                <span asp-validation-for="Input.Telefono2" class="text-danger"></span>
+                </div>
+            </div>            
+            <button id="update-profile-button" type="submit" class="w-100 contact-btn btn-lg">Guardar cambios</button>
+    </form>
+</div>
+
+
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+   
+}
+
+
+
+

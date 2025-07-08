@@ -1,68 +1,103 @@
 ﻿@model Preacepta.Modelos.AbstraccionesFrond.CitasDTO
 
-@{
-    ViewData["Title"] = "Detalles de la Cita";
-    Layout = "_Layout";
-}
+<div class="custom-details-container">
+    <h4 class="mb-3">Información de la cita</h4>
+    <input type="hidden" id="citaSeleccionadaId" value="@Model.IdCita" />
 
-<h1>Detalles de la Cita</h1>
-
-<div>
-    <h4>Información de la cita</h4>
-    <hr />
     <dl class="row">
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.IdCita)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.IdCita)
+        <dt class="col-sm-4">ID</dt>
+        <dd class="col-sm-8">@Model.IdCita</dd>
+
+        <dt class="col-sm-4">Fecha</dt>
+        <dd class="col-sm-8">@Model.Fecha.ToShortDateString()</dd>
+
+        <dt class="col-sm-4">Hora</dt>
+        <dd class="col-sm-8">@Model.Hora</dd>
+
+        <dt class="col-sm-4">Tipo de Cita (ID)</dt>
+        <dd class="col-sm-8">@Model.IdTipoCita</dd>
+
+        <dt class="col-sm-4">Nombre Tipo Cita</dt>
+        <dd class="col-sm-8">@Model.NombreTipoCita</dd>
+
+        <dt class="col-sm-4">Anfitrión</dt>
+        <dd class="col-sm-8">
+            @if (!string.IsNullOrWhiteSpace(Model.NombreAnfitrion))
+            {
+                @($"{Model.NombreAnfitrion} ({Model.Anfitrion})")
+            }
+            else
+            {
+                @Model.Anfitrion
+            }
         </dd>
 
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Fecha)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Fecha)
-        </dd>
-
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Hora)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Hora)
-        </dd>
-
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.IdTipoCita)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.IdTipoCita)
-        </dd>
-
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.LinkVideo)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.LinkVideo)
-        </dd>
-
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.NombreTipoCita)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.NombreTipoCita)
-        </dd>
-
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Anfitrion)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Anfitrion)
+        <dt class="col-sm-4">Link de Video</dt>
+        <dd class="col-sm-8">
+            @if (!string.IsNullOrWhiteSpace(Model.LinkVideo))
+            {
+                <a href="@Model.LinkVideo" target="_blank">@Model.LinkVideo</a>
+            }
+            else
+            {
+                <span>No disponible</span>
+            }
         </dd>
     </dl>
+
+    <div class="d-flex justify-content-end gap-2 mt-3">
+        <button class="btn-gold" onclick="mostrarEditarCitaDesdeDetalle('@Model.IdCita')">Editar</button>
+        <button class="btn-gray" onclick="mostrarModalEliminarCita(@Model.IdCita)">Eliminar</button>
+        <button class="btn-gray" onclick="window.history.back()">Cerrar</button>
+    </div>
 </div>
 
-<div>
-    <a asp-action="Edit" asp-route-id="@Model?.IdCita" class="btn btn-primary">Editar</a> |
-    <a asp-action="Citas/Citas" class="btn btn-secondary">Volver a la lista</a>
-</div>
+<style>
+    .custom-details-container {
+        max-width: 600px;
+        margin: 40px auto;
+        background: #fff;
+        padding: 20px 30px;
+        border-radius: 10px;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+        font-family: sans-serif;
+    }
+
+    .btn-gold {
+        background-color: #d4af37;
+        color: white;
+        border: none;
+        padding: 10px 18px;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+
+    .btn-gray {
+        background-color: #ccc;
+        color: #333;
+        border: none;
+        padding: 10px 18px;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+
+    .btn-gold:hover {
+        background-color: #c59e2f;
+    }
+
+    .btn-gray:hover {
+        background-color: #bbb;
+    }
+
+    dl dt {
+        font-weight: 600;
+        color: #444;
+    }
+
+    dl dd {
+        margin-bottom: 15px;
+        color: #555;
+    }
+</style>

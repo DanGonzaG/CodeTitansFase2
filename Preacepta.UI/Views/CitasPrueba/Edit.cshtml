@@ -6,7 +6,7 @@
 }
 
 <h2>Editar Cita</h2>
-<hr />
+
 <div class="row">
     <div class="col-md-6">
         <form asp-action="Edit">
@@ -26,14 +26,15 @@
 
             <div class="form-group">
                 <label for="IdTipoCita">Tipo de Cita:</label>
-                @Html.DropDownListFor(model => model.IdTipoCita, ViewBag.TiposCita as SelectList, "Seleccione...", new { @class = "form-control" })
+                <select asp-for="IdTipoCita" class="form-control" asp-items="ViewBag.TipoCitaList">
+                    <option value="">-- Seleccione Tipo de Cita--</option>
+                </select>
             </div>
-
             <div class="form-group">
-                <label for="Anfitrion">Anfitrión:</label>
-                @Html.DropDownListFor(model => model.Anfitrion, ViewBag.Anfitriones as SelectList, "Seleccione...", new { @class = "form-control" })
+                <label for="NombreAnfitrion">Anfitrión</label>
+                <input asp-for="NombreAnfitrion" class="form-control" readonly />
+                <input type="hidden" asp-for="Anfitrion" />
             </div>
-
             <div class="form-group">
                 <label asp-for="LinkVideo" class="control-label"></label>
                 <input asp-for="LinkVideo" class="form-control" />
@@ -42,14 +43,9 @@
 
             <div class="form-group mt-3">
                 <input type="submit" value="Guardar" class="btn btn-primary" />
-                <a asp-controller="Citas" a asp-action="CitasPrueba" class="btn btn-secondary">Cancelar</a>
+                <a asp-controller="Citas" asp-action="Citas" class="btn btn-secondary">Cancelar</a>
             </div>
         </form>
     </div>
 </div>
 
-@section Scripts {
-    @{
-        await Html.RenderPartialAsync("_ValidationScriptsPartial");
-    }
-}

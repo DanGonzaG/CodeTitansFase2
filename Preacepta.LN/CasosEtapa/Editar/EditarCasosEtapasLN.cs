@@ -25,7 +25,7 @@ namespace Preacepta.LN.CasosEtapa.Editar
 
             try
             {
-                int bandera = await _editar.Editar(_obtenerDatosLN.ObtenerDeFront(editar));
+                int bandera = await _editar.Editar(_obtenerDatosLN.ObtenerDeFrontEditar(editar));
                 return bandera;
 
             }

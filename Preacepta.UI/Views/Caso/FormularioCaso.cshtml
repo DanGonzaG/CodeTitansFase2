@@ -2,6 +2,7 @@
 
 <head>
     <link href="~/lyso/css/Daniel.css" rel="stylesheet" />
+    <link href="~/lyso/css/daniel.css" rel="stylesheet" />
 </head>
 <!-- Page Title -->
 <body>
@@ -12,7 +13,7 @@
                     <h2>Aperturar caso</h2>
                     <ul>
                         <li>
-                            <a asp-controller="Home" asp-action="Index">Home</a>
+                            <a asp-controller="Home" asp-action="Index">Página principal</a>
                         </li>
                         <li>
                             <i class="icofont-simple-right"></i>
@@ -32,17 +33,79 @@
 
     <div class="contact-form contact-form-two contact-form-three">
         <div class="container">
+            <div class="col-md-12 col-lg-12 encabezadoForm">
+                <img src="~/lyso/img/FormCasoNuevo.png" width="200px" />
+            </div>
             <div class="contact-wrap">
                 <form asp-action="FormularioCaso" id="FormularioCaso">
                     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                     <h2>Formulario para caso nuevo</h2>
                     <div class="row justify-content-center">
-                       
+                        <div class="seccion-titulo">Información del cliente</div>
+                        <div class="col-sm-6 col-lg-6 centro">
+                            <div class="form-group">
+                                <label asp-for="IdClienteNavigation.Cedula" class="control-label"></label>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-lg-6">
+                            <div class="form-group">
+                                <!--<label asp-for="Nombre" class="control-label"></label>-->
+                                <input name="IdClienteNavigation.Cedula" id="IdClienteNavigation.Cedula" asp-for="IdClienteNavigation.Cedula" class="form-control"/>
+                                <span asp-validation-for="IdClienteNavigation.Cedula" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-lg-6 centro">
+                            <div class="form-group">
+                                <label class="control-label">Cliente</label>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-lg-6">
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col">
+                                       
+                                        <input name="IdClienteNavigation.Nombre" id="IdClienteNavigation.Nombre" asp-for="IdClienteNavigation.Nombre" class="form-control" readonly />
+                                        <span asp-validation-for="IdClienteNavigation.Nombre" class="text-danger"></span>
+                                        <div style="text-align:center; font-size:15px">
+                                            <label asp-for="IdClienteNavigation.Nombre" class="control-label"></label>
+                                        </div>
+                                       
+                                    </div>
+                                    <div class="col">
+                                       
+                                        <input name="IdClienteNavigation.Apellido1" id="IdClienteNavigation.Apellido1" asp-for="IdClienteNavigation.Apellido1" class="form-control" readonly />
+                                        <span asp-validation-for="IdClienteNavigation.Apellido1" class="text-danger"></span>
+                                        <div style="text-align:center; font-size:15px">
+                                            <label asp-for="IdClienteNavigation.Apellido1" class="control-label"></label>
+                                        </div>                                        
+                                    </div>
+                                    <div class="col">
+
+                                        <input name="IdClienteNavigation.Apellido2" id="IdClienteNavigation.Apellido2" asp-for="IdClienteNavigation.Apellido2" class="form-control" readonly />
+                                        <span asp-validation-for="IdClienteNavigation.Apellido2" class="text-danger"></span>
+                                        <div style="text-align:center; font-size:15px">
+                                            <label asp-for="IdClienteNavigation.Apellido2" class="control-label"></label>
+                                        </div>                                        
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="seccion-titulo">Ingrese los datos del caso</div>
+                        <div class="col-sm-6 col-lg-6 centro">
+                            <div class="form-group">
+                                <label asp-for="Nombre" class="control-label"></label>                                
+                            </div>
+                        </div>
                         <div class="col-sm-6 col-lg-6">
                             <div class="form-group">
                                 <!--<label asp-for="Nombre" class="control-label"></label>-->
                                 <input name="Nombre" id="Nombre" asp-for="Nombre" class="form-control" placeholder="Título del caso" />
                                 <span asp-validation-for="Nombre" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-lg-6 centro">
+                            <div class="form-group">
+                                <label asp-for="IdAbogado" class="control-label"></label>
                             </div>
                         </div>
                         <div class="col-sm-6 col-lg-6">
@@ -54,6 +117,15 @@
                                 <span asp-validation-for="IdAbogado" class="text-danger"></span>
                             </div>
                         </div>
+                        <br />
+                        <br />
+                        <br />
+                        <br />
+                        <div class="col-sm-6 col-lg-6 centro">
+                            <div class="form-group">
+                                <label asp-for="IdTipoCaso" class="control-label"></label>
+                            </div>
+                        </div>
                         <div class="col-sm-6 col-lg-6">
                             <div class="form-group">
                                 <!--<label asp-for="IdTipoCaso" class="control-label"></label>-->
@@ -61,14 +133,22 @@
                                     <option value="" disabled selected> Seleccione un tipo de caso</option>
                                 </select>
                             </div>
-                        </div>
+                        </div>                        
                         <!--<div class="col-sm-6 col-lg-6">
                             <div class="form-group">
                                 <input type="text" name="Pruebas" id="Pruebas" required data-error="Favor ingrese el dato" class="form-control" placeholder="Pruebas Iniciales">
                                 <div class="help-block with-errors"></div>
                             </div>
                         </div>-->
-                        
+                        <br />
+                        <br />
+                        <br />
+                        <br />
+                        <div class="col-sm-6 col-lg-6 centro">
+                            <div class="form-group">
+                                <label asp-for="IdCliente" class="control-label"></label>
+                            </div>
+                        </div>                      
                         <div class="col-sm-6 col-lg-6">
                             <div class="form-group">
                                 <!--<label asp-for="IdCliente" class="control-label"></label>-->
@@ -81,6 +161,11 @@
                         <br />
                         <br />
                         <br />
+                        <div class="col-md-12 col-lg-12 centro">
+                            <div class="form-group">
+                                <label asp-for="Descripcion" class="control-label"></label>
+                            </div>
+                        </div>
                         <div class="col-md-12 col-lg-12">
                             <div class="form-group">
                                 <textarea name="Descripcion" id="Descripcion" cols="30" rows="8" asp-for="Descripcion" placeholder="Descripción" class="form-control"></textarea>
@@ -159,6 +244,11 @@
     </div>
 </div>
 
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
 
 <script src="~/lyso/js/Daniel.js"></script>
 

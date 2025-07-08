@@ -65,7 +65,8 @@
                         </div>
                         <div class="col-sm-6 col-lg-6">
                             <div class="form-group">
-                                <input type="text" name="PruebasPL" id="PruebasPL" class="form-control" required data-error="Favor ingrese el dato" placeholder="Pruebas de la etapa">
+                                <label class="control-label">Pruebas</label>
+                                <input type="text" name="PruebasPL" id="PruebasPL" class="form-control" required data-error="Favor ingrese el dato">
                                 <div class="help-block with-errors"></div>
                             </div>
                         </div>
@@ -82,11 +83,14 @@
                                 <span asp-validation-for="Descripcion" class="text-danger"></span>
                             </div>
                         </div>
+                        <div class="col-md-12 col-lg-12">
                         <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                            <!--<input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">-->
+                            <input class="form-check-input" asp-for="Activo" name="Activo"/> 
                             <label style="color:black" class="text" for="flexCheckDefault">
                                 Caso Cerrado
                             </label>
+                        </div>
                         </div>
                         <div class="col-md-12 col-lg-12">
 

@@ -1,0 +1,166 @@
+﻿@model Preacepta.Modelos.AbstraccionesFrond.PersonaAbogadoCasoDocCita
+<style>
+    .menuDaniel {
+        /*display: block;*/
+        width: 100%; /* Esto hace que todos los botones ocupen el mismo ancho dentro del contenedor */
+        padding: 10px 15px;
+        text-align: left;
+        background-color: #f0f0f0;
+        border: 1px solid #ccc;
+        margin-bottom: 5px;
+        font-size: 16px;
+        border-radius: 4px;
+        text-decoration: none;
+        color: #333;
+    }
+
+        .menuDaniel:hover {
+            background-color: #e0e0e0;
+        }
+
+    .menuDanielBtns {
+        border-bottom: 1px solid;
+        opacity: 0.9
+    }
+
+    .menuDanielLabels {
+        font-weight: 600;
+        text-align: justify;
+        padding-left: 20px;
+        background-color: #ab8d5f
+    }
+
+    .secciontActividaesRecientes{
+        padding-bottom: 60px;
+        padding-top: 60px;
+    }
+
+    .TitulaActividesRecientes{
+        font-size:18px"
+    }
+
+</style>
+<!-- Page Title -->
+<div class="page-title-area title-img-one">
+    <div class="d-table">
+        <div class="d-table-cell">
+            <div class="page-title-text">
+                <h2>Sistema Preacepta</h2>
+                <ul>
+                    <li>
+                        <a href="index.html">Pagina Principal</a>
+                    </li>
+                    <li>
+                        <i class="icofont-simple-right"></i>
+                    </li>
+                    <li>PreaceptaApp</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End Page Title -->
+<!-- Attorney Details -->
+<div class="attorney-details pt-100 pb-70">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-3">
+                <div class="btn-group-vertical menuDaniel">
+                    <label class="menuDanielLabels">Clientes y Abogados</label>
+                    <a href="#" class="contact-btn menuDanielBtns">Nuevo cliente</a>
+                    <a href="#" class="contact-btn menuDanielBtns">Nuevo abogado</a>
+                    <a href="#" class="contact-btn menuDanielBtns">Lista de testimonios</a>
+                    <label class="menuDanielLabels">Documentos Legales</label>
+                    <a href="#" class="contact-btn menuDanielBtns">Documento para la compra y venta de vehiculos</a>
+                    <a href="#" class="contact-btn menuDanielBtns">Documento de autorización revisión de expedientes</a>
+                    <a href="#" class="contact-btn menuDanielBtns">Documento de compra y venta de fincas</a>
+                    <a href="#" class="contact-btn menuDanielBtns">Documento de contrato de prestacion de servicios</a>
+                    <a href="#" class="contact-btn menuDanielBtns">Documento de inscripción de vehículos</a>
+                    <a href="#" class="contact-btn menuDanielBtns">Documentos recientes</a>
+                    <a href="#" class="contact-btn menuDanielBtns">Historial de documentos</a>
+                    <a href="#" class="contact-btn menuDanielBtns">Tutorial para genera documentos</a>
+                    <label class="menuDanielLabels">Casos legales</label>
+                    <a href="#" class="contact-btn menuDanielBtns">Crear Caso</a>
+                    <a href="#" class="contact-btn menuDanielBtns">Casos en proceso</a>
+                    <a href="#" class="contact-btn menuDanielBtns">Casos Cerrados</a>
+                    <label class="menuDanielLabels">Citas</label>
+                    <a href="#" class="contact-btn menuDanielBtns">Agenda de citas</a>
+                    <label class="menuDanielLabels">Sistema Gestor</label>
+                    <a href="#" class="contact-btn menuDanielBtns">Gestion general</a>
+
+                </div>
+
+            </div>
+            <div class="col-lg-7">
+                <div class="attor-details-item">
+                    <div class="attor-details-right">
+                        <div class="attor-details-name" style="text-align:center">
+                            @if (Model.personaDTO.Genero == "Femenino")
+                            {
+                                <h2>Bienvenido a PreaceptaApp</h2>
+                                <h2>Licda @Model.personaDTO.Nombre @Model.personaDTO.Apellido1</h2>
+                            }
+                            else
+                            {
+                                <h2>Bienvenido a PreaceptaApp</h2>
+                                <h2>Licd0 @Model.personaDTO.Nombre @Model.personaDTO.Apellido1</h2>
+                            }
+                            <p>Carnet No. @Model.geAbogadoDTO.Carnet @Model.geAbogadoDTO.IdTipoAbogadoNavigation.Nombre</p>
+                        </div>
+                        <section class="practice-area secciontActividaesRecientes">
+                            <div class="container">
+                                <div class="section-title">
+                                    <span class="TitulaActividesRecientes">Actividades recientes</span>
+                                    <!--<h2>Nuestras Áreas de Práctica Legal</h2>-->
+                                </div>
+                                <div class="row justify-content-center">
+                                    <div class="col-sm-6 col-lg-4">
+                                        <div class="practice-item">
+                                            <div class="practice-icon">
+                                                <i class="flaticon-law"></i>
+                                            </div>
+                                            <h3>Documentos recientes</h3>
+                                            <p>Je jednostavno probni tekst koji se koristi u tiskarskoj i slovoslagarskoj industriji.</p>
+                                            <a asp-action="CaseStudyDetails">Read More</a>
+                                            <img class="practice-shape-one" src="~/lyso/img/home-one/7.png" alt="Shape">
+                                            <img class="practice-shape-two" src="~/lyso/img/home-one/8.png" alt="Shape">
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6 col-lg-4">
+                                        <div class="practice-item">
+                                            <div class="practice-icon">
+                                                <i class="flaticon-family"></i>
+                                            </div>
+                                            <h3>Ultimo caso creado</h3>
+                                           
+                                                <p>@Model.UltimoCasoCreado.Nombre<p>                                                                                      
+                                            <a asp-controller="Home" asp-action="CaseStudyDetails">Read More</a>
+                                            <img class="practice-shape-one" src="~/lyso/img/home-one/7.png" alt="Shape">
+                                            <img class="practice-shape-two" src="~/lyso/img/home-one/8.png" alt="Shape">
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6 col-lg-4">
+                                        <div class="practice-item">
+                                            <div class="practice-icon">
+                                                <i class="flaticon-law"></i>
+                                            </div>
+                                            <h3>Próxima cita agendada</h3>
+                                            <p>Je jednostavno probni tekst koji se koristi u tiskarskoj i slovoslagarskoj industriji.</p>
+                                            <a asp-action="CaseStudyDetails">Read More</a>
+                                            <img class="practice-shape-one" src="~/lyso/img/home-one/7.png" alt="Shape">
+                                            <img class="practice-shape-two" src="~/lyso/img/home-one/8.png" alt="Shape">
+                                        </div>
+                                    </div>
+
+
+                                </div>
+                            </div>
+                        </section>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- End Team -->

@@ -1,15 +1,13 @@
 ﻿@model Preacepta.Modelos.AbstraccionesFrond.CitasDTO
 
-@{
-    ViewData["Title"] = "Crear Cita";
-    Layout = "_Layout";
-}
 
 <h1>Crear Nueva Cita</h1>
 <hr />
+
 <div class="row">
     <div class="col-md-6">
         <form asp-action="Create" method="post">
+            @Html.AntiForgeryToken()
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
             <!-- Fecha -->
@@ -28,14 +26,18 @@
 
             <!-- Tipo de Cita -->
             <div class="form-group">
-                <label for="IdTipoCita">Seleccione un Tipo de Cita:</label>
-                @Html.DropDownListFor(model => model.IdTipoCita, ViewBag.TiposdeCita as SelectList, "Seleccione...", new { @class = "form-control" })
-            </div>
-
-            <!-- Anfitrión -->
+                <label asp-for="IdTipoCita">Tipo de Cita:</label>
+                <select asp-for="IdTipoCita" class="form-control" asp-items="@(ViewData["CitasTipo"] as List<SelectListItem>)">
+                    <option value="">-- Seleccione Tipo de Cita --</option>
+                </select>
+                <span asp-validation-for="IdTipoCita" class="text-danger"></span>
+            </div> 
+            <!-- Anfitrion -->
             <div class="form-group">
-                <label for="Anfitrion">Seleccione un anfitrión:</label>
-                @Html.DropDownListFor(model => model.Anfitrion, ViewBag.Anfitriones as SelectList, "Seleccione...", new { @class = "form-control" })
+                <label asp-for="Anfitrion" class="control-label"></label>
+                <p class="form-control-plaintext">@Model.Anfitrion - @Model.NombreAnfitrion</p>
+                <input type="hidden" asp-for="Anfitrion" />
+                <input type="hidden" asp-for="NombreAnfitrion" />
             </div>
 
             <!-- Link de Video -->
@@ -47,14 +49,8 @@
 
             <div class="form-group mt-3">
                 <input type="submit" value="Crear" class="btn btn-primary" />
-                <a asp-action="CitasPrueba" class="btn btn-secondary">Cancelar</a>
+                <a asp-action="Citas" class="btn btn-secondary">Cancelar</a>
             </div>
         </form>
     </div>
 </div>
-
-@section Scripts {
-    @{
-        await Html.RenderPartialAsync("_ValidationScriptsPartial");
-    }
-}

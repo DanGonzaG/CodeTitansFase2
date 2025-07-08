@@ -32,6 +32,7 @@ namespace Preacepta.UI.Controllers
         private readonly IEditarDocsCompraventaFincaLN _editar;
         private readonly IEliminarDocsCompraventaFincaLN _eliminar;
         private readonly IListarDocsCompraventaFincaLN _listar;
+        private readonly IBuscarXidGePersonaLN _buscarPersona;
 
         public DocsCompraventaFincasController(IConverter converter,
             IBuscarAbogadoLN buscarAbogado,
@@ -210,6 +211,7 @@ namespace Preacepta.UI.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> CreateDocsCompraventaFincas([Bind("IdDocumento,NumeroEscritura,CedulaAbogado,CedulaVendedor,CedulaComprador,MontoVenta,PartidoFinca,MatriculaFinca,NaturalezaFinca,DistritoFinca,CantonFinca,ProvinciaFinca,AreaFincaM2,PlanoCatastrado,ColindaNorte,ColindaSur,ColindaEste,ColindaOeste,FormaPago,MedioPago,OrigenFondos,LugarFirma,HoraFirma,FechaFirma")] DocsCompraventaFincaDTO tDocsCompraventaFinca)
         {
+            var vendedor = await _buscarPersona.buscar(tDocsCompraventaFinca.CedulaVendedor);
             if (ModelState.IsValid)
             {
                 await _crear.Crear(tDocsCompraventaFinca);

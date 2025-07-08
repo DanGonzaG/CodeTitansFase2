@@ -1,0 +1,102 @@
+﻿@model Preacepta.Modelos.AbstraccionesFrond.CitasDTO
+
+<div class="custom-modal-content">
+    <h4 class="mt-2 mb-3">Información de la cita</h4>
+    <input type="hidden" id="citaSeleccionadaId" value="@Model.IdCita" />
+
+    <dl class="row">
+        <dt class="col-sm-4">ID</dt>
+        <dd class="col-sm-8">@Model.IdCita</dd>
+
+        <dt class="col-sm-4">Fecha</dt>
+        <dd class="col-sm-8">@Model.Fecha.ToShortDateString()</dd>
+
+        <dt class="col-sm-4">Hora</dt>
+        <dd class="col-sm-8">@Model.Hora</dd>
+
+        <dt class="col-sm-4">Tipo de Cita (ID)</dt>
+        <dd class="col-sm-8">@Model.IdTipoCita</dd>
+
+        <dt class="col-sm-4">Nombre Tipo Cita</dt>
+        <dd class="col-sm-8">@Model.NombreTipoCita</dd>
+
+        <dt class="col-sm-4">Anfitrión</dt>
+        <dd class="col-sm-8">
+            @if (!string.IsNullOrWhiteSpace(Model.NombreAnfitrion))
+            {
+                @($"{Model.NombreAnfitrion} ({Model.Anfitrion})")
+            }
+            else
+            {
+                @Model.Anfitrion
+            }
+        </dd>
+
+        <dt class="col-sm-4">Link de Video</dt>
+        <dd class="col-sm-8">
+            @if (!string.IsNullOrWhiteSpace(Model.LinkVideo))
+            {
+                <a href="@Model.LinkVideo" target="_blank">@Model.LinkVideo</a>
+            }
+            else
+            {
+                <span>No disponible</span>
+            }
+        </dd>
+    </dl>
+
+    <div class="modal-buttons">
+        <button class="btn-gold" onclick="mostrarEditarCitaDesdeDetalle('@Model.IdCita')">Editar</button>
+        <button class="btn-gray" onclick="mostrarModalEliminarCita(@Model.IdCita)">Eliminar</button>
+        <button class="btn-gray" onclick="document.getElementById('modalDetalleCita').style.display = 'none'">Cerrar</button>
+    </div>
+</div>
+
+<style>
+    /* Ya tienes estas clases, solo las dejo para referencia */
+
+    .custom-modal-content {
+        background: #ffffff;
+        color: #222222;
+        padding: 25px 30px;
+        border-radius: 10px;
+        width: 100%;
+        max-width: 500px;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+        margin: 40px auto; /* Para centrar verticalmente con margen arriba/abajo */
+        font-family: sans-serif;
+    }
+
+    .modal-buttons {
+        display: flex;
+        justify-content: flex-end;
+        gap: 10px;
+        margin-top: 25px;
+    }
+
+    .btn-gold {
+        background-color: #d4af37;
+        color: white;
+        border: none;
+        padding: 10px 18px;
+        border-radius: 8px;
+        cursor: pointer;
+    }
+
+    .btn-gray {
+        background-color: #ccc;
+        color: #333;
+        border: none;
+        padding: 10px 18px;
+        border-radius: 8px;
+        cursor: pointer;
+    }
+
+    .btn-gold:hover {
+        background-color: #c59e2f;
+    }
+
+    .btn-gray:hover {
+        background-color: #bbb;
+    }
+</style>

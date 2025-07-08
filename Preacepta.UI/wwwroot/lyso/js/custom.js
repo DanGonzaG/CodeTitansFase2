@@ -81,7 +81,8 @@ jQuery(function ($) {
 	});
 
 	// Nice Select JS
-	$('select').niceSelect();
+	//$('select').niceSelect();
+	$('select').not('.no-nice').niceSelect();
 
 	// Subscribe form
 	/*$(".newsletter-form").validator().on("submit", function (event) {

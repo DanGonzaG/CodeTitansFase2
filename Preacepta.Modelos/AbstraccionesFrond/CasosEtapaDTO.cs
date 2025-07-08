@@ -6,7 +6,7 @@ namespace Preacepta.Modelos.AbstraccionesFrond
 {
     public class CasosEtapaDTO
     {
-        [DisplayName("Id Etapa PL")]
+        [DisplayName("Num. Etapa Proceso")]
         public int IdEtapaPl { get; set; }
 
         public string? Fecha { get; set; }
@@ -16,6 +16,7 @@ namespace Preacepta.Modelos.AbstraccionesFrond
         public string Nombre { get; set; } = null!;
 
         [Required(ErrorMessage = "Debe de agregar una descripción de la etapa del proceso legal")]
+        [DisplayName("Descripción")]
         public string Descripcion { get; set; } = null!;
 
         [DisplayName("Id Caso")]

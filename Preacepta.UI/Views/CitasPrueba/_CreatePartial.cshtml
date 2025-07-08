@@ -1,0 +1,50 @@
+﻿@model Preacepta.Modelos.AbstraccionesFrond.CitasDTO
+
+
+<form asp-controller="Citas" asp-action="Create" method="post" id="formCrearCita">
+
+    @Html.AntiForgeryToken()
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <!-- Fecha -->
+            <div class="form-group">
+                <label asp-for="Fecha" class="control-label"></label>
+                <input asp-for="Fecha" class="form-control" type="date" style="color:black;" />
+                <span asp-validation-for="Fecha" class="text-danger"></span>
+            </div>
+
+            <!-- Hora -->
+            <div class="form-group">
+                <label asp-for="Hora" class="control-label"></label>
+                <input asp-for="Hora" class="form-control" type="time" style="color:black;" />
+                <span asp-validation-for="Hora" class="text-danger"></span>
+            </div>
+
+            <!-- Tipo de Cita -->
+            <div class="form-group">
+        <label asp-for="IdTipoCita">Tipo de Cita:></label>
+                <select asp-for="IdTipoCita" class="form-control" asp-items="@(ViewData["CitasTipo"] as List<SelectListItem>)">
+                    <option value="">-- Seleccione Tipo de Cita --</option>
+                </select>
+                <span asp-validation-for="IdTipoCita" class="text-danger"></span>
+            </div>
+    <!-- Anfitrion -->
+    <div class="form-group">
+        <label asp-for="Anfitrion" class="control-label"></label>
+        <p class="form-control-plaintext">@Model.Anfitrion - @Model.NombreAnfitrion</p>
+        <input type="hidden" asp-for="Anfitrion" />
+        <input type="hidden" asp-for="NombreAnfitrion" />
+    </div>
+            <!-- Link de Video -->
+            <div class="form-group">
+                <label asp-for="LinkVideo" class="control-label"></label>
+                <input asp-for="LinkVideo" class="form-control" style="color:black;" />
+                <span asp-validation-for="LinkVideo" class="text-danger"></span>
+            </div>
+
+            <div class="form-group mt-3">
+                <input type="submit" value="Crear" class="btn btn-primary" />
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+            </div>
+        </form>
+    

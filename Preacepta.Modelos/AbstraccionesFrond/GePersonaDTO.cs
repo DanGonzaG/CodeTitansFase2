@@ -6,7 +6,7 @@ namespace Preacepta.Modelos.AbstraccionesFrond
 {
     public class GePersonaDTO
     {
-        [Required(ErrorMessage = "Ingrese al cédula de la persona")]
+        [Required(ErrorMessage = "Ingrese al cédula de la persona")]        
         [DisplayName("Cédula")]
         public int Cedula { get; set; }
 
@@ -25,7 +25,7 @@ namespace Preacepta.Modelos.AbstraccionesFrond
         [DisplayName("Fecha de nacimiento")]
         public string FechaNacimiento { get; set; }
 
-
+        [Required(ErrorMessage = "Debe ingresar una edad")]
         public int Edad { get; set; }
 
         [Required(ErrorMessage = "Seleccione el estado civil de la persona")]
@@ -36,7 +36,7 @@ namespace Preacepta.Modelos.AbstraccionesFrond
         [DisplayName("Ocupación")]
         public string Oficio { get; set; } = null!;
 
-        [Required(ErrorMessage = "Ingrese la ubicación de la persona")]
+        [Required(ErrorMessage = "Ingrese el distrito de la persona")]
         [DisplayName("Vecino de")]
         public int Direccion1 { get; set; }
 
@@ -56,6 +56,9 @@ namespace Preacepta.Modelos.AbstraccionesFrond
         public string? FechaRegistro { get; set; }
 
         public bool Activo { get; set; }
+
+        [Required(ErrorMessage = "Seleccione un género")]
+        public string Genero { get; set; } = null!;
 
         //public string Email { get; set; } = null!;
 
@@ -94,22 +97,24 @@ namespace Preacepta.Modelos.AbstraccionesFrond
 
 
         /*estas variables forman parte del modulo de auntenticacion y se colocan aca porque el modelo persona es el encargado de llevar el registro total*/
-        [Required]
-        [EmailAddress]
-        [Display(Name = "Email")]
+        [Required (ErrorMessage ="El correo es un dato requerido")]
+        [EmailAddress (ErrorMessage = "Correo no válido debe de tener @")]
+        [Display(Name = "Correo electrónico")]
         public string Email { get; set; }
 
 
-        [Required]
-        [StringLength(100, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 6)]
+        [Required(ErrorMessage = "Debe ingresar un contraseña")]
+        [StringLength(100, ErrorMessage = "El {0} debe tener al menos {2} y como máximo {1} caracteres de longitud.", MinimumLength = 6)]
+        [RegularExpression (@"^(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).+$",ErrorMessage ="La contraseña debe de tener al menos un numero, una mayuscula y un símbolo")] 
+
         [DataType(DataType.Password)]
-        [Display(Name = "Password")]
+        [Display(Name = "Contraseña")]
         public string Password { get; set; }
 
 
         [DataType(DataType.Password)]
-        [Display(Name = "Confirm password")]
-        [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
+        [Display(Name = "Confirmación de contraseña")]
+        [Compare("Password", ErrorMessage = "La contraseña y la contraseña de confirmación no coinciden.")]
         public string? ConfirmPassword { get; set; }
 
 

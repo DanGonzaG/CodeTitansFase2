@@ -650,3 +650,28 @@
     max-width: 60%;
     width: 70%;
 }
+
+.btn-vino {
+    background-color: #800000;
+    color: white;
+    border: none;
+}
+
+    .btn-vino:hover {
+        background-color: #5a0000;
+        color: white;
+    }
+
+.encabezado-vino {
+    background-color: #800000; 
+    color: white;
+    padding: 10px 15px;
+    border-radius: 6px;
+}
+
+.day.event {
+    border-bottom: 3px solid #007bff; /* línea azul debajo */
+    color: #007bff; /* opcional: cambiar color del texto */
+    font-weight: bold;
+    cursor: pointer;
+}

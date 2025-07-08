@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 //using Microsoft.EntityFrameworkCore;
 
@@ -8,15 +9,18 @@ namespace Preacepta.Modelos.AbstraccionesBD;
 public partial class TGePersona
 {
     [Key]
+    [DisplayName("Cédula")]
     public int Cedula { get; set; }
 
     [StringLength(50)]
     public string Nombre { get; set; } = null!;
 
     [StringLength(50)]
+    [DisplayName("Primer apellido")]
     public string Apellido1 { get; set; } = null!;
 
     [StringLength(50)]
+    [DisplayName("Segundo Apellido")]
     public string Apellido2 { get; set; } = null!;
 
     public DateOnly FechaNacimiento { get; set; }
@@ -47,6 +51,9 @@ public partial class TGePersona
 
     [StringLength(100)]
     public string Email { get; set; } = null!;
+
+    [StringLength(10)]
+    public string Genero { get; set; } = null!;
 
     [ForeignKey("Direccion1")]
     [InverseProperty("TGePersonas")]

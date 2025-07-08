@@ -1,4 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using DinkToPdf;
+using DinkToPdf.Contracts;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Preacepta.LN.Casos.BuscarXid;
@@ -6,12 +9,14 @@ using Preacepta.LN.Casos.Crear;
 using Preacepta.LN.Casos.Editar;
 using Preacepta.LN.Casos.Eliminar;
 using Preacepta.LN.Casos.Listar;
+using Preacepta.LN.CasosEtapa.Listar;
 using Preacepta.LN.CasosTipo.Listar;
 using Preacepta.LN.GeAbogado.Listar;
 using Preacepta.LN.GePersona.BuscarXid;
 using Preacepta.LN.GePersona.Listar;
 using Preacepta.Modelos.AbstraccionesFrond;
 using System.Security.Claims;
+using System.Text;
 
 namespace Preacepta.UI.Controllers
 {
@@ -28,6 +33,10 @@ namespace Preacepta.UI.Controllers
         private readonly IListarCasosTipoLN _listarCasosTipoLN;
         private readonly IBuscarXidGePersonaLN _buscarPersona;
 
+        private readonly IListarCasosEtapasLN _listarCasosEtapas;
+
+        private readonly IConverter _converter;
+
         public CasoController(
             IBuscarCasosLN buscar,
             ICrearCasosLN crear,
@@ -37,7 +46,13 @@ namespace Preacepta.UI.Controllers
             IListarAbogadoLN listarAbogados,
             IListarGePersonaLN listarGePersona,
             IListarCasosTipoLN listarCasosTipoLN,
-            IBuscarXidGePersonaLN buscarPersona)
+            IBuscarXidGePersonaLN buscarPersona,
+
+
+            IListarCasosEtapasLN listarCasosEtapas,
+
+
+            IConverter converter)
         {
             _buscar = buscar;
             _crear = crear;
@@ -47,9 +62,16 @@ namespace Preacepta.UI.Controllers
             _listarGePersona = listarGePersona;
             _listarCasosTipoLN = listarCasosTipoLN;
             _buscarPersona = buscarPersona;
+            _listarCasosEtapas = listarCasosEtapas;
+            _converter = converter;
         }
 
+        /********************************************************************************************************************************************************************/
+        //controller de Framework\\
+        /********************************************************************************************************************************************************************/
+
         // GET: Caso
+        [Authorize(Roles = "Gestor")]
         public async Task<IActionResult> Index()
         {
             //var contexto = _context.TCasos.Include(t => t.IdAbogadoNavigation).Include(t => t.IdClienteNavigation).Include(t => t.IdTipoCasoNavigation);
@@ -57,6 +79,7 @@ namespace Preacepta.UI.Controllers
         }
 
         // GET: Caso/Details/5
+        [Authorize(Roles = "Gestor")]
         public async Task<IActionResult> Details(int id)
         {
             if (id == null)
@@ -74,6 +97,7 @@ namespace Preacepta.UI.Controllers
         }
 
         // GET: Caso/Create
+        [Authorize(Roles = "Gestor")]
         public async Task<IActionResult> Create()
         {
             //ViewData["IdAbogado"] = new SelectList(_listarAbogados.listar().Result, "Cedula", "CedulaNavigation.Nombre");
@@ -104,6 +128,7 @@ namespace Preacepta.UI.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Gestor")]
         public async Task<IActionResult> Create([Bind("IdCaso,Nombre,Fecha,IdTipoCaso,Descripcion,IdAbogado,IdCliente,Activo")] CasoDTO tCaso)
         {
             if (ModelState.IsValid)
@@ -132,6 +157,7 @@ namespace Preacepta.UI.Controllers
         }
 
         // GET: Caso/Edit/5
+        [Authorize(Roles = "Gestor")]
         public async Task<IActionResult> Edit(int id)
         {
             if (id == null)
@@ -169,6 +195,7 @@ namespace Preacepta.UI.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Gestor")]
         public async Task<IActionResult> Edit(int id, [Bind("IdCaso,Nombre,Fecha,IdTipoCaso,Descripcion,IdAbogado,IdCliente,Activo")] CasoDTO tCaso)
         {
             if (id != tCaso.IdCaso)
@@ -210,6 +237,7 @@ namespace Preacepta.UI.Controllers
         }
 
         // GET: Caso/Delete/5
+        [Authorize(Roles = "Gestor")]
         public async Task<IActionResult> Delete(int id)
         {
             if (id == null)
@@ -229,6 +257,7 @@ namespace Preacepta.UI.Controllers
         // POST: Caso/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Gestor")]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             if (id <= 0)
@@ -255,7 +284,13 @@ namespace Preacepta.UI.Controllers
         }
 
 
-        // GET: Caso/Create
+        /********************************************************************************************************************************************************************/
+        //controller de personalizados\\
+        /********************************************************************************************************************************************************************/
+
+        #region Creación de caso GET Y POST
+        // GET: Caso/FormularioCaso
+        [Authorize(Roles = "Gestor, Abogado")]
         public async Task<IActionResult> FormularioCaso()
         {
             ViewData["IdTipoCaso"] = new SelectList(_listarCasosTipoLN.listar().Result, "IdTipoCaso", "Nombre");
@@ -278,11 +313,12 @@ namespace Preacepta.UI.Controllers
             return View();
         }
 
-        // POST: Caso/Create
+        // POST: Caso/FormularioCaso
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Gestor, Abogado")]
         public async Task<IActionResult> FormularioCaso([Bind("Nombre,IdTipoCaso,Descripcion,IdAbogado,IdCliente")] CasoDTO tCaso)
         {
             if (ModelState.IsValid)
@@ -309,9 +345,11 @@ namespace Preacepta.UI.Controllers
                .ToList();
             return View(tCaso);
         }
+        #endregion
 
-
+        #region Listar los caso Según el usuario y el rol
         // GET: ListarCasos
+        [Authorize(Roles = "Gestor, Abogado, Cliente")]
         public async Task<IActionResult> CasosListado()
         {
             //var abogado = await _buscarPersona.buscarXcorreo(User.Identity.Name);
@@ -329,27 +367,122 @@ namespace Preacepta.UI.Controllers
                 "Abogado" => View(await _listar.listarXabogado(persona.Cedula)),
                 "Cliente" => View(await _listar.listarXcliente(persona.Cedula)),
                 _ => View(new List<CasoDTO>())
-
-
-            };  
+            };
         }
+        #endregion
 
-
-        // GET: Caso/EtapasPL/5
-        public async Task<IActionResult> EtapasPL(int id)
+        #region Listar los casos CERRADOS segun usuario y rol
+        // GET: CasosListadoHistorial
+        [Authorize(Roles = "Gestor, Abogado, Cliente")]
+        public async Task<IActionResult> CasosListadoHistorial()
         {
-            if (id == null)
+
+            var usuario = (ClaimsIdentity)User.Identity;
+            var rol = usuario.FindFirst(ClaimTypes.Role)?.Value;
+            var persona = await _buscarPersona.buscarXcorreo(User.Identity.Name);
+
+            return rol switch
             {
-                return NotFound();
+                "Gestor" => View(await _listar.listar()),
+                "Abogado" => View(await _listar.listarXabogado(persona.Cedula)),
+                "Cliente" => View(await _listar.listarXcliente(persona.Cedula)),
+                _ => View(new List<CasoDTO>())
+            };
+        }
+        #endregion
+
+        [HttpGet]
+        public async Task<IActionResult> DescargarCasoCompleto(int IdCaso)
+        {           
+            var imagenPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "lyso", "img", "PreaceptaLogoColorNegro.png");
+            var imagenlogo = System.IO.File.ReadAllBytes(imagenPath);
+            var base64 = Convert.ToBase64String(imagenlogo);
+            var casoEncontrado = await _buscar.buscar(IdCaso);
+            var templatePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "lyso", "DescargaCasos", "CasoPlantillaPrincipalFem.html");
+            if (casoEncontrado == null)
+            {
+                throw new Exception("Caso no encontrado");
+            }
+            var etapasEncontradas = await _listarCasosEtapas.listarXcaso(IdCaso);
+            if (etapasEncontradas == null)
+            {
+                throw new Exception("Lista de etapas no encontradas");
             }
 
-            var tCaso = await _buscar.buscar(id);
-            if (tCaso == null)
+            if(casoEncontrado.IdClienteNavigation.Genero == "Femenino") 
             {
-                return NotFound();
+                templatePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "lyso", "DescargaCasos", "CasoPlantillaPrincipalFem.html");
             }
+            else 
+            {
+                templatePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "lyso", "DescargaCasos", "CasoPlantillaPrincipalMasc.html");
+            }
+            var templatePathEtapas = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "lyso", "DescargaCasos", "CasoPlantilla2.html");
+            var htmlTemplate = System.IO.File.ReadAllText(templatePath);
+            var htmlEtapas = System.IO.File.ReadAllText(templatePathEtapas);
+            var etapasEntradasHtml = new StringBuilder(); // esta variable va a contener el arreglo de etapasPL
 
-            return View(tCaso);
+            htmlTemplate = htmlTemplate
+                //encabezado
+                .Replace("{{LOGO}}", base64)
+                .Replace("{{CedulaJuridica}}", casoEncontrado.IdAbogadoNavigation.CJuridica.ToString())
+                .Replace("{{NombreBufete}}", casoEncontrado.IdAbogadoNavigation.CJuridicaNavigation.Nombre)
+                .Replace("{{TelefonoDespacho}}", casoEncontrado.IdAbogadoNavigation.CJuridicaNavigation.Telefono)
+                .Replace("{{EmailDespacho}}", casoEncontrado.IdAbogadoNavigation.CJuridicaNavigation.Email)
+                //Datos del cliente y del abogado
+                .Replace("{{NombreCliente}}", casoEncontrado.IdClienteNavigation.Nombre)
+                .Replace("{{Apellido1Cliente}}", casoEncontrado.IdClienteNavigation.Apellido1)
+                .Replace("{{Apellido2Cliente}}", casoEncontrado.IdClienteNavigation.Apellido2)
+                .Replace("{{IdCliente}}", casoEncontrado.IdClienteNavigation.Cedula.ToString())
+                .Replace("{{NombreAbogado}}", casoEncontrado.IdAbogadoNavigation.CedulaNavigation.Nombre)
+                .Replace("{{Apellido1Abogado}}", casoEncontrado.IdAbogadoNavigation.CedulaNavigation.Apellido1)
+                .Replace("{{Apellido2Abogado}}", casoEncontrado.IdAbogadoNavigation.CedulaNavigation.Apellido2)
+                .Replace("{{Carnet}}", casoEncontrado.IdAbogadoNavigation.Carnet.ToString())
+                //Datos del caso
+                .Replace("{{idCaso}}", casoEncontrado.IdCaso.ToString())
+                .Replace("{{FechaIncio}}", casoEncontrado.Fecha)
+                .Replace("{{TipoDeCaso}}", casoEncontrado.IdTipoCasoNavigation.Nombre)
+                .Replace("{{NombreCaso}}", casoEncontrado.Nombre)
+                .Replace("{{Descripcion}}", casoEncontrado.Descripcion)
+                .Replace("{{contadorEtapas}}", etapasEncontradas.Count().ToString())
+            //Feha y hora
+                .Replace("{{nombreDIA}}", DateTime.Now.ToString("dddd"))
+                .Replace("{{DIA}}", DateTime.Now.ToString("dd"))
+                .Replace("{{NombreMes}}", DateTime.Now.ToString("MMMM"))
+                .Replace("{{ANYO}}", DateTime.Now.ToString("yyyy"))
+                .Replace("{{HoraActual}}", DateTime.Now.ToString("HH:mm"));
+            //Etapas del caso
+
+            foreach (var item in etapasEncontradas)
+            {
+                etapasEntradasHtml.Append
+                    (htmlEtapas
+                    .Replace("{{FechaEtapa}}", item.Fecha)
+                    .Replace("{{NumeroEtapa}}", item.IdEtapaPl.ToString())
+                    .Replace("{{NombreEtapa}}", item.Nombre)
+                    .Replace("{{EtapaDescripcon}}", item.Descripcion)                    
+                    );
+            }
+            htmlTemplate = htmlTemplate.Replace("{{ETAPAS}}", etapasEntradasHtml.ToString());
+            var doc = new HtmlToPdfDocument()
+            {
+                GlobalSettings = new GlobalSettings
+                {
+                    PaperSize = PaperKind.A4,
+                    Orientation = Orientation.Portrait
+                },
+                Objects = {
+            new ObjectSettings
+            {
+                HtmlContent = htmlTemplate,
+                WebSettings = { DefaultEncoding = "utf-8" }
+            }
+        }
+            };
+
+            var pdf = _converter.Convert(doc);
+
+            return File(pdf, "application/pdf");
         }
     }
 }

@@ -1,0 +1,122 @@
+﻿@model Preacepta.Modelos.AbstraccionesFrond.CasosEtapaDTO
+<link href="~/lyso/css/daniel.css" rel="stylesheet" />
+<body>
+    <div class="page-title-area page-title-area-two title-img-one">
+        <div class="d-table">
+            <div class="d-table-cell">
+                <div class="page-title-text">
+                    <h2>Eliminación de etapa del proceso legal</h2>
+                    <ul>
+                        <li>
+                            <a asp-controller="Home" asp-action="Index">Página Principal</a>
+                        </li>
+                        <li>
+                            <i class="icofont-simple-right"></i>
+                        </li>
+                        <li>
+                            <a asp-controller="Caso" asp-action="CasosListado">Casos</a>
+                        </li>
+                        <li>
+                            <i class="icofont-simple-right"></i>
+                        </li>
+                        <li>
+                            <a asp-controller="CasosEtapa" asp-action="EtapasPL" asp-route-id="@Model.IdCaso">Etapas</a>
+                        </li>
+                        <li>
+                            <i class="icofont-simple-right"></i>
+                        </li>
+                        <li>Etapa</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Page Title -->
+
+    <br />
+    <br />
+    <br />
+    <div class="formulario contact-form contact-form-two">
+        <div class="container">
+            <div class="contact-wrap">
+                <h1>Eliminación de etapa del proceso legal</h1>
+                <h3>¿Está seguro que desea eliminar esta etapa de su proceso legal?</h3>
+            </div>
+        </div>
+    </div>
+
+    <div class="formulario contact-form contact-form-two contact-form-three">
+        <div class="container">
+            <div class="contact-wrap">
+              
+                <div>
+                    <h4>Información completa de la etapa</h4>
+                    <hr />
+                    <dl class="row LetraNegra">
+                        <dt class="col-sm-2">
+                            @Html.DisplayNameFor(model => model.IdEtapaPl)
+                        </dt>
+                        <dd class="col-sm-10">
+                            @Html.DisplayFor(model => model.IdEtapaPl)
+                        </dd>
+                        <dt class="col-sm-2">
+                            @Html.DisplayNameFor(model => model.Fecha)
+                        </dt>
+                        <dd class="col-sm-10">
+                            @Html.DisplayFor(model => model.Fecha)
+                        </dd>
+                        <dt class="col-sm-2">
+                            @Html.DisplayNameFor(model => model.Nombre)
+                        </dt>
+                        <dd class="col-sm-10">
+                            @Html.DisplayFor(model => model.Nombre)
+                        </dd>
+                        <dt class="col-sm-2">
+                            @Html.DisplayNameFor(model => model.Descripcion)
+                        </dt>
+                        <dd class="col-sm-10">
+                            @Html.DisplayFor(model => model.Descripcion)
+                        </dd>
+
+                        <dt class="col-sm-2">
+                            @Html.DisplayNameFor(model => model.IdCasoNavigation.Nombre)
+                        </dt>
+                        <dd class="col-sm-10">
+                            @Html.DisplayFor(model => model.IdCasoNavigation.Nombre)
+                        </dd>
+
+                        <dt class="col-sm-2">
+                            @Html.DisplayNameFor(model => model.Activo)
+                        </dt>
+                        <dd class="col-sm-10">
+                            @Html.DisplayFor(model => model.Activo)
+                        </dd>
+                    </dl>
+
+                    <form asp-action="Eliminar">
+                        <input type="hidden" asp-for="IdEtapaPl" />
+                        <input type="submit" value="Eliminar" class="btn btn-danger" /> |
+                        <a asp-action="EtapasPL" asp-route-id="@Model.IdCaso">Regresar</a>
+                        
+                    </form>
+                </div>
+            </div>
+        </div>
+
+
+
+
+</body>
+
+
+
+
+
+
+
+
+
+
+
+
+

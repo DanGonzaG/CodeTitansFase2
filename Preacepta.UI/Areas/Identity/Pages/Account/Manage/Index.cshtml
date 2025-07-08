@@ -1,31 +1,108 @@
 ﻿@page
-@model IndexModel
+@model IndexModel;
 @{
-    ViewData["Title"] = "Profile";
+    ViewData["Title"] = "Información de usuario";
     ViewData["ActivePage"] = ManageNavPages.Index;
+
 }
 
-<h3>@ViewData["Title"]</h3>
+<style>
+    select {
+        display: block !important;
+        visibility: visible !important;
+    }
+</style>
+
+
+<h2>@ViewData["Title"]</h2>
 <partial name="_StatusMessage" for="StatusMessage" />
 <div class="row">
-
-    <div class="col-md-6">
-        <form id="profile-form" method="post">
-            <div asp-validation-summary="ModelOnly" class="text-danger" role="alert"></div>
-            <div class="form-floating mb-3">
-                <input asp-for="Username" class="form-control" placeholder="Please choose your username." disabled />
+    <form class="LetraNegra" id="profile-form" method="post">
+        <div asp-validation-summary="ModelOnly" class="text-danger" role="alert"></div>
+        <div class="form-floating mb-3">
+            <div class="form-group">
                 <label asp-for="Username" class="form-label"></label>
+                <input asp-for="Username" class="form-control" placeholder="Elija un usuario." disabled />               
+            </div>
+        </div>
+        @if(!User.IsInRole("Gestor"))
+        {
+            <div class="form-floating mb-3">
+                <div class="form-group">
+                    <label asp-for="Cedula" class="control-label"></label>
+                    <input asp-for="Cedula" class="form-control" readonly />
+                    <span asp-validation-for="Cedula" class="text-danger"></span>
+                </div>
             </div>
             <div class="form-floating mb-3">
-                <input asp-for="Input.PhoneNumber" class="form-control" placeholder="Please enter your phone number."/>
-                <label asp-for="Input.PhoneNumber" class="form-label"></label>
-                <span asp-validation-for="Input.PhoneNumber" class="text-danger"></span>
+                <div class="form-group">
+                    <label asp-for="Nombre" class="control-label"></label>
+                    <input asp-for="Nombre" class="form-control" />
+                    <span asp-validation-for="Nombre" class="text-danger"></span>
+                </div>
             </div>
-            <button id="update-profile-button" type="submit" class="w-100 btn btn-lg btn-primary">Save</button>
-        </form>
-    </div>
+            <div class="form-floating mb-3">
+                <div class="form-group">
+                    <label asp-for="Apellido1" class="control-label"></label>
+                    <input asp-for="Apellido1" class="form-control" />
+                    <span asp-validation-for="Apellido1" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-floating mb-3">
+
+                <div class="form-group">
+                    <label asp-for="Apellido2" class="control-label"></label>
+                    <input asp-for="Apellido2" class="form-control" />
+                    <span asp-validation-for="Apellido2" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-floating mb-3">
+                <div class="form-group">
+                    <label asp-for="FechaNacimiento" class="control-label"></label>
+                    <input id="InputFechaNacimiento" type="date" asp-for="FechaNacimiento" class="form-control" />
+                    <span asp-validation-for="FechaNacimiento" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-floating mb-3">
+                <div class="form-group">
+                    <label asp-for="Edad" class="control-label"></label>
+                    <input id="InputEdad" asp-for="Edad" class="form-control" readonly />
+                    <span asp-validation-for="Edad" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-floating mb-3">
+                <div class="form-group">
+                    <label asp-for="Genero" class="control-label"></label>
+                    <select asp-for="Genero" class="form-control no-nice" asp-items="Model.GeneroLista"></select>
+                    <span asp-validation-for="Genero" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-floating mb-3">
+                <div class="form-group">
+                    <label asp-for="Oficio" class="control-label"></label>
+                    <input asp-for="Oficio" class="form-control" />
+                    <span asp-validation-for="Oficio" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-floating mb-3">
+                <div class="form-group">
+                    <label asp-for="EstadoCivil" class="control-label"></label>
+                    <select asp-for="EstadoCivil" asp-items="Model.EstadoCivilLista" class="form-control no-nice"></select>
+                    <span asp-validation-for="EstadoCivil" class="text-danger"></span>
+                </div>
+            </div>            
+            <button id="update-profile-button" type="submit" class="w-100 contact-btn btn-lg">Guardar cambios</button>
+        }        
+    </form>
 </div>
 
+
+<script src="~/lyso/js/calculoedad.js"></script>
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />
+   
 }
+
+
+
+

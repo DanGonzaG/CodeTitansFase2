@@ -18,6 +18,14 @@ namespace Preacepta.AD.CasosEtapa.BuscarXid
             {
                 var lista = await _contexto.TCasosEtapas
                 .Include(t => t.IdCasoNavigation)
+                .ThenInclude(a => a.IdAbogadoNavigation)                
+                .ThenInclude(d => d.CJuridicaNavigation)
+                .Include(t => t.IdCasoNavigation)
+                .ThenInclude(a => a.IdAbogadoNavigation)
+                .ThenInclude(b => b.CedulaNavigation)
+                .ThenInclude(c => c.Direccion1Navigation)
+                .Include(t => t.IdCasoNavigation)
+                .ThenInclude(a => a.IdClienteNavigation)                              
                 .FirstOrDefaultAsync(m => m.IdEtapaPl == id);
                 return lista;
             }
