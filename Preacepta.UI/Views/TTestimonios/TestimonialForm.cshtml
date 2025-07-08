@@ -42,36 +42,20 @@
 <div class="contact-form contact-form-four pb-100">
     <div class="container-fluid">
         <form asp-action="TestimonialForm" method="post" id="contactForm">
-            @Html.AntiForgeryToken()
-
-            <!-- Campos ocultos para los datos que ya tienes en el controlador -->
-            <input type="hidden" asp-for="IdCliente" />
-            <input type="hidden" asp-for="Fecha" />
-            <input type="hidden" asp-for="Activo" value="true" />
 
             <div class="row contact-wrap">
                 <div class="col-sm-6 col-lg-6">
                     <div class="form-group">
-                        <!-- Mostrar el nombre del cliente en lugar de un input editable -->
-                        <input type="text" class="form-control" value="@Model?.IdClienteNavigation?.Nombre" readonly placeholder="Nombre completo">
-                        <div class="help-block with-errors"></div>
-                    </div>
-                </div>
-
-                <div class="col-sm-6 col-lg-6">
-                    <div class="form-group">
-                        <!-- Mostrar la cédula del cliente -->
-                        <input type="text" class="form-control" value="@Model?.IdClienteNavigation?.Cedula" readonly placeholder="Identificación">
-                        <div class="help-block with-errors"></div>
+                        <label asp-for="IdCliente" class="control-label"></label>
+                        <select asp-for="IdCliente" class="form-control" asp-items="ViewBag.IdCliente"></select>
                     </div>
                 </div>
 
                 <div class="col-md-12 col-lg-12">
                     <div class="form-group">
-                        <!-- Campo para el comentario (mapeado al DTO) -->
-                        <textarea asp-for="Comentario" class="form-control" cols="30" rows="8" required data-error="Por favor ingrese el dato" placeholder="Su testimonio o comentario"></textarea>
+                        <label asp-for="Comentario" class="control-label"></label>
+                        <input asp-for="Comentario" class="form-control" />
                         <span asp-validation-for="Comentario" class="text-danger"></span>
-                        <div class="help-block with-errors"></div>
                     </div>
                 </div>
 

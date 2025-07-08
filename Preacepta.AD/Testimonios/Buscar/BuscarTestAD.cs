@@ -21,7 +21,9 @@ namespace Preacepta.AD.Testimonios.Buscar
         {
             try
             {
-                var lista = await _contexto.TTestimonios.FindAsync(id);
+                var lista = await _contexto.TTestimonios
+                .Include(t => t.IdClienteNavigation)
+                .FirstOrDefaultAsync(m => m.IdTestimonio == id);
                 return lista;
             }
             catch (Exception ex)

@@ -14,7 +14,8 @@ namespace Preacepta.LN.DocsOpcionCompraventaVehiculo.Crear
         private readonly ICrearDocCVAD _crearDocCVAD;
         private readonly IObtenerDatosDocsCV _obtenerDatos;
 
-        public CrearDocCVLN(ICrearDocCVAD crearDocCVAD, IObtenerDatosDocsCV obtenerDatos)
+        public CrearDocCVLN(ICrearDocCVAD crearDocCVAD,
+            IObtenerDatosDocsCV obtenerDatos)
         {
             _crearDocCVAD = crearDocCVAD;
             _obtenerDatos = obtenerDatos;

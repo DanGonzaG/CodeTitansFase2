@@ -4,7 +4,7 @@
 <head>
     <link href="~/lyso/css/Daniel.css" rel="stylesheet" />
 </head>
-
+<body>
 <!-- Page Title -->
 <div class="page-title-area page-title-area-two title-img-one">
     <div class="d-table">
@@ -13,7 +13,7 @@
                 <h2>Generador de Documentos Legales</h2>
                 <ul>
                     <li>
-                        <a asp-controller="Home" asp-action="Index">Home</a>
+                        <a asp-controller="Home" asp-action="Index">Inicio</a>
                     </li>
                     <li>
                         <i class="icofont-simple-right"></i>
@@ -25,157 +25,147 @@
     </div>
 </div>
 <!-- End Page Title -->
-<body>
+
+<br />
+<br />
+<br />
+
 <div class="contact-form contact-form-two">
     <div class="container">
         <div class="contact-wrap">
-            <form id="TDocsPagaresController" class="TDocsPagaresControlleri">
-                <h2>Filtrar Formulario</h2>
+             <form asp-action="CreateDocsPagares" id="CreateDocsPagares">
+                    @if (ViewBag.DocumentoAnteriorId != null)
+                    {
+                        <input type="hidden" name="DocumentoAnteriorId" value="@ViewBag.DocumentoAnteriorId" />
+                    }
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                 <div class="row justify-content-center">
                         <div class="col-sm-6 col-lg-6">
                             <div class="form-group">
                                 <label asp-for="MontoNumerico" class="control-label"></label>
-                                <input asp-for="MontoNumerico" class="form-control" id="idMontoNumerico" />
+                                <input asp-for="MontoNumerico" class="form-control" id="idMontoNumerico" style="color: black;" />
                                 <span asp-validation-for="MontoNumerico" class="text-danger"></span>
                             </div>
                         </div>
                         <div class="col-sm-6 col-lg-6">
                             <div class="form-group">
                                 <label asp-for="CedulaDeudor" class="control-label"></label>
-                                <select asp-for="CedulaDeudor" class="form-control" asp-items="ViewBag.CedulaDeudor" id="idCedulaDeudor"></select>
+                                <select asp-for="CedulaDeudor" class="form-control" asp-items="ViewBag.CedulaDeudor" id="idCedulaDeudor" style="color: black;"></select>
                             </div>
                         </div>
                         <div class="col-sm-6 col-lg-6">
                             <div class="form-group">
                                 <label asp-for="SociedadDeudor" class="control-label"></label>
-                                <input asp-for="SociedadDeudor" class="form-control" id="idSociedadDeudor" />
+                                <input asp-for="SociedadDeudor" class="form-control" id="idSociedadDeudor" style="color: black;" />
                                 <span asp-validation-for="SociedadDeudor" class="text-danger"></span>
                             </div>
                         </div>
                         <div class="col-sm-6 col-lg-6">
                             <div class="form-group">
                                 <label asp-for="CedulaJuridicaSociedad" class="control-label"></label>
-                                <input asp-for="CedulaJuridicaSociedad" class="form-control" id="idCedulaJuridicaSociedad" />
+                                <input asp-for="CedulaJuridicaSociedad" class="form-control" id="idCedulaJuridicaSociedad" style="color: black;" />
                                 <span asp-validation-for="CedulaJuridicaSociedad" class="text-danger"></span>
                             </div>
                         </div>
                         <div class="col-sm-6 col-lg-6">
                             <div class="form-group">
                                 <label asp-for="AcreedorNombre" class="control-label"></label>
-                                <input asp-for="AcreedorNombre" class="form-control" id="idAcreedorNombre" />
+                                <input asp-for="AcreedorNombre" class="form-control" id="idAcreedorNombre" style="color: black;" />
                                 <span asp-validation-for="AcreedorNombre" class="text-danger"></span>
                             </div>
                         </div>
                         <div class="col-sm-6 col-lg-6">
                             <div class="form-group">
                                 <label asp-for="CedulaJuridicaAcreedor" class="control-label"></label>
-                                <input asp-for="CedulaJuridicaAcreedor" class="form-control" id="idCedulaJuridicaAcreedor" />
-                                <span asp-validation-for="CedulaJuridicaAcreedor" class="text-danger"></span>
+                                <input asp-for="CedulaJuridicaAcreedor" class="form-control" id="idCedulaJuridicaAcreedor" style="color: black;" />
+                                <span asp-validation-for="CedulaJuridicaAcreedor" class="text-danger"></span> <!-- ← importante -->
                             </div>
                         </div>
                         <div class="col-sm-6 col-lg-6">
                             <div class="form-group">
                                 <label asp-for="AcreedorDomicilio" class="control-label"></label>
-                                <input asp-for="AcreedorDomicilio" class="form-control" id="idAcreedorDomicilio" />
+                                <input asp-for="AcreedorDomicilio" class="form-control" id="idAcreedorDomicilio" style="color: black;" />
                                 <span asp-validation-for="AcreedorDomicilio" class="text-danger"></span>
                             </div>
                         </div>
                         <div class="col-sm-6 col-lg-6">
                             <div class="form-group">
                                 <label asp-for="FechaVencimiento" class="control-label"></label>
-                                <input asp-for="FechaVencimiento" class="form-control" id="idFechaVencimiento" />
+                                <input asp-for="FechaVencimiento" class="form-control" id="idFechaVencimiento" type="date" style="color: black;" />
                                 <span asp-validation-for="FechaVencimiento" class="text-danger"></span>
                             </div>
                         </div>
                         <div class="col-sm-6 col-lg-6">
                             <div class="form-group">
                                 <label asp-for="InteresFormula" class="control-label"></label>
-                                <input asp-for="InteresFormula" class="form-control" id="idInteresFormula" />
+                                <input asp-for="InteresFormula" class="form-control" id="idInteresFormula" style="color: black;" />
                                 <span asp-validation-for="InteresFormula" class="text-danger"></span>
                             </div>
                         </div>
                         <div class="col-sm-6 col-lg-6">
                             <div class="form-group">
                                 <label asp-for="InteresTasaActual" class="control-label"></label>
-                                <input asp-for="InteresTasaActual" class="form-control" id="idInteresTasaActual" />
+                                <input asp-for="InteresTasaActual" class="form-control" id="idInteresTasaActual" style="color: black;" />
                                 <span asp-validation-for="InteresTasaActual" class="text-danger"></span>
                             </div>
                         </div>
                         <div class="col-sm-6 col-lg-6">
                             <div class="form-group">
                                 <label asp-for="InteresBase" class="control-label"></label>
-                                <input asp-for="InteresBase" class="form-control" id="idInteresBase" />
+                                <input asp-for="InteresBase" class="form-control" id="idInteresBase" style="color: black;" />
                                 <span asp-validation-for="InteresBase" class="text-danger"></span>
                             </div>
                         </div>
                         <div class="col-sm-6 col-lg-6">
                             <div class="form-group">
                                 <label asp-for="LugarPago" class="control-label"></label>
-                                <select asp-for="LugarPago" class="form-control" asp-items="ViewBag.LugarPago" id="idLugarPago"></select>
+                                <select asp-for="LugarPago" class="form-control" asp-items="ViewBag.LugarPago" id="idLugarPago" style="color: black;"></select>
+                                <span asp-validation-for="LugarPago" class="text-danger"></span>
                             </div>
                         </div>
                         <div class="col-sm-6 col-lg-6">
                             <div class="form-group">
                                 <label asp-for="CedulaFiador" class="control-label"></label>
-                                <select asp-for="CedulaFiador" class="form-control" asp-items="ViewBag.CedulaFiador" id="idCedulaFiador"></select>
+                                <select asp-for="CedulaFiador" class="form-control" asp-items="ViewBag.CedulaFiador" id="idCedulaFiador" style="color: black;"></select>
+                                <span asp-validation-for="CedulaFiador" class="text-danger"></span>
                             </div>
                         </div>
                         <div class="col-sm-6 col-lg-6">
                             <div class="form-group">
                                 <label asp-for="UbicacionFirma" class="control-label"></label>
-                                <input asp-for="UbicacionFirma" class="form-control" id="idUbicacionFirma" />
+                                <select asp-for="UbicacionFirma" class="form-control" asp-items="ViewBag.UbicacionFirma" id="idUbicacionFirma" style="color: black;"></select>
                                 <span asp-validation-for="UbicacionFirma" class="text-danger"></span>
                             </div>
                         </div>
 
-                    <div class="col-md-12 col-lg-12">
 
-                        <div class="text-center">
-                            <!-- Button trigger modal -->
-                            <div id="btnRevisar">
-                                <button type="button" id="PrevioBtn" class="contact-btn" data-bs-toggle="modal" data-bs-target="#PrevioModal">
-                                    Revisar
-                                </button>
+                        <br />
+                        <br />
+                        <br />
+
+
+                        <div class="col-md-12 col-lg-12">
+                            <div class="text-center d-flex justify-content-center gap-3">
+                                <div class="form-group" id="btnCrearCaso">
+                                    <input type="submit" value="Crear Documento" class="contact-btn" />
+                                </div>
+                                <div class="form-group">
+                                    <button type="button" id="btnPrevisualizar" class="contact-btn">
+                                        Previsualizar PDF
+                                    </button>
+                                </div>
                             </div>
-                            <div class="form-group" id="btnCrearCaso">
-                                <input type="submit" value="Crear Caso" class="contact-btn" />
-                            </div>
-                            <!--<button type="submit" class="contact-btn">Submit Case</button>-->
                         </div>
                     </div>
-                </div>
-            </form>
+                </form>
+            </div>
         </div>
     </div>
-</div>
 </body>
 
 
 
 
-<!-- Modal
-<div class="modal fade" id="PrevioModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-<div class="modal-dialog modal-lg">
-<div class="modal-content">
-<div class="formulario contact-form contact-form-two">
-<div class="container">
-<div class="contact-wrap">
-<h2>Revisión de datos ingresados</h2>
-<p style="color: black"><strong>Tipo Caso:</strong> <span id="previoTipoCaso"></span></p>
-<p style="color: black"><strong>Nombre del caso:</strong> <span id="previotitulo"></span></p>
-<p style="color: black"><strong>Pruebas Iniciales:</strong> <span id="previoPruebas"></span></p>
-<p style="color: black"><strong>Cliente:</strong> <span id="previoCliente"></span></p>
-<p style="color: black"><strong>Detalles del Caso:</strong> <span id="previoDescripcion"></span></p>
-</div>
-</div>
-</div>
-<div class="modal-footer">
-<button type="button" class="btn btn-secondary" data-bs-dismiss="modal" id="Retroceso">Close</button>
-<button type="button" class="btn btn-primary">Save changes</button>
-</div>
-</div>
-</div>
-</div> -->
 <!-- Button trigger modal -->
 <!-- Modal -->
 <div class="modal fade" id="PrevioModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -186,38 +176,21 @@
                 <button id="Retroceso2" type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <p style="color: black"><strong>Cédula Abogado:</strong> <span id="previoCedulaAbogado"></span></p>
-                <p style="color: black"><strong>Cédula Propietario:</strong> <span id="previoCedulaPropietario"></span></p>
-                <p style="color: black"><strong>Cédula Comprador:</strong> <span id="previoCedulaComprador"></span></p>
-                <p style="color: black"><strong>Placa Vehículo:</strong> <span id="previoPlacaVehiculo"></span></p>
-                <p style="color: black"><strong>Marca Vehículo:</strong> <span id="previoMarcaVehiculo"></span></p>
-                <p style="color: black"><strong>Tipo Vehículo:</strong> <span id="previoTipoVehiculo"></span></p>
-                <p style="color: black"><strong>Modelo Vehículo:</strong> <span id="previoModeloVehiculo"></span></p>
-                <p style="color: black"><strong>Carrocería:</strong> <span id="previoCarroceria"></span></p>
-                <p style="color: black"><strong>Categoría:</strong> <span id="previoCategoria"></span></p>
-                <p style="color: black"><strong>Chasis:</strong> <span id="previoChasis"></span></p>
-                <p style="color: black"><strong>Serie:</strong> <span id="previoSerie"></span></p>
-                <p style="color: black"><strong>VIN:</strong> <span id="previoVin"></span></p>
-                <p style="color: black"><strong>Marca Motor:</strong> <span id="previoMarcaMotor"></span></p>
-                <p style="color: black"><strong>Número Motor:</strong> <span id="previoNumeroMotor"></span></p>
-                <p style="color: black"><strong>Color:</strong> <span id="previoColor"></span></p>
-                <p style="color: black"><strong>Combustible:</strong> <span id="previoCombustible"></span></p>
-                <p style="color: black"><strong>Año:</strong> <span id="previoAnio"></span></p>
-                <p style="color: black"><strong>Capacidad:</strong> <span id="previoCapacidad"></span></p>
-                <p style="color: black"><strong>Cilindraje:</strong> <span id="previoCilindraje"></span></p>
-                <p style="color: black"><strong>Precio:</strong> <span id="previoPrecio"></span></p>
-                <p style="color: black"><strong>Moneda Precio:</strong> <span id="previoMonedaPrecio"></span></p>
-                <p style="color: black"><strong>Plazo Opción (Años):</strong> <span id="previoPlazoOpcionAnios"></span></p>
-                <p style="color: black"><strong>Fecha Inicio:</strong> <span id="previoFechaInicio"></span></p>
-                <p style="color: black"><strong>Monto Señal:</strong> <span id="previoMontoSenal"></span></p>
-                <p style="color: black"><strong>Moneda Señal:</strong> <span id="previoMonedaSenal"></span></p>
-                <p style="color: black"><strong>Monto a Devolver:</strong> <span id="previoMontoADevolver"></span></p>
-                <p style="color: black"><strong>Monto a Perder:</strong> <span id="previoMontoAPerder"></span></p>
-                <p style="color: black"><strong>Moneda Monto Perdido:</strong> <span id="previoMonedaMontoPerdido"></span></p>
-                <p style="color: black"><strong>Gastos Traspaso Pagados Por:</strong> <span id="previoGastosTraspasoPagadosPor"></span></p>
-                <p style="color: black"><strong>Lugar Firma:</strong> <span id="previoLugarFirma"></span></p>
-                <p style="color: black"><strong>Hora Firma:</strong> <span id="previoHoraFirma"></span></p>
-                <p style="color: black"><strong>Fecha Firma:</strong> <span id="previoFechaFirma"></span></p>
+                <p style="color: black"><strong>Monto Numérico:</strong> <span id="previoMontoNumerico"></span></p>
+                <p style="color: black"><strong>Cédula Deudor:</strong> <span id="previoCedulaDeudor"></span></p>
+                <p style="color: black"><strong>Sociedad Deudor:</strong> <span id="previoSociedadDeudor"></span></p>
+                <p style="color: black"><strong>Cédula Jurídica Sociedad:</strong> <span id="previoCedulaJuridicaSociedad"></span></p>
+                <p style="color: black"><strong>Acreedor Nombre:</strong> <span id="previoAcreedorNombre"></span></p>
+                <p style="color: black"><strong>Cédula Jurídica Acreedor:</strong> <span id="previoCedulaJuridicaAcreedor"></span></p>
+                <p style="color: black"><strong>Acreedor Domicilio:</strong> <span id="previoAcreedorDomicilio"></span></p>
+                <p style="color: black"><strong>Fecha Vencimiento:</strong> <span id="previoFechaVencimiento"></span></p>
+                <p style="color: black"><strong>Interés Fórmula:</strong> <span id="previoInteresFormula"></span></p>
+                <p style="color: black"><strong>Interés Tasa Actual:</strong> <span id="previoInteresTasaActual"></span></p>
+                <p style="color: black"><strong>Interés Base:</strong> <span id="previoInteresBase"></span></p>
+                <p style="color: black"><strong>Lugar de Pago:</strong> <span id="previoLugarPago"></span></p>
+                <p style="color: black"><strong>Cédula Fiador:</strong> <span id="previoCedulaFiador"></span></p>
+                <p style="color: black"><strong>Ubicación Firma:</strong> <span id="previoUbicacionFirma"></span></p>
+
             </div>
             <div class="modal-footer">
                 <button type="button" class="contact-btn" data-bs-dismiss="modal" id="Retroceso">Hacer Cambios</button>
@@ -232,4 +205,4 @@
         await Html.RenderPartialAsync("_ValidationScriptsPartial");
     }
 }
-<script src="~/lyso/js/DocsCompraVentaVehiculos.js"></script>
+<script src="~/lyso/js/DocsPagares.js"></script>

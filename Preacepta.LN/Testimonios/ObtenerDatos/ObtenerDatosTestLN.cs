@@ -30,8 +30,6 @@ namespace Preacepta.LN.Testimonios.ObtenerDatos
         /*metodo para obtner los datos de los formularios y pasarlos al modelo de acceso a datos*/
         public TTestimonio ObtenerDeFront(TTestimonioDTO testDTO)
         {
-            // DEBUG: Verifica el DTO recibido
-            Console.WriteLine($"DTO recibido - Activo: {testDTO?.Activo}");
 
             var entidad = new TTestimonio
             {
@@ -39,13 +37,10 @@ namespace Preacepta.LN.Testimonios.ObtenerDatos
                 IdCliente = testDTO.IdCliente,
                 Comentario = testDTO.Comentario,
                 Evaluacion = testDTO.Evaluacion,
-                Activo = testDTO.Activo, // Forzado explícitamente
+                Activo = true, // Forzado explícitamente
                 IdClienteNavigation = testDTO.IdClienteNavigation,
                 Fecha = DateTime.Now,
             };
-
-            // DEBUG: Verifica la entidad creada
-            Console.WriteLine($"Entidad creada - Activo: {entidad.Activo}");
 
             return entidad;
         }

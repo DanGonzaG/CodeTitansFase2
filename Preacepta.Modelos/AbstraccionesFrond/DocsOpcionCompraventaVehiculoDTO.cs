@@ -79,10 +79,9 @@ namespace Preacepta.Modelos.AbstraccionesFrond
         [MaxLength(50, ErrorMessage = "Capacidad excedida")]
         public string Cilindraje { get; set; } = null!;
 
-        [MaxLength(15, ErrorMessage = "Precio excedido")]
         public decimal Precio { get; set; }
 
-        [DisplayName("Precio_Moneda")]
+        [DisplayName("Precio Moneda")]
         [MaxLength(10, ErrorMessage = "Capacidad de moneda_precio excedida")]
         public string MonedaPrecio { get; set; } = null!;
 
@@ -93,7 +92,6 @@ namespace Preacepta.Modelos.AbstraccionesFrond
         public string FechaInicio { get; set; }
 
         [DisplayName("Monto Senal")]
-        [MaxLength(15, ErrorMessage = "Capacidad excedida")]
         public decimal MontoSenal { get; set; }
 
         [DisplayName("Moneda Senal")]
@@ -101,11 +99,9 @@ namespace Preacepta.Modelos.AbstraccionesFrond
         public string MonedaSenal { get; set; } = null!;
 
         [DisplayName("Monto a devolver")]
-        [MaxLength(15, ErrorMessage = "Capacidad excedida")]
         public decimal MontoADevolver { get; set; }
 
         [DisplayName("Monto a Perder")]
-        [MaxLength(15, ErrorMessage = "Capacidad excedida")]
         public decimal MontoAPerder { get; set; }
 
         [DisplayName("Moneda de monto perdido")]
@@ -126,27 +122,27 @@ namespace Preacepta.Modelos.AbstraccionesFrond
         public string FechaFirma { get; set; }
 
         [DisplayName("Cedula del Abogado en navegacion")]
-        public virtual TGeAbogado CedulaAbogadoNavigation { get; set; } = null!;
+        public virtual TGeAbogado? CedulaAbogadoNavigation { get; set; } = null!;
 
         [DisplayName("Cedula del Comprador en navegacion")]
-        public virtual TGePersona CedulaCompradorNavigation { get; set; } = null!;
+        public virtual TGePersona? CedulaCompradorNavigation { get; set; } = null!;
 
         [DisplayName("Cedula del Propietario en navegacion")]
-        public virtual TGePersona CedulaPropietarioNavigation { get; set; } = null!;
+        public virtual TGePersona? CedulaPropietarioNavigation { get; set; } = null!;
 
         [DisplayName("Combustible en navegacion")]
-        public virtual TDocsCombustible CombustibleNavigation { get; set; } = null!;
+        public virtual TDocsCombustible? CombustibleNavigation { get; set; } = null!;
 
         [DisplayName("Lugar de Firma en navegacion")]
-        public virtual TCrDistrito LugarFirmaNavigation { get; set; } = null!;
+        public virtual TCrDistrito? LugarFirmaNavigation { get; set; } = null!;
 
         [DisplayName("Marca del Motor en navegacion")]
-        public virtual TDocsMarcaVehiculo MarcaMotorNavigation { get; set; } = null!;
+        public virtual TDocsMarcaVehiculo? MarcaMotorNavigation { get; set; } = null!;
 
         [DisplayName("Marca del vehiculo en navegacion")]
-        public virtual TDocsMarcaVehiculo MarcaVehiculoNavigation { get; set; } = null!;
+        public virtual TDocsMarcaVehiculo? MarcaVehiculoNavigation { get; set; } = null!;
 
         [DisplayName("Tipo del Vehiculo en navegacion")]
-        public virtual TDocsTipoVehiculo TipoVehiculoNavigation { get; set; } = null!;
+        public virtual TDocsTipoVehiculo? TipoVehiculoNavigation { get; set; } = null!;
     }
 }

@@ -1,0 +1,60 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Poder Especial Judicial</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            font-size: 12pt;
+            line-height: 1.5;
+            margin: 40px;
+        }
+
+        h4 {
+            margin-top: 20px;
+            text-align: center;
+            text-decoration: underline;
+        }
+
+        .firmas {
+            margin-top: 60px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+    <p><strong>ID DOCUMENTO:</strong> {{ID_DOC}}</p>
+    <p><strong>FECHA:</strong> {{FECHA}}</p>
+    <p><strong>CÉDULA ABOGADO:</strong> {{ID_ABOGADO}}</p>
+    <p><strong>CÉDULA PODERDANTE:</strong> {{ID_CLIENTE}}</p>
+
+    <h4>PODER ESPECIAL JUDICIAL</h4>
+
+    <p>
+        El suscrito {{ID_CLIENTE}}, mayor, costarricense, casado, abogado, vecino de Santa Ana, portador de la cédula de identidad número {{ID_CLIENTE}},
+        confiere PODER ESPECIAL JUDICIAL, al licenciado César Emanuel Torres Ospino, mayor, costarricense, portador de la cédula de identidad número {{ID_ABOGADO}},
+        soltero, abogado portador del carné profesional número veintiún mil novecientos cuarenta y uno, vecino de Escazú, San Rafael, con oficina en Escazú,
+        San Rafael, Edificio Terraforte, cuarto piso. El apoderado queda plenamente autorizado para gestionar y atender las diligencias judiciales y extrajudiciales,
+        medidas alternas, audiencias, conciliaciones, y todas aquellas diligencias que sean propias para la consecución de los fines del proceso y la defensa
+        de los intereses del poderdante, dentro del proceso judicial con número de causa {{ID_DOC}}.
+    </p>
+
+    <p>
+        Así mismo, el apoderado está autorizado para negociar arreglos extrajudiciales, y aplicar cualquier otro tipo de resolución alterna en beneficio de su poderdante.
+    </p>
+
+    <p>Escazú, San Rafael, {{FECHA}}.</p>
+
+    <div class="firmas">
+        <p>__________________________________________</p>
+        <p>PODERDANTE<br />{{ID_CLIENTE}}</p>
+        <br />
+        <p>__________________________________________</p>
+        <p>APODERADO<br />{{ID_ABOGADO}}</p>
+    </div>
+
+</body>
+</html>
+
