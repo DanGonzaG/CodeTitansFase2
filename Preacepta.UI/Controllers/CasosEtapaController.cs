@@ -94,9 +94,10 @@ namespace Preacepta.UI.Controllers
         [Authorize(Roles = "Gestor, Abogado")]
         public async Task<IActionResult> FormularioEtapaPL(int IdCaso)
         {
-            var caso = await _buscarCaso.buscar(IdCaso);
+            var caso = await _buscarCaso.buscar(IdCaso);            
             ViewBag.IdCaso = caso.IdCaso;
             ViewBag.NombreCaso = caso.Nombre;
+
             //ViewData["IdCaso"] = new SelectList(_context.TCasos, "IdCaso", "Nombre");
             //ViewData["IdCaso"] = new SelectList(_buscarCaso.buscar(IdCaso).Result, "IdCaso", "Nombre");
             //ViewData["IdCaso"] = IdCaso;
