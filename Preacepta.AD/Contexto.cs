@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Preacepta.Modelos.AbstraccionesBD;
+using Preacepta.Modelos.AbstraccionesFrond;
 
 namespace Preacepta.AD;
 
@@ -23,6 +24,8 @@ public partial class Contexto : DbContext
     public virtual DbSet<TCasosTipo> TCasosTipos { get; set; }
 
     public virtual DbSet<TCita> TCitas { get; set; }
+
+    public virtual DbSet<TDocumentosCita> TDocumentosCita { get; set; }
 
     public virtual DbSet<TCitasCliente> TCitasClientes { get; set; }
 
@@ -66,16 +69,24 @@ public partial class Contexto : DbContext
 
     public virtual DbSet<TTestimonio> TTestimonios { get; set; }
 
+    public DbSet<HistorialDocumento> HistorialDocumentos { get; set; }
+
 
 
     //string Server = "Data Source=DANLAPTOPASUS\\DEVELOPERSERVER;Initial Catalog=PreaceptaBD;Integrated Security=True;Connect Timeout=30;Encrypt=False;Trust Server Certificate=True;Application Intent=ReadWrite;Multi Subnet Failover=False"; //Conexion Daniel
     //string Server = "Data Source=ANDY;Initial Catalog=PreaceptaBD;Integrated Security=True;Connect Timeout=30;Encrypt=False;Trust Server Certificate=True"; // Conexion Andy
     //string Server = "Data Source=DESKTOP-BREQ0TF\\SQLEXPRESS;Initial Catalog=PreaceptaBD;Integrated Security=True;Trust Server Certificate=True"; //Conexion Alonso
+
     //string Server = "Data Source=DESKTOP-L8MJ1I5\\SQLEXPRESS03;Initial Catalog=PreaceptaBD;User ID=db_connect;Password=1357;Connect Timeout=30;Encrypt=False;Trust Server Certificate=True";
+    //string Server = "Data Source=DESKTOP-SN6P8CV;Initial Catalog=PreaceptaBD;Integrated Security=True;Connect Timeout=30;Encrypt=False;Trust Server Certificate=True";//Andy
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.
-        => optionsBuilder.UseSqlServer(/*Server*//*"Server=DANLAPTOPASUS\\DEVELOPERSERVER;Database=PreaceptaBD;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=True"*/);
+
+
+        => optionsBuilder.UseSqlServer(Server/*"Server=DANLAPTOPASUS\\DEVELOPERSERVER;Database=PreaceptaBD;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=True"*/);
+
+
 
 
        
@@ -132,6 +143,30 @@ public partial class Contexto : DbContext
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_T_Citas_T_CitasTipos");
         });
+
+        modelBuilder.Entity<TDocumentosCita>(entity =>
+        {
+            entity.ToTable("T_DocumentosCita");
+            entity.HasKey(e => e.Id);
+
+            entity.Property(e => e.NombreArchivo)
+                .HasMaxLength(255)
+                .IsRequired();
+
+            entity.Property(e => e.RutaArchivo)
+                .HasMaxLength(500)
+                .IsRequired();
+
+            entity.Property(e => e.FechaSubida)
+                .HasDefaultValueSql("GETDATE()");
+
+            entity.HasOne(d => d.Cita)
+                .WithMany(p => p.DocumentosCita)
+                .HasForeignKey(d => d.IdCita)
+                .OnDelete(DeleteBehavior.Cascade)
+                .HasConstraintName("FK_T_DocumentosCita_T_Citas");
+        });
+
 
         modelBuilder.Entity<TCitasCliente>(entity =>
         {
@@ -395,8 +430,7 @@ public partial class Contexto : DbContext
                 .HasConstraintName("FK_T_Testimonios_T_GePersonas");
 
             entity.Property(e => e.Activo)
-                .IsRequired()
-                .HasDefaultValue(true);
+                .IsRequired();
 
         });
 

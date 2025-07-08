@@ -41,8 +41,27 @@ namespace Preacepta.LN.Citas.BuscarXid
                 Console.WriteLine($"Error en BuscarCitasLN: {ex.Message}");
                 return null;
             }
+        }
+        public async Task<List<CitasDTO>> obtenerTodas()
+            {
+                try
+                {
+                    var resultados = await _buscar.obtenerTodas();  // <-- método que debes tener en IBuscarCitasAD
+                    if (resultados == null || !resultados.Any())
+                        return new List<CitasDTO>();
 
+                    // Convertir a DTO
+                    List<CitasDTO> citasDto = resultados.Select(cita => _obtenerDatosLN.ObtenerDeDB(cita)).ToList();
+
+                    return citasDto;
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine($"Error en BuscarCitasLN.obtenerTodas: {ex.Message}");
+                    return new List<CitasDTO>();
+                }
+            }
 
         }
+
     }
-}
