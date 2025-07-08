@@ -34,7 +34,6 @@
             <div class="contact-wrap">
                 <form asp-action="CreateDocsCompraventaFincas" id="CreateDocsCompraventaFincas">
                     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                    <h2>Formulario para caso nuevo</h2>
                     <div class="row justify-content-center">
                         <div class="col-sm-6 col-lg-6">
                             <div class="form-group">
@@ -197,18 +196,15 @@
                         </div>
 
                         <div class="col-md-12 col-lg-12">
-
-                            <div class="text-center">
-                                <!-- Button trigger modal -->
-                                <div id="btnRevisar">
-                                    <button type="button" id="PrevioBtn" class="contact-btn" data-bs-toggle="modal" data-bs-target="#PrevioModal">
-                                        Revisar
-                                    </button>
-                                </div>
+                            <div class="text-center d-flex justify-content-center gap-3">
                                 <div class="form-group" id="btnCrearCaso">
                                     <input type="submit" value="Crear Documento" class="contact-btn" />
                                 </div>
-                                <!--<button type="submit" class="contact-btn">Submit Case</button>-->
+                                <div class="form-group">
+                                    <button type="button" id="btnPrevisualizar" class="contact-btn">
+                                        Previsualizar PDF
+                                    </button>
+                                </div>
                             </div>
                         </div>
                         
@@ -220,47 +216,7 @@
 </body>
 
 
-<!-- Button trigger modal -->
-<!-- Modal -->
-<div class="modal fade" id="PrevioModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Revisión de datos ingresados</h5>
-                <button id="Retroceso2" type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <p style="color: black"><strong>Numero de Escritura:</strong> <span id="previoNumeroEscritura"></span></p>
-                <p style="color: black"><strong>Cedula del Abogado:</strong> <span id="previoCedulaAbogado"></span></p>
-                <p style="color: black"><strong>Cedula del Vendedor:</strong> <span id="previoCedulaVendedor"></span></p>
-                <p style="color: black"><strong>Cedula del Comprador:</strong> <span id="previoCedulaComprador"></span></p>
-                <p style="color: black"><strong>Monto de Venta:</strong> <span id="previoMontoVenta"></span></p>
-                <p style="color: black"><strong>Partido de Finca:</strong> <span id="previoPartidoFinca"></span></p>
-                <p style="color: black"><strong>Matricula de Finca:</strong> <span id="previoMatriculaFinca"></span></p>
-                <p style="color: black"><strong>Naturaleza de Finca:</strong> <span id="previoNaturalezaFinca"></span></p>
-                <p style="color: black"><strong>Distrito de Finca:</strong> <span id="previoDistritoFinca"></span></p>
-                <p style="color: black"><strong>Canton de Finca:</strong> <span id="previoCantonFinca"></span></p>
-                <p style="color: black"><strong>Provincia de Finca:</strong> <span id="previoProvinciaFinca"></span></p>
-                <p style="color: black"><strong>Area de la finca en M2:</strong> <span id="previoAreaFincaM2"></span></p>
-                <p style="color: black"><strong>Plano Catastrado:</strong> <span id="previoPlanoCatastrado"></span></p>
-                <p style="color: black"><strong>Colinda al Norte:</strong> <span id="previoColindaNorte"></span></p>
-                <p style="color: black"><strong>Colinda al Sur:</strong> <span id="previoColindaSur"></span></p>
-                <p style="color: black"><strong>Colinda al Este:</strong> <span id="previoColindaEste"></span></p>
-                <p style="color: black"><strong>Colinda al Oeste:</strong> <span id="previoColindaOeste"></span></p>
-                <p style="color: black"><strong>Forma de Pago:</strong> <span id="previoFormaPago"></span></p>
-                <p style="color: black"><strong>Medio de Pago:</strong> <span id="previoMedioPago"></span></p>
-                <p style="color: black"><strong>Origen de los fondos:</strong> <span id="previoOrigenFondos"></span></p>
-                <p style="color: black"><strong>Lugar de la Firma:</strong> <span id="previoLugarFirma"></span></p>
-                <p style="color: black"><strong>Hora de la Firma:</strong> <span id="previoHoraFirma"></span></p>
-                <p style="color: black"><strong>Fecha de la Firma:</strong> <span id="previoFechaFirma"></span></p>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="contact-btn" data-bs-dismiss="modal" id="Retroceso">Hacer Cambios</button>
-                <button type="button" id="BtnConfirmar" class="contact-btn">Confirmar datos</button>
-            </div>
-        </div>
-    </div>
-</div>
+
 
 @section Scripts {
     @{

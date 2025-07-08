@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using DinkToPdf;
+using DinkToPdf.Contracts;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Preacepta.AD;
@@ -7,6 +9,8 @@ using Preacepta.LN.DocsContratoPrestacionServicios.Crear;
 using Preacepta.LN.DocsContratoPrestacionServicios.Editar;
 using Preacepta.LN.DocsContratoPrestacionServicios.Eliminar;
 using Preacepta.LN.DocsContratoPrestacionServicios.Listar;
+using Preacepta.LN.GeAbogado.BuscarXid;
+using Preacepta.LN.GePersona.BuscarXid;
 using Preacepta.Modelos.AbstraccionesBD;
 using Preacepta.Modelos.AbstraccionesFrond;
 using System;
@@ -19,20 +23,29 @@ namespace Preacepta.UI.Controllers
     public class DocsContratoPrestacionServiciosController : Controller
     {
         private readonly Contexto _context;
+        private readonly IConverter _converter;
         private readonly IBuscarDocsContratoPrestacionServiciosLN _buscar;
+        private readonly IBuscarAbogadoLN _buscarAbogado;
+        private readonly IBuscarXidGePersonaLN _buscarPersona;
         private readonly ICrearDocsContratoPrestacionServiciosLN _crear;
         private readonly IEditarDocsContratoPrestacionServiciosLN _editar;
         private readonly IEliminarDocsContratoPrestacionServiciosLN _eliminar;
         private readonly IListarDocsContratoPrestacionServiciosLN _listar;
 
 
-        public DocsContratoPrestacionServiciosController(Contexto context,
+        public DocsContratoPrestacionServiciosController(IConverter converter,
+            IBuscarAbogadoLN buscarAbogado,
+            IBuscarXidGePersonaLN buscarPersona,
+            Contexto context,
             IBuscarDocsContratoPrestacionServiciosLN buscar,
             ICrearDocsContratoPrestacionServiciosLN crear,
             IEditarDocsContratoPrestacionServiciosLN editar,
             IEliminarDocsContratoPrestacionServiciosLN eliminar,
             IListarDocsContratoPrestacionServiciosLN listar)
         {
+            _converter = converter;
+            _buscarAbogado = buscarAbogado;
+            _buscarPersona = buscarPersona;
             _context = context;
             _buscar = buscar;
             _crear = crear;
@@ -70,7 +83,7 @@ namespace Preacepta.UI.Controllers
         public IActionResult Create()
         {
             ViewData["CedulaAbogado"] = new SelectList(_context.TGeAbogados, "Cedula", "Cedula");
-            ViewData["CedulaCliente"] = new SelectList(_context.TGePersonas, "Cedula", "Apellido1");
+            ViewData["CedulaCliente"] = new SelectList(_context.TGePersonas, "Cedula", "Cedula");
             ViewData["CiudadFirma"] = new SelectList(_context.TCrDistritos, "IdDistrito", "NombreDistrito");
             ViewData["Provincia"] = new SelectList(_context.TCrProvincias, "IdProvincia", "NombreProvincia");
             return View();
@@ -89,9 +102,9 @@ namespace Preacepta.UI.Controllers
                 return RedirectToAction(nameof(Index));
             }
             ViewData["CedulaAbogado"] = new SelectList(_context.TGeAbogados, "Cedula", "Cedula", tDocsContratoPrestacionServicio.CedulaAbogado);
-            ViewData["CedulaCliente"] = new SelectList(_context.TGePersonas, "Cedula", "Apellido1", tDocsContratoPrestacionServicio.CedulaCliente);
+            ViewData["CedulaCliente"] = new SelectList(_context.TGePersonas, "Cedula", "Cedula", tDocsContratoPrestacionServicio.CedulaCliente);
             ViewData["CiudadFirma"] = new SelectList(_context.TCrDistritos, "IdDistrito", "NombreDistrito", tDocsContratoPrestacionServicio.CiudadFirma);
-            ViewData["Provincia"] = new SelectList(_context.TCrProvincias, "IdProvincia", "IdProvincia", tDocsContratoPrestacionServicio.Provincia);
+            ViewData["Provincia"] = new SelectList(_context.TCrProvincias, "IdProvincia", "NombreProvincia", tDocsContratoPrestacionServicio.Provincia);
             return View(tDocsContratoPrestacionServicio);
         }
 
@@ -177,9 +190,9 @@ namespace Preacepta.UI.Controllers
         public IActionResult CreateDocsContratoPrestacionServicios()
         {
             ViewData["CedulaAbogado"] = new SelectList(_context.TGeAbogados, "Cedula", "Cedula");
-            ViewData["CedulaCliente"] = new SelectList(_context.TGePersonas, "Cedula", "Apellido1");
-            ViewData["CiudadFirma"] = new SelectList(_context.TCrDistritos, "IdDistrito", "NombreDistrito");
-            ViewData["Provincia"] = new SelectList(_context.TCrProvincias, "IdProvincia", "NombreProvincia");
+            ViewData["CedulaCliente"] = new SelectList(_context.TGePersonas, "Cedula", "Cedula");
+            ViewData["CiudadFirma"] = new SelectList(_context.TCrDistritos, "NombreDistrito", "NombreDistrito");
+            ViewData["Provincia"] = new SelectList(_context.TCrProvincias, "NombreProvincia", "NombreProvincia");
             return View();
         }
 
@@ -196,10 +209,77 @@ namespace Preacepta.UI.Controllers
                 return RedirectToAction(nameof(Index));
             }
             ViewData["CedulaAbogado"] = new SelectList(_context.TGeAbogados, "Cedula", "Cedula", tDocsContratoPrestacionServicio.CedulaAbogado);
-            ViewData["CedulaCliente"] = new SelectList(_context.TGePersonas, "Cedula", "Apellido1", tDocsContratoPrestacionServicio.CedulaCliente);
+            ViewData["CedulaCliente"] = new SelectList(_context.TGePersonas, "Cedula", "Cedula", tDocsContratoPrestacionServicio.CedulaCliente);
             ViewData["CiudadFirma"] = new SelectList(_context.TCrDistritos, "IdDistrito", "NombreDistrito", tDocsContratoPrestacionServicio.CiudadFirma);
-            ViewData["Provincia"] = new SelectList(_context.TCrProvincias, "IdProvincia", "IdProvincia", tDocsContratoPrestacionServicio.Provincia);
+            ViewData["Provincia"] = new SelectList(_context.TCrProvincias, "IdProvincia", "NombreProvincia", tDocsContratoPrestacionServicio.Provincia);
             return View(tDocsContratoPrestacionServicio);
         }
+
+        [HttpGet]
+        public async Task<IActionResult> PrevisualizarPDFPrestacionServicios(
+                string razonSocialEmpresa,
+                string provincia,
+                string cedulaJuridicaEmpresa,
+                string cedulaAbogado,
+                string cedulaCliente,
+                string tipoServicios,
+                string fechaInicio,
+                string fechaFinal,
+                string montoHonorarios,
+                string informacionConfidencial,
+                string ciudadFirma,
+                string horaFirma,
+                string fechaFirma)
+        {
+            var templatePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "lyso", "DocsMachotes", "PrestacionServiciosMachote.html");
+            var htmlTemplate = System.IO.File.ReadAllText(templatePath);
+            var abogado = await _buscarAbogado.buscar(int.Parse(cedulaAbogado));
+            var cliente = await _buscarPersona.buscar(int.Parse(cedulaCliente));
+
+            htmlTemplate = htmlTemplate
+                .Replace("{{RAZON_SOCIAL_EMPRESA}}", razonSocialEmpresa)
+                .Replace("{{PROVINCIA}}", provincia)
+                .Replace("{{CEDULA_JURIDICA_EMPRESA}}", cedulaJuridicaEmpresa)
+                .Replace("{{NOMBRE_ABOGADO}}", abogado.CedulaNavigation.Nombre + " " + abogado.CedulaNavigation.Apellido1 + " " + abogado.CedulaNavigation.Apellido2)
+                .Replace("{{ESTADO_CIVIL_ABOGADO}}", abogado.CedulaNavigation.EstadoCivil)
+                .Replace("{{OCUPACION_ABOGADO}}", abogado.CedulaNavigation.Oficio)
+                .Replace("{{DOMICILIO_ABOGADO}}", abogado.CedulaNavigation.Direccion2)
+                .Replace("{{CEDULA_ABOGADO}}", cedulaAbogado)
+                .Replace("{{NOMBRE_CLIENTE}}", cliente.Nombre + " " + cliente.Apellido1 + " " + cliente.Apellido2)
+                .Replace("{{ESTADO_CIVIL_CLIENTE}}", cliente.EstadoCivil)
+                .Replace("{{OCUPACION_CLIENTE}}", cliente.Oficio)
+                .Replace("{{DOMICILIO_CLIENTE}}", cliente.Direccion1Navigation.IdCatonNavigation.NombreCanton + ", " + cliente.Direccion1Navigation.NombreDistrito)
+                .Replace("{{CEDULA_CLIENTE}}", cedulaCliente)
+                .Replace("{{TIPO_SERVICIOS}}", tipoServicios)
+                .Replace("{{FECHA_INICIO}}", fechaInicio)
+                .Replace("{{FECHA_FINAL}}", fechaFinal)
+                .Replace("{{MONTO_HONORARIOS}}", montoHonorarios)
+                .Replace("{{INFORMACION_CONFIDENCIAL}}", informacionConfidencial)
+                .Replace("{{CIUDAD_FIRMA}}", ciudadFirma)
+                .Replace("{{HORA_FIRMA}}", horaFirma)
+                .Replace("{{FECHA_FIRMA}}", fechaFirma);
+
+            var doc = new HtmlToPdfDocument()
+            {
+                GlobalSettings = new GlobalSettings
+                {
+                    PaperSize = PaperKind.A4,
+                    Orientation = Orientation.Portrait
+                },
+                Objects = {
+            new ObjectSettings
+            {
+                HtmlContent = htmlTemplate,
+                WebSettings = { DefaultEncoding = "utf-8" }
+            }
+        }
+            };
+
+            var pdf = _converter.Convert(doc);
+
+            return File(pdf, "application/pdf");
+        }
+
+
     }
 }
