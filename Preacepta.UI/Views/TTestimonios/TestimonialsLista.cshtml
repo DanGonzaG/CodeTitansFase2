@@ -100,10 +100,28 @@
                             <td>
                                 <div>
                                     <!-- Botón Reportar -->
-                                    <button type="button" class="contact-btn btn-reportar" style="width: 90%; margin-bottom: 2px"
-                                            data-id="@item.IdTestimonio">
-                                        Reportar
-                                    </button>
+                                    @if (item.Activo)
+                                    {
+                                        <button type="button" class="contact-btn btn-reportar" style="width: 90%; margin-bottom: 2px"
+                                                data-id="@item.IdTestimonio">
+                                            Reportar
+                                        </button>
+                                        <button type="button" class="contact-btn btn-activar d-none" style="width: 90%; margin-bottom: 2px"
+                                                data-id="@item.IdTestimonio">
+                                            Activar
+                                        </button>
+                                    }
+                                    else
+                                    {
+                                        <button type="button" class="contact-btn btn-reportar d-none" style="width: 90%; margin-bottom: 2px"
+                                                data-id="@item.IdTestimonio">
+                                            Reportar
+                                        </button>
+                                        <button type="button" class="contact-btn btn-activar" style="width: 90%; margin-bottom: 2px"
+                                                data-id="@item.IdTestimonio">
+                                            Activar
+                                        </button>
+                                    }
 
                                     <!-- Botón Eliminar -->
                                     <button type="button" class="contact-btn btn-eliminar" style="width: 90%"
@@ -142,16 +160,17 @@
                         headers: {
                             'RequestVerificationToken': $('input[name="__RequestVerificationToken"]').val()
                         },
-                        success: function (response) {
-                            if (response.success) {
-                                $row.find('td:eq(4)').text('Inactivo');
-                                $row.addClass('bg-light');
-                                $btn.remove();
-                                toastr.success(response.message);
-                            } else {
-                                toastr.error(response.message);
-                            }
-                        },
+                                success: function (response) {
+            if (response.success) {
+                $row.find('td:eq(4)').text('Inactivo');
+                $row.addClass('bg-light');
+                $btn.addClass('d-none');
+                $row.find('.btn-activar').removeClass('d-none');
+                toastr.success(response.message);
+            } else {
+                toastr.error(response.message);
+            }
+        },
                         error: function (xhr) {
                             toastr.error("Error de conexión con el servidor");
                             console.error("Error:", xhr.responseText);
@@ -174,6 +193,46 @@
                         .fail(function () {
                             alert('Error al eliminar el testimonio');
                         });
+                }
+            });
+        });
+
+        //Funcion Activar
+             $(document).ready(function () {
+            // Activar testimonio
+            $('.btn-activar').click(function () {
+                var id = $(this).data('id');
+                var $btn = $(this);
+                var $row = $btn.closest('tr');
+
+                if (confirm('¿Está seguro de activar este testimonio?')) {
+                    $btn.prop('disabled', true).html('<i class="fas fa-spinner fa-spin"></i> Activando...');
+
+                    $.ajax({
+                        url: '@Url.Action("Activar", "TTestimonios")',
+                        type: 'POST',
+                        data: { id: id },
+                        headers: {
+                            'RequestVerificationToken': $('input[name="__RequestVerificationToken"]').val()
+                        },
+                                success: function (response) {
+            if (response.success) {
+                $row.find('td:eq(4)').text('Activo');
+                $btn.addClass('d-none');
+                $row.find('.btn-reportar').removeClass('d-none');
+                toastr.success(response.message);
+            } else {
+                toastr.error(response.message);
+            }
+        },
+                        error: function (xhr) {
+                            toastr.error("Error de conexión con el servidor");
+                            console.error("Error:", xhr.responseText);
+                        },
+                        complete: function () {
+                            $btn.prop('disabled', false).text('Activar');
+                        }
+                    });
                 }
             });
         });

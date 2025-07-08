@@ -1,0 +1,113 @@
+﻿@model Preacepta.Modelos.AbstraccionesFrond.DocsTipoVehiculoDTO
+﻿
+<head>
+    <link href="~/lyso/css/Daniel.css" rel="stylesheet" />
+</head>
+
+<!-- Page Title -->
+<div class="page-title-area page-title-area-two title-img-one">
+    <div class="d-table">
+        <div class="d-table-cell">
+            <div class="page-title-text">
+                <h2>Generador de Documentos Legales</h2>
+                <ul>
+                    <li>
+                        <a asp-controller="Home" asp-action="Index">Home</a>
+                    </li>
+                    <li>
+                        <i class="icofont-simple-right"></i>
+                    </li>
+                    <li>Generador de documentos</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End Page Title -->
+
+<body>
+<div class="contact-form contact-form-two contact-form-three">
+    <div class="container">
+        <div class="contact-wrap">
+            <form asp-action="FormularioCaso" id="FormularioCaso">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <h2>Formulario para caso nuevo</h2>
+                <div class="row justify-content-center">
+                    <div class="col-sm-6 col-lg-6">
+                        <div class="form-group">
+                            <label asp-for="Nombre" class="control-label"></label>
+                            <input asp-for="Nombre" class="form-control" id="idNombre" />
+                            <span asp-validation-for="Nombre" class="text-danger"></span>
+                        </div>
+                    </div>
+
+                        <br />
+                        <br />
+                        <br />
+
+
+                        <div class="col-md-12 col-lg-12">
+                            <div class="text-center d-flex justify-content-center gap-3">
+                                <div class="form-group" id="btnCrearCaso">
+                                    <input type="submit" value="Crear Documento" class="contact-btn" />
+                                </div>
+                                <div class="form-group">
+                                    <button type="button" id="btnPrevisualizar" class="contact-btn">
+                                        Previsualizar PDF
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+
+
+<!-- Modal
+<div class="modal fade" id="PrevioModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal-dialog modal-lg">
+<div class="modal-content">
+<div class="formulario contact-form contact-form-two">
+<div class="container">
+<div class="contact-wrap">
+<h2>Revisión de datos ingresados</h2>
+<p style="color: black"><strong>Tipo Caso:</strong> <span id="previoTipoCaso"></span></p>
+<p style="color: black"><strong>Nombre del caso:</strong> <span id="previotitulo"></span></p>
+<p style="color: black"><strong>Pruebas Iniciales:</strong> <span id="previoPruebas"></span></p>
+<p style="color: black"><strong>Cliente:</strong> <span id="previoCliente"></span></p>
+<p style="color: black"><strong>Detalles del Caso:</strong> <span id="previoDescripcion"></span></p>
+</div>
+</div>
+</div>
+<div class="modal-footer">
+<button type="button" class="btn btn-secondary" data-bs-dismiss="modal" id="Retroceso">Close</button>
+<button type="button" class="btn btn-primary">Save changes</button>
+</div>
+</div>
+</div>
+</div> -->
+<!-- Button trigger modal -->
+<!-- Modal -->
+<div class="modal fade" id="PrevioModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Revisión de datos ingresados</h5>
+                <button id="Retroceso2" type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p style="color: black"><strong>Nombere:</strong> <span id="previoNombre"></span></p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="contact-btn" data-bs-dismiss="modal" id="Retroceso">Hacer Cambios</button>
+                <button type="button" id="BtnConfirmar" class="contact-btn">Confirmar datos</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script src="~/lyso/js/DocsGeneratorDocsTipoVehiculoes.js"></script>

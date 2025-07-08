@@ -1,0 +1,70 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Pagaré</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            font-size: 12pt;
+            line-height: 1.5;
+            margin: 40px;
+        }
+
+        h4 {
+            margin-top: 20px;
+            text-align: center;
+            text-decoration: underline;
+        }
+
+        .firmas {
+            margin-top: 60px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+    <p><strong>MONTO:</strong> {{MONTO_NUMERICO}}</p>
+    <p><strong>DEUDOR:</strong> {{CEDULA_DEUDOR}}</p>
+    <p><strong>SOCIEDAD DEUDORA:</strong> {{SOCIEDAD_DEUDOR}}</p>
+    <p><strong>CÉDULA JURÍDICA SOCIEDAD:</strong> {{CEDULA_JURIDICA_SOCIEDAD}}</p>
+    <p><strong>ACREEDOR:</strong> {{ACREEDOR_NOMBRE}}</p>
+    <p><strong>CÉDULA JURÍDICA ACREEDOR:</strong> {{CEDULA_JURIDICA_ACREEDOR}}</p>
+    <p><strong>DOMICILIO ACREEDOR:</strong> {{ACREEDOR_DOMICILIO}}</p>
+    <p><strong>FECHA DE VENCIMIENTO:</strong> {{FECHA_VENCIMIENTO}}</p>
+
+    <h4>PAGARÉ</h4>
+
+    <p>
+        Yo, {{CEDULA_DEUDOR}}, mayor de edad, en representación de la sociedad {{SOCIEDAD_DEUDOR}}, cédula jurídica número {{CEDULA_JURIDICA_SOCIEDAD}}, prometo pagar incondicionalmente a la orden de {{ACREEDOR_NOMBRE}}, cédula jurídica número {{CEDULA_JURIDICA_ACREEDOR}}, la suma de <strong>{{MONTO_NUMERICO}}</strong> dólares americanos (USD), en un único pago el día <strong>{{FECHA_VENCIMIENTO}}</strong>.
+    </p>
+
+    <p>
+        Esta deuda devenga intereses calculados de la siguiente forma: {{INTERES_FORMULA}}, con una tasa de interés base de {{INTERES_BASE}} y una tasa actual aplicada de {{INTERES_TASA_ACTUAL}}. Los intereses se calcularán conforme a lo dispuesto por el Banco Central y se ajustarán mensualmente.
+    </p>
+
+    <p>
+        Todos los pagos deberán realizarse en el siguiente lugar: {{LUGAR_PAGO}}. En caso de incumplimiento en el pago de capital o intereses, se considerará vencida y exigible la totalidad de la deuda.
+    </p>
+
+    <p>
+        Como fiador solidario, {{CEDULA_FIADOR}}, me obligo en los mismos términos y condiciones que el deudor principal. Ambas partes aceptamos el domicilio indicado en este documento como lugar para recibir notificaciones y cumplir obligaciones.
+    </p>
+
+    <h4>FIRMA DEL PAGARÉ</h4>
+
+    <p>El presente documento se firma en {{UBICACION_FIRMA}}, en la fecha que se indica al pie.</p>
+
+    <p><strong>Fecha:</strong> {{FECHA_FIRMA_NUEVO}} — <strong>Hora:</strong> {{HORA_FIRMA_NUEVO}}</p>
+
+    <div class="firmas">
+        <p>__________________________________________</p>
+        <p>DEUDOR<br />{{CEDULA_DEUDOR}}</p>
+        <br />
+        <p>__________________________________________</p>
+        <p>FIADOR SOLIDARIO<br />{{CEDULA_FIADOR}}</p>
+    </div>
+
+</body>
+</html>
