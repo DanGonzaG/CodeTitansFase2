@@ -89,10 +89,7 @@ document.addEventListener("DOMContentLoaded", function () {
             eventsArr = [];
 
             citas.forEach(cita => {
-                const fecha = new Date(cita.fecha);
-                const day = fecha.getDate();
-                const month = fecha.getMonth() + 1;
-                const year = fecha.getFullYear();
+                const [year, month, day] = cita.fecha.split("-").map(Number);;
                 console.log(`Procesando cita: ${day}/${month}/${year}`);
                 let dayObj = eventsArr.find(e => e.day === day && e.month === month && e.year === year);
 
@@ -117,7 +114,60 @@ document.addEventListener("DOMContentLoaded", function () {
             console.error("Error cargando citas:", error);
         }
     }
+    function agregarCitaManual(cita) {
+        const fecha = new Date(cita.fecha);
+        const day = fecha.getDate();
+        const month = fecha.getMonth() + 1;
+        const year = fecha.getFullYear();
 
+        let dayObj = eventsArr.find(e => e.day === day && e.month === month && e.year === year);
+        if (!dayObj) {
+            dayObj = { day, month, year, events: [] };
+            eventsArr.push(dayObj);
+        }
+
+        dayObj.events.push({
+            id: cita.idCita,
+            title: cita.nombreTipoCita || "Sin título",
+            time: cita.hora
+        });
+
+        // Volver a pintar el calendario
+        initCalendar();
+    }
+    function eliminarCitaDeDia(idCita, fechaAnteriorStr) {
+        const fecha = new Date(fechaAnteriorStr);
+        const day = fecha.getDate();
+        const month = fecha.getMonth() + 1;
+        const year = fecha.getFullYear();
+
+        // Buscar el objeto día en el arreglo
+        const dayObj = eventsArr.find(e => e.day === day && e.month === month && e.year === year);
+        if (dayObj) {
+            // Quitar la cita del día
+            dayObj.events = dayObj.events.filter(ev => ev.id != idCita);
+
+            // Si no hay más citas en ese día, eliminarlo del arreglo
+            if (dayObj.events.length === 0) {
+                eventsArr = eventsArr.filter(e => !(e.day === day && e.month === month && e.year === year));
+            }
+        }
+
+        // Quitar la marca del día en el DOM
+        quitarMarcadoDia(idCita);
+
+        // Volver a pintar el calendario
+        initCalendar();
+    }
+
+    // Función para quitar la marca visual del día
+    function quitarMarcadoDia(idCita) {
+        const elementoDia = document.querySelector(`[data-id="${idCita}"]`);
+        if (elementoDia) {
+            elementoDia.classList.remove("tiene-cita", "event");
+            elementoDia.removeAttribute("data-id");
+        }
+    }
     async function init() {
         await getEvents();
         if (eventsArr.length === 0) {
@@ -165,7 +215,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
         for (let i = 1; i <= daysInMonth; i++) {
             const event = tieneEventoEnDia(i, month, year);
-            console.log(`Día ${i} tiene evento: ${event}`);
+            let dayObj = eventsArr.find(e => e.day === i && e.month === month + 1 && e.year === year);
             if (
                 i === new Date().getDate() &&
                 year === new Date().getFullYear() &&
@@ -174,14 +224,16 @@ document.addEventListener("DOMContentLoaded", function () {
                 activeDay = i;
                 getActiveDay(i);
                 updateEvents(i);
-                if (event) {
-                    days += `<div class="day today active event">${i}</div>`;
+                if (event && dayObj && dayObj.events.length > 0) {
+                    const firstEventId = dayObj.events[0].id;
+                    days += `<div class="day today active event" data-id="${firstEventId}">${i}</div>`;
                 } else {
                     days += `<div class="day today active">${i}</div>`;
                 }
             } else {
-                if (event) {
-                    days += `<div class="day event">${i}</div>`;
+                if (event && dayObj && dayObj.events.length > 0) {
+                    const firstEventId = dayObj.events[0].id;
+                    days += `<div class="day event" data-id="${firstEventId}">${i}</div>`;
                 } else {
                     days += `<div class="day">${i}</div>`;
                 }
@@ -330,7 +382,9 @@ document.addEventListener("DOMContentLoaded", function () {
     function agregarClickEventos() {
         const renderedEvents = document.querySelectorAll(".event");
         renderedEvents.forEach(ev => {
-            ev.addEventListener("click", () => {
+            ev.addEventListener("click", (e) => {
+                e.stopPropagation();
+                console.log("Cita clickeada, id:", ev.getAttribute("data-id"));
                 const citaId = ev.getAttribute("data-id");
                 if (citaId) {
                     fetch(`/Citas/Details/${citaId}`)
@@ -349,7 +403,6 @@ document.addEventListener("DOMContentLoaded", function () {
             });
         });
     }
-
     // Inicialización principal
     init();
 });

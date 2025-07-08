@@ -24,5 +24,9 @@ namespace Preacepta.LN.Citas.Listar
             List<CitasDTO> lista = await _listar.listar();
             return lista;
         }
+        public async Task<List<CitasDTO>> ListarPorIdCliente(int idCliente)
+        {
+            return await _listar.ListarPorIdCliente(idCliente); // <- NUEVO
+        }
     }
 }

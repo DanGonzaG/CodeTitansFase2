@@ -67,7 +67,8 @@
                 </div>
             }
         </div>
-
+        @if (User.IsInRole("Abogado") || User.IsInRole("Admin"))
+{
         <div style="display: flex; gap: 10px; align-items: center;">
             <button class="add-event" id="btnAbrirModal" title="Crear nueva cita">
                 <i class="fas fa-plus"></i>
@@ -77,10 +78,11 @@
                 <i class="fas fa-video"></i>
             </button>
             <div id="modalContainer"></div>
-        </div>
+            </div>
+        }
     </div>
 </div>
-
+        
 <div class="formulario contact-form contact-form-two contact-form-three">
     <div class="container">
         <div class="contact-wrap" style="display: flex; justify-content: center; align-items: center;">
@@ -96,73 +98,69 @@
 
 
 <!-- Modal para crear cita -->
-<div class="modal fade" id="crearCitaModal" tabindex="-1" role="dialog" aria-labelledby="crearCitaLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="crearCitaLabel">Crear Nueva Cita</h5>
-                <button type="button" class="close" data-bs-dismiss="modal" aria-label="Cerrar">
-                    <span aria-hidden="true">&times;</span>
-                </button>
+<div class="custom-modal" id="crearCitaModal" style="display: none;">
+    <div class="container">
+        <div class="contact-wrap">
+
+            <div class="page-title-text mb-4">
+                <h5 class="modal-title">Crear Nueva Cita</h5>
+
             </div>
-            <!-- Aquí se cargará el contenido del formulario -->
-            <div class="modal-body" id="crearCitaModalBody"></div>
+            <div class="modal-body" id="crearCitaModalBody">
         </div>
     </div>
 </div>
-
+</div>
 <!-- Modal para Detalles de Cita -->
 <div id="modalDetalleCita" class="custom-modal" style="display:none;">
-    <div class="custom-modal-content">
-        <div class="custom-modal-header">
-            <h5 class="modal-title">Detalles de la Cita</h5>
-            <button type="button" id="cerrarDetalleCita" class="close">&times;</button>
-        </div>
-        <div id="detalleCitaBody" class="modal-body">
-            <!-- Aquí se cargará el contenido de los detalles -->
+        <div class="container">
+            <div class="contact-wrap">
+
+                <div class="page-title-text mb-4">
+                    <h5>Detalles de la Cita</h5>
+                </div>
+
+                <div id="detalleCitaBody" class="modal-body">
+                    <!-- Aquí se cargará el contenido de los detalles -->
+                </div>
+      
+            </div>
         </div>
     </div>
-</div>
 
 <!-- Modal Editar Cita -->
-<div class="modal fade" id="modalEditarCita" tabindex="-1" role="dialog" aria-labelledby="modalEditarCitaLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="modalEditarCitaLabel">Editar Cita</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+<div id="modalEditarCita" class="custom-modal" style="display:none;">
+    <div class="container">
+        <div class="contact-wrap">
+
+            <div class="page-title-text mb-4">
+                <h5>Editar Cita</h5>
             </div>
-            <div class="modal-body" id="editarCitaBody">
+
+            <div id="editarCitaBody" class="modal-body">
                 <!-- Aquí se cargará dinámicamente el partial view _EditPartial -->
             </div>
+
         </div>
     </div>
 </div>
+<!-- Modal de Confirmación para eliminar Cita -->
+<div id="modalEliminarCita" class="custom-modal" style="display:none;">
+    <div class="container">
+        <div class="contact-wrap">
 
-<div class="modal fade" id="modalEliminarCita" tabindex="-1" aria-labelledby="modalEliminarCitaLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-            <div class="modal-header bg-danger text-white">
-                <h5 class="modal-title" id="modalEliminarCitaLabel">Confirmar eliminación</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+            <div class="page-title-text mb-4">
+                <h5>Eliminar Cita</h5>
             </div>
-            <div class="modal-body">
-                <p>¿Estás seguro de que deseas eliminar esta cita?</p>
-                <input type="hidden" id="idCitaEliminar" />
-            </div>
-            <div class="modal-footer">
-                @Html.AntiForgeryToken()
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                <button type="button" class="btn btn-danger" onclick="confirmarEliminarCita()">Eliminar</button>
+
+            <div id="eliminarCitaBody" class="modal-body">
+                <!-- Aquí se cargará dinámicamente el partial view _DeletePartial -->
             </div>
         </div>
     </div>
 </div>
-
 
 <div id="modalContainer"></div>
-
-
 
 <!-- Modal Citas Futuras -->
 <div class="modal fade" id="ModalCitasFuturas" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">

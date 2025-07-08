@@ -63,7 +63,7 @@ namespace Praecepta.UI.Controllers
 
 
 
-        // POST: Citas/Create
+        //GET: Citas/Create
         [HttpGet]
         public async Task<IActionResult> Create()
         {
@@ -73,6 +73,16 @@ namespace Praecepta.UI.Controllers
                 Value = n.Id.ToString(),
                 Text = n.Nombre
             }).ToList();
+
+            // Obtener lista de clientes para mostrar en dropdown
+            var clientes = await _context.TGePersonas
+                .Select(p => new SelectListItem
+                {
+                    Value = p.Cedula.ToString(), // o el campo IdCliente que corresponda
+                    Text = $"{p.Nombre} {p.Apellido1} {p.Apellido2}"
+                })
+                .ToListAsync();
+            ViewData["Clientes"] = clientes;
 
             var usuarioActual = await _userManager.GetUserAsync(User);
             var emailUsuario = usuarioActual?.Email;
@@ -148,6 +158,16 @@ namespace Praecepta.UI.Controllers
                 var errores = ModelState.Values.SelectMany(v => v.Errors).Select(e => e.ErrorMessage).ToList();
                 return Json(new { success = false, errors = errores });
             }
+            if (citaDTO.IdCliente == null || !await _context.TGePersonas.AnyAsync(p => p.Cedula == citaDTO.IdCliente))
+            {
+                ModelState.AddModelError("IdCliente", "Debe seleccionar un cliente válido.");
+            }
+
+            if (!ModelState.IsValid)
+            {
+                var errores = ModelState.Values.SelectMany(v => v.Errors).Select(e => e.ErrorMessage).ToList();
+                return Json(new { success = false, errors = errores });
+            }
 
             try
             {
@@ -163,6 +183,14 @@ namespace Praecepta.UI.Controllers
                 _context.Add(entidad);
                 await _context.SaveChangesAsync();
 
+                var relacionClienteCita = new TCitasCliente
+                {
+                    IdCita = entidad.IdCita,
+                    IdCliente = citaDTO.IdCliente.Value
+                };
+                _context.Add(relacionClienteCita);
+                await _context.SaveChangesAsync();
+
                 return Json(new
                 {
                     success = true,
@@ -172,7 +200,7 @@ namespace Praecepta.UI.Controllers
             }
             catch (Exception ex)
             {
-              
+                // Manejo de error
                 return PartialView("~/Views/CitasPrueba/Create.cshtml", citaDTO);
             }
         }
@@ -259,6 +287,8 @@ namespace Praecepta.UI.Controllers
             if (citaOriginal == null)
                 return NotFound();
 
+            var fechaAnterior = citaOriginal.Fecha.ToDateTime(citaOriginal.Hora);
+
             cita.Anfitrion = citaOriginal.Anfitrion;
 
             var persona = await (
@@ -282,11 +312,13 @@ namespace Praecepta.UI.Controllers
                     return Json(new
                     {
                         success = true,
-                        nuevaFecha = cita.FechaHora.ToString("yyyy-MM-dd")
+                        fechaAnterior,
+                        nuevaFecha = cita.Fecha.ToString("yyyy-MM-dd"),
+                        idCita = cita.IdCita
                     });
                 }
 
-                return RedirectToAction(nameof(Citas));
+                return RedirectToAction(nameof(Calendar));
             }
 
            
@@ -317,6 +349,28 @@ namespace Praecepta.UI.Controllers
                 Console.WriteLine($"No se encontró cita con ID: {id}");
                 return NotFound();
             }
+            // Buscar nombres de los clientes relacionados
+            var nombresClientes = await _context.TCitasClientes
+                .Where(cc => cc.IdCita == id)
+                .Include(cc => cc.IdClienteNavigation)
+                .Select(cc => cc.IdClienteNavigation.Nombre + " " +
+                               cc.IdClienteNavigation.Apellido1 + " " +
+                               cc.IdClienteNavigation.Apellido2)
+                .ToListAsync();
+
+            cita.NombresClientes = nombresClientes;
+            var documentos = await _context.TDocumentosCita
+        .Where(d => d.IdCita == id)
+        .ToListAsync();
+
+            cita.Documentos = documentos.Select(d => new DocumentosCitaDTO
+            {
+                Id = d.Id,
+                IdCita = d.IdCita,
+                NombreArchivo = d.NombreArchivo,
+                RutaArchivo = d.RutaArchivo,
+                FechaSubida = d.FechaSubida
+            }).ToList();
 
             return PartialView("~/Views/CitasPrueba/_DetailsPartial.cshtml", cita);
         }
@@ -327,20 +381,30 @@ namespace Praecepta.UI.Controllers
             if (cita == null)
                 return NotFound();
 
-            return View("~/Views/CitasPrueba/Delete.cshtml", cita);
+            return PartialView("~/Views/CitasPrueba/_DeletePartial.cshtml", cita);
+
         }
 
         // POST: Citas/Delete
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed([FromBody] DeleteCitaRequest request)
+        public async Task<IActionResult> DeleteConfirmed(int IdCita)
         {
-            await _eliminarCitasLN.Eliminar(request.Id);
-            return Json(new { success = true });
-        }
-        public class DeleteCitaRequest
-        {
-            public int Id { get; set; }
+            var cita = (await _listarCitasLN.listar()).FirstOrDefault(c => c.IdCita == IdCita);
+            if (cita == null)
+            {
+                return Json(new { success = false });
+            }
+
+            await _eliminarCitasLN.Eliminar(IdCita);
+
+            return Json(new
+            {
+                success = true,
+                fechaAnterior = cita.Fecha.ToString("yyyy-MM-dd"),
+                idCita = cita.IdCita
+            });
+
         }
 
         public async Task<IActionResult> Calendar()
@@ -363,6 +427,54 @@ namespace Praecepta.UI.Controllers
             var citasFuturas = lista.Where(c => c.FechaHora > DateTime.Now).ToList();
             return View(citasFuturas);
         }
+
+        [HttpGet]
+        [Authorize(Roles = "Cliente")]
+        public async Task<IActionResult> CalendarCliente()
+        {
+            var usuarioActual = await _userManager.GetUserAsync(User);
+            var emailUsuario = usuarioActual?.Email;
+
+            if (string.IsNullOrEmpty(emailUsuario))
+                return Unauthorized();
+
+            // Buscar persona por email
+            var persona = await _context.TGePersonas
+                .FirstOrDefaultAsync(p => p.Email == emailUsuario);
+
+            if (persona == null)
+                return NotFound("No se encontró una persona asociada a este email.");
+
+            // Pasamos el ID de la persona, no la cédula
+            var citas = await _listarCitasLN.ListarPorIdCliente(persona.Cedula);
+
+            return View("~/Views/Citas/Calendar.cshtml", citas);
+        }
+
+
+        public async Task<List<CitasDTO>> ListarPorIdCliente(int idCliente)
+        {
+            var citas = await (
+                from cc in _context.TCitasClientes
+                join c in _context.TCitas on cc.IdCita equals c.IdCita
+                join t in _context.TCitasTipos on c.IdTipoCita equals t.Id
+                where cc.IdCliente == idCliente
+                select new CitasDTO
+                {
+                    IdCita = c.IdCita,
+                    Fecha = c.Fecha,
+                    Hora = c.Hora,
+                    IdTipoCita = c.IdTipoCita,
+                    NombreTipoCita = t.Nombre,
+                    Anfitrion = c.Anfitrion,
+                    LinkVideo = c.LinkVideo,
+                }
+            ).ToListAsync();
+
+            return citas;
+        }
+
+
 
         /*List<ModuloCitasVideo> listaCitas = new List<ModuloCitasVideo>()
 {
