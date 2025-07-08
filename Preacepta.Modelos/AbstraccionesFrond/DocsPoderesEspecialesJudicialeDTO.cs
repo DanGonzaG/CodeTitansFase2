@@ -27,9 +27,9 @@ namespace Preacepta.Modelos.AbstraccionesFrond
         public string Texto { get; set; } = null!;
 
         [Display(Name = "Navegación Abogado")]
-        public virtual TGeAbogado IdAbogadoNavigation { get; set; } = null!;
+        public virtual TGeAbogado? IdAbogadoNavigation { get; set; } = null!;
 
         [Display(Name = "Navegación Cliente")]
-        public virtual TGePersona IdClienteNavigation { get; set; } = null!;
+        public virtual TGePersona? IdClienteNavigation { get; set; } = null!;
     }
 }

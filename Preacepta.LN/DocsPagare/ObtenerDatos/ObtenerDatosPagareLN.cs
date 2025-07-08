@@ -42,6 +42,21 @@ namespace Preacepta.LN.DocsPagare.ObtenerDatos
         /*metodo para obtner los datos de los formularios y pasarlos al modelo de acceso a datos*/
         public TDocsPagare ObtenerDeFront(DocsPagareDTO pagareDTO)
         {
+            if (!DateOnly.TryParseExact(pagareDTO.FechaFirma, "yyyy-MM-dd", CultureInfo.InvariantCulture, DateTimeStyles.None, out var fechaFirma))
+            {
+                throw new FormatException($"FechaFirma inválida: {pagareDTO.FechaFirma}");
+            }
+
+            if (!TimeOnly.TryParseExact(pagareDTO.HoraFirma, "HH:mm", CultureInfo.InvariantCulture, DateTimeStyles.None, out var horaFirma))
+            {
+                throw new FormatException($"HoraFirma inválida: {pagareDTO.HoraFirma}");
+            }
+
+            if (!DateOnly.TryParseExact(pagareDTO.FechaVencimiento, "yyyy-MM-dd", CultureInfo.InvariantCulture, DateTimeStyles.None, out var fechaVencimiento))
+            {
+                throw new FormatException($"FechaVencimiento inválida: {pagareDTO.FechaVencimiento}");
+            }
+
             return new TDocsPagare
             {
                 IdDocumento = pagareDTO.IdDocumento,
