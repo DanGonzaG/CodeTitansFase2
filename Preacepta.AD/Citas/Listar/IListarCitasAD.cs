@@ -10,5 +10,6 @@ namespace Preacepta.AD.Citas.Listar
     public interface IListarCitasAD
     {
         Task<List<CitasDTO>> listar();
+        Task<List<CitasDTO>> ListarPorIdCliente(int idCliente);
     }
 }

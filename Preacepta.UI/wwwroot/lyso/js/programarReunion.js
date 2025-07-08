@@ -5,6 +5,7 @@
             return res.text();
         })
         .then(html => {
+            console.log(html);
             const modalContainer = document.getElementById("modalContainer");
             modalContainer.innerHTML = "";
             modalContainer.innerHTML = html;
@@ -35,7 +36,7 @@
                 }
             });
 
-            const form = document.getElementById("formProgramarReunion");
+            const form = document.getElementById("formReunion");
             if (form) {
                 form.onsubmit = (e) => {
                     e.preventDefault();
@@ -43,9 +44,17 @@
                     const datos = {
                         FechaInicio: document.getElementById("FechaInicio").value,
                         Duracion: parseInt(document.getElementById("Duracion").value),
-                        Tema: document.getElementById("Tema").value
+                        Tema: document.getElementById("Tema").value,
+                        Participantes: document.getElementById('Participantes').value
                     };
+                    const emails = datos.Participantes.split(',').map(e => e.trim());
+                    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
+                    const todosValidos = emails.every(email => emailRegex.test(email));
+                    if (!todosValidos) {
+                        alert("Uno o más correos electrónicos tienen un formato inválido.");
+                        return;
+                    }
                     fetch("/Reuniones/CrearReunion", {
                         method: "POST",
                         headers: { "Content-Type": "application/json" },
@@ -53,6 +62,7 @@
                     })
                         .then(res => res.json())
                         .then(res => {
+                            console.log("Respuesta crear reunión:", res);
                             const resultado = document.getElementById("resultado");
                             if (res.success) {
                                 resultado.innerHTML = `<div style="color:green;">

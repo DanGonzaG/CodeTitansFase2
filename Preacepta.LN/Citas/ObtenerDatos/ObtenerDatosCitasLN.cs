@@ -55,6 +55,18 @@ namespace Preacepta.LN.Citas.ObtenerDatos
 
             return citasDb.Select(c => ObtenerDeDB(c)).ToList();
         }
+
+        public async Task<List<CitasDTO>> ListarCitasPorClienteAsync(int idCliente)
+        {
+            var citas = await _contexto.TCitas
+                .Include(c => c.IdTipoCitaNavigation)
+                .Include(c => c.AnfitrionNavigation).ThenInclude(a => a.CedulaNavigation)
+                .Include(c => c.TCitasClientes)
+                .Where(c => c.TCitasClientes.Any(cc => cc.IdCliente == idCliente))
+                .ToListAsync();
+
+            return citas.Select(c => ObtenerDeDB(c)).ToList();
+        }
         public async Task<List<CitasDTO>> ListarAnfitrionAsync()
         {
             var citasDb = await _contexto.TCitas
@@ -62,6 +74,34 @@ namespace Preacepta.LN.Citas.ObtenerDatos
                 .ToListAsync();
 
             return citasDb.Select(c => ObtenerDeDB(c)).ToList();
+        }
+
+        public async Task<CitasDTO> ObtenerCitaConDocumentosAsync(int idCita)
+        {
+            var cita = await _contexto.TCitas
+                .Include(c => c.IdTipoCitaNavigation)
+                .Include(c => c.AnfitrionNavigation).ThenInclude(a => a.CedulaNavigation)
+                .FirstOrDefaultAsync(c => c.IdCita == idCita);
+
+            if (cita == null) return null;
+
+            var dto = ObtenerDeDB(cita);
+
+            var documentos = await _contexto.TDocumentosCita
+                .Where(d => d.IdCita == idCita)
+                .ToListAsync();
+
+            dto.Documentos = documentos.Select(d => new DocumentosCitaDTO
+            {
+                Id = d.Id,
+                IdCita = d.IdCita,
+                NombreArchivo = d.NombreArchivo,
+                RutaArchivo = d.RutaArchivo,
+                FechaSubida = d.FechaSubida,
+                Descargar = d.Descargar
+            }).ToList();
+
+            return dto;
         }
     }
 }

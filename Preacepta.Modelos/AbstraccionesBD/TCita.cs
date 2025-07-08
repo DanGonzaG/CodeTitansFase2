@@ -32,4 +32,7 @@ public partial class TCita
 
     [InverseProperty("IdCitaNavigation")]
     public virtual ICollection<TCitasCliente> TCitasClientes { get; set; } = new List<TCitasCliente>();
+
+    public virtual ICollection<TDocumentosCita> DocumentosCita { get; set; } = new List<TDocumentosCita>();
+
 }

@@ -255,6 +255,8 @@ using Preacepta.LN.Citas.Editar;
 using Preacepta.LN.Citas.Eliminar;
 using Preacepta.LN.Citas.Listar;
 using Preacepta.LN.Citas.ObtenerDatos;
+using Preacepta.AD.DocumentosCitas.DocumentosCitas;
+using Preacepta.LN.DocumentosCita;
 using DinkToPdf;
 using DinkToPdf.Contracts;
 using Preacepta.UI.Services; // importa servicio
@@ -432,6 +434,9 @@ builder.Services.AddScoped<IEditarCitasLN, EditarCitasLN>();
 builder.Services.AddScoped<IEliminarCitasLN, EliminarCitasLN>();
 builder.Services.AddScoped<IListarCitasLN, ListarCitasLN>();
 builder.Services.AddScoped<IObtenerDatosCitasLN, ObtenerDatosCitasLN>();
+/*Inseccion de servicios modulo de Documentos Citas*/
+builder.Services.AddScoped<IDocumentosCitaAD, DocumentosCitaAD>();
+builder.Services.AddScoped<IDocumentosCitaLN, DocumentosCitaLN>();
 /*Inseccion de servicios modulo de documento de prestacion de servicios*/
 builder.Services.AddScoped<IBuscarDocsContratoPrestacionServiciosAD, BuscarDocsContratoPrestacionServiciosAD>();
 builder.Services.AddScoped<ICrearDocsContratoPrestacionServiciosAD, CrearDocsContratoPrestacionServiciosAD>();
