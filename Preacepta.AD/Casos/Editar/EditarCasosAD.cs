@@ -1,4 +1,5 @@
-﻿using Preacepta.Modelos.AbstraccionesBD;
+﻿using Microsoft.EntityFrameworkCore;
+using Preacepta.Modelos.AbstraccionesBD;
 
 namespace Preacepta.AD.Casos.Editar
 {
@@ -19,14 +20,31 @@ namespace Preacepta.AD.Casos.Editar
 
             try
             {
-                _contexto.TCasos.Update(editar);
+                var instaciaLocal = _contexto.TCasos.Local.FirstOrDefault(local => local.IdCaso == editar.IdCaso);
+                if (instaciaLocal != null) 
+                {
+                    _contexto.Entry(instaciaLocal).State = EntityState.Detached;
+                }
+
+                var objetoDeBD = await _contexto.TCasos.FirstOrDefaultAsync(enBD => enBD.IdCaso == editar.IdCaso);
+                if (objetoDeBD == null)                 
+                {
+                    return 0;
+                }
+
+                _contexto.Entry(objetoDeBD).CurrentValues.SetValues(editar);
                 int bandera = await _contexto.SaveChangesAsync();
-                return bandera;
+                return bandera;                
+            }
+            catch (DbUpdateConcurrencyException ex)
+            {
+                Console.WriteLine($"Concurrencia detectada, EditarGePersonaAD, Editar : {ex.Message}");
+                return 0;
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Error en EditarCasosAD : {ex.Message}");
-                return -1;
+                Console.WriteLine($"Error en EditarGePersonaAD, Editar : {ex.Message}");
+                return 0;
             }
 
         }

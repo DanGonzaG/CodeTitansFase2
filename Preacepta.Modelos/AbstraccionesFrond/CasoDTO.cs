@@ -10,7 +10,7 @@ namespace Preacepta.Modelos.AbstraccionesFrond
         public int IdCaso { get; set; }
 
         [Required(ErrorMessage = "El nombre del caso es un dato requerido")]
-        [DisplayName("Nombre de Caso")]
+        [DisplayName("Nombre del Caso")]
         public string Nombre { get; set; }
 
         public string? Fecha { get; set; }

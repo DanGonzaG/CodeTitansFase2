@@ -35,7 +35,6 @@
         <div class="contact-wrap">
                 <form asp-action="CreateDocsContratoPrestacionServicios" id="CreateDocsContratoPrestacionServicios">
                     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                <h2>Formulario para caso nuevo</h2>
                 <div class="row justify-content-center">
                     <div class="col-sm-6 col-lg-6">
                         <div class="form-group">
@@ -137,62 +136,27 @@
                         </div>
                     </div>
 
-                    
 
-                    <div class="col-md-12 col-lg-12">
 
-                        <div class="text-center">
-                            <!-- Button trigger modal -->
-                            <div id="btnRevisar">
-                                <button type="button" id="PrevioBtn" class="contact-btn" data-bs-toggle="modal" data-bs-target="#PrevioModal">
-                                    Revisar
-                                </button>
+                        <div class="col-md-12 col-lg-12">
+                            <div class="text-center d-flex justify-content-center gap-3">
+                                <div class="form-group" id="btnCrearCaso">
+                                    <input type="submit" value="Crear Documento" class="contact-btn" />
+                                </div>
+                                <div class="form-group">
+                                    <button type="button" id="btnPrevisualizar" class="contact-btn">
+                                        Previsualizar PDF
+                                    </button>
+                                </div>
                             </div>
-                            <div class="form-group" id="btnCrearCaso">
-                                <input type="submit" value="crearDocumento" class="contact-btn" />
-                            </div>
-                            <!--<button type="submit" class="contact-btn">Submit Case</button>-->
                         </div>
-                    </div>
+
                 </div>
             </form>
         </div>
     </div>
 </div>
 </body>
-
-
-<!-- Button trigger modal -->
-<!-- Modal -->
-<div class="modal fade" id="PrevioModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Revisión de datos ingresados</h5>
-                <button id="Retroceso2" type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <p style="color: black"><strong>Razon social de la empresa:</strong> <span id="previoRazonSocialEmpresa"></span></p>
-                <p style="color: black"><strong>Provincia:</strong> <span id="previoProvincia"></span></p>
-                <p style="color: black"><strong>Cedula juridica de la empresa:</strong> <span id="previoCedulaJuridicaEmpresa"></span></p>
-                <p style="color: black"><strong>Cedula del abogado:</strong> <span id="previoCedulaAbogado"></span></p>
-                <p style="color: black"><strong>Cedula del cliente:</strong> <span id="previoCedulaCliente"></span></p>
-                <p style="color: black"><strong>Tipo de servicios:</strong> <span id="previoTipoServicios"></span></p>
-                <p style="color: black"><strong>Fecha de inicio:</strong> <span id="previoFechaInicio"></span></p>
-                <p style="color: black"><strong>Fecha Final:</strong> <span id="previoFechaFinal"></span></p>
-                <p style="color: black"><strong>Monto de honorarios:</strong> <span id="previoMontoHonorarios"></span></p>
-                <p style="color: black"><strong>Informacion confidencial:</strong> <span id="previoInformacionConfidencial"></span></p>
-                <p style="color: black"><strong>Ciudad de la firma:</strong> <span id="previoCiudadFirma"></span></p>
-                <p style="color: black"><strong>Hora de la firma:</strong> <span id="previoHoraFirma"></span></p>
-                <p style="color: black"><strong>Fecha de la firma:</strong> <span id="previoFechaFirma"></span></p>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="contact-btn" data-bs-dismiss="modal" id="Retroceso">Hacer Cambios</button>
-                <button type="button" id="BtnConfirmar" class="contact-btn">Confirmar datos</button>
-            </div>
-        </div>
-    </div>
-</div>
 
 
 @section Scripts {

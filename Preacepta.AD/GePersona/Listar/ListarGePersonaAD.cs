@@ -32,6 +32,7 @@ namespace Preacepta.AD.GePersona.Listar
                                                   Activo = persona.Activo,
                                                   Telefono1 = persona.Telefono1,
                                                   Telefono2 = persona.Telefono2,
+                                                  Genero = persona.Genero
                                               }).ToListAsync();
             return lista;
         }
@@ -63,6 +64,7 @@ namespace Preacepta.AD.GePersona.Listar
                         Activo = persona.Activo,
                         Telefono1 = persona.Telefono1,
                         Telefono2 = persona.Telefono2,
+                        Genero = persona.Genero
                     }).ToListAsync();
             }
             catch (Exception ex)

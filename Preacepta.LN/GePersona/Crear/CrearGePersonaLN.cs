@@ -1,7 +1,9 @@
 ﻿using Microsoft.AspNetCore.Identity;
+using Preacepta.AD;
 using Preacepta.AD.GePersona.Crear;
 using Preacepta.LN.GePersona.ObtenerDatos;
 using Preacepta.Modelos.AbstraccionesFrond;
+
 
 namespace Preacepta.LN.GePersona.Crear
 {
@@ -12,11 +14,13 @@ namespace Preacepta.LN.GePersona.Crear
         private readonly UserManager<IdentityUser> _userManager;
         private readonly IUserStore<IdentityUser> _userStore;
         private readonly IUserEmailStore<IdentityUser> _emailStore;
+       
 
         public CrearGePersonaLN(ICrearGePersonaAD crearGePersonaAD,
             IObtenerDatosLN obtenerDatosLN,
             UserManager<IdentityUser> userManager,
-            IUserStore<IdentityUser> userStore)
+            IUserStore<IdentityUser> userStore
+            )
         {
             _crearGePersonaAD = crearGePersonaAD;
             _obtenerDatosLN = obtenerDatosLN;

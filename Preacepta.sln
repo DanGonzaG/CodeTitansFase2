@@ -3,13 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.11.35303.130
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Preacepta.UI", "Preacepta.UI\Preacepta.UI.csproj", "{18AD59F4-3C32-4F5A-9C07-4B4448F18661}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Preacepta.UI", "Preacepta.UI\Preacepta.UI.csproj", "{18AD59F4-3C32-4F5A-9C07-4B4448F18661}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Preacepta.Modelos", "Preacepta.Modelos\Preacepta.Modelos.csproj", "{92F61A56-DB43-4814-9924-1215109302A1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Preacepta.Modelos", "Preacepta.Modelos\Preacepta.Modelos.csproj", "{92F61A56-DB43-4814-9924-1215109302A1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Preacepta.AD", "Preacepta.AD\Preacepta.AD.csproj", "{ABCA304E-D92E-43A2-A507-A94A7ADD2ADD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Preacepta.AD", "Preacepta.AD\Preacepta.AD.csproj", "{ABCA304E-D92E-43A2-A507-A94A7ADD2ADD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Preacepta.LN", "Preacepta.LN\Preacepta.LN.csproj", "{C43578C2-846A-42B8-A3DF-59F9E1CAFB9F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Preacepta.LN", "Preacepta.LN\Preacepta.LN.csproj", "{C43578C2-846A-42B8-A3DF-59F9E1CAFB9F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

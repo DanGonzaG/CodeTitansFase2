@@ -1,0 +1,56 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Autorización de Expediente</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            font-size: 12pt;
+            line-height: 1.5;
+            margin: 40px;
+        }
+
+        h4 {
+            margin-top: 20px;
+            text-align: center;
+            text-decoration: underline;
+        }
+
+        .firmas {
+            margin-top: 60px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div style="text-align: center; border-bottom: 1px solid #000; padding-bottom: 10px; margin-bottom: 20px;">
+        <img src="data:imagen/png;base64,{{LOGO}}" alt="Logo" style="height: 60px;" />
+        <h2 style="margin: 0;">{{NombreBufete}}</h2>
+        <p style="margin: 0;">Cédula Jurídica - {{CedulaJuridica}}</p>
+        <p style="margin: 0;">Cédula Jurídica - {{TelefonoDespacho}}</p>
+        <p style="margin: 0;">Cédula Jurídica - {{EmailDespacho}}</p>
+    </div>
+
+    <p>
+        El cliente {{NombreCliente}} {{NombreApellido1}} {{NombreApellido2}} portador de la identificación {{IdCliente}}, es representado 
+        por este despacho y su caso es precedido por el funcionario {{NombreAbogado}}, carnet {{Carnet}}. Por lo que se hace constar que 
+        el presente consiste en un sustracto del caso {{NombreCaso}}, el cual será conocido como etapa de proceso legal.
+        A continuación los detalles del mismo.
+    </p>
+
+    <p><strong>Fecha de creación:</strong> {{FechaEtapa}}</p>
+    <p><strong>Num. de Etapa del proceso legas:</strong> {{NumeroEtapa}}</p>
+    <p><strong>Nombre de la etapa:</strong> {{NombreEtapa}}</p>
+    <p><strong>Descripción de la etapa:</strong></p>
+    <p>{{EtapaDescripcon}}</p>
+
+
+
+    <p>
+        Para uso de este despacho o uso de nuestro cliente este documento se emite el dia {{nombreDIA}} {{DIA}} de {{NombreMes}}
+        del {{ANYO}} a las {{HoraActual}}.
+    </p>   
+
+</body>
+</html>

@@ -2,6 +2,7 @@
 
 <head>
     <link href="~/lyso/css/Daniel.css" rel="stylesheet" />
+    <link href="~/lyso/css/daniel.css" rel="stylesheet" />
 </head>
 <!-- Page Title -->
 <body>
@@ -32,135 +33,205 @@
 
     <div class="contact-form contact-form-two contact-form-three">
         <div class="container">
+            <div class="col-md-12 col-lg-12 encabezadoForm">
+                <img src="~/lyso/img/iconoPersona.png" width="200px"/>
+            </div>
             <div class="contact-wrap">
                 <form asp-action="CrearPersona">
                     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                     <h2>Formulario para crear cliente</h2>
                     <div class="row justify-content-center">
-
-                        <div class="col-sm-6 col-lg-6">
+                        <div class="seccion-titulo">Información del personal</div>
+                        <div class="col-sm-6 col-lg-6 centro">
                             <div class="form-group">
                                 <label asp-for="Cedula" class="control-label"></label>
-                                <input asp-for="Cedula" class="form-control" />
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-lg-6">
+                            <div class="form-group">
+                                <input type="number" asp-for="Cedula" class="form-control" />
                                 <span asp-validation-for="Cedula" class="text-danger"></span>
-
                                 @if (TempData["ErrorCedula"] != null)
                                 {
                                     <span class="text-danger">@TempData["ErrorCedula"]</span>
                                 }
                             </div>
                         </div>
-                        <div class="col-sm-6 col-lg-6">
+                        <div class="col-sm-6 col-lg-6 centro">
                             <div class="form-group">
                                 <label asp-for="Nombre" class="control-label"></label>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-lg-6">
+                            <div class="form-group">
                                 <input asp-for="Nombre" class="form-control" />
                                 <span asp-validation-for="Nombre" class="text-danger"></span>
                             </div>
                         </div>
-                        <div class="col-sm-6 col-lg-6">
+                        <div class="col-sm-6 col-lg-6 centro">
                             <div class="form-group">
                                 <label asp-for="Apellido1" class="control-label"></label>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-lg-6">
+                            <div class="form-group">
                                 <input asp-for="Apellido1" class="form-control" />
                                 <span asp-validation-for="Apellido1" class="text-danger"></span>
                             </div>
                         </div>
-                        <div class="col-sm-6 col-lg-6">
+                        <div class="col-sm-6 col-lg-6 centro">
                             <div class="form-group">
                                 <label asp-for="Apellido2" class="control-label"></label>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-lg-6">
+                            <div class="form-group">
                                 <input asp-for="Apellido2" class="form-control" />
                                 <span asp-validation-for="Apellido2" class="text-danger"></span>
                             </div>
                         </div>
-                        <div class="col-sm-6 col-lg-6">
+                        <div class="col-sm-6 col-lg-6 centro">
                             <div class="form-group">
                                 <label asp-for="FechaNacimiento" class="control-label"></label>
-
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-lg-3">
+                            <div class="form-group">
                                 <input id="InputFechaNacimiento" type="date" asp-for="FechaNacimiento" class="form-control" />
                                 <span asp-validation-for="FechaNacimiento" class="text-danger"></span>
                             </div>
                         </div>
-                        <div class="col-sm-6 col-lg-6">
+                        <div class="col-sm-6 col-lg-1 centro" style="text-align:center">
                             <div class="form-group">
                                 <label asp-for="Edad" class="control-label"></label>
-
-                                <input id="InputEdad" asp-for="Edad" class="form-control" />
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-lg-2">
+                            <div class="form-group">
+                                <input id="InputEdad" asp-for="Edad" class="form-control" readonly />
                                 <span asp-validation-for="Edad" class="text-danger"></span>
                             </div>
                         </div>
-                        <div class="col-sm-6 col-lg-6">
+                    
+                        <div class="col-sm-6 col-lg-6 centro">
                             <div class="form-group">
-                                <label asp-for="EstadoCivil" class="control-label"></label>
-                                <select asp-for="EstadoCivil" asp-items="ViewBag.EstadoCivil" class="form-control"></select>
-                                <span asp-validation-for="EstadoCivil" class="text-danger"></span>
+                                <label asp-for="Genero" class="control-label"></label>
                             </div>
                         </div>
                         <div class="col-sm-6 col-lg-6">
                             <div class="form-group">
+                                 <select asp-for="Genero" class="form-control" asp-items="ViewBag.Genero"></select>
+                                <span asp-validation-for="Genero" class="text-danger"></span>
+                            </div>
+                        </div>
+                            <br />
+                        <br />
+                        <br />
+                        <br />
+                        <div class="col-sm-6 col-lg-6 centro">
+                            <div class="form-group">
                                 <label asp-for="Oficio" class="control-label"></label>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-lg-6">
+                            <div class="form-group">
                                 <input asp-for="Oficio" class="form-control" />
                                 <span asp-validation-for="Oficio" class="text-danger"></span>
                             </div>
                         </div>
-                        <div class="col-sm-6 col-lg-6">
+                        <div class="col-sm-6 col-lg-6 centro">
                             <div class="form-group">
-
-                                <label for="provincia">Provincia:</label>
-                                <select class="selectDaniel" id="provincia" name="provincia">
-                                    <option value="">Seleccione un cantón</option>
-                                </select>
+                                <label asp-for="EstadoCivil" class="control-label"></label>
                             </div>
                         </div>
                         <div class="col-sm-6 col-lg-6">
                             <div class="form-group">
-                              
+                                <select asp-for="EstadoCivil" asp-items="ViewBag.EstadoCivil" class="form-control"></select>
+                                <span asp-validation-for="EstadoCivil" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="seccion-titulo">Información del Dirreción</div>
+                        <div class="col-sm-6 col-lg-6 centro">
+                            <div class="form-group">
+                                <label for="provincia">Provincia:</label>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-lg-6">
+                            <div class="form-group">
+                                <select class="selectDaniel" id="provincia" name="provincia">
+                                    <option value="">Seleccione una provincia</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-lg-6 centro">
+                            <div class="form-group">
                                 <label for="canton">Cantón:</label>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-lg-6">
+                            <div class="form-group">
                                 <select class="selectDaniel" id="canton" name="canton" disabled>
                                     <option value="">Seleccione un cantón</option>
                                 </select>
-
+                                <input id="inputCanton" asp-for="Direccion1" class="form-control" readonly />
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-lg-6 centro">
+                            <div class="form-group">
+                                <label for="distrito">Distrito:</label>
                             </div>
                         </div>
                         <div class="col-sm-6 col-lg-6">
                             <div class="form-group">
-                                <label for="distrito">Distrito:</label>
                                 <select class="selectDaniel" id="distrito" name="Direccion1" asp-for="Direccion1" disabled>
                                     <option value="">Seleccione un distrito</option>
                                 </select>
-
+                                <input id="inputDistrito" name="Direccion1" asp-for="Direccion1" class="form-control" readonly />
                             </div>
                         </div>
-                        <!--<div class="col-sm-6 col-lg-6">
-                            <div class="form-group">
-                                <label asp-for="Direccion1" class="control-label"></label>
-                                <select asp-for="Direccion1" class="form-control" asp-items="ViewBag.Direccion1" style="overflow:auto"></select>
-                            </div>
-                        </div>-->
-                        <div class="col-sm-6 col-lg-6">
+                        <div class="col-sm-6 col-lg-6 centro">
                             <div class="form-group">
                                 <label asp-for="Direccion2" class="control-label"></label>
-                                <input asp-for="Direccion2" class="form-control" />
-                                <span asp-validation-for="Direccion2" class="text-danger"></span>
                             </div>
                         </div>
                         <div class="col-sm-6 col-lg-6">
                             <div class="form-group">
+                                <textarea asp-for="Direccion2" class="form-control" cols="6"></textarea>
+                                <span asp-validation-for="Direccion2" class="text-danger"></span>
+                            </div>
+                        </div>                        
+                        <div class="seccion-titulo">Contactos</div>
+                        <div class="col-sm-6 col-lg-6 centro">
+                            <div class="form-group">
                                 <label asp-for="Telefono1" class="control-label"></label>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-lg-6">
+                            <div class="form-group">
                                 <input asp-for="Telefono1" class="form-control" />
                                 <span asp-validation-for="Telefono1" class="text-danger"></span>
                             </div>
                         </div>
-                        <div class="col-sm-6 col-lg-6">
+                        <div class="col-sm-6 col-lg-6 centro">
                             <div class="form-group">
                                 <label asp-for="Telefono2" class="control-label"></label>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-lg-6">
+                            <div class="form-group">
                                 <input asp-for="Telefono2" class="form-control" />
                                 <span asp-validation-for="Telefono2" class="text-danger"></span>
                             </div>
                         </div>
-                        <div class="col-sm-6 col-lg-6">
-                            <!--<div class="form-floating mb-3">-->
+                        <div class="seccion-titulo">Autenticacion para el sistema</div>
+                        <div class="col-sm-6 col-lg-6 centro">
                             <div class="form-group">
                                 <label asp-for="Email">Correro electrónico</label>
-                                <input asp-for="Email" class="form-control" autocomplete="username" aria-required="true" placeholder="name@example.com" />
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-lg-6">
+                            <div class="form-group">
+                                <input asp-for="Email" class="form-control" autocomplete="username" aria-required="true" placeholder="nombre@ejemplo.com" />
                                 <span asp-validation-for="Email" class="text-danger"></span>
                                 @if (TempData["ErrorEmail"] != null)
                                 {
@@ -168,42 +239,34 @@
                                 }
                             </div>
                         </div>
-                        <div class="col-sm-6 col-lg-6">
+                        <div class="col-sm-6 col-lg-6 centro">
                             <!--<div class="form-floating mb-3">-->
                             <div class="form-group">
                                 <label asp-for="Password">Contraseña</label>
-
-                                <input asp-for="Password" class="form-control" autocomplete="new-password" aria-required="true"/>
-                                <span asp-validation-for="Password" class="text-danger"></span>
                             </div>
                         </div>
                         <div class="col-sm-6 col-lg-6">
-                            <!--<div class="form-floating mb-3">-->
                             <div class="form-group">
-                                <label asp-for="ConfirmPassword">Confirmacion de contraseña</label>
-
-                                <input asp-for="ConfirmPassword" class="form-control" autocomplete="new-password" aria-required="true"/>
-                                <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+                                <input asp-for="Password" class="form-control" autocomplete="new-password" aria-required="true" placeholder="ej. 123Abd$" />
+                                <span asp-validation-for="Password" class="text-danger"></span>
                             </div>
                         </div>
-                        <!--<div class="col-sm-6 col-lg-6"></div>
-                        <div class="col-sm-6 col-lg-6"></div>
-                        <br />
-                        <br />
-                        <br />
-                        <br />
-                        <div class="col-md-12 col-lg-12">
+                        <div class="col-sm-6 col-lg-6 centro">
+                            <!--<div class="form-floating mb-3">-->
                             <div class="form-group">
-                                <textarea name="Descripcion" id="Descripcion" cols="30" rows="8" asp-for="Descripcion" placeholder="Descripción" class="form-control"></textarea>
-                                <span asp-validation-for="Descripcion" class="text-danger"></span>
+                                <label asp-for="ConfirmPassword">Confirmación de contraseña</label>
                             </div>
-                        </div>-->
-
-                        <div class="col-md-12 col-lg-12">
-
+                        </div>
+                        <div class="col-sm-6 col-lg-6">
+                            <div class="form-group">
+                                <input asp-for="ConfirmPassword" class="form-control" autocomplete="new-password" aria-required="true" placeholder="ej. 123Abd$" />
+                                <span asp-validation-for=ConfirmPassword class="text-danger"></span>
+                            </div>
+                        </div>                     
+                        <div class="col-md-12 col-lg-12" style="margin-top: 100px">
                             <div class="text-center">
                                 <div class="form-group">
-                                    <input type="submit" value="Create" class="contact-btn" />
+                                    <input type="submit" value="Crear" class="contact-btn" />
                                 </div>
                             </div>
                         </div>
@@ -214,6 +277,11 @@
     </div>
 </body>
 
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
 
 <script src="~/lyso/js/calculoedad.js"></script>
 <script src="~/lyso/js/filtroprovinicacantondistrito.js"></script>

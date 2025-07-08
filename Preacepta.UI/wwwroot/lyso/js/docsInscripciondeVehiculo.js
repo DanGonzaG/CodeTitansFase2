@@ -1,192 +1,59 @@
-﻿//Vista Formulario documento de inscripcion de vehiculo
-//Oculta le boton de crear caso
-document.getElementById('btnCrearCaso').style.display = 'none';
+﻿// Mostrar el botón de "Crear Documento"
+document.getElementById('btnCrearCaso').style.display = 'block';
 
-//este codigo en JavaScript lo que hace es almacenar los datos de form en el modal y viceversa
-document.getElementById('PrevioBtn').addEventListener('click', () => {
-    const CedulaCliente = document.getElementById('idCedulaCliente').value;
-    const CedulaAbogado = document.getElementById('idCedulaAbogado').value;
-    const MarcaVehiculo = document.getElementById('idMarcaVehiculo').value;
-    const EstiloVehiculo = document.getElementById('idEstiloVehiculo').value;
-    const ModeloVehiculo = document.getElementById('idModeloVehiculo').value;
-    const Categoria = document.getElementById('idCategoria').value;
-    const MarcaMotor = document.getElementById('idMarcaMotor').value;
-    const NumeroMotor = document.getElementById('idNumeroMotor').value;
-    const NumeroSerieChasis = document.getElementById('idNumeroSerieChasis').value;
-    const Vin = document.getElementById('idVin').value;
-    const Anio = document.getElementById('idAnio').value;
-    const Carroceria = document.getElementById('idCarroceria').value;
-    const PesoNeto = document.getElementById('idPesoNeto').value;
-    const PesoBruto = document.getElementById('idPesoBruto').value;
-    const Potencia = document.getElementById('idPotencia').value;
-    const Color = document.getElementById('idColor').value;
-    const Capacidad = document.getElementById('idCapacidad').value;
-    const Combustible = document.getElementById('idCombustible').value;
-    const Cilindraje = document.getElementById('idCilindraje').value;
-    const LugarFirma = document.getElementById('idLugarFirma').value;
-    const FechaFirma = document.getElementById('idFechaFirma').value;
+// Evento para el formulario (si querés hacer algo con submit)
+document.getElementById('CreateDocsInscripcionVehiculo').addEventListener('submit', (e) => {
+    // Podés agregar lógica si necesitás validar antes de enviar
+});
 
+// Función para abrir el PDF de previsualización en una nueva ventana
+document.getElementById('btnPrevisualizar').addEventListener('click', () => {
+    const cedulaCliente = document.getElementById('idCedulaCliente').value;
+    const cedulaAbogado = document.getElementById('idCedulaAbogado').value;
+    const marca = document.getElementById('idMarcaVehiculo').value;
+    const estilo = document.getElementById('idEstiloVehiculo').value;
+    const modelo = document.getElementById('idModeloVehiculo').value;
+    const categoria = document.getElementById('idCategoria').value;
+    const marcaMotor = document.getElementById('idMarcaMotor').value;
+    const numeroMotor = document.getElementById('idNumeroMotor').value;
+    const serieChasis = document.getElementById('idNumeroSerieChasis').value;
+    const vin = document.getElementById('idVin').value;
+    const anio = document.getElementById('idAnio').value;
+    const carroceria = document.getElementById('idCarroceria').value;
+    const pesoNeto = document.getElementById('idPesoNeto').value;
+    const pesoBruto = document.getElementById('idPesoBruto').value;
+    const potencia = document.getElementById('idPotencia').value;
+    const color = document.getElementById('idColor').value;
+    const capacidad = document.getElementById('idCapacidad').value;
+    const combustible = document.getElementById('idCombustible').value;
+    const cilindraje = document.getElementById('idCilindraje').value;
+    const lugarFirma = document.getElementById('idLugarFirma').value;
+    const fechaFirma = document.getElementById('idFechaFirma').value;
 
+    const timestamp = new Date().getTime();
 
-    // Actualiza el contenido del modal
-    document.getElementById('previoCedulaCliente').textContent = CedulaCliente;
-    document.getElementById('previoCedulaAbogado').textContent = CedulaAbogado;
-    document.getElementById('previoMarcaVehiculo').textContent = MarcaVehiculo;
-    document.getElementById('previoEstiloVehiculo').textContent = EstiloVehiculo;
-    document.getElementById('previoModeloVehiculo').textContent = ModeloVehiculo;
-    document.getElementById('previoCategoria').textContent = Categoria;
-    document.getElementById('previoMarcaMotor').textContent = MarcaMotor;
-    document.getElementById('previoNumeroMotor').textContent = NumeroMotor;
-    document.getElementById('previoNumeroSerieChasis').textContent = NumeroSerieChasis;
-    document.getElementById('previoVin').textContent = Vin;
-    document.getElementById('previoAnio').textContent = Anio;
-    document.getElementById('previoCarroceria').textContent = Carroceria;
-    document.getElementById('previoPesoNeto').textContent = PesoNeto;
-    document.getElementById('previoPesoBruto').textContent = PesoBruto;
-    document.getElementById('previoPotencia').textContent = Potencia;
-    document.getElementById('previoColor').textContent = Color;
-    document.getElementById('previoCapacidad').textContent = Capacidad;
-    document.getElementById('previoCombustible').textContent = Combustible;
-    document.getElementById('previoCilindraje').textContent = Cilindraje;
-    document.getElementById('previoLugarFirma').textContent = LugarFirma;
-    document.getElementById('previoFechaFirma').textContent = FechaFirma;
+    const url = `/DocsInscripcionVehiculo/PrevisualizarPDFInscripcionVehiculo?` +
+        `&cedulaCliente=${encodeURIComponent(cedulaCliente)}` +
+        `&cedulaAbogado=${encodeURIComponent(cedulaAbogado)}` +
+        `&marca=${encodeURIComponent(marca)}` +
+        `&estilo=${encodeURIComponent(estilo)}` +
+        `&modelo=${encodeURIComponent(modelo)}` +
+        `&categoria=${encodeURIComponent(categoria)}` +
+        `&marcaMotor=${encodeURIComponent(marcaMotor)}` +
+        `&numeroMotor=${encodeURIComponent(numeroMotor)}` +
+        `&serieChasis=${encodeURIComponent(serieChasis)}` +
+        `&vin=${encodeURIComponent(vin)}` +
+        `&anio=${encodeURIComponent(anio)}` +
+        `&carroceria=${encodeURIComponent(carroceria)}` +
+        `&pesoNeto=${encodeURIComponent(pesoNeto)}` +
+        `&pesoBruto=${encodeURIComponent(pesoBruto)}` +
+        `&potencia=${encodeURIComponent(potencia)}` +
+        `&color=${encodeURIComponent(color)}` +
+        `&capacidad=${encodeURIComponent(capacidad)}` +
+        `&combustible=${encodeURIComponent(combustible)}` +
+        `&cilindraje=${encodeURIComponent(cilindraje)}` +
+        `&lugarFirma=${encodeURIComponent(lugarFirma)}` +
+        `&fechaFirma=${encodeURIComponent(fechaFirma)}`;
 
-
-    // Muestra el modal usando Bootstrap
-    const previewModal = new bootstrap.Modal(document.getElementById('PrevioModal'));
-    previewModal.show();
-
-    document.getElementById('BtnConfirmar').addEventListener('click', () => {
-        console.log('Confirmando');
-        document.getElementById('idCedulaCliente').value = CedulaCliente;
-        document.getElementById('idCedulaAbogado').value = CedulaAbogado;
-        document.getElementById('idMarcaVehiculo').value = MarcaVehiculo;
-        document.getElementById('idEstiloVehiculo').value = EstiloVehiculo;
-        document.getElementById('idModeloVehiculo').value = ModeloVehiculo;
-        document.getElementById('idCategoria').value = Categoria;
-        document.getElementById('idMarcaMotor').value = MarcaMotor;
-        document.getElementById('idNumeroMotor').value = NumeroMotor;
-        document.getElementById('idNumeroSerieChasis').value = NumeroSerieChasis;
-        document.getElementById('idVin').value = Vin;
-        document.getElementById('idAnio').value = Anio;
-        document.getElementById('idCarroceria').value = Carroceria;
-        document.getElementById('idPesoNeto').value = PesoNeto;
-        document.getElementById('idPesoBruto').value = PesoBruto;
-        document.getElementById('idPotencia').value = Potencia;
-        document.getElementById('idColor').value = Color;
-        document.getElementById('idCapacidad').value = Capacidad;
-        document.getElementById('idCombustible').value = Combustible;
-        document.getElementById('idCilindraje').value = Cilindraje;
-        document.getElementById('idLugarFirma').value = LugarFirma;
-        document.getElementById('idFechaFirma').value = FechaFirma;
-
-
-        const previewModalInstance = bootstrap.Modal.getInstance(document.getElementById('PrevioModal'));
-        if (previewModalInstance) {
-            previewModalInstance.hide(); // Cerrar modal correctamente
-            console.log('Cerrando modal');
-        };
-        const modalBackdrops = document.querySelectorAll('.modal-backdrop');
-        modalBackdrops.forEach((backdrop) => {
-            backdrop.parentNode.removeChild(backdrop); // Quitar el fondo
-        });
-        // Reactiva el scroll de la página
-        document.body.style.overflow = 'auto';
-        document.documentElement.style.overflow = 'auto';
-        document.body.style.position = 'static'; // Asegura que el body pueda desp
-
-        document.getElementById('PrevioBtn').style.display = 'none'; // oculata el boton de Revisar
-        document.getElementById('btnCrearCaso').style.display = 'block';
-    });
-
-
-    document.getElementById('Retroceso').addEventListener('click', () => {
-        document.getElementById('idCedulaCliente').value = CedulaCliente;
-        document.getElementById('idCedulaAbogado').value = CedulaAbogado;
-        document.getElementById('idMarcaVehiculo').value = MarcaVehiculo;
-        document.getElementById('idEstiloVehiculo').value = EstiloVehiculo;
-        document.getElementById('idModeloVehiculo').value = ModeloVehiculo;
-        document.getElementById('idCategoria').value = Categoria;
-        document.getElementById('idMarcaMotor').value = MarcaMotor;
-        document.getElementById('idNumeroMotor').value = NumeroMotor;
-        document.getElementById('idNumeroSerieChasis').value = NumeroSerieChasis;
-        document.getElementById('idVin').value = Vin;
-        document.getElementById('idAnio').value = Anio;
-        document.getElementById('idCarroceria').value = Carroceria;
-        document.getElementById('idPesoNeto').value = PesoNeto;
-        document.getElementById('idPesoBruto').value = PesoBruto;
-        document.getElementById('idPotencia').value = Potencia;
-        document.getElementById('idColor').value = Color;
-        document.getElementById('idCapacidad').value = Capacidad;
-        document.getElementById('idCombustible').value = Combustible;
-        document.getElementById('idCilindraje').value = Cilindraje;
-        document.getElementById('idLugarFirma').value = LugarFirma;
-        document.getElementById('idFechaFirma').value = FechaFirma;
-
-        if (previewModalInstance) {
-            previewModalInstance.hide(); // Cerrar modal correctamente
-        };
-
-        const modalBackdrops = document.querySelectorAll('.modal-backdrop');
-        modalBackdrops.forEach((backdrop) => {
-            backdrop.parentNode.removeChild(backdrop); // Quitar el fondo
-        });
-
-        // Reactiva el scroll de la página
-        document.body.style.overflow = 'auto';
-        document.documentElement.style.overflow = 'auto';
-        document.body.style.position = 'static'; // Asegura que el body pueda desp
-
-
-        console.log('Cerrando el modal y eliminando el fondo...');
-
-
-
-
-    });
-
-    document.getElementById('Retroceso2').addEventListener('click', () => {
-
-        document.getElementById('idCedulaCliente').value = CedulaCliente;
-        document.getElementById('idCedulaAbogado').value = CedulaAbogado;
-        document.getElementById('idMarcaVehiculo').value = MarcaVehiculo;
-        document.getElementById('idEstiloVehiculo').value = EstiloVehiculo;
-        document.getElementById('idModeloVehiculo').value = ModeloVehiculo;
-        document.getElementById('idCategoria').value = Categoria;
-        document.getElementById('idMarcaMotor').value = MarcaMotor;
-        document.getElementById('idNumeroMotor').value = NumeroMotor;
-        document.getElementById('idNumeroSerieChasis').value = NumeroSerieChasis;
-        document.getElementById('idVin').value = Vin;
-        document.getElementById('idAnio').value = Anio;
-        document.getElementById('idCarroceria').value = Carroceria;
-        document.getElementById('idPesoNeto').value = PesoNeto;
-        document.getElementById('idPesoBruto').value = PesoBruto;
-        document.getElementById('idPotencia').value = Potencia;
-        document.getElementById('idColor').value = Color;
-        document.getElementById('idCapacidad').value = Capacidad;
-        document.getElementById('idCombustible').value = Combustible;
-        document.getElementById('idCilindraje').value = Cilindraje;
-        document.getElementById('idLugarFirma').value = LugarFirma;
-        document.getElementById('idFechaFirma').value = FechaFirma;
-
-        const previewModalInstance = bootstrap.Modal.getInstance(document.getElementById('PrevioModal'));
-        if (previewModalInstance) {
-            previewModalInstance.hide(); // Cerrar modal correctamente
-        };
-
-        const modalBackdrops = document.querySelectorAll('.modal-backdrop');
-        modalBackdrops.forEach((backdrop) => {
-            backdrop.parentNode.removeChild(backdrop); // Quitar el fondo
-        });
-
-        // Reactiva el scroll de la página
-        document.body.style.overflow = 'auto';
-        document.documentElement.style.overflow = 'auto';
-        document.body.style.position = 'static'; // Asegura que el body pueda desp
-
-
-        console.log('Cerrando el modal y eliminando el fondo...');
-    });
-
-
+    window.open(url, '_blank');
 });

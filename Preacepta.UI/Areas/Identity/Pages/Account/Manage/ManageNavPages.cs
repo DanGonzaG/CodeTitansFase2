@@ -18,6 +18,12 @@ namespace Praecepta.UI.Areas.Identity.Pages.Account.Manage
         /// </summary>
         public static string Index => "Index";
 
+
+        public static string CambiarContactos => "CambiarContactos";
+
+
+        public static string CambiarUbicacion => "CambiarUbicacion";
+
         /// <summary>
         ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
         ///     directly from your code. This API may change or be removed in future releases.
@@ -65,6 +71,11 @@ namespace Praecepta.UI.Areas.Identity.Pages.Account.Manage
         ///     directly from your code. This API may change or be removed in future releases.
         /// </summary>
         public static string IndexNavClass(ViewContext viewContext) => PageNavClass(viewContext, Index);
+
+
+        public static string cambioContactos(ViewContext viewContext) => PageNavClass(viewContext, CambiarContactos);
+
+        public static string cambioUbicacion(ViewContext viewContext) => PageNavClass(viewContext, CambiarUbicacion);
 
         /// <summary>
         ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used

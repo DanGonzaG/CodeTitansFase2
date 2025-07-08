@@ -21,7 +21,7 @@ namespace Preacepta.LN.CasosEtapa.ObtenerDatos
 
 
         /*metodo para obtner los datos de los formularios y pasarlos al modelo de acceso a datos*/
-        public TCasosEtapa ObtenerDeFront(CasosEtapaDTO datos)
+        public TCasosEtapa ObtenerDeFrontCrear(CasosEtapaDTO datos)
         {
             return new TCasosEtapa
             {
@@ -32,6 +32,20 @@ namespace Preacepta.LN.CasosEtapa.ObtenerDatos
                 IdCaso = datos.IdCaso,
                 IdCasoNavigation = datos.IdCasoNavigation,
                 Activo = true
+            };
+        }
+
+        public TCasosEtapa ObtenerDeFrontEditar(CasosEtapaDTO datos)
+        {
+            return new TCasosEtapa
+            {
+                IdEtapaPl = datos.IdEtapaPl,
+                Nombre = datos.Nombre,
+                Fecha = DateTime.Parse(datos.Fecha),
+                Descripcion = datos.Descripcion,
+                IdCaso = datos.IdCaso,
+                IdCasoNavigation = datos.IdCasoNavigation,
+                Activo = datos.Activo
             };
         }
     }

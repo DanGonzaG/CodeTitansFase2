@@ -259,7 +259,10 @@ using Preacepta.AD.DocumentosCitas.DocumentosCitas;
 using Preacepta.LN.DocumentosCita;
 using DinkToPdf;
 using DinkToPdf.Contracts;
-using Preacepta.UI.Services; // importa servicio
+using Preacepta.UI.Services;
+using Microsoft.AspNetCore.Identity.UI.Services;
+using Microsoft.VisualStudio.Web.CodeGenerators.Mvc.Templates.General;
+using Preacepta.UI.Services.MensajesPersonalizados; // importa servicio
 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -276,11 +279,25 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
 //Servicio de contenexion con Autenticacion de Entity
+/*builder.Services.AddIdentity<ApplicationUser, IdentityRole>(options =>
+{
+    options.SignIn.RequireConfirmedAccount = false;
+})
+.AddEntityFrameworkStores<ApplicationDbContext>()
+.AddErrorDescriber<SpanishIdentityErrorDescriber>();*/
+
+
 builder.Services.AddDefaultIdentity<IdentityUser>(
-    options => options.SignIn.RequireConfirmedAccount = false)
+    options => options.SignIn.RequireConfirmedAccount = false)    
     .AddRoles<IdentityRole>() //activa el servicio de roles
     .AddEntityFrameworkStores<ApplicationDbContext>();
 
+builder.Services.Configure<IdentityOptions>(options =>
+{
+    options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(15);
+    options.Lockout.MaxFailedAccessAttempts = 3;
+    options.Lockout.AllowedForNewUsers = true;
+});
 
 builder.Services.AddControllersWithViews();
 
@@ -577,7 +594,16 @@ builder.Services.AddScoped<IObtenerDatosTipoVehiculoLN, ObtenerDatosTipoVehiculo
 builder.Services.AddSingleton(typeof(IConverter), PdfConverterService.GetConverter());
 
 //builder.Services.AddScoped<Preacepta.AD.DocsTipoVehiculo.Eliminar.EliminarTipoVehiculoAD>();
+
+//Servicio para mostrar mensajes personalizados
+builder.Services.AddTransient<IValidacionesResetPassword, ValidacionesResetPassword>();
 #endregion
+
+#region Servicio de correo electronico
+//Servicio de correo
+builder.Services.AddTransient<IEmailSender, ServicioEmail>();
+#endregion
+
 var app = builder.Build();
 
 #region Asignacion y creacion de roles
@@ -597,7 +623,7 @@ using (var scope = app.Services.CreateScope())
 #region Creacion de usario root
 using (var scope = app.Services.CreateScope())
 {
-    var userManager = scope.ServiceProvider.GetRequiredService<UserManager<IdentityUser>>();
+    var userManager = scope.ServiceProvider.GetRequiredService<UserManager<IdentityUser>>();    
     var roleManager = scope.ServiceProvider.GetRequiredService<RoleManager<IdentityRole>>();
     var config = scope.ServiceProvider.GetRequiredService<IConfiguration>();
 
@@ -623,7 +649,7 @@ using (var scope = app.Services.CreateScope())
 
         await userManager.CreateAsync(rootUser, rootPassword);
         await userManager.AddToRoleAsync(rootUser, "Gestor");
-    }
+    }    
 }
 #endregion
 
