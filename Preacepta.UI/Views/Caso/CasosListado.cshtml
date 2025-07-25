@@ -40,9 +40,9 @@
                     </div>
                     <div class="col-md-12 col-lg-12">
                         <div class="text-center">
-                            <button type="button" id="BtnBuscarCaso" class="contact-btn">
+                            <button type="button" id="BtnBuscarCaso" class="contact-btn--segundo">
                                 Filtrar
-                            </button>                           
+                            </button>
                         </div>
                         <div id="msgSubmit" class="h3 text-center hidden"></div>
                         <div class="clearfix"></div>
@@ -57,44 +57,44 @@
 <div class="contact-form contact-form-two contact-form-three LetraNegra">
     <div class="container">
         <div class="contact-wrap">
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th>
-                            @Html.DisplayNameFor(model => model.IdCaso)
-                        </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.Fecha)
-                        </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.Nombre)
-                        </th>
-                        <!--<th>
-                        @Html.DisplayNameFor(model => model.Descripcion)
-                        </th>-->
-                        <!--<th>
-                        @Html.DisplayNameFor(model => model.Activo)
-                        </th>-->
-                        <th>
-                            @Html.DisplayNameFor(model => model.IdAbogadoNavigation)
-                        </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.IdClienteNavigation)
-                        </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.IdTipoCasoNavigation)
-                        </th>
-                        <th>
-                            Detalles y Etapas
-                        </th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @if(Model.Any())
-                    {
+            @if (Model.Any())
+            {
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>
+                                @Html.DisplayNameFor(model => model.IdCaso)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Fecha)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Nombre)
+                            </th>
+                            <!--<th>
+                            @Html.DisplayNameFor(model => model.Descripcion)
+                            </th>-->
+                            <!--<th>
+                            @Html.DisplayNameFor(model => model.Activo)
+                            </th>-->
+                            <th>
+                                @Html.DisplayNameFor(model => model.IdAbogadoNavigation)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.IdClienteNavigation)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.IdTipoCasoNavigation)
+                            </th>
+                            <th>
+                                Detalles y Etapas
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
                         @foreach (var item in Model)
                         {
-                            if(item.Activo == true)
+                            if (item.Activo == true)
                             {
                                 <tr class="losCasosFiltrados" idCaso="@item.IdCaso" nombreCaso="@item.Nombre">
                                     <td>
@@ -122,7 +122,7 @@
                                         @Html.DisplayFor(modelItem => item.IdTipoCasoNavigation.Nombre)
                                     </td>
                                     <td>
-                                        <a class="cmn-btn" asp-controller="CasosEtapa" asp-action="EtapasPL"
+                                        <a class="cmn-btn--revision" asp-controller="CasosEtapa" asp-action="EtapasPL"
                                            asp-route-id="@item.IdCaso">
                                             <!--<img width="25" src="~/lyso/fonts/png/court.png" />-->
                                             Detalles
@@ -130,26 +130,19 @@
                                     </td>
                                 </tr>
                             }
-                            
                         }
-                    }
-                    else
-                    {
-                        <tr>
-                            <td colspan="7">
-                                <div class="col-12 text-center">
-                                    <div class="alert alert-info">
-                                        No cuenta con casos activos en el despacho
-                                    </div>
-                                </div>
-                            </td>
-                        </tr>
-                    }
+                    </tbody>
+                </table>
+            }
+            else
+            {
+                <div class="col-12 text-center">
+                    <div class="alert alert-info">
+                        No cuenta con casos activos en el despacho
+                    </div>
+                </div>
+            }
 
-                   
-                </tbody>
-
-            </table>
             <div class="help-shape">
                 <img src="~/lyso/img/home-one/6.png" alt="Shape">
             </div>

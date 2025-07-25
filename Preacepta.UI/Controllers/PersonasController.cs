@@ -161,7 +161,7 @@ namespace Preacepta.UI.Controllers
         }
 
         // GET: TGePersonas/Details/5
-        [Authorize(Roles = "Gestor")]
+        [Authorize(Roles = "Gestor")]        
         public async Task<IActionResult> Details(int id)
         {
             if (id == null)
@@ -171,7 +171,7 @@ namespace Preacepta.UI.Controllers
 
             var tGePersona = await _buscarPersona.buscar(id);
             if (tGePersona == null)
-            {
+            {                
                 return NotFound();
             }
 
@@ -336,8 +336,19 @@ namespace Preacepta.UI.Controllers
             return RedirectToAction(nameof(Index));
         }
 
+        public async Task<JsonResult> IdExiste(int id)
+        {
+            bool bandera;
+            var ObjetoBuscado = await _buscarPersona.buscar(id);
+            if (ObjetoBuscado != null)
+            {
+                bandera = true;
+                return Json(new { bandera });
+            }
+            bandera = false;
+            return Json(new { bandera });
+        }
 
-        
     }
 }
 

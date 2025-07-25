@@ -1,15 +1,16 @@
 ﻿@model IEnumerable<Preacepta.Modelos.AbstraccionesFrond.GePersonaDTO>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Listado de personas";
     Layout = "_Layout";
 }
 
-<h1>Index</h1>
+<h1>Listado de personas</h1>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-action="Create" hidden>Create New</a>
 </p>
+
 <table class="table">
     <thead>
         <tr>
@@ -77,9 +78,9 @@
                     @Html.DisplayFor(modelItem => item.Activo)
                 </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.Cedula">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Cedula">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Cedula">Delete</a>
+                <a asp-action="Edit" asp-route-id="@item.Cedula">Editar</a> |
+                <a asp-action="Details" asp-route-id="@item.Cedula">Detalles</a> |
+                <a asp-action="Delete" asp-route-id="@item.Cedula">Eliminar</a>
             </td>
         </tr>
 }

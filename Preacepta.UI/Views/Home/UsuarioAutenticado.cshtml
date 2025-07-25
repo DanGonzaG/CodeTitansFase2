@@ -133,7 +133,15 @@
                                             </div>
                                             <h3>Ultimo caso creado</h3>
                                            
-                                                <p>@Model.UltimoCasoCreado.Nombre<p>                                                                                      
+                                            @if (Model.UltimoCasoCreado == null) 
+                                            {
+                                                <p>No tiene casos</p>
+                                            }else
+                                            {
+                                                <p>@Model.UltimoCasoCreado.Nombre</p>
+                                            }                                           
+                                          
+                                                                                                                                  
                                             <a asp-controller="Home" asp-action="CaseStudyDetails">Read More</a>
                                             <img class="practice-shape-one" src="~/lyso/img/home-one/7.png" alt="Shape">
                                             <img class="practice-shape-two" src="~/lyso/img/home-one/8.png" alt="Shape">

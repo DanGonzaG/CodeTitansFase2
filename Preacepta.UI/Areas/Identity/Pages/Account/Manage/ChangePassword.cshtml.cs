@@ -49,7 +49,7 @@ namespace Praecepta.UI.Areas.Identity.Pages.Account.Manage
             ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
             ///     directly from your code. This API may change or be removed in future releases.
             /// </summary>
-            [Required]
+            [Required (ErrorMessage = "El campo Contraseña es obligatorio.")]
             [DataType(DataType.Password)]
             [Display(Name = "Contraseña actual")]
             public string OldPassword { get; set; }
@@ -58,7 +58,7 @@ namespace Praecepta.UI.Areas.Identity.Pages.Account.Manage
             ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
             ///     directly from your code. This API may change or be removed in future releases.
             /// </summary>
-            [Required]
+            [Required (ErrorMessage = "El campo Contraseña nueva es obligatorio.")]
             [StringLength(100, ErrorMessage = "El {0} debe tener al menos {2} y como máximo {1} caracteres de longitud.", MinimumLength = 6)]
             [RegularExpression(@"^(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).+$", ErrorMessage = "La contraseña debe de tener al menos un numero, una mayuscula y un símbolo")]
             [DataType(DataType.Password)]
@@ -105,15 +105,38 @@ namespace Praecepta.UI.Areas.Identity.Pages.Account.Manage
                 return NotFound($"No se puede cargar el usuario con ID '{_userManager.GetUserId(User)}'.");
             }
 
+            var ComparacionDePass = await _userManager.CheckPasswordAsync(user, Input.NewPassword);
+            if (ComparacionDePass)
+            {
+                ModelState.AddModelError(string.Empty, "La contraseña no puede ser igual a la anterior");
+                return Page();
+
+            }
+
             var changePasswordResult = await _userManager.ChangePasswordAsync(user, Input.OldPassword, Input.NewPassword);
             if (!changePasswordResult.Succeeded)
             {
                 foreach (var error in changePasswordResult.Errors)
                 {
-                    ModelState.AddModelError(string.Empty, error.Description);
+
+                    if (error.Code == "PasswordMismatch")
+                    {
+                        ModelState.AddModelError(string.Empty, "Contraseña incorrecta, intente de nuevo");
+                    }
+                    else
+                    {
+                        ModelState.AddModelError(string.Empty, error.Description);
+                    }
+
+
+
+
+                    //ModelState.AddModelError(string.Empty, error.Description);
                 }
                 return Page();
             }
+
+            
 
             await _signInManager.RefreshSignInAsync(user);
             _logger.LogInformation("El usuario cambió su contraseña exitosamente.");

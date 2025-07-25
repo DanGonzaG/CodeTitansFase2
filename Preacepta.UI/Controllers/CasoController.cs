@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using Preacepta.AD;
 using Preacepta.LN.Casos.BuscarXid;
 using Preacepta.LN.Casos.Crear;
 using Preacepta.LN.Casos.Editar;
@@ -391,6 +392,8 @@ namespace Preacepta.UI.Controllers
         }
         #endregion
 
+        #region Decargar Caso Completo
+
         [HttpGet]
         public async Task<IActionResult> DescargarCasoCompleto(int IdCaso)
         {           
@@ -484,5 +487,22 @@ namespace Preacepta.UI.Controllers
 
             return File(pdf, "application/pdf");
         }
+
+        #endregion
+
+        #region validación de existencia de objeto
+        public async Task<JsonResult> IdExiste(int id)
+        {
+            bool bandera;
+            var ObjetoBuscado = await _buscar.buscar(id);
+            if (ObjetoBuscado != null)
+            {
+                bandera = true;
+                return Json(new { bandera });
+            }
+            bandera = false;
+            return Json(new { bandera });
+        }
+        #endregion
     }
 }

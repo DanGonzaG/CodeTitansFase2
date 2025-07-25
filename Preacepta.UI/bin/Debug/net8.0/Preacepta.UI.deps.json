@@ -17,6 +17,7 @@
           "Microsoft.EntityFrameworkCore.SqlServer": "8.0.16",
           "Microsoft.EntityFrameworkCore.Tools": "8.0.16",
           "Microsoft.VisualStudio.Web.CodeGeneration.Design": "8.0.7",
+          "Newtonsoft.Json": "13.0.3",
           "Preacepta.AD": "1.0.0",
           "Preacepta.LN": "1.0.0",
           "Preacepta.Modelos": "1.0.0"
@@ -2686,6 +2687,7 @@
       "Preacepta.LN/1.0.0": {
         "dependencies": {
           "DinkToPdf": "1.0.8",
+          "Newtonsoft.Json": "13.0.3",
           "Preacepta.AD": "1.0.0"
         },
         "runtime": {

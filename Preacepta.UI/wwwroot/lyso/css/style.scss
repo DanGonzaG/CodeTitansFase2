@@ -42,6 +42,18 @@ $white-color: #ffffff;
 $gold-color: #b69d74;
 $black-color: #333333;
 
+$botonPrimario: #0070BB; //Crear,descargar
+$botonSecundario: #ACE1AF; //Filtrar,busar,previsualizar
+$botonRevision: #ED9121; //Revisar, detalles
+$botonTerciario: #848482; //Cancelar
+$botonNavegacion: #848482; //Volver
+
+
+@mixin variacionBtnColores($colorBtn)
+{
+    background-color: $colorBtn;
+}
+
 /*-- Default CSS --*/
 body {
     font-family: $common-font;
@@ -524,8 +536,7 @@ button {
     font-size: 13px; //$all-size;
    padding: 9px 23px; /* antes 16px 40px */
     position: relative;
-    z-index: 1;     
-
+    z-index: 1;
 
     &:before {
         position: absolute;
@@ -564,8 +575,33 @@ button {
         }
     }
 }
-/*-- End Help --*/
 
+.cmn-btn--primario {
+    @extend .cmn-btn;
+    @include variacionBtnColores($botonPrimario); //Crear, descargar
+}
+
+.cmn-btn--secundario {
+    @extend .cmn-btn;
+    @include variacionBtnColores($botonSecundario); //filtrar, buscar, previsualizar
+}
+
+.cmn-btn--revision {
+    @extend .cmn-btn;
+    @include variacionBtnColores($botonRevision); //revisar, detalles,
+}
+
+.cmn-btn--tercero {
+    @extend .cmn-btn;
+    @include variacionBtnColores($botonTerciario);//cancelar
+
+.cmn-btn--navegacion {
+    @extend .cmn-btn;
+    @include variacionBtnColores($botonNavegacion);n
+}
+
+
+/*-- End Help --*/
 /*-- Practice --*/
 .section-title {
     text-align: center;
@@ -579,12 +615,14 @@ button {
         font-size: 14px;
         margin-bottom: 10px;
     }
+
     h2 {
         font: {
             weight: 700;
             size: 38px;
             family: $heading-font;
         }
+
         margin-bottom: 0;
     }
 }
@@ -1212,6 +1250,32 @@ button {
         }
     }
 }
+
+.contact-btn--primero {
+    @extend .contact-btn;
+    @include variacionBtnColores($botonPrimario) //Crear, descargar
+}
+
+.contact-btn--segundo {
+    @extend .contact-btn;
+    @include variacionBtnColores($botonSecundario)//filtrar, buscar, previsualizar
+}
+
+.contact-btn--revision {
+    @extend .contact-btn;
+    @include variacionBtnColores($botonRevision) //revisar, detalles, 
+}
+
+.contact-btn--tercero {
+    @extend .contact-btn;
+    @include variacionBtnColores($botonTerciario)//cancelar
+}
+
+.contact-btn--navegacion {
+    @extend .contact-btn;
+    @include variacionBtnColores($botonNavegacion)//volver
+}
+
 .list-unstyled {
     color: #dc3545;
     margin-bottom: 0;

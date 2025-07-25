@@ -148,6 +148,7 @@ namespace Praecepta.UI.Areas.Identity.Pages.Account
                         var persona = await _buscarPersona.buscarXcorreo(Input.Email); // obtiene le objeto persona
                         if (!persona.Activo) //Valida si el usuario esta activo en la tabla TGePesona en BD
                         {
+                            await _signInManager.SignOutAsync(); //si la persona esta inactiva este metodo cierra la sesion del usuario
                             ModelState.AddModelError(string.Empty, "Su cuenta esta desactivada, favor comuniquese con el despacho"); //HU PP-MA - 1 criterio 2
                             return Page();
                         }

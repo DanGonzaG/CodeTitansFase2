@@ -89,6 +89,27 @@ namespace Preacepta.UI.Controllers
         }
         #endregion
 
+        #region Listado de etapas de caso CERRADO filtrado por caso
+        [Authorize(Roles = "Gestor, Abogado, Cliente")]
+        public async Task<IActionResult> EtapasPLHistorial(int id)
+        {
+            var Caso = await _buscarCaso.buscar(id);
+
+            var EtapaCaso = await _listar.listarXcaso(id);
+
+            var viewModel = new CasoUnionEtapasPL
+            {
+                casoDTO = Caso,
+                listarCasoEtapas = EtapaCaso
+            };
+            if (viewModel.listarCasoEtapas.Count() == 0)
+            {
+                TempData["CasoSinEtapas"] = $"El caso {Caso.Nombre} no cuenta con etapas de procesos legales";
+            }
+            return View(viewModel);
+        }
+        #endregion
+
         #region Creacion de una nueva etapa del proceso legal
         // GET: CasosEtapa/FormularioEtapaPL
         [Authorize(Roles = "Gestor, Abogado")]
@@ -315,6 +336,20 @@ namespace Preacepta.UI.Controllers
 
         #endregion
 
+        #region validación de existencia de objeto
+        public async Task<JsonResult> IdExiste(int id)
+        {
+            bool bandera;
+            var ObjetoBuscado = await _buscar.buscar(id);
+            if (ObjetoBuscado != null)
+            {
+                bandera = true;
+                return Json(new { bandera });
+            }
+            bandera = false;
+            return Json(new { bandera });
+        }
+        #endregion
 
         /********************************************************************************************************************************************************************/
         /*-----------------------------------------------------------------//CONTROLLER METODOS DE FRAMEWORK\\--------------------------------------------------------------*/
