@@ -108,13 +108,17 @@
                 </div>
             </div>
           <div class="text-center mt-4">
-                <button type="button" class="contact-btn"
-                        onclick="window.location.href='@Url.Action("Listar", "DocumentosCita", new { idCita = Model.IdCita })'">Subir Documentos
+            @if (User.IsInRole("Abogado") || User.IsInRole("Admin"))
+            {
+                <button type="button" class="contact-btn" onclick="abrirModalListarDocumentos(@Model.IdCita)">
+                    Documentos
                 </button>
-                <button type="button" class="contact-btn" onclick="mostrarEditarCitaDesdeDetalle('@Model.IdCita')">Editar</button>
+                <button type="button" class="contact-btn" onclick="citaSeleccionadaId='@Model.IdCita'; mostrarEditarCita()">Editar</button>
                 <button type="button" class="contact-btn" onclick="mostrarModalEliminarCita(@Model.IdCita)">Eliminar</button>
+            }
+          
                 <button type="button" class="contact-btn" onclick="cerrarModal('modalDetalleCita', true)">Cerrar</button>
-    </div>
+            
+        </div>
 </div>
     </div>
-</div>
