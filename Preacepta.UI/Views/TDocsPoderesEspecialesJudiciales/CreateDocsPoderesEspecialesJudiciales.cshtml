@@ -1,7 +1,8 @@
 ﻿@model Preacepta.Modelos.AbstraccionesFrond.DocsPoderesEspecialesJudicialeDTO
 ﻿
 <head>
-    <link href="~/lyso/css/Daniel.css" rel="stylesheet" />
+    <!--<link href="~/lyso/css/Andy.css" rel="stylesheet" />-->
+    <link href="~/lyso/css/daniel.css" rel="stylesheet" />
 </head>
 <body>
 <!-- Page Title -->
@@ -12,7 +13,7 @@
                 <h2>Generador de Documentos Legales</h2>
                 <ul>
                     <li>
-                        <a asp-controller="Home" asp-action="Index">Home</a>
+                        <a asp-controller="Home" asp-action="Index">Inicio</a>
                     </li>
                     <li>
                         <i class="icofont-simple-right"></i>
@@ -31,57 +32,117 @@
 
 <div class="contact-form contact-form-two contact-form-three">
     <div class="container">
+            <div class="col-md-12 col-lg-12 encabezadoForm">
+                <img src="~/lyso/img/docs3.png" width=200px" />
+            </div>
         <div class="contact-wrap">
                 <form asp-action="CreateDocsPoderesEspecialesJudiciales" id="CreateDocsPoderesEspecialesJudiciales">
+                    @if (ViewBag.DocumentoAnteriorId != null)
+                    {
+                        <script>
+                            console.log("DocumentoAnteriorId: @ViewBag.DocumentoAnteriorId");
+                        </script>
+                    }
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                 <div class="row justify-content-center">
                     <div class="row">
-                        <div class="col-sm-6 col-lg-6">
-                                <div class="form-group">
-                                    <label asp-for="Fecha" class="control-label"></label>
-                                    <input asp-for="Fecha" type="date" class="form-control" id="idFecha" />
-                                    <span asp-validation-for="Fecha" class="text-danger"></span>
-                                </div>
-                        </div>
-                        <div class="col-sm-6 col-lg-6">
-                            <div class="form-group">
-                                <label asp-for="IdAbogado" class="control-label"></label>
-                                <select asp-for="IdAbogado" class="form-control" asp-items="ViewBag.IdAbogado" id="idIdAbogado"></select>
-                            </div>
-                        </div>
-                        <div class="col-sm-6 col-lg-6">
-                            <div class="form-group">
-                                <label asp-for="IdCliente" class="control-label"></label>
-                                <select asp-for="IdCliente" class="form-control" asp-items="ViewBag.IdCliente" id="idIdCliente"></select>
-                            </div>
-                        </div>
-                        <div class="col-sm-6 col-lg-6">
-                            <div class="form-group">
-                                <label asp-for="Texto" class="control-label"></label>
-                                <input asp-for="Texto" class="form-control" id="idTexto" />
-                                <span asp-validation-for="Texto" class="text-danger"></span>
-                            </div>
-                        </div>
-                    </div>
+                            <div class="contact-form contact-form-two">
+                                <div class="container">
+                                    <div class="contact-wrap">
+                                        <form asp-action="CreateDocsPoderesEspecialesJudiciales" id="CreateDocsPoderesEspecialesJudiciales">
+                                            @if (ViewBag.DocumentoAnteriorId != null)
+                                            {
+                                                <input type="hidden" name="DocumentoAnteriorId" value="@ViewBag.DocumentoAnteriorId" />
+                                            }
 
-                        <br />
-                        <br />
-                        <br />
+                                            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                                            <h2>Formulario para generar poder judicial</h2>
+
+                                            <div class="row justify-content-center">
+                                                <div class="seccion-titulo">Datos del documento</div>
+
+                                                <!-- Fecha -->
+                                                    <div class="col-sm-6 col-lg-6 centro">
+                                                        <div class="form-group">
+                                                            <label asp-for="Fecha" class="control-label"></label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-6 col-lg-6">
+                                                        <div class="form-group">
+                                                            <input asp-for="Fecha" type="date" class="form-control" id="idFecha" />
+                                                            <span asp-validation-for="Fecha" class="text-danger"></span>
+                                                        </div>
+                                                    </div>
+
+                                                <!-- Abogado -->
+                                                
+                                                    <div class="col-sm-6 col-lg-6 centro">
+                                                        <div class="form-group">
+                                                            <label asp-for="IdAbogado" class="control-label"></label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-6 col-lg-6">
+                                                        <div class="form-group">
+                                                            <select asp-for="IdAbogado" class="form-control" asp-items="ViewBag.IdAbogado" id="idIdAbogado"></select>
+                                                        </div>
+                                                    </div>
+
+                                                <br />
+                                                <br />
+                                                <br />
+                                                <br />
+
+                                                <!-- Cliente -->
+                                                    <div class="col-sm-6 col-lg-6 centro">
+                                                        <div class="form-group">
+                                                            <label asp-for="IdCliente" class="control-label"></label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-6 col-lg-6">
+                                                        <div class="form-group">
+                                                            <select asp-for="IdCliente" class="form-control" asp-items="ViewBag.IdCliente" id="idIdCliente"></select>
+                                                        </div>
+                                                    </div>
+
+                                                <br />
+                                                <br />
+                                                <br />
+                                                <br />
+
+                                                <!-- Texto -->
+                                                    <div class="col-sm-6 col-lg-6 centro">
+                                                        <div class="form-group">
+                                                            <label asp-for="Texto" class="control-label"></label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-6 col-lg-6">
+                                                        <div class="form-group">
+                                                            <input asp-for="Texto" class="form-control" id="idTexto" />
+                                                            <span asp-validation-for="Texto" class="text-danger"></span>
+                                                        </div>
+                                                    </div>
 
 
-                        <div class="col-md-12 col-lg-12">
-                            <div class="text-center d-flex justify-content-center gap-3">
-                                <div class="form-group" id="btnCrearCaso">
-                                    <input type="submit" value="Crear Documento" class="contact-btn" />
-                                </div>
-                                <div class="form-group">
-                                    <button type="button" id="btnPrevisualizar" class="contact-btn">
-                                        Previsualizar PDF
-                                    </button>
+                                                <!-- Botones -->
+                                                <div class="col-md-12 col-lg-12">
+                                                    <div class="text-center d-flex justify-content-center gap-3">
+                                                        <div class="form-group" id="btnCrearCaso">
+                                                            <input type="submit" value="Crear Documento" class="contact-btn" />
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <button type="button" id="btnPrevisualizar" class="contact-btn">
+                                                                Previsualizar PDF
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    </div>
+
                 </form>
             </div>
         </div>

@@ -18,7 +18,7 @@ namespace Preacepta.LN.DocPoderesEspecialesJudiciales.ObtenerDatos
                 IdAbogado = poderJud.IdAbogado,
                 IdCliente = poderJud.IdCliente,
                 Texto = poderJud.Texto,
-                Fecha = poderJud.Fecha.ToString("dd/MM/yyyy"),
+                Fecha = poderJud.Fecha.ToString(),
                 IdAbogadoNavigation = poderJud.IdAbogadoNavigation,
                 IdClienteNavigation = poderJud.IdClienteNavigation
             };
@@ -34,7 +34,7 @@ namespace Preacepta.LN.DocPoderesEspecialesJudiciales.ObtenerDatos
                 IdAbogado = poderJudDTO.IdAbogado,
                 IdCliente = poderJudDTO.IdCliente,
                 Texto = poderJudDTO.Texto,
-                Fecha = DateTime.Now,
+                Fecha = DateTime.Parse(poderJudDTO.Fecha),
                 IdAbogadoNavigation = poderJudDTO.IdAbogadoNavigation,
                 IdClienteNavigation = poderJudDTO.IdClienteNavigation
             };

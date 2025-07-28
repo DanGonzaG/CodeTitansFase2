@@ -1,27 +1,15 @@
 ﻿@model Preacepta.Modelos.AbstraccionesFrond.TTestimonioDTO
 
-@if (!ViewData.ModelState.IsValid)
-{
-    <div class="alert alert-danger">
-        <ul>
-            @foreach (var error in ViewData.ModelState.Values.SelectMany(v => v.Errors))
-            {
-                <li>@error.ErrorMessage</li>
-            }
-        </ul>
-    </div>
-}
-
 <!-- Page Title -->
 <head>
-    <link href="~/lyso/css/daniel.css" rel="stylesheet" />
+    <link href="~/lyso/css/Daniel.css" rel="stylesheet" />
 </head>
 <div class="page-title-area page-title-area-two title-img-one">
     <div class="d-table">
         <div class="d-table-cell">
             <div class="page-title-text">
                 <h2>Su testimonio</h2>
-                <h3 style="color:white">Agradecemos su visita. Sus comentarios son valiosos para nosotros.</h3>
+                
                 <ul>
                     <li>
                         <a href="index.html">Home</a>
@@ -41,6 +29,7 @@
 <!-- Contact Form -->
 <div class="contact-form contact-form-four pb-100">
     <div class="container-fluid">
+        <h2 style="color:black">Agradecemos su visita Sus comentarios son valiosos para nosotros.</h2>
         <form asp-action="TestimonialForm" method="post" id="contactForm">
 
             <div class="row contact-wrap">

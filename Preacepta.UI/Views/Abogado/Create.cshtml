@@ -5,9 +5,9 @@
     Layout = "_Layout";
 }
 
-<h1>Create</h1>
+<h1>Registrar un nuevo Abogado</h1>
 
-<h4>TGeAbogado</h4>
+<h4>Modulo de Abogado</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
@@ -99,30 +99,35 @@
                     <input class="form-check-input" asp-for="Activo" /> @Html.//DisplayNameFor(model => model.Activo)
                 </label>
             </div>-->
-            <div class="form-floating mb-3">
+            <div class="form-group">
+                <label asp-for="personaDTO.Email" class="control-label"></label>
                 <input asp-for="personaDTO.Email" class="form-control" autocomplete="username" aria-required="true" placeholder="name@example.com" />
-                <label asp-for="personaDTO.Email">Correro electrónico</label>
                 <span asp-validation-for="personaDTO.Email" class="text-danger"></span>
             </div>
-            <div class="form-floating mb-3">
+
+            <div class="form-group">
+                <label asp-for="personaDTO.Password" class="control-label"></label>
                 <input asp-for="personaDTO.Password" class="form-control" autocomplete="new-password" aria-required="true" placeholder="password" />
-                <label asp-for="personaDTO.Password">Contraseña</label>
                 <span asp-validation-for="personaDTO.Password" class="text-danger"></span>
             </div>
-            <div class="form-floating mb-3">
+
+            <div class="form-group">
+                <label asp-for="personaDTO.ConfirmPassword" class="control-label"></label>
                 <input asp-for="personaDTO.ConfirmPassword" class="form-control" autocomplete="new-password" aria-required="true" placeholder="password" />
-                <label asp-for="personaDTO.ConfirmPassword">Confirmacion de contraseña</label>
                 <span asp-validation-for="personaDTO.ConfirmPassword" class="text-danger"></span>
             </div>
+
+            <br />
+
             <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+                <input type="submit" value="Create" class="btn btn-primary" style=" width: 115px; height: 40px;" />
             </div>
         </form>
     </div>
 </div>
 
 <div>
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Index" class="btn btn-info" style="width: 115px; height: 40px; text-align: center; line-height: 26px;">Regresar</a>
 </div>
 
 @section Scripts {

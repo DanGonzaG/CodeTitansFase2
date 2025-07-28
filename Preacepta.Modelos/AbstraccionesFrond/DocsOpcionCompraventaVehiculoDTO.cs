@@ -116,10 +116,10 @@ namespace Preacepta.Modelos.AbstraccionesFrond
         public int LugarFirma { get; set; }
 
         [DisplayName("Hora de la Firma")]
-        public string HoraFirma { get; set; }
+        public string? HoraFirma { get; set; }
 
         [DisplayName("Fecha de la Firma")]
-        public string FechaFirma { get; set; }
+        public string? FechaFirma { get; set; }
 
         [DisplayName("Cedula del Abogado en navegacion")]
         public virtual TGeAbogado? CedulaAbogadoNavigation { get; set; } = null!;
