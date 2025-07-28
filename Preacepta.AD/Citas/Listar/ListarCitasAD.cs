@@ -72,15 +72,47 @@ namespace Preacepta.AD.Citas.Listar
                     Anfitrion = c.Anfitrion,
                     LinkVideo = c.LinkVideo,
                 }
-            ).ToListAsync();
-
-            return citas;
-        }
+                ).ToListAsync();
+                return citas;
+            }
             catch (Exception ex)
             {
                 Console.WriteLine($"Error al listar citas por cliente: {ex.Message}");
                 return new List<CitasDTO>();
             }
+        }
+
+        /*Este metodo muestra las 3 citas proximas*/
+        public async Task<List<CitasDTO>> TresCitasMasProximasXAfitrion (int id) 
+        {
+            return await _contexto.TCitas
+                .Where(cedula => cedula.Anfitrion == id && cedula.Fecha >= DateOnly.FromDateTime(DateTime.Today))
+                .OrderByDescending(fecha => fecha.Fecha)
+                .Take(3)
+                .Select(a => new CitasDTO 
+                {
+                    IdCita = a.IdCita,
+                    Fecha = a.Fecha,
+                })
+                .ToListAsync();
+                
+        }
+
+        public async Task<List<TCitasCliente>> TresCitasMasProximasXCliente(int idCliente)
+        {
+            var hoy = DateOnly.FromDateTime(DateTime.Today);
+
+            var lista = await (from c in _contexto.TCitasClientes
+                               join tc in _contexto.TCitas on c.IdCita equals tc.IdCita
+                               where c.IdCliente == idCliente && tc.Fecha >= hoy
+                               orderby tc.Fecha
+                               select new TCitasCliente
+                               {
+                                   IdCita = c.IdCita,
+                                   IdCitaNavigation = c.IdCitaNavigation,
+                               }).Take(3).ToListAsync();
+
+            return lista;
         }
     }
 }

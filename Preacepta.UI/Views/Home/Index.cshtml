@@ -19,7 +19,15 @@
                                         <i class="icofont-arrow-right"></i>
                                     </a>
                                     <a asp-action="UsuarioAutenticado" asp-route-correo="@User.Identity.Name">
-                                        CONSULTA GRATUITA
+                                        Vista Abogado
+                                        <i class="icofont-arrow-right"></i>
+                                    </a>
+                                    <a asp-action="UsuarioGestor" asp-route-correo="@User.Identity.Name">
+                                        Vista Gestor
+                                        <i class="icofont-arrow-right"></i>
+                                    </a>
+                                    <a asp-action="UsuarioCliente" asp-route-correo="@User.Identity.Name">
+                                        Vista Cliente
                                         <i class="icofont-arrow-right"></i>
                                     </a>
                                 </div>

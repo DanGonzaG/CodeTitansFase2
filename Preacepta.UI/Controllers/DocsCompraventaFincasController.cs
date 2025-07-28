@@ -32,6 +32,7 @@ namespace Preacepta.UI.Controllers
         private readonly IEditarDocsCompraventaFincaLN _editar;
         private readonly IEliminarDocsCompraventaFincaLN _eliminar;
         private readonly IListarDocsCompraventaFincaLN _listar;
+
         public DocsCompraventaFincasController(IConverter converter,
             IBuscarAbogadoLN buscarAbogado,
             IBuscarXidGePersonaLN buscarPersona,

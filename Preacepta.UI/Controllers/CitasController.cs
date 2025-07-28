@@ -17,10 +17,12 @@ using Microsoft.EntityFrameworkCore;
 using Preacepta.Modelos.AbstraccionesBD;
 using System.Collections.Generic;
 using Azure.Core;
+using System.Net.Mail;
+using System.Net;
 
 namespace Praecepta.UI.Controllers
 {
-    [Authorize(Roles = "Abogado")]
+
     public class CitasController : Controller
     {
         private readonly IListarCitasLN _listarCitasLN;
@@ -191,6 +193,18 @@ namespace Praecepta.UI.Controllers
                 _context.Add(relacionClienteCita);
                 await _context.SaveChangesAsync();
 
+                var cliente = await _context.TGePersonas.FirstOrDefaultAsync(p => p.Cedula == citaDTO.IdCliente);
+                var abogadoPersona = await _context.TGePersonas.FirstOrDefaultAsync(p => p.Cedula == citaDTO.Anfitrion);
+
+                if (cliente != null && !string.IsNullOrWhiteSpace(cliente.Email))
+                {
+                    var correos = new List<string> { cliente.Email };
+                    var nombreCliente = $"{cliente.Nombre} {cliente.Apellido1} {cliente.Apellido2}";
+                    var nombreAbogado = $"{abogadoPersona.Nombre} {abogadoPersona.Apellido1} {abogadoPersona.Apellido2}";
+                    DateTime fecha = citaDTO.Fecha.ToDateTime(citaDTO.Hora);
+                    await EnviarCorreoNotificacionCita(correos, fecha, nombreCliente, nombreAbogado);
+                }
+
                 return Json(new
                 {
                     success = true,
@@ -200,11 +214,34 @@ namespace Praecepta.UI.Controllers
             }
             catch (Exception ex)
             {
-                // Manejo de error
                 return PartialView("~/Views/CitasPrueba/Create.cshtml", citaDTO);
             }
         }
 
+        private async Task EnviarCorreoNotificacionCita(List<string> correos, DateTime fecha, string nombreCliente, string nombreAbogado)
+        {
+            var smtp = new SmtpClient("smtp.gmail.com")
+            {
+                Port = 587,
+                Credentials = new NetworkCredential("valeria2024.43@gmail.com", "rkvd tmlh txrh attg"), 
+                EnableSsl = true
+            };
+
+            foreach (var correo in correos)
+            {
+                var mail = new MailMessage("valeria2024.43@gmail.com", correo)
+                {
+                    Subject = "Notificación de cita agendada",
+                    Body = $"Hola {nombreCliente},\n\n" +
+                   $"Se ha agendado una cita para usted con el abogado {nombreAbogado}.\n" +
+                   $"Pronto recibirá más detalles si son necesarios.\n\n" +
+                   $"Saludos,\nSistema de Citas",
+                    IsBodyHtml = false
+                };
+
+                await smtp.SendMailAsync(mail);
+            }
+        }
 
 
         [HttpGet]
@@ -229,10 +266,20 @@ namespace Praecepta.UI.Controllers
         [HttpGet]
         public async Task<IActionResult> ObtenerCitas()
         {
-            var citas = await _buscarCitasLN.obtenerTodas();
-            Console.WriteLine($"Total citas encontradas: {citas.Count()}");  
+            var usuarioActual = await _userManager.GetUserAsync(User);
+            if (usuarioActual == null)
+                return Unauthorized();
 
-            var resultado = citas.Select(c => new {
+            var emailUsuario = usuarioActual.Email;
+
+            var persona = await _context.TGePersonas.FirstOrDefaultAsync(p => p.Email == emailUsuario);
+            if (persona == null)
+                return NotFound("No se encontró persona asociada al usuario.");
+
+            // Cambiar _buscarCitasLN.obtenerTodas() por un método que filtre por cliente
+            var citasCliente = await _listarCitasLN.ListarPorIdCliente(persona.Cedula);
+
+            var resultado = citasCliente.Select(c => new {
                 idCita = c.IdCita,
                 fecha = c.Fecha,
                 hora = c.Hora,
@@ -342,8 +389,23 @@ namespace Praecepta.UI.Controllers
         // GET: Citas/Details
         public async Task<IActionResult> Details(int id)
         {
-            var cita = await _buscarCitasLN.buscar(id);
+            if (User.IsInRole("Cliente"))
+            {
+                var usuarioActual = await _userManager.GetUserAsync(User);
+                var emailUsuario = usuarioActual?.Email;
+                var persona = await _context.TGePersonas.FirstOrDefaultAsync(p => p.Email == emailUsuario);
+                if (persona == null)
+                {
+                    return Forbid(); // o RedirectToAction("AccesoDenegado")
+                }
+                bool pertenece = await _context.TCitasClientes
+                    .AnyAsync(cc => cc.IdCita == id && cc.IdCliente == persona.Cedula);
 
+                if (!pertenece)
+                    return Forbid(); // o NotFound()
+            }
+            var cita = await _buscarCitasLN.buscar(id);
+           
             if (cita == null)
             {
                 Console.WriteLine($"No se encontró cita con ID: {id}");
@@ -369,11 +431,13 @@ namespace Praecepta.UI.Controllers
                 IdCita = d.IdCita,
                 NombreArchivo = d.NombreArchivo,
                 RutaArchivo = d.RutaArchivo,
-                FechaSubida = d.FechaSubida
+                FechaSubida = d.FechaSubida,
+                Descargar = d.Descargar,
             }).ToList();
 
             return PartialView("~/Views/CitasPrueba/_DetailsPartial.cshtml", cita);
         }
+
         // GET: Citas/Delete
         public async Task<IActionResult> Delete(int id)
         {
@@ -407,26 +471,69 @@ namespace Praecepta.UI.Controllers
 
         }
 
+        [Authorize(Roles = "Cliente,Abogado,Admin")]
         public async Task<IActionResult> Calendar()
         {
-            var lista = await _listarCitasLN.listar();
-            return View("~/Views/Citas/Calendar.cshtml", lista); // Asegúrate que sea esta vista, no Json ni Partial
+            var usuarioActual = await _userManager.GetUserAsync(User);
+
+            if (usuarioActual == null)
+            {
+                return Unauthorized();
+            }
+
+            List<CitasDTO> citas;
+
+            if (await _userManager.IsInRoleAsync(usuarioActual, "Cliente"))
+            {
+                var persona = await _context.TGePersonas
+                    .FirstOrDefaultAsync(p => p.Email == usuarioActual.Email);
+
+                if (persona == null)
+                    return NotFound("No se encontró una persona asociada a este email.");
+
+                citas = await _listarCitasLN.ListarPorIdCliente(persona.Cedula);
+            }
+            else if (await _userManager.IsInRoleAsync(usuarioActual, "Abogado")
+                  || await _userManager.IsInRoleAsync(usuarioActual, "Admin"))
+            {
+                citas = await _listarCitasLN.listar(); // <-- TODAS las citas
+            }
+            else
+            {
+                return Forbid(); // por si hay otros roles sin permisos
+            }
+
+            return View("~/Views/Citas/Calendar.cshtml", citas);
         }
 
+        private async Task<List<CitasDTO>> ObtenerCitasClienteActual()
+{
+    var usuarioActual = await _userManager.GetUserAsync(User);
+    if (usuarioActual == null)
+        return new List<CitasDTO>();
 
-        public async Task<IActionResult> CalendarPasado()
-        {
-            var lista = await _listarCitasLN.listar();
-            var citasPasadas = lista.Where(c => c.FechaHora < DateTime.Now).ToList();
-            return View(citasPasadas);
-        }
+    var emailUsuario = usuarioActual.Email;
 
-        public async Task<IActionResult> _CitaFuturo()
-        {
-            var lista = await _listarCitasLN.listar();
-            var citasFuturas = lista.Where(c => c.FechaHora > DateTime.Now).ToList();
-            return View(citasFuturas);
-        }
+    var persona = await _context.TGePersonas.FirstOrDefaultAsync(p => p.Email == emailUsuario);
+    if (persona == null)
+        return new List<CitasDTO>();
+
+    return await _listarCitasLN.ListarPorIdCliente(persona.Cedula);
+}
+
+public async Task<IActionResult> CalendarPasado()
+{
+    var lista = await ObtenerCitasClienteActual();
+    var citasPasadas = lista.Where(c => c.FechaHora < DateTime.Now).ToList();
+    return View(citasPasadas);
+}
+
+public async Task<IActionResult> _CitaFuturo()
+{
+    var lista = await ObtenerCitasClienteActual();
+    var citasFuturas = lista.Where(c => c.FechaHora > DateTime.Now).ToList();
+    return View(citasFuturas);
+}
 
         [HttpGet]
         [Authorize(Roles = "Cliente")]
@@ -451,7 +558,29 @@ namespace Praecepta.UI.Controllers
             return View("~/Views/Citas/Calendar.cshtml", citas);
         }
 
+        private async Task<List<CitasDTO>> ObtenerCitasPorRol()
+        {
+            var usuarioActual = await _userManager.GetUserAsync(User);
+            var emailUsuario = usuarioActual?.Email;
 
+            if (string.IsNullOrEmpty(emailUsuario))
+                return new List<CitasDTO>();
+
+            var esCliente = await _userManager.IsInRoleAsync(usuarioActual, "Cliente");
+
+            if (esCliente)
+            {
+                var persona = await _context.TGePersonas.FirstOrDefaultAsync(p => p.Email == emailUsuario);
+                if (persona == null)
+                    return new List<CitasDTO>();
+
+                return await _listarCitasLN.ListarPorIdCliente(persona.Cedula);
+            }
+            else
+            {
+                return await _listarCitasLN.listar();
+            }
+        }
         public async Task<List<CitasDTO>> ListarPorIdCliente(int idCliente)
         {
             var citas = await (
@@ -472,6 +601,20 @@ namespace Praecepta.UI.Controllers
             ).ToListAsync();
 
             return citas;
+        }
+
+        [Authorize(Roles = "Gestor, Abogado")]
+        public async Task<JsonResult> IdExiste(int id)
+        {
+            bool bandera;
+            var ObjetoBuscado = await _buscarCitasLN.buscar(id);
+            if (ObjetoBuscado != null)
+            {
+                bandera = true;
+                return Json(new { bandera });
+            }
+            bandera = false;
+            return Json(new { bandera });
         }
 
 

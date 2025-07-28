@@ -23,5 +23,17 @@ namespace Preacepta.LN.DocsCompraventaFinca.Listar
             List<DocsCompraventaFincaDTO> lista = await _listar.listar();
             return lista;
         }
+
+        public async Task<List<DocsCompraventaFincaDTO>> ListarTresUltimosDocs(int cedula)
+        {
+            List<DocsCompraventaFincaDTO> lista = await _listar.ListarTresUltimosDocs(cedula);
+            return lista;
+        }
+
+        public async Task<List<DocsCompraventaFincaDTO>> ListarTresUltimosDocsXCliente(int cedula)
+        {
+            List<DocsCompraventaFincaDTO> lista = await _listar.ListarTresUltimosDocsXCliente(cedula);
+            return lista;
+        }
     }
 }

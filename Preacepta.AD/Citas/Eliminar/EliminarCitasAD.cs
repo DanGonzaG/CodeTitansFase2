@@ -31,6 +31,9 @@ namespace Preacepta.AD.Citas.Eliminar
                     Console.WriteLine($"Buscar por id es nulo");
                     return 0;
                 }
+                var documentos = _contexto.TDocumentosCita.Where(d => d.IdCita == id);
+                _contexto.TDocumentosCita.RemoveRange(documentos);
+
                 var relaciones = _contexto.TCitasClientes.Where(cc => cc.IdCita == id);
                 _contexto.TCitasClientes.RemoveRange(relaciones);
 

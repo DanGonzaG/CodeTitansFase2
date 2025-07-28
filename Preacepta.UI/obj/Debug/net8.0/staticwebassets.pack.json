@@ -21,6 +21,10 @@
       "PackagePath": "staticwebassets\\css\\site.css"
     },
     {
+      "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\css\\siteGestor.css",
+      "PackagePath": "staticwebassets\\css\\siteGestor.css"
+    },
+    {
       "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\favicon.ico",
       "PackagePath": "staticwebassets\\favicon.ico"
     },
@@ -277,6 +281,30 @@
       "PackagePath": "staticwebassets\\lyso\\DocsMachotes\\AutorizacionExpedienteMachote.html"
     },
     {
+      "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lyso\\DocsMachotes\\CompraVentaFincasMachote.html",
+      "PackagePath": "staticwebassets\\lyso\\DocsMachotes\\CompraVentaFincasMachote.html"
+    },
+    {
+      "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lyso\\DocsMachotes\\DocsPagare.html",
+      "PackagePath": "staticwebassets\\lyso\\DocsMachotes\\DocsPagare.html"
+    },
+    {
+      "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lyso\\DocsMachotes\\InscripcionDeVehiculoMachote.html",
+      "PackagePath": "staticwebassets\\lyso\\DocsMachotes\\InscripcionDeVehiculoMachote.html"
+    },
+    {
+      "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lyso\\DocsMachotes\\OpcionCompraVentaVehiculos.html",
+      "PackagePath": "staticwebassets\\lyso\\DocsMachotes\\OpcionCompraVentaVehiculos.html"
+    },
+    {
+      "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lyso\\DocsMachotes\\PoderesEspecialesJudiciales.html",
+      "PackagePath": "staticwebassets\\lyso\\DocsMachotes\\PoderesEspecialesJudiciales.html"
+    },
+    {
+      "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lyso\\DocsMachotes\\PrestacionServiciosMachote.html",
+      "PackagePath": "staticwebassets\\lyso\\DocsMachotes\\PrestacionServiciosMachote.html"
+    },
+    {
       "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lyso\\css\\Daniel.css",
       "PackagePath": "staticwebassets\\lyso\\css\\Daniel.css"
     },
@@ -479,6 +507,18 @@
     {
       "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lyso\\fonts\\icofont.woff2",
       "PackagePath": "staticwebassets\\lyso\\fonts\\icofont.woff2"
+    },
+    {
+      "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lyso\\img\\CAP1.png",
+      "PackagePath": "staticwebassets\\lyso\\img\\CAP1.png"
+    },
+    {
+      "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lyso\\img\\CAP2.png",
+      "PackagePath": "staticwebassets\\lyso\\img\\CAP2.png"
+    },
+    {
+      "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lyso\\img\\CAP3.png",
+      "PackagePath": "staticwebassets\\lyso\\img\\CAP3.png"
     },
     {
       "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lyso\\img\\FormCasoNuevo.png",
@@ -829,6 +869,10 @@
       "PackagePath": "staticwebassets\\lyso\\js\\CalculoEdad.js"
     },
     {
+      "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lyso\\js\\Calendar-init.js",
+      "PackagePath": "staticwebassets\\lyso\\js\\Calendar-init.js"
+    },
+    {
       "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lyso\\js\\ConfiguracionTablas.js",
       "PackagePath": "staticwebassets\\lyso\\js\\ConfiguracionTablas.js"
     },
@@ -839,6 +883,18 @@
     {
       "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lyso\\js\\DocsCompraVentaVehiculos.js",
       "PackagePath": "staticwebassets\\lyso\\js\\DocsCompraVentaVehiculos.js"
+    },
+    {
+      "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lyso\\js\\DocsGeneratorDocsTipoVehiculoes.js",
+      "PackagePath": "staticwebassets\\lyso\\js\\DocsGeneratorDocsTipoVehiculoes.js"
+    },
+    {
+      "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lyso\\js\\DocsPagares.js",
+      "PackagePath": "staticwebassets\\lyso\\js\\DocsPagares.js"
+    },
+    {
+      "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lyso\\js\\DocsPoderesEspecialesJudiciales.js",
+      "PackagePath": "staticwebassets\\lyso\\js\\DocsPoderesEspecialesJudiciales.js"
     },
     {
       "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lyso\\js\\FiltrarCasosXId.js",
@@ -859,6 +915,14 @@
     {
       "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lyso\\js\\MostrarDetallesPL.js",
       "PackagePath": "staticwebassets\\lyso\\js\\MostrarDetallesPL.js"
+    },
+    {
+      "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lyso\\js\\SweetAlertUsuarioAbogado.js",
+      "PackagePath": "staticwebassets\\lyso\\js\\SweetAlertUsuarioAbogado.js"
+    },
+    {
+      "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lyso\\js\\SweetAlertUsuarioGestor.js",
+      "PackagePath": "staticwebassets\\lyso\\js\\SweetAlertUsuarioGestor.js"
     },
     {
       "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lyso\\js\\bootstrap.bundle.min.js",
@@ -931,6 +995,10 @@
     {
       "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lyso\\js\\owl.carousel.min.js",
       "PackagePath": "staticwebassets\\lyso\\js\\owl.carousel.min.js"
+    },
+    {
+      "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lyso\\js\\programarReunion.js",
+      "PackagePath": "staticwebassets\\lyso\\js\\programarReunion.js"
     },
     {
       "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lyso\\js\\wow.min.js",

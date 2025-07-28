@@ -1,6 +1,7 @@
 ﻿@model IEnumerable<Preacepta.Modelos.AbstraccionesFrond.HistorialDocumento>
 <head>
-    <link href="~/lyso/css/mostrar.css" rel="stylesheet" />
+    <link href="~/lyso/css/Andy.css" rel="stylesheet" />
+    <link href="~/lyso/css/daniel.css" rel="stylesheet" />
 </head>
 
 <!-- Page Title -->
@@ -11,7 +12,13 @@
                 <h2>Historial de documentos legales</h2>
                 <ul>
                     <li>
-                        <a asp-controller="Home" asp-action="Index">Home</a>
+                        <a asp-controller="Home" asp-action="Index">Inicio</a>
+                    </li>
+                    <li>
+                        <i class="icofont-simple-right"></i>
+                    </li>
+                    <li>
+                        <a asp-controller="Home" asp-action="UsuarioAutenticado" asp-route-correo=@User.Identity.Name>PreaceptaApp</a>
                     </li>
                     <li>
                         <i class="icofont-simple-right"></i>
@@ -30,33 +37,51 @@
 <div class="contact-form contact-form-two contact-form-three">
     <div class="container">
         <div class="contact-wrap">
-            <form id="contactForm" class="">
-                <h2>Filtrar el listado de documentos</h2>
+
+
+            <form asp-action="DocsHistorial" method="get">
+                <h2 class="text-center">Filtrar el listado de documentos</h2>
+
+                <!-- Fila de campos -->
                 <div class="row justify-content-center">
-                    <div class="col-sm-6 col-lg-6">
+                    <!-- Fecha -->
+                    <div class="col-sm-4 col-md-3 filtro-campo">
                         <div class="form-group">
-                            <input type="date" name="fecha" id="fecha" class="form-control" placeholder="Ingrese la fecha" />
+                            <label for="fecha">Fecha</label>
+                            <input type="date" name="fecha" class="form-control" value="@(ViewContext.HttpContext.Request.Query["fecha"])" />
                         </div>
                     </div>
-                    <div class="col-sm-6 col-lg-6">
+
+                    <!-- Tipo de documento -->
+                    <div class="col-sm-4 col-md-4 filtro-campo">
                         <div class="form-group">
-                            <input type="text" name="tipo" id="tipo" class="form-control" placeholder="Ingrese el tipo de documento" />
-                        </div>
-                    </div>
-                    <div class="col-sm-6 col-lg-6">
-                        <div class="text-center">
-                            <button type="submit" class="contact-btn">Buscar</button>
+                            <label for="tipo">Tipo de documento</label>
+                            <select name="tipo" class="form-control" asp-items="ViewBag.TipoDocumento">
+                                <option value="">-- Todos los tipos --</option>
+                            </select>
                         </div>
                     </div>
                 </div>
+
+                <!-- Fila del botón centrado -->
+                <div class="row mt-3">
+                    <div class="col text-center">
+                        <button type="submit" class="boton-buscar">Buscar</button>
+                    </div>
+                </div>
             </form>
+
+
+
+
+
         </div>
     </div>
 </div>
 
-<div class="formulario contact-form contact-form-two contact-form-three">
+<div class="formulario contact-form contact-form-two contact-form-three LetraNegra">
     <div class="container">
-        <table class="table">
+        <table class="table LetraNegra">
             <thead>
                 <tr>
                     <th>Fecha</th>
@@ -70,7 +95,7 @@
                 @foreach (var item in Model)
                 {
                     <tr>
-                        <td>@item.Fecha.ToString("yyyy-MM-dd")</td>
+                        <td>@item.Fecha.ToString("dd/MM/yyyy")</td>
                         <td>@item.TipoDocumento</td>
                         <td>@item.Cliente</td>
                         <td>@item.Abogado</td>
@@ -84,11 +109,15 @@
                                                 item.TipoDocumento == "Contrato Prestación de Servicios" ? "DocsContratoPrestacionServicios" :
                                                 item.TipoDocumento == "Compra y Venta de Fincas" ? "DocsCompraventaFincas" :
                                                 item.TipoDocumento == "Inscripción de Vehículos" ? "DocsInscripcionVehiculo" :
+                                                item.TipoDocumento == "Compra y venta de vehículos" ? "DocsOpcionCompraventaVehiculoes" :
+                                                item.TipoDocumento == "Poderes especiales judiciales" ? "TDocsPoderesEspecialesJudiciales" :                                                                            
                                                 "HistorialDocumentos")"
                            asp-action="EditarDesdeHistorial"
                            asp-route-id="@item.Id">
                             <i class="fa-solid fa-pen"></i>
                         </a>
+
+
 
 
                         </td>
@@ -99,3 +128,6 @@
     </div>
 </div>
 
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
+<script src="~/lyso/js/configuraciontablas.js"></script>

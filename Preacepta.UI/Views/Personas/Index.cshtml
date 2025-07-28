@@ -1,15 +1,21 @@
-﻿@model IEnumerable<Preacepta.Modelos.AbstraccionesFrond.GePersonaDTO>
+@model IEnumerable<Preacepta.Modelos.AbstraccionesFrond.GePersonaDTO>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Listado de personas";
     Layout = "_Layout";
 }
 
-<h1>Index</h1>
+
+<head>
+    <!--<link href="~/lyso/css/style.css" rel="stylesheet" />-->
+</head>
+
+<h1>Personas</h1>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-action="Create" class="btn btn-primary">Agregar Persona</a>
 </p>
+
 <table class="table">
     <thead>
         <tr>
@@ -26,10 +32,10 @@
             <th>
                 @Html.DisplayNameFor(model => model.EstadoCivil)
             </th>                 
-            <th>
+            <th style="min-width: 120px; text-align: center; vertical-align: middle;">
                 @Html.DisplayNameFor(model => model.Telefono1)
             </th>
-            <th>
+            <th style="min-width: 120px; text-align: center; vertical-align: middle;">
                 @Html.DisplayNameFor(model => model.Telefono2)
             </th>
             <th>
@@ -60,10 +66,10 @@
             <td>
                 @Html.DisplayFor(modelItem => item.EstadoCivil)
             </td>
-            <td>
+            <td style="min-width: 120px; text-align: center; vertical-align: middle;">
                 @Html.DisplayFor(modelItem => item.Telefono1)
             </td>
-            <td>
+            <td style="min-width: 120px; text-align: center; vertical-align: middle;">
                 @Html.DisplayFor(modelItem => item.Telefono2)
             </td>
            
@@ -76,11 +82,13 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.Activo)
                 </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.Cedula">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Cedula">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Cedula">Delete</a>
-            </td>
+                <td>
+                    <div class="btn-group">
+                        <a asp-action="Edit" asp-route-id="@item.Cedula" class="btn btn-warning">Editar</a>
+                        <a asp-action="Details" asp-route-id="@item.Cedula" class="btn btn-info">Detalles</a>
+                        <a asp-action="Delete" asp-route-id="@item.Cedula" class="btn btn-danger">Eliminar</a>
+                    </div>
+                </td>
         </tr>
 }
     </tbody>

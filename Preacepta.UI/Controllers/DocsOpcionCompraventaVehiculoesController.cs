@@ -200,10 +200,28 @@ namespace Preacepta.UI.Controllers
         {
             try
             {
-                ViewData["CedulaAbogado"] = new SelectList(_context.TGeAbogados, "Cedula", "Cedula");
-
-                ViewData["CedulaComprador"] = new SelectList(_context.TGePersonas, "Cedula", "Cedula");
-                ViewData["CedulaPropietario"] = new SelectList(_context.TGePersonas, "Cedula", "Cedula");
+                ViewData["CedulaAbogado"] = new SelectList(
+                _context.TGeAbogados.Include(a => a.CedulaNavigation).Select(a => new
+                {
+                    Cedula = a.Cedula,
+                    Texto = a.CedulaNavigation.Nombre + " " + a.CedulaNavigation.Apellido1 + " - " + a.Cedula
+                }),
+                "Cedula",
+                "Texto");
+                ViewData["CedulaComprador"] = new SelectList(_context.TGePersonas.Select(p => new
+                {
+                    Cedula = p.Cedula,
+                    apellido = p.Apellido1,
+                    Texto = p.Nombre + " " + p.Apellido1 + " - " + p.Cedula
+                }),
+            "Cedula", "Texto");
+                ViewData["CedulaPropietario"] = new SelectList(_context.TGePersonas.Select(p => new
+                {
+                    Cedula = p.Cedula,
+                    apellido = p.Apellido1,
+                    Texto = p.Nombre + " " + p.Apellido1 + " - " + p.Cedula
+                }),
+            "Cedula", "Texto");
 
                 ViewData["Combustible"] = new SelectList(_context.TDocsCombustibles, "Id", "Nombre");
 
@@ -229,17 +247,17 @@ namespace Preacepta.UI.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> CreateDocsOpcionCompraventaVehiculoes(
-    [Bind("NumeroEscritura,CedulaAbogado,CedulaPropietario,CedulaComprador,PlacaVehiculo,MarcaVehiculo,TipoVehiculo,ModeloVehiculo,Carroceria,Categoria,Chasis,Serie,Vin,MarcaMotor,NumeroMotor,Color,Combustible,Anio,Capacidad,Cilindraje,Precio,MonedaPrecio,PlazoOpcionAnios,FechaInicio,MontoSenal,MonedaSenal,MontoADevolver,MontoAPerder,MonedaMontoPerdido,GastosTraspasoPagadosPor,LugarFirma,HoraFirma,FechaFirma")] DocsOpcionCompraventaVehiculoDTO tcompraventa,
+    [Bind("NumeroEscritura,CedulaAbogado,CedulaPropietario,CedulaComprador,PlacaVehiculo,MarcaVehiculo,TipoVehiculo,ModeloVehiculo,Carroceria,Categoria,Chasis,Serie,Vin,MarcaMotor,NumeroMotor,Color,Combustible,Anio,Capacidad,Cilindraje,Precio,MonedaPrecio,PlazoOpcionAnios,FechaInicio,MontoSenal,MonedaSenal,MontoADevolver,MontoAPerder,MonedaMontoPerdido,GastosTraspasoPagadosPor,LugarFirma")] DocsOpcionCompraventaVehiculoDTO tcompraventa,
     [FromForm] int? DocumentoAnteriorId)
         {
+            /*ModelState.Remove("FechaFirma");
+            ModelState.Remove("HoraFirma");*/
+
             if (ModelState.IsValid)
             {
-                // Establecer fecha y hora si no vienen
-                tcompraventa.FechaFirma ??= DateTime.Today.ToString("yyyy-MM-dd");
-                tcompraventa.HoraFirma ??= DateTime.Now.ToString("HH:mm");
 
                 // Eliminar documento anterior y su historial (si aplica)
-                if (DocumentoAnteriorId.HasValue)
+                /*if (DocumentoAnteriorId.HasValue)
                 {
                     // Buscar el historial con ese ID
                     var historialAnterior = await _context.HistorialDocumentos
@@ -262,7 +280,12 @@ namespace Preacepta.UI.Controllers
 
                         await _context.SaveChangesAsync();
                     }
-                }
+                }*/
+
+                // Asignar automáticamente fecha y hora actual
+                /*tcompraventa.FechaFirma = DateTime.Now.ToString("yyyy-MM-dd");
+                tcompraventa.HoraFirma = DateTime.Now.ToString("HH:mm");*/
+
 
                 // Crear nuevo documento
                 await _crear.crear(tcompraventa);
@@ -311,6 +334,42 @@ namespace Preacepta.UI.Controllers
             }
 
             // Si el modelo no es válido, retornar vista con datos actuales
+            ViewData["CedulaAbogado"] = new SelectList(_context.TGeAbogados.Include(a => a.CedulaNavigation).Select(a => new
+                {
+                    Cedula = a.Cedula,
+                    Texto = a.CedulaNavigation.Nombre + " " + a.CedulaNavigation.Apellido1 + " - " + a.Cedula
+                }),
+                "Cedula",
+                "Texto", tcompraventa?.CedulaAbogado);
+
+            ViewData["CedulaComprador"] = new SelectList(_context.TGePersonas.Select(p => new
+            {
+                Cedula = p.Cedula,
+                apellido = p.Apellido1,
+                Texto = p.Nombre + " " + p.Apellido1 + " - " + p.Cedula
+            }),
+        "Cedula",
+        "Texto", tcompraventa?.CedulaComprador);
+
+            ViewData["CedulaPropietario"] = new SelectList(_context.TGePersonas.Select(p => new
+            {
+                Cedula = p.Cedula,
+                apellido = p.Apellido1,
+                Texto = p.Nombre + " " + p.Apellido1 + " - " + p.Cedula
+            }),
+        "Cedula",
+        "Texto", tcompraventa ?.CedulaPropietario);
+
+
+            ViewData["Combustible"] = new SelectList(_context.TDocsCombustibles, "Id", "Nombre");
+
+            ViewData["LugarFirma"] = new SelectList(_context.TCrDistritos, "IdDistrito", "NombreDistrito");
+
+            ViewData["MarcaMotor"] = new SelectList(_context.TDocsMarcaVehiculos, "Id", "Nombre");
+            ViewData["MarcaVehiculo"] = new SelectList(_context.TDocsMarcaVehiculos, "Id", "Nombre");
+
+            ViewData["TipoVehiculo"] = new SelectList(_context.TDocsTipoVehiculos, "Id", "Nombre");
+
             return View(tcompraventa);
         }
 
@@ -363,9 +422,14 @@ namespace Preacepta.UI.Controllers
                 .Replace("{{MONTO_A_PERDER}}", q["montoAPerder"])
                 .Replace("{{MONEDA_MONTO_PERDIDO}}", q["monedaMontoPerdido"])
                 .Replace("{{GASTOS_TRASPASO_PAGADOS_POR}}", q["gastosTraspasoPagadosPor"])
-                .Replace("{{LUGAR_FIRMA}}", q["lugarFirma"])
-                .Replace("{{HORA_FIRMA}}", q["horaFirma"])
-                .Replace("{{FECHA_FIRMA}}", q["fechaFirma"]);
+                .Replace("{{LUGAR_FIRMA}}", q["lugarFirma"]);
+
+                var ahora = DateTime.Now;
+
+                htmlTemplate = htmlTemplate
+                    .Replace("{{HORA_FIRMA}}", ahora.ToString("hh:mm tt"))     
+                    .Replace("{{FECHA_FIRMA}}", ahora.ToString("yyyy-MM-dd")); 
+
 
             var doc = new HtmlToPdfDocument()
             {
@@ -445,9 +509,32 @@ namespace Preacepta.UI.Controllers
 
             ViewBag.DocumentoAnteriorId = historial.Id;
 
-            ViewData["CedulaAbogado"] = new SelectList(_context.TGeAbogados, "Cedula", "Cedula", model.CedulaAbogado);
-            ViewData["CedulaComprador"] = new SelectList(_context.TGePersonas, "Cedula", "Cedula", model.CedulaComprador);
-            ViewData["CedulaPropietario"] = new SelectList(_context.TGePersonas, "Cedula", "Cedula", model.CedulaPropietario);
+            ViewData["CedulaAbogado"] = new SelectList(_context.TGeAbogados.Include(a => a.CedulaNavigation).Select(a => new
+            {
+                Cedula = a.Cedula,
+                Texto = a.CedulaNavigation.Nombre + " " + a.CedulaNavigation.Apellido1 + " - " + a.Cedula
+            }),
+                "Cedula",
+                "Texto", model?.CedulaAbogado);
+
+            ViewData["CedulaComprador"] = new SelectList(_context.TGePersonas.Select(p => new
+            {
+                Cedula = p.Cedula,
+                apellido = p.Apellido1,
+                Texto = p.Nombre + " " + p.Apellido1 + " - " + p.Cedula
+            }),
+                "Cedula",
+                "Texto", model?.CedulaComprador);
+
+            ViewData["CedulaPropietario"] = new SelectList(_context.TGePersonas.Select(p => new
+            {
+                Cedula = p.Cedula,
+                apellido = p.Apellido1,
+                Texto = p.Nombre + " " + p.Apellido1 + " - " + p.Cedula
+            }),
+                "Cedula",
+                "Texto", model?.CedulaPropietario);
+
             ViewData["Combustible"] = new SelectList(_context.TDocsCombustibles, "Id", "Nombre", model.Combustible);
             ViewData["LugarFirma"] = new SelectList(_context.TCrDistritos, "IdDistrito", "NombreDistrito", model.LugarFirma);
             ViewData["MarcaMotor"] = new SelectList(_context.TDocsMarcaVehiculos, "Id", "Nombre", model.MarcaMotor);

@@ -5,46 +5,80 @@
     Layout = "_Layout";
 }
 
+<!-- Modal para listar documentos -->
+<div id="modalListarDocumentos" class="custom-modal" style="display:none;">
+    <div class="custom-modal-content contact-form contact-form-two contact-form-three LetraNegra">
+        <span class="custom-close" onclick="cerrarModalListarDocumentos()">&times;</span>
 
-<h4>Documentos compartidos en esta cita</h4>
+        <h4>Documentos compartidos en esta cita</h4>
 
-@if (Model.Any())
-{
-    <ul>
-        @foreach (var doc in Model)
+        @if (Model.Any())
         {
-            <li>
-                <strong>@doc.NombreArchivo</strong> -
-                @if (doc.Descargar)
+            <ul>
+                @foreach (var doc in Model)
                 {
-                    <a href="@doc.RutaArchivo" download>Descargar</a>
+                    var inputId = $"chkPermitir_{doc.Id}";
+                    <li style="margin-bottom: 1rem;">
+
+                        <strong>@doc.NombreArchivo</strong> -
+                        @if (doc.Descargar)
+                        {
+                            <span class="text-success">Descarga Autorizada</span>
+                            <a href="@doc.RutaArchivo" download>Descargar</a>
+                        }
+                        else
+                        {
+                            <span class="text-danger">Descarga sin Autorización</span>
+                        }
+                        <span class="text-muted">(subido el @doc.FechaSubida.ToShortDateString())</span>
+
+                        <div class="switch-container">
+                            <label class="switch">
+                                <input type="checkbox" class="chk-permitir"
+                                       data-id="@doc.Id" @(doc.Descargar ? "checked" : "") />
+                                <span class="slider"></span>
+                            </label>
+                        </div>
+                           
+                    </li>
                 }
-                else
-                {
-                    <span class="text-danger">(Descarga no autorizada)</span>
-                }
-                <span class="text-muted"> (subido el @doc.FechaSubida.ToShortDateString())</span>
-                <form asp-controller="DocumentosCita" asp-action="ActualizarPermisoDescarga" method="post" style="display:inline; margin-left: 10px;">
-                    <input type="hidden" name="permitirDescarga" value="false" />
-                    <label>
-                        <input type="checkbox" name="permitirDescarga" value="true" @(doc.Descargar ? "checked" : "") onchange="this.form.submit()" />
-                        Permitir descarga
-                    </label>
-                </form>
-            </li>
+            </ul>
+            <button id="btnActualizarTodos" type="button" style="margin-top:1rem;">
+                Actualizar permisos
+            </button>
         }
-    </ul>
-}
-else
-{
-    <p>No hay documentos aún.</p>
-}
+        else
+        {
+            <p>No hay documentos aún.</p>
+        }
 
-<hr />
+        <hr />
 
-<h5>Subir nuevo documento</h5>
-<form asp-controller="DocumentosCita" asp-action="Subir" method="post" enctype="multipart/form-data">
-    <input type="hidden" name="idCita" value="@idCita" />
-    <input type="file" name="archivo" required />
-    <button type="submit">Subir</button>
-</form>
+        <h5>Subir nuevo documento</h5>
+        <form id="formSubirDocumento" method="post" enctype="multipart/form-data">
+            <input type="file" id="archivo" name="archivo" accept=".pdf,.docx,.jpg,.png">
+            <button type="submit" class="contact-btn">Subir Documento</button>
+        </form>
+
+    </div>
+</div>
+
+<script>
+    function abrirModalListarDocumentos() {
+        document.getElementById('modalListarDocumentos').style.display = "block";
+    }
+
+    window.onclick = function (event) {
+        var modal = document.getElementById('modalListarDocumentos');
+        if (event.target == modal) {
+            modal.style.display = "none";
+        }
+    }
+</script>
+
+@section Scripts {
+    <script src="~/calendario/scriptcalendar.js"></script>
+    <script src="~/lyso/js/Calendar-init.js"></script>
+    <link href="~/lyso/css/Daniel.css" rel="stylesheet" />
+
+}

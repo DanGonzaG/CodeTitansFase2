@@ -517,6 +517,20 @@ namespace Preacepta.UI.Controllers
             ViewData["IdTipoAbogado"] = new SelectList(_listarAbogadoTipo.listar().Result, "IdTipoAbogado", "Nombre");
             return View(tGeAbogado);
         }
+
+        [Authorize(Roles = "Gestor, Abogado, Cliente")]
+        public async Task<JsonResult> IdExiste(int id)
+        {
+            bool bandera;
+            var ObjetoBuscado = await _buscar.buscar(id);
+            if (ObjetoBuscado != null)
+            {
+                bandera = true;                
+                return Json(new { bandera });
+            }
+            bandera = false;
+            return Json(new { bandera });
+        }
     }
 }
 

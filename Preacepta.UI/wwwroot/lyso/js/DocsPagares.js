@@ -3,12 +3,30 @@
 document.getElementById('btnCrearCaso').style.display = 'block';
 
 document.getElementById('CreateDocsPagares').addEventListener('submit', (e) => {
+    const now = new Date();
 
+    const fecha = now.toISOString().slice(0, 10); // yyyy-MM-dd
+    const hora = now.toTimeString().slice(0, 5);   // HH:mm
+
+    // Asignar a inputs ocultos
+    document.getElementById('idFechaFirma').value = fecha;
+    document.getElementById('idHoraFirma').value = hora;
 });
 
 //este codigo en JavaScript lo que hace es almacenar los datos de form en el modal y viceversa
 document.getElementById('btnPrevisualizar').addEventListener('click', () => {
-    const MontoNumerico = document.getElementById('idMontoNumerico').value;
+    /*const MontoNumerico = document.getElementById('CreateDocsPagares').addEventListener('submit', (e) => {
+        const montoInput = document.getElementById('idMontoNumerico');
+        if (montoInput && montoInput.value.includes(',')) {
+            montoInput.value = montoInput.value.replace(',', '.');
+        }
+        const MontoNumerico = montoInput.value;*/
+
+    const montoInput = document.getElementById('idMontoNumerico');
+    let MontoNumerico = montoInput?.value || '';
+    MontoNumerico = MontoNumerico.replace(',', '.');
+
+
     const CedulaDeudor = document.getElementById('idCedulaDeudor').value;
     const SociedadDeudor = document.getElementById('idSociedadDeudor').value;
     const CedulaJuridicaSociedad = document.getElementById('idCedulaJuridicaSociedad').value;
@@ -17,16 +35,26 @@ document.getElementById('btnPrevisualizar').addEventListener('click', () => {
     const AcreedorDomicilio = document.getElementById('idAcreedorDomicilio').value;
     const FechaVencimiento = document.getElementById('idFechaVencimiento').value;
     const InteresFormula = document.getElementById('idInteresFormula').value;
-    const InteresTasaActual = document.getElementById('idInteresTasaActual').value;
+    /*const InteresTasaActual = document.getElementById('CreateDocsPagares').addEventListener('submit', (e) => {
+        const tasaInput = document.getElementById('idInteresTasaActual');
+        if (tasaInput && tasaInput.value.includes(',')) {
+            tasaInput.value = tasaInput.value.replace(',', '.');
+        }
+        const InteresTasaActual = tasaInput.value;*/
+
+    const tasaInput = document.getElementById('idInteresTasaActual');
+    let InteresTasaActual = tasaInput?.value || '';
+    InteresTasaActual = InteresTasaActual.replace(',', '.');
+
     const InteresBase = document.getElementById('idInteresBase').value;
     const LugarPago = document.getElementById('idLugarPago').value;
     const CedulaFiador = document.getElementById('idCedulaFiador').value;
     const UbicacionFirma = document.getElementById('idUbicacionFirma').value;
 
-    const fechaFirmaNuevo = new Date().toLocaleDateString('es-CR'); // ej. 22/06/2025
-    const horaFirmaNuevo = new Date().toLocaleTimeString('es-CR', { hour: '2-digit', minute: '2-digit' });
-
-    const timestamp = new Date().getTime();
+    // ✅ CORREGIDO: Tomar directamente lo que el usuario escribió en los inputs
+    /*const fechaFirmaNuevo = document.getElementById('idFechaFirma').value;
+    const horaFirmaNuevo = document.getElementById('idHoraFirma').value;*/
+    const timestamp = new Date().getTime(); // Para evitar cacheo
 
     const url = `/TDocsPagares/PrevisualizarPDF?` +
         `idDocumento=0&` +
@@ -44,12 +72,27 @@ document.getElementById('btnPrevisualizar').addEventListener('click', () => {
         `lugarPago=${encodeURIComponent(LugarPago)}&` +
         `cedulaFiador=${encodeURIComponent(CedulaFiador)}&` +
         `ubicacionFirma=${encodeURIComponent(UbicacionFirma)}&` +
-        `fechaFirmaNuevo=${encodeURIComponent(fechaFirmaNuevo)}&` +
-        `horaFirmaNuevo=${encodeURIComponent(horaFirmaNuevo)}&` +
+        /*`fechaFirmaNuevo=${encodeURIComponent(fechaFirmaNuevo)}&` +
+        `horaFirmaNuevo=${encodeURIComponent(horaFirmaNuevo)}&` +*/
         `t=${timestamp}`;
 
     window.open(url, '_blank');
 });
+
+
+/*document.getElementById('idHoraFirma').addEventListener('input', function () {
+    const valor = this.value;
+    if (valor) {
+        const [hour, minute] = valor.split(':');
+        const hora = parseInt(hour, 10);
+
+        const ampm = hora >= 12 ? 'PM' : 'AM';
+        document.getElementById('horaAmPm').textContent = ampm;
+    } else {
+        document.getElementById('horaAmPm').textContent = '';
+    }
+});*/
+
 
 
 //    // Actualiza el contenido del modal
