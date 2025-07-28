@@ -2,18 +2,24 @@
 
 // Delegar clic en eventos del calendario para mostrar detalles
 function agregarClickEventos() {
-    const events = document.querySelectorAll(".event");
-    if (!events.length) {
-        console.warn("No se encontraron los elementos necesarios para agregar eventos");
-        return;
-    }
-    events.forEach(ev => {
+    const renderedEvents = document.querySelectorAll(".event");
+    renderedEvents.forEach(ev => {
         ev.addEventListener("click", (e) => {
-            const idCita = e.currentTarget.getAttribute("data-id");
-            if (idCita) {
-                mostrarDetallesCita(idCita);
+            e.stopPropagation();
+            const citaId = ev.getAttribute("data-id");
+            if (citaId) {
+                fetch(`/Citas/Details/${citaId}`)
+                    .then(res => res.text())
+                    .then(html => {
+                        document.getElementById("detalleCitaBody").innerHTML = html;
+                        document.getElementById("modalDetalleCita").style.display = "block";
+                    })
+                    .catch(err => {
+                        console.error("Error al cargar detalles de cita", err);
+                        alert("No se pudo cargar la información de la cita.");
+                    });
             } else {
-                console.warn("ID de cita no encontrado en elemento click");
+                alert("ID de cita inválido");
             }
         });
     });
@@ -24,7 +30,15 @@ function mostrarDetallesCita(idCita) {
     citaSeleccionadaId = idCita;
     fetch(`/Citas/Details/${idCita}`)
         .then(res => {
-            if (!res.ok) throw new Error(`HTTP ${res.status}`);
+            if (!res.ok) {
+                if (res.status === 403) {
+                    throw new Error("No tienes permiso para ver esta cita.");
+                } else if (res.status === 404) {
+                    throw new Error("La cita no fue encontrada.");
+                } else {
+                    throw new Error(`Error inesperado: ${res.status}`);
+                }
+            }
             return res.text();
         })
         .then(html => {
@@ -42,8 +56,134 @@ function mostrarDetallesCita(idCita) {
         .catch(err => {
             console.error("Error al cargar detalles:", err);
             alert("No se pudo cargar la información de la cita.");
+
+            const modal = document.getElementById("modalDetalleCita");
+            if (modal) {
+                modal.style.display = "none";
+                modal.setAttribute('aria-hidden', 'true');
+            }
         });
 }
+
+// Modal para listar documentos de la cita
+function abrirModalListarDocumentos(idCita) {
+    const modalDetalleCita = document.getElementById('modalDetalleCita');
+    if (modalDetalleCita) {
+        modalDetalleCita.style.display = 'none'; // Cerrar el modal de detalles
+        modalDetalleCita.setAttribute('aria-hidden', 'true');
+    }
+    fetch(`/DocumentosCita/Listar?idCita=${idCita}`)
+        .then(response => response.text())
+        .then(html => {
+            const modalContainer = document.getElementById('modalContainer');
+            modalContainer.innerHTML = html;
+            setTimeout(() => {
+                const modal = document.getElementById('modalListarDocumentos');
+                if (modal) {
+                    modal.style.display = "block";
+                    inicializarEventosModal(); // Inicializa eventos del modal
+                } else {
+                    console.error("El modal no se cargó correctamente.");
+                }
+            }, 100);
+        })
+        .catch(err => console.error("Error cargando el modal de documentos:", err));
+}
+
+// Subir documento
+const form = document.getElementById("formSubirDocumento");
+if (form) {
+    form.addEventListener("submit", function (e) {
+        e.preventDefault();
+
+        const formData = new FormData(form);
+        fetch(form.action, {
+            method: "POST",
+            body: formData
+        })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    console.log("Archivo subido con éxito");
+                    cerrarModalListarDocumentos();
+                    console.log("Redirigiendo a /Citas/Calendar");
+                    window.location.href = '/Citas/Calendar';
+                }
+                else {
+                    alert("Error al subir: " + data.message);
+                }
+            })
+            .catch(err => console.error("Error al subir documento:", err));
+    });
+}
+
+// Cerrar modal de listar documentos
+function cerrarModalListarDocumentos() {
+    var modal = document.getElementById('modalListarDocumentos');
+    if (modal) modal.style.display = "none";
+}
+
+// Inicializar eventos dentro del modal de documentos
+function inicializarEventosModal() {
+    const switches = document.querySelectorAll('.chk-permitir');
+    switches.forEach(function (switchElement) {
+        switchElement.addEventListener('change', function () {
+            // Si quieres, aquí solo harías algo visual
+        });
+    });
+
+    const btnActualizar = document.getElementById("btnActualizarTodos");
+    if (btnActualizar) {
+        btnActualizar.addEventListener("click", function () {
+            const documentos = [];
+            document.querySelectorAll('.chk-permitir').forEach(function (switchElement) {
+                documentos.push({
+                    id: parseInt(switchElement.getAttribute('data-id')),
+                    descargar: switchElement.checked
+                });
+            });
+
+            if (documentos.length === 0) {
+                alert("No hay permisos para actualizar.");
+                return;
+            }
+
+            fetch('/DocumentosCita/ActualizarPermisoDescargaBatch', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(documentos),
+            })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        alert("Permisos actualizados correctamente.");
+                        cerrarModalListarDocumentos();
+                        if (data.redirectUrl) {
+                            window.location.href = data.redirectUrl;
+                        } else {
+                            window.location.reload();
+                        }
+                    } else {
+                        alert("No se pudo actualizar el permiso: " + (data.message || ""));
+                    }
+                })
+                .catch(err => {
+                    console.error("Error al actualizar permisos:", err);
+                    alert("Ocurrió un error al intentar actualizar los permisos.");
+                });
+        });
+    } else {
+        console.warn("Botón btnActualizarTodos no encontrado en modal.");
+    }
+}
+
+// Cerrar modal si se hace clic fuera del modal
+window.onclick = function (event) {
+    var modal = document.getElementById('modalListarDocumentos');
+    if (event.target == modal) {
+        modal.style.display = "none";
+    }
+};
 
 // Editar cita
 function mostrarEditarCita() {
@@ -79,11 +219,13 @@ function mostrarEditarCita() {
         });
 }
 
+// Mostrar detalles de la cita desde la vista de detalles
 function mostrarEditarCitaDesdeDetalle(idCita) {
     citaSeleccionadaId = idCita;
     mostrarEditarCita();
 }
 
+// Eliminar cita
 window.mostrarModalEliminarCita = function (idCita) {
     // Cargar partial view con detalles y formulario de eliminar
     fetch(`/Citas/Delete/${idCita}`)
@@ -108,13 +250,6 @@ window.mostrarModalEliminarCita = function (idCita) {
             console.error("Error al cargar modal eliminar:", err);
             alert("No se pudo cargar el modal de eliminación.");
         });
-}
-function eliminarCitaDeDia(idCita, fechaISO) {
-    const diaElemento = document.querySelector(`[data-fecha="${fechaISO}"]`);
-    if (diaElemento) {
-        diaElemento.classList.remove("tiene-cita", "event");
-        diaElemento.removeAttribute("data-id");
-    }
 }
 
 function eliminarCita() {
@@ -145,7 +280,6 @@ function eliminarCita() {
             if (data.success) {
                 alert("Cita eliminada correctamente.");
                 cerrarModal('modalEliminarCita');
-                eliminarCitaDeDia(data.idCita, data.fechaAnterior);
                 window.location.href = "/Citas/Calendar";
             } else {
                 alert("No se pudo eliminar la cita.");
@@ -157,6 +291,7 @@ function eliminarCita() {
         });
 }
 
+// Cerrar modal de eliminación
 function cerrarModal(idModal, redirigir = false) {
     const modal = document.getElementById(idModal);
     if (modal) {
@@ -168,6 +303,42 @@ function cerrarModal(idModal, redirigir = false) {
     }
 }
 
+// Inicialización de funciones cuando se carga el documento
+document.addEventListener("DOMContentLoaded", function () {
+    agregarClickEventos(); // Añadir eventos a las citas del calendario
+
+    // Cerrar modal de detalles si se hace clic fuera del modal
+    const modalDetalleCita = document.getElementById("modalDetalleCita");
+    if (modalDetalleCita) {
+        window.addEventListener("click", function (event) {
+            if (event.target === modalDetalleCita) {
+                modalDetalleCita.style.display = "none";
+                modalDetalleCita.setAttribute('aria-hidden', 'true');
+            }
+        });
+    }
+
+    const cerrarCrearModalBtn = document.getElementById('cerrarCrearModal');
+    if (cerrarCrearModalBtn) {
+        cerrarCrearModalBtn.addEventListener('click', function () {
+            const crearModal = document.getElementById('crearCitaModal');
+            if (crearModal) {
+                crearModal.style.display = 'none';
+            }
+        });
+    }
+});
+
+function marcarDiaConCita(fechaISO, idCita = null) {
+    const diaElemento = document.querySelector(`[data-fecha="${fechaISO}"]`);
+    if (diaElemento) {
+        diaElemento.classList.add("tiene-cita");
+        if (idCita) {
+            diaElemento.setAttribute("data-id", idCita);
+            diaElemento.classList.add("event");
+        }
+    }
+}
 // --- DOCUMENT READY ---
 
 $(document).ready(function () {
@@ -192,7 +363,6 @@ $(document).ready(function () {
             }
         });
     }
-
     $('#btnAbrirModal').click(function () {
         $.get('/Citas/Create', function (data) {
             $('#crearCitaModalBody').html(data);
