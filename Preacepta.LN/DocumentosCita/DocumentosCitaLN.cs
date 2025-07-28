@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Http;
+using Preacepta.AD;
 using Preacepta.AD.DocumentosCitas.DocumentosCitas;
 using Preacepta.Modelos.AbstraccionesBD;
 using Preacepta.Modelos.AbstraccionesFrond;
@@ -28,7 +29,8 @@ namespace Preacepta.LN.DocumentosCita
                 IdCita = d.IdCita,
                 NombreArchivo = d.NombreArchivo,
                 RutaArchivo = d.RutaArchivo,
-                FechaSubida = d.FechaSubida
+                FechaSubida = d.FechaSubida,
+                Descargar = d.Descargar,
             }).ToList();
         }
 
@@ -55,11 +57,13 @@ namespace Preacepta.LN.DocumentosCita
                 IdCita = idCita,
                 NombreArchivo = nombre,
                 RutaArchivo = "/documentos/" + nombre,
-                FechaSubida = DateTime.Now
+                FechaSubida = DateTime.Now,
+                Descargar = false
             };
 
             _documentosAD.Insertar(entidad);
         }
+
         public async Task ActualizarPermisoDescargaAsync(int idDocumento, bool permitirDescarga)
         {
             var documento = await _documentosAD.ObtenerPorIdAsync(idDocumento);
@@ -67,8 +71,11 @@ namespace Preacepta.LN.DocumentosCita
                 throw new Exception("Documento no encontrado");
 
             documento.Descargar = permitirDescarga;
-            await _documentosAD.GuardarCambiosAsync();
+
+            // Aquí es donde debes pasar correctamente los argumentos
+            await _documentosAD.ActualizarDescargarAsync(idDocumento, permitirDescarga);
         }
+
 
         public async Task<DocumentosCitaDTO> ObtenerPorIdAsync(int idDocumento)
         {
@@ -86,5 +93,4 @@ namespace Preacepta.LN.DocumentosCita
             };
         }
     }
-
 }

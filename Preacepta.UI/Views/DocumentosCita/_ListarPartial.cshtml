@@ -1,16 +1,12 @@
 ﻿@model List<Preacepta.Modelos.AbstraccionesFrond.DocumentosCitaDTO>
-@{
-    ViewBag.Title = "Documentos de la Cita";
-    int idCita = ViewBag.IdCita;
-    Layout = "_Layout";
-}
 
-<!-- Modal para listar documentos -->
 <div id="modalListarDocumentos" class="custom-modal" style="display:none;">
-    <div class="custom-modal-content contact-form contact-form-two contact-form-three LetraNegra">
-        <span class="custom-close" onclick="cerrarModalListarDocumentos()">&times;</span>
+    <div class="custom-modal-content contact-form contact-form-two LetraNegra">
 
-        <h4>Documentos compartidos en esta cita</h4>
+
+        <h4 style="text-align: center; margin-bottom: 3rem;">
+            Documentos compartidos en esta cita
+            </h4>
 
         @if (Model.Any())
         {
@@ -19,11 +15,10 @@
                 {
                     var inputId = $"chkPermitir_{doc.Id}";
                     <li style="margin-bottom: 1rem;">
-
                         <strong>@doc.NombreArchivo</strong> -
                         @if (doc.Descargar)
                         {
-                            <span class="text-success">Descarga Autorizada</span>
+                            <span class="text-success-light">Descarga Autorizada</span>
                             <a href="@doc.RutaArchivo" download>Descargar</a>
                         }
                         else
@@ -39,11 +34,11 @@
                                 <span class="slider"></span>
                             </label>
                         </div>
-                           
                     </li>
                 }
             </ul>
-            <button id="btnActualizarTodos" type="button" style="margin-top:1rem;">
+
+            <button id="btnActualizarTodos" type="button" style="margin-top:1rem;" class="contact-btn">
                 Actualizar permisos
             </button>
         }
@@ -51,21 +46,32 @@
         {
             <p>No hay documentos aún.</p>
         }
-
         <hr />
 
         <h5>Subir nuevo documento</h5>
-        <form id="formSubirDocumento" method="post" enctype="multipart/form-data">
+        <form id="formSubirDocumento" method="post" enctype="multipart/form-data"
+              action="/DocumentosCita/Subir?idCita=@ViewBag.IdCita">
             <input type="file" id="archivo" name="archivo" accept=".pdf,.docx,.jpg,.png">
-            <button type="submit" class="contact-btn">Subir Documento</button>
+            <div style="margin-top: 1.5rem; text-align: center;">
+                <button type="submit" class="contact-btn">Subir Documento</button>
+            </div>
         </form>
-
     </div>
 </div>
+
+@section Scripts {
+    <script src="~/calendario/scriptcalendar.js"></script>
+    <script src="~/lyso/js/Calendar-init.js"></script>
+    <link href="~/lyso/css/Daniel.css" rel="stylesheet" />
+}
 
 <script>
     function abrirModalListarDocumentos() {
         document.getElementById('modalListarDocumentos').style.display = "block";
+    }
+
+    function cerrarModalListarDocumentos() {
+        document.getElementById('modalListarDocumentos').style.display = "none";
     }
 
     window.onclick = function (event) {
@@ -75,10 +81,3 @@
         }
     }
 </script>
-
-@section Scripts {
-    <script src="~/calendario/scriptcalendar.js"></script>
-    <script src="~/lyso/js/Calendar-init.js"></script>
-    <link href="~/lyso/css/Daniel.css" rel="stylesheet" />
-
-}
