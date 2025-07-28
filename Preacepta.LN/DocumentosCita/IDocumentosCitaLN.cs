@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Http;
+using Preacepta.Modelos.AbstraccionesBD;
 using Preacepta.Modelos.AbstraccionesFrond;
 using System.Collections.Generic;
 

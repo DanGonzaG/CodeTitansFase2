@@ -258,12 +258,14 @@
     <script src="~/calendario/scriptcalendar.js"></script>
     <script src="~/lyso/js/programarReunion.js"></script>
     <script src="~/lyso/js/Calendar-init.js"></script>
+
+
 }
+
+@using System.Text.Json
 <script>
-    const fechasConCita = [
-    @foreach (var cita in Model)
-    {
-        <text>"@cita.Fecha.ToString("yyyy-MM-dd")",</text>
-    }
-        ];
+    const fechasConCita = @Html.Raw(JsonSerializer.Serialize(Model.Select(c => new {
+        fecha = c.Fecha.ToString("yyyy-MM-dd"),
+        idCita = c.IdCita
+        })));
 </script>

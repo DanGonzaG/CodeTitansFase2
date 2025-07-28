@@ -43,13 +43,21 @@ $gold-color: #b69d74;
 $black-color: #333333;
 
 $botonPrimario: #0070BB; //Crear,descargar
+
 $botonSecundario: #34425a; //Filtrar,busar,previsualizar
+
+$botonSecundario: #B2BEB5; //Filtrar,busar,previsualizar
+
 $botonRevision: #ED9121; //Revisar, detalles
 $botonTerciario: #848482; //Cancelar
 $botonNavegacion: #848482; //Volver
 
 
-@mixin variacionBtnColores($colorBtn) {
+
+
+@mixin variacionBtnColores($colorBtn) 
+{
+
     background-color: $colorBtn;
 }
 
@@ -637,6 +645,35 @@ button {
         }
     }
 }
+
+.cmn-btn--primario {
+    @extend .cmn-btn;
+    @include variacionBtnColores($botonPrimario);
+}
+
+.cmn-btn--secundario {
+    @extend .cmn-btn;
+    @include variacionBtnColores($botonSecundario);
+}
+
+.cmn-btn--revision {
+    @extend .cmn-btn;
+    @include variacionBtnColores($botonRevision);
+}
+
+.cmn-btn--tercero {
+    @extend .cmn-btn;
+    @include variacionBtnColores($botonTerciario);
+}
+
+.cmn-btn--navegacion {
+    @extend .cmn-btn;
+    @include variacionBtnColores($botonNavegacion);
+}
+
+
+/*-- End Help --*/
+
 
 .cmn-btn--primario {
     @extend .cmn-btn;
@@ -1382,6 +1419,7 @@ button {
         @include variacionBtnColores($botonNavegacion) //volver
     }
 
+
     .list-unstyled {
         color: #dc3545;
         margin-bottom: 0;
@@ -1402,6 +1440,53 @@ button {
         font-size: 25px;
     }
     /*-- End Contact Form --*/
+
+}
+
+.contact-btn--primero {
+    @extend .contact-btn;
+    @include variacionBtnColores($botonPrimario) //Crear, descargar
+}
+
+.contact-btn--segundo {
+    @extend .contact-btn;
+    @include variacionBtnColores($botonSecundario) //filtrar, buscar, previsualizar
+}
+
+.contact-btn--revision {
+    @extend .contact-btn;
+    @include variacionBtnColores($botonRevision) //revisar, detalles,
+}
+
+.contact-btn--tercero {
+    @extend .contact-btn;
+    @include variacionBtnColores($botonTerciario) //cancelar
+}
+
+.contact-btn--navegacion {
+    @extend .contact-btn;
+    @include variacionBtnColores($botonNavegacion) //volver
+}
+
+.list-unstyled {
+    color: #dc3545;
+    margin-bottom: 0;
+    font-size: 15px;
+    margin-top: 5px;
+}
+.text-danger {
+    color: #dc3545;
+    margin-top: 25px;
+    margin-bottom: 0;
+    /*font-size: 24px;*/
+}
+.text-success {
+    color: #28a745;
+    margin-top: 25px;
+    font-size: 25px;
+}
+/*-- End Contact Form --*/
+
     /*-- Blog --*/
     .blog-area {
         padding-bottom: 200px;

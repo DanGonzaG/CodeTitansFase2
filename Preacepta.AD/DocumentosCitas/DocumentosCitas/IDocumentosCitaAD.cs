@@ -13,6 +13,6 @@ namespace Preacepta.AD.DocumentosCitas.DocumentosCitas
         void Insertar(TDocumentosCita documento);
         Task<TDocumentosCita> ObtenerPorIdAsync(int idDocumento);
         Task GuardarCambiosAsync();
-
+        Task ActualizarDescargarAsync(int idDocumento, bool permitirDescarga);
     }
 }

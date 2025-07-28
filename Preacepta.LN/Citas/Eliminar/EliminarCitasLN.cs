@@ -21,7 +21,7 @@ namespace Preacepta.LN.Citas.Eliminar
         {
             if (id < 0)
             {
-                Console.WriteLine("el valor de id en menor a 1");
+                Console.WriteLine("el valor de id es menor a 1");
                 return 0;
             }
             try
