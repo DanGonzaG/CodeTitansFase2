@@ -5,41 +5,47 @@
     <link href="~/lyso/css/Daniel.css" rel="stylesheet" />
 </head>
 <body>
-<!-- Page Title -->
-<div class="page-title-area page-title-area-two title-img-one">
-    <div class="d-table">
-        <div class="d-table-cell">
-            <div class="page-title-text">
-                <h2>Generador de Documentos Legales</h2>
-                <ul>
-                    <li>
-                        <a asp-controller="Home" asp-action="Index">Inicio</a>
-                    </li>
-                    <li>
-                        <i class="icofont-simple-right"></i>
-                    </li>
-                    <li>Generador de Pagares</li>
-                </ul>
+    <!-- Page Title -->
+    <div class="page-title-area page-title-area-two title-img-one">
+        <div class="d-table">
+            <div class="d-table-cell">
+                <div class="page-title-text">
+                    <h2>Generador de Documentos Legales</h2>
+                    <ul>
+                        <li>
+                            <a asp-controller="Home" asp-action="Index">Inicio</a>
+                        </li>
+                        <li>
+                            <i class="icofont-simple-right"></i>
+                        </li>
+                        <li>
+                            <a asp-controller="Home" asp-action="UsuarioAutenticado" asp-route-correo=@User.Identity.Name>PreaceptaApp</a>
+                        </li>
+                        <li>
+                            <i class="icofont-simple-right"></i>
+                        </li>
+                        <li>Generador de Pagares</li>
+                    </ul>
+                </div>
             </div>
         </div>
     </div>
-</div>
-<!-- End Page Title -->
+    <!-- End Page Title -->
 
-<br />
-<br />
-<br />
+    <br />
+    <br />
+    <br />
 
-<div class="contact-form contact-form-two">
-    <div class="container">
-        <div class="contact-wrap">
-             <form asp-action="CreateDocsPagares" id="CreateDocsPagares">
+    <div class="contact-form contact-form-two">
+        <div class="container">
+            <div class="contact-wrap">
+                <form asp-action="CreateDocsPagares" id="CreateDocsPagares">
                     @if (ViewBag.DocumentoAnteriorId != null)
                     {
                         <input type="hidden" name="DocumentoAnteriorId" value="@ViewBag.DocumentoAnteriorId" />
                     }
-                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                <div class="row justify-content-center">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="row justify-content-center">
                         <div class="col-sm-6 col-lg-6">
                             <div class="form-group">
                                 <label asp-for="MontoNumerico" class="control-label"></label>

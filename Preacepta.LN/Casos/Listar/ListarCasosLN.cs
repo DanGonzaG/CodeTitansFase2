@@ -35,5 +35,17 @@ namespace Preacepta.LN.Casos.Listar
             CasoDTO lista = await _listar.listarXultimaFecha(cedula);
             return lista;
         }
+
+        public async Task<List<CasoDTO>> listarXclienteLos3Casos(int cedula)
+        {
+            List<CasoDTO> lista = await _listar.listarXclienteLos3Casos(cedula);
+            return lista;
+        }
+
+        public async Task<List<CasoDTO>> listarXabogadoLos3Casos(int cedula)
+        {
+            List<CasoDTO> lista = await _listar.listarXabogadoLos3Casos(cedula);
+            return lista;
+        }
     }
 }

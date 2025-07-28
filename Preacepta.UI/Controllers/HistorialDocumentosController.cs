@@ -272,5 +272,18 @@ namespace Preacepta.UI.Controllers
             return RedirectToAction(nameof(DocsHistorial));
         }
 
+        public async Task<JsonResult> IdExiste(int id)
+        {
+            bool bandera;
+            var ObjetoBuscado = await _context.HistorialDocumentos.FindAsync(id);
+            if (ObjetoBuscado != null)
+            {
+                bandera = true;
+                return Json(new { bandera });
+            }
+            bandera = false;
+            return Json(new { bandera });
+        }
+
     }
 }  

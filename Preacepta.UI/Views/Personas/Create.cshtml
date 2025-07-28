@@ -1,18 +1,18 @@
 ﻿@model Preacepta.Modelos.AbstraccionesFrond.GePersonaDTO
 
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Crear";
     Layout = "_Layout";
 }
 
-<h1>Create</h1>
+<h1>Crear</h1>
 
 @if (TempData["ErrorMessage"] != null)
 {
     <span class="text-bg-danger">@TempData["ErrorMessage"]</span>
 }
 
-<h4>TGePersona</h4>
+<h4>Gestion de personas</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
@@ -107,14 +107,14 @@
                 <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+                <input type="submit" value="Crear" class="btn btn-primary" />
             </div>
         </form>
     </div>
 </div>
 
 <div>
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Index">Regresar a la lista</a>
 </div>
 
 @section Scripts {

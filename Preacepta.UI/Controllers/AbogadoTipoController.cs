@@ -137,6 +137,7 @@ namespace Preacepta.UI.Controllers
             return View(tGeAbogadoTipo);
         }
 
+
         // POST: AbogadoTipo/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
