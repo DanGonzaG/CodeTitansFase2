@@ -5,10 +5,10 @@
     Layout = "_Layout";
 }
 
-<h1>Details</h1>
+<h1>Detalles</h1>
 
 <div>
-    <h4>TCasosEtapa</h4>
+    <h4>Modulo de Etapas del Caso</h4>
     <hr />
     <dl class="row">
         <dt class = "col-sm-2">
@@ -44,6 +44,9 @@
     </dl>
 </div>
 <div>
-    <a asp-action="Edit" asp-route-id="@Model?.IdEtapaPl">Edit</a> |
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Edit" asp-route-id="@Model?.IdEtapaPl" class="btn btn-warning" style="width: 115px; height: 40px; text-align: center; line-height: 26px;">Editar</a>
+</div>
+
+<div class="form-group">
+    <a asp-action="Index" class="btn btn-info" style="width: 115px; height: 40px; text-align: center; line-height: 26px;">Regresar</a>
 </div>

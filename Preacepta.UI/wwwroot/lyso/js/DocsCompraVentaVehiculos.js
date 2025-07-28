@@ -1,13 +1,18 @@
-﻿//Vista Formulario caso
-//Oculta le boton de crear caso
+﻿// Oculta el botón de crear caso
 document.getElementById('btnCrearCaso').style.display = 'block';
-
-document.getElementById('CreateDocsOpcionCompraventaVehiculoes').addEventListener('submit', (e) => {
-
-});
 
 // Función para abrir el PDF de previsualización en una nueva ventana
 document.getElementById("btnPrevisualizar").addEventListener("click", function () {
+
+    // Corregir valores con coma decimal
+    const corregirDecimal = (id) => {
+        const input = document.getElementById(id);
+        if (input && input.value.includes(',')) {
+            input.value = input.value.replace(',', '.');
+        }
+        return input.value;
+    };
+
     const queryParams = new URLSearchParams({
         idDocumento: "TEMP",
         numeroEscritura: document.getElementById("idNumeroEscritura").value,
@@ -30,24 +35,36 @@ document.getElementById("btnPrevisualizar").addEventListener("click", function (
         anio: document.getElementById("idAnio").value,
         capacidad: document.getElementById("idCapacidad").value,
         cilindraje: document.getElementById("idCilindraje").value,
-        precio: document.getElementById("idPrecio").value,
+        precio: corregirDecimal("idPrecio"),
         monedaPrecio: document.getElementById("idMonedaPrecio").value,
         plazoOpcionAnios: document.getElementById("idPlazoOpcionAnios").value,
         fechaInicio: document.getElementById("idFechaInicio").value,
-        montoSenal: document.getElementById("idMontoSenal").value,
+        montoSenal: corregirDecimal("idMontoSenal"),
         monedaSenal: document.getElementById("idMonedaSenal").value,
-        montoADevolver: document.getElementById("idMontoADevolver").value,
-        montoAPerder: document.getElementById("idMontoAPerder").value,
+        montoADevolver: corregirDecimal("idMontoADevolver"),
+        montoAPerder: corregirDecimal("idMontoAPerder"),
         monedaMontoPerdido: document.getElementById("idMonedaMontoPerdido").value,
         gastosTraspasoPagadosPor: document.getElementById("idGastosTraspasoPagadosPor").value,
-        lugarFirma: document.getElementById("idLugarFirma").value,
-        horaFirma: document.getElementById("idHoraFirma").value,
-        fechaFirma: document.getElementById("idFechaFirma").value
+        lugarFirma: document.getElementById("idLugarFirma").value
     });
 
     const url = "/DocsOpcionCompraventaVehiculoes/PrevisualizarPDF?" + queryParams.toString();
     window.open(url, "_blank");
 });
+
+
+/*document.getElementById('idHoraFirma').addEventListener('input', function () {
+    const valor = this.value;
+    if (valor) {
+        const [hour, minute] = valor.split(':');
+        const hora = parseInt(hour, 10);
+
+        const ampm = hora >= 12 ? 'PM' : 'AM';
+        document.getElementById('horaAmPm').textContent = ampm;
+    } else {
+        document.getElementById('horaAmPm').textContent = '';
+    }
+});*/
 
 
 

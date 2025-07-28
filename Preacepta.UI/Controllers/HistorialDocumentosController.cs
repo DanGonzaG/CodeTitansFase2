@@ -156,14 +156,36 @@ namespace Preacepta.UI.Controllers
         }
 
         //Mis metodos
-        public async Task<IActionResult> DocsHistorial()
+        [HttpGet]
+        public async Task<IActionResult> DocsHistorial(DateTime? fecha, string tipo)
         {
-            var historial = await _context.HistorialDocumentos
-                .OrderByDescending(h => h.Fecha)
+            var query = _context.HistorialDocumentos.AsQueryable();
+
+            // Filtros
+            if (fecha.HasValue)
+            {
+                query = query.Where(h => h.Fecha.Date == fecha.Value.Date);
+            }
+
+            if (!string.IsNullOrWhiteSpace(tipo))
+            {
+                query = query.Where(h => h.TipoDocumento == tipo);
+            }
+
+            // Para el dropdown
+            var tiposDocumento = await _context.HistorialDocumentos
+                .Select(h => h.TipoDocumento)
+                .Distinct()
+                .OrderBy(t => t)
                 .ToListAsync();
 
+            ViewBag.TipoDocumento = new SelectList(tiposDocumento, tipo); // 'tipo' es el valor seleccionado
+
+            var historial = await query.OrderByDescending(h => h.Fecha).ToListAsync();
             return View(historial);
         }
+
+
 
         [HttpGet]
         public async Task<IActionResult> EditarDesdeHistorial(int id)
@@ -195,7 +217,9 @@ namespace Preacepta.UI.Controllers
                     InteresBase = docOriginal.InteresBase,
                     LugarPago = docOriginal.LugarPago,
                     CedulaFiador = docOriginal.CedulaFiador,
-                    UbicacionFirma = docOriginal.UbicacionFirma
+                    UbicacionFirma = docOriginal.UbicacionFirma,
+                    FechaFirma = docOriginal.FechaFirma.ToString("yyyy-MM-dd"),
+                    HoraFirma = docOriginal.HoraFirma.ToString("HH:mm")
                 };
 
                 ViewBag.DocumentoAnteriorId = historial.Id;
@@ -254,7 +278,7 @@ namespace Preacepta.UI.Controllers
                     HoraFirma = docOriginal.FechaFirma.ToString("HH:mm")
                 };
 
-                ViewBag.DocumentoAnteriorId = docOriginal.IdDocumento;
+                ViewBag.DocumentoAnteriorId = historial.Id;
 
                 ViewData["CedulaAbogado"] = new SelectList(_context.TGeAbogados, "Cedula", "Cedula", model.CedulaAbogado);
                 ViewData["CedulaComprador"] = new SelectList(_context.TGePersonas, "Cedula", "Apellido1", model.CedulaComprador);
@@ -265,12 +289,39 @@ namespace Preacepta.UI.Controllers
                 ViewData["MarcaVehiculo"] = new SelectList(_context.TDocsMarcaVehiculos, "Id", "Nombre", model.MarcaVehiculo);
                 ViewData["TipoVehiculo"] = new SelectList(_context.TDocsTipoVehiculos, "Id", "Nombre", model.TipoVehiculo);
 
-                // Aquí podrías añadir ViewData si tienes selects en la vista
                 return View("~/Views/DocsOpcionCompraventaVehiculoes/CreateDocsOpcionCompraventaVehiculoes.cshtml", model);
+            }
+
+            // --- Poderes especiales judiciales ---
+            if (historial.TipoDocumento == "Poderes especiales judiciales")
+            {
+                if (historial.DocumentoIdOriginal == null) return NotFound();
+
+                var docOriginal = await _context.TDocsPoderesEspecialesJudiciales
+                    .FirstOrDefaultAsync(p => p.IdDoc == historial.DocumentoIdOriginal.Value);
+                if (docOriginal == null) return NotFound();
+
+                var model = new DocsPoderesEspecialesJudicialeDTO
+                {
+                    IdDoc = docOriginal.IdDoc,
+                    Fecha = docOriginal.Fecha.ToString("yyyy-MM-dd"),
+                    IdAbogado = docOriginal.IdAbogado,
+                    IdCliente = docOriginal.IdCliente,
+                    Texto = docOriginal.Texto
+                };
+
+                ViewBag.DocumentoAnteriorId = historial.Id;
+
+                ViewData["IdAbogado"] = new SelectList(_context.TGeAbogados, "Cedula", "Cedula", model.IdAbogado);
+                ViewData["IdCliente"] = new SelectList(_context.TGePersonas, "Cedula", "Cedula", model.IdCliente);
+
+                return View("~/Views/DocsPoderesEspecialesJudiciales/CreateDocsPoderesEspecialesJudiciales.cshtml", model);
             }
 
             return RedirectToAction(nameof(DocsHistorial));
         }
+
+
 
         public async Task<JsonResult> IdExiste(int id)
         {
@@ -286,4 +337,4 @@ namespace Preacepta.UI.Controllers
         }
 
     }
-}  
+}

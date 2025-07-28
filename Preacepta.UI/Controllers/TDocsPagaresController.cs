@@ -13,6 +13,7 @@ using Preacepta.Modelos.AbstraccionesBD;
 using Preacepta.Modelos.AbstraccionesFrond;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -84,8 +85,8 @@ namespace Preacepta.UI.Controllers
         {
             if (ModelState.IsValid)
             {
-                tDocsPagare.FechaFirma = DateTime.Today.ToString("yyyy-MM-dd");
-                tDocsPagare.HoraFirma = DateTime.Now.ToString("HH:mm"); ;
+                /*tDocsPagare.FechaFirma = DateTime.Today.ToString("yyyy-MM-dd");
+                tDocsPagare.HoraFirma = DateTime.Now.ToString("HH:mm"); ;*/
 
                 await _crear.crear(tDocsPagare);
                 return RedirectToAction(nameof(Index));
@@ -166,8 +167,17 @@ namespace Preacepta.UI.Controllers
         //Creacion de paagare
         public IActionResult CreateDocsPagares()
         {
+            ViewData["CedulaDeudor"] = new SelectList(
+            _context.TGePersonas.Select(p => new
+            {
+                Cedula = p.Cedula,
+                apellido = p.Apellido1,
+                Texto = p.Nombre + " " + p.Apellido1 + " - " + p.Cedula
+            }),
+            "Cedula",
+            "Texto");
 
-            ViewData["CedulaDeudor"] = new SelectList(_context.TGePersonas, "Cedula", "Cedula");
+            /*ViewData["CedulaDeudor"] = new SelectList(_context.TGePersonas, "Cedula", "Cedula");*/
             ViewData["CedulaFiador"] = new SelectList(_context.TGePersonas, "Cedula", "Cedula");
 
             ViewData["LugarPago"] = new SelectList(_context.TCrDistritos, "IdDistrito", "NombreDistrito");
@@ -183,18 +193,18 @@ namespace Preacepta.UI.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> CreateDocsPagares(
-    [Bind("IdDocumento,MontoNumerico,CedulaDeudor,SociedadDeudor,CedulaJuridicaSociedad,AcreedorNombre,CedulaJuridicaAcreedor,AcreedorDomicilio,FechaFirma,HoraFirma,FechaVencimiento,InteresFormula,InteresTasaActual,InteresBase,LugarPago,CedulaFiador,UbicacionFirma")] DocsPagareDTO tDocsPagare,
-    [FromForm] int? DocumentoAnteriorId
+        [Bind("IdDocumento,MontoNumerico,CedulaDeudor,SociedadDeudor,CedulaJuridicaSociedad,AcreedorNombre,CedulaJuridicaAcreedor,AcreedorDomicilio,FechaVencimiento,InteresFormula,InteresTasaActual,InteresBase,LugarPago,CedulaFiador,UbicacionFirma")] DocsPagareDTO tDocsPagare,
+        [FromForm] int? DocumentoAnteriorId
 )
         {
             if (ModelState.IsValid)
             {
                 // Establecer fecha y hora actuales si no vienen
-                tDocsPagare.FechaFirma = DateTime.Today.ToString("yyyy-MM-dd");
-                tDocsPagare.HoraFirma = DateTime.Now.ToString("HH:mm");
+               /* tDocsPagare.FechaFirma = DateTime.Today.ToString("yyyy-MM-dd");
+                tDocsPagare.HoraFirma = DateTime.Now.ToString("HH:mm");*/
 
                 // Eliminar documento anterior y su historial
-                if (DocumentoAnteriorId.HasValue)
+                /*if (DocumentoAnteriorId.HasValue)
                 {
                     // Buscar historial por ID
                     var historialAnterior = await _context.HistorialDocumentos
@@ -217,7 +227,7 @@ namespace Preacepta.UI.Controllers
 
                         await _context.SaveChangesAsync();
                     }
-                }
+                }*/
 
                 // Crear nuevo documento
                 await _crear.crear(tDocsPagare);
@@ -248,11 +258,18 @@ namespace Preacepta.UI.Controllers
                 _context.HistorialDocumentos.Add(nuevoHistorial);
                 await _context.SaveChangesAsync();
 
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction("DocsHistorial", "HistorialDocumentos");
             }
 
             // Si falla la validación, recargar listas
             ViewData["LugarPago"] = new SelectList(_context.TCrDistritos, "IdDistrito", "NombreDistrito", tDocsPagare.LugarPago);
+            ViewData["CedulaDeudor"] = new SelectList(_context.TGePersonas.Select(p => new
+            {
+                Cedula = p.Cedula,
+                apellido = p.Apellido1,
+                Texto = p.Nombre + " " + p.Apellido1 + " - " + p.Cedula
+            }),
+            "Cedula", "Texto", tDocsPagare?.CedulaDeudor);
             ViewData["CedulaDeudor"] = new SelectList(_context.TGePersonas, "Cedula", "Cedula", tDocsPagare.CedulaDeudor);
             ViewData["CedulaFiador"] = new SelectList(_context.TGePersonas, "Cedula", "Cedula", tDocsPagare.CedulaFiador);
             ViewData["UbicacionFirma"] = new SelectList(_context.TCrDistritos, "IdDistrito", "NombreDistrito", tDocsPagare.UbicacionFirma);
@@ -274,8 +291,8 @@ namespace Preacepta.UI.Controllers
         string acreedorNombre,
         string cedulaJuridicaAcreedor,
         string acreedorDomicilio,
-        string fechaFirmaNuevo,
-        string horaFirmaNuevo,
+        string? fechaFirmaNuevo,
+        string? horaFirmaNuevo,
         string fechaVencimiento,
         string interesFormula,
         string interesTasaActual,
@@ -297,8 +314,12 @@ namespace Preacepta.UI.Controllers
                 .Replace("{{ACREEDOR_NOMBRE}}", acreedorNombre)
                 .Replace("{{CEDULA_JURIDICA_ACREEDOR}}", cedulaJuridicaAcreedor)
                 .Replace("{{ACREEDOR_DOMICILIO}}", acreedorDomicilio)
-                .Replace("{{FECHA_FIRMA_NUEVO}}", fechaFirmaNuevo)
-                .Replace("{{HORA_FIRMA_NUEVO}}", horaFirmaNuevo)
+
+                /*.Replace("{{FECHA_FIRMA_NUEVO}}", fechaFirmaNuevo)
+
+                .Replace("{{HORA_FIRMA_NUEVO}}",
+                DateTime.TryParse(horaFirmaNuevo, out var hora) ? hora.ToString("hh:mm tt") : "[Hora inválida]")*/
+
                 .Replace("{{FECHA_VENCIMIENTO}}", fechaVencimiento)
                 .Replace("{{INTERES_FORMULA}}", interesFormula)
                 .Replace("{{INTERES_TASA_ACTUAL}}", interesTasaActual)
@@ -307,26 +328,32 @@ namespace Preacepta.UI.Controllers
                 .Replace("{{CEDULA_FIADOR}}", cedulaFiador)
                 .Replace("{{UBICACION_FIRMA}}", ubicacionFirma);
 
-            var doc = new HtmlToPdfDocument()
-            {
-                GlobalSettings = new GlobalSettings
+                var ahora = DateTime.Now;
+
+                htmlTemplate = htmlTemplate
+                    .Replace("{{HORA_FIRMA_NUEVO}}", ahora.ToString("hh:mm tt"))
+                    .Replace("{{FECHA_FIRMA_NUEVO}}", ahora.ToString("yyyy-MM-dd"));
+
+                var doc = new HtmlToPdfDocument()
                 {
-                    PaperSize = PaperKind.A4,
-                    Orientation = Orientation.Portrait
-                },
-                Objects = {
-            new ObjectSettings
-            {
-                HtmlContent = htmlTemplate,
-                WebSettings = { DefaultEncoding = "utf-8" }
+                    GlobalSettings = new GlobalSettings
+                    {
+                        PaperSize = PaperKind.A4,
+                        Orientation = Orientation.Portrait
+                    },
+                    Objects = {
+                new ObjectSettings
+                {
+                    HtmlContent = htmlTemplate,
+                    WebSettings = { DefaultEncoding = "utf-8" }
+                }
             }
-        }
-            };
+                };
 
-            var pdf = _converter.Convert(doc);
+                var pdf = _converter.Convert(doc);
 
-            return File(pdf, "application/pdf");
-        }
+                return File(pdf, "application/pdf");
+            }
 
 
         //Prueba para editar en historialDocumentos
@@ -362,12 +389,23 @@ namespace Preacepta.UI.Controllers
                 InteresBase = docOriginal.InteresBase,
                 LugarPago = docOriginal.LugarPago,
                 CedulaFiador = docOriginal.CedulaFiador,
-                UbicacionFirma = docOriginal.UbicacionFirma
+                UbicacionFirma = docOriginal.UbicacionFirma,
+                FechaFirma = docOriginal.FechaFirma.ToString("yyyy-MM-dd"),
+                HoraFirma = docOriginal.HoraFirma.ToString("HH:mm")
+
             };
 
             ViewBag.DocumentoAnteriorId = historial.Id; // ✅ Deja esto
 
-            ViewData["CedulaDeudor"] = new SelectList(_context.TGePersonas, "Cedula", "Cedula", model.CedulaDeudor);
+            ViewData["CedulaDeudor"] = new SelectList(
+            _context.TGePersonas.Select(p => new
+            {
+                Cedula = p.Cedula,
+                apellido = p.Apellido1,
+                Texto = p.Nombre + " " + p.Apellido1 + " - " + p.Cedula
+            }),
+            "Cedula",
+            "Texto", model.CedulaDeudor);
             ViewData["CedulaFiador"] = new SelectList(_context.TGePersonas, "Cedula", "Cedula", model.CedulaFiador);
             ViewData["LugarPago"] = new SelectList(_context.TCrDistritos, "IdDistrito", "NombreDistrito", model.LugarPago);
             ViewData["UbicacionFirma"] = new SelectList(_context.TCrDistritos, "IdDistrito", "NombreDistrito", model.UbicacionFirma);
