@@ -43,19 +43,13 @@ namespace Preacepta.LN.DocsPagare.ObtenerDatos
         public TDocsPagare ObtenerDeFront(DocsPagareDTO pagareDTO)
         {
             if (!DateOnly.TryParseExact(pagareDTO.FechaFirma, "yyyy-MM-dd", CultureInfo.InvariantCulture, DateTimeStyles.None, out var fechaFirma))
-            {
-                throw new FormatException($"FechaFirma inválida: {pagareDTO.FechaFirma}");
-            }
+                fechaFirma = DateOnly.FromDateTime(DateTime.Today);  // Valor por defecto
 
             if (!TimeOnly.TryParseExact(pagareDTO.HoraFirma, "HH:mm", CultureInfo.InvariantCulture, DateTimeStyles.None, out var horaFirma))
-            {
-                throw new FormatException($"HoraFirma inválida: {pagareDTO.HoraFirma}");
-            }
+                horaFirma = TimeOnly.FromDateTime(DateTime.Now);  // Valor por defecto
 
             if (!DateOnly.TryParseExact(pagareDTO.FechaVencimiento, "yyyy-MM-dd", CultureInfo.InvariantCulture, DateTimeStyles.None, out var fechaVencimiento))
-            {
-                throw new FormatException($"FechaVencimiento inválida: {pagareDTO.FechaVencimiento}");
-            }
+                fechaVencimiento = DateOnly.FromDateTime(DateTime.Today.AddMonths(1));  // Valor razonable por defecto
 
             return new TDocsPagare
             {
@@ -67,9 +61,9 @@ namespace Preacepta.LN.DocsPagare.ObtenerDatos
                 AcreedorNombre = pagareDTO.AcreedorNombre,
                 CedulaJuridicaAcreedor = pagareDTO.CedulaJuridicaAcreedor,
                 AcreedorDomicilio = pagareDTO.AcreedorDomicilio,
-                FechaFirma = DateOnly.ParseExact(pagareDTO.FechaFirma, "yyyy-MM-dd", CultureInfo.InvariantCulture),
-                HoraFirma = TimeOnly.ParseExact(pagareDTO.HoraFirma, "HH:mm", CultureInfo.InvariantCulture),
-                FechaVencimiento = DateOnly.ParseExact(pagareDTO.FechaVencimiento, "yyyy-MM-dd", CultureInfo.InvariantCulture),
+                FechaFirma = fechaFirma,
+                HoraFirma = horaFirma,
+                FechaVencimiento = fechaVencimiento,
                 InteresFormula = pagareDTO.InteresFormula,
                 InteresTasaActual = pagareDTO.InteresTasaActual,
                 InteresBase = pagareDTO.InteresBase,
@@ -81,5 +75,6 @@ namespace Preacepta.LN.DocsPagare.ObtenerDatos
                 LugarPagoNavigation = pagareDTO.LugarPagoNavigation
             };
         }
+
     }
 }

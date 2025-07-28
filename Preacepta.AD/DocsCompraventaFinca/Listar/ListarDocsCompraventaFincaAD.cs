@@ -61,5 +61,56 @@ namespace Preacepta.AD.DocsCompraventaFinca.Listar
             }
 
         }
+
+        public async Task<List<DocsCompraventaFincaDTO>> ListarTresUltimosDocs(int cedula)
+        {
+            try
+            {
+                return await _contexto.TDocsCompraventaFincas
+                    .Include(cedula => cedula.CedulaCompradorNavigation)
+                    .Where(id => id.CedulaAbogado == cedula )
+                    .OrderByDescending (fecha => fecha.FechaFirma)
+                    .Take(3)
+                    .Select(lista => new DocsCompraventaFincaDTO
+                {
+                    
+                    FechaFirma = lista.FechaFirma,                    
+                    IdDocumento = lista.IdDocumento,
+                    
+                }).ToListAsync();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error al obtener datos {ex.Message}");
+                return new List<DocsCompraventaFincaDTO>();
+            }
+
+        }
+
+        public async Task<List<DocsCompraventaFincaDTO>> ListarTresUltimosDocsXCliente(int cedula)
+        {
+            try
+            {
+                return await _contexto.TDocsCompraventaFincas
+                    .Include(cedula => cedula.CedulaAbogadoNavigation)
+                    .ThenInclude(cedula2 => cedula2.CedulaNavigation)
+                    .Where(id => id.CedulaComprador == cedula)
+                    .OrderByDescending(fecha => fecha.FechaFirma)
+                    .Take(3)
+                    .Select(lista => new DocsCompraventaFincaDTO
+                    {
+
+                        FechaFirma = lista.FechaFirma,
+                        IdDocumento = lista.IdDocumento,
+
+                    }).ToListAsync();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error al obtener datos {ex.Message}");
+                return new List<DocsCompraventaFincaDTO>();
+            }
+
+        }
     }
 }

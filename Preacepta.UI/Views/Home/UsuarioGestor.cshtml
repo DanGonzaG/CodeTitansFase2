@@ -1,0 +1,112 @@
+﻿@{
+    ViewData["Title"] = "Index";
+    Layout = "_LayoutGestor";
+}
+
+
+
+<head>
+    <link href="~/lyso/css/Daniel.css" rel="stylesheet" />
+</head>
+<section style="text-align:center">
+    <div>
+        <img src="~/lyso/img/preaceptalogocolornegro.png" width="100px" />
+    </div>
+    <h1>AppPreacepta</h1>
+    <h2>Bienvenido usuario gestor</h2>
+</section>
+
+
+<section>
+    <h2 class="seccion-tituloMenuGestor">INFORMACIÓN DEL DESPACHO</h2>
+    <ul>
+        <li><a asp-controller="GeNegocio" asp-action="Details" asp-route-id="1" class="nav-link">Información de Preacepta</a></li>
+        <li><a asp-controller="GeNegocio" asp-action="Index" class="nav-link">Lista de despachos</a></li>
+    </ul>
+</section>
+<section>
+    <div class="seccion-tituloMenuGestor">MÓDULO DE CLIENTES</div>
+
+    <ul>
+        <li><a asp-action="" id="BuscarPersona" class="nav-link">Buscar un cliente</a></li>
+        <li><a asp-controller="Personas" asp-action="Index" class="nav-link">Lista de clientes</a></li>
+    </ul>
+</section>
+<section>
+    <div class="seccion-tituloMenuGestor">MÓDULO DE ABOGADOS</div>
+    <ul>
+        <li><a asp-action="" id="BuscarAbogado" class="nav-link">Buscar un abogado</a></li>
+        <li><a asp-controller="Abogado" asp-action="Index" class="nav-link">Lista de abogados</a></li>
+        <li><a asp-controller="AbogadoTipo" asp-action="Index" class="nav-link">Lista de tipos de abogados</a></li>
+        <li><a asp-controller="GeRedesSociales" asp-action="Index" class="nav-link">Lista de redes sociales de abogados</a></li>
+    </ul>
+</section>
+<section>
+    <div class="seccion-tituloMenuGestor">MÓDULO DE GENERACIÓN DE DOCUMENTOS LEGALES</div>
+    <ul>
+        <li><a asp-action="" id="BuscarDocumento" class="nav-link">Buscar un documento</a></li>
+        <li>
+            <a asp-controller="DocsAutorizacionRevisionExpedientes" asp-action="Index" class="nav-link"
+               title="Autorización para revisar expedientes específicos.">Autorizaciones de revisión de expedientes</a>
+        </li>
+        <li><a asp-controller="DocsContratoPrestacionServicios" asp-action="Index" class="nav-link" title="Contrato para prestación de servicios entre partes.">Contratos de prestación de servicios</a></li>
+        <li>
+            <a asp-controller="DocsCompraventaFincas" asp-action="Index" class="nav-link"
+               title="Contrato de compraventa de fincas o terrenos.">Compra y venta de fincas</a>
+        </li>
+        <li><a asp-controller="DocsOpcionCompraventaVehiculoes" asp-action="Index" class="nav-link">Compra y venta de vehículos</a></li>
+        <li>
+            <a asp-controller="DocsInscripcionVehiculo" asp-action="Index" class="nav-link"
+               title="Trámite de inscripción de un vehículo.">Inscripciones de vehículos</a>
+        </li>
+        <li><a asp-controller="TDocsPagares" asp-action="Index" class="nav-link">Pagarés</a></li>
+        <li><a asp-controller="TDocsPoderesEspecialesJudiciales" asp-action="Index" class="nav-link">Poderes especiales</a></li>
+        <li>
+            <a asp-controller="DocsMarcaVehiculo" asp-action="Index" class="nav-link"
+               title="Documentación relacionada con la marca del vehículo.">Lista de marca de vehículos</a>
+        </li>
+        <li><a asp-controller="TDocsTipoVehiculoes" asp-action="Index" class="nav-link">Lista de tipos de vehículos</a></li>
+        <li>
+            <a asp-controller="DocsCombustibles" asp-action="Index" class="nav-link"
+               title="Documento relacionado con el uso o distribución de combustibles.">Lista de tipos de combustibles</a>
+        </li>
+    </ul>
+</section>
+<section>
+    <div class="seccion-tituloMenuGestor">MÓDULO UBICACIÓN O DIRECCIÓN</div>
+    <ul>
+        <li><a asp-controller="CrProvincias" asp-action="Index" class="nav-link">Lista de provincias</a></li>
+        <li><a asp-controller="CrCantones" asp-action="Index" class="nav-link">Lista de cantones</a></li>
+        <li><a asp-controller="CrDistritos" asp-action="Index" class="nav-link">Lista de distritos</a></li>
+    </ul>
+</section>
+<section>
+    <div class="seccion-tituloMenuGestor">MÓDULO CITAS</div>
+    <ul>
+        <li><a asp-action="" id="BuscarCita" class="nav-link">Buscar una cita</a></li>
+        <li><a asp-controller="Citas" asp-action="Calendar" class="nav-link">Lista citas</a></li>
+        <li><a asp-controller="CitasTipo" asp-action="Index" class="nav-link">Lista de tipos de cita</a></li>
+        <li><a asp-controller="Citas" asp-action="CitasPrueba" class="nav-link">Lista de CITASPRUEBA</a></li>
+    </ul>
+</section>
+<section>
+    <div class="seccion-tituloMenuGestor">MÓDULO CASOS</div>
+    <ul>
+        <li><a asp-action="" id="BuscarCaso" class="nav-link">Buscar una caso</a></li>
+        <li><a asp-action="" id="BuscarEtpaPL" class="nav-link">Buscar una etapa del proceso legal</a></li>
+        <li><a asp-controller="Caso" asp-action="Index" class="nav-link">Lista de casos</a></li>
+        <li><a asp-controller="CasosEtapa" asp-action="Index" class="nav-link">Lista de etapas de proceso legal</a></li>
+        <li><a asp-controller="CasosEvidencia" asp-action="Index" class="nav-link">Lista de pruebas de casos o etapas</a></li>
+        <li><a asp-controller="CasosTipo" asp-action="Index" class="nav-link">Lista de tipos de casos</a></li>
+        <li><a asp-controller="CasosEvidencia" asp-action="Index" class="nav-link">Lista Evidencias </a></li>
+    </ul>
+</section>
+<section>
+    <div class="seccion-tituloMenuGestor">MÓDULO TESTIMONIOS</div>
+    <ul>
+        <li><a asp-action="" id="BuscarTestimonio" class="nav-link">Buscar un testimonio</a></li>
+        <li><a asp-controller="TTestimonios" asp-action="Index" class="nav-link">Lista de testimonios</a></li>
+    </ul>
+</section>
+
+<script src="~/lyso/js/sweetalertusuariogestor.js"></script>

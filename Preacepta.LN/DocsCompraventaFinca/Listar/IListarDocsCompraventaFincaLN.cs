@@ -10,5 +10,7 @@ namespace Preacepta.LN.DocsCompraventaFinca.Listar
     public interface IListarDocsCompraventaFincaLN
     {
         Task<List<DocsCompraventaFincaDTO>> listar();
+        Task<List<DocsCompraventaFincaDTO>> ListarTresUltimosDocs(int cedula);
+        Task<List<DocsCompraventaFincaDTO>> ListarTresUltimosDocsXCliente(int cedula);
     }
 }

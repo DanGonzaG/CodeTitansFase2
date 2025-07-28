@@ -35,8 +35,12 @@ $(document).ready(function () {
         if (!$.fn.DataTable.isDataTable($tabla)) {
             console.log("Inicializando DataTable para #listaCasosCerrados…");
             $tabla.DataTable({
+                columnDefs: [ {
+                    targets: '_all', defaultContent: '-'
+                }],
                 language: {
-                    url: '//cdn.datatables.net/plug-ins/1.13.4/i18n/es-ES.json'
+                    url: '//cdn.datatables.net/plug-ins/1.13.4/i18n/es-ES.json',                    
+                    emptyTable: '<div class="col-12 text-center"><div class="alert alert-info">No cuenta con casos en el despacho</div></div>'
                 },
                 pageLength: 15,
                 lengthChange: false,

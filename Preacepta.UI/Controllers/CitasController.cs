@@ -603,6 +603,20 @@ public async Task<IActionResult> _CitaFuturo()
             return citas;
         }
 
+        [Authorize(Roles = "Gestor, Abogado")]
+        public async Task<JsonResult> IdExiste(int id)
+        {
+            bool bandera;
+            var ObjetoBuscado = await _buscarCitasLN.buscar(id);
+            if (ObjetoBuscado != null)
+            {
+                bandera = true;
+                return Json(new { bandera });
+            }
+            bandera = false;
+            return Json(new { bandera });
+        }
+
 
 
         /*List<ModuloCitasVideo> listaCitas = new List<ModuloCitasVideo>()

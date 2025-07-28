@@ -5,11 +5,11 @@
     Layout = "_Layout";
 }
 
-<h1>Delete</h1>
+<h1>Eliminar</h1>
 
-<h3>Are you sure you want to delete this?</h3>
+<h3>Estas seguro que deseas elimiar este tipo de Documento?</h3>
 <div>
-    <h4>TCasosTipo</h4>
+    <h4>Modulo de Tipo de Casos</h4>
     <hr />
     <dl class="row">
         <dt class = "col-sm-2">
@@ -22,7 +22,11 @@
     
     <form asp-action="Delete">
         <input type="hidden" asp-for="IdTipoCaso" />
-        <input type="submit" value="Delete" class="btn btn-danger" /> |
-        <a asp-action="Index">Back to List</a>
+        <input type="submit" value="Eliminar" class="btn btn-danger" style=" width: 115px; height: 40px;" /> 
     </form>
+
+    <div class="form-group">
+        <a asp-action="Index" class="btn btn-info" style="width: 115px; height: 40px; text-align: center; line-height: 26px;">Regresar</a>
+    </div>
+
 </div>

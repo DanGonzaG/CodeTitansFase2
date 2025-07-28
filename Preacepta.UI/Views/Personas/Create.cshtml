@@ -1,18 +1,22 @@
 ﻿@model Preacepta.Modelos.AbstraccionesFrond.GePersonaDTO
 
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Crear";
     Layout = "_Layout";
 }
 
-<h1>Create</h1>
+
+<h1>Registrar</h1>
+
 
 @if (TempData["ErrorMessage"] != null)
 {
     <span class="text-bg-danger">@TempData["ErrorMessage"]</span>
 }
 
-<h4>TGePersona</h4>
+
+<h4>Modulo de Persona</h4>
+
 <hr />
 <div class="row">
     <div class="col-md-4">
@@ -91,30 +95,38 @@
                     <input class="form-check-input" asp-for="Activo" /> @Html.DisplayNameFor(model => model.Activo)
                 </label>
             </div>-->            
-            <div class="form-floating mb-3">
-                <input asp-for="Email" class="form-control" autocomplete="username" aria-required="true" placeholder="name@example.com" />
-                <label asp-for="Email">Correro electrónico</label>
+            <div class="form-group">
+                <label asp-for="Email" class="control-label"></label>
+                <input asp-for="Email" class="form-control" autocomplete="username" aria-required="true" />
                 <span asp-validation-for="Email" class="text-danger"></span>
             </div>
-            <div class="form-floating mb-3">
-                <input asp-for="Password" class="form-control" autocomplete="new-password" aria-required="true" placeholder="password" />
-                <label asp-for="Password">Contraseña</label>
+
+            <div class="form-group">
+                <label asp-for="Password" class="control-label"></label>
+                <input asp-for="Password" class="form-control" autocomplete="new-password" aria-required="true" />
                 <span asp-validation-for="Password" class="text-danger"></span>
             </div>
-            <div class="form-floating mb-3">
-                <input asp-for="ConfirmPassword" class="form-control" autocomplete="new-password" aria-required="true" placeholder="password" />
-                <label asp-for="ConfirmPassword">Confirmacion de contraseña</label>
+
+            <div class="form-group">
+                <label asp-for="ConfirmPassword" class="control-label"></label>
+                <input asp-for="ConfirmPassword" class="form-control" autocomplete="new-password" aria-required="true" />
                 <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
             </div>
+
+            <br/>
+
             <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+
+                <input type="submit" value="Registrar" class="btn btn-primary" style=" width: 115px; height: 40px;" />
+
             </div>
         </form>
     </div>
 </div>
 
-<div>
-    <a asp-action="Index">Back to List</a>
+
+<div class="form-group">
+    <a asp-action="Index" class="btn btn-info" style="width: 115px; height: 40px; text-align: center; line-height: 26px;">Regresar</a>
 </div>
 
 @section Scripts {
