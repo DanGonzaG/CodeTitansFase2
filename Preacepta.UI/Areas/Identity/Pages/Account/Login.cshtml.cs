@@ -153,11 +153,17 @@ namespace Praecepta.UI.Areas.Identity.Pages.Account
                             return Page();
                         }
                     }
-                 
-                    _logger.LogInformation("Usuario conectado.");
-                    //return LocalRedirect(returnUrl);
-                    return RedirectToAction("UsuarioAutenticado", "Home", new { correo = Input.Email }); // Ingreso exitóso HU PP-MA-1 criterio 1
+
+                    
+
+                    if(User.IsInRole("Gestor")|| User.IsInRole("Cliente")|| User.IsInRole("Abogado")) 
+                    {
+                        _logger.LogInformation("Usuario conectado.");
+                        //return LocalRedirect(returnUrl);
+                        return RedirectToAction("UsuarioAutenticado", "Home", new { correo = Input.Email });// Ingreso exitóso HU PP-MA-1 criterio 1
                 }
+
+            }
                 if (result.RequiresTwoFactor)
                 {
                     return RedirectToPage("./LoginWith2fa", new { ReturnUrl = returnUrl, RememberMe = Input.RememberMe });

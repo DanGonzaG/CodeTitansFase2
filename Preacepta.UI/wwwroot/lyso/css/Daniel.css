@@ -132,6 +132,59 @@ ul{
     padding-bottom: 5px;
 }
 
+/*Estilos para las vistas de UsuarioCliente, Usuario Abogado*/
+.menuDaniel {
+    /*display: block;*/
+    width: 100%; /* Esto hace que todos los botones ocupen el mismo ancho dentro del contenedor */
+    padding: 10px 15px;
+    text-align: left;
+    background-color: #f0f0f0;
+    border: 1px solid #ccc;
+    margin-bottom: 5px;
+    font-size: 16px;
+    border-radius: 4px;
+    text-decoration: none;
+    color: #333;
+}
+
+    .menuDaniel:hover {
+        background-color: #e0e0e0;
+    }
+
+.menuDanielBtns {
+    border-bottom: 1px solid;
+    opacity: 0.9
+}
+
+.menuDanielLabels {
+    font-weight: 600;
+    text-align: justify;
+    padding-left: 20px;
+    background-color: #ab8d5f
+}
+
+.secciontActividaesRecientes {
+    padding-bottom: 60px;
+    padding-top: 60px;
+
+    
+}
+
+.secciontActividaesRecientesAbogados {
+    padding-bottom: 39px;
+    padding-top: 60px;
+}
+
+.TitulaActividesRecientes {
+    font-size: 18px;
+}
+
+.practice-item {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+}
 
 
 

@@ -518,6 +518,7 @@ namespace Preacepta.UI.Controllers
             return View(tGeAbogado);
         }
 
+        [Authorize(Roles = "Gestor, Abogado, Cliente")]
         public async Task<JsonResult> IdExiste(int id)
         {
             bool bandera;

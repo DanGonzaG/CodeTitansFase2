@@ -18,6 +18,12 @@
                         <li>
                             <i class="icofont-simple-right"></i>
                         </li>
+                        <li>
+                            <a asp-controller="Home" asp-action="UsuarioAutenticado" asp-route-correo=@User.Identity.Name>PreaceptaApp</a>
+                        </li>
+                        <li>
+                            <i class="icofont-simple-right"></i>
+                        </li>
                         <li>Crear Caso</li>
                     </ul>
                 </div>
@@ -50,7 +56,8 @@
                         <div class="col-sm-6 col-lg-6">
                             <div class="form-group">
                                 <!--<label asp-for="Nombre" class="control-label"></label>-->
-                                <input name="IdClienteNavigation.Cedula" id="IdClienteNavigation.Cedula" asp-for="IdClienteNavigation.Cedula" class="form-control"/>
+                                <input name="IdCliente" id="IdCliente" asp-for="IdCliente" value="@ViewBag.ClienteCedula" class="form-control" />
+                                <input type="hidden" asp-for="IdAbogado" value="@ViewBag.AbogadoCedula" class="form-control" />
                                 <span asp-validation-for="IdClienteNavigation.Cedula" class="text-danger"></span>
                             </div>
                         </div>
@@ -62,9 +69,8 @@
                         <div class="col-sm-6 col-lg-6">
                             <div class="form-group">
                                 <div class="row">
-                                    <div class="col">
-                                       
-                                        <input name="IdClienteNavigation.Nombre" id="IdClienteNavigation.Nombre" asp-for="IdClienteNavigation.Nombre" class="form-control" readonly />
+                                    <div class="col">                                       
+                                        <input name="IdClienteNavigation.Nombre" id="IdClienteNavigation.Nombre" asp-for="IdClienteNavigation.Nombre" value="@ViewBag.ClienteNombre" class="form-control" style="text-align:center" readonly />
                                         <span asp-validation-for="IdClienteNavigation.Nombre" class="text-danger"></span>
                                         <div style="text-align:center; font-size:15px">
                                             <label asp-for="IdClienteNavigation.Nombre" class="control-label"></label>
@@ -73,7 +79,7 @@
                                     </div>
                                     <div class="col">
                                        
-                                        <input name="IdClienteNavigation.Apellido1" id="IdClienteNavigation.Apellido1" asp-for="IdClienteNavigation.Apellido1" class="form-control" readonly />
+                                        <input name="IdClienteNavigation.Apellido1" id="IdClienteNavigation.Apellido1" asp-for="IdClienteNavigation.Apellido1" value="@ViewBag.ClienteApellido1" class="form-control" readonly />
                                         <span asp-validation-for="IdClienteNavigation.Apellido1" class="text-danger"></span>
                                         <div style="text-align:center; font-size:15px">
                                             <label asp-for="IdClienteNavigation.Apellido1" class="control-label"></label>
@@ -81,7 +87,7 @@
                                     </div>
                                     <div class="col">
 
-                                        <input name="IdClienteNavigation.Apellido2" id="IdClienteNavigation.Apellido2" asp-for="IdClienteNavigation.Apellido2" class="form-control" readonly />
+                                        <input name="IdClienteNavigation.Apellido2" id="IdClienteNavigation.Apellido2" asp-for="IdClienteNavigation.Apellido2" value="@ViewBag.ClienteApellido2" class="form-control" readonly />
                                         <span asp-validation-for="IdClienteNavigation.Apellido2" class="text-danger"></span>
                                         <div style="text-align:center; font-size:15px">
                                             <label asp-for="IdClienteNavigation.Apellido2" class="control-label"></label>
@@ -103,14 +109,14 @@
                                 <span asp-validation-for="Nombre" class="text-danger"></span>
                             </div>
                         </div>
-                        <div class="col-sm-6 col-lg-6 centro">
+                        <!--<div class="col-sm-6 col-lg-6 centro">
                             <div class="form-group">
                                 <label asp-for="IdAbogado" class="control-label"></label>
                             </div>
                         </div>
                         <div class="col-sm-6 col-lg-6">
                             <div class="form-group">
-                                <!--<label asp-for="IdAbogado" class="control-label"></label>-->
+                                <label asp-for="IdAbogado" class="control-label"></label>
                                 <select name="IdAbogado" id="IdAbogado" asp-for="IdAbogado" class="form-control" asp-items="ViewBag.IdAbogado">
                                     <option value="" disabled selected> Seleccione un abogado</option>
                                 </select>
@@ -120,7 +126,7 @@
                         <br />
                         <br />
                         <br />
-                        <br />
+            <br />-->
                         <div class="col-sm-6 col-lg-6 centro">
                             <div class="form-group">
                                 <label asp-for="IdTipoCaso" class="control-label"></label>
@@ -144,14 +150,14 @@
                         <br />
                         <br />
                         <br />
-                        <div class="col-sm-6 col-lg-6 centro">
+                        <!--<div class="col-sm-6 col-lg-6 centro">
                             <div class="form-group">
                                 <label asp-for="IdCliente" class="control-label"></label>
                             </div>
                         </div>                      
                         <div class="col-sm-6 col-lg-6">
                             <div class="form-group">
-                                <!--<label asp-for="IdCliente" class="control-label"></label>-->
+                                <label asp-for="IdCliente" class="control-label"></label>
                                 <select asp-for="IdCliente" name="IdCliente" id="IdCliente" class="form-control" asp-items="ViewBag.IdCliente">
                                     <option value="" disabled selected> Seleccione un cliente</option>
                                 </select>
@@ -160,7 +166,7 @@
                         <br />
                         <br />
                         <br />
-                        <br />
+            <br />-->
                         <div class="col-md-12 col-lg-12 centro">
                             <div class="form-group">
                                 <label asp-for="Descripcion" class="control-label"></label>

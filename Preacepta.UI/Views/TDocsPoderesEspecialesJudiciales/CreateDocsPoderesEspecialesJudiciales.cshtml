@@ -4,65 +4,71 @@
     <link href="~/lyso/css/Daniel.css" rel="stylesheet" />
 </head>
 <body>
-<!-- Page Title -->
-<div class="page-title-area page-title-area-two title-img-one">
-    <div class="d-table">
-        <div class="d-table-cell">
-            <div class="page-title-text">
-                <h2>Generador de Documentos Legales</h2>
-                <ul>
-                    <li>
-                        <a asp-controller="Home" asp-action="Index">Home</a>
-                    </li>
-                    <li>
-                        <i class="icofont-simple-right"></i>
-                    </li>
-                    <li>Generador de poderes especiales judiciales</li>
-                </ul>
+    <!-- Page Title -->
+    <div class="page-title-area page-title-area-two title-img-one">
+        <div class="d-table">
+            <div class="d-table-cell">
+                <div class="page-title-text">
+                    <h2>Generador de Documentos Legales</h2>
+                    <ul>
+                        <li>
+                            <a asp-controller="Home" asp-action="Index">Home</a>
+                        </li>
+                        <li>
+                            <i class="icofont-simple-right"></i>
+                        </li>
+                        <li>
+                            <a asp-controller="Home" asp-action="UsuarioAutenticado" asp-route-correo=@User.Identity.Name>PreaceptaApp</a>
+                        </li>
+                        <li>
+                            <i class="icofont-simple-right"></i>
+                        </li>
+                        <li>Generador de poderes especiales judiciales</li>
+                    </ul>
+                </div>
             </div>
         </div>
     </div>
-</div>
-<!-- End Page Title -->
+    <!-- End Page Title -->
 
-<br />
-<br />
-<br />
+    <br />
+    <br />
+    <br />
 
-<div class="contact-form contact-form-two contact-form-three">
-    <div class="container">
-        <div class="contact-wrap">
+    <div class="contact-form contact-form-two contact-form-three">
+        <div class="container">
+            <div class="contact-wrap">
                 <form asp-action="CreateDocsPoderesEspecialesJudiciales" id="CreateDocsPoderesEspecialesJudiciales">
-                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                <div class="row justify-content-center">
-                    <div class="row">
-                        <div class="col-sm-6 col-lg-6">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="row justify-content-center">
+                        <div class="row">
+                            <div class="col-sm-6 col-lg-6">
                                 <div class="form-group">
                                     <label asp-for="Fecha" class="control-label"></label>
                                     <input asp-for="Fecha" type="date" class="form-control" id="idFecha" />
                                     <span asp-validation-for="Fecha" class="text-danger"></span>
                                 </div>
-                        </div>
-                        <div class="col-sm-6 col-lg-6">
-                            <div class="form-group">
-                                <label asp-for="IdAbogado" class="control-label"></label>
-                                <select asp-for="IdAbogado" class="form-control" asp-items="ViewBag.IdAbogado" id="idIdAbogado"></select>
+                            </div>
+                            <div class="col-sm-6 col-lg-6">
+                                <div class="form-group">
+                                    <label asp-for="IdAbogado" class="control-label"></label>
+                                    <select asp-for="IdAbogado" class="form-control" asp-items="ViewBag.IdAbogado" id="idIdAbogado"></select>
+                                </div>
+                            </div>
+                            <div class="col-sm-6 col-lg-6">
+                                <div class="form-group">
+                                    <label asp-for="IdCliente" class="control-label"></label>
+                                    <select asp-for="IdCliente" class="form-control" asp-items="ViewBag.IdCliente" id="idIdCliente"></select>
+                                </div>
+                            </div>
+                            <div class="col-sm-6 col-lg-6">
+                                <div class="form-group">
+                                    <label asp-for="Texto" class="control-label"></label>
+                                    <input asp-for="Texto" class="form-control" id="idTexto" />
+                                    <span asp-validation-for="Texto" class="text-danger"></span>
+                                </div>
                             </div>
                         </div>
-                        <div class="col-sm-6 col-lg-6">
-                            <div class="form-group">
-                                <label asp-for="IdCliente" class="control-label"></label>
-                                <select asp-for="IdCliente" class="form-control" asp-items="ViewBag.IdCliente" id="idIdCliente"></select>
-                            </div>
-                        </div>
-                        <div class="col-sm-6 col-lg-6">
-                            <div class="form-group">
-                                <label asp-for="Texto" class="control-label"></label>
-                                <input asp-for="Texto" class="form-control" id="idTexto" />
-                                <span asp-validation-for="Texto" class="text-danger"></span>
-                            </div>
-                        </div>
-                    </div>
 
                         <br />
                         <br />

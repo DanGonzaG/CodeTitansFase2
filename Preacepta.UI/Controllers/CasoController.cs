@@ -291,12 +291,24 @@ namespace Preacepta.UI.Controllers
 
         #region Creación de caso GET Y POST
         // GET: Caso/FormularioCaso
+        [HttpGet]
         [Authorize(Roles = "Gestor, Abogado")]
-        public async Task<IActionResult> FormularioCaso()
+        public async Task<IActionResult> FormularioCaso(int id)
         {
+
+            var cliente = await _buscarPersona.buscar(id);
+            var abogado = await _buscarPersona.buscarXcorreo(User.Identity.Name);
+
+            ViewBag.ClienteCedula = cliente.Cedula;
+            ViewBag.ClienteNombre = cliente.Nombre;
+            ViewBag.ClienteApellido1 = cliente.Apellido1;
+            ViewBag.ClienteApellido2 = cliente.Apellido2;
+            ViewBag.AbogadoCedula = abogado.Cedula;
+
+
             ViewData["IdTipoCaso"] = new SelectList(_listarCasosTipoLN.listar().Result, "IdTipoCaso", "Nombre");
 
-            ViewData["IdAbogado"] = (await _listarAbogados.listar())
+            /*ViewData["IdAbogado"] = (await _listarAbogados.listar())
                .Select(n => new SelectListItem
                {
                    Value = n.Cedula.ToString(),
@@ -310,7 +322,7 @@ namespace Preacepta.UI.Controllers
                    Value = n.Cedula.ToString(),
                    Text = $"{n.Cedula} - {n.Nombre} {n.Apellido1} {n.Apellido2}"
                })
-               .ToList();
+               .ToList();*/
             return View();
         }
 
@@ -327,9 +339,18 @@ namespace Preacepta.UI.Controllers
                 await _crear.Crear(tCaso);
                 return RedirectToAction(nameof(Index));
             }
+
+            var cliente = await _buscarPersona.buscar(tCaso.IdCliente);
+            var abogado = await _buscarPersona.buscar(tCaso.IdAbogado);
+
+            ViewBag.ClienteCedula = cliente.Cedula;
+            ViewBag.ClienteNombre = cliente.Nombre;
+            ViewBag.ClienteApellido1 = cliente.Apellido1;
+            ViewBag.ClienteApellido2 = cliente.Apellido2;
+
             ViewData["IdTipoCaso"] = new SelectList(_listarCasosTipoLN.listar().Result, "IdTipoCaso", "Nombre");
 
-            ViewData["IdAbogado"] = (await _listarAbogados.listar())
+            /*ViewData["IdAbogado"] = (await _listarAbogados.listar())
                .Select(n => new SelectListItem
                {
                    Value = n.Cedula.ToString(),
@@ -343,7 +364,7 @@ namespace Preacepta.UI.Controllers
                    Value = n.Cedula.ToString(),
                    Text = $"{n.Cedula} - {n.Nombre} {n.Apellido1} {n.Apellido2}"
                })
-               .ToList();
+               .ToList();*/
             return View(tCaso);
         }
         #endregion
@@ -395,6 +416,7 @@ namespace Preacepta.UI.Controllers
         #region Decargar Caso Completo
 
         [HttpGet]
+        [Authorize(Roles = "Gestor, Abogado, Cliente")]
         public async Task<IActionResult> DescargarCasoCompleto(int IdCaso)
         {           
             var imagenPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "lyso", "img", "PreaceptaLogoColorNegro.png");
@@ -491,6 +513,7 @@ namespace Preacepta.UI.Controllers
         #endregion
 
         #region validación de existencia de objeto
+        [Authorize(Roles = "Gestor, Abogado")]
         public async Task<JsonResult> IdExiste(int id)
         {
             bool bandera;

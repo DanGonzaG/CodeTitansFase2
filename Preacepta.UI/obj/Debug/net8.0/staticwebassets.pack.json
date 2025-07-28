@@ -917,6 +917,14 @@
       "PackagePath": "staticwebassets\\lyso\\js\\MostrarDetallesPL.js"
     },
     {
+      "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lyso\\js\\SweetAlertUsuarioAbogado.js",
+      "PackagePath": "staticwebassets\\lyso\\js\\SweetAlertUsuarioAbogado.js"
+    },
+    {
+      "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lyso\\js\\SweetAlertUsuarioGestor.js",
+      "PackagePath": "staticwebassets\\lyso\\js\\SweetAlertUsuarioGestor.js"
+    },
+    {
       "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lyso\\js\\bootstrap.bundle.min.js",
       "PackagePath": "staticwebassets\\lyso\\js\\bootstrap.bundle.min.js"
     },

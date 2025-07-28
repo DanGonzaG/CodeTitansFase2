@@ -474,6 +474,7 @@ namespace Praecepta.UI.Controllers
             return citas;
         }
 
+        [Authorize(Roles = "Gestor, Abogado")]
         public async Task<JsonResult> IdExiste(int id)
         {
             bool bandera;

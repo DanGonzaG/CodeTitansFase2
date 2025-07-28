@@ -277,6 +277,7 @@ namespace Preacepta.UI.Controllers
 
         #region Descarga de EtapaPL
         [HttpGet]
+        [Authorize(Roles = "Gestor,Abogado,Cliente")]
         public async Task<IActionResult> DescargaPDFetapaPL(int id)
         {
             var imagenlogo = System.IO.File.ReadAllBytes("C:/Preacepta/Preacepta.UI/wwwroot/lyso/img/PreaceptaLogoColorNegro.png");
@@ -337,6 +338,7 @@ namespace Preacepta.UI.Controllers
         #endregion
 
         #region validación de existencia de objeto
+        [Authorize(Roles = "Gestor, Abogado")]
         public async Task<JsonResult> IdExiste(int id)
         {
             bool bandera;

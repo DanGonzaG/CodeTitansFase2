@@ -16,6 +16,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Text;
+using Preacepta.LN.GePersona.BuscarXid;
 
 namespace Preacepta.UI.Controllers
 {
@@ -28,6 +29,7 @@ namespace Preacepta.UI.Controllers
         private readonly IEditarDocsAutorizacionRevisionExpedienteLN _editar;
         private readonly IEliminarDocsAutorizacionRevisionExpedienteLN _eliminar;
         private readonly IListarDocsAutorizacionRevisionExpedienteLN _listar;
+        private readonly IBuscarXidGePersonaLN _buscarPersona;
 
         public DocsAutorizacionRevisionExpedientesController(IConverter converter,
             Contexto context,
@@ -35,7 +37,8 @@ namespace Preacepta.UI.Controllers
             ICrearDocsAutorizacionRevisionExpedienteLN crear,
             IEditarDocsAutorizacionRevisionExpedienteLN editar,
             IEliminarDocsAutorizacionRevisionExpedienteLN eliminar,
-            IListarDocsAutorizacionRevisionExpedienteLN listar)
+            IListarDocsAutorizacionRevisionExpedienteLN listar,
+            IBuscarXidGePersonaLN buscarPersona)
         {
             _converter = converter;
             _context = context;
@@ -44,6 +47,7 @@ namespace Preacepta.UI.Controllers
             _editar = editar;
             _eliminar = eliminar;
             _listar = listar;
+            _buscarPersona = buscarPersona;
         }
 
         // GET: AutorizacionRevisionExpedientes
@@ -174,8 +178,18 @@ namespace Preacepta.UI.Controllers
 
         // DE ACA EN ADELNATE ESTAN MIS METODOS
         // GET: AutorizacionRevisionExpedientes/Create
-        public IActionResult CreateDocsAutorizacionRevisionExpedientes()
+        [HttpGet]
+        public async Task<IActionResult> CreateDocsAutorizacionRevisionExpedientes(int id)            
         {
+            var cliente = await _buscarPersona.buscar(id);
+            var abogado = await _buscarPersona.buscarXcorreo(User.Identity.Name);
+
+            ViewBag.CedulaCliente = cliente.Cedula;
+            ViewBag.NombreCliente = cliente.Nombre;
+            ViewBag.Apellido1Cliente = cliente.Apellido1;
+            ViewBag.Apellido2Cliente = cliente.Apellido2;
+            ViewBag.CedulaAbogadoDaniel = abogado.Cedula;
+
             ViewData["CedulaAbogado"] = new SelectList(_context.TGeAbogados, "Cedula", "Cedula");
             ViewData["CedulaAsistente"] = new SelectList(_context.TGePersonas, "Cedula", "Cedula");
             ViewData["CedulaImputado"] = new SelectList(_context.TGePersonas, "Cedula", "Cedula");
