@@ -476,7 +476,7 @@ button:focus {
   margin-bottom: 30px;
 }
 
-.cmn-btn {
+.cmn-btn, .cmn-btn--revision {
   display: inline-block;
   color: #ffffff;
   background-color: #b69d74;
@@ -486,7 +486,7 @@ button:focus {
   position: relative;
   z-index: 1;
 }
-.cmn-btn:before {
+.cmn-btn:before, .cmn-btn--revision:before {
   position: absolute;
   content: "";
   left: 0;
@@ -498,7 +498,7 @@ button:focus {
   transition: 0.5s all ease;
   background-color: #333333;
 }
-.cmn-btn:after {
+.cmn-btn:after, .cmn-btn--revision:after {
   position: absolute;
   content: "";
   right: 0;
@@ -510,16 +510,20 @@ button:focus {
   transition: 0.5s all ease;
   background-color: #333333;
 }
-.cmn-btn:hover {
+.cmn-btn:hover, .cmn-btn--revision:hover {
   color: #ffffff;
 }
-.cmn-btn:hover:before {
+.cmn-btn:hover:before, .cmn-btn--revision:hover:before {
   width: 50%;
   opacity: 1;
 }
-.cmn-btn:hover:after {
+.cmn-btn:hover:after, .cmn-btn--revision:hover:after {
   width: 50%;
   opacity: 1;
+}
+
+.cmn-btn--revision {
+  background-color: #ED9121;
 }
 
 /*-- End Help --*/
@@ -1062,7 +1066,7 @@ button:focus {
   color: #333333;
 }
 
-.contact-btn {
+.contact-btn, .contact-btn--navegacion, .contact-btn--tercero, .contact-btn--revision, .contact-btn--segundo, .contact-btn--primero {
   font-weight: 600;
   font-size: 14px;
   color: #ffffff;
@@ -1073,7 +1077,7 @@ button:focus {
   z-index: 1;
   transition: 0.5s all ease;
 }
-.contact-btn:before {
+.contact-btn:before, .contact-btn--navegacion:before, .contact-btn--tercero:before, .contact-btn--revision:before, .contact-btn--segundo:before, .contact-btn--primero:before {
   position: absolute;
   content: "";
   left: 0;
@@ -1085,7 +1089,7 @@ button:focus {
   transition: 0.5s all ease;
   background-color: #333333;
 }
-.contact-btn:after {
+.contact-btn:after, .contact-btn--navegacion:after, .contact-btn--tercero:after, .contact-btn--revision:after, .contact-btn--segundo:after, .contact-btn--primero:after {
   position: absolute;
   content: "";
   right: 0;
@@ -1097,16 +1101,36 @@ button:focus {
   transition: 0.5s all ease;
   background-color: #333333;
 }
-.contact-btn:hover {
+.contact-btn:hover, .contact-btn--navegacion:hover, .contact-btn--tercero:hover, .contact-btn--revision:hover, .contact-btn--segundo:hover, .contact-btn--primero:hover {
   color: #ffffff;
 }
-.contact-btn:hover:before {
+.contact-btn:hover:before, .contact-btn--navegacion:hover:before, .contact-btn--tercero:hover:before, .contact-btn--revision:hover:before, .contact-btn--segundo:hover:before, .contact-btn--primero:hover:before {
   width: 50%;
   opacity: 1;
 }
-.contact-btn:hover:after {
+.contact-btn:hover:after, .contact-btn--navegacion:hover:after, .contact-btn--tercero:hover:after, .contact-btn--revision:hover:after, .contact-btn--segundo:hover:after, .contact-btn--primero:hover:after {
   width: 50%;
   opacity: 1;
+}
+
+.contact-btn--primero {
+  background-color: #0070BB;
+}
+
+.contact-btn--segundo {
+  background-color: #ACE1AF;
+}
+
+.contact-btn--revision {
+  background-color: #ED9121;
+}
+
+.contact-btn--tercero {
+  background-color: #848482;
+}
+
+.contact-btn--navegacion {
+  background-color: #848482;
 }
 
 .list-unstyled {
@@ -1304,7 +1328,7 @@ button:focus {
 .newsletter-area .newsletter-form ::placeholder {
   color: #a9a3a3;
 }
-.newsletter-area .newsletter-form .contact-btn {
+.newsletter-area .newsletter-form .contact-btn, .newsletter-area .newsletter-form .contact-btn--primero, .newsletter-area .newsletter-form .contact-btn--segundo, .newsletter-area .newsletter-form .contact-btn--revision, .newsletter-area .newsletter-form .contact-btn--tercero, .newsletter-area .newsletter-form .contact-btn--navegacion {
   position: absolute;
   top: 0;
   right: 0;
@@ -1555,7 +1579,7 @@ footer .copyright-area .copyright-right {
   margin-left: auto;
   margin-right: 50px;
 }
-.help-area-two .help-wrap .help-item .cmn-btn {
+.help-area-two .help-wrap .help-item .cmn-btn, .help-area-two .help-wrap .help-item .cmn-btn--revision {
   margin-top: 40px;
 }
 .help-area-two .help-wrap .help-left {
@@ -2749,7 +2773,7 @@ footer .copyright-area .copyright-right {
   color: #4a4a4a;
   margin-bottom: 20px;
 }
-.practice-details-item .practice-details-brochures .cmn-btn i {
+.practice-details-item .practice-details-brochures .cmn-btn i, .practice-details-item .practice-details-brochures .cmn-btn--revision i {
   display: inline-block;
   font-size: 22px;
   margin-right: 10px;

@@ -7,7 +7,8 @@ namespace Preacepta.LN.Casos.Listar
         Task<List<CasoDTO>> listar();
         Task<List<CasoDTO>> listarXabogado(int cedula);
         Task<List<CasoDTO>> listarXcliente(int cedula);
-
         Task<CasoDTO> listarXultimaFecha(int cedula);
+        Task<List<CasoDTO>> listarXclienteLos3Casos(int cedula);
+        Task<List<CasoDTO>> listarXabogadoLos3Casos(int cedula);
     }
 }

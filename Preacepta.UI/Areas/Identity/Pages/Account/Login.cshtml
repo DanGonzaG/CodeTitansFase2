@@ -85,3 +85,20 @@
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />
 }
+
+@if (TempData["Lockout"] != null)
+{
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            Swal.fire({
+                title: 'Sistema de autenticación',
+                text: '@TempData["Lockout"]',
+                icon: 'error',
+                confirmButtonText: 'Continuar',
+                customClass: {
+                    confirmButton: 'contact-btn' // Clase CSS personalizada
+                }
+            });
+        });
+    </script>
+}

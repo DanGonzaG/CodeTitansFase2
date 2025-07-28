@@ -1,7 +1,7 @@
-﻿@model Preacepta.Modelos.AbstraccionesFrond.GePersonaDTO
+@model Preacepta.Modelos.AbstraccionesFrond.GePersonaDTO
 
 @{
-    ViewData["Title"] = "Delete";
+    ViewData["Title"] = "Eliminar";
     Layout = "_Layout";
 }
 
@@ -10,6 +10,7 @@
 <h3>Estas seguro de querer eliminar este usuario ?</h3>
 <div>
     <h4>Modulo de Persona</h4>
+
     <hr />
     <dl class="row">
         <dt class = "col-sm-2">
@@ -108,6 +109,7 @@
     <form asp-action="Delete">
         <input type="hidden" asp-for="Cedula" />
         <input type="submit" value="Eliminar" class="btn btn-danger" style=" width: 115px; height: 40px;" />
+
     </form>
 
     <div class="form-group">

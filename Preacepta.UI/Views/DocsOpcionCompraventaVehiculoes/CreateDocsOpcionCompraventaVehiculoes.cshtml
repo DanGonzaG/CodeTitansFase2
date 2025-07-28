@@ -1,4 +1,4 @@
-﻿@model Preacepta.Modelos.AbstraccionesFrond.DocsOpcionCompraventaVehiculoDTO
+@model Preacepta.Modelos.AbstraccionesFrond.DocsOpcionCompraventaVehiculoDTO
 @using System.Globalization
 @{
     CultureInfo.DefaultThreadCurrentCulture = new CultureInfo("en-US");
@@ -12,30 +12,37 @@
 </head>
 
 <body>
-<!-- Page Title -->
-<div class="page-title-area page-title-area-two title-img-one">
-    <div class="d-table">
-        <div class="d-table-cell">
-            <div class="page-title-text">
-                <h2>Generador de Documentos Legales</h2>
-                <ul>
-                    <li>
-                        <a asp-controller="Home" asp-action="Index">Inicio</a>
-                    </li>
-                    <li>
-                        <i class="icofont-simple-right"></i>
-                    </li>
-                    <li>Generador de documentos para compra y venta de vehiculos</li>
-                </ul>
+    <!-- Page Title -->
+    <div class="page-title-area page-title-area-two title-img-one">
+        <div class="d-table">
+            <div class="d-table-cell">
+                <div class="page-title-text">
+                    <h2>Generador de Documentos Legales</h2>
+                    <ul>
+                        <li>
+                            <a asp-controller="Home" asp-action="Index">Inicio</a>
+                        </li>
+                        <li>
+                            <i class="icofont-simple-right"></i>
+                        </li>
+                        <li>
+                            <a asp-controller="Home" asp-action="UsuarioAutenticado" asp-route-correo=@User.Identity.Name>PreaceptaApp</a>
+                        </li>
+                        <li>
+                            <i class="icofont-simple-right"></i>
+                        </li>
+                        <li>Generador de documentos para compra y venta de vehiculos</li>
+                    </ul>
+                </div>
             </div>
         </div>
     </div>
-</div>
-<!-- End Page Title -->
+    <!-- End Page Title -->
 
-<br />
-<br />
-<br />
+    <br />
+    <br />
+    <br />
+
 
 <div class="contact-form contact-form-two contact-form-three">
     <div class="container">

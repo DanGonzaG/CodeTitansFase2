@@ -1,0 +1,161 @@
+﻿@model Preacepta.Modelos.AbstraccionesFrond.PersonaAbogadoCasoDocCita
+<link href="~/lyso/css/daniel.css" rel="stylesheet" />
+<!-- Page Title -->
+<div class="page-title-area title-img-one">
+    <div class="d-table">
+        <div class="d-table-cell">
+            <div class="page-title-text">
+                <h2>Sistema Preacepta</h2>
+                <ul>
+                    <li>
+                        <a asp-action="Index">Pagina Principal</a>
+                    </li>
+                    <li>
+                        <i class="icofont-simple-right"></i>
+                    </li>
+                    <li>PreaceptaApp</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End Page Title -->
+<!-- Attorney Details -->
+<div class="attorney-details pt-100 ">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="attor-details-item">
+                <div class="attor-details-right">
+                    <div class="attor-details-name" style="text-align:center">
+                        @if (Model.personaDTO.Genero == "Femenino")
+                        {
+                            <h2>Bienvenido a PreaceptaApp</h2>
+                            <h2>Sra. @Model.personaDTO.Nombre @Model.personaDTO.Apellido1</h2>
+                        }
+                        else
+                        {
+                            <h2>Bienvenido a PreaceptaApp</h2>
+                            <h2>Sr. @Model.personaDTO.Nombre @Model.personaDTO.Apellido1</h2>
+                        }
+                        <p>Idenficación: @Model.personaDTO.Cedula</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<div class="attorney-details pb-70">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-3">
+                <div class="btn-group-vertical menuDaniel">
+                    <label class="menuDanielLabels">Casos legales</label>
+                    <a asp-controller="GestionCasos" asp-action="SolicitudCaso" class="contact-btn menuDanielBtns">Solicitar apertura de caso</a>
+                    <a class="contact-btn menuDanielBtns" asp-controller="Caso" asp-action="CasosListado">Casos en proceso</a>
+                    <a class="contact-btn menuDanielBtns" asp-controller="Caso" asp-action="CasosListadoHistorial">Casos Cerrados</a>
+
+                    <label class="menuDanielLabels">Citas</label>
+                    <a class="contact-btn menuDanielBtns" asp-controller="Citas" asp-action="Calendar">Agenda de citas</a>
+
+                    <label class="menuDanielLabels">Información de usuario</label>
+                    <a class="contact-btn menuDanielBtns" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Mis datos</a>
+
+                    <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
+                        <!--<button type="submit" class="nav-link btn btn-link text-dark">Logout</button>-->
+                        <button type="submit" class="contact-btn menuDanielBtns" style="width:100%;text-align:justify">Cerrar sesión</button>
+                    </form>
+                </div>
+            </div>
+            <div class="col-lg-7">
+                <div class="attor-details-item">
+                    <div class="attor-details-right">
+                        <section class="practice-area secciontActividaesRecientes">
+                            <div class="container">
+                                <div class="section-title">
+                                    <span class="TitulaActividesRecientes">Actividades recientes</span>
+                                    <!--<h2>Nuestras Áreas de Práctica Legal</h2>-->
+                                </div>
+                                <div class="row justify-content-center">
+                                    <div class="col-sm-6 col-lg-4">
+                                        <div class="practice-item">
+                                            <div class="practice-icon">
+                                                <i class="flaticon-law"></i>
+                                            </div>
+                                            <h3>Documentos recientes</h3>
+                                            @if (Model.ListarTresUltimosDocsXCliente.Any())
+                                            {
+                                                @foreach (var item in Model.ListarTresUltimosDocsXCliente)
+                                                {
+                                                    <p>@Html.DisplayFor(modelItem => item.IdDocumento)-Compra Finca-@Html.DisplayFor(modelItem => item.CedulaAbogadoNavigation.CedulaNavigation.Nombre))</p>
+                                                }
+                                            }
+                                            else
+                                            {
+                                                <p>No cuenta con casos recientes</p>
+                                            }
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6 col-lg-4">
+                                        <div class="practice-item">
+                                            <div class="practice-icon">
+                                                <i class="flaticon-family"></i>
+                                            </div>
+                                            <h3>Ultimos casos creados</h3>
+
+
+                                            @if(Model.TresUltimosCasosXcliente.Any())
+                                            {
+                                                @foreach (var item in Model.TresUltimosCasosXcliente.Where(act => act.Activo))
+                                                {
+                                                    <p>@Html.DisplayFor(modelItem => item.Nombre)</p>
+                                                }
+                                            }
+                                            else
+                                            {
+                                                <p>No cuenta con casos recientes</p>
+                                            }
+
+                                            
+
+
+                                            <a asp-controller="Home" asp-action="CaseStudyDetails">Read More</a>
+                                            <img class="practice-shape-one" src="~/lyso/img/home-one/7.png" alt="Shape">
+                                            <img class="practice-shape-two" src="~/lyso/img/home-one/8.png" alt="Shape">
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6 col-lg-4">
+                                        <div class="practice-item">
+                                            <div class="practice-icon">
+                                                <i class="flaticon-law"></i>
+                                            </div>
+                                            <h3>Próxima cita agendada</h3>
+                                            @if (Model.TresCitasMasProximasXCliente.Any())
+                                            {
+                                                @foreach (var item in Model.TresCitasMasProximasXCliente)
+                                                {
+                                                    <p>@Html.DisplayFor(modelItem => item.IdCitaNavigation.Fecha)</p>
+                                                }
+                                            }
+                                            else
+                                            {
+                                                <p>No cuenta con casos recientes</p>
+                                            }
+                                        </div>
+                                    </div>
+
+
+                                </div>
+                            </div>
+                        </section>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- End Team -->

@@ -1,5 +1,6 @@
 ﻿
 using Preacepta.AD.Citas.Listar;
+using Preacepta.Modelos.AbstraccionesBD;
 using Preacepta.Modelos.AbstraccionesFrond;
 using System;
 using System.Collections.Generic;
@@ -27,6 +28,16 @@ namespace Preacepta.LN.Citas.Listar
         public async Task<List<CitasDTO>> ListarPorIdCliente(int idCliente)
         {
             return await _listar.ListarPorIdCliente(idCliente); // <- NUEVO
+        }
+
+        public async Task<List<CitasDTO>> TresCitasMasProximasXAfitrion(int idCliente)
+        {            
+            return await _listar.TresCitasMasProximasXAfitrion(idCliente);
+        }
+
+        public async Task<List<TCitasCliente>> TresCitasMasProximasXCliente(int idCliente)
+        {
+            return await _listar.TresCitasMasProximasXCliente(idCliente);
         }
     }
 }
