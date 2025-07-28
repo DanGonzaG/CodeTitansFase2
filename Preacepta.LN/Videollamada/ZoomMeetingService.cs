@@ -9,7 +9,7 @@ namespace Preacepta.LN.Videollamada
 {
     public class ZoomMeetingService
     {
-        public async Task<string> CrearReunionProgramadaAsync(string accessToken, DateTime fechaHoraInicio, int duracionMinutos, string tema = "Reunión programada")
+        public async Task<ZoomMeetingResult> CrearReunionProgramadaAsync(string accessToken, DateTime fechaHoraInicio, int duracionMinutos, string tema = "Reunión programada")
         {
             using var client = new HttpClient();
             client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", accessToken);
@@ -20,7 +20,7 @@ namespace Preacepta.LN.Videollamada
                 type = 2, // Reunión programada
                 start_time = fechaHoraInicio.ToUniversalTime().ToString("yyyy-MM-ddTHH:mm:ssZ"),
                 duration = duracionMinutos,
-                timezone = "America/Cota Rica", 
+                timezone = "America/Costa_Rica", 
                 settings = new
                 {
                     join_before_host = false,
@@ -37,14 +37,23 @@ namespace Preacepta.LN.Videollamada
             if (!response.IsSuccessStatusCode)
                 throw new Exception($"Error al crear reunión: {response.StatusCode} - {result}");
 
-            dynamic json = JsonConvert.DeserializeObject(result);
+            var json = JsonConvert.DeserializeObject<ZoomMeetingResult>(result);
 
             Console.WriteLine($"✅ Reunión creada:");
-            Console.WriteLine($"🆔 ID: {json.id}");
-            Console.WriteLine($"📅 Inicio: {json.start_time}");
-            Console.WriteLine($"🔗 Link: {json.join_url}");
+            Console.WriteLine($"🆔 ID: {json.MeetingId}");
+            Console.WriteLine($"🔗 Link: {json.JoinUrl}");
 
-            return json.join_url;
+            return json;
+
         }
     }
+    public class ZoomMeetingResult
+        {
+            [JsonProperty("id")]
+            public long MeetingId { get; set; }
+
+            [JsonProperty("join_url")]
+            public string JoinUrl { get; set; }
+        }
+    
 }

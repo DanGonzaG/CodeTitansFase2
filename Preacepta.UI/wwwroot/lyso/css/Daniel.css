@@ -116,6 +116,7 @@
     align-content: center; /*Se usa para aliniear al centro todos los label de los formularios, se hace independiente para no alterar la estructra golbal del pagina*/
 }
 
+
 ul{
     list-style-type: none;
     padding-left:0;
@@ -187,4 +188,130 @@ ul{
 }
 
 
+
+
+/* Modal de ListarDocumentos */
+#modalListarDocumentos {
+    z-index: 1050;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7); /* Fondo semi-transparente */
+    display: none;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Modal de DetalleCita */
+#modalDetalleCita {
+    z-index: 1040;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7); /* Fondo semi-transparente */
+    display: none;
+    align-items: center;
+    justify-content: center;
+}
+
+.switch-container {
+    display: flex;
+    flex-direction: column; 
+    align-items: flex-start; 
+    gap: 10px;
+    margin-top: 0.5rem;
+}
+
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 40px;
+    height: 24px;
+}
+
+    .switch input {
+        opacity: 0;
+        width: 0;
+        height: 0;
+    }
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #bbb;
+    transition: background-color .4s;
+    border-radius: 25px;
+}
+
+    .slider:before {
+        position: absolute;
+        content: "";
+        height: 19px;
+        width: 19px;
+        left: 3px;
+        bottom: 3px;
+        background-color: White;
+        border: 2px solid #b69d74;
+        transition: transform .4s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+        border-radius: 50%;
+    }
+
+.switch input:checked + .slider {
+    background-color: #b69d74;
+    border: 1px solid #b69d74;
+    box-shadow: inset 0 0 4px rgba(0,0,0,0.3);
+}
+
+    .switch input:checked + .slider:before {
+        transform: translateX(18px);
+        background-color: white;
+        border: 2px solid #b69d74;
+    }
+
+.switch input:not(:checked) + .slider:before {
+    transform: translateX(0) scale(1);
+}
+
+
+.switch input:focus + .slider {
+    box-shadow: 0 0 2px #b69d74;
+}
+.text-success-light {
+    color: #4CAF50;
+    font-weight: 400; 
+    font-size: 0.95rem; 
+}
+.select2-container--default .select2-selection--single {
+    height: calc(2.25rem + 2px); /* Altura consistente con los otros campos */
+    padding: .375rem .75rem; /* Espaciado interno similar al de .form-control */
+    font-size: 1rem; /* Tamaño de fuente consistente */
+    border: 1px solid #ced4da; /* Borde gris similar a los otros campos */
+    border-radius: .25rem; /* Bordes redondeados */
+    background-color: #fff; /* Fondo blanco */
+}
+
+    /* Estilo para el texto dentro del select2 */
+    .select2-container--default .select2-selection--single .select2-selection__rendered {
+        color: #495057; /* Color de texto similar al de .form-control */
+    }
+
+    /* Estilo para el icono de dropdown dentro de select2 */
+    .select2-container--default .select2-selection--single .select2-selection__arrow {
+        height: 30px; /* Ajustar altura para que se vea consistente */
+        right: 10px; /* Ajustar la posición del icono */
+    }
+
+/* Estilo cuando el select2 está en focus (cuando se hace clic en él) */
+.select2-container--default.select2-container--focus .select2-selection--single {
+    border-color: #80bdff; /* Color de borde cuando está en foco (similar al foco en .form-control) */
+    box-shadow: 0 0 0 .2rem rgba(38, 143, 255, .25); /* Sombra similar a .form-control cuando está en foco */
+}
 
