@@ -1,6 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using Preacepta.AD;
 using Preacepta.LN.GeAbogadoTipo.BuscarXid;
 using Preacepta.LN.GeAbogadoTipo.Crear;
 using Preacepta.LN.GeAbogadoTipo.Editar;
@@ -10,6 +10,7 @@ using Preacepta.Modelos.AbstraccionesFrond;
 
 namespace Preacepta.UI.Controllers
 {
+    [Authorize(Roles = "Gestor")]
     public class AbogadoTipoController : Controller
     {
         private readonly IBuscarAbogadoTipoLN _buscar;
@@ -35,7 +36,7 @@ namespace Preacepta.UI.Controllers
         // GET: AbogadoTipo
         public async Task<IActionResult> Index()
         {
-            return View( await _listar.listar());
+            return View(await _listar.listar());
         }
 
         // GET: AbogadoTipo/Details/5
@@ -111,8 +112,8 @@ namespace Preacepta.UI.Controllers
                     await _editar.editar(tGeAbogadoTipo);
                 }
                 catch (DbUpdateConcurrencyException)
-                {     
-                    return NotFound();                   
+                {
+                    return NotFound();
                 }
                 return RedirectToAction(nameof(Index));
             }
@@ -143,6 +144,6 @@ namespace Preacepta.UI.Controllers
         {
             await _eliminar.eliminar(id);
             return RedirectToAction(nameof(Index));
-        }       
+        }
     }
 }

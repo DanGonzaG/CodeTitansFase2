@@ -1,5 +1,4 @@
 ﻿using System.ComponentModel;
-using System.Security.Principal;
 
 namespace Praecepta.UI.Models.ModuloCasos
 {
@@ -27,7 +26,7 @@ namespace Praecepta.UI.Models.ModuloCasos
         public string Abogado { get; set; }
 
         [DisplayName("Licencia de Abogado")]
-        public  int  AbogadoLicencia { get; set; }
+        public int AbogadoLicencia { get; set; }
 
 
         // -------------------------------------//

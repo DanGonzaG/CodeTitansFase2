@@ -70,6 +70,14 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcQWNjb3VudFxMb2dvdXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Preacepta/Preacepta.UI/Areas/Identity/Pages/Account/Manage/CambiarContactos.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcQWNjb3VudFxNYW5hZ2VcQ2FtYmlhckNvbnRhY3Rvcy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Preacepta/Preacepta.UI/Areas/Identity/Pages/Account/Manage/CambiarUbicacion.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcQWNjb3VudFxNYW5hZ2VcQ2FtYmlhclViaWNhY2lvbi5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Preacepta/Preacepta.UI/Areas/Identity/Pages/Account/Manage/ChangePassword.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcQWNjb3VudFxNYW5hZ2VcQ2hhbmdlUGFzc3dvcmQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
@@ -206,6 +214,10 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWJvZ2Fkb1RpcG9cSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Preacepta/Preacepta.UI/Views/Abogado/CrearAbogado.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWJvZ2Fkb1xDcmVhckFib2dhZG8uY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Preacepta/Preacepta.UI/Views/Abogado/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWJvZ2Fkb1xDcmVhdGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
@@ -226,6 +238,62 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWJvZ2Fkb1xJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Preacepta/Preacepta.UI/Views/CasosEtapa/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2Fzb3NFdGFwYVxDcmVhdGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Preacepta/Preacepta.UI/Views/CasosEtapa/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2Fzb3NFdGFwYVxEZWxldGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Preacepta/Preacepta.UI/Views/CasosEtapa/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2Fzb3NFdGFwYVxEZXRhaWxzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Preacepta/Preacepta.UI/Views/CasosEtapa/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2Fzb3NFdGFwYVxFZGl0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Preacepta/Preacepta.UI/Views/CasosEtapa/EditarEtapaPL.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2Fzb3NFdGFwYVxFZGl0YXJFdGFwYVBMLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Preacepta/Preacepta.UI/Views/CasosEtapa/EliminarEtapaPL.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2Fzb3NFdGFwYVxFbGltaW5hckV0YXBhUEwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Preacepta/Preacepta.UI/Views/CasosEtapa/EtapasPL.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2Fzb3NFdGFwYVxFdGFwYXNQTC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Preacepta/Preacepta.UI/Views/CasosEtapa/FormularioEtapaPL.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2Fzb3NFdGFwYVxGb3JtdWxhcmlvRXRhcGFQTC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Preacepta/Preacepta.UI/Views/CasosEtapa/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2Fzb3NFdGFwYVxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Preacepta/Preacepta.UI/Views/CasosEvidencia/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2Fzb3NFdmlkZW5jaWFcQ3JlYXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Preacepta/Preacepta.UI/Views/CasosEvidencia/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2Fzb3NFdmlkZW5jaWFcRGVsZXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Preacepta/Preacepta.UI/Views/CasosEvidencia/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2Fzb3NFdmlkZW5jaWFcRGV0YWlscy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Preacepta/Preacepta.UI/Views/CasosEvidencia/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2Fzb3NFdmlkZW5jaWFcRWRpdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Preacepta/Preacepta.UI/Views/CasosEvidencia/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2Fzb3NFdmlkZW5jaWFcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Preacepta/Preacepta.UI/Views/CasosTipo/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2Fzb3NUaXBvXENyZWF0ZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
@@ -244,6 +312,78 @@ build_metadata.AdditionalFiles.CssScope =
 
 [C:/Preacepta/Preacepta.UI/Views/CasosTipo/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2Fzb3NUaXBvXEluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Preacepta/Preacepta.UI/Views/Caso/CasosListado.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2Fzb1xDYXNvc0xpc3RhZG8uY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Preacepta/Preacepta.UI/Views/Caso/CasosListadoHistorial.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2Fzb1xDYXNvc0xpc3RhZG9IaXN0b3JpYWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Preacepta/Preacepta.UI/Views/Caso/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2Fzb1xDcmVhdGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Preacepta/Preacepta.UI/Views/Caso/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2Fzb1xEZWxldGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Preacepta/Preacepta.UI/Views/Caso/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2Fzb1xEZXRhaWxzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Preacepta/Preacepta.UI/Views/Caso/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2Fzb1xFZGl0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Preacepta/Preacepta.UI/Views/Caso/FormularioCaso.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2Fzb1xGb3JtdWxhcmlvQ2Fzby5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Preacepta/Preacepta.UI/Views/Caso/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2Fzb1xJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Preacepta/Preacepta.UI/Views/CitasPrueba/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2l0YXNQcnVlYmFcQ3JlYXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Preacepta/Preacepta.UI/Views/CitasPrueba/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2l0YXNQcnVlYmFcRGVsZXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Preacepta/Preacepta.UI/Views/CitasPrueba/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2l0YXNQcnVlYmFcRGV0YWlscy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Preacepta/Preacepta.UI/Views/CitasPrueba/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2l0YXNQcnVlYmFcRWRpdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Preacepta/Preacepta.UI/Views/CitasPrueba/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2l0YXNQcnVlYmFcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Preacepta/Preacepta.UI/Views/CitasTipo/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2l0YXNUaXBvXENyZWF0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Preacepta/Preacepta.UI/Views/CitasTipo/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2l0YXNUaXBvXERlbGV0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Preacepta/Preacepta.UI/Views/CitasTipo/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2l0YXNUaXBvXERldGFpbHMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Preacepta/Preacepta.UI/Views/CitasTipo/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2l0YXNUaXBvXEVkaXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Preacepta/Preacepta.UI/Views/CitasTipo/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2l0YXNUaXBvXEluZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Preacepta/Preacepta.UI/Views/Citas/Calendar.cshtml]
@@ -310,6 +450,102 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ3JQcm92aW5jaWFzXEluZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Preacepta/Preacepta.UI/Views/DocsAutorizacionRevisionExpedientes/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRG9jc0F1dG9yaXphY2lvblJldmlzaW9uRXhwZWRpZW50ZXNcQ3JlYXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Preacepta/Preacepta.UI/Views/DocsAutorizacionRevisionExpedientes/CreateDocsAutorizacionRevisionExpedientes.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRG9jc0F1dG9yaXphY2lvblJldmlzaW9uRXhwZWRpZW50ZXNcQ3JlYXRlRG9jc0F1dG9yaXphY2lvblJldmlzaW9uRXhwZWRpZW50ZXMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Preacepta/Preacepta.UI/Views/DocsAutorizacionRevisionExpedientes/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRG9jc0F1dG9yaXphY2lvblJldmlzaW9uRXhwZWRpZW50ZXNcRGVsZXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Preacepta/Preacepta.UI/Views/DocsAutorizacionRevisionExpedientes/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRG9jc0F1dG9yaXphY2lvblJldmlzaW9uRXhwZWRpZW50ZXNcRGV0YWlscy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Preacepta/Preacepta.UI/Views/DocsAutorizacionRevisionExpedientes/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRG9jc0F1dG9yaXphY2lvblJldmlzaW9uRXhwZWRpZW50ZXNcRWRpdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Preacepta/Preacepta.UI/Views/DocsAutorizacionRevisionExpedientes/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRG9jc0F1dG9yaXphY2lvblJldmlzaW9uRXhwZWRpZW50ZXNcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Preacepta/Preacepta.UI/Views/DocsCombustibles/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRG9jc0NvbWJ1c3RpYmxlc1xDcmVhdGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Preacepta/Preacepta.UI/Views/DocsCombustibles/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRG9jc0NvbWJ1c3RpYmxlc1xEZWxldGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Preacepta/Preacepta.UI/Views/DocsCombustibles/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRG9jc0NvbWJ1c3RpYmxlc1xEZXRhaWxzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Preacepta/Preacepta.UI/Views/DocsCombustibles/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRG9jc0NvbWJ1c3RpYmxlc1xFZGl0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Preacepta/Preacepta.UI/Views/DocsCombustibles/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRG9jc0NvbWJ1c3RpYmxlc1xJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Preacepta/Preacepta.UI/Views/DocsCompraventaFincas/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRG9jc0NvbXByYXZlbnRhRmluY2FzXENyZWF0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Preacepta/Preacepta.UI/Views/DocsCompraventaFincas/CreateDocsCompraventaFincas.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRG9jc0NvbXByYXZlbnRhRmluY2FzXENyZWF0ZURvY3NDb21wcmF2ZW50YUZpbmNhcy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Preacepta/Preacepta.UI/Views/DocsCompraventaFincas/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRG9jc0NvbXByYXZlbnRhRmluY2FzXERlbGV0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Preacepta/Preacepta.UI/Views/DocsCompraventaFincas/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRG9jc0NvbXByYXZlbnRhRmluY2FzXERldGFpbHMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Preacepta/Preacepta.UI/Views/DocsCompraventaFincas/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRG9jc0NvbXByYXZlbnRhRmluY2FzXEVkaXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Preacepta/Preacepta.UI/Views/DocsCompraventaFincas/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRG9jc0NvbXByYXZlbnRhRmluY2FzXEluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Preacepta/Preacepta.UI/Views/DocsContratoPrestacionServicios/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRG9jc0NvbnRyYXRvUHJlc3RhY2lvblNlcnZpY2lvc1xDcmVhdGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Preacepta/Preacepta.UI/Views/DocsContratoPrestacionServicios/CreateDocsContratoPrestacionServicios.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRG9jc0NvbnRyYXRvUHJlc3RhY2lvblNlcnZpY2lvc1xDcmVhdGVEb2NzQ29udHJhdG9QcmVzdGFjaW9uU2VydmljaW9zLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Preacepta/Preacepta.UI/Views/DocsContratoPrestacionServicios/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRG9jc0NvbnRyYXRvUHJlc3RhY2lvblNlcnZpY2lvc1xEZWxldGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Preacepta/Preacepta.UI/Views/DocsContratoPrestacionServicios/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRG9jc0NvbnRyYXRvUHJlc3RhY2lvblNlcnZpY2lvc1xEZXRhaWxzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Preacepta/Preacepta.UI/Views/DocsContratoPrestacionServicios/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRG9jc0NvbnRyYXRvUHJlc3RhY2lvblNlcnZpY2lvc1xFZGl0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Preacepta/Preacepta.UI/Views/DocsContratoPrestacionServicios/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRG9jc0NvbnRyYXRvUHJlc3RhY2lvblNlcnZpY2lvc1xJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Preacepta/Preacepta.UI/Views/DocsGenerator/DocsGenerator - Copia.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRG9jc0dlbmVyYXRvclxEb2NzR2VuZXJhdG9yIC0gQ29waWEuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Preacepta/Preacepta.UI/Views/DocsGenerator/DocsGenerator.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRG9jc0dlbmVyYXRvclxEb2NzR2VuZXJhdG9yLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
@@ -324,6 +560,74 @@ build_metadata.AdditionalFiles.CssScope =
 
 [C:/Preacepta/Preacepta.UI/Views/DocsGenerator/Tutorial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRG9jc0dlbmVyYXRvclxUdXRvcmlhbC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Preacepta/Preacepta.UI/Views/DocsInscripcionVehiculo/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRG9jc0luc2NyaXBjaW9uVmVoaWN1bG9cQ3JlYXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Preacepta/Preacepta.UI/Views/DocsInscripcionVehiculo/CreateDocsInscripcionVehiculo.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRG9jc0luc2NyaXBjaW9uVmVoaWN1bG9cQ3JlYXRlRG9jc0luc2NyaXBjaW9uVmVoaWN1bG8uY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Preacepta/Preacepta.UI/Views/DocsInscripcionVehiculo/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRG9jc0luc2NyaXBjaW9uVmVoaWN1bG9cRGVsZXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Preacepta/Preacepta.UI/Views/DocsInscripcionVehiculo/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRG9jc0luc2NyaXBjaW9uVmVoaWN1bG9cRGV0YWlscy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Preacepta/Preacepta.UI/Views/DocsInscripcionVehiculo/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRG9jc0luc2NyaXBjaW9uVmVoaWN1bG9cRWRpdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Preacepta/Preacepta.UI/Views/DocsInscripcionVehiculo/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRG9jc0luc2NyaXBjaW9uVmVoaWN1bG9cSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Preacepta/Preacepta.UI/Views/DocsMarcaVehiculo/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRG9jc01hcmNhVmVoaWN1bG9cQ3JlYXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Preacepta/Preacepta.UI/Views/DocsMarcaVehiculo/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRG9jc01hcmNhVmVoaWN1bG9cRGVsZXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Preacepta/Preacepta.UI/Views/DocsMarcaVehiculo/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRG9jc01hcmNhVmVoaWN1bG9cRGV0YWlscy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Preacepta/Preacepta.UI/Views/DocsMarcaVehiculo/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRG9jc01hcmNhVmVoaWN1bG9cRWRpdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Preacepta/Preacepta.UI/Views/DocsMarcaVehiculo/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRG9jc01hcmNhVmVoaWN1bG9cSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Preacepta/Preacepta.UI/Views/DocsOpcionCompraventaVehiculoes/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRG9jc09wY2lvbkNvbXByYXZlbnRhVmVoaWN1bG9lc1xDcmVhdGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Preacepta/Preacepta.UI/Views/DocsOpcionCompraventaVehiculoes/CreateDocsOpcionCompraventaVehiculoes.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRG9jc09wY2lvbkNvbXByYXZlbnRhVmVoaWN1bG9lc1xDcmVhdGVEb2NzT3BjaW9uQ29tcHJhdmVudGFWZWhpY3Vsb2VzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Preacepta/Preacepta.UI/Views/DocsOpcionCompraventaVehiculoes/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRG9jc09wY2lvbkNvbXByYXZlbnRhVmVoaWN1bG9lc1xEZWxldGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Preacepta/Preacepta.UI/Views/DocsOpcionCompraventaVehiculoes/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRG9jc09wY2lvbkNvbXByYXZlbnRhVmVoaWN1bG9lc1xEZXRhaWxzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Preacepta/Preacepta.UI/Views/DocsOpcionCompraventaVehiculoes/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRG9jc09wY2lvbkNvbXByYXZlbnRhVmVoaWN1bG9lc1xFZGl0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Preacepta/Preacepta.UI/Views/DocsOpcionCompraventaVehiculoes/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRG9jc09wY2lvbkNvbXByYXZlbnRhVmVoaWN1bG9lc1xJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Preacepta/Preacepta.UI/Views/GeNegocio/Create.cshtml]
@@ -344,6 +648,26 @@ build_metadata.AdditionalFiles.CssScope =
 
 [C:/Preacepta/Preacepta.UI/Views/GeNegocio/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcR2VOZWdvY2lvXEluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Preacepta/Preacepta.UI/Views/GeRedesSociales/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcR2VSZWRlc1NvY2lhbGVzXENyZWF0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Preacepta/Preacepta.UI/Views/GeRedesSociales/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcR2VSZWRlc1NvY2lhbGVzXERlbGV0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Preacepta/Preacepta.UI/Views/GeRedesSociales/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcR2VSZWRlc1NvY2lhbGVzXERldGFpbHMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Preacepta/Preacepta.UI/Views/GeRedesSociales/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcR2VSZWRlc1NvY2lhbGVzXEVkaXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Preacepta/Preacepta.UI/Views/GeRedesSociales/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcR2VSZWRlc1NvY2lhbGVzXEluZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Preacepta/Preacepta.UI/Views/GestionCasos/CasosCerrados.cshtml]
@@ -410,12 +734,12 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Preacepta/Preacepta.UI/Views/Home/TestimonialForm.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxUZXN0aW1vbmlhbEZvcm0uY3NodG1s
+[C:/Preacepta/Preacepta.UI/Views/Home/UsuarioAutenticado.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxVc3VhcmlvQXV0ZW50aWNhZG8uY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Preacepta/Preacepta.UI/Views/Home/Testimonials.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxUZXN0aW1vbmlhbHMuY3NodG1s
+[C:/Preacepta/Preacepta.UI/Views/Personas/CrearPersona.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGVyc29uYXNcQ3JlYXJQZXJzb25hLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Preacepta/Preacepta.UI/Views/Personas/Create.cshtml]
@@ -462,8 +786,100 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Preacepta/Preacepta.UI/Views/Testimonials/TestimonialsLista.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVGVzdGltb25pYWxzXFRlc3RpbW9uaWFsc0xpc3RhLmNzaHRtbA==
+[C:/Preacepta/Preacepta.UI/Views/TDocsPagares/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVERvY3NQYWdhcmVzXENyZWF0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Preacepta/Preacepta.UI/Views/TDocsPagares/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVERvY3NQYWdhcmVzXERlbGV0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Preacepta/Preacepta.UI/Views/TDocsPagares/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVERvY3NQYWdhcmVzXERldGFpbHMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Preacepta/Preacepta.UI/Views/TDocsPagares/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVERvY3NQYWdhcmVzXEVkaXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Preacepta/Preacepta.UI/Views/TDocsPagares/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVERvY3NQYWdhcmVzXEluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Preacepta/Preacepta.UI/Views/TDocsPoderesEspecialesJudiciales/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVERvY3NQb2RlcmVzRXNwZWNpYWxlc0p1ZGljaWFsZXNcQ3JlYXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Preacepta/Preacepta.UI/Views/TDocsPoderesEspecialesJudiciales/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVERvY3NQb2RlcmVzRXNwZWNpYWxlc0p1ZGljaWFsZXNcRGVsZXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Preacepta/Preacepta.UI/Views/TDocsPoderesEspecialesJudiciales/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVERvY3NQb2RlcmVzRXNwZWNpYWxlc0p1ZGljaWFsZXNcRGV0YWlscy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Preacepta/Preacepta.UI/Views/TDocsPoderesEspecialesJudiciales/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVERvY3NQb2RlcmVzRXNwZWNpYWxlc0p1ZGljaWFsZXNcRWRpdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Preacepta/Preacepta.UI/Views/TDocsPoderesEspecialesJudiciales/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVERvY3NQb2RlcmVzRXNwZWNpYWxlc0p1ZGljaWFsZXNcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Preacepta/Preacepta.UI/Views/TDocsTipoVehiculoes/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVERvY3NUaXBvVmVoaWN1bG9lc1xDcmVhdGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Preacepta/Preacepta.UI/Views/TDocsTipoVehiculoes/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVERvY3NUaXBvVmVoaWN1bG9lc1xEZWxldGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Preacepta/Preacepta.UI/Views/TDocsTipoVehiculoes/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVERvY3NUaXBvVmVoaWN1bG9lc1xEZXRhaWxzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Preacepta/Preacepta.UI/Views/TDocsTipoVehiculoes/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVERvY3NUaXBvVmVoaWN1bG9lc1xFZGl0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Preacepta/Preacepta.UI/Views/TDocsTipoVehiculoes/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVERvY3NUaXBvVmVoaWN1bG9lc1xJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Preacepta/Preacepta.UI/Views/Testimonials/Testimonials.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVGVzdGltb25pYWxzXFRlc3RpbW9uaWFscy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Preacepta/Preacepta.UI/Views/TTestimonios/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVFRlc3RpbW9uaW9zXENyZWF0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Preacepta/Preacepta.UI/Views/TTestimonios/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVFRlc3RpbW9uaW9zXERlbGV0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Preacepta/Preacepta.UI/Views/TTestimonios/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVFRlc3RpbW9uaW9zXERldGFpbHMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Preacepta/Preacepta.UI/Views/TTestimonios/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVFRlc3RpbW9uaW9zXEVkaXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Preacepta/Preacepta.UI/Views/TTestimonios/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVFRlc3RpbW9uaW9zXEluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Preacepta/Preacepta.UI/Views/TTestimonios/TestimonialForm.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVFRlc3RpbW9uaW9zXFRlc3RpbW9uaWFsRm9ybS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Preacepta/Preacepta.UI/Views/TTestimonios/Testimonials.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVFRlc3RpbW9uaW9zXFRlc3RpbW9uaWFscy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Preacepta/Preacepta.UI/Views/TTestimonios/TestimonialsLista.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVFRlc3RpbW9uaW9zXFRlc3RpbW9uaWFsc0xpc3RhLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Preacepta/Preacepta.UI/Views/_ViewImports.cshtml]

@@ -1,10 +1,4 @@
-﻿using Preacepta.AD.CrDireccion1.Listar;
-using Preacepta.Modelos.AbstraccionesFrond;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Preacepta.Modelos.AbstraccionesFrond;
 
 namespace Preacepta.LN.CrDireccion1.Listar
 {
@@ -12,7 +6,9 @@ namespace Preacepta.LN.CrDireccion1.Listar
     {
         Task<List<CrProvinciaDTO>> listarProvincias();
         Task<List<CrCantonDTO>> listarCantones();
+        Task<List<CrCantonDTO>> listarCantonesXprovincia(int id);
         Task<List<CrDistritoDTO>> listarDistritos();
+        Task<List<CrDistritoDTO>> listarDistritosXCanton(int id);
 
     }
 }

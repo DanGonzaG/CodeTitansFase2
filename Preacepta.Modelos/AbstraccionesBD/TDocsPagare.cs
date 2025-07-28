@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 //using Microsoft.EntityFrameworkCore;
 
@@ -73,13 +71,13 @@ public partial class TDocsPagare
 
     [ForeignKey("CedulaDeudor")]
     [InverseProperty("TDocsPagareCedulaDeudorNavigations")]
-    public virtual TGePersona CedulaDeudorNavigation { get; set; } = null!;
+    public virtual TGePersona? CedulaDeudorNavigation { get; set; } = null!;
 
     [ForeignKey("CedulaFiador")]
     [InverseProperty("TDocsPagareCedulaFiadorNavigations")]
-    public virtual TGePersona CedulaFiadorNavigation { get; set; } = null!;
+    public virtual TGePersona? CedulaFiadorNavigation { get; set; } = null!;
 
     [ForeignKey("LugarPago")]
     [InverseProperty("TDocsPagares")]
-    public virtual TCrDistrito LugarPagoNavigation { get; set; } = null!;
+    public virtual TCrDistrito? LugarPagoNavigation { get; set; } = null!;
 }

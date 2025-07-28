@@ -107,7 +107,7 @@ namespace Praecepta.UI.Controllers
         }
 
         public IActionResult DocsPrevisualizacion()
-        {           
+        {
             return View();
         }
 

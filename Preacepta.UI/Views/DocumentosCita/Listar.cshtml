@@ -1,0 +1,50 @@
+﻿@model List<Preacepta.Modelos.AbstraccionesFrond.DocumentosCitaDTO>
+@{
+    ViewBag.Title = "Documentos de la Cita";
+    int idCita = ViewBag.IdCita;
+    Layout = "_Layout";
+}
+
+
+<h4>Documentos compartidos en esta cita</h4>
+
+@if (Model.Any())
+{
+    <ul>
+        @foreach (var doc in Model)
+        {
+            <li>
+                <strong>@doc.NombreArchivo</strong> -
+                @if (doc.Descargar)
+                {
+                    <a href="@doc.RutaArchivo" download>Descargar</a>
+                }
+                else
+                {
+                    <span class="text-danger">(Descarga no autorizada)</span>
+                }
+                <span class="text-muted"> (subido el @doc.FechaSubida.ToShortDateString())</span>
+                <form asp-controller="DocumentosCita" asp-action="ActualizarPermisoDescarga" method="post" style="display:inline; margin-left: 10px;">
+                    <input type="hidden" name="permitirDescarga" value="false" />
+                    <label>
+                        <input type="checkbox" name="permitirDescarga" value="true" @(doc.Descargar ? "checked" : "") onchange="this.form.submit()" />
+                        Permitir descarga
+                    </label>
+                </form>
+            </li>
+        }
+    </ul>
+}
+else
+{
+    <p>No hay documentos aún.</p>
+}
+
+<hr />
+
+<h5>Subir nuevo documento</h5>
+<form asp-controller="DocumentosCita" asp-action="Subir" method="post" enctype="multipart/form-data">
+    <input type="hidden" name="idCita" value="@idCita" />
+    <input type="file" name="archivo" required />
+    <button type="submit">Subir</button>
+</form>

@@ -1,5 +1,8 @@
 using Microsoft.AspNetCore.Mvc;
-using Praecepta.UI.Models;
+using Preacepta.LN.Casos.Listar;
+using Preacepta.LN.GeAbogado.BuscarXid;
+using Preacepta.LN.GePersona.BuscarXid;
+using Preacepta.Modelos.AbstraccionesFrond;
 using Preacepta.UI.Models;
 using System.Diagnostics;
 
@@ -8,10 +11,16 @@ namespace Praecepta.UI.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        private readonly IBuscarAbogadoLN _buscarAbogado;
+        private readonly IBuscarXidGePersonaLN _buscarPersona;
+        private readonly IListarCasosLN _listarUlimoCaso;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger, IBuscarXidGePersonaLN buscarPersona, IBuscarAbogadoLN buscarAbogado, IListarCasosLN listarUlimoCaso)
         {
             _logger = logger;
+            _buscarPersona = buscarPersona;
+            _buscarAbogado = buscarAbogado;
+            _listarUlimoCaso = listarUlimoCaso;
         }
 
         public IActionResult Index()
@@ -30,7 +39,7 @@ namespace Praecepta.UI.Controllers
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
 
-        public IActionResult About() 
+        public IActionResult About()
         {
             return View();
         }
@@ -55,10 +64,40 @@ namespace Praecepta.UI.Controllers
             return View();
         }
 
-        
+        //vista derecho penal
         public IActionResult CaseStudyDetails()
         {
             return View("Practice/CaseStudyDetails");
+        }
+
+        //vista derecho administrativo
+        public IActionResult Administrativo()
+        {
+            return View("Practice/Administrativo");
+        }
+
+        //derecho civil
+        public IActionResult Civil()
+        {
+            return View("Practice/Civil");
+        }
+
+        //vista derecho laboral
+        public IActionResult Laboral()
+        {
+            return View("Practice/Laboral");
+        }
+
+        //vista derecho corporativo
+        public IActionResult Corporativo()
+        {
+            return View("Practice/Corporativo");
+        }
+
+        //vista derecho notarial
+        public IActionResult Notarial()
+        {
+            return View("Practice/Notarial");
         }
 
         public IActionResult AttorneyDetails()
@@ -66,7 +105,41 @@ namespace Praecepta.UI.Controllers
             return View("AttorneyDetails/AttorneyDetails");
         }
 
-    
+        public async Task<IActionResult> UsuarioAutenticado(string correo)
+        {
+            if (correo == "gestor@preacepta.com") 
+            {
+                return View("Index");
+            }
+            if (User.IsInRole("Abogado"))
+            {
+                var persona = await _buscarPersona.buscarXcorreo(correo);
+                var abogado = await _buscarAbogado.buscar(persona.Cedula);
+                var ultimoCaso = await _listarUlimoCaso.listarXultimaFecha(persona.Cedula);
+                PersonaAbogadoCasoDocCita perfilCompleto = new PersonaAbogadoCasoDocCita();
+                perfilCompleto.personaDTO = persona;
+                perfilCompleto.geAbogadoDTO = abogado;
+                perfilCompleto.UltimoCasoCreado = ultimoCaso;
+
+                return View("UsuarioAutenticado",perfilCompleto);
+            }
+            if (User.IsInRole("Cliente"))
+            {
+                return View("Index");
+            }
+            return View("Index");
+        }
+
+        /*public async Task<IActionResult> UsuarioAutenticado(string correo)
+        {
+            if (correo == "gestor@preacepta.com")
+            {
+                return View("Index");
+            }
+
+            return View();
+        }*/
+
 
 
 

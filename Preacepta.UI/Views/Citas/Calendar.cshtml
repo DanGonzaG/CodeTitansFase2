@@ -1,15 +1,12 @@
 ﻿@using Praecepta.UI.Models
-@model IEnumerable<ModuloCitasVideo>
+@model IEnumerable<Preacepta.Modelos.AbstraccionesFrond.CitasDTO>
 
-<head>    
+<head>
     <link href="~/calendario/stylecalendar.css" rel="stylesheet" />
     <link href="~/calendario/calendardaniel.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css">
     <title>Calendar with Events</title>
 </head>
-
-
-
-
 
 <!-- Page Title -->
 <div class="page-title-area page-title-area-two title-img-one">
@@ -18,12 +15,8 @@
             <div class="page-title-text">
                 <h2>Calendario y eventos</h2>
                 <ul>
-                    <li>
-                        <a asp-controller="Home" asp-action="Index">Home</a>
-                    </li>
-                    <li>
-                        <i class="icofont-simple-right"></i>
-                    </li>
+                    <li><a asp-controller="Home" asp-action="Index">Home</a></li>
+                    <li><i class="icofont-simple-right"></i></li>
                     <li>Calendario</li>
                 </ul>
             </div>
@@ -31,9 +24,6 @@
     </div>
 </div>
 <!-- End Page Title -->
-
-
-
 
 <div style="margin-bottom:10px; margin-top:10px" class="containerCalendar">
     <div class="left">
@@ -62,43 +52,37 @@
             </div>
         </div>
     </div>
+
     <div class="right">
         <div class="today-date">
             <div class="event-day">Mie</div>
-            <div class="event-date">12th december 2022</div>
+            <div class="event-date">12th diciembre 2022</div>
         </div>
-        <div class="events"></div>
-        <div class="add-event-wrapper">
-            <div class="add-event-header">
-                <div class="title">Añadir cita</div>
-                <i class="fas fa-times close"></i>
-            </div>
-            <div class="add-event-body">
-                <div class="add-event-input">
-                    <input type="text" placeholder="Nombre de cita" class="event-name" />
+
+        <div class="events">
+            @foreach (var cita in Model)
+            {
+                <div class="event" data-id="@cita.IdCita">
+                    <span>@cita.NombreTipoCita</span>
                 </div>
-                <div class="add-event-input">
-                    <input type="time" placeholder="Event Time From" class="event-time-from" />
-                </div>
-                <div class="add-event-input">
-                    <input type="time" placeholder="Event Time To" class="event-time-to" />
-                </div>
-                <div class="form-check">
-                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                    <label style="color:black" class="text" for="flexCheckDefault">
-                        Video Conferencia
-                    </label>
-                </div>
-            </div>
-            <div class="add-event-footer">
-                <button class="add-event-btn">Confirmar</button>
-            </div>
+            }
         </div>
+        @if (User.IsInRole("Abogado") || User.IsInRole("Admin"))
+{
+        <div style="display: flex; gap: 10px; align-items: center;">
+            <button class="add-event" id="btnAbrirModal" title="Crear nueva cita">
+                <i class="fas fa-plus"></i>
+            </button>
+
+            <button id="btnAbrirModalReunion" class="add-event" title="Programar Videollamada" style="right: 110px;"> 
+                <i class="fas fa-video"></i>
+            </button>
+            <div id="modalContainer"></div>
+            </div>
+        }
     </div>
-    <button class="add-event">
-        <i class="fas fa-plus"></i>
-    </button>
 </div>
+        
 <div class="formulario contact-form contact-form-two contact-form-three">
     <div class="container">
         <div class="contact-wrap" style="display: flex; justify-content: center; align-items: center;">
@@ -112,8 +96,74 @@
     </div>
 </div>
 
-<!-- Modal -->
-<div class="modal fade" id="ModalCitasFuturas" tabindex="-1" aria-labelledby="exampleModalLabel" inert">
+
+<!-- Modal para crear cita -->
+<div class="custom-modal" id="crearCitaModal" style="display: none;">
+    <div class="container">
+        <div class="contact-wrap">
+
+            <div class="page-title-text mb-4">
+                <h5 class="modal-title">Crear Nueva Cita</h5>
+
+            </div>
+            <div class="modal-body" id="crearCitaModalBody">
+        </div>
+    </div>
+</div>
+</div>
+<!-- Modal para Detalles de Cita -->
+<div id="modalDetalleCita" class="custom-modal" style="display:none;">
+        <div class="container">
+            <div class="contact-wrap">
+
+                <div class="page-title-text mb-4">
+                    <h5>Detalles de la Cita</h5>
+                </div>
+
+                <div id="detalleCitaBody" class="modal-body">
+                    <!-- Aquí se cargará el contenido de los detalles -->
+                </div>
+      
+            </div>
+        </div>
+    </div>
+
+<!-- Modal Editar Cita -->
+<div id="modalEditarCita" class="custom-modal" style="display:none;">
+    <div class="container">
+        <div class="contact-wrap">
+
+            <div class="page-title-text mb-4">
+                <h5>Editar Cita</h5>
+            </div>
+
+            <div id="editarCitaBody" class="modal-body">
+                <!-- Aquí se cargará dinámicamente el partial view _EditPartial -->
+            </div>
+
+        </div>
+    </div>
+</div>
+<!-- Modal de Confirmación para eliminar Cita -->
+<div id="modalEliminarCita" class="custom-modal" style="display:none;">
+    <div class="container">
+        <div class="contact-wrap">
+
+            <div class="page-title-text mb-4">
+                <h5>Eliminar Cita</h5>
+            </div>
+
+            <div id="eliminarCitaBody" class="modal-body">
+                <!-- Aquí se cargará dinámicamente el partial view _DeletePartial -->
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="modalContainer"></div>
+
+<!-- Modal Citas Futuras -->
+<div class="modal fade" id="ModalCitasFuturas" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg DanielModalCitasFuturas">
         <div class="modal-content" style="color:black">
             <div class="formulario contact-form contact-form-two">
@@ -123,55 +173,37 @@
                         <table id="tablaCitasFuturas" class="table">
                             <thead>
                                 <tr>
-                                    <th>
-                                        @Html.DisplayNameFor(Model => Model.NumCita)
-                                    </th>
-                                    <th>
-                                        @Html.DisplayNameFor(Model => Model.FechaHora)
-                                    </th>
-                                    <th>
-                                        @Html.DisplayNameFor(Model => Model.Evento)
-                                    </th>
-                                    <th>
-                                        @Html.DisplayNameFor(Model => Model.tipo)
-                                    </th>
+                                    <th>ID Cita</th>
+                                    <th>Fecha y Hora</th>
+                                    <th>Tipo de Cita</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 @foreach (var item in Model)
                                 {
-                                    if (item.FechaHora > DateTime.Now)
+                                    var fechaCompleta = new DateTime(item.Fecha.Year, item.Fecha.Month, item.Fecha.Day, item.Hora.Hour, item.Hora.Minute, 0);
+                                    if (fechaCompleta >= DateTime.Now)
                                     {
                                         <tr>
-                                            <td>
-                                                @item.NumCita
-                                            </td>
-                                            <td>
-                                                @item.FechaHora
-                                            </td>
-                                            <td>
-                                                @item.Evento
-                                            </td>
-                                            <td>
-                                                @item.tipo
-                                            </td>                                
+                                            <td>@item.IdCita</td>
+                                            <td>@($"{item.Fecha:dd/MM/yyyy} {item.Hora:HH:mm}")</td>
+                                            <td>@item.NombreTipoCita</td>
                                         </tr>
                                     }
                                 }
                             </tbody>
                         </table>
-
+                        <div class="modal-footer">
+                            <button type="button" class="contact-btn" data-bs-dismiss="modal" id="Retroceso">Cerrar</button>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="contact-btn" data-bs-dismiss="modal" id="Retroceso">Close</button>
-
             </div>
         </div>
     </div>
 </div>
 
+<!-- Modal Citas Pasadas -->
 <div class="modal fade" id="ModalCitasPasadas" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
@@ -179,61 +211,53 @@
                 <div class="container">
                     <div class="contact-wrap">
                         <h2>Revisión de datos ingresados</h2>
-                        <table id="tablaCitasFuturas" class="table">
+                        <table id="tablaCitasPasadas" class="table">
                             <thead>
                                 <tr>
-                                    <th>
-                                        @Html.DisplayNameFor(Model => Model.NumCita)
-                                    </th>
-                                    <th>
-                                        @Html.DisplayNameFor(Model => Model.FechaHora)
-                                    </th>
-                                    <th>
-                                        @Html.DisplayNameFor(Model => Model.Evento)
-                                    </th>
-                                    <th>
-                                        @Html.DisplayNameFor(Model => Model.tipo)
-                                    </th>
+                                    <th>ID Cita</th>
+                                    <th>Fecha y Hora</th>
+                                    <th>Tipo de Cita</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 @foreach (var item in Model)
                                 {
-                                    if (item.FechaHora < DateTime.Now)
+                                    var fechaCompleta = new DateTime(item.Fecha.Year, item.Fecha.Month, item.Fecha.Day, item.Hora.Hour, item.Hora.Minute, 0);
+                                    if (fechaCompleta < DateTime.Now)
                                     {
                                         <tr>
-                                            <td>
-                                                @item.NumCita
-                                            </td>
-                                            <td>
-                                                @item.FechaHora
-                                            </td>
-                                            <td>
-                                                @item.Evento
-                                            </td>
-                                            <td>
-                                                @item.tipo
-                                            </td>
+                                            <td>@item.IdCita</td>
+                                            <td>@($"{item.Fecha:dd/MM/yyyy} {item.Hora:HH:mm}")</td>
+                                            <td>@item.NombreTipoCita</td>
                                         </tr>
                                     }
                                 }
                             </tbody>
                         </table>
-
+                        <div class="modal-footer">
+                            <button type="button" class="contact-btn" data-bs-dismiss="modal" id="Retroceso">Cerrar</button>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="contact-btn" data-bs-dismiss="modal" id="Retroceso">Close</button>
-
             </div>
         </div>
     </div>
 </div>
 
-<script src="~/lyso/js/jquery.min.js"></script>
-<script src="~/calendario/scriptcalendar.js"></script>
+@section Scripts {
+    <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
+    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
 
-
-
-
+    <script src="~/calendario/scriptcalendar.js"></script>
+    <script src="~/lyso/js/programarReunion.js"></script>
+    <script src="~/lyso/js/Calendar-init.js"></script>
+}
+<script>
+    const fechasConCita = [
+    @foreach (var cita in Model)
+    {
+        <text>"@cita.Fecha.ToString("yyyy-MM-dd")",</text>
+    }
+        ];
+</script>

@@ -1,0 +1,118 @@
+﻿@model Preacepta.Modelos.AbstraccionesFrond.CitasDTO
+<head>
+    <link href="~/lyso/css/Daniel.css" rel="stylesheet" />
+    <link href="~/calendario/stylecalendar.css" rel="stylesheet" />
+</head>
+
+
+<div class="contact-form contact-form-two contact-form-three LetraNegra" style="width: 500px;">
+    <div class="container">
+        <div class="contact-wrap">
+            <h4 class="mb-4">Información de la cita</h4>
+
+            <div class="row mb-2">
+                <div class="col-sm-4">ID</div>
+                <div class="col-sm-8">@Model.IdCita</div>
+            </div>
+            <div class="row mb-2">
+                <div class="col-sm-4">Fecha</div>
+                <div class="col-sm-8">@Model.Fecha.ToShortDateString()</div>
+            </div>
+            <div class="row mb-2">
+                <div class="col-sm-4">Hora</div>
+                <div class="col-sm-8">@Model.Hora</div>
+            </div>
+            <div class="row mb-2">
+                <div class="col-sm-4">Tipo de Cita (ID)</div>
+                <div class="col-sm-8">@Model.IdTipoCita</div>
+            </div>
+            <div class="row mb-2">
+                <div class="col-sm-4">Nombre Tipo Cita</div>
+                <div class="col-sm-8">@Model.NombreTipoCita</div>
+            </div>
+            <div class="row mb-2">
+                <div class="col-sm-4">Anfitrión</div>
+                <div class="col-sm-8">
+                    @if (!string.IsNullOrWhiteSpace(Model.NombreAnfitrion))
+                    {
+                        @($"{Model.NombreAnfitrion} ({Model.Anfitrion})")
+                    }
+                    else
+                    {
+                        @Model.Anfitrion
+                    }
+                </div>
+            </div>
+            <div class="row mb-2">
+                <div class="col-sm-4">Link de Video</div>
+                <div class="col-sm-8">
+                    @if (!string.IsNullOrWhiteSpace(Model.LinkVideo))
+                    {
+                        <a href="@Model.LinkVideo" target="_blank">@Model.LinkVideo</a>
+                    }
+                    else
+                    {
+                        <span>No disponible</span>
+                    }
+                </div>
+            </div>
+
+            <div class="row mb-2">
+                <div class="col-sm-4">Cliente(s)</div>
+                <div class="col-sm-8">
+                    @if (Model.NombresClientes != null && Model.NombresClientes.Any())
+                    {
+                        <ul class="mb-0">
+                            @foreach (var cliente in Model.NombresClientes)
+                            {
+                                <li>@cliente</li>
+                            }
+                        </ul>
+                    }
+                    else
+                    {
+                        <span>No hay clientes asignados</span>
+                    }
+                     </div>
+                     </div>
+             <div class="row mb-2">
+                  <div class="col-sm-4">Documentos relacionados:</div>
+                  <div class="col-sm-8">
+                    @if (Model.Documentos != null && Model.Documentos.Any())
+                    {
+                        <ul class="mb-0">
+                            @foreach (var doc in Model.Documentos)
+                            {
+                                <li>
+                                    @if (doc.Descargar)
+                                    {
+                                        <a href="@doc.RutaArchivo" target="_blank">@doc.NombreArchivo</a>
+                                    }
+                                    else
+                                    {
+                                        <span>@doc.NombreArchivo</span>
+                                        <span class="text-muted">(descarga no autorizada)</span>
+                                    }
+                                    <span class="text-muted">(@doc.FechaSubida.ToString("dd/MM/yyyy HH:mm"))</span>
+                                </li>
+                            }
+                        </ul>
+                    }
+                    else
+                    {
+                        <p>No hay documentos adjuntos para esta cita.</p>
+                    }
+                     </div>
+    </div>
+</div>
+            <div class="text-center mt-4">
+                <button type="button" class="contact-btn"
+                        onclick="window.location.href='@Url.Action("Listar", "DocumentosCita", new { idCita = Model.IdCita })'">Subir Documentos
+                </button>
+                <button type="button" class="contact-btn" onclick="citaSeleccionadaId='@Model.IdCita'; mostrarEditarCita()">Editar</button>
+                <button type="button" class="contact-btn" onclick="mostrarModalEliminarCita(@Model.IdCita)">Eliminar</button>
+                <button type="button" class="contact-btn" onclick="cerrarModal('modalDetalleCita', true)">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>

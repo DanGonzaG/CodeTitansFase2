@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 //using Microsoft.EntityFrameworkCore;
 
@@ -10,6 +8,8 @@ namespace Preacepta.Modelos.AbstraccionesBD;
 public partial class TDocsTipoVehiculo
 {
     [Key]
+
+    [Column("Id")]
     public int Id { get; set; }
 
     [StringLength(50)]

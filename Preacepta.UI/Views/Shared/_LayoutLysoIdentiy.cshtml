@@ -38,6 +38,9 @@
 
     <link rel="icon" type="image/png" href="~/lyso/img/favicon.png">
 
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    
+
 </head>
 <body>
     <!-- Preloader -->
@@ -62,11 +65,13 @@
     </main>
 
 
+   
     
     <!-- End Footer -->
     <!-- Essential JS -->
     <script src="~/lyso/js/jquery.min.js"></script>
     <script src="~/lyso/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.datatables.net/2.2.2/js/dataTables.js"></script>
     <!-- Meanmenu JS -->
     <script src="~/lyso/js/jquery.meanmenu.js"></script>
     <!-- Nice Select JS -->
@@ -75,8 +80,8 @@
     <script src="~/lyso/js/jquery.ajaxchimp.min.js"></script>
     <!-- Form Validator JS -->
     <script src="~/lyso/js/form-validator.min.js"></script>
-    <!-- Contact JS -->
-    <script src="~/lyso/js/contact-form-script.js"></script>
+    <!-- Contact JS
+    <script src="~/lyso/js/contact-form-script.js"></script>-->
     <!-- Owl Carousel JS -->
     <script src="~/lyso/js/owl.carousel.min.js"></script>
     <!-- Odometer JS -->
@@ -88,6 +93,10 @@
     <script src="~/lyso/js/wow.min.js"></script>
     <!-- Custom JS -->
     <script src="~/lyso/js/custom.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+
+   
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>

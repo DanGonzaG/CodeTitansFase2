@@ -1,0 +1,125 @@
+﻿@model Preacepta.Modelos.AbstraccionesFrond.CasosEtapaDTO
+<body>
+    <div class="page-title-area page-title-area-two title-img-one">
+        <div class="d-table">
+            <div class="d-table-cell">
+                <div class="page-title-text">
+                    <h2>Nueva Etapa del Proceso Legal</h2>
+                    <ul>
+                        <li>
+                            <a asp-controller="Home" asp-action="Index">Home</a>
+                        </li>
+                        <li>
+                            <i class="icofont-simple-right"></i>
+                        </li>
+                        <li>
+                            <a asp-controller="GestionCasos" asp-action="EtapasPL">Caso</a>
+                        </li>
+                        <li>
+                            <i class="icofont-simple-right"></i>
+                        </li>
+                        <li>Etapas</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Page Title -->
+
+    <br />
+    <br />
+    <br />
+
+
+    <div class="formulario contact-form contact-form-two contact-form-three">
+        <div class="container">
+            <div class="contact-wrap">
+                <form id="FormularioCaso" class="" asp-action="FormularioEtapaPL">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <h2>Formulario para creación de etapa</h2>
+                    <div class="row justify-content-center">
+                        <div class="col-sm-6 col-lg-6">
+                            <div class="form-group">
+                                <label asp-for="IdCaso" class="control-label"></label>
+                                <!--<select asp-for="IdCaso" class="form-control" asp-items="ViewBag.IdCaso"></select>-->
+                                <input asp-for="IdCaso" name="IdCaso" id="IdCaso" class="form-control" value="@ViewBag.IdCaso" readonly />
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-lg-6">
+                            <div class="form-group">
+                                <label asp-for="IdCasoNavigation.Nombre" class="control-label"></label>
+                                <!--<select asp-for="IdCaso" class="form-control" asp-items="ViewBag.IdCaso"></select>-->
+                                <input asp-for="IdCasoNavigation.Nombre" name="IdCasoNavigation.Nombre" id="IdCasoNavigation.Nombre" class="form-control" value="@ViewBag.NombreCaso" readonly/>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-lg-6">
+                            <!--<div class="form-group">
+                                <input type="text" name="PruebasPL" id="BtnTipoEtapaPL" class="form-control" required data-error="Favor ingrese el dato" placeholder="Tipo de etapa">
+                                <div class="help-block with-errors"></div>
+                            </div>-->
+                            <div class="form-group">
+                                <label asp-for="Nombre" class="control-label"></label>
+                                <input asp-for="Nombre" name="Nombre" id="Nombre" class="form-control" />
+                                <span asp-validation-for="Nombre" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-lg-6">
+                            <div class="form-group">
+                                <label class="control-label">Pruebas</label>
+                                <input type="text" name="PruebasPL" id="PruebasPL" class="form-control" required data-error="Favor ingrese el dato">
+                                <div class="help-block with-errors"></div>
+                            </div>
+                        </div>
+                        
+
+                        <div class="col-md-12 col-lg-12">
+                            <!--<div class="form-group">
+                                <textarea name="DetallesPL" class="form-control" id="DetallesPL" cols="30" rows="8" required data-error="Favor ingrese el dato" placeholder="Descripción"></textarea>
+                                <div class="help-block with-errors"></div>
+                            </div>-->
+                            <div class="form-group">
+                                <label asp-for="Descripcion" class="control-label"></label>
+                                <textarea asp-for="Descripcion" class="form-control" name="Descripcion" id="Descripcion" cols="30" rows="8"></textarea>
+                                <span asp-validation-for="Descripcion" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col-md-12 col-lg-12">
+                        <div class="form-check">
+                            <!--<input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">-->
+                            <input class="form-check-input" asp-for="Activo" name="Activo"/> 
+                            <label style="color:black" class="text" for="flexCheckDefault">
+                                Caso Cerrado
+                            </label>
+                        </div>
+                        </div>
+                        <div class="col-md-12 col-lg-12">
+
+                            <div class="text-center">
+                                <!-- Button trigger modal -->
+                                <button type="submit" class="contact-btn">Registrar etapa</button>
+                            </div>
+
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+
+
+</body>
+
+
+
+
+
+
+
+
+
+
+
+
+

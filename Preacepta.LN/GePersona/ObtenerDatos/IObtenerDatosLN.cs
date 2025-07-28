@@ -1,16 +1,13 @@
 ﻿using Preacepta.Modelos.AbstraccionesBD;
 using Preacepta.Modelos.AbstraccionesFrond;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Preacepta.LN.GePersona.ObtenerDatos
 {
     public interface IObtenerDatosLN
     {
         GePersonaDTO ObtenerDeDB(TGePersona gePersona);
-        TGePersona ObtenerDeFront(GePersonaDTO gePersona);
+        TGePersona ObtenerDeFrontCrear(GePersonaDTO gePersona);
+
+        TGePersona ObtenerDeFrontEditar(GePersonaDTO gePersona);
     }
 }

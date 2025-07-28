@@ -6,26 +6,28 @@ namespace Preacepta.Modelos.AbstraccionesFrond
 {
     public class CasosEtapaDTO
     {
-        [DisplayName("Id Etapa PL")]
+        [DisplayName("Num. Etapa Proceso")]
         public int IdEtapaPl { get; set; }
 
-        public string Fecha { get; set; }
+        public string? Fecha { get; set; }
 
         [Required(ErrorMessage = "Debe de agregar un titulo a la etapa del proceso legal")]
+        [DisplayName("Nombre de Etapa")]
         public string Nombre { get; set; } = null!;
 
-        [Required(ErrorMessage = "Debe de agregar una descripción de la etapa del proceso legal")]        
+        [Required(ErrorMessage = "Debe de agregar una descripción de la etapa del proceso legal")]
+        [DisplayName("Descripción")]
         public string Descripcion { get; set; } = null!;
 
         [DisplayName("Id Caso")]
-        
+
         public int IdCaso { get; set; }
 
         public bool Activo { get; set; }
 
         [DisplayName("Nombre Caso")]
-        public virtual TCaso IdCasoNavigation { get; set; } = null!;
-        
+        public virtual TCaso? IdCasoNavigation { get; set; } = null!;
+
         public virtual ICollection<TCasosEvidencia> TCasosEvidencia { get; set; } = new List<TCasosEvidencia>();
     }
 }

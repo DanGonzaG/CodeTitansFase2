@@ -1,13 +1,6 @@
-﻿using Preacepta.AD.CasosTipo.Crear;
-using Preacepta.AD.GeNegocio.Crear;
-using Preacepta.LN.CasosTipo.ObtenerDatos;
+﻿using Preacepta.AD.GeNegocio.Crear;
 using Preacepta.LN.GeNegocio.ObtenerDatos;
 using Preacepta.Modelos.AbstraccionesFrond;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Preacepta.LN.GeNegocio.Crear
 {
@@ -16,7 +9,7 @@ namespace Preacepta.LN.GeNegocio.Crear
         private readonly ICrearNegocioAD _crear;
         private readonly IObtenerDatosNegocioLN _obtenerDatosLN;
 
-        public CrearNegocioLN (ICrearNegocioAD crear,
+        public CrearNegocioLN(ICrearNegocioAD crear,
             IObtenerDatosNegocioLN obtenerDatosLN)
         {
             _crear = crear;

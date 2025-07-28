@@ -1,0 +1,101 @@
+﻿@model IEnumerable<Preacepta.Modelos.AbstraccionesFrond.HistorialDocumento>
+<head>
+    <link href="~/lyso/css/mostrar.css" rel="stylesheet" />
+</head>
+
+<!-- Page Title -->
+<div class="page-title-area page-title-area-two title-img-one">
+    <div class="d-table">
+        <div class="d-table-cell">
+            <div class="page-title-text">
+                <h2>Historial de documentos legales</h2>
+                <ul>
+                    <li>
+                        <a asp-controller="Home" asp-action="Index">Home</a>
+                    </li>
+                    <li>
+                        <i class="icofont-simple-right"></i>
+                    </li>
+                    <li>Historial</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<br />
+<br />
+<br />
+
+<div class="contact-form contact-form-two contact-form-three">
+    <div class="container">
+        <div class="contact-wrap">
+            <form id="contactForm" class="">
+                <h2>Filtrar el listado de documentos</h2>
+                <div class="row justify-content-center">
+                    <div class="col-sm-6 col-lg-6">
+                        <div class="form-group">
+                            <input type="date" name="fecha" id="fecha" class="form-control" placeholder="Ingrese la fecha" />
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-lg-6">
+                        <div class="form-group">
+                            <input type="text" name="tipo" id="tipo" class="form-control" placeholder="Ingrese el tipo de documento" />
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-lg-6">
+                        <div class="text-center">
+                            <button type="submit" class="contact-btn">Buscar</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="formulario contact-form contact-form-two contact-form-three">
+    <div class="container">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Fecha</th>
+                    <th>Tipo de Documento</th>
+                    <th>Cliente</th>
+                    <th>Abogado</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.Fecha.ToString("yyyy-MM-dd")</td>
+                        <td>@item.TipoDocumento</td>
+                        <td>@item.Cliente</td>
+                        <td>@item.Abogado</td>
+                        <td>
+                            <a class="cmn-btn" asp-controller="DocsGenerator" asp-action="DocsPrevisualizacion"><i class="fa-solid fa-eye"></i></a> <!--Necesito modificar esta parte para que se vea el pdf-->
+                            <a class="cmn-btn" asp-controller="Home" asp-action="Index"><i class="fa-solid fa-download"></i></a>
+                            <a class="cmn-btn"
+                               asp-controller="@(item.TipoDocumento == "Pagaré" ? "TDocsPagares" :
+                                                item.TipoDocumento == "Compra y venta de vehículos" ? "DocsOpcionCompraventaVehiculoes" :
+                                                item.TipoDocumento == "Autorización de revisión de expedientes" ? "DocsAutorizacionRevisionExpedientes" :
+                                                item.TipoDocumento == "Contrato Prestación de Servicios" ? "DocsContratoPrestacionServicios" :
+                                                item.TipoDocumento == "Compra y Venta de Fincas" ? "DocsCompraventaFincas" :
+                                                item.TipoDocumento == "Inscripción de Vehículos" ? "DocsInscripcionVehiculo" :
+                                                "HistorialDocumentos")"
+                           asp-action="EditarDesdeHistorial"
+                           asp-route-id="@item.Id">
+                            <i class="fa-solid fa-pen"></i>
+                        </a>
+
+
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+

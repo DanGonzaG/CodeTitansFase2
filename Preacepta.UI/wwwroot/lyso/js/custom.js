@@ -81,10 +81,11 @@ jQuery(function ($) {
 	});
 
 	// Nice Select JS
-	$('select').niceSelect();
+	//$('select').niceSelect();
+	$('select').not('.no-nice').niceSelect();
 
 	// Subscribe form
-	$(".newsletter-form").validator().on("submit", function (event) {
+	/*$(".newsletter-form").validator().on("submit", function (event) {
 		if (event.isDefaultPrevented()) {
 		// handle the invalid form...
 		formErrorSub();
@@ -122,13 +123,14 @@ jQuery(function ($) {
 		var msgClasses = "validation-danger";
 		}
 		$("#validator-newsletter").removeClass().addClass(msgClasses).text(msg);
-	}
-	
+	}*/
+
 	// AJAX MailChimp
+	/*
 	$(".newsletter-form").ajaxChimp({
 		url: "https://hibootstrap.us20.list-manage.com/subscribe/post?u=60e1ffe2e8a68ce1204cd39a5&amp;id=42d6d188d9", // Your url MailChimp
 		callback: callbackFunction
-	});
+	});*/
 
 	// Accordion JS
 	$('.accordion > li:eq(0) a').addClass('active').next().slideDown();

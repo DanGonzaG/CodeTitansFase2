@@ -1,0 +1,358 @@
+﻿@model Preacepta.Modelos.AbstraccionesFrond.DocsCompraventaFincaDTO
+
+<head>
+    <link href="~/lyso/css/Alonso.css" rel="stylesheet" />
+</head>
+
+<!-- Page Title -->
+<div class="page-title-area page-title-area-two title-img-one">
+    <div class="d-table">
+        <div class="d-table-cell">
+            <div class="page-title-text">
+                <h2>Generador de Documentos Legales</h2>
+                <ul>
+                    <li>
+                        <a asp-controller="Home" asp-action="Index">Home</a>
+                    </li>
+                    <li>
+                        <i class="icofont-simple-right"></i>
+                    </li>
+                    <li>Compra y venta fincas</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End Page Title -->
+
+<br />
+<br />
+<br />
+<body>
+    <div class="contact-form contact-form-two contact-form-three">
+        <div class="container">
+            <div class="col-md-12 col-lg-12 encabezadoForm">
+                <img src="~/lyso/img/docs3.png" width="200px" />
+            </div>
+            <div class="contact-wrap">
+                <form asp-action="CreateDocsCompraventaFincas" id="CreateDocsCompraventaFincas">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="row justify-content-center">
+                    <div class="seccion-titulo">Información del Abogado</div>
+
+                        <div class="col-sm-6 col-lg-6 centro">
+                            <div class="LetraNegra">
+                                <label asp-for="CedulaAbogado" class="control-label"></label>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-lg-6">
+                            <div class="form-group">
+                                <select asp-for="CedulaAbogado" class="form-control" asp-items="ViewBag.CedulaAbogado" id="idCedulaAbogado"></select>
+                            </div>
+                        </div>
+
+                        <div class="seccion-titulo">Información del Vendedor</div>
+
+                        <div class="col-sm-6 col-lg-6 centro">
+                            <div class="LetraNegra">
+                                <label asp-for="CedulaVendedor" class="control-label"></label>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-lg-6">
+                            <div class="form-group">
+                                <select asp-for="CedulaVendedor" class="form-control" asp-items="ViewBag.CedulaVendedor" id="idCedulaVendedor"></select>
+                            </div>
+                        </div>
+
+                        <div class="seccion-titulo">Información del Vendedor</div>
+
+                        <div class="col-sm-6 col-lg-6 centro">
+                            <div class="LetraNegra">
+                                <label asp-for="CedulaComprador" class="control-label"></label>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-lg-6">
+                            <div class="form-group">
+                                <select asp-for="CedulaComprador" class="form-control" asp-items="ViewBag.CedulaComprador" id="idCedulaComprador"></select>
+                            </div>
+                        </div>
+
+                        <div class="seccion-titulo">Información de la finca</div>
+                        <div class="col-sm-6 col-lg-6 centro">
+                            <div class="LetraNegra">
+                                <label asp-for="NumeroEscritura" class="control-label"></label>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-lg-6">
+                            <div class="form-group">
+                                <input asp-for="NumeroEscritura" class="form-control" id="idNumeroEscritura" />
+                                <span asp-validation-for="NumeroEscritura" class="text-danger"></span>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-6 col-lg-6 centro">
+                            <div class="LetraNegra">
+                                <label asp-for="MontoVenta" class="control-label"></label>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-lg-6">
+                            <div class="form-group">
+                                <input asp-for="MontoVenta" class="form-control" id="idMontoVenta" />
+                                <span asp-validation-for="MontoVenta" class="text-danger"></span>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-6 col-lg-6 centro">
+                            <div class="LetraNegra">
+                                <label asp-for="PartidoFinca" class="control-label"></label>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-lg-6">
+                            <div class="form-group">
+                                <input asp-for="PartidoFinca" class="form-control" id="idPartidoFinca" />
+                                <span asp-validation-for="PartidoFinca" class="text-danger"></span>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-6 col-lg-6 centro">
+                            <div class="LetraNegra">
+                                <label asp-for="MatriculaFinca" class="control-label"></label>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-lg-6">
+                            <div class="form-group">
+                                <input asp-for="MatriculaFinca" class="form-control" id="idMatriculaFinca" />
+                                <span asp-validation-for="MatriculaFinca" class="text-danger"></span>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-6 col-lg-6 centro">
+                            <div class="LetraNegra">
+                                <label asp-for="NaturalezaFinca" class="control-label"></label>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-lg-6">
+                            <div class="form-group">
+                                <input asp-for="NaturalezaFinca" class="form-control" id="idNaturalezaFinca" />
+                                <span asp-validation-for="NaturalezaFinca" class="text-danger"></span>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-6 col-lg-6 centro">
+                            <div class="LetraNegra">
+                                <label asp-for="ProvinciaFinca">Provincia:</label>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-lg-6">
+                            <div class="form-group">
+                                <select class="selectDaniel" id="provincia" name="ProvinciaFinca" asp-for="ProvinciaFinca" asp-items="ViewBag.ProvinciaFinca">
+                                    <option value="">Seleccione una provincia</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-lg-6 centro">
+                            <div class="LetraNegra">
+                                <label asp-for="CantonFinca">Cantón:</label>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-lg-6">
+                            <div class="form-group">
+                                <select class="selectDaniel" id="canton" name="CantonFinca" asp-for="CantonFinca" disabled>
+                                    <option value="">Seleccione un cantón</option>
+                                </select>
+                                <input id="inputCanton" name="CantonFinca" asp-for="CantonFinca" class="form-control" asp-items="ViewBag.CantonFinca" readonly />
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-lg-6 centro">
+                            <div class="LetraNegra">
+                                <label asp-for="DistritoFinca">Distrito:</label>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-lg-6">
+                            <div class="form-group">
+                                <select class="selectDaniel" id="distrito" name="DistritoFinca" asp-for="DistritoFinca" disabled>
+                                    <option value="">Seleccione un distrito</option>
+                                </select>
+                                <input id="inputDistrito" name="DistritoFinca" asp-for="DistritoFinca" class="form-control" asp-items="ViewBag.DistritoFinca" readonly />
+                            </div>
+                        </div>
+
+                        <div class="col-sm-6 col-lg-6 centro">
+                            <div class="LetraNegra">
+                                <label asp-for="AreaFincaM2" class="control-label"></label>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-lg-6">
+                            <div class="form-group">
+                                <input asp-for="AreaFincaM2" class="form-control" id="idAreaFincaM2" />
+                                <span asp-validation-for="AreaFincaM2" class="text-danger"></span>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-6 col-lg-6 centro">
+                            <div class="LetraNegra">
+                                <label asp-for="PlanoCatastrado" class="control-label"></label>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-lg-6">
+                            <div class="form-group">
+                                <input asp-for="PlanoCatastrado" class="form-control" id="idPlanoCatastrado" />
+                                <span asp-validation-for="PlanoCatastrado" class="text-danger"></span>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-6 col-lg-6 centro">
+                            <div class="LetraNegra">
+                                <label asp-for="ColindaNorte" class="control-label"></label>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-lg-6 centro">
+                            <div class="form-group">
+                                <input asp-for="ColindaNorte" class="form-control" id="idColindaNorte" />
+                                <span asp-validation-for="ColindaNorte" class="text-danger"></span>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-6 col-lg-6 centro">
+                            <div class="LetraNegra">
+                                <label asp-for="ColindaSur" class="control-label"></label>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-lg-6">
+                            <div class="form-group">
+                                <input asp-for="ColindaSur" class="form-control" id="idColindaSur" />
+                                <span asp-validation-for="ColindaSur" class="text-danger"></span>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-6 col-lg-6 centro">
+                            <div class="LetraNegra">
+                                <label asp-for="ColindaEste" class="control-label"></label>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-lg-6">
+                            <div class="form-group">
+                                <input asp-for="ColindaEste" class="form-control" id="idColindaEste" />
+                                <span asp-validation-for="ColindaEste" class="text-danger"></span>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-6 col-lg-6 centro">
+                            <div class="LetraNegra">
+                                <label asp-for="ColindaOeste" class="control-label"></label>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-lg-6">
+                            <div class="form-group">
+                                <input asp-for="ColindaOeste" class="form-control" id="idColindaOeste" />
+                                <span asp-validation-for="ColindaOeste" class="text-danger"></span>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-6 col-lg-6 centro">
+                            <div class="LetraNegra">
+                                <label asp-for="FormaPago" class="control-label"></label>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-lg-6">
+                            <div class="form-group">
+                                <input asp-for="FormaPago" class="form-control" id="idFormaPago" />
+                                <span asp-validation-for="FormaPago" class="text-danger"></span>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-6 col-lg-6 centro">
+                            <div class="LetraNegra">
+                                <label asp-for="MedioPago" class="control-label"></label>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-lg-6">
+                            <div class="form-group">
+                                <input asp-for="MedioPago" class="form-control" id="idMedioPago" />
+                                <span asp-validation-for="MedioPago" class="text-danger"></span>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-6 col-lg-6 centro">
+                            <div class="LetraNegra">
+                                <label asp-for="OrigenFondos" class="control-label"></label>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-lg-6">
+                            <div class="form-group">
+                                <input asp-for="OrigenFondos" class="form-control" id="idOrigenFondos" />
+                                <span asp-validation-for="OrigenFondos" class="text-danger"></span>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-6 col-lg-6 centro">
+                            <div class="LetraNegra">
+                                <label asp-for="FechaFirma" class="control-label"></label>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-lg-6">
+                            <div class="form-group">
+                                <input asp-for="FechaFirma" class="form-control" id="idFechaFirma" />
+                                <span asp-validation-for="FechaFirma" class="text-danger"></span>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-6 col-lg-6 centro">
+                            <div class="LetraNegra">
+                                <label asp-for="HoraFirma" class="control-label"></label>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-6 col-lg-6">
+                            <div class="form-group">
+                                <input asp-for="HoraFirma" class="form-control" id="idHoraFirma" type="time" />
+                                <span asp-validation-for="HoraFirma" class="text-danger"></span>
+                            </div>
+                        </div>
+
+                       
+
+                        <div class="col-sm-6 col-lg-6 centro">
+                            <div class="LetraNegra">
+                                <label asp-for="LugarFirma" class="control-label"></label>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-lg-6">
+                            <div class="form-group">
+                                <select asp-for="LugarFirma" class="form-control" asp-items="ViewBag.LugarFirma" id="idLugarFirma"></select>
+                            </div>
+                        </div>
+
+                        <div class="seccion-titulo"></div>
+
+
+                        <div class="col-md-12 col-lg-12">
+                            <div class="text-center d-flex justify-content-center gap-3">
+                                <div class="form-group" id="btnCrearCaso">
+                                    <input type="submit" value="Crear Documento" class="contact-btn" />
+                                </div>
+                                <div class="form-group">
+                                    <button type="button" id="btnPrevisualizar" class="contact-btn">
+                                        Previsualizar PDF
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+
+
+
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
+
+<script src="~/lyso/js/docsFinca.js"></script>
+<script src="~/lyso/js/FiltroProvinicaCantonDistrito.js"></script>

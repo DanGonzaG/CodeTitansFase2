@@ -1,11 +1,5 @@
-﻿using Preacepta.AD.CasosTipo.Listar;
-using Preacepta.AD.CrDireccion1.Listar;
+﻿using Preacepta.AD.CrDireccion1.Listar;
 using Preacepta.Modelos.AbstraccionesFrond;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Preacepta.LN.CrDireccion1.Listar
 {
@@ -30,9 +24,21 @@ namespace Preacepta.LN.CrDireccion1.Listar
             return lista;
         }
 
+        public async Task<List<CrCantonDTO>> listarCantonesXprovincia(int id)
+        {
+            List<CrCantonDTO> lista = await _listar.listarCantonesXprovincia(id);
+            return lista;
+        }
+
         public async Task<List<CrDistritoDTO>> listarDistritos()
         {
             List<CrDistritoDTO> lista = await _listar.listarDistritos();
+            return lista;
+        }
+
+        public async Task<List<CrDistritoDTO>> listarDistritosXCanton(int id)
+        {
+            List<CrDistritoDTO> lista = await _listar.listarDistritosXcantones(id);
             return lista;
         }
     }

@@ -1,4 +1,5 @@
-﻿<head>
+﻿﻿
+<head>
     <link href="~/lyso/css/Daniel.css" rel="stylesheet" />
 </head>
 
@@ -41,7 +42,7 @@
                     <div class="col-sm-6 col-lg-6">
                         <div class="text-center">
                             <button type="submit" class="contact-btn">Buscar</button>
-                        </div>                       
+                        </div>
                     </div>
                 </div>
             </form>
@@ -61,14 +62,13 @@
                     <option value="TraspasoMotocicleta">Traspaso de Motocicleta</option>
                 </select>
             </div>-->
+           
+            <div class="row justify-content-center">
             <div class="form-group">
                 <h2 class="w-100">Selecciona un Formulario</h2>
-                <select id="selector" name="selector" class="form-control" onchange="mostrarFormulario()" required data-error="Favor seleccione una opción">
-                    <option value="" disabled selected>Seleccione una marca</option>
-                    <option value="TraspasoVehiculo">Traspaso de Vehículo</option>
-                    <option value="TraspasoMotocicleta">Traspaso de Motocicleta</option>
-                </select>
+                <a asp-controller="DocsInscripcionVehiculo" asp-action="CreateDocsInscripcionVehiculo">Inscripcion de Vehiculo</a>
                 <div class="help-block with-errors"></div>
+            </div>
             </div>
             <div>
                 <br />
@@ -76,6 +76,7 @@
         </div>
     </div>
 </div>
+
 
 <div id="TraspasoVehiculo" class="formulario contact-form contact-form-two contact-form-three">
     <div class="container">
@@ -211,7 +212,7 @@
                         <div class="text-center">
                             <!--<button type="submit" class="contact-btn">Previsualizar Documento</button>-->
                             <button type="button" class="contact-btn" data-bs-toggle="modal" data-bs-target="#exampleModal">Previsualizar Documento</button>
-                        </div>                      
+                        </div>
                     </div>
                 </div>
             </form>
@@ -331,11 +332,11 @@
                     </div>
                     <div class="col-md-12 col-lg-12">
                         <div class="text-center">
-                            <!--<button type="submit" class="contact-btn">Previsualizar DocumentonNO</button>-->                            
+                            <!--<button type="submit" class="contact-btn">Previsualizar DocumentonNO</button>-->
                             <button type="button" class="contact-btn" data-bs-toggle="modal" data-bs-target="#exampleModal">
                                 Previsualizar Documento
                             </button>
-                        </div>                       
+                        </div>
                     </div>
                 </div>
             </form>
@@ -357,7 +358,7 @@
                 <h5 class="modal-title" id="exampleModalLabel">Vista previa de documento</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <div class="modal-body">              
+            <div class="modal-body">
                 @Html.Partial("_documentos")
             </div>
             <div class="modal-footer">
@@ -398,7 +399,3 @@ este codigo lo que hace es mostrar solo el formulario seleccionado en dropdown--
         tooltip.style.display = "none";
     });
 </script>
-
-
-
-

@@ -1,10 +1,5 @@
 ﻿using Preacepta.Modelos.AbstraccionesBD;
 using Preacepta.Modelos.AbstraccionesFrond;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Preacepta.LN.CrDireccion1.ObtenerDatos
 {
@@ -15,7 +10,7 @@ namespace Preacepta.LN.CrDireccion1.ObtenerDatos
             return new CrProvinciaDTO
             {
                 IdProvincia = datos.IdProvincia,
-                NombreProvincia = datos.NombreProvincia,                
+                NombreProvincia = datos.NombreProvincia,
             };
         }
 
@@ -38,7 +33,7 @@ namespace Preacepta.LN.CrDireccion1.ObtenerDatos
                 NombreCanton = datos.NombreCanton,
                 IdProvincia = datos.IdProvincia,
                 IdProvinciaNavigation = datos.IdProvinciaNavigation,
-               
+
             };
         }
 

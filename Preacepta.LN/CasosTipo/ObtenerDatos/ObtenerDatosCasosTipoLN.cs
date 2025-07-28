@@ -1,10 +1,5 @@
 ﻿using Preacepta.Modelos.AbstraccionesBD;
 using Preacepta.Modelos.AbstraccionesFrond;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Preacepta.LN.CasosTipo.ObtenerDatos
 {
@@ -14,8 +9,8 @@ namespace Preacepta.LN.CasosTipo.ObtenerDatos
         {
             return new CasosTipoDTO
             {
-               IdTipoCaso = baseDatos.IdTipoCaso,
-               Nombre = baseDatos.Nombre,
+                IdTipoCaso = baseDatos.IdTipoCaso,
+                Nombre = baseDatos.Nombre,
             };
         }
 

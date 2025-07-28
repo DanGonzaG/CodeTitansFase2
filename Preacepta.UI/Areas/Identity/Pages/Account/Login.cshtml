@@ -11,16 +11,16 @@
     <div class="d-table">
         <div class="d-table-cell">
             <div class="page-title-text">
-                <h2>Log in</h2>
+                <h2>Modulo de autenticación</h2>
                 <ul>
                     <li>
-                        <a asp-action="Index">Home</a>
+                        <a asp-action="Index">Página de inicio</a>
 
                     </li>
                     <li>
                         <i class="icofont-simple-right"></i>
                     </li>
-                    <li>Log in</li>
+                    <li>Autencación</li>
                 </ul>           
             </div>
         </div>
@@ -29,8 +29,8 @@
 <!-- End Page Title -->
 <br />
 <br />
-<div class="MarcoIdentiy">
-    <div class="contact-form contact-form-two contact-form-three">
+<!--<div class="MarcoIdentiy">-->
+    <div class="contact-form contact-form-two contact-form-three" style="padding-left:20%; padding-right:20%">
         <div class="container">
             <div class="contact-wrap">
                 <section>
@@ -39,14 +39,19 @@
                         <hr />
                         <div asp-validation-summary="ModelOnly" class="text-danger" role="alert"></div>
                         <div class="form-floating mb-3">
-                            <input asp-for="Input.Email" class="form-control" autocomplete="username" aria-required="true" placeholder="name@example.com"/>
+                        <div class="form-group">
                             <label asp-for="Input.Email" class="form-label">Correro Electrónico</label>
+                            <input asp-for="Input.Email" class="form-control" autocomplete="username" aria-required="true" placeholder="nombre@ejemplo.com"/>                            
                             <span asp-validation-for="Input.Email" class="text-danger"></span>
+                            </div>
                         </div>
+
                         <div class="form-floating mb-3">
-                            <input asp-for="Input.Password" class="form-control" autocomplete="current-password" aria-required="true" placeholder="password" />
+                        <div class="form-group">
                             <label asp-for="Input.Password" class="form-label">Contraseña</label>
+                            <input asp-for="Input.Password" class="form-control" autocomplete="current-password" aria-required="true" placeholder="ej. 123Abc*" />
                             <span asp-validation-for="Input.Password" class="text-danger"></span>
+                            </div>
                         </div>
                         <div class="checkbox mb-3">
                             <label asp-for="Input.RememberMe" class="form-label">
@@ -55,24 +60,25 @@
                             </label>
                         </div>
                         <div style="text-align: center;">
-                            <button id="login-submit" type="submit" class="w-100 btn btn-lg contact-btn">Log in</button>
+                            <button id="login-submit" type="submit" class="w-100 btn-lg contact-btn">Iniciar sesión</button>
                         </div>
+                        <br />
                         <div>
                             <p>
                                 <a id="forgot-password" asp-page="./ForgotPassword">¿Olvidó su contraseña?</a>
                             </p>
-                            <p>
+                            <!--<p>
                                 <a asp-page="./Register" asp-route-returnUrl="@Model.ReturnUrl">Registre un nuevo usuario</a>
                             </p>
                             <p>
                                 <a id="resend-confirmation" asp-page="./ResendEmailConfirmation">Reenviar correo de confirmación</a>
-                            </p>
+                            </p>-->
                         </div>
                     </form>
                 </section>
             </div>
         </div>
-    </div>
+    <!--</div>-->
 </div>
 
 

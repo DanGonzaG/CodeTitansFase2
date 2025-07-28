@@ -1,0 +1,158 @@
+﻿@model Preacepta.Modelos.AbstraccionesFrond.DocsAutorizacionRevisionExpedienteDTO
+
+<head>
+    <link href="~/lyso/css/Alonso.css" rel="stylesheet" />
+</head>
+<body>
+<!-- Page Title -->
+<div class="page-title-area page-title-area-two title-img-one">
+    <div class="d-table">
+        <div class="d-table-cell">
+            <div class="page-title-text">
+                <h2>Generador de Documentos Legales</h2>
+                <ul>
+                    <li>
+                        <a asp-controller="Home" asp-action="Index">Home</a>
+                    </li>
+                    <li>
+                        <i class="icofont-simple-right"></i>
+                    </li>
+                    <li>Autorización de Revisión de Expedientes</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End Page Title -->
+
+<br />
+<br />
+<br />
+
+<div class="contact-form contact-form-two contact-form-three">
+    <div class="container">
+            <<div class="col-md-12 col-lg-12 encabezadoForm">
+                <img src="~/lyso/img/docs3.png" width="200px" />
+            </div>
+        <div class="contact-wrap">
+            <form asp-action="CreateDocsAutorizacionRevisionExpedientes" id="CreateDocsAutorizacionRevisionExpedientes">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="row justify-content-center">
+
+                        <div class="seccion-titulo">Información del Documento</div>
+
+                    <div class="row mb-3">
+                            <div class="col-sm-6 col-lg-6 centro">
+                                <div class="form-group">
+                                <label asp-for="Expediente" class="control-label"></label>
+                                </div>
+                            </div>
+                            <div class="col-sm-6 col-lg-6 centro">
+                                <div class="form-group">
+                                <input asp-for="Expediente" class="form-control" id="idExpediente"/>
+                                <span asp-validation-for="Expediente" class="text-danger"></span>
+                            </div>
+                        </div>
+                    </div>
+
+                        <div class="row mb-3">
+                            <div class="col-sm-6 col-lg-6 centro">
+                                <div class="form-group">
+                                    <label asp-for="Ofendido" class="control-label"></label>
+                                </div>
+                            </div>
+                            <div class="col-sm-6 col-lg-6 centro">
+                                <div class="form-group">
+                                    <input asp-for="Ofendido" class="form-control" id="idOfendido" lang="es" spellcheck="true" />
+                                    <span asp-validation-for="Ofendido" class="text-danger"></span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="seccion-titulo">Información del Imputado</div>
+
+                        <div class="row mb-3">
+                            <div class="col-sm-6 col-lg-6 centro">
+                                <div class="LetraNegra">
+                                    <label asp-for="CedulaImputado" class="control-label"></label>
+                                </div>
+                            </div>
+                            <div class="col-sm-6 col-lg-6">
+                                <div class="form-group">
+                                    <select asp-for="CedulaImputado" class="form-control" asp-items="ViewBag.CedulaImputado" id="idCedulaImputado"></select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
+                            <div class="col-sm-6 col-lg-6 centro">
+                                <div class="form-group">
+                                    <label asp-for="Delito" class="control-label"></label>
+                                </div>
+                            </div>
+                            <div class="col-sm-6 col-lg-6 centro">
+                                <div class="form-group">
+                                    <input asp-for="Delito" class="form-control" id="idDelito" lang="es" spellcheck="true" />
+                                    <span asp-validation-for="Delito" class="text-danger"></span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="seccion-titulo">Información de Abogado y Asistente Legal</div>
+
+                        <div class="row mb-3">
+                            <div class="col-sm-6 col-lg-6 centro">
+                                <div class="LetraNegra">
+                                    <label asp-for="CedulaAbogado" class="control-label"></label>
+                                </div>
+                            </div>
+                            <div class="col-sm-6 col-lg-6 centro">
+                                <div class="form-group">
+                                    <select asp-for="CedulaAbogado" class="form-control" asp-items="ViewBag.CedulaAbogado" id="idCedulaAbogado"></select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
+                            <div class="col-sm-6 col-lg-6 centro">
+                                <div class="LetraNegra">
+                                    <label asp-for="CedulaAsistente" class="control-label"></label>
+                                </div>
+                            </div>
+                            <div class="col-sm-6 col-lg-6 centro">
+                                <div class="form-group">
+                                    <select asp-for="CedulaAsistente" class="form-control" asp-items="ViewBag.CedulaAsistente" id="idCedulaAsistente"></select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="seccion-titulo"></div>
+
+
+
+                        <div class="col-md-12 col-lg-12 mt-4">
+                            <div class="text-center d-flex justify-content-center gap-3">
+                                <div class="form-group" id="btnCrearCaso">
+                                    <input type="submit" value="Crear Documento" class="contact-btn" />
+                                </div>
+                                <div class="form-group">
+                                    <button type="button" id="btnPrevisualizar" class="contact-btn">
+                                        Previsualizar PDF
+                                    </button>
+                                </div>
+                            </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
+
+<script src="~/lyso/js/docsPrueba.js"></script>

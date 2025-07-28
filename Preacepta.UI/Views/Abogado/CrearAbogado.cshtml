@@ -1,0 +1,336 @@
+﻿@model Preacepta.Modelos.AbstraccionesFrond.PersonaUnionAbogado
+
+<head>
+    <link href="~/lyso/css/Daniel.css" rel="stylesheet" />
+</head>
+<!-- Page Title -->
+<body>
+    <div class="page-title-area page-title-area-two title-img-one">
+        <div class="d-table">
+            <div class="d-table-cell">
+                <div class="page-title-text">
+                    <h2>Registrar Nuevo Abogado</h2>
+                    <ul>
+                        <li>
+                            <a asp-controller="Home" asp-action="Index">Inicio</a>
+                        </li>
+                        <li>
+                            <i class="icofont-simple-right"></i>
+                        </li>
+                        <li>Crear Abogado</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Page Title -->
+
+    <br />
+    <br />
+    <br />
+    <div class="contact-form contact-form-two contact-form-three">
+        <div class="container">
+            <div class="col-md-12 col-lg-12 encabezadoForm">
+                <img src="~/lyso/img/iconoAbogado.png" />
+            </div>
+            <div class="contact-wrap">
+                <form asp-action="CrearAbogado">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                    <h2>Formulario para crear abogado</h2>
+                    <div class="row justify-content-center">
+                        <div class="seccion-titulo">Información del personal</div>
+                        <div class="col-sm-6 col-lg-6 centro">
+                            <div class="form-group centro">
+                                <label asp-for="personaDTO.Cedula" class="control-label"></label>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-lg-6">
+                            <div class="form-group">
+                                <input asp-for="personaDTO.Cedula" class="form-control" />
+                                <span asp-validation-for="personaDTO.Cedula" class="text-danger"></span>
+                                @if (TempData["ErrorCedula"] != null)
+                                {
+                                    <span class="text-danger">@TempData["ErrorCedula"]</span>
+                                }
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-lg-6 centro">
+                            <div class="form-group">
+                                <label asp-for="personaDTO.Nombre" class="control-label"></label>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-lg-6">
+                            <div class="form-group">
+                                <input asp-for="personaDTO.Nombre" class="form-control" />
+                                <span asp-validation-for="personaDTO.Nombre" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-lg-6 centro">
+                            <div class="form-group">
+                                <label asp-for="personaDTO.Apellido1" class="control-label"></label>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-lg-6">
+                            <div class="form-group">
+                                <input asp-for="personaDTO.Apellido1" class="form-control" />
+                                <span asp-validation-for="personaDTO.Apellido1" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-lg-6 centro">
+                            <div class="form-group">
+                                <label asp-for="personaDTO.Apellido2" class="control-label"></label>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-lg-6">
+                            <div class="form-group">
+                                <input asp-for="personaDTO.Apellido2" class="form-control" />
+                                <span asp-validation-for="personaDTO.Apellido2" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-lg-6 centro">
+                            <div class="form-group">
+                                <label asp-for="personaDTO.FechaNacimiento" class="control-label"></label>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-lg-3">
+                            <div class="form-group">
+                                <input id="InputFechaNacimiento" type="date" asp-for="personaDTO.FechaNacimiento" class="form-control" />
+                                <span asp-validation-for="personaDTO.FechaNacimiento" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-lg-1 centro">
+                            <div class="form-group">
+                                <label asp-for="personaDTO.Edad" class="control-label"></label>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-lg-2">
+                            <div class="form-group">
+                                <input id="InputEdad" asp-for="personaDTO.Edad" class="form-control" readonly />
+                                <span asp-validation-for="personaDTO.Edad" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-lg-6 centro">
+                            <div class="form-group">
+                                <label asp-for="personaDTO.Genero" class="control-label"></label>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-lg-6">
+                            <div class="form-group">
+                                <select asp-for="personaDTO.Genero" class="form-control" asp-items="ViewBag.Genero"></select>
+                                <span asp-validation-for="personaDTO.Genero" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <br />
+                        <br />
+                        <br />
+                        <br />
+                        <div class="col-sm-6 col-lg-6 centro">
+                            <div class="form-group">
+                                <label asp-for="personaDTO.Oficio" class="control-label"></label>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-lg-6">
+                            <div class="form-group">
+                                <input asp-for="personaDTO.Oficio" class="form-control" />
+                                <span asp-validation-for="personaDTO.Oficio" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-lg-6 centro">
+                            <div class="form-group">
+                                <label asp-for="personaDTO.EstadoCivil" class="control-label"></label>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-lg-6">
+                            <div class="form-group">
+                                <select asp-for="personaDTO.EstadoCivil" asp-items="ViewBag.EstadoCivil" class="form-control"></select>
+                                <span asp-validation-for="personaDTO.EstadoCivil" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="seccion-titulo">Información del Dirreción</div>
+                        <div class="col-sm-6 col-lg-6 centro">
+                            <div class="form-group">
+                                <label for="provincia">Provincia:</label>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-lg-6">
+                            <div class="form-group">
+                                <select class="selectDaniel" id="provincia" name="provincia">
+                                    <option value="">Seleccione una provincia</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-6 col-lg-6 centro">
+                            <div class="form-group">
+                                <label for="canton">Cantón:</label>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-lg-6">
+                            <div class="form-group">
+                                <select class="selectDaniel" id="canton" name="canton" disabled>
+                                    <option value="">Seleccione un cantón</option>
+                                </select>
+                                <input id="inputCanton" asp-for="personaDTO.Direccion1" class="form-control" readonly />
+                            </div>
+                        </div>
+
+                        <div class="col-sm-6 col-lg-6 centro">
+                            <div class="form-group">
+                                <label for="distrito">Distrito:</label>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-lg-6">
+                            <div class="form-group">
+                                <select class="selectDaniel" id="distrito" name="personaDTO.Direccion1" asp-for="personaDTO.Direccion1" disabled>
+                                    <option value="">Seleccione un distrito</option>
+                                </select>
+                                <input id="inputDistrito" asp-for="personaDTO.Direccion1" class="form-control" readonly />
+                            </div>
+                        </div>
+
+                        <div class="col-sm-6 col-lg-6 centro">
+                            <div class="form-group">
+                                <label asp-for="personaDTO.Direccion2" class="control-label"></label>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-lg-6">
+                            <div class="form-group">
+                                <textarea asp-for="personaDTO.Direccion2" class="form-control" cols="6"></textarea>
+                                <span asp-validation-for="personaDTO.Direccion2" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="seccion-titulo">Información del profesional</div>
+
+
+                        <div class="col-sm-6 col-lg-6 centro">
+                            <div class="form-group">
+                                <label asp-for="geAbogadoDTO.CJuridica" class="control-label"></label>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-lg-6">
+                            <div class="form-group">
+                                <select asp-for="geAbogadoDTO.CJuridica" class="form-control" asp-items="ViewBag.CJuridica"></select>
+                            </div>
+                        </div>
+                        <br />
+                        <br />
+                        <br />
+                        <br />
+                        <div class="col-sm-6 col-lg-6 centro">
+                            <div class="form-group">
+                                <label asp-for="geAbogadoDTO.IdTipoAbogado" class="control-label"></label>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-lg-6">
+                            <div class="form-group">
+                                <select asp-for="geAbogadoDTO.IdTipoAbogado" class="form-control" asp-items="ViewBag.IdTipoAbogado"></select>
+                            </div>
+                        </div>
+                        <br />
+                        <br />
+                        <br />
+                        <br />
+                        <div class="col-sm-6 col-lg-6 centro">
+                            <div class="form-group">
+                                <label asp-for="geAbogadoDTO.Carnet" class="control-label"></label>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-lg-6">
+                            <div class="form-group">
+                                <input asp-for="geAbogadoDTO.Carnet" class="form-control" />
+                                <span asp-validation-for="geAbogadoDTO.Carnet" class="text-danger"></span>
+                                @if (TempData["ErrorCarnet"] != null)
+                                {
+                                    <span class="text-danger">@TempData["ErrorCarnet"]</span>
+                                }
+                            </div>
+                        </div>
+                        <div class="seccion-titulo">Contactos</div>
+                        <div class="col-sm-6 col-lg-6 centro">
+                            <div class="form-group">
+                                <label asp-for="personaDTO.Telefono1" class="control-label"></label>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-lg-6">
+                            <div class="form-group">
+                                <input asp-for="personaDTO.Telefono1" class="form-control" />
+                                <span asp-validation-for="personaDTO.Telefono1" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-lg-6 centro">
+                            <div class="form-group">
+                                <label asp-for="personaDTO.Telefono2" class="control-label"></label>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-lg-6">
+                            <div class="form-group">
+                                <input asp-for="personaDTO.Telefono2" class="form-control" />
+                                <span asp-validation-for="personaDTO.Telefono2" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="seccion-titulo">Autenticacion para el sistema</div>
+                        <div class="col-sm-6 col-lg-6 centro">
+                            <div class="form-group">
+                                <label asp-for="personaDTO.Email">Correro electrónico</label>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-lg-6">
+                            <div class="form-group">
+                                <input asp-for="personaDTO.Email" class="form-control" autocomplete="username" aria-required="true" placeholder="nombre@ejemplo.com" />
+                                <span asp-validation-for="personaDTO.Email" class="text-danger"></span>
+                                @if (TempData["ErrorEmail"] != null)
+                                {
+                                    <span class="text-danger">@TempData["ErrorEmail"]</span>
+                                }
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-lg-6 centro">
+                            <!--<div class="form-floating mb-3">-->
+                            <div class="form-group">
+                                <label asp-for="personaDTO.Password">Contraseña</label>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-lg-6">
+                            <div class="form-group">
+                                <input asp-for="personaDTO.Password" class="form-control" autocomplete="new-password" aria-required="true" placeholder="ej. 123Abd$" />
+                                <span asp-validation-for="personaDTO.Password" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-lg-6 centro">
+                            <!--<div class="form-floating mb-3">-->
+                            <div class="form-group">
+                                <label asp-for="personaDTO.ConfirmPassword">Confirmación de contraseña</label>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-lg-6">
+                            <div class="form-group">
+                                <input asp-for="personaDTO.ConfirmPassword" class="form-control" autocomplete="new-password" aria-required="true" placeholder="ej. 123Abd$" />
+                                <span asp-validation-for=personaDTO.ConfirmPassword class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col-md-12 col-lg-12" style="margin-top: 100px">
+
+                            <div class="text-center">
+                                <div class="form-group">
+                                    <input type="submit" value="Crear" class="contact-btn btn-lg" style="width:30%" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+
+
+<script src="~/lyso/js/calculoedad.js"></script>
+<script src="~/lyso/js/filtroprovinicacantondistrito.js"></script>
+
+
+
+
+
+
+

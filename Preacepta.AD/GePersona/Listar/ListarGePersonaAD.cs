@@ -1,10 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Preacepta.Modelos.AbstraccionesFrond;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Preacepta.AD.GePersona.Listar
 {
@@ -12,7 +7,7 @@ namespace Preacepta.AD.GePersona.Listar
     {
         private readonly Contexto _contexto;
 
-        public ListarGePersonaAD (Contexto contexto) 
+        public ListarGePersonaAD(Contexto contexto)
         {
             _contexto = contexto;
         }
@@ -30,49 +25,54 @@ namespace Preacepta.AD.GePersona.Listar
                                                   Edad = persona.Edad,
                                                   EstadoCivil = persona.EstadoCivil,
                                                   Oficio = persona.Oficio,
-                                                  Direccion1 = persona.Direccion1,                                                  
+                                                  Direccion1 = persona.Direccion1,
                                                   Direccion2 = persona.Direccion2,
                                                   Email = persona.Email,
                                                   FechaRegistro = persona.FechaRegistro.ToString("dd/MM/yyyy"),
                                                   Activo = persona.Activo,
                                                   Telefono1 = persona.Telefono1,
                                                   Telefono2 = persona.Telefono2,
+                                                  Genero = persona.Genero
                                               }).ToListAsync();
             return lista;
         }
 
-        public async Task <List<GePersonaDTO>> listar() 
+        public async Task<List<GePersonaDTO>> listar()
         {
 
-            
-            try 
+
+            try
             {
-                return await _contexto.TGePersonas.Select(persona => new GePersonaDTO
-                {
-                    Cedula = persona.Cedula,
-                    Nombre = persona.Nombre,
-                    Apellido1 = persona.Apellido1,
-                    Apellido2 = persona.Apellido2,
-                    FechaNacimiento = persona.FechaNacimiento.ToString("dd/MM/yyyy"),
-                    Edad = persona.Edad,
-                    EstadoCivil = persona.EstadoCivil,
-                    Oficio = persona.Oficio,
-                    Direccion1 = persona.Direccion1,
-                    Direccion1Navigation = persona.Direccion1Navigation,
-                    Direccion2 = persona.Direccion2,
-                    Email = persona.Email,
-                    FechaRegistro = persona.FechaRegistro.ToString("dd/MM/yyyy"),
-                    Activo = persona.Activo,
-                    Telefono1 = persona.Telefono1,
-                    Telefono2 = persona.Telefono2,
-                }).ToListAsync();
+                return await _contexto.TGePersonas
+                    .Include(c => c.Direccion1Navigation)
+                    .ThenInclude(a => a.IdCatonNavigation)
+                    .Select(persona => new GePersonaDTO
+                    {
+                        Cedula = persona.Cedula,
+                        Nombre = persona.Nombre,
+                        Apellido1 = persona.Apellido1,
+                        Apellido2 = persona.Apellido2,
+                        FechaNacimiento = persona.FechaNacimiento.ToString("dd/MM/yyyy"),
+                        Edad = persona.Edad,
+                        EstadoCivil = persona.EstadoCivil,
+                        Oficio = persona.Oficio,
+                        Direccion1 = persona.Direccion1,
+                        Direccion1Navigation = persona.Direccion1Navigation,
+                        Direccion2 = persona.Direccion2,
+                        Email = persona.Email,
+                        FechaRegistro = persona.FechaRegistro.ToString("dd/MM/yyyy"),
+                        Activo = persona.Activo,
+                        Telefono1 = persona.Telefono1,
+                        Telefono2 = persona.Telefono2,
+                        Genero = persona.Genero
+                    }).ToListAsync();
             }
-            catch (Exception ex) 
+            catch (Exception ex)
             {
                 Console.WriteLine($"Error al obtener datos {ex.Message}");
                 return new List<GePersonaDTO>();
             }
-           
+
         }
     }
 }
