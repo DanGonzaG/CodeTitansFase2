@@ -132,9 +132,7 @@
                             {
                                 @if (User.IsInRole("Gestor") || User.IsInRole("Abogado"))
                                 {
-                                    <li class="nav-item">
-                                        <a href="#" class="nav-link dropdown-toggle">Documentos</a>
-                                        <ul class="dropdown-menu">
+                                        
 
                                             <li class="nav-item">
                                                 <a href="#" class="nav-link dropdown-toggle">Documentos</a>
@@ -173,27 +171,13 @@
                                                         <a asp-controller="TDocsTipoVehiculoes" asp-action="CreateGeneratorDocsTipoVehiculoes" class="nav-link"> Tipo de vehiculos </a>
                                                     </li>
 
-                                                    <li class="nav-item">
-                                                        <a href="#" class="nav-link dropdown">Documentos Recientes</a>
-                                                        <ul class="dropdown-menu">
-                                                            <li class="nav-item">
-                                                                <a class="nav-link">Traspaso Vehículo : Daniel González</a>
-                                                            </li>
-                                                            <li class="nav-item">
-                                                                <a class="nav-link">Reclamación Herencia : Javier Cruz</a>
-                                                            </li>
-                                                            <li class="nav-item">
-                                                                <a class="nav-link">Rectificación de Escritura : María López</a>
-                                                            </li>
-                                                        </ul>
-                                                    </li>
+                                            
+
                                                     <li class="nav-item">
                                                         <a asp-controller="DocsGenerator" asp-action="Tutorial" class="nav-link">Tutoriales de herramienta</a>
                                                     </li>
                                                 </ul>
                                             </li>
-                                        </ul>
-                                    </li>
                                 }
                             }
 

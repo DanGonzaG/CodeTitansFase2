@@ -79,7 +79,12 @@
                             <a class="cmn-btn" asp-controller="Home" asp-action="Index"><i class="fa-solid fa-download"></i></a>
                             <a class="cmn-btn"
                                asp-controller="@(item.TipoDocumento == "Pagaré" ? "TDocsPagares" :
-                                                    item.TipoDocumento == "Compra y venta de vehículos" ? "DocsOpcionCompraventaVehiculoes" : "HistorialDocumentos")"
+                                                item.TipoDocumento == "Compra y venta de vehículos" ? "DocsOpcionCompraventaVehiculoes" :
+                                                item.TipoDocumento == "Autorización de revisión de expedientes" ? "DocsAutorizacionRevisionExpedientes" :
+                                                item.TipoDocumento == "Contrato Prestación de Servicios" ? "DocsContratoPrestacionServicios" :
+                                                item.TipoDocumento == "Compra y Venta de Fincas" ? "DocsCompraventaFincas" :
+                                                item.TipoDocumento == "Inscripción de Vehículos" ? "DocsInscripcionVehiculo" :
+                                                "HistorialDocumentos")"
                            asp-action="EditarDesdeHistorial"
                            asp-route-id="@item.Id">
                             <i class="fa-solid fa-pen"></i>

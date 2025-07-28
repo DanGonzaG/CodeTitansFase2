@@ -64,10 +64,40 @@ namespace Praecepta.UI.Controllers
             return View();
         }
 
-
+        //vista derecho penal
         public IActionResult CaseStudyDetails()
         {
             return View("Practice/CaseStudyDetails");
+        }
+
+        //vista derecho administrativo
+        public IActionResult Administrativo()
+        {
+            return View("Practice/Administrativo");
+        }
+
+        //derecho civil
+        public IActionResult Civil()
+        {
+            return View("Practice/Civil");
+        }
+
+        //vista derecho laboral
+        public IActionResult Laboral()
+        {
+            return View("Practice/Laboral");
+        }
+
+        //vista derecho corporativo
+        public IActionResult Corporativo()
+        {
+            return View("Practice/Corporativo");
+        }
+
+        //vista derecho notarial
+        public IActionResult Notarial()
+        {
+            return View("Practice/Notarial");
         }
 
         public IActionResult AttorneyDetails()

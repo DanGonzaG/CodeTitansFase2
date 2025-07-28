@@ -1,8 +1,8 @@
 ﻿@model Preacepta.Modelos.AbstraccionesFrond.DocsContratoPrestacionServicioDTO
 
 <head>
-    <link href="~/lyso/css/Daniel.css" rel="stylesheet" />
-</head>
+    <link href="~/lyso/css/Alonso.css" rel="stylesheet" />
+¿</head>
 
 <!-- Page Title -->
 <div class="page-title-area page-title-area-two title-img-one">
@@ -32,111 +32,177 @@
 <body>
 <div class="contact-form contact-form-two contact-form-three">
     <div class="container">
+            <<div class="col-md-12 col-lg-12 encabezadoForm">
+                <img src="~/lyso/img/docs3.png" width="200px" />
+            </div>
         <div class="contact-wrap">
                 <form asp-action="CreateDocsContratoPrestacionServicios" id="CreateDocsContratoPrestacionServicios">
                     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                 <div class="row justify-content-center">
-                    <div class="col-sm-6 col-lg-6">
-                        <div class="form-group">
-                            <label asp-for="RazonSocialEmpresa" class="control-label"></label>
-                                <input asp-for="RazonSocialEmpresa" class="form-control" id="idRazonSocialEmpresa" />
-                            <span asp-validation-for="RazonSocialEmpresa" class="text-danger"></span>
-                        </div>
-                    </div>
 
-                    <div class="col-sm-6 col-lg-6">
-                        <div class="form-group">
-                            <label asp-for="Provincia" class="control-label"></label>
-                                <select asp-for="Provincia" class="form-control" asp-items="ViewBag.Provincia" id="idProvincia"></select>
-                        </div>
-                    </div>
+                        <div class="seccion-titulo">Información del Abogado</div>
 
-                    <div class="col-sm-6 col-lg-6">
-                        <div class="form-group">
-                            <label asp-for="CedulaJuridicaEmpresa" class="control-label"></label>
-                                <input asp-for="CedulaJuridicaEmpresa" class="form-control" id="idCedulaJuridicaEmpresa" />
-                            <span asp-validation-for="CedulaJuridicaEmpresa" class="text-danger"></span>
+                        <div class="col-sm-6 col-lg-6 centro">
+                            <div class="LetraNegra">
+                                <label asp-for="CedulaAbogado" class="control-label"></label>
+                            </div>
                         </div>
-                    </div>
-
-                    <div class="col-sm-6 col-lg-6">
-                        <div class="form-group">
-                            <label asp-for="CedulaAbogado" class="control-label"></label>
+                        <div class="col-sm-6 col-lg-6">
+                            <div class="form-group">
                                 <select asp-for="CedulaAbogado" class="form-control" asp-items="ViewBag.CedulaAbogado" id="idCedulaAbogado"></select>
+                            </div>
                         </div>
-                    </div>
 
-                    <div class="col-sm-6 col-lg-6">
-                        <div class="form-group">
-                            <label asp-for="CedulaCliente" class="control-label"></label>
+                        <div class="seccion-titulo">Información del Cliente</div>
+
+                        <div class="col-sm-6 col-lg-6 centro">
+                            <div class="LetraNegra">
+                                <label asp-for="CedulaCliente" class="control-label"></label>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-lg-6">
+                            <div class="form-group">
                                 <select asp-for="CedulaCliente" class="form-control" asp-items="ViewBag.CedulaCliente" id="idCedulaCliente"></select>
+                            </div>
                         </div>
-                    </div>
 
-                    <div class="col-sm-6 col-lg-6">
-                        <div class="form-group">
-                            <label asp-for="TipoServicios" class="control-label"></label>
+                        <div class="seccion-titulo">Provincia De Prestación de Servicios Profesionales</div>
+
+                        <div class="col-sm-6 col-lg-6 centro">
+                            <div class="LetraNegra">
+                                <label asp-for="Provincia" class="control-label"></label>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-lg-6">
+                            <div class="form-group">
+                                <select asp-for="Provincia" class="form-control" asp-items="ViewBag.Provincia" id="idProvincia"></select>
+                            </div>
+                        </div>
+
+                        <div class="seccion-titulo">Datos del Documento</div>
+
+                        <div class="col-sm-6 col-lg-6 centro">
+                            <div class="LetraNegra">
+                                <label asp-for="RazonSocialEmpresa" class="control-label"></label>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-lg-6">
+                            <div class="form-group">
+                                <input asp-for="RazonSocialEmpresa" class="form-control" id="idRazonSocialEmpresa" />
+                                <span asp-validation-for="RazonSocialEmpresa" class="text-danger"></span>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-6 col-lg-6 centro">
+                            <div class="LetraNegra">
+                                <label asp-for="CedulaJuridicaEmpresa" class="control-label"></label>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-lg-6">
+                            <div class="form-group">
+                                <input asp-for="CedulaJuridicaEmpresa" class="form-control" id="idCedulaJuridicaEmpresa" />
+                                <span asp-validation-for="CedulaJuridicaEmpresa" class="text-danger"></span>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-6 col-lg-6 centro">
+                            <div class="LetraNegra">
+                                <label asp-for="TipoServicios" class="control-label"></label>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-lg-6">
+                            <div class="form-group">
                                 <input asp-for="TipoServicios" class="form-control" id="idTipoServicios" />
-                            <span asp-validation-for="TipoServicios" class="text-danger"></span>
+                                <span asp-validation-for="TipoServicios" class="text-danger"></span>
+                            </div>
                         </div>
-                    </div>
 
-                    <div class="col-sm-6 col-lg-6">
-                        <div class="form-group">
-                            <label asp-for="FechaInicio" class="control-label"></label>
+                        <div class="col-sm-6 col-lg-6 centro">
+                            <div class="LetraNegra">
+                                <label asp-for="FechaInicio" class="control-label"></label>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-lg-6">
+                            <div class="form-group">
                                 <input asp-for="FechaInicio" class="form-control" id="idFechaInicio" />
-                            <span asp-validation-for="FechaInicio" class="text-danger"></span>
+                                <span asp-validation-for="FechaInicio" class="text-danger"></span>
+                            </div>
                         </div>
-                    </div>
 
-                    <div class="col-sm-6 col-lg-6">
-                        <div class="form-group">
-                            <label asp-for="FechaFinal" class="control-label"></label>
+                        <div class="col-sm-6 col-lg-6 centro">
+                            <div class="LetraNegra">
+                                <label asp-for="FechaFinal" class="control-label"></label>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-lg-6">
+                            <div class="form-group">
                                 <input asp-for="FechaFinal" class="form-control" id="idFechaFinal" />
-                            <span asp-validation-for="FechaFinal" class="text-danger"></span>
+                                <span asp-validation-for="FechaFinal" class="text-danger"></span>
+                            </div>
                         </div>
-                    </div>
 
-                    <div class="col-sm-6 col-lg-6">
-                        <div class="form-group">
-                            <label asp-for="MontoHonorarios" class="control-label"></label>
+                        <div class="col-sm-6 col-lg-6 centro">
+                            <div class="LetraNegra">
+                                <label asp-for="MontoHonorarios" class="control-label"></label>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-lg-6">
+                            <div class="form-group">
                                 <input asp-for="MontoHonorarios" class="form-control" id="idMontoHonorarios" />
-                            <span asp-validation-for="MontoHonorarios" class="text-danger"></span>
+                                <span asp-validation-for="MontoHonorarios" class="text-danger"></span>
+                            </div>
                         </div>
-                    </div>
 
-                    <div class="col-sm-6 col-lg-6">
-                        <div class="form-group">
-                            <label asp-for="InformacionConfidencial" class="control-label"></label>
+                        <div class="col-sm-6 col-lg-6 centro">
+                            <div class="LetraNegra">
+                                <label asp-for="InformacionConfidencial" class="control-label"></label>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-lg-6">
+                            <div class="form-group">
                                 <input asp-for="InformacionConfidencial" class="form-control" id="idInformacionConfidencial" />
-                            <span asp-validation-for="InformacionConfidencial" class="text-danger"></span>
+                                <span asp-validation-for="InformacionConfidencial" class="text-danger"></span>
+                            </div>
                         </div>
-                    </div>
 
-                    <div class="col-sm-6 col-lg-6">
-                        <div class="form-group">
-                            <label asp-for="CiudadFirma" class="control-label"></label>
-                                <select asp-for="CiudadFirma" class="form-control" asp-items="ViewBag.CiudadFirma" id="idCiudadFirma"></select>
+                        <div class="col-sm-6 col-lg-6 centro">
+                            <div class="LetraNegra">
+                                <label asp-for="HoraFirma" class="control-label"></label>
+                            </div>
                         </div>
-                    </div>
-
-                    <div class="col-sm-6 col-lg-6">
-                        <div class="form-group">
-                            <label asp-for="HoraFirma" class="control-label"></label>
-                                <input asp-for="HoraFirma" class="form-control" id="idHoraFirma" />
-                            <span asp-validation-for="HoraFirma" class="text-danger"></span>
+                        <div class="col-sm-6 col-lg-6">
+                            <div class="form-group">
+                                <input asp-for="HoraFirma" class="form-control" id="idHoraFirma" type="time" />
+                                <span asp-validation-for="HoraFirma" class="text-danger"></span>
+                            </div>
                         </div>
-                    </div>
 
-                    <div class="col-sm-6 col-lg-6">
-                        <div class="form-group">
-                            <label asp-for="FechaFirma" class="control-label"></label>
+                        <div class="col-sm-6 col-lg-6 centro">
+                            <div class="LetraNegra">
+                                <label asp-for="FechaFirma" class="control-label"></label>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-lg-6">
+                            <div class="form-group">
                                 <input asp-for="FechaFirma" class="form-control" id="idFechaFirma" />
-                            <span asp-validation-for="FechaFirma" class="text-danger"></span>
+                                <span asp-validation-for="FechaFirma" class="text-danger"></span>
+                            </div>
                         </div>
-                    </div>
 
+                        <div class="seccion-titulo"></div>
 
+                        <div class="col-sm-6 col-lg-6 centro">
+                            <div class="LetraNegra">
+                                <label asp-for="CiudadFirma" class="control-label"></label>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-lg-6">
+                            <div class="form-group">
+                                <select asp-for="CiudadFirma" class="form-control" asp-items="ViewBag.CiudadFirma" id="idCiudadFirma"></select>
+                            </div>
+                        </div>
+
+                        <div class="seccion-titulo"></div>
 
                         <div class="col-md-12 col-lg-12">
                             <div class="text-center d-flex justify-content-center gap-3">
@@ -151,7 +217,8 @@
                             </div>
                         </div>
 
-                </div>
+
+                    </div>
             </form>
         </div>
     </div>

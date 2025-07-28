@@ -165,6 +165,16 @@ namespace Preacepta.UI.Controllers
             return View(historial);
         }
 
+        public async Task<PartialViewResult> UltimosDocumentosParcial()
+        {
+            var ultimos = await _context.HistorialDocumentos
+                .OrderByDescending(h => h.Fecha)
+                .Take(3)
+                .ToListAsync();
+
+            return PartialView("_UltimosDocumentos", ultimos);
+        }
+
         [HttpGet]
         public async Task<IActionResult> EditarDesdeHistorial(int id)
         {
@@ -267,6 +277,198 @@ namespace Preacepta.UI.Controllers
 
                 // Aquí podrías añadir ViewData si tienes selects en la vista
                 return View("~/Views/DocsOpcionCompraventaVehiculoes/CreateDocsOpcionCompraventaVehiculoes.cshtml", model);
+            }
+
+            // --- autorizacion revision expedientes ---
+            if (historial.TipoDocumento == "Autorización de revisión de expedientes")
+            {
+                if (historial.DocumentoIdOriginal == null) return NotFound();
+
+                var docOriginal = await _context.TDocsAutorizacionRevisionExpedientes
+                    .FirstOrDefaultAsync(p => p.IdDocumento == historial.DocumentoIdOriginal.Value);
+                if (docOriginal == null) return NotFound();
+
+                var model = new DocsAutorizacionRevisionExpedienteDTO
+                {
+                    Expediente = docOriginal.Expediente,
+                    Delito = docOriginal.Delito,
+                    CedulaImputado = docOriginal.CedulaImputado,
+                    Ofendido = docOriginal.Ofendido,
+                    CedulaAbogado = docOriginal.CedulaAbogado,
+                    CedulaAsistente = docOriginal.CedulaAsistente
+                };
+
+                ViewBag.DocumentoAnteriorId = historial.Id;
+
+                ViewData["CedulaAbogado"] = new SelectList(_context.TGeAbogados, "Cedula", "Cedula", model.CedulaAbogado);
+                ViewData["CedulaAsistente"] = new SelectList(_context.TGePersonas, "Cedula", "Cedula", model.CedulaAsistente);
+                ViewData["CedulaImputado"] = new SelectList(_context.TGePersonas, "Cedula", "Cedula", model.CedulaImputado);
+
+                return View("~/Views/DocsAutorizacionRevisionExpedientes/CreateDocsAutorizacionRevisionExpedientes.cshtml", model);
+            }
+
+            // --- compra y venta de fincas ---
+            if (historial.TipoDocumento == "Compra y Venta de Fincas")
+            {
+                if (historial.DocumentoIdOriginal == null) return NotFound();
+
+                var docOriginal = await _context.TDocsCompraventaFincas
+                    .FirstOrDefaultAsync(p => p.IdDocumento == historial.DocumentoIdOriginal.Value);
+                if (docOriginal == null) return NotFound();
+
+                var model = new DocsCompraventaFincaDTO
+                {
+                    NumeroEscritura = docOriginal.NumeroEscritura,
+                    CedulaAbogado = docOriginal.CedulaAbogado,
+                    CedulaVendedor = docOriginal.CedulaVendedor,
+                    CedulaComprador = docOriginal.CedulaComprador,
+                    MontoVenta = docOriginal.MontoVenta,
+                    PartidoFinca = docOriginal.PartidoFinca,
+                    MatriculaFinca = docOriginal.MatriculaFinca,
+                    NaturalezaFinca = docOriginal.NaturalezaFinca,
+                    DistritoFinca = docOriginal.DistritoFinca,
+                    CantonFinca = docOriginal.CantonFinca,
+                    ProvinciaFinca = docOriginal.ProvinciaFinca,
+                    AreaFincaM2 = docOriginal.AreaFincaM2,
+                    PlanoCatastrado = docOriginal.PlanoCatastrado,
+                    ColindaNorte = docOriginal.ColindaNorte,
+                    ColindaSur = docOriginal.ColindaSur,
+                    ColindaEste = docOriginal.ColindaEste,
+                    ColindaOeste = docOriginal.ColindaOeste,
+                    FormaPago = docOriginal.FormaPago,
+                    MedioPago = docOriginal.MedioPago,
+                    OrigenFondos = docOriginal.OrigenFondos,
+                    LugarFirma = docOriginal.LugarFirma,
+                    HoraFirma = docOriginal.HoraFirma,
+                    FechaFirma = docOriginal.FechaFirma
+                };
+
+                ViewBag.DocumentoAnteriorId = historial.Id;
+
+                ViewData["CedulaAbogado"] = new SelectList(_context.TGeAbogados, "Cedula", "Cedula", model.CedulaAbogado);
+                ViewData["CedulaComprador"] = new SelectList(_context.TGePersonas, "Cedula", "Apellido1", model.CedulaComprador);
+                ViewData["CedulaVendedor"] = new SelectList(_context.TGePersonas, "Cedula", "Apellido1", model.CedulaVendedor);
+                ViewData["ProvinciaFinca"] = new SelectList(_context.TCrProvincias, "IdProvincia", "NombreProvincia", model.ProvinciaFinca);
+                ViewData["DistritoFinca"] = new SelectList(_context.TCrDistritos, "IdDistrito", "NombreDistrito", model.DistritoFinca);
+                ViewData["CantonesFinca"] = new SelectList(_context.TCrCantones, "IdCanton", "NombreCanton", model.CantonFinca);
+                ViewData["LugarFirma"] = new SelectList(_context.TCrDistritos, "IdDistrito", "NombreDistrito", model.LugarFirma);
+
+                return View("~/Views/DocsCompraventaFincas/CreateDocsCompraventaFincas.cshtml", model);
+            }
+
+            // --- contrato prestacion de servcios ---
+            if (historial.TipoDocumento == "Contrato Prestación de Servicios")
+            {
+                if (historial.DocumentoIdOriginal == null) return NotFound();
+
+                var docOriginal = await _context.TDocsContratoPrestacionServicios
+                    .FirstOrDefaultAsync(p => p.IdDocumento == historial.DocumentoIdOriginal.Value);
+                if (docOriginal == null) return NotFound();
+
+                var model = new DocsContratoPrestacionServicioDTO
+                {
+                    RazonSocialEmpresa = docOriginal.RazonSocialEmpresa,
+                    Provincia = docOriginal.Provincia,
+                    CedulaJuridicaEmpresa = docOriginal.CedulaJuridicaEmpresa,
+                    CedulaAbogado = docOriginal.CedulaAbogado,
+                    CedulaCliente = docOriginal.CedulaCliente,
+                    TipoServicios = docOriginal.TipoServicios,
+                    FechaInicio = docOriginal.FechaInicio,
+                    FechaFinal = docOriginal.FechaFinal,
+                    MontoHonorarios = docOriginal.MontoHonorarios,
+                    InformacionConfidencial = docOriginal.InformacionConfidencial,
+                    CiudadFirma = docOriginal.CiudadFirma,
+                    HoraFirma = docOriginal.HoraFirma,
+                    FechaFirma = docOriginal.FechaFirma,
+                };
+
+                ViewBag.DocumentoAnteriorId = historial.Id;
+
+                ViewData["CedulaAbogado"] = new SelectList(
+                _context.TGeAbogados.Include(a => a.CedulaNavigation).Select(a => new
+                {
+                    Cedula = a.Cedula,
+                    Texto = a.CedulaNavigation.Nombre + " " + a.CedulaNavigation.Apellido1 + " - " + a.Cedula
+                }),
+                "Cedula",
+                "Texto", model?.CedulaAbogado);
+
+                ViewData["CedulaCliente"] = new SelectList(
+                    _context.TGePersonas.Select(p => new
+                    {
+                        Cedula = p.Cedula,
+                        Texto = p.Nombre + " " + p.Apellido1 + " - " + p.Cedula
+                    }),
+                    "Cedula",
+                    "Texto",
+                    model?.CedulaCliente);
+                //ViewData["CedulaAbogado"] = new SelectList(_context.TGeAbogados, "Cedula", "Cedula", model.CedulaAbogado);
+                //ViewData["CedulaCliente"] = new SelectList(_context.TGePersonas, "Cedula", "Cedula", model.CedulaCliente);
+                ViewData["CiudadFirma"] = new SelectList(_context.TCrDistritos, "IdDistrito", "NombreDistrito", model.CiudadFirma);
+                ViewData["Provincia"] = new SelectList(_context.TCrProvincias, "IdProvincia", "NombreProvincia", model.Provincia);
+
+                return View("~/Views/DocsContratoPrestacionServicios/CreateDocsContratoPrestacionServicios.cshtml", model);
+            }
+
+            // --- contrato inscripcion de vehiculo ---
+            if (historial.TipoDocumento == "Inscripción de Vehículos")
+            {
+                if (historial.DocumentoIdOriginal == null) return NotFound();
+
+                var docOriginal = await _context.TDocsInscripcionVehiculos
+                    .FirstOrDefaultAsync(p => p.IdDocumento == historial.DocumentoIdOriginal.Value);
+                if (docOriginal == null) return NotFound();
+
+                var model = new DocsInscripcionVehiculoDTO
+                {
+                    CedulaCliente = docOriginal.CedulaCliente,
+                    CedulaAbogado = docOriginal.CedulaAbogado,
+                    MarcaVehiculo = docOriginal.MarcaVehiculo,
+                    EstiloVehiculo = docOriginal.EstiloVehiculo,
+                    ModeloVehiculo = docOriginal.ModeloVehiculo,
+                    Categoria = docOriginal.Categoria,
+                    MarcaMotor = docOriginal.MarcaMotor,
+                    NumeroMotor = docOriginal.NumeroMotor,
+                    NumeroSerieChasis = docOriginal.NumeroSerieChasis,
+                    Vin = docOriginal.Vin,
+                    Anio = docOriginal.Anio,
+                    Carroceria = docOriginal.Carroceria,
+                    PesoNeto = docOriginal.PesoNeto,
+                    PesoBruto = docOriginal.PesoBruto,
+                    Potencia = docOriginal.Potencia,
+                    Color = docOriginal.Color,
+                    Capacidad = docOriginal.Capacidad,
+                    Combustible = docOriginal.Combustible,
+                    Cilindraje = docOriginal.Cilindraje,
+                    LugarFirma = docOriginal.LugarFirma,
+                    FechaFirma = docOriginal.FechaFirma
+                };
+
+                ViewBag.DocumentoAnteriorId = historial.Id;
+
+                ViewData["CedulaAbogado"] = new SelectList(
+                _context.TGeAbogados.Include(a => a.CedulaNavigation).Select(a => new
+                {
+                    Cedula = a.Cedula,
+                    Texto = a.CedulaNavigation.Nombre + " " + a.CedulaNavigation.Apellido1 + " - " + a.Cedula
+                }),
+                "Cedula",
+                "Texto", model?.CedulaAbogado);
+
+                ViewData["CedulaCliente"] = new SelectList(
+                    _context.TGePersonas.Select(p => new
+                    {
+                        Cedula = p.Cedula,
+                        Texto = p.Nombre + " " + p.Apellido1 + " - " + p.Cedula
+                    }),
+                    "Cedula",
+                    "Texto",
+                    model?.CedulaCliente);
+                ViewData["EstiloVehiculo"] = new SelectList(_context.TDocsTipoVehiculos, "Id", "Nombre", model.EstiloVehiculo);
+                ViewData["LugarFirma"] = new SelectList(_context.TCrDistritos, "IdDistrito", "NombreDistrito", model.LugarFirma);
+                ViewData["MarcaVehiculo"] = new SelectList(_context.TDocsMarcaVehiculos, "Id", "Nombre", model.MarcaVehiculo);
+
+                return View("~/Views/DocsInscripcionVehiculo/CreateDocsInscripcionVehiculo.cshtml", model);
             }
 
             return RedirectToAction(nameof(DocsHistorial));
