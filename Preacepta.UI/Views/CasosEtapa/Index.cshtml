@@ -5,10 +5,10 @@
     Layout = "_Layout";
 }
 
-<h1>Index</h1>
+<h1>Etapas de los casos</h1>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-action="Create" class="btn btn-primary">Crear una nueva etapa</a>
 </p>
 <table class="table">
     <thead>
@@ -50,9 +50,9 @@
                 @Html.DisplayFor(modelItem => item.IdCasoNavigation.Nombre)
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.IdEtapaPl">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.IdEtapaPl">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.IdEtapaPl">Delete</a>
+                    <a asp-action="Edit" asp-route-id="@item.IdEtapaPl" class="btn btn-warning">Editar</a>
+                    <a asp-action="Details" asp-route-id="@item.IdEtapaPl" class="btn btn-info">Detalles</a>
+                    <a asp-action="Delete" asp-route-id="@item.IdEtapaPl" class="btn btn-danger">Eliminar</a>
             </td>
         </tr>
 }
