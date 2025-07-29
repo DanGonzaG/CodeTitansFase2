@@ -119,6 +119,12 @@ namespace Preacepta.UI.Controllers
             new SelectListItem { Text = "Viudo", Value = "Viudo" }
         };
 
+            ViewBag.Genero = new List<SelectListItem>
+                        {
+                            new SelectListItem { Text = "Femenino", Value = "Femenino" },
+                            new SelectListItem { Text = "Masculino", Value = "Masculino" },
+                        };
+
             ViewData["CJuridica"] = (await _listarNegocio.listar())
                 .Select(n => new SelectListItem
                 {
@@ -145,7 +151,7 @@ namespace Preacepta.UI.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize(Roles = "Gestor")]
-        public async Task<IActionResult> Create([Bind("Carnet,Cedula,IdTipoAbogado,CJuridica")] PersonaUnionAbogado tGeAbogado)
+        public async Task<IActionResult> Create([Bind("personaDTO,geAbogadoDTO")] PersonaUnionAbogado tGeAbogado)
         {
             if (ModelState.IsValid)
             {
@@ -162,6 +168,12 @@ namespace Preacepta.UI.Controllers
             new SelectListItem { Text = "Divorciado", Value = "Divorciado" },
             new SelectListItem { Text = "Viudo", Value = "Viudo" }
         };
+
+            ViewBag.Genero = new List<SelectListItem>
+                        {
+                            new SelectListItem { Text = "Femenino", Value = "Femenino" },
+                            new SelectListItem { Text = "Masculino", Value = "Masculino" },
+                        };
 
             ViewData["CJuridica"] = (await _listarNegocio.listar())
                  .Select(n => new SelectListItem
@@ -210,6 +222,12 @@ namespace Preacepta.UI.Controllers
                 new SelectListItem { Text = "Divorciado", Value = "Divorciado" },
                 new SelectListItem { Text = "Viudo", Value = "Viudo" }
             };
+
+            ViewBag.Genero = new List<SelectListItem>
+                        {
+                            new SelectListItem { Text = "Femenino", Value = "Femenino" },
+                            new SelectListItem { Text = "Masculino", Value = "Masculino" },
+                        };
 
             ViewData["CJuridica"] = (await _listarNegocio.listar())
                 .Select(n => new SelectListItem
@@ -266,6 +284,12 @@ namespace Preacepta.UI.Controllers
             new SelectListItem { Text = "Divorciado", Value = "Divorciado" },
             new SelectListItem { Text = "Viudo", Value = "Viudo" }
         };
+
+            ViewBag.Genero = new List<SelectListItem>
+                        {
+                            new SelectListItem { Text = "Femenino", Value = "Femenino" },
+                            new SelectListItem { Text = "Masculino", Value = "Masculino" },
+                        };
 
             ViewData["CJuridica"] = (await _listarNegocio.listar())
                 .Select(n => new SelectListItem
@@ -337,6 +361,12 @@ namespace Preacepta.UI.Controllers
             new SelectListItem { Text = "Viudo", Value = "Viudo" }
             };
 
+            ViewBag.Genero = new List<SelectListItem>
+                        {
+                            new SelectListItem { Text = "Femenino", Value = "Femenino" },
+                            new SelectListItem { Text = "Masculino", Value = "Masculino" },
+                        };
+
             ViewData["CJuridica"] = (await _listarNegocio.listar())
                 .Select(n => new SelectListItem
                 {
@@ -392,6 +422,12 @@ namespace Preacepta.UI.Controllers
                                 new SelectListItem { Text = "Viudo", Value = "Viudo" }
                             };
 
+                            ViewBag.Genero = new List<SelectListItem>
+                        {
+                            new SelectListItem { Text = "Femenino", Value = "Femenino" },
+                            new SelectListItem { Text = "Masculino", Value = "Masculino" },
+                        };
+
                             ViewData["CJuridica"] = (await _listarNegocio.listar())
                             .Select(n => new SelectListItem
                             {
@@ -425,6 +461,12 @@ namespace Preacepta.UI.Controllers
                             new SelectListItem { Text = "Casado", Value = "Casado" },
                             new SelectListItem { Text = "Divorciado", Value = "Divorciado" },
                             new SelectListItem { Text = "Viudo", Value = "Viudo" }
+                        };
+
+                        ViewBag.Genero = new List<SelectListItem>
+                        {
+                            new SelectListItem { Text = "Femenino", Value = "Femenino" },
+                            new SelectListItem { Text = "Masculino", Value = "Masculino" },
                         };
 
                         ViewData["CJuridica"] = (await _listarNegocio.listar())
@@ -464,6 +506,12 @@ namespace Preacepta.UI.Controllers
                             new SelectListItem { Text = "Viudo", Value = "Viudo" }
                         };
 
+                    ViewBag.Genero = new List<SelectListItem>
+                        {
+                            new SelectListItem { Text = "Femenino", Value = "Femenino" },
+                            new SelectListItem { Text = "Masculino", Value = "Masculino" },
+                        };
+
                     ViewData["CJuridica"] = (await _listarNegocio.listar())
                         .Select(n => new SelectListItem
                         {
@@ -497,6 +545,12 @@ namespace Preacepta.UI.Controllers
                 new SelectListItem { Text = "Divorciado", Value = "Divorciado" },
                 new SelectListItem { Text = "Viudo", Value = "Viudo" }
             };
+
+            ViewBag.Genero = new List<SelectListItem>
+                        {
+                            new SelectListItem { Text = "Femenino", Value = "Femenino" },
+                            new SelectListItem { Text = "Masculino", Value = "Masculino" },
+                        };
 
             ViewData["CJuridica"] = (await _listarNegocio.listar())
                             .Select(n => new SelectListItem

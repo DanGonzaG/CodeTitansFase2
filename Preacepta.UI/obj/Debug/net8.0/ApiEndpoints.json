@@ -1,1 +1,18 @@
-[]
+[
+  {
+    "ContainingType": "Preacepta.UI.Controllers.ZoomWebhookController",
+    "Method": "RecibirWebhook",
+    "RelativePath": "api/zoom/webhook",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "data",
+        "Type": "System.Object",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  }
+]
