@@ -124,30 +124,13 @@
                             </ul>
                         </div>
                         <div>
-                            @if (User.Identity.IsAuthenticated)
-                            {
-                                if (User.IsInRole("Abogado") || User.IsInRole("Gestor"))
-                                {
-                                    if(Model.casoDTO.Activo == true)
-                                    {
-                                        <div class="attor-details-things">
-                                            <form asp-controller="CasosEtapa" asp-action="FormularioEtapaPL" method="get">
-                                                <input type="hidden" name="IdCaso" value="@Model.casoDTO.IdCaso" />
-                                                <button type="submit" class="contact-btn EtapaPLestilos">Nueva Etapa Procesal</button>
-                                            </form>
-                                            <!--<bottom type="button" class="contact-btn"><a style="color:white" asp-controller="CasosEtapa" asp-action="FormularioEtapaPL" asp-route-id="@Model.casoDTO.IdCaso">Nueva Etapa Procesal</a></bottom>-->
-
-                                        </div>
-                                    }
-                                
-                                }
-                            }
+                            
 
                             <div class="attor-details-things">
                                 <!--<bottom type="button" class="contact-btn EtapaPLestilos">Descargar Caso Completo</bottom>-->
                                 <form asp-controller="Caso" asp-action="DescargarCasoCompleto" method="get">
                                     <input type="hidden" name="IdCaso" value="@Model.casoDTO.IdCaso" />
-                                    <button type="submit" class="contact-btn EtapaPLestilos">Descargar</button>
+                                    <button type="submit" class="contact-btn-primario EtapaPLestilos">Descargar</button>
                                 </form>
                             </div>
 
@@ -222,7 +205,7 @@
                                     @Html.DisplayFor(modelItem => item.Activo)
                                 </td>
                                 <td>
-                                    <button value="@item.IdEtapaPl" type="button" id="PrevioBtn" class="contact-btn" data-bs-toggle="modal" data-bs-target="#PrevioModal">
+                                    <button value="@item.IdEtapaPl" type="button" id="PrevioBtn" class="contact-btn--revision" data-bs-toggle="modal" data-bs-target="#PrevioModal">
                                         Detalles
                                     </button>
 
@@ -268,17 +251,9 @@
             <div class="modal-footer">               
                 <form asp-controller="CasosEtapa" asp-action="DescargaPDFetapaPL" method="get">
                     <input id="inputDescargaEtapaPL" type="hidden" value="" name="id" />
-                    <button type="submit" class="contact-btn">Descargar</button>
-                </form>
-                <form asp-controller="CasosEtapa" asp-action="EditarEtapaPL" method="get">
-                    <input id="inputEditEtapaPL" type="hidden" value="" name="id" />
-                    <button type="submit" class="contact-btn">Modificar</button>
-                </form>
-                <form asp-controller="CasosEtapa" asp-action="EliminarEtapaPL" method="get">
-                    <input id="inputDeleteEtapaPL" type="hidden" value="" name="id" />
-                    <button type="submit" class="contact-btn">Eliminar</button>
-                </form>
-                <button type="button" class="contact-btn" data-bs-dismiss="modal" id="Retroceso">Cerrar</button>
+                    <button type="submit" class="contact-btn--primario">Descargar</button>
+                </form>                
+                <button type="button" class="contact-btn--navegacion" data-bs-dismiss="modal" id="Retroceso">Regresar</button>
 
             </div>
         </div>
@@ -299,7 +274,7 @@
                 icon: 'success',
                 confirmButtonText: 'Continuar',
                 customClass: {
-                    confirmButton: 'contact-btn' // Clase CSS personalizada
+                    confirmButton: 'contact-btn--primario' // Clase CSS personalizada
                 }
             });
         });
@@ -316,7 +291,7 @@
                 icon: 'success',
                 confirmButtonText: 'Continuar',
                 customClass: {
-                    confirmButton: 'contact-btn' // Clase CSS personalizada
+                    confirmButton: 'contact-btn--primario' // Clase CSS personalizada
                 }
             });
         });
@@ -333,7 +308,7 @@
                 icon: 'success',
                 confirmButtonText: 'Continuar',
                 customClass: {
-                    confirmButton: 'contact-btn' // Clase CSS personalizada
+                    confirmButton: 'contact-btn--primario' // Clase CSS personalizada
                 }
             });
         });
