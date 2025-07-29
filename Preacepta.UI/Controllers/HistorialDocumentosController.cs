@@ -311,9 +311,9 @@ namespace Preacepta.UI.Controllers
 
                 ViewBag.DocumentoAnteriorId = historial.Id;
 
-                ViewData["CedulaAbogado"] = new SelectList(_context.TGeAbogados, "Cedula", "Cedula", model.CedulaAbogado);
-                ViewData["CedulaAsistente"] = new SelectList(_context.TGePersonas, "Cedula", "Cedula", model.CedulaAsistente);
-                ViewData["CedulaImputado"] = new SelectList(_context.TGePersonas, "Cedula", "Cedula", model.CedulaImputado);
+                ViewData["CedulaAbogado"] = new SelectList(_context.TGeAbogados, "Cedula", "Cedula", model.IdAbogado);
+                ViewData["CedulaAsistente"] = new SelectList(_context.TGePersonas, "Cedula", "Cedula", model.IdAbogado);
+                ViewData["CedulaImputado"] = new SelectList(_context.TGePersonas, "Cedula", "Cedula", model.IdCliente);
 
                 return View("~/Views/DocsAutorizacionRevisionExpedientes/CreateDocsAutorizacionRevisionExpedientes.cshtml", model);
             }

@@ -1,14 +1,17 @@
 ﻿using Preacepta.AD.GeAbogado.Eliminar;
+using Preacepta.LN.GePersona.Eliminar;
 
 namespace Preacepta.LN.GeAbogado.Eliminar
 {
     public class EliminarAbogadoLN : IEliminarAbogadoLN
     {
         private readonly IEliminarAbogadoAD _eliminar;
+        private readonly IEliminarPersonaLN _eliminarPersona;
 
-        public EliminarAbogadoLN(IEliminarAbogadoAD eliminar)
+        public EliminarAbogadoLN(IEliminarAbogadoAD eliminar, IEliminarPersonaLN eliminarPersona)
         {
             _eliminar = eliminar;
+            _eliminarPersona = eliminarPersona;
         }
 
         public async Task<int> Eliminar(int id)
@@ -21,6 +24,11 @@ namespace Preacepta.LN.GeAbogado.Eliminar
             try
             {
                 int bandera = await _eliminar.Eliminar(id);
+                if(bandera == 0 || bandera == null) 
+                {
+                    return 0;
+                }
+                int bandera2 = await _eliminarPersona.eliminar(id);
                 return bandera;
             }
             catch (Exception ex)
