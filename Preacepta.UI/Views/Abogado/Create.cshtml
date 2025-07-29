@@ -51,6 +51,11 @@
                 <span asp-validation-for="personaDTO.Apellido2" class="text-danger"></span>
             </div>
             <div class="form-group">
+                <label asp-for="personaDTO.Genero" class="control-label"></label>
+                <select asp-for="personaDTO.Genero" class="form-control" asp-items="ViewBag.Genero"></select>
+                <span asp-validation-for="personaDTO.Genero" class="text-danger"></span>
+            </div>
+            <div class="form-group">
                 <label asp-for="personaDTO.FechaNacimiento" class="control-label"></label>
                 <input type="date" asp-for="personaDTO.FechaNacimiento" class="form-control" />
                 <span asp-validation-for="personaDTO.FechaNacimiento" class="text-danger"></span>
@@ -71,9 +76,31 @@
                 <span asp-validation-for="personaDTO.Oficio" class="text-danger"></span>
             </div>
             <div class="form-group">
+                <label for="provincia">Provincia:</label>
+                <select class="selectDaniel" id="provincia" name="provincia">
+                    <option value="">Seleccione una provincia</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="canton">Cantón:</label>
+                <select class="selectDaniel" id="canton" name="canton" disabled>
+                    <option value="">Seleccione un cantón</option>
+                </select>
+                <input id="inputCanton" asp-for="personaDTO.Direccion1" class="form-control" readonly />
+            </div>
+            <div class="form-group">
+                <label for="distrito">Distrito:</label>
+                <select class="selectDaniel" id="distrito" name="personaDTO.Direccion1" asp-for="personaDTO.Direccion1" disabled>
+                    <option value="">Seleccione un distrito</option>
+                </select>
+                <input id="inputDistrito" asp-for="personaDTO.Direccion1" class="form-control" readonly />
+            </div>
+
+            <!--<div class="form-group">
                 <label asp-for="personaDTO.Direccion1" class="control-label"></label>
                 <select asp-for="personaDTO.Direccion1" class="form-control" asp-items="ViewBag.Direccion1"></select>
-            </div>
+            </div>-->
+
             <div class="form-group">
                 <label asp-for="personaDTO.Direccion2" class="control-label"></label>
                 <input asp-for="personaDTO.Direccion2" class="form-control" />
@@ -133,3 +160,4 @@
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }
+<script src="~/lyso/js/FiltroProvinicaCantonDistritoGestor.js"></script>

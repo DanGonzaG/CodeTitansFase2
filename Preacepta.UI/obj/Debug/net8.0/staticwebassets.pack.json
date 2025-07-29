@@ -305,6 +305,14 @@
       "PackagePath": "staticwebassets\\lyso\\DocsMachotes\\PrestacionServiciosMachote.html"
     },
     {
+      "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lyso\\css\\Alonso.css",
+      "PackagePath": "staticwebassets\\lyso\\css\\Alonso.css"
+    },
+    {
+      "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lyso\\css\\Andy.css",
+      "PackagePath": "staticwebassets\\lyso\\css\\Andy.css"
+    },
+    {
       "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lyso\\css\\Daniel.css",
       "PackagePath": "staticwebassets\\lyso\\css\\Daniel.css"
     },
@@ -589,6 +597,14 @@
       "PackagePath": "staticwebassets\\lyso\\img\\contact-bg.png"
     },
     {
+      "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lyso\\img\\docs3.png",
+      "PackagePath": "staticwebassets\\lyso\\img\\docs3.png"
+    },
+    {
+      "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lyso\\img\\docs4.png",
+      "PackagePath": "staticwebassets\\lyso\\img\\docs4.png"
+    },
+    {
       "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lyso\\img\\favicon.png",
       "PackagePath": "staticwebassets\\lyso\\img\\favicon.png"
     },
@@ -735,6 +751,38 @@
     {
       "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lyso\\img\\home-one\\portfolio\\9.jpg",
       "PackagePath": "staticwebassets\\lyso\\img\\home-one\\portfolio\\9.jpg"
+    },
+    {
+      "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lyso\\img\\home-one\\portfolio\\civil1.jpg",
+      "PackagePath": "staticwebassets\\lyso\\img\\home-one\\portfolio\\civil1.jpg"
+    },
+    {
+      "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lyso\\img\\home-one\\portfolio\\civil2.jpg",
+      "PackagePath": "staticwebassets\\lyso\\img\\home-one\\portfolio\\civil2.jpg"
+    },
+    {
+      "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lyso\\img\\home-one\\portfolio\\civil3.jpg",
+      "PackagePath": "staticwebassets\\lyso\\img\\home-one\\portfolio\\civil3.jpg"
+    },
+    {
+      "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lyso\\img\\home-one\\portfolio\\civil4.jpg",
+      "PackagePath": "staticwebassets\\lyso\\img\\home-one\\portfolio\\civil4.jpg"
+    },
+    {
+      "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lyso\\img\\home-one\\portfolio\\penal1.jpg",
+      "PackagePath": "staticwebassets\\lyso\\img\\home-one\\portfolio\\penal1.jpg"
+    },
+    {
+      "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lyso\\img\\home-one\\portfolio\\penal2.jpg",
+      "PackagePath": "staticwebassets\\lyso\\img\\home-one\\portfolio\\penal2.jpg"
+    },
+    {
+      "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lyso\\img\\home-one\\portfolio\\penal3.jpeg",
+      "PackagePath": "staticwebassets\\lyso\\img\\home-one\\portfolio\\penal3.jpeg"
+    },
+    {
+      "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lyso\\img\\home-one\\portfolio\\penal4.jpg",
+      "PackagePath": "staticwebassets\\lyso\\img\\home-one\\portfolio\\penal4.jpg"
     },
     {
       "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lyso\\img\\home-one\\team\\1.JPG",
@@ -907,6 +955,10 @@
     {
       "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lyso\\js\\FiltroProvinicaCantonDistritoEditarUsuario.js",
       "PackagePath": "staticwebassets\\lyso\\js\\FiltroProvinicaCantonDistritoEditarUsuario.js"
+    },
+    {
+      "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lyso\\js\\FiltroProvinicaCantonDistritoGestor.js",
+      "PackagePath": "staticwebassets\\lyso\\js\\FiltroProvinicaCantonDistritoGestor.js"
     },
     {
       "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lyso\\js\\Mensajes.js",

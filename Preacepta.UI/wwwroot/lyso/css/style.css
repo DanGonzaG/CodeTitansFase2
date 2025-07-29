@@ -476,17 +476,17 @@ button:focus {
   margin-bottom: 30px;
 }
 
-.cmn-btn, .cmn-btn--revision {
+.cmn-btn, .cmn-btn--navegacion, .cmn-btn--tercero, .cmn-btn--revision, .cmn-btn--secundario, .cmn-btn--primario {
   display: inline-block;
   color: #ffffff;
   background-color: #b69d74;
   font-weight: 600;
-  font-size: 13px;
-  padding: 9px 23px; /* antes 16px 40px */
+  font-size: 16px;
+  padding: 14px 30px;
   position: relative;
   z-index: 1;
 }
-.cmn-btn:before, .cmn-btn--revision:before {
+.cmn-btn:before, .cmn-btn--navegacion:before, .cmn-btn--tercero:before, .cmn-btn--revision:before, .cmn-btn--secundario:before, .cmn-btn--primario:before {
   position: absolute;
   content: "";
   left: 0;
@@ -498,7 +498,7 @@ button:focus {
   transition: 0.5s all ease;
   background-color: #333333;
 }
-.cmn-btn:after, .cmn-btn--revision:after {
+.cmn-btn:after, .cmn-btn--navegacion:after, .cmn-btn--tercero:after, .cmn-btn--revision:after, .cmn-btn--secundario:after, .cmn-btn--primario:after {
   position: absolute;
   content: "";
   right: 0;
@@ -510,20 +510,36 @@ button:focus {
   transition: 0.5s all ease;
   background-color: #333333;
 }
-.cmn-btn:hover, .cmn-btn--revision:hover {
+.cmn-btn:hover, .cmn-btn--navegacion:hover, .cmn-btn--tercero:hover, .cmn-btn--revision:hover, .cmn-btn--secundario:hover, .cmn-btn--primario:hover {
   color: #ffffff;
 }
-.cmn-btn:hover:before, .cmn-btn--revision:hover:before {
+.cmn-btn:hover:before, .cmn-btn--navegacion:hover:before, .cmn-btn--tercero:hover:before, .cmn-btn--revision:hover:before, .cmn-btn--secundario:hover:before, .cmn-btn--primario:hover:before {
   width: 50%;
   opacity: 1;
 }
-.cmn-btn:hover:after, .cmn-btn--revision:hover:after {
+.cmn-btn:hover:after, .cmn-btn--navegacion:hover:after, .cmn-btn--tercero:hover:after, .cmn-btn--revision:hover:after, .cmn-btn--secundario:hover:after, .cmn-btn--primario:hover:after {
   width: 50%;
   opacity: 1;
 }
 
+.cmn-btn--primario {
+  background-color: #0070BB;
+}
+
+.cmn-btn--secundario {
+  background-color: #B2BEB5;
+}
+
 .cmn-btn--revision {
   background-color: #ED9121;
+}
+
+.cmn-btn--tercero {
+  background-color: #848482;
+}
+
+.cmn-btn--navegacion {
+  background-color: #848482;
 }
 
 /*-- End Help --*/
@@ -1066,18 +1082,18 @@ button:focus {
   color: #333333;
 }
 
-.contact-btn, .contact-btn--navegacion, .contact-btn--tercero, .contact-btn--revision, .contact-btn--segundo, .contact-btn--primero {
+.contact-btn, .contact-btn--eliminacion, .contact-btn--navegacion, .contact-btn--tercero, .contact-btn--revision, .contact-btn--secundario, .contact-btn--primario {
   font-weight: 600;
-  font-size: 14px;
+  font-size: 16px;
   color: #ffffff;
   background-color: #b69d74;
-  padding: 10px 24px; /* antes 16px 40px */
+  padding: 16px 40px;
   border: 0;
   position: relative;
   z-index: 1;
   transition: 0.5s all ease;
 }
-.contact-btn:before, .contact-btn--navegacion:before, .contact-btn--tercero:before, .contact-btn--revision:before, .contact-btn--segundo:before, .contact-btn--primero:before {
+.contact-btn:before, .contact-btn--eliminacion:before, .contact-btn--navegacion:before, .contact-btn--tercero:before, .contact-btn--revision:before, .contact-btn--secundario:before, .contact-btn--primario:before {
   position: absolute;
   content: "";
   left: 0;
@@ -1089,7 +1105,7 @@ button:focus {
   transition: 0.5s all ease;
   background-color: #333333;
 }
-.contact-btn:after, .contact-btn--navegacion:after, .contact-btn--tercero:after, .contact-btn--revision:after, .contact-btn--segundo:after, .contact-btn--primero:after {
+.contact-btn:after, .contact-btn--eliminacion:after, .contact-btn--navegacion:after, .contact-btn--tercero:after, .contact-btn--revision:after, .contact-btn--secundario:after, .contact-btn--primario:after {
   position: absolute;
   content: "";
   right: 0;
@@ -1101,24 +1117,24 @@ button:focus {
   transition: 0.5s all ease;
   background-color: #333333;
 }
-.contact-btn:hover, .contact-btn--navegacion:hover, .contact-btn--tercero:hover, .contact-btn--revision:hover, .contact-btn--segundo:hover, .contact-btn--primero:hover {
+.contact-btn:hover, .contact-btn--eliminacion:hover, .contact-btn--navegacion:hover, .contact-btn--tercero:hover, .contact-btn--revision:hover, .contact-btn--secundario:hover, .contact-btn--primario:hover {
   color: #ffffff;
 }
-.contact-btn:hover:before, .contact-btn--navegacion:hover:before, .contact-btn--tercero:hover:before, .contact-btn--revision:hover:before, .contact-btn--segundo:hover:before, .contact-btn--primero:hover:before {
+.contact-btn:hover:before, .contact-btn--eliminacion:hover:before, .contact-btn--navegacion:hover:before, .contact-btn--tercero:hover:before, .contact-btn--revision:hover:before, .contact-btn--secundario:hover:before, .contact-btn--primario:hover:before {
   width: 50%;
   opacity: 1;
 }
-.contact-btn:hover:after, .contact-btn--navegacion:hover:after, .contact-btn--tercero:hover:after, .contact-btn--revision:hover:after, .contact-btn--segundo:hover:after, .contact-btn--primero:hover:after {
+.contact-btn:hover:after, .contact-btn--eliminacion:hover:after, .contact-btn--navegacion:hover:after, .contact-btn--tercero:hover:after, .contact-btn--revision:hover:after, .contact-btn--secundario:hover:after, .contact-btn--primario:hover:after {
   width: 50%;
   opacity: 1;
 }
 
-.contact-btn--primero {
+.contact-btn--primario {
   background-color: #0070BB;
 }
 
-.contact-btn--segundo {
-  background-color: #ACE1AF;
+.contact-btn--secundario {
+  background-color: #B2BEB5;
 }
 
 .contact-btn--revision {
@@ -1133,6 +1149,10 @@ button:focus {
   background-color: #848482;
 }
 
+.contact-btn--eliminacion {
+  background-color: #FF0000;
+}
+
 .list-unstyled {
   color: #dc3545;
   margin-bottom: 0;
@@ -1144,7 +1164,7 @@ button:focus {
   color: #dc3545;
   margin-top: 25px;
   margin-bottom: 0;
-  /*font-size: 24px;*/
+  font-size: 24px;
 }
 
 .text-success {
@@ -1328,7 +1348,7 @@ button:focus {
 .newsletter-area .newsletter-form ::placeholder {
   color: #a9a3a3;
 }
-.newsletter-area .newsletter-form .contact-btn, .newsletter-area .newsletter-form .contact-btn--primero, .newsletter-area .newsletter-form .contact-btn--segundo, .newsletter-area .newsletter-form .contact-btn--revision, .newsletter-area .newsletter-form .contact-btn--tercero, .newsletter-area .newsletter-form .contact-btn--navegacion {
+.newsletter-area .newsletter-form .contact-btn, .newsletter-area .newsletter-form .contact-btn--primario, .newsletter-area .newsletter-form .contact-btn--secundario, .newsletter-area .newsletter-form .contact-btn--revision, .newsletter-area .newsletter-form .contact-btn--tercero, .newsletter-area .newsletter-form .contact-btn--navegacion, .newsletter-area .newsletter-form .contact-btn--eliminacion {
   position: absolute;
   top: 0;
   right: 0;
@@ -1579,7 +1599,7 @@ footer .copyright-area .copyright-right {
   margin-left: auto;
   margin-right: 50px;
 }
-.help-area-two .help-wrap .help-item .cmn-btn, .help-area-two .help-wrap .help-item .cmn-btn--revision {
+.help-area-two .help-wrap .help-item .cmn-btn, .help-area-two .help-wrap .help-item .cmn-btn--primario, .help-area-two .help-wrap .help-item .cmn-btn--secundario, .help-area-two .help-wrap .help-item .cmn-btn--revision, .help-area-two .help-wrap .help-item .cmn-btn--tercero, .help-area-two .help-wrap .help-item .cmn-btn--navegacion {
   margin-top: 40px;
 }
 .help-area-two .help-wrap .help-left {
@@ -2773,7 +2793,7 @@ footer .copyright-area .copyright-right {
   color: #4a4a4a;
   margin-bottom: 20px;
 }
-.practice-details-item .practice-details-brochures .cmn-btn i, .practice-details-item .practice-details-brochures .cmn-btn--revision i {
+.practice-details-item .practice-details-brochures .cmn-btn i, .practice-details-item .practice-details-brochures .cmn-btn--primario i, .practice-details-item .practice-details-brochures .cmn-btn--secundario i, .practice-details-item .practice-details-brochures .cmn-btn--revision i, .practice-details-item .practice-details-brochures .cmn-btn--tercero i, .practice-details-item .practice-details-brochures .cmn-btn--navegacion i {
   display: inline-block;
   font-size: 22px;
   margin-right: 10px;
@@ -3047,8 +3067,12 @@ footer .copyright-area .copyright-right {
 /*-- End Location --*/
 /*-- Contact --*/
 .page-title-area-two {
-  height: 350px;
+  height: 550px;
 }
+.page-title-area-two .page-title-text {
+  margin-top: 15px;
+}
+
 .contact-form-four {
   background-image: url("../img/contact-bg.png");
 }
