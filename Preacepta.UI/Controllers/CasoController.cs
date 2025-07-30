@@ -16,8 +16,10 @@ using Preacepta.LN.GeAbogado.Listar;
 using Preacepta.LN.GePersona.BuscarXid;
 using Preacepta.LN.GePersona.Listar;
 using Preacepta.Modelos.AbstraccionesFrond;
+using Preacepta.UI.Services;
 using System.Security.Claims;
 using System.Text;
+using static Praecepta.UI.Controllers.HomeController;
 
 namespace Preacepta.UI.Controllers
 {
@@ -38,6 +40,8 @@ namespace Preacepta.UI.Controllers
 
         private readonly IConverter _converter;
 
+        private readonly IServicioEmail _emailSender;
+
         public CasoController(
             IBuscarCasosLN buscar,
             ICrearCasosLN crear,
@@ -52,6 +56,10 @@ namespace Preacepta.UI.Controllers
 
             IListarCasosEtapasLN listarCasosEtapas,
 
+            IServicioEmail emailSender,
+
+
+
 
             IConverter converter)
         {
@@ -65,6 +73,7 @@ namespace Preacepta.UI.Controllers
             _buscarPersona = buscarPersona;
             _listarCasosEtapas = listarCasosEtapas;
             _converter = converter;
+            _emailSender = emailSender;
         }
 
         /********************************************************************************************************************************************************************/
@@ -307,22 +316,6 @@ namespace Preacepta.UI.Controllers
 
 
             ViewData["IdTipoCaso"] = new SelectList(_listarCasosTipoLN.listar().Result, "IdTipoCaso", "Nombre");
-
-            /*ViewData["IdAbogado"] = (await _listarAbogados.listar())
-               .Select(n => new SelectListItem
-               {
-                   Value = n.Cedula.ToString(),
-                   Text = $"{n.Carnet} - Abogado(a) {n.CedulaNavigation.Nombre}"
-               })
-               .ToList();
-
-            ViewData["IdCliente"] = (await _listarGePersona.listar())
-               .Select(n => new SelectListItem
-               {
-                   Value = n.Cedula.ToString(),
-                   Text = $"{n.Cedula} - {n.Nombre} {n.Apellido1} {n.Apellido2}"
-               })
-               .ToList();*/
             return View();
         }
 
@@ -349,22 +342,6 @@ namespace Preacepta.UI.Controllers
             ViewBag.ClienteApellido2 = cliente.Apellido2;
 
             ViewData["IdTipoCaso"] = new SelectList(_listarCasosTipoLN.listar().Result, "IdTipoCaso", "Nombre");
-
-            /*ViewData["IdAbogado"] = (await _listarAbogados.listar())
-               .Select(n => new SelectListItem
-               {
-                   Value = n.Cedula.ToString(),
-                   Text = $"{n.Carnet} - Abogado(a) {n.CedulaNavigation.Nombre}"
-               })
-               .ToList();
-
-            ViewData["IdCliente"] = (await _listarGePersona.listar())
-               .Select(n => new SelectListItem
-               {
-                   Value = n.Cedula.ToString(),
-                   Text = $"{n.Cedula} - {n.Nombre} {n.Apellido1} {n.Apellido2}"
-               })
-               .ToList();*/
             return View(tCaso);
         }
         #endregion
@@ -525,6 +502,46 @@ namespace Preacepta.UI.Controllers
             }
             bandera = false;
             return Json(new { bandera });
+        }
+        #endregion
+
+        #region Solicitud de caso CLIENTE
+        public ActionResult SolicitudCaso()//historia tipo cliente
+        {
+            return View();
+        }
+        #endregion
+
+        #region Solicitud de caso Cliente Correo Enviado
+        /*Este metodo envia un correo electronico al despacho para contactar con los abogados*/
+        public async Task<IActionResult> EnviarSolicitudDeCaso([Bind("cedula,name,email,phone_number,descripcionCaso")] ContactoModel formulario)
+        {            
+
+            if (ModelState.IsValid)
+            {
+                var htmlMensaje = $@"
+            <div style='font-family: Arial, sans-serif; padding: 20px; background-color: #f9f9f9;'>
+                <h2 style='color: #2a7ae2;'>Solicitud de apertura de caso para PreaceptaApp</h2>
+                <p><strong>Nombre:</strong> {formulario.name}</p>
+                <p><strong>Cédula:</strong> {formulario.cedula}</p>
+                <p><strong>Teléfono:</strong> {formulario.phone_number}</p>
+                <p><strong>Descripción dada por el cliente:</strong> {formulario.descripcionCaso}</p>
+                <p><strong>Correo:</strong> <a href='mailto:{formulario.email}'>{formulario.email}</a></p>
+                
+                <hr />
+                <p>Este mensaje fue enviado desde el formulario de contacto web. Por favor comuníquese con la persona.</p>
+            </div>";
+
+                await _emailSender.BuzonPreacepta(
+                formulario.email,
+                "Sistema de notifcaciónes y correos PreaceptaApp",
+               htmlMensaje);
+
+                TempData["MensajeEnviado"] = "Su mensaje fue enviado, pronto le contactaremos";
+                return RedirectToAction("UsuarioAutenticado","Home", new {correo = User.Identity.Name});
+
+            }
+            return View("SolicitudCaso");
         }
         #endregion
     }

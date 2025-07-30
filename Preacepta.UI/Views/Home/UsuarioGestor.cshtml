@@ -104,8 +104,20 @@
 <section>
     <div class="seccion-tituloMenuGestor">MÓDULO TESTIMONIOS</div>
     <ul>
-        <li><a asp-action="" id="BuscarTestimonio" class="nav-link">Buscar un testimonio</a></li>
+        <li><a asp-action="" id="BuscarTestimonio" class="nav-link"> Buscar un testimonio</a></li>
         <li><a asp-controller="TTestimonios" asp-action="Index" class="nav-link">Lista de testimonios</a></li>
+    </ul>
+</section>
+
+<section>
+    <div class="seccion-tituloMenuGestor">DATOS DE USUARIO GESTOR</div>
+    <ul>
+        <li><a class="nav-link" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Mis datos</a></li>
+        
+        <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
+            <!--<button type="submit" class="nav-link btn btn-link text-dark">Logout</button>-->
+            <button type="submit" class="btn-info" style="width:100%;text-align:justify">Cerrar sesión</button>
+        </form>
     </ul>
 </section>
 

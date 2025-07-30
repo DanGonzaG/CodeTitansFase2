@@ -1,0 +1,110 @@
+﻿@using Preacepta.Modelos.AbstraccionesFrond
+@model ContactoModel
+<link href="~/lyso/css/daniel.css" rel="stylesheet" />
+<!-- Page Title -->
+<div class="page-title-area page-title-area-two title-img-one">
+    <div class="d-table">
+        <div class="d-table-cell">
+            <div class="page-title-text">
+                <h2>Solicitud de Caso</h2>
+                <ul>
+                    <li>
+                        <a asp-controller="Home" asp-action="Index">Página Principal</a>
+                    </li>
+                    <li>
+                        <i class="icofont-simple-right"></i>
+                    </li>
+                    <li>
+                        <a asp-controller="Home" asp-action="UsuarioAutenticado" asp-route-correo=@User.Identity.Name>PreaceptaApp</a>
+                    </li>
+                    <li>
+                        <i class="icofont-simple-right"></i>
+                    </li>
+                    <li>Solicitud</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<br />
+<br />
+
+<!-- Contact Form -->
+<div class="contact-form contact-form-four pb-100">
+    <div class="container-fluid">
+        <form asp-action="EnviarSolicitudDeCaso">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="row contact-wrap">
+                <div class="seccion-titulo">Información del personal</div>
+                <div class="col-sm-6 col-lg-6">
+                    <div class="form-group">
+                        <input asp-for="cedula" class="form-control" placeholder="Cédula">
+                        <span asp-validation-for="cedula" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-lg-6">
+                    <div class="form-group">                        
+                        <input asp-for="name" class="form-control" placeholder="Nombre completo">
+                        <span asp-validation-for="name" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="col-sm-6 col-lg-6">
+                    <div class="form-group">
+                        <input asp-for="email" class="form-control" placeholder="Correro Electrónico">
+                        <span asp-validation-for="email" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="col-sm-6 col-lg-6">
+                    <div class="form-group">
+                        <input asp-for="phone_number" class="form-control" placeholder="Número telefónico">
+                        <span asp-validation-for="phone_number" class="text-danger"></span>
+                    </div>
+                </div>
+
+
+                <div class="seccion-titulo">Descripción del caso</div>
+                <div class="col">
+                    <div class="form-group">
+                        <textarea rows="10" asp-for="descripcionCaso" class="form-control" placeholder="Es este espacio puede brindar una descripción de su caso"></textarea>
+                        <span asp-validation-for="descripcionCaso" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="form-check agree-label">
+                        <input name="gridCheck"
+                               value="I agree to the terms and privacy policy."
+                               class="form-check-input"
+                               type="checkbox"
+                               id="gridCheck"
+                               required>
+                        <label class="form-check-label" for="gridCheck">
+                            Acepta <a href="terms-condition.html">Terminos y Condiciones</a> & <a href="privacy-policy.html"> Politica de privacidad.</a>
+                        </label>
+                        <div class="help-block with-errors gridCheck-error"></div>
+                    </div>
+                </div>
+
+                <!--<div class="form-group">
+                    <input class ="form-check-input" type="checkbox" asp-for="TerminosCondiciones" class="form-control" placeholder="Número telefónico">
+                    <label class="form-check-label" for="gridCheck">
+                        Acepta <a href="terms-condition.html">Terminos y Condiciones</a> & <a href="privacy-policy.html"> Politica de privacidad.</a>
+                    </label>
+                    <span asp-validation-for="TerminosCondiciones" class="text-danger"></span>
+                </div>-->
+
+                <div class="col-md-12 col-lg-12">
+                    <div class="text-center">
+                        <button type="submit" class="contact-btn--primario">Enviar</button>
+                    </div>
+                    <!--<div id="msgSubmit" class="h3 text-center hidden"></div>
+                    <div class="clearfix"></div>-->
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+

@@ -17,7 +17,19 @@
                         </li>
                         <li>
                             <i class="icofont-simple-right"></i>
-                        </li>                       
+                        </li>
+                        <li>
+                            <a asp-controller="Caso" asp-action="CasosListado">Casos</a>
+                        </li>
+                        <li>
+                            <i class="icofont-simple-right"></i>
+                        </li>
+                        <li>
+                            <a asp-controller="CasosEtapa" asp-action="EtapasPL" asp-route-id=@ViewBag.IdCaso>Etapas del caso</a>
+                        </li>
+                        <li>
+                            <i class="icofont-simple-right"></i>
+                        </li>
                         <li>Crear Etapa</li>
                     </ul>
                 </div>

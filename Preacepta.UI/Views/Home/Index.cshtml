@@ -598,7 +598,8 @@
     <!-- End Counter -->
 
     <div class="container-fluid">
-        <form id="contactForm">
+        <form id="contactForm" asp-action="EnviarSolicitudDeContacto">
+            <div asp-validation-summary="ModelOnly" class="text-danger" role="alert"></div>
             <div class="row contact-wrap">
                 <div class="col-sm-6 col-lg-6">
                     <div class="form-group">
@@ -606,6 +607,7 @@
                         <div class="help-block with-errors"></div>
                     </div>
                 </div>
+
                 <div class="col-sm-6 col-lg-6">
                     <div class="form-group">
                         <input type="text" name="name" id="name" class="form-control" required data-error="Digite el dato" placeholder="Nombre completo">
@@ -655,3 +657,19 @@
     </div>
 </div>
 <!-- End Contact Form -->
+@if (TempData["MensajeEnviado"] != null)
+{
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            Swal.fire({
+                title: 'Correo enviado',
+                text: '@TempData["MensajeEnviado"]',
+                icon: 'success',
+                confirmButtonText: 'Continuar',
+                customClass: {
+                    confirmButton: 'contact-btn--primario' // Clase CSS personalizada
+                }
+            });
+        });
+    </script>
+}

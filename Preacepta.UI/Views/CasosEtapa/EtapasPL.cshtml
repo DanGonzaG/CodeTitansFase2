@@ -290,7 +290,8 @@
 </div>
 <!-- End Lista con Etapas del proceso legal -->
 
-<script src="~/lyso/js/mostrardetallespl.js"></script>
+
+<script src="~/lyso/js/MostrarDetallesPL.js"></script>
 
 
 @if (TempData["MensajeModificacion"] != null)
@@ -327,13 +328,13 @@
     </script>
 }
 
-@if (TempData["CasoCerrado"] != null)
+@if (TempData["EtapaCreada"] != null)
 {
     <script>
         document.addEventListener("DOMContentLoaded", function () {
             Swal.fire({
                 title: 'Etapas del Proceso',
-                text: '@TempData["CasoCerrado"]',
+                text: '@TempData["EtapaCreada"]',
                 icon: 'success',
                 confirmButtonText: 'Continuar',
                 customClass: {
@@ -343,4 +344,6 @@
         });
     </script>
 }
+
+
 

@@ -54,7 +54,7 @@
             <div class="col-lg-3">
                 <div class="btn-group-vertical menuDaniel">
                     <label class="menuDanielLabels">Casos legales</label>
-                    <a asp-controller="GestionCasos" asp-action="SolicitudCaso" class="contact-btn menuDanielBtns">Solicitar apertura de caso</a>
+                    <a asp-controller="Caso" asp-action="SolicitudCaso" class="contact-btn menuDanielBtns">Solicitar apertura de caso</a>
                     <a class="contact-btn menuDanielBtns" asp-controller="Caso" asp-action="CasosListado">Casos en proceso</a>
                     <a class="contact-btn menuDanielBtns" asp-controller="Caso" asp-action="CasosListadoHistorial">Casos Cerrados</a>
 
@@ -159,3 +159,19 @@
 </div>
 
 <!-- End Team -->
+@if (TempData["MensajeEnviado"] != null)
+{
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            Swal.fire({
+                title: 'Correo enviado',
+                text: '@TempData["MensajeEnviado"]',
+                icon: 'success',
+                confirmButtonText: 'Continuar',
+                customClass: {
+                    confirmButton: 'contact-btn--primario' // Clase CSS personalizada
+                }
+            });
+        });
+    </script>
+}

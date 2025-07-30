@@ -146,11 +146,14 @@ namespace Preacepta.UI.Controllers
                 {
                     caso.Activo = false;
                     await _editarCaso.Editar(caso);
+                    TempData["CasoCerrado"] = "El caso fue cerrado exitosamente";
+                    return RedirectToAction("CasosListadoHistorial", "Caso", new { id = IdCaso });
                 }
-                TempData["CasoCerrado"] = "El caso fue cerrado y se encuentra en Casos cerrados";
-                return RedirectToAction("CasosListado", "CasosListado", new { id = IdCaso });
+                
+                TempData["EtapaCreada"] = "Se ha agregado la nueva etapa su caso legal";
+                return RedirectToAction("EtapasPL", new { id = IdCaso });
             }
-            
+
             ViewBag.IdCaso = caso.IdCaso;
             ViewBag.NombreCaso = caso.Nombre;
             return View(tCasosEtapa);

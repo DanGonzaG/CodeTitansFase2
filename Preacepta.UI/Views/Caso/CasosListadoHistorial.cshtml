@@ -161,3 +161,20 @@
 <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
 <script src="~/lyso/js/configuraciontablas.js"></script>
 <script src="~/lyso/js/filtrarcasosxid.js"></script>
+
+@if (TempData["CasoCerrado"] != null)
+{
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            Swal.fire({
+                title: 'Etapas del Proceso',
+                text: '@TempData["CasoCerrado"]',
+                icon: 'success',
+                confirmButtonText: 'Continuar',
+                customClass: {
+                    confirmButton: 'contact-btn--secundario' // Clase CSS personalizada
+                }
+            });
+        });
+    </script>
+}
