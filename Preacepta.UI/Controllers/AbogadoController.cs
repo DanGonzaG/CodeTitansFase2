@@ -409,7 +409,8 @@ namespace Preacepta.UI.Controllers
                         if (carnet == null)
                         {                            
                             await _crear.Crear(tGeAbogado);//llamado de los LN y AD para crear la persona
-                            return RedirectToAction(nameof(Index));
+                            TempData["PersonaCreada"] = "Se ha creado un nuevo usuario en el sistema";
+                            return RedirectToAction("UsuarioAutenticado", "Home", new { correo = User.Identity.Name });
                         }
                         else
                         {

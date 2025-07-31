@@ -204,6 +204,23 @@
     </div>
 </div>
 
+@if (TempData["PersonaCreada"] != null)
+{
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            Swal.fire({
+                title: 'Sistema de usuarios',
+                text: '@TempData["PersonaCreada"]',
+                icon: 'success',
+                confirmButtonText: 'Continuar',
+                customClass: {
+                    confirmButton: 'contact-btn--secundario' // Clase CSS personalizada
+                }
+            });
+        });
+    </script>
+}
+
 <!-- End Team -->
 <script>
     document.addEventListener('DOMContentLoaded', function () {
@@ -238,6 +255,9 @@
                         input: 'text',
                         showCancelButton: true,
                         confirmButtonText: 'Continuar',
+                        customClass: {
+                            confirmButton: 'contact-btn--secundario' // Clase CSS personalizada
+                            }
                         icon: 'question'
                     }).then((result) => {
                         if (result.isConfirmed) {
@@ -257,3 +277,4 @@
         });
 
 </script>
+
