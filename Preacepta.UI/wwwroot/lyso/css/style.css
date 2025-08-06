@@ -480,9 +480,9 @@ button:focus {
   display: inline-block;
   color: #ffffff;
   background-color: #b69d74;
-  font-weight: 600;
-  font-size: 16px;
-  padding: 14px 30px;
+  font-weight: 500;
+  font-size: 14px;
+  padding: 10px 26px;
   position: relative;
   z-index: 1;
 }
@@ -1083,11 +1083,11 @@ button:focus {
 }
 
 .contact-btn, .contact-btn--eliminacion, .contact-btn--navegacion, .contact-btn--tercero, .contact-btn--revision, .contact-btn--secundario, .contact-btn--primario {
-  font-weight: 600;
-  font-size: 16px;
+  font-weight: 500;
+  font-size: 14px;
   color: #ffffff;
   background-color: #b69d74;
-  padding: 16px 40px;
+  padding: 12px 36px;
   border: 0;
   position: relative;
   z-index: 1;
