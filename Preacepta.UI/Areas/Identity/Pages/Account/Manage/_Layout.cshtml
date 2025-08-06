@@ -74,7 +74,13 @@
                     <h2>Administración de cuenta</h2>
                     <ul>
                         <li>
-                            <a asp-action="Index">Página de inicio</a>
+                            <a asp-controller="Home" asp-action="Index">Página Principal</a>
+                        </li>
+                        <li>
+                            <i class="icofont-simple-right"></i>
+                        </li>
+                        <li>
+                            <a asp-controller="Home" asp-action="UsuarioAutenticado" asp-route-correo=@User.Identity.Name>PreaceptaApp</a>
                         </li>
                         <li>
                             <i class="icofont-simple-right"></i>

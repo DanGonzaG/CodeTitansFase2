@@ -723,7 +723,7 @@ progress {
     --bs-gutter-y: 0;
     width: 100%;
     padding-right: calc(var(--bs-gutter-x) * .5);
-    padding-left: calc(var(--bs-gutter-x) * .5);
+    padding-left: calc(var(--bs-gutter-x) * .5);    
     margin-right: auto;
     margin-left: auto
 }
@@ -774,13 +774,14 @@ progress {
 }
 
 .row {
+    width: 100%;
     --bs-gutter-x: 1.5rem;
     --bs-gutter-y: 0;
     display: flex;
     flex-wrap: wrap;
     margin-top: calc(-1 * var(--bs-gutter-y));
-    margin-right: calc(-.5 * var(--bs-gutter-x));
-    margin-left: calc(-.5 * var(--bs-gutter-x))
+    /*/margin-right: calc(-.5 * var(--bs-gutter-x));*/
+    /*margin-left: calc(-.5 * var(--bs-gutter-x))*/
 }
 
     .row > * {
@@ -4084,8 +4085,8 @@ textarea.form-control-lg {
     padding: var(--bs-nav-link-padding-y) var(--bs-nav-link-padding-x);
     font-size: var(--bs-nav-link-font-size);
     font-weight: var(--bs-nav-link-font-weight);
-    /*color: var(--bs-nav-link-color);*/
-    color: black;
+    color: var(--bs-nav-link-color);
+    /*color: black;*/
     text-decoration: none;
     background: 0 0;
     border: 0;
@@ -4160,8 +4161,8 @@ textarea.form-control-lg {
 
         .nav-pills .nav-link.active, .nav-pills .show > .nav-link {
             color: var(--bs-nav-pills-link-active-color);
-            /*background-color: var(--bs-nav-pills-link-active-bg)*/
-            background-color: #b69d74
+            background-color: var(--bs-nav-pills-link-active-bg)
+            /*background-color: #b69d74*/
         }
 
 .nav-underline {

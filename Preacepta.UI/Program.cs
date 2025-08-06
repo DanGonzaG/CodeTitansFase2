@@ -1,3 +1,4 @@
+#region Dependencias
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Preacepta.AD;
@@ -263,7 +264,7 @@ using Preacepta.UI.Services;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.VisualStudio.Web.CodeGenerators.Mvc.Templates.General;
 using Preacepta.UI.Services.MensajesPersonalizados; // importa servicio
-
+#endregion
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -601,7 +602,19 @@ builder.Services.AddTransient<IValidacionesResetPassword, ValidacionesResetPassw
 
 #region Servicio de correo electronico
 //Servicio de correo
-builder.Services.AddTransient<IEmailSender, ServicioEmail>();
+//builder.Services.AddTransient<IEmailSender, ServicioEmail>(); ---> se desactiva para poder personalizar metodos en la interfaz
+builder.Services.AddTransient<IServicioEmail, ServicioEmail>(); // se crea interfaz personalizada on metodo de envio y recepcion de correos
+#endregion
+
+#region Servicio para Cierre de sesión por inactividad
+builder.Services.ConfigureApplicationCookie(options =>
+{
+    options.ExpireTimeSpan = TimeSpan.FromMinutes(15); // Tiempo de inactividad permitido
+    options.SlidingExpiration = true; // O true, según si quieres renovar el tiempo con actividad
+    options.Cookie.HttpOnly = true;
+    options.Cookie.SecurePolicy = CookieSecurePolicy.Always;
+});
+
 #endregion
 
 var app = builder.Build();

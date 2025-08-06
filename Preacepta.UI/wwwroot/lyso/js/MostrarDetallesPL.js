@@ -1,5 +1,5 @@
 ﻿document.addEventListener("click", function (event) {
-    if (event.target.classList.contains("contact-btn")) {
+    if (event.target.classList.contains("contact-btn--revision")) {
         const idCaso = event.target.value;
         console.log("Valor seleccionado:", idCaso);
 

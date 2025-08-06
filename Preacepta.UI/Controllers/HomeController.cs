@@ -1,6 +1,8 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.VisualStudio.Web.CodeGenerators.Mvc.Templates.BlazorIdentity.Pages.Manage;
 using Preacepta.AD;
 using Preacepta.LN.Casos.Listar;
 using Preacepta.LN.Citas.Listar;
@@ -9,7 +11,11 @@ using Preacepta.LN.GeAbogado.BuscarXid;
 using Preacepta.LN.GePersona.BuscarXid;
 using Preacepta.Modelos.AbstraccionesFrond;
 using Preacepta.UI.Models;
+using Preacepta.UI.Services;
+using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 using System.Diagnostics;
+using System.Text.Encodings.Web;
 
 namespace Praecepta.UI.Controllers
 {
@@ -23,6 +29,7 @@ namespace Praecepta.UI.Controllers
         private readonly IListarDocsCompraventaFincaLN _listarTresUltimosDocs;
         private readonly IListarCitasLN _listarTresUltimasCitas;
         private readonly SignInManager<IdentityUser> _signInManager;
+        private readonly IServicioEmail _emailSender;
 
         public HomeController(
             Contexto contexto,
@@ -32,7 +39,8 @@ namespace Praecepta.UI.Controllers
             IListarCasosLN listarTresUltimosCasos,
             IListarDocsCompraventaFincaLN listarTresUltimosDocs,
             IListarCitasLN listarTresUltimasCitas,
-        SignInManager<IdentityUser> signInManager)
+            SignInManager<IdentityUser> signInManager,
+            IServicioEmail emailSender)
         {
             _contexto = contexto;
             _logger = logger;
@@ -42,8 +50,33 @@ namespace Praecepta.UI.Controllers
             _listarTresUltimosDocs = listarTresUltimosDocs;
             _listarTresUltimasCitas = listarTresUltimasCitas;
             _signInManager = signInManager;
+            _emailSender = emailSender;
             
         }
+
+        [BindProperty]
+        public ContactoViewModel contactoFormulario { get; set; }
+
+
+        public class ContactoViewModel
+        {
+            [Required (ErrorMessage ="Debe agregar su cédula")]
+            [DisplayName ("Cédula")]
+            public string cedula { get; set; }
+            [Required(ErrorMessage = "Debe agregar su nombre completo")]
+            [DisplayName("Nombre Completo")]
+            public string name { get; set; }
+            [Required(ErrorMessage = "Debe agregar un correo electrónico")]
+            [EmailAddress]
+            [DisplayName("Correo electrónico")]
+            public string email { get; set; }
+            [Required(ErrorMessage = "Debe agregar un número telefónico")]
+            [Phone]
+            [DisplayName("Número telefónico")]
+            public string phone_number { get; set; }
+        }
+
+
 
         public IActionResult Index()
         {
@@ -125,7 +158,36 @@ namespace Praecepta.UI.Controllers
         public IActionResult AttorneyDetails()
         {
             return View("AttorneyDetails/AttorneyDetails");
-        }      
+        }
+
+        /*Este metodo envia un correo electronico al despacho para contactar con los abogados*/
+        public async Task<IActionResult> EnviarSolicitudDeContacto([Bind("cedula,name,email,phone_number")] ContactoViewModel formulario)
+        {
+
+            if (ModelState.IsValid) 
+            {
+                var htmlMensaje = $@"
+            <div style='font-family: Arial, sans-serif; padding: 20px; background-color: #f9f9f9;'>
+                <h2 style='color: #2a7ae2;'>Solicitud de contacto desde PreaceptaApp</h2>
+                <p><strong>Nombre:</strong> {formulario.name}</p>
+                <p><strong>Cédula:</strong> {formulario.cedula}</p>
+                <p><strong>Teléfono:</strong> {formulario.phone_number}</p>
+                <p><strong>Correo:</strong> <a href='mailto:{formulario.email}'>{formulario.email}</a></p>
+                <hr />
+                <p>Este mensaje fue enviado desde el formulario de contacto web. Por favor comuníquese con la persona cuanto antes.</p>
+            </div>";
+
+                await _emailSender.BuzonPreacepta(
+                contactoFormulario.email,
+                "Sistema de notifcaciónes y correos PreaceptaApp",
+               htmlMensaje);
+
+                TempData["MensajeEnviado"] = "Su mensaje fue enviado, pronto le contactaremos";
+                return View("Index");
+
+            }
+            return View("Index");
+        }
 
 
         #region Vista para usuarios Autenticados

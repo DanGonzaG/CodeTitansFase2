@@ -594,9 +594,12 @@ button {
     display: inline-block;
     color: $white-color;
     background-color: $gold-color;
-    font-weight: 600;
-    font-size: 16px;
-    padding: 14px 30px;
+    //font-weight: 600;
+    font-weight: 500;
+    //font-size: 16px;
+    font-size: 14px;
+    //padding: 14px 30px;
+    padding: 10px 26px;
     position: relative;
     z-index: 1;
 
@@ -1317,11 +1320,13 @@ button {
 }
 
 .contact-btn {
-    font-weight: 600;
-    font-size: $all-size;
+    //font-weight: 600;
+    //font-size: $all-size;
+    font-weight: 500;
+    font-size: 14px;
     color: $white-color;
     background-color: $gold-color;
-    padding: 16px 40px;
+    padding: 12px 36px;
     border: 0;
     position: relative;
     z-index: 1;
@@ -1412,7 +1417,7 @@ button {
     color: #dc3545;
     margin-top: 25px;
     margin-bottom: 0;
-    font-size: 24px;
+    font-size: 18px;
 }
 
 .text-success {
