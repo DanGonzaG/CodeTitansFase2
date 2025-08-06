@@ -16,7 +16,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Preacepta.UI")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+a0972a7e1668ea8a19c4197fdd69d2a26c842540")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+906099b334bdf2c46e9e7c4acb6fd2058b71f78e")]
 [assembly: System.Reflection.AssemblyProductAttribute("Preacepta.UI")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Preacepta.UI")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

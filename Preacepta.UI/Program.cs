@@ -269,7 +269,13 @@ using Preacepta.UI.Services.MensajesPersonalizados; // importa servicio
 var builder = WebApplication.CreateBuilder(args);
 
 // Agrega la conexion en un var
-var connectionString = builder.Configuration.GetConnectionString("Server")
+/*var connectionString = builder.Configuration.GetConnectionString("Server")
+    ?? throw new InvalidOperationException("Conexion a base datos bajo el nombre Server no funciona");
+Console.WriteLine($"Cadena de conexi�n utilizada: {connectionString}");*/ //muestra el mensaje
+
+
+//cadena de conexion para Azure Web app
+var connectionString = builder.Configuration.GetConnectionString("DefaultConnection")
     ?? throw new InvalidOperationException("Conexion a base datos bajo el nombre Server no funciona");
 Console.WriteLine($"Cadena de conexi�n utilizada: {connectionString}"); //muestra el mensaje
 
