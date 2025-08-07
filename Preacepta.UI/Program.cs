@@ -598,7 +598,8 @@ builder.Services.AddScoped<IListarTipoVehiculoLN, ListarTipoVehiculoLN>();
 builder.Services.AddScoped<IObtenerDatosTipoVehiculoLN, ObtenerDatosTipoVehiculoLN>();
 
 //servicios para DInktoPdf, crear pdfs
-builder.Services.AddSingleton(typeof(IConverter), PdfConverterService.GetConverter());
+//builder.Services.AddSingleton(typeof(IConverter), PdfConverterService.GetConverter());
+builder.Services.AddSingleton<IConverter>(new SynchronizedConverter(new PdfTools()));
 
 //builder.Services.AddScoped<Preacepta.AD.DocsTipoVehiculo.Eliminar.EliminarTipoVehiculoAD>();
 

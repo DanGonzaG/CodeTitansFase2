@@ -12,15 +12,6 @@
     <Content Remove="compilerconfig.json" />
   </ItemGroup>
 
-  <!--<ItemGroup>
-    <None Remove="DinkToPdf\lib32\libwkhtmltox.dll" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Content Include="DinkToPdf\lib32\libwkhtmltox.dll">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-  </ItemGroup>-->
 
   <ItemGroup>
     <None Include="compilerconfig.json" />
