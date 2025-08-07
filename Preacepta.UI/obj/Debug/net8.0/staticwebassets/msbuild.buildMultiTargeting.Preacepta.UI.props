@@ -1,3 +1,0 @@
-﻿<Project>
-  <Import Project="..\build\Preacepta.UI.props" />
-</Project>
