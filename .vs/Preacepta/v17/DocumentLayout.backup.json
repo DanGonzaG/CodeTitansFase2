@@ -21,19 +21,6 @@
           "SelectedChildIndex": 6,
           "Children": [
             {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "Contexto.cs",
-              "DocumentMoniker": "C:\\Preacepta\\Preacepta.AD\\Contexto.cs",
-              "RelativeDocumentMoniker": "Preacepta.AD\\Contexto.cs",
-              "ToolTip": "C:\\Preacepta\\Preacepta.AD\\Contexto.cs",
-              "RelativeToolTip": "Preacepta.AD\\Contexto.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-07T00:10:41.063Z",
-              "EditorCaption": ""
-            },
-            {
               "$type": "Bookmark",
               "Name": "ST:128:0:{75188d03-9892-4ae2-abf1-207126247ce5}"
             },
@@ -55,13 +42,25 @@
             },
             {
               "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Contexto.cs",
+              "DocumentMoniker": "C:\\Preacepta\\Preacepta.AD\\Contexto.cs",
+              "RelativeDocumentMoniker": "Preacepta.AD\\Contexto.cs",
+              "ToolTip": "C:\\Preacepta\\Preacepta.AD\\Contexto.cs",
+              "RelativeToolTip": "Preacepta.AD\\Contexto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-07T00:10:41.063Z"
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 0,
               "Title": "Program.cs",
               "DocumentMoniker": "C:\\Preacepta\\Preacepta.UI\\Program.cs",
               "RelativeDocumentMoniker": "Preacepta.UI\\Program.cs",
               "ToolTip": "C:\\Preacepta\\Preacepta.UI\\Program.cs",
               "RelativeToolTip": "Preacepta.UI\\Program.cs",
-              "ViewState": "AgIAAAABAAAAAAAAAAAxwBsBAAAsAAAAAAAAAA==",
+              "ViewState": "AgIAAP0AAAAAAAAAAAAAABUBAABcAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-08-06T23:54:09.232Z",
               "EditorCaption": ""
