@@ -275,7 +275,7 @@ Console.WriteLine($"Cadena de conexi�n utilizada: {connectionString}");*/ //mu
 
 
 //cadena de conexion para Azure Web app
-var connectionString = builder.Configuration.GetConnectionString("DefaultConnection")
+var connectionString = builder.Configuration.GetConnectionString("AZURE_SQL_CONNECTIONSTRING")
     ?? throw new InvalidOperationException("Conexion a base datos bajo el nombre Server no funciona");
 Console.WriteLine($"Cadena de conexi�n utilizada: {connectionString}"); //muestra el mensaje
 
