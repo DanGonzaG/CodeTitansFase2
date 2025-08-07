@@ -269,15 +269,15 @@ using Preacepta.UI.Services.MensajesPersonalizados; // importa servicio
 var builder = WebApplication.CreateBuilder(args);
 
 // Agrega la conexion en un var
-/*var connectionString = builder.Configuration.GetConnectionString("Server")
+var connectionString = builder.Configuration.GetConnectionString("Server")
     ?? throw new InvalidOperationException("Conexion a base datos bajo el nombre Server no funciona");
-Console.WriteLine($"Cadena de conexi�n utilizada: {connectionString}");*/ //muestra el mensaje
+Console.WriteLine($"Cadena de conexi�n utilizada: {connectionString}"); //muestra el mensaje
 
 
 //cadena de conexion para Azure Web app
-var connectionString = builder.Configuration.GetConnectionString("AZURE_SQL_CONNECTIONSTRING")
+/*var connectionString = builder.Configuration.GetConnectionString("AZURE_SQL_CONNECTIONSTRING")
     ?? throw new InvalidOperationException("Conexion a base datos bajo el nombre Server no funciona");
-Console.WriteLine($"Cadena de conexi�n utilizada: {connectionString}"); //muestra el mensaje
+Console.WriteLine($"Cadena de conexi�n utilizada: {connectionString}"); //muestra el mensaje*/
 
 #region Base de Datos
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
@@ -622,6 +622,8 @@ builder.Services.ConfigureApplicationCookie(options =>
 });
 
 #endregion
+
+DinkToPdfAll.LibraryLoader.Load();
 
 var app = builder.Build();
 

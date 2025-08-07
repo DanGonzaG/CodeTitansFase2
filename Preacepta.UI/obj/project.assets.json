@@ -80,6 +80,19 @@
           }
         }
       },
+      "DinkToPdfAll/1.0.6-b": {
+        "type": "package",
+        "dependencies": {
+          "DinkToPdf": "1.0.8",
+          "System.Runtime.Loader": "4.3.0"
+        },
+        "compile": {
+          "lib/netstandard2.0/DinkToPdfAll.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/DinkToPdfAll.dll": {}
+        }
+      },
       "Humanizer/2.14.1": {
         "type": "package",
         "dependencies": {
@@ -3382,6 +3395,22 @@
           }
         }
       },
+      "System.Runtime.Loader/4.3.0": {
+        "type": "package",
+        "dependencies": {
+          "System.IO": "4.3.0",
+          "System.Reflection": "4.3.0",
+          "System.Runtime": "4.3.0"
+        },
+        "compile": {
+          "ref/netstandard1.5/System.Runtime.Loader.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/netstandard1.5/System.Runtime.Loader.dll": {}
+        }
+      },
       "System.Runtime.Numerics/4.0.1": {
         "type": "package",
         "dependencies": {
@@ -3931,7 +3960,7 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v8.0",
         "dependencies": {
-          "DinkToPdf": "1.0.8",
+          "DinkToPdfAll": "1.0.6-b",
           "Newtonsoft.Json": "13.0.3",
           "Preacepta.AD": "1.0.0"
         },
@@ -4030,6 +4059,18 @@
         "lib/netstandard1.6/DinkToPdf.dll",
         "lib/netstandard1.6/DinkToPdf.pdb",
         "lib/netstandard1.6/DinkToPdf.xml"
+      ]
+    },
+    "DinkToPdfAll/1.0.6-b": {
+      "sha512": "wK4qvDRx0uWWKk6cJE/L1j10OGsKh9Lcofl6ieHBTYFeLHxyFdRS+aCgal0JNgj4Qq94R+KAnWAMqxR8udyO1g==",
+      "type": "package",
+      "path": "dinktopdfall/1.0.6-b",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "dinktopdfall.1.0.6-b.nupkg.sha512",
+        "dinktopdfall.nuspec",
+        "lib/netstandard2.0/DinkToPdfAll.dll"
       ]
     },
     "Humanizer/2.14.1": {
@@ -10587,6 +10628,38 @@
         "system.runtime.interopservices.runtimeinformation.nuspec"
       ]
     },
+    "System.Runtime.Loader/4.3.0": {
+      "sha512": "DHMaRn8D8YCK2GG2pw+UzNxn/OHVfaWx7OTLBD/hPegHZZgcZh3H6seWegrC4BYwsfuGrywIuT+MQs+rPqRLTQ==",
+      "type": "package",
+      "path": "system.runtime.loader/4.3.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "ThirdPartyNotices.txt",
+        "dotnet_library_license.txt",
+        "lib/MonoAndroid10/_._",
+        "lib/MonoTouch10/_._",
+        "lib/net462/_._",
+        "lib/netstandard1.5/System.Runtime.Loader.dll",
+        "lib/xamarinios10/_._",
+        "lib/xamarinmac20/_._",
+        "lib/xamarintvos10/_._",
+        "lib/xamarinwatchos10/_._",
+        "ref/netstandard1.5/System.Runtime.Loader.dll",
+        "ref/netstandard1.5/System.Runtime.Loader.xml",
+        "ref/netstandard1.5/de/System.Runtime.Loader.xml",
+        "ref/netstandard1.5/es/System.Runtime.Loader.xml",
+        "ref/netstandard1.5/fr/System.Runtime.Loader.xml",
+        "ref/netstandard1.5/it/System.Runtime.Loader.xml",
+        "ref/netstandard1.5/ja/System.Runtime.Loader.xml",
+        "ref/netstandard1.5/ko/System.Runtime.Loader.xml",
+        "ref/netstandard1.5/ru/System.Runtime.Loader.xml",
+        "ref/netstandard1.5/zh-hans/System.Runtime.Loader.xml",
+        "ref/netstandard1.5/zh-hant/System.Runtime.Loader.xml",
+        "system.runtime.loader.4.3.0.nupkg.sha512",
+        "system.runtime.loader.nuspec"
+      ]
+    },
     "System.Runtime.Numerics/4.0.1": {
       "sha512": "+XbKFuzdmLP3d1o9pdHu2nxjNr2OEPqGzKeegPLCUMM71a0t50A/rOcIRmGs9wR7a8KuHX6hYs/7/TymIGLNqg==",
       "type": "package",
@@ -11820,7 +11893,7 @@
   },
   "projectFileDependencyGroups": {
     "net8.0": [
-      "DinkToPdf >= 1.0.8",
+      "DinkToPdfAll >= 1.0.6-b",
       "MailKit >= 4.13.0",
       "Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore >= 8.0.16",
       "Microsoft.AspNetCore.Identity.EntityFrameworkCore >= 8.0.16",
@@ -11891,9 +11964,9 @@
       "net8.0": {
         "targetAlias": "net8.0",
         "dependencies": {
-          "DinkToPdf": {
+          "DinkToPdfAll": {
             "target": "Package",
-            "version": "[1.0.8, )"
+            "version": "[1.0.6-b, )"
           },
           "MailKit": {
             "target": "Package",

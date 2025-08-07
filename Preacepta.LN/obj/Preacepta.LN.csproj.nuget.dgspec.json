@@ -137,9 +137,9 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "dependencies": {
-            "DinkToPdf": {
+            "DinkToPdfAll": {
               "target": "Package",
-              "version": "[1.0.8, )"
+              "version": "[1.0.6-b, )"
             },
             "Newtonsoft.Json": {
               "target": "Package",

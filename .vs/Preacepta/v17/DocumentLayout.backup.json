@@ -3,8 +3,31 @@
   "WorkspaceRootPath": "C:\\Preacepta\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{18AD59F4-3C32-4F5A-9C07-4B4448F18661}|Preacepta.UI\\Preacepta.UI.csproj|c:\\preacepta\\preacepta.ui\\preacepta.ui.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{18AD59F4-3C32-4F5A-9C07-4B4448F18661}|Preacepta.UI\\Preacepta.UI.csproj|solutionrelative:preacepta.ui\\preacepta.ui.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\MSBuild\\Current\\Bin\\amd64\\Microsoft.Common.CurrentVersion.targets||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C43578C2-846A-42B8-A3DF-59F9E1CAFB9F}|Preacepta.LN\\Preacepta.LN.csproj|c:\\preacepta\\preacepta.ln\\preacepta.ln.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{C43578C2-846A-42B8-A3DF-59F9E1CAFB9F}|Preacepta.LN\\Preacepta.LN.csproj|solutionrelative:preacepta.ln\\preacepta.ln.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{18AD59F4-3C32-4F5A-9C07-4B4448F18661}|Preacepta.UI\\Preacepta.UI.csproj|c:\\preacepta\\preacepta.ui\\services\\servicioemail.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{18AD59F4-3C32-4F5A-9C07-4B4448F18661}|Preacepta.UI\\Preacepta.UI.csproj|solutionrelative:preacepta.ui\\services\\servicioemail.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{18AD59F4-3C32-4F5A-9C07-4B4448F18661}|Preacepta.UI\\Preacepta.UI.csproj|c:\\preacepta\\preacepta.ui\\services\\pdfconverterservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{18AD59F4-3C32-4F5A-9C07-4B4448F18661}|Preacepta.UI\\Preacepta.UI.csproj|solutionrelative:preacepta.ui\\services\\pdfconverterservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{18AD59F4-3C32-4F5A-9C07-4B4448F18661}|Preacepta.UI\\Preacepta.UI.csproj|c:\\preacepta\\preacepta.ui\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{18AD59F4-3C32-4F5A-9C07-4B4448F18661}|Preacepta.UI\\Preacepta.UI.csproj|solutionrelative:preacepta.ui\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{18AD59F4-3C32-4F5A-9C07-4B4448F18661}|Preacepta.UI\\Preacepta.UI.csproj|c:\\preacepta\\preacepta.ui\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{18AD59F4-3C32-4F5A-9C07-4B4448F18661}|Preacepta.UI\\Preacepta.UI.csproj|solutionrelative:preacepta.ui\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{ABCA304E-D92E-43A2-A507-A94A7ADD2ADD}|Preacepta.AD\\Preacepta.AD.csproj|c:\\preacepta\\preacepta.ad\\contexto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -18,8 +41,47 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 6,
+          "SelectedChildIndex": 2,
           "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Microsoft.Common.CurrentVersion.targets",
+              "DocumentMoniker": "C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\MSBuild\\Current\\Bin\\amd64\\Microsoft.Common.CurrentVersion.targets",
+              "RelativeDocumentMoniker": "..\\Program Files\\Microsoft Visual Studio\\2022\\Community\\MSBuild\\Current\\Bin\\amd64\\Microsoft.Common.CurrentVersion.targets",
+              "ToolTip": "C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\MSBuild\\Current\\Bin\\amd64\\Microsoft.Common.CurrentVersion.targets",
+              "RelativeToolTip": "..\\Program Files\\Microsoft Visual Studio\\2022\\Community\\MSBuild\\Current\\Bin\\amd64\\Microsoft.Common.CurrentVersion.targets",
+              "ViewState": "AgIAAMcUAAAAAAAAAAASwOcUAAAEAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003801|",
+              "WhenOpened": "2025-08-07T18:08:29.084Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Preacepta.LN",
+              "DocumentMoniker": "C:\\Preacepta\\Preacepta.LN\\Preacepta.LN.csproj",
+              "RelativeDocumentMoniker": "Preacepta.LN\\Preacepta.LN.csproj",
+              "ToolTip": "C:\\Preacepta\\Preacepta.LN\\Preacepta.LN.csproj",
+              "RelativeToolTip": "Preacepta.LN\\Preacepta.LN.csproj",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2025-08-07T18:07:05.717Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Preacepta.UI",
+              "DocumentMoniker": "C:\\Preacepta\\Preacepta.UI\\Preacepta.UI.csproj",
+              "RelativeDocumentMoniker": "Preacepta.UI\\Preacepta.UI.csproj",
+              "ToolTip": "C:\\Preacepta\\Preacepta.UI\\Preacepta.UI.csproj",
+              "RelativeToolTip": "Preacepta.UI\\Preacepta.UI.csproj",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABYAAAARAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2025-08-07T18:00:04.27Z",
+              "EditorCaption": ""
+            },
             {
               "$type": "Bookmark",
               "Name": "ST:128:0:{75188d03-9892-4ae2-abf1-207126247ce5}"
@@ -42,7 +104,46 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 4,
+              "Title": "PdfConverterService.cs",
+              "DocumentMoniker": "C:\\Preacepta\\Preacepta.UI\\Services\\PdfConverterService.cs",
+              "RelativeDocumentMoniker": "Preacepta.UI\\Services\\PdfConverterService.cs",
+              "ToolTip": "C:\\Preacepta\\Preacepta.UI\\Services\\PdfConverterService.cs",
+              "RelativeToolTip": "Preacepta.UI\\Services\\PdfConverterService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAOAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-07T17:34:29.744Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "ServicioEmail.cs",
+              "DocumentMoniker": "C:\\Preacepta\\Preacepta.UI\\Services\\ServicioEmail.cs",
+              "RelativeDocumentMoniker": "Preacepta.UI\\Services\\ServicioEmail.cs",
+              "ToolTip": "C:\\Preacepta\\Preacepta.UI\\Services\\ServicioEmail.cs",
+              "RelativeToolTip": "Preacepta.UI\\Services\\ServicioEmail.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-07T17:14:14.398Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "C:\\Preacepta\\Preacepta.UI\\appsettings.json",
+              "RelativeDocumentMoniker": "Preacepta.UI\\appsettings.json",
+              "ToolTip": "C:\\Preacepta\\Preacepta.UI\\appsettings.json",
+              "RelativeToolTip": "Preacepta.UI\\appsettings.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAB0AAAAxAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2025-08-07T16:06:57.242Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
               "Title": "Contexto.cs",
               "DocumentMoniker": "C:\\Preacepta\\Preacepta.AD\\Contexto.cs",
               "RelativeDocumentMoniker": "Preacepta.AD\\Contexto.cs",
@@ -50,17 +151,18 @@
               "RelativeToolTip": "Preacepta.AD\\Contexto.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-07T00:10:41.063Z"
+              "WhenOpened": "2025-08-07T00:10:41.063Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 5,
               "Title": "Program.cs",
               "DocumentMoniker": "C:\\Preacepta\\Preacepta.UI\\Program.cs",
               "RelativeDocumentMoniker": "Preacepta.UI\\Program.cs",
               "ToolTip": "C:\\Preacepta\\Preacepta.UI\\Program.cs",
               "RelativeToolTip": "Preacepta.UI\\Program.cs",
-              "ViewState": "AgIAAP0AAAAAAAAAAAAAABUBAABcAAAAAAAAAA==",
+              "ViewState": "AgIAACwCAAAAAAAAAAAAAFgCAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-08-06T23:54:09.232Z",
               "EditorCaption": ""
