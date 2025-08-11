@@ -1,6 +1,11 @@
 #region Dependencias
+using DinkToPdf;
+using DinkToPdf.Contracts;
+using Microsoft.AspNetCore.DataProtection;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.VisualStudio.Web.CodeGenerators.Mvc.Templates.General;
 using Preacepta.AD;
 using Preacepta.AD.Casos.BuscarXid;
 using Preacepta.AD.Casos.Crear;
@@ -22,6 +27,16 @@ using Preacepta.AD.CasosTipo.Crear;
 using Preacepta.AD.CasosTipo.Editar;
 using Preacepta.AD.CasosTipo.Eliminar;
 using Preacepta.AD.CasosTipo.Listar;
+using Preacepta.AD.Citas.BuscarXid;
+using Preacepta.AD.Citas.Crear;
+using Preacepta.AD.Citas.Editar;
+using Preacepta.AD.Citas.Eliminar;
+using Preacepta.AD.Citas.Listar;
+using Preacepta.AD.CitasTipo.BuscarXid;
+using Preacepta.AD.CitasTipo.Crear;
+using Preacepta.AD.CitasTipo.Editar;
+using Preacepta.AD.CitasTipo.Eliminar;
+using Preacepta.AD.CitasTipo.Listar;
 using Preacepta.AD.CrDireccion1.BuscarXid;
 using Preacepta.AD.CrDireccion1.Crear;
 using Preacepta.AD.CrDireccion1.Editar;
@@ -32,21 +47,6 @@ using Preacepta.AD.DocPoderesEspecialesJudiciales.Crear;
 using Preacepta.AD.DocPoderesEspecialesJudiciales.Editar;
 using Preacepta.AD.DocPoderesEspecialesJudiciales.Eliminar;
 using Preacepta.AD.DocPoderesEspecialesJudiciales.Listar;
-using Preacepta.AD.DocsOpcionCompraventaVehiculo.Buscar;
-using Preacepta.AD.DocsOpcionCompraventaVehiculo.Crear;
-using Preacepta.AD.DocsOpcionCompraventaVehiculo.Editar;
-using Preacepta.AD.DocsOpcionCompraventaVehiculo.Eliminar;
-using Preacepta.AD.DocsOpcionCompraventaVehiculo.Listar;
-using Preacepta.AD.DocsPagare.Buscar;
-using Preacepta.AD.DocsPagare.Crear;
-using Preacepta.AD.DocsPagare.Editar;
-using Preacepta.AD.DocsPagare.Eliminar;
-using Preacepta.AD.DocsPagare.Listar;
-using Preacepta.AD.DocsTipoVehiculo.Buscar;
-using Preacepta.AD.DocsTipoVehiculo.Crear;
-using Preacepta.AD.DocsTipoVehiculo.Editar;
-using Preacepta.AD.DocsTipoVehiculo.Eliminar;
-using Preacepta.AD.DocsTipoVehiculo.Listar;
 using Preacepta.AD.DocsAutorizacionRevisionExpediente.BuscarXid;
 using Preacepta.AD.DocsAutorizacionRevisionExpediente.Crear;
 using Preacepta.AD.DocsAutorizacionRevisionExpediente.Editar;
@@ -77,6 +77,22 @@ using Preacepta.AD.DocsMarcaVehiculo.Crear;
 using Preacepta.AD.DocsMarcaVehiculo.Editar;
 using Preacepta.AD.DocsMarcaVehiculo.Eliminar;
 using Preacepta.AD.DocsMarcaVehiculo.Listar;
+using Preacepta.AD.DocsOpcionCompraventaVehiculo.Buscar;
+using Preacepta.AD.DocsOpcionCompraventaVehiculo.Crear;
+using Preacepta.AD.DocsOpcionCompraventaVehiculo.Editar;
+using Preacepta.AD.DocsOpcionCompraventaVehiculo.Eliminar;
+using Preacepta.AD.DocsOpcionCompraventaVehiculo.Listar;
+using Preacepta.AD.DocsPagare.Buscar;
+using Preacepta.AD.DocsPagare.Crear;
+using Preacepta.AD.DocsPagare.Editar;
+using Preacepta.AD.DocsPagare.Eliminar;
+using Preacepta.AD.DocsPagare.Listar;
+using Preacepta.AD.DocsTipoVehiculo.Buscar;
+using Preacepta.AD.DocsTipoVehiculo.Crear;
+using Preacepta.AD.DocsTipoVehiculo.Editar;
+using Preacepta.AD.DocsTipoVehiculo.Eliminar;
+using Preacepta.AD.DocsTipoVehiculo.Listar;
+using Preacepta.AD.DocumentosCitas.DocumentosCitas;
 using Preacepta.AD.GeAbogado.BuscarXid;
 using Preacepta.AD.GeAbogado.Crear;
 using Preacepta.AD.GeAbogado.Editar;
@@ -97,16 +113,16 @@ using Preacepta.AD.GePersona.Crear;
 using Preacepta.AD.GePersona.Editar;
 using Preacepta.AD.GePersona.Eliminar;
 using Preacepta.AD.GePersona.Listar;
-using Preacepta.AD.Testimonios.Buscar;
-using Preacepta.AD.Testimonios.Crear;
-using Preacepta.AD.Testimonios.Editar;
-using Preacepta.AD.Testimonios.Eliminar;
-using Preacepta.AD.Testimonios.Listar;
 using Preacepta.AD.GeRedesSociales.BuscarXid;
 using Preacepta.AD.GeRedesSociales.Crear;
 using Preacepta.AD.GeRedesSociales.Editar;
 using Preacepta.AD.GeRedesSociales.Eliminar;
 using Preacepta.AD.GeRedesSociales.Listar;
+using Preacepta.AD.Testimonios.Buscar;
+using Preacepta.AD.Testimonios.Crear;
+using Preacepta.AD.Testimonios.Editar;
+using Preacepta.AD.Testimonios.Eliminar;
+using Preacepta.AD.Testimonios.Listar;
 using Preacepta.LN.Casos.BuscarXid;
 using Preacepta.LN.Casos.Crear;
 using Preacepta.LN.Casos.Editar;
@@ -131,6 +147,18 @@ using Preacepta.LN.CasosTipo.Editar;
 using Preacepta.LN.CasosTipo.Eliminar;
 using Preacepta.LN.CasosTipo.Listar;
 using Preacepta.LN.CasosTipo.ObtenerDatos;
+using Preacepta.LN.Citas.BuscarXid;
+using Preacepta.LN.Citas.Crear;
+using Preacepta.LN.Citas.Editar;
+using Preacepta.LN.Citas.Eliminar;
+using Preacepta.LN.Citas.Listar;
+using Preacepta.LN.Citas.ObtenerDatos;
+using Preacepta.LN.CitasTipo.BuscarXid;
+using Preacepta.LN.CitasTipo.Crear;
+using Preacepta.LN.CitasTipo.Editar;
+using Preacepta.LN.CitasTipo.Eliminar;
+using Preacepta.LN.CitasTipo.Listar;
+using Preacepta.LN.CitasTipo.ObtenerDatos;
 using Preacepta.LN.CrDireccion1.BuscarXid;
 using Preacepta.LN.CrDireccion1.Crear;
 using Preacepta.LN.CrDireccion1.Editar;
@@ -143,24 +171,6 @@ using Preacepta.LN.DocPoderesEspecialesJudiciales.Editar;
 using Preacepta.LN.DocPoderesEspecialesJudiciales.Eliminar;
 using Preacepta.LN.DocPoderesEspecialesJudiciales.Listar;
 using Preacepta.LN.DocPoderesEspecialesJudiciales.ObtenerDatos;
-using Preacepta.LN.DocsOpcionCompraventaVehiculo.Buscar;
-using Preacepta.LN.DocsOpcionCompraventaVehiculo.Crear;
-using Preacepta.LN.DocsOpcionCompraventaVehiculo.Editar;
-using Preacepta.LN.DocsOpcionCompraventaVehiculo.Eliminar;
-using Preacepta.LN.DocsOpcionCompraventaVehiculo.Listar;
-using Preacepta.LN.DocsOpcionCompraventaVehiculo.ObtenerDatos;
-using Preacepta.LN.DocsPagare.Buscar;
-using Preacepta.LN.DocsPagare.Crear;
-using Preacepta.LN.DocsPagare.Editar;
-using Preacepta.LN.DocsPagare.Eliminar;
-using Preacepta.LN.DocsPagare.Listar;
-using Preacepta.LN.DocsPagare.ObtenerDatos;
-using Preacepta.LN.DocsTipoVehiculo.Buscar;
-using Preacepta.LN.DocsTipoVehiculo.Crear;
-using Preacepta.LN.DocsTipoVehiculo.Editar;
-using Preacepta.LN.DocsTipoVehiculo.Eliminar;
-using Preacepta.LN.DocsTipoVehiculo.Listar;
-using Preacepta.LN.DocsTipoVehiculo.ObtenerDatos;
 using Preacepta.LN.DocsAutorizacionRevisionExpediente.BuscarXid;
 using Preacepta.LN.DocsAutorizacionRevisionExpediente.Crear;
 using Preacepta.LN.DocsAutorizacionRevisionExpediente.Editar;
@@ -197,6 +207,25 @@ using Preacepta.LN.DocsMarcaVehiculo.Editar;
 using Preacepta.LN.DocsMarcaVehiculo.Eliminar;
 using Preacepta.LN.DocsMarcaVehiculo.Listar;
 using Preacepta.LN.DocsMarcaVehiculo.ObtenerDatos;
+using Preacepta.LN.DocsOpcionCompraventaVehiculo.Buscar;
+using Preacepta.LN.DocsOpcionCompraventaVehiculo.Crear;
+using Preacepta.LN.DocsOpcionCompraventaVehiculo.Editar;
+using Preacepta.LN.DocsOpcionCompraventaVehiculo.Eliminar;
+using Preacepta.LN.DocsOpcionCompraventaVehiculo.Listar;
+using Preacepta.LN.DocsOpcionCompraventaVehiculo.ObtenerDatos;
+using Preacepta.LN.DocsPagare.Buscar;
+using Preacepta.LN.DocsPagare.Crear;
+using Preacepta.LN.DocsPagare.Editar;
+using Preacepta.LN.DocsPagare.Eliminar;
+using Preacepta.LN.DocsPagare.Listar;
+using Preacepta.LN.DocsPagare.ObtenerDatos;
+using Preacepta.LN.DocsTipoVehiculo.Buscar;
+using Preacepta.LN.DocsTipoVehiculo.Crear;
+using Preacepta.LN.DocsTipoVehiculo.Editar;
+using Preacepta.LN.DocsTipoVehiculo.Eliminar;
+using Preacepta.LN.DocsTipoVehiculo.Listar;
+using Preacepta.LN.DocsTipoVehiculo.ObtenerDatos;
+using Preacepta.LN.DocumentosCita;
 using Preacepta.LN.GeAbogado.BuscarXid;
 using Preacepta.LN.GeAbogado.Crear;
 using Preacepta.LN.GeAbogado.Editar;
@@ -221,52 +250,33 @@ using Preacepta.LN.GePersona.Editar;
 using Preacepta.LN.GePersona.Eliminar;
 using Preacepta.LN.GePersona.Listar;
 using Preacepta.LN.GePersona.ObtenerDatos;
-using Preacepta.LN.Testimonios.Buscar;
-using Preacepta.LN.Testimonios.Crear;
-using Preacepta.LN.Testimonios.Editar;
-using Preacepta.LN.Testimonios.Eliminar;
-using Preacepta.LN.Testimonios.Listar;
-using Preacepta.LN.Testimonios.ObtenerDatos;
 using Preacepta.LN.GeRedesSociales.BuscarXid;
 using Preacepta.LN.GeRedesSociales.Crear;
 using Preacepta.LN.GeRedesSociales.Editar;
 using Preacepta.LN.GeRedesSociales.Eliminar;
 using Preacepta.LN.GeRedesSociales.Listar;
 using Preacepta.LN.GeRedesSociales.ObtenerDatos;
+using Preacepta.LN.Testimonios.Buscar;
+using Preacepta.LN.Testimonios.Crear;
+using Preacepta.LN.Testimonios.Editar;
+using Preacepta.LN.Testimonios.Eliminar;
+using Preacepta.LN.Testimonios.Listar;
+using Preacepta.LN.Testimonios.ObtenerDatos;
+using Preacepta.UI.Areas.Identity; // importa servicio
 using Preacepta.UI.Data;
-using Preacepta.AD.CitasTipo.BuscarXid;
-using Preacepta.AD.CitasTipo.Crear;
-using Preacepta.AD.CitasTipo.Editar;
-using Preacepta.AD.CitasTipo.Eliminar;
-using Preacepta.AD.CitasTipo.Listar;
-using Preacepta.LN.CitasTipo.BuscarXid;
-using Preacepta.LN.CitasTipo.Crear;
-using Preacepta.LN.CitasTipo.Editar;
-using Preacepta.LN.CitasTipo.Eliminar;
-using Preacepta.LN.CitasTipo.Listar;
-using Preacepta.LN.CitasTipo.ObtenerDatos;
-using Preacepta.AD.Citas.BuscarXid;
-using Preacepta.AD.Citas.Crear;
-using Preacepta.AD.Citas.Editar;
-using Preacepta.AD.Citas.Eliminar;
-using Preacepta.AD.Citas.Listar;
-using Preacepta.LN.Citas.BuscarXid;
-using Preacepta.LN.Citas.Crear;
-using Preacepta.LN.Citas.Editar;
-using Preacepta.LN.Citas.Eliminar;
-using Preacepta.LN.Citas.Listar;
-using Preacepta.LN.Citas.ObtenerDatos;
-using Preacepta.AD.DocumentosCitas.DocumentosCitas;
-using Preacepta.LN.DocumentosCita;
-using DinkToPdf;
-using DinkToPdf.Contracts;
 using Preacepta.UI.Services;
-using Microsoft.AspNetCore.Identity.UI.Services;
-using Microsoft.VisualStudio.Web.CodeGenerators.Mvc.Templates.General;
-using Preacepta.UI.Services.MensajesPersonalizados; // importa servicio
+using Preacepta.UI.Services.MensajesPersonalizados;
+using Serilog;
+using System.Security.Claims;
 #endregion
 
+Log.Logger = new LoggerConfiguration()
+    .WriteTo.File("Logs/log-.txt", rollingInterval: RollingInterval.Day)
+    .CreateLogger();
+
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Host.UseSerilog();
 
 // Agrega la conexion en un var
 var connectionString = builder.Configuration.GetConnectionString("Server")
@@ -295,7 +305,7 @@ builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
 
 builder.Services.AddDefaultIdentity<IdentityUser>(
-    options => options.SignIn.RequireConfirmedAccount = false)    
+    options => options.SignIn.RequireConfirmedAccount = false)
     .AddRoles<IdentityRole>() //activa el servicio de roles
     .AddEntityFrameworkStores<ApplicationDbContext>();
 
@@ -304,6 +314,8 @@ builder.Services.Configure<IdentityOptions>(options =>
     options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(15);
     options.Lockout.MaxFailedAccessAttempts = 3;
     options.Lockout.AllowedForNewUsers = true;
+    options.ClaimsIdentity.RoleClaimType = ClaimTypes.Role;
+
 });
 
 builder.Services.AddControllersWithViews();
@@ -605,6 +617,8 @@ builder.Services.AddSingleton<IConverter>(new SynchronizedConverter(new PdfTools
 
 //Servicio para mostrar mensajes personalizados
 builder.Services.AddTransient<IValidacionesResetPassword, ValidacionesResetPassword>();
+//Inyecta clase para validar los roles
+builder.Services.AddScoped<IUserClaimsPrincipalFactory<IdentityUser>, CustomClaimsPrincipalFactory>();
 #endregion
 
 #region Servicio de correo electronico
@@ -616,21 +630,34 @@ builder.Services.AddTransient<IServicioEmail, ServicioEmail>(); // se crea inter
 #region Servicio para Cierre de sesión por inactividad
 builder.Services.ConfigureApplicationCookie(options =>
 {
+
+    options.Cookie.Name = ".AspNetCore.Identity.Application";
+    options.LoginPath = "/Identity/Account/Login";
+    options.AccessDeniedPath = "/Identity/Account/AccessDenied";
+
     options.ExpireTimeSpan = TimeSpan.FromMinutes(15); // Tiempo de inactividad permitido
     options.SlidingExpiration = true; // O true, según si quieres renovar el tiempo con actividad
     options.Cookie.HttpOnly = true;
-    options.Cookie.SecurePolicy = CookieSecurePolicy.Always;
+    //options.Cookie.SecurePolicy = CookieSecurePolicy.Always;
+    options.Cookie.SecurePolicy = CookieSecurePolicy.SameAsRequest;
 });
 
 #endregion
 
+
 DinkToPdfAll.LibraryLoader.Load();
+
+builder.Services.AddDataProtection()
+    .PersistKeysToFileSystem(new DirectoryInfo(@"C:\AppKeys\DataProtection"))
+    .SetApplicationName("Preacepta");
 
 var app = builder.Build();
 
+
+
 #region Asignacion y creacion de roles
 //Verifica se lo roles existen y si no los crea todo esto sucede en el incio de la aplicacion
-using (var scope = app.Services.CreateScope())
+/*using (var scope = app.Services.CreateScope())
 {
     var roles = scope.ServiceProvider.GetRequiredService<RoleManager<IdentityRole>>();
     if (!await roles.RoleExistsAsync("Gestor") || !await roles.RoleExistsAsync("Abogado") || !await roles.RoleExistsAsync("Cliente"))
@@ -639,13 +666,35 @@ using (var scope = app.Services.CreateScope())
         await roles.CreateAsync(new IdentityRole("Abogado"));
         await roles.CreateAsync(new IdentityRole("Cliente"));
     }
+
+    
+}*/
+using (var scope = app.Services.CreateScope())
+{
+    var roleManager = scope.ServiceProvider.GetRequiredService<RoleManager<IdentityRole>>();
+    var logger = scope.ServiceProvider.GetRequiredService<ILogger<Program>>();
+
+    string[] roles = { "Gestor", "Abogado", "Cliente" };
+
+    foreach (var role in roles)
+    {
+        if (!await roleManager.RoleExistsAsync(role))
+        {
+            var result = await roleManager.CreateAsync(new IdentityRole(role));
+            if (result.Succeeded)
+                logger.LogInformation("Rol creado: {Role}", role);
+            else
+                logger.LogWarning("Error al crear el rol {Role}: {Errors}", role, string.Join(", ", result.Errors.Select(e => e.Description)));
+        }
+    }
 }
+
 #endregion
 
 #region Creacion de usario root
 using (var scope = app.Services.CreateScope())
 {
-    var userManager = scope.ServiceProvider.GetRequiredService<UserManager<IdentityUser>>();    
+    var userManager = scope.ServiceProvider.GetRequiredService<UserManager<IdentityUser>>();
     var roleManager = scope.ServiceProvider.GetRequiredService<RoleManager<IdentityRole>>();
     var config = scope.ServiceProvider.GetRequiredService<IConfiguration>();
 
@@ -671,7 +720,7 @@ using (var scope = app.Services.CreateScope())
 
         await userManager.CreateAsync(rootUser, rootPassword);
         await userManager.AddToRoleAsync(rootUser, "Gestor");
-    }    
+    }
 }
 #endregion
 
@@ -691,6 +740,7 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
+app.UseAuthentication();
 
 app.UseAuthorization();
 

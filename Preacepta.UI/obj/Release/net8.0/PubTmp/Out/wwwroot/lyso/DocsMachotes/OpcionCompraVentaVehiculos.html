@@ -1,0 +1,89 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Opción de Compraventa de Vehículo</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            font-size: 12pt;
+            line-height: 1.5;
+            margin: 40px;
+        }
+
+        h4 {
+            margin-top: 20px;
+            text-align: center;
+            text-decoration: underline;
+        }
+
+        .firmas {
+            margin-top: 60px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+    <h4>OPCIÓN DE COMPRAVENTA DE VEHÍCULO</h4>
+
+    <p>
+        NÚMERO {{ID_DOCUMENTO}}: Ante mí {{CEDULA_NOTARIO}}, Notario Público con oficina en {{LUGAR_FIRMA}}, comparece {{CEDULA_VENDEDOR}},
+        cédula de identidad número {{CEDULA_VENDEDOR}}, vecino de {{LUGAR_FIRMA}}, y {{CEDULA_COMPRADOR}},
+        cédula de identidad número {{CEDULA_COMPRADOR}}, vecino de {{LUGAR_FIRMA}} Y DICEN:
+    </p>
+
+    <p>
+        PRIMERO: Que el primer compareciente es dueño del vehículo inscrito en el Registro de Bienes Muebles bajo el número de placa {{PLACA_VEHICULO}}
+        con las siguientes características: MARCA {{MARCA_VEHICULO}}, TIPO {{TIPO_VEHICULO}}, MODELO {{MODELO_VEHICULO}}, CARROCERÍA {{CARROCERIA}},
+        CATEGORÍA {{CATEGORIA}}, CHASIS {{CHASIS}}, SERIE {{SERIE}}, VIN {{VIN}}, MARCA DEL MOTOR {{MARCA_MOTOR}}, NÚMERO DE MOTOR {{NUMERO_MOTOR}},
+        COLOR {{COLOR}}, COMBUSTIBLE {{COMBUSTIBLE}}, AÑO {{ANIO}}, CAPACIDAD {{CAPACIDAD}}, CILINDRAJE {{CILINDRAJE}}.
+    </p>
+
+    <p>
+        SEGUNDO: Que en este acto el primer compareciente otorga OPCIÓN EXCLUSIVA E IRREVOCABLE DE VENTA sobre dicho vehículo al segundo compareciente, quien acepta.
+    </p>
+
+    <p>
+        TERCERO: Que el precio de la venta será la suma de {{PRECIO}} {{MONEDA_PRECIO}}, los cuales deberán cancelarse en dinero efectivo al momento de suscribirse la respectiva escritura de traspaso.
+    </p>
+
+    <p>
+        CUARTO: El plazo de esta opción será de {{PLAZO_OPCION_ANIOS}} años contados a partir del {{FECHA_INICIO}}.
+    </p>
+
+    <p>
+        QUINTO: Al momento del pago se suscribirá la escritura de traspaso a nombre de la persona que {{CEDULA_VENDEDOR}} indique, libre de gravámenes prendarios, anotaciones e infracciones.
+    </p>
+
+    <p>
+        SEXTO: En señal de trato, el segundo compareciente cancela en este acto y en dinero efectivo, la suma de {{MONTO_SENAL}} {{MONEDA_SENAL}}, que {{CEDULA_NOTARIO}} acepta de conformidad.
+        Dicho monto será abonado al precio al momento de otorgarse la escritura definitiva de traspaso.
+    </p>
+
+    <p>
+        SÉTIMO: En caso de no verificarse el traspaso dentro del plazo convenido por causas imputables al vendedor, éste devolverá al comprador la suma de {{MONTO_A_DEVOLVER}}.
+        En caso de que la venta no se pueda realizar por causas imputables al comprador, el vendedor conservará los {{MONTO_A_PERDER}} {{MONEDA_MONTO_PERDIDO}} entregados en este acto como señal de trato.
+    </p>
+
+    <p>
+        OCTAVO: Los gastos de traspaso correrán exclusivamente por cuenta de {{GASTOS_TRASPASO_PAGADOS_POR}}.
+    </p>
+
+    <p>
+        ES TODO. Se expide un primer testimonio. Leída esta escritura a los otorgantes, resulta conforme, la aprueban, y juntos firmamos en la ciudad de {{LUGAR_FIRMA}} a las {{HORA_FIRMA}} del {{FECHA_FIRMA}}.
+    </p>
+
+    <div class="firmas">
+        <p>__________________________________________</p>
+        <p>VENDEDOR: {{CEDULA_VENDEDOR}}</p>
+        <br />
+        <p>__________________________________________</p>
+        <p>COMPRADOR: {{CEDULA_COMPRADOR}}</p>
+        <br />
+        <p>__________________________________________</p>
+        <p>NOTARIO: {{CEDULA_NOTARIO}}</p>
+    </div>
+
+</body>
+</html>

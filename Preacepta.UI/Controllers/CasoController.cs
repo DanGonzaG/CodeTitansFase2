@@ -4,6 +4,8 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using NuGet.Protocol.Core.Types;
+using Org.BouncyCastle.Asn1.X509;
 using Preacepta.AD;
 using Preacepta.LN.Casos.BuscarXid;
 using Preacepta.LN.Casos.Crear;
@@ -79,7 +81,8 @@ namespace Preacepta.UI.Controllers
         /********************************************************************************************************************************************************************/
         //controller de Framework\\
         /********************************************************************************************************************************************************************/
-
+        
+        #region ListarCasosGestor
         // GET: Caso
         [Authorize(Roles = "Gestor")]
         public async Task<IActionResult> Index()
@@ -106,6 +109,9 @@ namespace Preacepta.UI.Controllers
             return View(tCaso);
         }
 
+        #endregion
+
+        #region CrearCasosGestor GET y POST
         // GET: Caso/Create
         [Authorize(Roles = "Gestor")]
         public async Task<IActionResult> Create()
@@ -165,7 +171,9 @@ namespace Preacepta.UI.Controllers
                .ToList();
             return View(tCaso);
         }
+        #endregion
 
+        #region EditarCasoGestor GET Y POST
         // GET: Caso/Edit/5
         [Authorize(Roles = "Gestor")]
         public async Task<IActionResult> Edit(int id)
@@ -245,7 +253,9 @@ namespace Preacepta.UI.Controllers
                .ToList();
             return View(tCaso);
         }
+        #endregion
 
+        #region EliminarCasoGestor GET y POST
         // GET: Caso/Delete/5
         [Authorize(Roles = "Gestor")]
         public async Task<IActionResult> Delete(int id)
@@ -292,7 +302,7 @@ namespace Preacepta.UI.Controllers
 
 
         }
-
+        #endregion
 
         /********************************************************************************************************************************************************************/
         //controller de personalizados\\
@@ -330,7 +340,7 @@ namespace Preacepta.UI.Controllers
             if (ModelState.IsValid)
             {
                 await _crear.Crear(tCaso);
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction("CasosListado");
             }
 
             var cliente = await _buscarPersona.buscar(tCaso.IdCliente);
@@ -506,10 +516,22 @@ namespace Preacepta.UI.Controllers
         #endregion
 
         #region Solicitud de caso CLIENTE
-        public ActionResult SolicitudCaso()//historia tipo cliente
+        //este metodo retorna la vista de formulario para que el cliente solicite apertura de una caso
+        [HttpGet]
+        public async Task<ActionResult> SolicitudCaso()
         {
-            return View();
+            var persona = await _buscarPersona.buscarXcorreo(User.Identity.Name);
+            var model = new ContactoModel
+            {
+                name = $"{persona.Nombre} {persona.Apellido1} {persona.Apellido2}",
+                cedula =  persona.Cedula.ToString(),
+                email = persona.Email,
+                phone_number = persona.Telefono1
+            };
+            return View(model);
         }
+
+        
         #endregion
 
         #region Solicitud de caso Cliente Correo Enviado

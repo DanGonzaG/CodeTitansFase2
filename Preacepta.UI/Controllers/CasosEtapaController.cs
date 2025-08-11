@@ -142,9 +142,10 @@ namespace Preacepta.UI.Controllers
             if (ModelState.IsValid)
             {
                 await _crear.Crear(tCasosEtapa);
-                if (tCasosEtapa.Activo == true) 
+                
+                if (tCasosEtapa.Activo == true) //Valida si la etapa que se va a crear tiene la opcion de Cerrar caso activada
                 {
-                    caso.Activo = false;
+                    caso.Activo = false; //modifica el objeto en BD para que sea Activo false
                     await _editarCaso.Editar(caso);
                     TempData["CasoCerrado"] = "El caso fue cerrado exitosamente";
                     return RedirectToAction("CasosListadoHistorial", "Caso", new { id = IdCaso });
