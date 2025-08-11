@@ -1,0 +1,12 @@
+C:\CodeTitansFase2-develop\Preacepta.Modelos\bin\Release\net8.0\Preacepta.Modelos.deps.json
+C:\CodeTitansFase2-develop\Preacepta.Modelos\bin\Release\net8.0\Preacepta.Modelos.dll
+C:\CodeTitansFase2-develop\Preacepta.Modelos\bin\Release\net8.0\Preacepta.Modelos.pdb
+C:\CodeTitansFase2-develop\Preacepta.Modelos\obj\Release\net8.0\Preacepta.Modelos.csproj.AssemblyReference.cache
+C:\CodeTitansFase2-develop\Preacepta.Modelos\obj\Release\net8.0\Preacepta.Modelos.GeneratedMSBuildEditorConfig.editorconfig
+C:\CodeTitansFase2-develop\Preacepta.Modelos\obj\Release\net8.0\Preacepta.Modelos.AssemblyInfoInputs.cache
+C:\CodeTitansFase2-develop\Preacepta.Modelos\obj\Release\net8.0\Preacepta.Modelos.AssemblyInfo.cs
+C:\CodeTitansFase2-develop\Preacepta.Modelos\obj\Release\net8.0\Preacepta.Modelos.csproj.CoreCompileInputs.cache
+C:\CodeTitansFase2-develop\Preacepta.Modelos\obj\Release\net8.0\Preacepta.Modelos.dll
+C:\CodeTitansFase2-develop\Preacepta.Modelos\obj\Release\net8.0\refint\Preacepta.Modelos.dll
+C:\CodeTitansFase2-develop\Preacepta.Modelos\obj\Release\net8.0\Preacepta.Modelos.pdb
+C:\CodeTitansFase2-develop\Preacepta.Modelos\obj\Release\net8.0\ref\Preacepta.Modelos.dll

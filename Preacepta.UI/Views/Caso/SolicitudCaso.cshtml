@@ -38,27 +38,27 @@
                 <div class="seccion-titulo">Información del personal</div>
                 <div class="col-sm-6 col-lg-6">
                     <div class="form-group">
-                        <input asp-for="cedula" class="form-control" placeholder="Cédula">
+                        <input type="text" asp-for="cedula" class="form-control" readonly />
                         <span asp-validation-for="cedula" class="text-danger"></span>
                     </div>
                 </div>
                 <div class="col-sm-6 col-lg-6">
-                    <div class="form-group">                        
-                        <input asp-for="name" class="form-control" placeholder="Nombre completo">
+                    <div class="form-group">
+                        <input type="text" asp-for="name" class="form-control" readonly />                        
                         <span asp-validation-for="name" class="text-danger"></span>
                     </div>
                 </div>
 
                 <div class="col-sm-6 col-lg-6">
                     <div class="form-group">
-                        <input asp-for="email" class="form-control" placeholder="Correro Electrónico">
+                        <input type="email" asp-for="email" class="form-control" readonly />
                         <span asp-validation-for="email" class="text-danger"></span>
                     </div>
                 </div>
 
                 <div class="col-sm-6 col-lg-6">
                     <div class="form-group">
-                        <input asp-for="phone_number" class="form-control" placeholder="Número telefónico">
+                        <input type="text" asp-for="phone_number" class="form-control" readonly />
                         <span asp-validation-for="phone_number" class="text-danger"></span>
                     </div>
                 </div>
