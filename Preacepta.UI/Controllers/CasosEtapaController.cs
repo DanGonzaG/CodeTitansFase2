@@ -361,6 +361,7 @@ namespace Preacepta.UI.Controllers
         /*-----------------------------------------------------------------//CONTROLLER METODOS DE FRAMEWORK\\--------------------------------------------------------------*/
         /********************************************************************************************************************************************************************/
 
+        #region Listar etapas de caso Root
         // GET: CasosEtapa
         [Authorize(Roles = "Gestor")]
         public async Task<IActionResult> Index()
@@ -368,7 +369,9 @@ namespace Preacepta.UI.Controllers
             //var contexto = _context.TCasosEtapas.Include(t => t.IdCasoNavigation);
             return View(await _listar.listar());
         }
+        #endregion
 
+        #region Detalles Etapas de Caso Root metodo GET
         // GET: CasosEtapa/Details/5
         [Authorize(Roles = "Gestor")]
         public async Task<IActionResult> Details(int id)
@@ -386,7 +389,9 @@ namespace Preacepta.UI.Controllers
 
             return View(tCasosEtapa);
         }
+        #endregion
 
+        #region Crear Etapas de Caso Root metodo GET y POST
         // GET: CasosEtapa/Create
         [Authorize(Roles = "Gestor")]
         public IActionResult Create()
@@ -411,7 +416,9 @@ namespace Preacepta.UI.Controllers
             ViewData["IdCaso"] = new SelectList(_listarCasos.listar().Result, "IdCaso", "Nombre", tCasosEtapa.IdCaso);
             return View(tCasosEtapa);
         }
+        #endregion
 
+        #region Editar Etapas de Caso Root metodo GET y POST
         // GET: CasosEtapa/Edit/5
         [Authorize(Roles = "Gestor")]
         public async Task<IActionResult> Edit(int id)
@@ -457,7 +464,9 @@ namespace Preacepta.UI.Controllers
             ViewData["IdCaso"] = new SelectList(_listarCasos.listar().Result, "IdCaso", "Nombre", tCasosEtapa.IdCaso);
             return View(tCasosEtapa);
         }
+        #endregion
 
+        #region Eliminar Etapas de Caso Root metodo GET y POST
         // GET: CasosEtapa/Delete/5
         [Authorize(Roles = "Gestor")]
         public async Task<IActionResult> Delete(int id)
@@ -484,6 +493,7 @@ namespace Preacepta.UI.Controllers
         {
             await _eliminar.Eliminar(id);
             return RedirectToAction(nameof(Index));
-        } 
+        }
+        #endregion
     }
 }

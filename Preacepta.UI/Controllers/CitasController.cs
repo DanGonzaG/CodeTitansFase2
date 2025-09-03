@@ -223,7 +223,7 @@ namespace Praecepta.UI.Controllers
             var smtp = new SmtpClient("smtp.gmail.com")
             {
                 Port = 587,
-                Credentials = new NetworkCredential("valeria2024.43@gmail.com", "rkvd tmlh txrh attg"), 
+                Credentials = new NetworkCredential("valeria2024.43@gmail.com", "rkvd tmlh txrh attg"),
                 EnableSsl = true
             };
 
@@ -279,7 +279,8 @@ namespace Praecepta.UI.Controllers
             // Cambiar _buscarCitasLN.obtenerTodas() por un método que filtre por cliente
             var citasCliente = await _listarCitasLN.ListarPorIdCliente(persona.Cedula);
 
-            var resultado = citasCliente.Select(c => new {
+            var resultado = citasCliente.Select(c => new
+            {
                 idCita = c.IdCita,
                 fecha = c.Fecha,
                 hora = c.Hora,
@@ -368,7 +369,7 @@ namespace Praecepta.UI.Controllers
                 return RedirectToAction(nameof(Calendar));
             }
 
-           
+
             if (Request.Headers["X-Requested-With"] == "XMLHttpRequest")
             {
                 var tiposCita = await _listarCitasTipoLN.listar();
@@ -381,7 +382,7 @@ namespace Praecepta.UI.Controllers
                 return PartialView("~/Views/CitasPrueba/_EditPartial.cshtml", cita);
             }
 
-        
+
             return View("~/Views/CitasPrueba/Edit.cshtml", cita);
         }
 
@@ -405,7 +406,7 @@ namespace Praecepta.UI.Controllers
                     return Forbid(); // o NotFound()
             }
             var cita = await _buscarCitasLN.buscar(id);
-           
+
             if (cita == null)
             {
                 Console.WriteLine($"No se encontró cita con ID: {id}");
@@ -507,33 +508,33 @@ namespace Praecepta.UI.Controllers
         }
 
         private async Task<List<CitasDTO>> ObtenerCitasClienteActual()
-{
-    var usuarioActual = await _userManager.GetUserAsync(User);
-    if (usuarioActual == null)
-        return new List<CitasDTO>();
+        {
+            var usuarioActual = await _userManager.GetUserAsync(User);
+            if (usuarioActual == null)
+                return new List<CitasDTO>();
 
-    var emailUsuario = usuarioActual.Email;
+            var emailUsuario = usuarioActual.Email;
 
-    var persona = await _context.TGePersonas.FirstOrDefaultAsync(p => p.Email == emailUsuario);
-    if (persona == null)
-        return new List<CitasDTO>();
+            var persona = await _context.TGePersonas.FirstOrDefaultAsync(p => p.Email == emailUsuario);
+            if (persona == null)
+                return new List<CitasDTO>();
 
-    return await _listarCitasLN.ListarPorIdCliente(persona.Cedula);
-}
+            return await _listarCitasLN.ListarPorIdCliente(persona.Cedula);
+        }
 
-public async Task<IActionResult> CalendarPasado()
-{
-    var lista = await ObtenerCitasClienteActual();
-    var citasPasadas = lista.Where(c => c.FechaHora < DateTime.Now).ToList();
-    return View(citasPasadas);
-}
+        public async Task<IActionResult> CalendarPasado()
+        {
+            var lista = await ObtenerCitasClienteActual();
+            var citasPasadas = lista.Where(c => c.FechaHora < DateTime.Now).ToList();
+            return View(citasPasadas);
+        }
 
-public async Task<IActionResult> _CitaFuturo()
-{
-    var lista = await ObtenerCitasClienteActual();
-    var citasFuturas = lista.Where(c => c.FechaHora > DateTime.Now).ToList();
-    return View(citasFuturas);
-}
+        public async Task<IActionResult> _CitaFuturo()
+        {
+            var lista = await ObtenerCitasClienteActual();
+            var citasFuturas = lista.Where(c => c.FechaHora > DateTime.Now).ToList();
+            return View(citasFuturas);
+        }
 
         [HttpGet]
         [Authorize(Roles = "Cliente")]

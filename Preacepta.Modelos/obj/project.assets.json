@@ -801,11 +801,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\CodeTitansFase2-develop\\Preacepta.Modelos\\Preacepta.Modelos.csproj",
+      "projectUniqueName": "C:\\Preacepta\\Preacepta.Modelos\\Preacepta.Modelos.csproj",
       "projectName": "Preacepta.Modelos",
-      "projectPath": "C:\\CodeTitansFase2-develop\\Preacepta.Modelos\\Preacepta.Modelos.csproj",
+      "projectPath": "C:\\Preacepta\\Preacepta.Modelos\\Preacepta.Modelos.csproj",
       "packagesPath": "C:\\Users\\DanGG\\.nuget\\packages\\",
-      "outputPath": "C:\\CodeTitansFase2-develop\\Preacepta.Modelos\\obj\\",
+      "outputPath": "C:\\Preacepta\\Preacepta.Modelos\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\DanGG\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -864,5 +864,13 @@
         "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.413/PortableRuntimeIdentifierGraph.json"
       }
     }
-  }
+  },
+  "logs": [
+    {
+      "code": "NU1900",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Error al obtener los datos de vulnerabilidad del paquete: No se puede cargar el índice de servicio del origen https://api.nuget.org/v3/index.json."
+    }
+  ]
 }
