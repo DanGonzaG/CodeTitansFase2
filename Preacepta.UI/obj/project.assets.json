@@ -12444,11 +12444,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\CodeTitansFase2-develop\\Preacepta.UI\\Preacepta.UI.csproj",
+      "projectUniqueName": "C:\\Preacepta\\Preacepta.UI\\Preacepta.UI.csproj",
       "projectName": "Preacepta.UI",
-      "projectPath": "C:\\CodeTitansFase2-develop\\Preacepta.UI\\Preacepta.UI.csproj",
+      "projectPath": "C:\\Preacepta\\Preacepta.UI\\Preacepta.UI.csproj",
       "packagesPath": "C:\\Users\\DanGG\\.nuget\\packages\\",
-      "outputPath": "C:\\CodeTitansFase2-develop\\Preacepta.UI\\obj\\",
+      "outputPath": "C:\\Preacepta\\Preacepta.UI\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\DanGG\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -12466,14 +12466,14 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "projectReferences": {
-            "C:\\CodeTitansFase2-develop\\Preacepta.AD\\Preacepta.AD.csproj": {
-              "projectPath": "C:\\CodeTitansFase2-develop\\Preacepta.AD\\Preacepta.AD.csproj"
+            "C:\\Preacepta\\Preacepta.AD\\Preacepta.AD.csproj": {
+              "projectPath": "C:\\Preacepta\\Preacepta.AD\\Preacepta.AD.csproj"
             },
-            "C:\\CodeTitansFase2-develop\\Preacepta.LN\\Preacepta.LN.csproj": {
-              "projectPath": "C:\\CodeTitansFase2-develop\\Preacepta.LN\\Preacepta.LN.csproj"
+            "C:\\Preacepta\\Preacepta.LN\\Preacepta.LN.csproj": {
+              "projectPath": "C:\\Preacepta\\Preacepta.LN\\Preacepta.LN.csproj"
             },
-            "C:\\CodeTitansFase2-develop\\Preacepta.Modelos\\Preacepta.Modelos.csproj": {
-              "projectPath": "C:\\CodeTitansFase2-develop\\Preacepta.Modelos\\Preacepta.Modelos.csproj"
+            "C:\\Preacepta\\Preacepta.Modelos\\Preacepta.Modelos.csproj": {
+              "projectPath": "C:\\Preacepta\\Preacepta.Modelos\\Preacepta.Modelos.csproj"
             }
           }
         }
@@ -12566,5 +12566,13 @@
         "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.413/PortableRuntimeIdentifierGraph.json"
       }
     }
-  }
+  },
+  "logs": [
+    {
+      "code": "NU1900",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Error al obtener los datos de vulnerabilidad del paquete: No se puede cargar el índice de servicio del origen https://api.nuget.org/v3/index.json."
+    }
+  ]
 }

@@ -270,9 +270,11 @@ using Serilog;
 using System.Security.Claims;
 #endregion
 
+#region Sercicio de archivos Log
 Log.Logger = new LoggerConfiguration()
     .WriteTo.File("Logs/log-.txt", rollingInterval: RollingInterval.Day)
     .CreateLogger();
+#endregion
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -644,12 +646,13 @@ builder.Services.ConfigureApplicationCookie(options =>
 
 #endregion
 
-
+#region Servicion de DinkToPdAll
 DinkToPdfAll.LibraryLoader.Load();
 
 builder.Services.AddDataProtection()
     .PersistKeysToFileSystem(new DirectoryInfo(@"C:\AppKeys\DataProtection"))
     .SetApplicationName("Preacepta");
+#endregion
 
 var app = builder.Build();
 

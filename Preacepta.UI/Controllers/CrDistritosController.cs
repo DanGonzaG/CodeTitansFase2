@@ -33,13 +33,20 @@ namespace Preacepta.UI.Controllers
             _listar = listar;
         }
 
+        /********************************************************************************************************************************************************************/
+        //controller de Framework\\
+        /********************************************************************************************************************************************************************/
+
+        #region Listar Root
         // GET: CrDistritos
         public async Task<IActionResult> Index()
         {
             //var contexto = _context.TCrDistritos.Include(t => t.IdCatonNavigation);
             return View(await _listar.listarDistritos());
         }
+        #endregion
 
+        #region Detalles Root
         // GET: CrDistritos/Details/5
         public async Task<IActionResult> Details(int id)
         {
@@ -59,7 +66,9 @@ namespace Preacepta.UI.Controllers
 
             return View(tCrDistrito);
         }
+        #endregion
 
+        #region Crear Root metodo GET y POST
         // GET: CrDistritos/Create
         public IActionResult Create()
         {
@@ -82,7 +91,9 @@ namespace Preacepta.UI.Controllers
             ViewData["IdCaton"] = new SelectList(_listar.listarCantones().Result, "IdCanton", "NombreCanton", tCrDistrito.IdCaton);
             return View(tCrDistrito);
         }
+        #endregion
 
+        #region Editar Root metodo GET y POST
         // GET: CrDistritos/Edit/5
         public async Task<IActionResult> Edit(int id)
         {
@@ -127,7 +138,9 @@ namespace Preacepta.UI.Controllers
             ViewData["IdCaton"] = new SelectList(_listar.listarCantones().Result, "IdCanton", "NombreCanton", tCrDistrito.IdCaton);
             return View(tCrDistrito);
         }
+        #endregion
 
+        #region Elminar Root metodo GET y POST
         // GET: CrDistritos/Delete/5
         public async Task<IActionResult> Delete(int id)
         {
@@ -153,5 +166,6 @@ namespace Preacepta.UI.Controllers
             await _eliminar.EliminarDistrito(id);
             return RedirectToAction(nameof(Index));
         }
+        #endregion
     }
 }
