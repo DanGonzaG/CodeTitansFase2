@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "veWeEEdfPQc=",
+  "dgSpecHash": "vtxLllnMfDU=",
   "success": true,
   "projectFilePath": "C:\\Preacepta\\Preacepta.LN\\Preacepta.LN.csproj",
   "expectedPackageFiles": [
@@ -120,12 +120,5 @@
     "C:\\Users\\DanGG\\.nuget\\packages\\system.xml.readerwriter\\4.0.11\\system.xml.readerwriter.4.0.11.nupkg.sha512",
     "C:\\Users\\DanGG\\.nuget\\packages\\system.xml.xdocument\\4.0.11\\system.xml.xdocument.4.0.11.nupkg.sha512"
   ],
-  "logs": [
-    {
-      "code": "NU1900",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Error al obtener los datos de vulnerabilidad del paquete: No se puede cargar el índice de servicio del origen https://api.nuget.org/v3/index.json."
-    }
-  ]
+  "logs": []
 }

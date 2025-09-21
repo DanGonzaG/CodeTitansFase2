@@ -60,8 +60,6 @@ namespace Preacepta.Modelos.AbstraccionesFrond
         [Required(ErrorMessage = "Seleccione un género")]
         public string Genero { get; set; } = null!;
 
-        //public string Email { get; set; } = null!;
-
         [DisplayName("Vecino de")]
         public virtual TCrDistrito? Direccion1Navigation { get; set; } = null!;
 

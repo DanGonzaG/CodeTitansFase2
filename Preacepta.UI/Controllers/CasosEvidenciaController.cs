@@ -40,7 +40,6 @@ namespace Preacepta.UI.Controllers
         // GET: CasosEvidencia
         public async Task<IActionResult> Index()
         {
-            //var contexto = _context.TCasosEvidencias.Include(t => t.IdCaso1).Include(t => t.IdCasoNavigation);
             return View(await _listar.listar());
         }
 

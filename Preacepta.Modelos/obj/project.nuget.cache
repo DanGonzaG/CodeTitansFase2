@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "GtOyc8HUP14=",
+  "dgSpecHash": "64VgbDLDvew=",
   "success": true,
   "projectFilePath": "C:\\Preacepta\\Preacepta.Modelos\\Preacepta.Modelos.csproj",
   "expectedPackageFiles": [
@@ -19,12 +19,5 @@
     "C:\\Users\\DanGG\\.nuget\\packages\\microsoft.extensions.options\\8.0.2\\microsoft.extensions.options.8.0.2.nupkg.sha512",
     "C:\\Users\\DanGG\\.nuget\\packages\\microsoft.extensions.primitives\\8.0.0\\microsoft.extensions.primitives.8.0.0.nupkg.sha512"
   ],
-  "logs": [
-    {
-      "code": "NU1900",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Error al obtener los datos de vulnerabilidad del paquete: No se puede cargar el índice de servicio del origen https://api.nuget.org/v3/index.json."
-    }
-  ]
+  "logs": []
 }
