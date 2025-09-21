@@ -86,8 +86,7 @@ namespace Preacepta.UI.Controllers
         // GET: Caso
         [Authorize(Roles = "Gestor")]
         public async Task<IActionResult> Index()
-        {
-            //var contexto = _context.TCasos.Include(t => t.IdAbogadoNavigation).Include(t => t.IdClienteNavigation).Include(t => t.IdTipoCasoNavigation);
+        {            
             return View(await _listar.listar());
         }
 
@@ -116,9 +115,6 @@ namespace Preacepta.UI.Controllers
         [Authorize(Roles = "Gestor")]
         public async Task<IActionResult> Create()
         {
-            //ViewData["IdAbogado"] = new SelectList(_listarAbogados.listar().Result, "Cedula", "CedulaNavigation.Nombre");
-            //ViewData["IdCliente"] = new SelectList(_listarGePersona.listar().Result, "Cedula", "Nombre");
-
             ViewData["IdTipoCaso"] = new SelectList(_listarCasosTipoLN.listar().Result, "IdTipoCaso", "Nombre");
 
             ViewData["IdAbogado"] = (await _listarAbogados.listar())
@@ -361,11 +357,6 @@ namespace Preacepta.UI.Controllers
         [Authorize(Roles = "Gestor, Abogado, Cliente")]
         public async Task<IActionResult> CasosListado()
         {
-            //var abogado = await _buscarPersona.buscarXcorreo(User.Identity.Name);
-            //var listaCasos = _listar.listarXabogado(abogado.Cedula);
-
-            //var contexto = _context.TCasos.Include(t => t.IdAbogadoNavigation).Include(t => t.IdClienteNavigation).Include(t => t.IdTipoCasoNavigation);
-
             var usuario = (ClaimsIdentity)User.Identity;
             var rol = usuario.FindFirst(ClaimTypes.Role)?.Value;
             var persona = await _buscarPersona.buscarXcorreo(User.Identity.Name);

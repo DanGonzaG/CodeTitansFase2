@@ -1,7 +1,7 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
 
-<head>    
+<head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - Preacepta.UI</title>
@@ -23,9 +23,6 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="UsuarioAutenticado" asp-route-correo=@User.Identity.Name>Inicio</a>
                         </li>
-                        <!--<li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="VolverPaginaPrincipal" id="btnPaginaPrincipal">Página principal</a>
-                        </li>-->
                         <li class="nav-item">
                             <a asp-action="" class="nav-link text-dark" id="btnPaginaPrincipal">Página principal</a>
                         </li>
@@ -43,7 +40,7 @@
 
     <footer class="border-top footer text-muted">
         <div class="container">
-            &copy; 2025 - Preacepta.UI <!-- <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>-->
+            &copy; 2025 - Preacepta.UI
         </div>
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
@@ -83,7 +80,7 @@
 
     @await RenderSectionAsync("Scripts", required: false)
 
-    
-    
+
+
 </body>
 </html>

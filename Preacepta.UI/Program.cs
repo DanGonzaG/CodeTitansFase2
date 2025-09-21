@@ -286,25 +286,11 @@ var connectionString = builder.Configuration.GetConnectionString("Server")
 Console.WriteLine($"Cadena de conexi�n utilizada: {connectionString}"); //muestra el mensaje
 
 
-//cadena de conexion para Azure Web app
-/*var connectionString = builder.Configuration.GetConnectionString("AZURE_SQL_CONNECTIONSTRING")
-    ?? throw new InvalidOperationException("Conexion a base datos bajo el nombre Server no funciona");
-Console.WriteLine($"Cadena de conexi�n utilizada: {connectionString}"); //muestra el mensaje*/
-
 #region Base de Datos
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlServer(connectionString));
 
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
-
-//Servicio de contenexion con Autenticacion de Entity
-/*builder.Services.AddIdentity<ApplicationUser, IdentityRole>(options =>
-{
-    options.SignIn.RequireConfirmedAccount = false;
-})
-.AddEntityFrameworkStores<ApplicationDbContext>()
-.AddErrorDescriber<SpanishIdentityErrorDescriber>();*/
-
 
 builder.Services.AddDefaultIdentity<IdentityUser>(
     options => options.SignIn.RequireConfirmedAccount = false)
@@ -660,18 +646,7 @@ var app = builder.Build();
 
 #region Asignacion y creacion de roles
 //Verifica se lo roles existen y si no los crea todo esto sucede en el incio de la aplicacion
-/*using (var scope = app.Services.CreateScope())
-{
-    var roles = scope.ServiceProvider.GetRequiredService<RoleManager<IdentityRole>>();
-    if (!await roles.RoleExistsAsync("Gestor") || !await roles.RoleExistsAsync("Abogado") || !await roles.RoleExistsAsync("Cliente"))
-    {
-        await roles.CreateAsync(new IdentityRole("Gestor"));
-        await roles.CreateAsync(new IdentityRole("Abogado"));
-        await roles.CreateAsync(new IdentityRole("Cliente"));
-    }
 
-    
-}*/
 using (var scope = app.Services.CreateScope())
 {
     var roleManager = scope.ServiceProvider.GetRequiredService<RoleManager<IdentityRole>>();

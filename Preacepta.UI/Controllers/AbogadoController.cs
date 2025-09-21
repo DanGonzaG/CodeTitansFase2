@@ -84,7 +84,6 @@ namespace Preacepta.UI.Controllers
         [Authorize(Roles = "Gestor")]
         public async Task<IActionResult> Index()
         {
-            //var contexto = _context.TGeAbogados.Include(t => t.CJuridicaNavigation).Include(t => t.CedulaNavigation).Include(t => t.IdTipoAbogadoNavigation);
             return View(await _listar.listar());
         }
         #endregion

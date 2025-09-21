@@ -1,7 +1,5 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Praecepta.UI.Models;
-using Microsoft.AspNetCore.Http;
 using Preacepta.LN.Citas.Listar;
 using Preacepta.Modelos.AbstraccionesFrond;
 using Preacepta.LN.Citas.Crear;
@@ -15,8 +13,6 @@ using Microsoft.AspNetCore.Identity;
 using Preacepta.AD;
 using Microsoft.EntityFrameworkCore;
 using Preacepta.Modelos.AbstraccionesBD;
-using System.Collections.Generic;
-using Azure.Core;
 using System.Net.Mail;
 using System.Net;
 
