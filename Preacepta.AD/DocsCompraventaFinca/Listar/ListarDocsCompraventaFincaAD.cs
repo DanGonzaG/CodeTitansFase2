@@ -76,6 +76,7 @@ namespace Preacepta.AD.DocsCompraventaFinca.Listar
                     
                     FechaFirma = lista.FechaFirma,                    
                     IdDocumento = lista.IdDocumento,
+                    CedulaCompradorNavigation = lista.CedulaCompradorNavigation
                     
                 }).ToListAsync();
             }

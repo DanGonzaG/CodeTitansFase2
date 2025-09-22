@@ -7,6 +7,7 @@ using Preacepta.LN.Citas.Listar;
 using Preacepta.LN.DocsCompraventaFinca.Listar;
 using Preacepta.LN.GeAbogado.BuscarXid;
 using Preacepta.LN.GePersona.BuscarXid;
+using Preacepta.LN.HistorialDocumentos.Listar;
 using Preacepta.Modelos.AbstraccionesFrond;
 using Preacepta.UI.Models;
 using System.Diagnostics;
@@ -20,7 +21,7 @@ namespace Praecepta.UI.Controllers
         private readonly IBuscarAbogadoLN _buscarAbogado;
         private readonly IBuscarXidGePersonaLN _buscarPersona;
         private readonly IListarCasosLN _listarTresUltimosCasos;
-        private readonly IListarDocsCompraventaFincaLN _listarTresUltimosDocs;
+        private readonly IListarHistorialLN _listarTresUltimosDocs;
         private readonly IListarCitasLN _listarTresUltimasCitas;
         private readonly SignInManager<IdentityUser> _signInManager;
 
@@ -30,7 +31,7 @@ namespace Praecepta.UI.Controllers
             IBuscarXidGePersonaLN buscarPersona, 
             IBuscarAbogadoLN buscarAbogado, 
             IListarCasosLN listarTresUltimosCasos,
-            IListarDocsCompraventaFincaLN listarTresUltimosDocs,
+            IListarHistorialLN listarTresUltimosDocs,
             IListarCitasLN listarTresUltimasCitas,
         SignInManager<IdentityUser> signInManager)
         {
@@ -125,7 +126,17 @@ namespace Praecepta.UI.Controllers
         public IActionResult AttorneyDetails()
         {
             return View("AttorneyDetails/AttorneyDetails");
-        }      
+        }
+
+        public IActionResult Narayan()
+        {
+            return View("AttorneyDetails/Narayan");
+        }
+
+        public IActionResult Guillermo()
+        {
+            return View("AttorneyDetails/Guillermo");
+        }
 
 
         #region Vista para usuarios Autenticados
@@ -153,7 +164,7 @@ namespace Praecepta.UI.Controllers
                 var persona = await _buscarPersona.buscarXcorreo(correo);
                 var abogado = await _buscarAbogado.buscar(persona.Cedula);
                 var TresUltimosCasos = await _listarTresUltimosCasos.listarXabogadoLos3Casos(persona.Cedula);
-                var TresUltimosDosc = await _listarTresUltimosDocs.ListarTresUltimosDocs(persona.Cedula);
+                var TresUltimosDosc = await _listarTresUltimosDocs.listarXabogadoLos3Docs(persona.Cedula);
                 var citas = await _listarTresUltimasCitas.TresCitasMasProximasXAfitrion(persona.Cedula);
                 PersonaAbogadoCasoDocCita perfilCompleto = new PersonaAbogadoCasoDocCita();
                 perfilCompleto.personaDTO = persona;
@@ -170,7 +181,7 @@ namespace Praecepta.UI.Controllers
             {
                 var persona = await _buscarPersona.buscarXcorreo(correo);
                 var TresUlitmosCasos = await _listarTresUltimosCasos.listarXclienteLos3Casos(persona.Cedula);
-                var TresUltimosDosc = await _listarTresUltimosDocs.ListarTresUltimosDocsXCliente(persona.Cedula);
+                var TresUltimosDosc = await _listarTresUltimosDocs.listarXclienteLos3Docs(persona.Cedula);
                 var citas = await _listarTresUltimasCitas.TresCitasMasProximasXCliente(persona.Cedula);
                 var ModeloCompleto = new PersonaAbogadoCasoDocCita
                 {
