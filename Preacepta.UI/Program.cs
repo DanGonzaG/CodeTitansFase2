@@ -262,7 +262,18 @@ using DinkToPdf.Contracts;
 using Preacepta.UI.Services;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.VisualStudio.Web.CodeGenerators.Mvc.Templates.General;
-using Preacepta.UI.Services.MensajesPersonalizados; // importa servicio
+using Preacepta.UI.Services.MensajesPersonalizados;
+using Preacepta.AD.HistorialDocumentos.Listar;
+using Preacepta.LN.HistorialDocumentos.Listar;
+using Preacepta.AD.HistorialDocumentos.Crear;
+using Preacepta.LN.HistorialDocumentos.Crear;
+using Preacepta.LN.HistorialDocumentos.ObtenerDatos;
+using Preacepta.AD.HistorialDocumentos.BuscarXid;
+using Preacepta.LN.HistorialDocumentos.BuscarXid;
+using Preacepta.AD.HistorialDocumentos.Editar;
+using Preacepta.LN.HistorialDocumentos.Editar;
+using Preacepta.AD.HistorialDocumentos.Eliminar;
+using Preacepta.LN.HistorialDocumentos.Eliminar; // importa servicio
 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -575,8 +586,6 @@ builder.Services.AddScoped<IEliminarPagareLN, EliminarPagareLN>();
 builder.Services.AddScoped<IListarPagareLN, ListarPagareLN>();
 builder.Services.AddScoped<IObtenerDatosPagareLN, ObtenerDatosPagareLN>();
 
-//builder.Services.AddScoped<Preacepta.AD.DocsPagare.Eliminar.EliminarPagareAD>();
-
 // Servicios DocsTipoVehiculo
 builder.Services.AddScoped<IBuscarTipoVehiculoAD, BuscarTipoVehiculoAD>();
 builder.Services.AddScoped<ICrearTipoVehiculoAD, CrearTipoVehiculoAD>();
@@ -589,6 +598,20 @@ builder.Services.AddScoped<IEditarTipoVehiculoLN, EditarTipoVehiculoLN>();
 builder.Services.AddScoped<IEliminarTipoVehiculoLN, EliminarTipoVehiculoLN>();
 builder.Services.AddScoped<IListarTipoVehiculoLN, ListarTipoVehiculoLN>();
 builder.Services.AddScoped<IObtenerDatosTipoVehiculoLN, ObtenerDatosTipoVehiculoLN>();
+
+// Servicios Historial
+builder.Services.AddScoped<IListarHistorialAD, ListarHistorialAD>();
+builder.Services.AddScoped<ICrearHistorialAD, CrearHistorialAD>();
+builder.Services.AddScoped<IBuscarHistorialAD, BuscarHistorialAD>();
+builder.Services.AddScoped<IEditarHistorialAD, EditarHistorialAD>();
+builder.Services.AddScoped<IELiminarHistorialAD, ELiminarHistorialAD>();
+builder.Services.AddScoped<IELiminarHistorialLN, ELiminarHistorialLN>();
+builder.Services.AddScoped<IListarHistorialLN, ListarHistorialLN>();
+builder.Services.AddScoped<ICrearHistorialLN, CrearHistorialLN>();
+builder.Services.AddScoped<IObtenerHistorialLN, ObtenerHistorialLN>();
+builder.Services.AddScoped<IBuscarHistorialLN, BuscarHistorialLN>();
+builder.Services.AddScoped<IEditarHistorialLN, EditarHistorialLN>();
+
 
 //servicios para DInktoPdf, crear pdfs
 builder.Services.AddSingleton(typeof(IConverter), PdfConverterService.GetConverter());

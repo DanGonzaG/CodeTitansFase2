@@ -18,20 +18,18 @@ namespace Preacepta.AD.DocPoderesEspecialesJudiciales.Crear
 
         public async Task<int> crear(TDocsPoderesEspecialesJudiciale poderJud)
         {
-            if (poderJud == null)
-            {
-                Console.WriteLine("El objeto recibo fue nulo");
-                return -1;
-            }
+            if (poderJud == null) return -1;
+
             try
             {
                 await _contexto.TDocsPoderesEspecialesJudiciales.AddAsync(poderJud);
-                int guardado = await _contexto.SaveChangesAsync();
-                return guardado;
+                await _contexto.SaveChangesAsync();
+                return poderJud.IdDoc; 
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Error en CrearPoderJudAD {ex.Message}");
+                var msg = ex.InnerException?.Message ?? ex.Message;
+                Console.WriteLine($"Error en CrearPoderJudAD: {msg}");
                 return 0;
             }
         }

@@ -27,15 +27,17 @@ namespace Preacepta.LN.DocPoderesEspecialesJudiciales.Crear
                 Console.WriteLine("Error: Objeto nulo.");
                 return 0;
             }
+
             try
             {
-                int bandera = await _crear.crear(_obtenerDatos.ObtenerDeFront(poderJudDTO));
-                if (bandera == null)
+                var entidad = _obtenerDatos.ObtenerDeFront(poderJudDTO);
+                var idNuevo = await _crear.crear(entidad);
+                if (idNuevo <= 0)
                 {
-                    Console.WriteLine("Conversion fallida");
+                    Console.WriteLine("Creación no exitosa.");
                     return 0;
                 }
-                return bandera;
+                return idNuevo;
             }
             catch (Exception ex)
             {

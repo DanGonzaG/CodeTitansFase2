@@ -1,15 +1,16 @@
 ﻿@model Preacepta.Modelos.AbstraccionesFrond.TTestimonioDTO
 
-<!-- Page Title -->
+<!-- IMPORTA TUS CSS -->
 <head>
     <link href="~/lyso/css/Daniel.css" rel="stylesheet" />
+    <link href="~/lyso/css/Testimonials.css" rel="stylesheet" />
 </head>
+
 <div class="page-title-area page-title-area-two title-img-one">
     <div class="d-table">
         <div class="d-table-cell">
             <div class="page-title-text">
                 <h2>Su testimonio</h2>
-                
                 <ul>
                     <li>
                         <a href="index.html">Home</a>
@@ -19,58 +20,59 @@
                     </li>
                     <li>Su testimonio</li>
                 </ul>
+                <!-- ¡AQUÍ VA el título de agradecimiento! -->
+                <h2 class="titulo-agradecimiento">
+                    Agradecemos su visita. Sus comentarios son valiosos para nosotros.
+                </h2>
             </div>
         </div>
     </div>
 </div>
-<br />
-<br />
-<!-- End Page Title -->
-<!-- Contact Form -->
+
 <div class="contact-form contact-form-four pb-100">
     <div class="container-fluid">
-        <h2 style="color:black">Agradecemos su visita Sus comentarios son valiosos para nosotros.</h2>
         <form asp-action="TestimonialForm" method="post" id="contactForm">
-
             <div class="row contact-wrap">
                 <div class="col-sm-6 col-lg-6">
                     <div class="form-group">
-                        <label asp-for="IdCliente" class="control-label"></label>
-                        <select asp-for="IdCliente" class="form-control" asp-items="ViewBag.IdCliente"></select>
+                        <input type="hidden" asp-for="IdCliente" value="@ViewBag.IdCliente" />
                     </div>
                 </div>
 
+                <!-- Caja de comentario grande -->
                 <div class="col-md-12 col-lg-12">
                     <div class="form-group">
                         <label asp-for="Comentario" class="control-label"></label>
-                        <input asp-for="Comentario" class="form-control" />
+                        <textarea asp-for="Comentario" class="form-control textarea-comentario" id="Comentario" required></textarea>
                         <span asp-validation-for="Comentario" class="text-danger"></span>
                     </div>
                 </div>
 
-                <div class="col-md-12 col-lg-12">
-                    <div class="form-group">
-                        <p class="clasificacion">
-                            <!-- Radio buttons para la evaluación (mapeado al DTO) -->
-                            <input class="InputCalficacion" id="radio1" type="radio" asp-for="Evaluacion" value="5">
-                            <label class="LabelCalificacion" for="radio1">★</label>
-
-                            <input class="InputCalficacion" id="radio2" type="radio" asp-for="Evaluacion" value="4">
-                            <label class="LabelCalificacion" for="radio2">★</label>
-
-                            <input class="InputCalficacion" id="radio3" type="radio" asp-for="Evaluacion" value="3">
-                            <label class="LabelCalificacion" for="radio3">★</label>
-
-                            <input class="InputCalficacion" id="radio4" type="radio" asp-for="Evaluacion" value="2">
-                            <label class="LabelCalificacion" for="radio4">★</label>
-
-                            <input class="InputCalficacion" id="radio5" type="radio" asp-for="Evaluacion" value="1">
-                            <label class="LabelCalificacion" for="radio5">★</label>
-                        </p>
-                        <span asp-validation-for="Evaluacion" class="text-danger"></span>
-                    </div>
+                <!-- Estrellas de calificación -->
+                <div class="clasificacion">
+                    <label style="position:relative">
+                        <input type="radio" name="Evaluacion" value="1" required>
+                        <span class="star">★</span>
+                    </label>
+                    <label style="position:relative">
+                        <input type="radio" name="Evaluacion" value="2">
+                        <span class="star">★</span>
+                    </label>
+                    <label style="position:relative">
+                        <input type="radio" name="Evaluacion" value="3">
+                        <span class="star">★</span>
+                    </label>
+                    <label style="position:relative">
+                        <input type="radio" name="Evaluacion" value="4">
+                        <span class="star">★</span>
+                    </label>
+                    <label style="position:relative">
+                        <input type="radio" name="Evaluacion" value="5">
+                        <span class="star">★</span>
+                    </label>
                 </div>
 
+                <!-- Checkbox de términos -->
                 <div class="form-group">
                     <div class="form-check agree-label">
                         <input name="gridCheck"
@@ -79,25 +81,64 @@
                                id="gridCheck"
                                required>
                         <label class="form-check-label" for="gridCheck">
-                            Acepta <a href="terms-condition.html">Terminos y Condiciones</a> & <a href="privacy-policy.html"> Politica de privacidad.</a>
+                            Acepta <a href="terms-condition.html">Términos y Condiciones</a> & <a href="privacy-policy.html">Política de privacidad.</a>
                         </label>
                         <div class="help-block with-errors gridCheck-error"></div>
                     </div>
                 </div>
 
-                <div class="col-md-12 col-lg-12">
-                    <div class="text-center">
-                        <button type="submit" class="contact-btn">Enviar</button>
-                    </div>
+                <!-- Botón de enviar centrado -->
+                <div class="col-md-12 col-lg-12 btn-centro">
+                    <button type="submit" class="contact-btn--primario">Enviar</button>
                 </div>
             </div>
         </form>
     </div>
 </div>
-<!-- End Contact Form -->
-<!-- Agrega esta sección para habilitar la validación del lado del cliente -->
+
 @section Scripts {
     @{
         await Html.RenderPartialAsync("_ValidationScriptsPartial");
     }
+    <script>
+        // Validación de campos y estrellas
+        document.getElementById('contactForm').addEventListener('submit', function (e) {
+            var comentario = document.getElementById('Comentario').value.trim();
+            var evaluacion = document.querySelector('input[name="Evaluacion"]:checked');
+            var terminos = document.getElementById('gridCheck').checked;
+            let valido = true;
+            let mensajes = [];
+
+            if (!comentario) {
+                mensajes.push("Debe ingresar un comentario.");
+                valido = false;
+            }
+            if (!evaluacion) {
+                mensajes.push("Debe seleccionar una calificación.");
+                valido = false;
+            }
+            if (!terminos) {
+                mensajes.push("Debe aceptar los términos y condiciones.");
+                valido = false;
+            }
+
+            if (!valido) {
+                e.preventDefault();
+                alert(mensajes.join('\n'));
+            }
+        });
+
+        // Efecto visual en las estrellas
+        document.querySelectorAll('input[name="Evaluacion"]').forEach((radio, i, radios) => {
+            radio.addEventListener('change', function () {
+                radios.forEach((r, idx) => {
+                    if (idx <= i) {
+                        r.nextElementSibling.style.color = '#ffc107';
+                    } else {
+                        r.nextElementSibling.style.color = '#ccc';
+                    }
+                });
+            });
+        });
+    </script>
 }

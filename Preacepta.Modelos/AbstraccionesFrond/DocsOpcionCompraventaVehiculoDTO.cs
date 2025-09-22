@@ -18,6 +18,7 @@ namespace Preacepta.Modelos.AbstraccionesFrond
 
         [DisplayName("Numero de escritura")]
         [MaxLength(50, ErrorMessage = "Capacidad del contenido excedida")]
+        [Required(ErrorMessage = "El numero de escritura es requerido")]
         public string NumeroEscritura { get; set; } = null!;
 
         [DisplayName("Cedula del abogado")]
@@ -31,22 +32,27 @@ namespace Preacepta.Modelos.AbstraccionesFrond
 
         [DisplayName("Placa del vehiculo")]
         [MaxLength(20, ErrorMessage = "Capacidad de la placa excedida")]
+        [Required(ErrorMessage = "Debe ingresar un placa")]
         public string PlacaVehiculo { get; set; } = null!;
 
         [DisplayName("Marca del vehiculo")]
+        [Required(ErrorMessage = "Debe de seleccionar una marca para el vehiculo")]
         public int MarcaVehiculo { get; set; }
 
         [DisplayName("Tipo de vehiculo")]
+        [Required(ErrorMessage = "Debe de seleccionar un tipo de vehiculo")]
         public int TipoVehiculo { get; set; }
 
         [DisplayName("Modelo del vehiculo")]
         [MaxLength(100, ErrorMessage = "Capacidad excedida")]
+        [Required(ErrorMessage = "Debe de seleccionar un modelo para el vehiculo")]
         public string ModeloVehiculo { get; set; } = null!;
 
         [MaxLength(100, ErrorMessage = "Capacidad excedida")]
+        [Required(ErrorMessage = "Debe de ingresar una marca para el vehiculo")]
         public string Carroceria { get; set; } = null!;
 
-        [MaxLength(100, ErrorMessage = "Capacidad excedida")]
+        [MaxLength(100, ErrorMessage = "Debe ingresar una categoria")]
         public string Categoria { get; set; } = null!;
 
         [MaxLength(100, ErrorMessage = "Capacidad excedida")]

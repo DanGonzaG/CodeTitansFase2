@@ -1,0 +1,450 @@
+﻿@model Preacepta.Modelos.AbstraccionesFrond.DocsPagareDTO
+@using System.Globalization
+@{
+    CultureInfo.DefaultThreadCurrentCulture = new CultureInfo("en-US");
+    CultureInfo.DefaultThreadCurrentUICulture = new CultureInfo("en-US");
+}
+<head>
+    <link href="~/lyso/css/Daniel.css" rel="stylesheet" />
+</head>
+
+<body>
+    <!-- Page Title -->
+    <div class="page-title-area page-title-area-two title-img-one">
+        <div class="d-table">
+            <div class="d-table-cell">
+                <div class="page-title-text">
+                    <h2>Generador de Documentos Legales</h2>
+                    <ul>
+                        <li><a asp-controller="Home" asp-action="Index">Inicio</a></li>
+                        <li><i class="icofont-simple-right"></i></li>
+                        <li><a asp-controller="Home" asp-action="UsuarioAutenticado" asp-route-correo="@User.Identity.Name">PreaceptaApp</a></li>
+                        <li><i class="icofont-simple-right"></i></li>
+                        <li>Generador de Pagarés</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <br />
+    <br />
+    <br />
+
+    <div class="contact-form contact-form-two">
+        <div class="container">
+
+            <div class="contact-wrap">
+                <form asp-controller="TDocsPagares" asp-action="CreateDocsPagares" id="CreateDocsPagares">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                    <h2>Formulario para generar pagaré</h2>
+
+                    <div class="row justify-content-center">
+
+                        <div class="seccion-titulo">Datos del cliente</div>
+
+                        <!-- Deudor -->
+                        <div class="col-sm-6 col-lg-6 centro">
+                            <div class="form-group LetraNegra">
+                                <label class="control-label">Cédula</label>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-lg-6">
+                            <div class="form-group">
+                                <input asp-for="CedulaDeudor"
+                                       id="idCedulaDeudor"
+                                       type="text"
+                                       inputmode="numeric"
+                                       pattern="\d*"
+                                       value="@ViewBag.DeudorCedula"
+                                       class="form-control LetraNegra"
+                                       readonly />
+                                <span asp-validation-for="CedulaDeudor" class="text-danger"></span>
+                                <input type="hidden" name="CedulaAbogado" value="@ViewBag.AbogadoCedula" />
+                            </div>
+                        </div>
+
+
+                        <div class="col-sm-6 col-lg-6 centro">
+                            <div class="form-group LetraNegra">
+                                <label class="control-label">Cliente</label>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-lg-6">
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col">
+                                        <input class="form-control LetraNegra text-center"
+                                               value="@ViewBag.DeudorNombre" readonly />
+                                        <div class="text-center" style="font-size:15px">
+                                            <label class="control-label">Nombre</label>
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <input class="form-control LetraNegra text-center"
+                                               value="@ViewBag.DeudorApellido1" readonly />
+                                        <div class="text-center" style="font-size:15px">
+                                            <label class="control-label">Primer apellido</label>
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <input class="form-control LetraNegra text-center"
+                                               value="@ViewBag.DeudorApellido2" readonly />
+                                        <div class="text-center" style="font-size:15px">
+                                            <label class="control-label">Segundo apellido</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="seccion-titulo">Información del Acreedor y Sociedad</div>
+
+                        <!-- Monto Numérico -->
+                        <div class="col-sm-6 col-lg-6 centro">
+                            <div class="form-group LetraNegra">
+                                <label asp-for="MontoNumerico" class="control-label centro"></label>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-lg-6">
+                            <div class="form-group">
+                                <input asp-for="MontoNumerico" class="form-control LetraNegra" id="idMontoNumerico" step="0.01" inputmode="decimal" />
+                                <span asp-validation-for="MontoNumerico" class="text-danger"></span>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-6 col-lg-6 centro">
+                            <div class="form-group LetraNegra">
+                                <label asp-for="SociedadDeudor" class="control-label"></label>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-lg-6">
+                            <div class="form-group">
+                                <input asp-for="SociedadDeudor" class="form-control LetraNegra" id="idSociedadDeudor" />
+                                <span asp-validation-for="SociedadDeudor" class="text-danger"></span>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-6 col-lg-6 centro">
+                            <div class="form-group LetraNegra">
+                                <label asp-for="TipoSociedad" class="control-label">Tipo de Sociedad</label>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-lg-6">
+                            <div class="form-group">
+                                <input asp-for="TipoSociedad" class="form-control LetraNegra" id="idTipoSociedad" />
+                                <span asp-validation-for="TipoSociedad" class="text-danger"></span>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-6 col-lg-6 centro">
+                            <div class="form-group LetraNegra">
+                                <label asp-for="CedulaJuridicaSociedad" class="control-label"></label>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-lg-6">
+                            <div class="form-group">
+                                <input asp-for="CedulaJuridicaSociedad" class="form-control LetraNegra" id="idCedulaJuridicaSociedad" />
+                                <span asp-validation-for="CedulaJuridicaSociedad" class="text-danger"></span>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-6 col-lg-6 centro">
+                            <div class="form-group LetraNegra">
+                                <label asp-for="UbicacionSociedad" class="control-label">Ubicación de la Sociedad</label>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-lg-6">
+                            <div class="form-group">
+                                <input asp-for="UbicacionSociedad" class="form-control LetraNegra" id="idUbicacionSociedad" />
+                                <span asp-validation-for="UbicacionSociedad" class="text-danger"></span>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-6 col-lg-6 centro">
+                            <div class="form-group LetraNegra">
+                                <label asp-for="AcreedorNombre" class="control-label"></label>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-lg-6">
+                            <div class="form-group">
+                                <input asp-for="AcreedorNombre" class="form-control LetraNegra" id="idAcreedorNombre" />
+                                <span asp-validation-for="AcreedorNombre" class="text-danger"></span>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-6 col-lg-6 centro">
+                            <div class="form-group LetraNegra">
+                                <label asp-for="CedulaJuridicaAcreedor" class="control-label"></label>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-lg-6">
+                            <div class="form-group">
+                                <input asp-for="CedulaJuridicaAcreedor" class="form-control LetraNegra" id="idCedulaJuridicaAcreedor" />
+                                <span asp-validation-for="CedulaJuridicaAcreedor" class="text-danger"></span>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-6 col-lg-6 centro">
+                            <div class="form-group LetraNegra">
+                                <label asp-for="AcreedorDomicilio" class="control-label"></label>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-lg-6">
+                            <div class="form-group">
+                                <input asp-for="AcreedorDomicilio" class="form-control LetraNegra" id="idAcreedorDomicilio" />
+                                <span asp-validation-for="AcreedorDomicilio" class="text-danger"></span>
+                            </div>
+                        </div>
+
+                        <div class="seccion-titulo">Condiciones del documento</div>
+
+                        <div class="col-sm-6 col-lg-6 centro">
+                            <div class="form-group LetraNegra">
+                                <label asp-for="FechaVencimiento" class="control-label"></label>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-lg-6 LetraNegra">
+                            <div class="form-group">
+                                <input asp-for="FechaVencimiento" type="date" class="form-control LetraNegra" id="idFechaVencimiento" />
+                                <span asp-validation-for="FechaVencimiento" class="text-danger"></span>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-6 col-lg-6 centro">
+                            <div class="form-group LetraNegra">
+                                <label asp-for="InteresFormula" class="control-label"></label>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-lg-6">
+                            <div class="form-group">
+                                <input asp-for="InteresFormula" class="form-control LetraNegra" id="idInteresFormula" />
+                                <span asp-validation-for="InteresFormula" class="text-danger"></span>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-6 col-lg-6 centro">
+                            <div class="form-group LetraNegra">
+                                <label asp-for="InteresTasaActual" class="control-label"></label>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-lg-6">
+                            <div class="form-group">
+                                <input asp-for="InteresTasaActual" class="form-control LetraNegra" id="idInteresTasaActual" step="0.01" inputmode="decimal" />
+                                <span asp-validation-for="InteresTasaActual" class="text-danger"></span>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-6 col-lg-6 centro">
+                            <div class="form-group LetraNegra">
+                                <label asp-for="InteresBase" class="control-label"></label>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-lg-6">
+                            <div class="form-group">
+                                <input asp-for="InteresBase" class="form-control LetraNegra" id="idInteresBase" />
+                                <span asp-validation-for="InteresBase" class="text-danger"></span>
+                            </div>
+                        </div>
+
+                        <!-- ===================== LUGAR DE PAGO ===================== -->
+                        <div class="seccion-titulo">Lugar de Pago</div>
+
+                        <!-- Provincia -->
+                        <div class="col-sm-6 col-lg-6 centro">
+                            <div class="LetraNegra"><label>Provincia:</label></div>
+                        </div>
+                        <div class="col-sm-6 col-lg-6">
+                            <div class="form-group">
+                                <select class="selectDaniel" id="provincia">
+                                    <option value="">Seleccione una provincia</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <!-- Cantón -->
+                        <div class="col-sm-6 col-lg-6 centro">
+                            <div class="LetraNegra"><label>Cantón:</label></div>
+                        </div>
+                        <div class="col-sm-6 col-lg-6">
+                            <div class="form-group">
+                                <select class="selectDaniel" id="canton" disabled>
+                                    <option value="">Seleccione un cantón</option>
+                                </select>
+                                <input id="inputCanton" class="form-control" readonly />
+                            </div>
+                        </div>
+
+                        <!-- Distrito -->
+                        <div class="col-sm-6 col-lg-6 centro">
+                            <div class="LetraNegra"><label>Distrito:</label></div>
+                        </div>
+                        <div class="col-sm-6 col-lg-6">
+                            <div class="form-group">
+                                <select class="selectDaniel" id="distrito" name="LugarPago" asp-for="LugarPago" disabled>
+                                    <option value="">Seleccione un distrito</option>
+                                </select>
+                                <input id="inputDistrito" name="LugarPago" class="form-control" readonly />
+                                <span asp-validation-for="LugarPago" class="text-danger"></span>
+                                <input type="hidden" id="idLugarPago" />
+                            </div>
+                        </div>
+
+                        <!-- ===================== FIADOR ===================== -->
+                        <div class="seccion-titulo">Datos del Fiador</div>
+
+                        <div class="col-sm-6 col-lg-6 centro">
+                            <div class="form-group LetraNegra">
+                                <label class="control-label">Cédula</label>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-lg-6">
+                            <div class="form-group">
+                                <input asp-for="CedulaFiador"
+                                       id="idCedulaFiador"
+                                       value="@ViewBag.FiadorCedula"
+                                       class="form-control LetraNegra"
+                                       readonly />
+                                <span asp-validation-for="CedulaFiador" class="text-danger"></span>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-6 col-lg-6 centro">
+                            <div class="form-group LetraNegra">
+                                <label class="control-label">Fiador</label>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-lg-6">
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col">
+                                        <input class="form-control LetraNegra text-center" value="@ViewBag.FiadorNombre" readonly />
+                                        <div class="text-center" style="font-size:15px">
+                                            <label class="control-label">Nombre</label>
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <input class="form-control LetraNegra text-center" value="@ViewBag.FiadorApellido1" readonly />
+                                        <div class="text-center" style="font-size:15px">
+                                            <label class="control-label">Primer apellido</label>
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <input class="form-control LetraNegra text-center" value="@ViewBag.FiadorApellido2" readonly />
+                                        <div class="text-center" style="font-size:15px">
+                                            <label class="control-label">Segundo apellido</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- ========== UBICACIÓN DE FIRMA  ========== -->
+                        <div class="seccion-titulo">Ubicación de Firma </div>
+
+                        <div class="col-sm-6 col-lg-6 centro">
+                            <div class="form-group">
+                                <label for="provincia">Provincia:</label>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-lg-6">
+                            <div class="form-group">
+                                <select class="selectDaniel" id="provincia2" name="provincia">
+                                    <option value="">Seleccione una provincia</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-lg-6 centro">
+                            <div class="form-group">
+                                <label for="canton">Cantón:</label>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-lg-6">
+                            <div class="form-group">
+                                <select class="selectDaniel" id="canton2" name="canton2" disabled>
+                                    <option value="">Seleccione un cantón</option>
+                                </select>
+                                <input id="inputCanton2" asp-for="UbicacionFirma" class="form-control" readonly />
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-lg-6 centro">
+                            <div class="form-group">
+                                <label for="distrito">Distrito:</label>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-lg-6">
+                            <div class="form-group">
+                                <select class="selectDaniel" id="distrito2" name="UbicacionFirma" asp-for="UbicacionFirma" disabled>
+                                    <option value="">Seleccione un distrito</option>
+                                </select>
+                                <input id="inputDistrito2" name="UbicacionFirma" asp-for="UbicacionFirma" class="form-control" readonly />
+                                <input type="hidden" id="idUbicacionFirma" />
+                            </div>
+                        </div>
+
+
+
+                        <input type="hidden" id="idFechaFirma" name="FechaFirma" />
+                        <input type="hidden" id="idHoraFirma" name="HoraFirma" />
+
+                        <div class="col-md-12 col-lg-12">
+                            <div class="text-center d-flex justify-content-center gap-3">
+                                <div class="form-group" id="btnCrearCaso">
+                                    <input type="submit" value="Crear Documento" class="contact-btn--primario" />
+                                </div>
+                                <div class="form-group">
+                                    <button type="button" id="btnPrevisualizar" class="contact-btn--secundario">Previsualizar PDF</button>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+
+<!-- Modal -->
+<div class="modal fade" id="PrevioModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Revisión de datos ingresados</h5>
+                <button id="Retroceso2" type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p style="color: black"><strong>Monto Numérico:</strong> <span id="previoMontoNumerico"></span></p>
+                <p style="color: black"><strong>Cédula Deudor:</strong> <span id="previoCedulaDeudor"></span></p>
+                <p style="color: black"><strong>Sociedad Deudor:</strong> <span id="previoSociedadDeudor"></span></p>
+                <p style="color: black"><strong>Tipo de Sociedad:</strong> <span id="previoTipoSociedad"></span></p>
+                <p style="color: black"><strong>Ubicación de la Sociedad:</strong> <span id="previoUbicacionSociedad"></span></p>
+                <p style="color: black"><strong>Cédula Jurídica Sociedad:</strong> <span id="previoCedulaJuridicaSociedad"></span></p>
+                <p style="color: black"><strong>Acreedor Nombre:</strong> <span id="previoAcreedorNombre"></span></p>
+                <p style="color: black"><strong>Cédula Jurídica Acreedor:</strong> <span id="previoCedulaJuridicaAcreedor"></span></p>
+                <p style="color: black"><strong>Acreedor Domicilio:</strong> <span id="previoAcreedorDomicilio"></span></p>
+                <p style="color: black"><strong>Fecha Vencimiento:</strong> <span id="previoFechaVencimiento"></span></p>
+                <p style="color: black"><strong>Interés Fórmula:</strong> <span id="previoInteresFormula"></span></p>
+                <p style="color: black"><strong>Interés Tasa Actual:</strong> <span id="previoInteresTasaActual"></span></p>
+                <p style="color: black"><strong>Interés Base:</strong> <span id="previoInteresBase"></span></p>
+                <p style="color: black"><strong>Lugar de Pago:</strong> <span id="previoLugarPago"></span></p>
+                <p style="color: black"><strong>Cédula Fiador:</strong> <span id="previoCedulaFiador"></span></p>
+                <p style="color: black"><strong>Ubicación Firma:</strong> <span id="previoUbicacionFirma"></span></p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="contact-btn" data-bs-dismiss="modal" id="Retroceso">Hacer Cambios</button>
+                <button type="button" id="BtnConfirmar" class="contact-btn">Confirmar datos</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+    <script src="~/lyso/js/FiltroProvinicaCantonDistrito.js"></script>
+    <script src="~/lyso/js/FiltroProvinicaCantonDistritoParaFirmas.js"></script>
+    <script src="~/lyso/js/DocsPagares.js"></script>
+}

@@ -1,11 +1,7 @@
 ﻿using Preacepta.Modelos.AbstraccionesBD;
 using Preacepta.Modelos.AbstraccionesFrond;
 using System;
-using System.Collections.Generic;
 using System.Globalization;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Preacepta.LN.DocsPagare.ObtenerDatos
 {
@@ -23,58 +19,73 @@ namespace Preacepta.LN.DocsPagare.ObtenerDatos
                 AcreedorNombre = pagare.AcreedorNombre,
                 CedulaJuridicaAcreedor = pagare.CedulaJuridicaAcreedor,
                 AcreedorDomicilio = pagare.AcreedorDomicilio,
+
                 FechaFirma = pagare.FechaFirma.ToString("yyyy-MM-dd"),
                 HoraFirma = pagare.HoraFirma.ToString("HH:mm"),
                 FechaVencimiento = pagare.FechaVencimiento.ToString("yyyy-MM-dd"),
+
                 InteresFormula = pagare.InteresFormula,
                 InteresTasaActual = pagare.InteresTasaActual,
                 InteresBase = pagare.InteresBase,
+
                 LugarPago = pagare.LugarPago,
                 CedulaFiador = pagare.CedulaFiador,
                 UbicacionFirma = pagare.UbicacionFirma,
+
+                CedulaAbogado = pagare.CedulaAbogado,
+
+                TipoSociedad = pagare.TipoSociedad,
+                UbicacionSociedad = pagare.UbicacionSociedad,
+
                 CedulaDeudorNavigation = pagare.CedulaDeudorNavigation,
                 CedulaFiadorNavigation = pagare.CedulaFiadorNavigation,
                 LugarPagoNavigation = pagare.LugarPagoNavigation
             };
         }
 
-
-        /*metodo para obtner los datos de los formularios y pasarlos al modelo de acceso a datos*/
-        public TDocsPagare ObtenerDeFront(DocsPagareDTO pagareDTO)
+        public TDocsPagare ObtenerDeFront(DocsPagareDTO dto)
         {
-            if (!DateOnly.TryParseExact(pagareDTO.FechaFirma, "yyyy-MM-dd", CultureInfo.InvariantCulture, DateTimeStyles.None, out var fechaFirma))
-                fechaFirma = DateOnly.FromDateTime(DateTime.Today);  // Valor por defecto
+            if (!DateOnly.TryParseExact(dto.FechaFirma, "yyyy-MM-dd", CultureInfo.InvariantCulture, DateTimeStyles.None, out var fechaFirma))
+                fechaFirma = DateOnly.FromDateTime(DateTime.Today);
 
-            if (!TimeOnly.TryParseExact(pagareDTO.HoraFirma, "HH:mm", CultureInfo.InvariantCulture, DateTimeStyles.None, out var horaFirma))
-                horaFirma = TimeOnly.FromDateTime(DateTime.Now);  // Valor por defecto
+            if (!TimeOnly.TryParseExact(dto.HoraFirma, "HH:mm", CultureInfo.InvariantCulture, DateTimeStyles.None, out var horaFirma))
+                horaFirma = TimeOnly.FromDateTime(DateTime.Now);
 
-            if (!DateOnly.TryParseExact(pagareDTO.FechaVencimiento, "yyyy-MM-dd", CultureInfo.InvariantCulture, DateTimeStyles.None, out var fechaVencimiento))
-                fechaVencimiento = DateOnly.FromDateTime(DateTime.Today.AddMonths(1));  // Valor razonable por defecto
+            if (!DateOnly.TryParseExact(dto.FechaVencimiento, "yyyy-MM-dd", CultureInfo.InvariantCulture, DateTimeStyles.None, out var fechaVencimiento))
+                fechaVencimiento = DateOnly.FromDateTime(DateTime.Today.AddMonths(1));
 
             return new TDocsPagare
             {
-                IdDocumento = pagareDTO.IdDocumento,
-                MontoNumerico = pagareDTO.MontoNumerico,
-                CedulaDeudor = pagareDTO.CedulaDeudor,
-                SociedadDeudor = pagareDTO.SociedadDeudor,
-                CedulaJuridicaSociedad = pagareDTO.CedulaJuridicaSociedad,
-                AcreedorNombre = pagareDTO.AcreedorNombre,
-                CedulaJuridicaAcreedor = pagareDTO.CedulaJuridicaAcreedor,
-                AcreedorDomicilio = pagareDTO.AcreedorDomicilio,
+                IdDocumento = dto.IdDocumento,
+                MontoNumerico = dto.MontoNumerico,
+                CedulaDeudor = dto.CedulaDeudor,
+                SociedadDeudor = dto.SociedadDeudor,
+                CedulaJuridicaSociedad = dto.CedulaJuridicaSociedad,
+                AcreedorNombre = dto.AcreedorNombre,
+                CedulaJuridicaAcreedor = dto.CedulaJuridicaAcreedor,
+                AcreedorDomicilio = dto.AcreedorDomicilio,
+
                 FechaFirma = fechaFirma,
                 HoraFirma = horaFirma,
                 FechaVencimiento = fechaVencimiento,
-                InteresFormula = pagareDTO.InteresFormula,
-                InteresTasaActual = pagareDTO.InteresTasaActual,
-                InteresBase = pagareDTO.InteresBase,
-                LugarPago = pagareDTO.LugarPago,
-                CedulaFiador = pagareDTO.CedulaFiador,
-                UbicacionFirma = pagareDTO.UbicacionFirma,
-                CedulaDeudorNavigation = pagareDTO.CedulaDeudorNavigation,
-                CedulaFiadorNavigation = pagareDTO.CedulaFiadorNavigation,
-                LugarPagoNavigation = pagareDTO.LugarPagoNavigation
+
+                InteresFormula = dto.InteresFormula,
+                InteresTasaActual = dto.InteresTasaActual,
+                InteresBase = dto.InteresBase,
+
+                LugarPago = dto.LugarPago,
+                CedulaFiador = dto.CedulaFiador,
+                UbicacionFirma = dto.UbicacionFirma,
+
+                CedulaAbogado = dto.CedulaAbogado,
+
+                TipoSociedad = dto.TipoSociedad,
+                UbicacionSociedad = dto.UbicacionSociedad,
+
+                CedulaDeudorNavigation = dto.CedulaDeudorNavigation,
+                CedulaFiadorNavigation = dto.CedulaFiadorNavigation,
+                LugarPagoNavigation = dto.LugarPagoNavigation
             };
         }
-
     }
 }

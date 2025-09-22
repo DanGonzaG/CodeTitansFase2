@@ -1,365 +1,386 @@
 ﻿using DinkToPdf;
 using DinkToPdf.Contracts;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.EntityFrameworkCore;
-using Preacepta.AD;
+using Preacepta.AD.HistorialDocumentos.Eliminar;
 using Preacepta.LN.DocPoderesEspecialesJudiciales.Buscar;
 using Preacepta.LN.DocPoderesEspecialesJudiciales.Crear;
 using Preacepta.LN.DocPoderesEspecialesJudiciales.Editar;
 using Preacepta.LN.DocPoderesEspecialesJudiciales.Eliminar;
 using Preacepta.LN.DocPoderesEspecialesJudiciales.Listar;
-using Preacepta.Modelos.AbstraccionesBD;
+using Preacepta.LN.GeAbogado.BuscarXid;
+using Preacepta.LN.GePersona.BuscarXid;
+using Preacepta.LN.HistorialDocumentos.BuscarXid;
+using Preacepta.LN.HistorialDocumentos.Crear;
+using Preacepta.LN.HistorialDocumentos.Editar;
+using Preacepta.LN.HistorialDocumentos.Eliminar;
+using Preacepta.LN.HistorialDocumentos.Listar;
 using Preacepta.Modelos.AbstraccionesFrond;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using System.Globalization;
 
 namespace Preacepta.UI.Controllers
 {
     public class TDocsPoderesEspecialesJudicialesController : Controller
     {
         private readonly IConverter _converter;
-        private readonly Contexto _context;
+
+        // Documento
         private readonly IBuscarPoderJudLN _buscar;
         private readonly ICrearPoderJudLN _crear;
         private readonly IEditarPoderJudLN _editar;
         private readonly IEliminarPoderJudLN _eliminar;
         private readonly IListarPoderJudLN _listar;
 
-        public TDocsPoderesEspecialesJudicialesController(IBuscarPoderJudLN buscar,
+        // Personas 
+        private readonly IBuscarXidGePersonaLN _buscarPersona;
+
+        // Historial 
+        private readonly ICrearHistorialLN _crearHistorial;
+        private readonly IBuscarHistorialLN _buscarHistorial;
+        private readonly IListarHistorialLN _listarHistorial;
+        private readonly IEditarHistorialLN _editarHistorial;
+        private readonly IELiminarHistorialLN _eliminarHistorial;
+
+        // Carnet (abogado)
+        private readonly IBuscarAbogadoLN _buscarAbogado;
+
+        public TDocsPoderesEspecialesJudicialesController(
+            IBuscarPoderJudLN buscar,
             ICrearPoderJudLN crear,
             IEditarPoderJudLN editar,
             IEliminarPoderJudLN eliminar,
             IListarPoderJudLN listar,
             IConverter converter,
-            Contexto context)
+            IBuscarXidGePersonaLN buscarPersona,
+            ICrearHistorialLN crearHistorial,
+            IBuscarHistorialLN buscarHistorial,
+            IListarHistorialLN listarHistorial,
+            IBuscarAbogadoLN buscarAbogado,
+            IEditarHistorialLN editarHistorial,
+            IELiminarHistorialLN eliminarHistorial)
         {
             _converter = converter;
-            _context = context;
+
             _buscar = buscar;
             _crear = crear;
             _editar = editar;
             _eliminar = eliminar;
             _listar = listar;
+
+            _buscarPersona = buscarPersona;
+
+            _crearHistorial = crearHistorial;
+            _buscarHistorial = buscarHistorial;
+            _listarHistorial = listarHistorial;
+
+            _buscarAbogado = buscarAbogado;
+
+            _editarHistorial = editarHistorial;
+            _eliminarHistorial = eliminarHistorial;
         }
 
-        // GET: TDocsPoderesEspecialesJudiciales
-        public async Task<IActionResult> Index()
-        {
-            return View(await _listar.Listar());
-        }
+        // ================= CRUD base =================
+        [Authorize(Roles = "Gestor")]
+        public async Task<IActionResult> Index() => View(await _listar.Listar());
 
-        // GET: TDocsPoderesEspecialesJudiciales/Details/5
+        [Authorize(Roles = "Gestor")]
         public async Task<IActionResult> Details(int id)
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var poderJud = await _buscar.buscar(id);
-            if (poderJud == null)
-            {
-                return NotFound();
-            }
-
-            return View(poderJud);
+            var dto = await _buscar.buscar(id);
+            if (dto == null) return NotFound();
+            return View(dto);
         }
 
-        // GET: TDocsPoderesEspecialesJudiciales/Create
+        [Authorize(Roles = "Gestor")]
         public IActionResult Create()
         {
-            return View();
+            var model = new DocsPoderesEspecialesJudicialeDTO
+            {
+                Fecha = DateTime.Today.ToString("yyyy-MM-dd", CultureInfo.InvariantCulture),
+            };
+            return View(model);
         }
 
-        // POST: TDocsPoderesEspecialesJudiciales/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("IdDoc,Fecha,IdAbogado,IdCliente,Texto")] DocsPoderesEspecialesJudicialeDTO tDocsPoderesEspecialesJudiciale)
+        [Authorize(Roles = "Gestor")]
+        public async Task<IActionResult> Create(
+            [Bind("IdDoc,Fecha,IdAbogado,IdCliente,Texto,NumCausa")]
+            DocsPoderesEspecialesJudicialeDTO dto)
         {
-            if (ModelState.IsValid)
-            {
-                /*tDocsPoderesEspecialesJudiciale.Fecha = DateTime.Today.ToString("yyyy-MM-dd");*/
+            if (!ModelState.IsValid) return View(dto);
 
-                await _crear.crear(tDocsPoderesEspecialesJudiciale);
-                return RedirectToAction(nameof(Index));
+            dto.Fecha ??= DateTime.Today.ToString("yyyy-MM-dd", CultureInfo.InvariantCulture);
+
+            await _crear.crear(dto);
+
+            var nuevoIdDoc = (await _listar.Listar())
+                                ?.OrderByDescending(x => x.IdDoc)
+                                .Select(x => x.IdDoc)
+                                .FirstOrDefault() ?? 0;
+
+            if (nuevoIdDoc > 0)
+            {
+                var historial = new HistorialDocumentoDTO
+                {
+                    Fecha = DateTime.Now.ToString("dd/MM/yyyy"),
+                    TipoDocumento = "Poderes especiales judiciales",
+                    Cliente = dto.IdCliente,
+                    Abogado = dto.IdAbogado,
+                    IdDocumento = nuevoIdDoc,
+                    Titulo = $"Doc.no.{nuevoIdDoc} Poder especial judicial"
+                };
+                await _crearHistorial.Crear(historial);
             }
-            return View(tDocsPoderesEspecialesJudiciale);
+
+            return RedirectToAction(nameof(Index));
         }
 
-        // GET: TDocsPoderesEspecialesJudiciales/Edit/5
+        [Authorize(Roles = "Gestor")]
         public async Task<IActionResult> Edit(int id)
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var tDocsPoderesEspecialesJudiciale = await _buscar.buscar(id);
-            if (tDocsPoderesEspecialesJudiciale == null)
-            {
-                return NotFound();
-            }
-            return View(tDocsPoderesEspecialesJudiciale);
+            var dto = await _buscar.buscar(id);
+            if (dto == null) return NotFound();
+            return View(dto);
         }
 
-        // POST: TDocsPoderesEspecialesJudiciales/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("IdDoc,Fecha,IdAbogado,IdCliente,Texto")] DocsPoderesEspecialesJudicialeDTO tDocsPoderesEspecialesJudiciale)
+        [Authorize(Roles = "Gestor")]
+        public async Task<IActionResult> Edit(
+            int id,
+            [Bind("IdDoc,Fecha,IdAbogado,IdCliente,Texto,NumCausa")]
+            DocsPoderesEspecialesJudicialeDTO dto)
         {
-            if (id != tDocsPoderesEspecialesJudiciale.IdDoc)
+            if (id != dto.IdDoc) return NotFound();
+            if (!ModelState.IsValid) return View(dto);
+
+            dto.Fecha = string.IsNullOrWhiteSpace(dto.Fecha)
+                ? DateTime.Today.ToString("yyyy-MM-dd", CultureInfo.InvariantCulture)
+                : dto.Fecha;
+
+            await _editar.editar(dto);
+
+            try
             {
-                return NotFound();
+                var historiales = await _listarHistorial.listar();
+                var relacionados = historiales?
+                    .Where(h => h.IdDocumento == dto.IdDoc &&
+                                string.Equals(h.TipoDocumento, "Poderes especiales judiciales", StringComparison.OrdinalIgnoreCase))
+                    .ToList() ?? new List<HistorialDocumentoDTO>();
+
+                foreach (var h in relacionados)
+                {
+                    bool cambio = false;
+                    if (h.Abogado != dto.IdAbogado) { h.Abogado = dto.IdAbogado; cambio = true; }
+                    if (h.Cliente != dto.IdCliente) { h.Cliente = dto.IdCliente; cambio = true; }
+                    if (cambio) await _editarHistorial.Editar(h);
+                }
+            }
+            catch
+            {
+                TempData["HistorialWarn"] = "Se guardó el documento, pero no se pudo sincronizar el historial.";
             }
 
-            if (ModelState.IsValid)
-            {
-                try
-                {
-                    await _editar.editar(tDocsPoderesEspecialesJudiciale);
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    return NotFound();
-                }
-                return RedirectToAction(nameof(Index));
-            }
-            return View(tDocsPoderesEspecialesJudiciale);
+            return RedirectToAction(nameof(Index));
         }
 
-        // GET: TDocsPoderesEspecialesJudiciales/Delete/5
+        [Authorize(Roles = "Gestor")]
         public async Task<IActionResult> Delete(int id)
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var tDocsPoderesEspecialesJudiciale = await _buscar.buscar(id);
-            if (tDocsPoderesEspecialesJudiciale == null)
-            {
-                return NotFound();
-            }
-
-            return View(tDocsPoderesEspecialesJudiciale);
+            var dto = await _buscar.buscar(id);
+            if (dto == null) return NotFound();
+            return View(dto);
         }
 
-            // POST: TDocsPoderesEspecialesJudiciales/Delete/5
-            [HttpPost, ActionName("Delete")]
-            [ValidateAntiForgeryToken]
-            public async Task<IActionResult> DeleteConfirmed(int id)
-            {
-                await _eliminar.eliminar(id);
-                return RedirectToAction(nameof(Index));
-            }
-
-
-        //Mis metodos estan de aquí en adelante
-        public IActionResult CreateDocsPoderesEspecialesJudiciales()
-        {
-            ViewData["IdAbogado"] = new SelectList(_context.TGeAbogados.Include(a => a.CedulaNavigation).Select(a => new
-                {
-                    Cedula = a.Cedula,
-                    Texto = a.CedulaNavigation.Nombre + " " + a.CedulaNavigation.Apellido1 + " - " + a.Cedula
-                }),
-                "Cedula",
-                "Texto");
-
-            ViewData["IdCliente"] = new SelectList(_context.TGePersonas.Select(p => new
-            {
-                Cedula = p.Cedula,
-                apellido = p.Apellido1,
-                Texto = p.Nombre + " " + p.Apellido1 + " - " + p.Cedula
-            }),
-            "Cedula", "Texto");
-
-            return View();
-        }
-
-        // POST: TDocsPoderesEspecialesJudiciales/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
+        [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> CreateDocsPoderesEspecialesJudiciales(
-    [Bind("IdDoc,Fecha,IdAbogado,IdCliente,Texto")] DocsPoderesEspecialesJudicialeDTO tDocsPoderesEspecialesJudiciale,
-    [FromForm] int? DocumentoAnteriorId)
+        [Authorize(Roles = "Gestor")]
+        public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            if (ModelState.IsValid)
-            {
-                /*tDocsPoderesEspecialesJudiciale.Fecha = DateTime.Today.ToString("yyyy-MM-dd");*/
+            var historiales = await _listarHistorial.listar();
+            var relacionados = historiales?
+                .Where(h => h.IdDocumento == id &&
+                            string.Equals(h.TipoDocumento, "Poderes especiales judiciales", StringComparison.OrdinalIgnoreCase))
+                .ToList() ?? new List<HistorialDocumentoDTO>();
 
-                // Crear el nuevo documento
-                await _crear.crear(tDocsPoderesEspecialesJudiciale);
+            foreach (var h in relacionados)
+                await _eliminarHistorial.Eliminar(h.Id);
 
-                // 🔍 Obtener el Id del documento recién creado
-                var nuevoIdDoc = _context.TDocsPoderesEspecialesJudiciales
-                    .OrderByDescending(x => x.IdDoc)
-                    .Select(x => x.IdDoc)
-                    .FirstOrDefault();
+            await _eliminar.eliminar(id);
 
-                // Obtener cliente
-                var cliente = await _context.TGePersonas
-                    .FirstOrDefaultAsync(p => p.Cedula == tDocsPoderesEspecialesJudiciale.IdCliente);
-                string nombreCliente = cliente != null
-                    ? $"{cliente.Nombre} {cliente.Apellido1} {cliente.Apellido2}"
-                    : tDocsPoderesEspecialesJudiciale.IdCliente.ToString();
-
-                // Obtener abogado
-                var abogado = await _context.TGeAbogados
-                    .Include(a => a.CedulaNavigation)
-                    .FirstOrDefaultAsync(a => a.Cedula == tDocsPoderesEspecialesJudiciale.IdAbogado);
-                string nombreAbogado = abogado != null
-                    ? $"{abogado.CedulaNavigation.Nombre} {abogado.CedulaNavigation.Apellido1} {abogado.CedulaNavigation.Apellido2}"
-                    : tDocsPoderesEspecialesJudiciale.IdAbogado.ToString();
-
-                // Guardar en historial usando el ID real
-                var historial = new HistorialDocumento
-                {
-                    Fecha = DateTime.Parse(tDocsPoderesEspecialesJudiciale.Fecha),
-                    TipoDocumento = "Poderes especiales judiciales",
-                    Cliente = nombreCliente,
-                    Abogado = nombreAbogado,
-                    DocumentoIdOriginal = nuevoIdDoc
-                };
-
-                _context.HistorialDocumentos.Add(historial);
-
-                // Eliminar documento anterior y su historial si aplica
-                if (DocumentoAnteriorId.HasValue)
-                {
-                    var docAnterior = await _context.TDocsPoderesEspecialesJudiciales
-                        .FirstOrDefaultAsync(d => d.IdDoc == DocumentoAnteriorId.Value);
-                    if (docAnterior != null)
-                        _context.TDocsPoderesEspecialesJudiciales.Remove(docAnterior);
-
-                    var historialAnterior = await _context.HistorialDocumentos
-                        .FirstOrDefaultAsync(h => h.Id == DocumentoAnteriorId.Value);
-                    if (historialAnterior != null)
-                        _context.HistorialDocumentos.Remove(historialAnterior);
-                }
-
-                await _context.SaveChangesAsync();
-                return RedirectToAction("DocsHistorial", "HistorialDocumentos");
-            }
-
-            ViewData["IdAbogado"] = new SelectList(_context.TGeAbogados.Include(a => a.CedulaNavigation).Select(a => new
-                {
-                    Cedula = a.Cedula,
-                    Texto = a.CedulaNavigation.Nombre + " " + a.CedulaNavigation.Apellido1 + " - " + a.Cedula
-                }),
-                "Cedula",
-                "Texto", tDocsPoderesEspecialesJudiciale?.IdAbogado);
-
-            ViewData["IdCliente"] = new SelectList(_context.TGePersonas.Select(p => new
-            {
-                Cedula = p.Cedula,
-                apellido = p.Apellido1,
-                Texto = p.Nombre + " " + p.Apellido1 + " - " + p.Cedula
-            }),
-            "Cedula", "Texto", tDocsPoderesEspecialesJudiciale?.IdCliente);
-
-            return View(tDocsPoderesEspecialesJudiciale);
+            return RedirectToAction(nameof(Index));
         }
 
-
+        // ================= MÉTODOS PERSONALIZADOS =================
 
         [HttpGet]
-        public IActionResult PrevisualizarPDF(
-        string idDoc,
-        string fecha,
-        string idAbogado,
-        string idCliente,
-        string texto
- )
+        [Authorize(Roles = "Gestor, Abogado")]
+        public async Task<IActionResult> CreateDocsPoderesEspecialesJudiciales(int id)
+        {
+            var cliente = await _buscarPersona.buscar(id);
+            var abogado = await _buscarPersona.buscarXcorreo(User.Identity.Name);
+
+            ViewBag.ClienteCedula = cliente?.Cedula ?? 0;
+            ViewBag.ClienteNombre = cliente?.Nombre ?? "";
+            ViewBag.ClienteApellido1 = cliente?.Apellido1 ?? "";
+            ViewBag.ClienteApellido2 = cliente?.Apellido2 ?? "";
+            ViewBag.AbogadoCedula = abogado?.Cedula ?? 0;
+
+            var model = new DocsPoderesEspecialesJudicialeDTO
+            {
+                Fecha = DateTime.Today.ToString("yyyy-MM-dd"),
+                IdCliente = cliente?.Cedula ?? 0,
+                IdAbogado = abogado?.Cedula ?? 0
+            };
+
+            return View(model);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Gestor, Abogado")]
+        public async Task<IActionResult> CreateDocsPoderesEspecialesJudiciales(DocsPoderesEspecialesJudicialeDTO dto)
+        {
+            dto.Fecha ??= DateTime.Now.ToString("yyyy-MM-dd");
+
+            if (!ModelState.IsValid)
+            {
+                var c = await _buscarPersona.buscar(dto.IdCliente);
+                var a = await _buscarPersona.buscar(dto.IdAbogado);
+
+                ViewBag.ClienteCedula = c?.Cedula ?? 0;
+                ViewBag.ClienteNombre = c?.Nombre ?? "";
+                ViewBag.ClienteApellido1 = c?.Apellido1 ?? "";
+                ViewBag.ClienteApellido2 = c?.Apellido2 ?? "";
+                ViewBag.AbogadoCedula = a?.Cedula ?? 0;
+
+                //return View(dto);
+            }
+
+            await _crear.crear(dto);
+
+            var nuevoIdDoc = (await _listar.Listar())
+                                ?.OrderByDescending(x => x.IdDoc)
+                                .Select(x => x.IdDoc)
+                                .FirstOrDefault() ?? 0;
+
+            if (nuevoIdDoc > 0)
+            {
+                var historial = new HistorialDocumentoDTO
+                {
+                    Fecha = DateTime.Now.ToString("dd/MM/yyyy"),
+                    TipoDocumento = "Poderes especiales judiciales",
+                    Cliente = dto.IdCliente,
+                    Abogado = dto.IdAbogado,
+                    IdDocumento = nuevoIdDoc,
+                    Titulo = $"Doc.no.{nuevoIdDoc} Poder especial judicial"
+                };
+                await _crearHistorial.Crear(historial);
+            }
+
+            return RedirectToAction("DocsHistorial", "THistorialDocumento1");
+        }
+
+        // ===================== PDF =====================
+
+        [HttpGet]
+        [Authorize(Roles = "Gestor, Abogado")]
+        public async Task<IActionResult> PrevisualizarPDF(
+            string idDoc,
+            string fecha,
+            string idAbogado,
+            string idCliente,
+            string texto,
+            string NumCausa)
         {
             var templatePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "lyso", "DocsMachotes", "PoderesEspecialesJudiciales.html");
             var htmlTemplate = System.IO.File.ReadAllText(templatePath);
 
-            htmlTemplate = htmlTemplate
-                .Replace("{{ID_DOC}}", idDoc)
-                .Replace("{{FECHA}}", fecha)
-                .Replace("{{ID_ABOGADO}}", idAbogado)
-                .Replace("{{ID_CLIENTE}}", idCliente)
-                .Replace("{{TEXTO}}", texto);
+            string logoBase64 = "";
+            string nombreBufete = "";
+            string cedJuridica = "";
+            string telDespacho = "";
+            string emailDesp = "";
 
-            var doc = new HtmlToPdfDocument()
+            var logoPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "lyso", "img", "PreaceptaLogoColorNegro.png");
+            if (System.IO.File.Exists(logoPath))
+                logoBase64 = Convert.ToBase64String(System.IO.File.ReadAllBytes(logoPath));
+
+            _ = int.TryParse(idAbogado, out var cedAbogado);
+            _ = int.TryParse(idCliente, out var cedCliente);
+
+            var personaAbogado = await _buscarPersona.buscar(cedAbogado);
+            var personaCliente = await _buscarPersona.buscar(cedCliente);
+
+            string nombreAbogado = personaAbogado != null
+                ? $"{personaAbogado.Nombre} {personaAbogado.Apellido1} {(personaAbogado.Apellido2 ?? "")}".Trim()
+                : idAbogado;
+
+            string nombreCliente = personaCliente != null
+                ? $"{personaCliente.Nombre} {personaCliente.Apellido1} {(personaCliente.Apellido2 ?? "")}".Trim()
+                : idCliente;
+
+            string cedulaAbogadoStr = personaAbogado?.Cedula.ToString() ?? idAbogado;
+            string cedulaClienteStr = personaCliente?.Cedula.ToString() ?? idCliente;
+
+            var abogadoDetalle = (cedAbogado > 0) ? await _buscarAbogado.buscar(cedAbogado) : null;
+            string carnetProfesional = abogadoDetalle?.Carnet.ToString() ?? "";
+
+            string fechaMostrar = DateTime.TryParse(fecha, out var f)
+                ? f.ToString("dd/MM/yyyy")
+                : DateTime.Today.ToString("dd/MM/yyyy");
+
+            string lugarDocumento = new[] {
+                personaAbogado?.Direccion2,
+                personaCliente?.Direccion2
+            }.FirstOrDefault(s => !string.IsNullOrWhiteSpace(s)) ?? "San José";
+
+            htmlTemplate = htmlTemplate
+                .Replace("{{LOGO}}", logoBase64)
+                .Replace("{{NombreBufete}}", nombreBufete)
+                .Replace("{{CedulaJuridica}}", cedJuridica)
+                .Replace("{{TelefonoDespacho}}", telDespacho)
+                .Replace("{{EmailDespacho}}", emailDesp)
+
+                .Replace("{{ID_DOC}}", idDoc ?? "")
+                .Replace("{{FECHA}}", fechaMostrar)
+
+                .Replace("{{NOMBRE_PODERDANTE}}", nombreCliente)
+                .Replace("{{CEDULA_PODERDANTE}}", cedulaClienteStr)
+                .Replace("{{CEDULA_PODERDANTE_LETRAS}}", cedulaClienteStr)
+                .Replace("{{ESTADO_CIVIL_PODERDANTE}}", personaCliente?.EstadoCivil ?? "")
+                .Replace("{{OFICIO_PODERDANTE}}", personaCliente?.Oficio ?? "")
+                .Replace("{{DIRECCION_PODERDANTE}}", personaCliente?.Direccion2 ?? "")
+                .Replace("{{CONDICION_MAYOR_PODERDANTE}}", "mayor")
+
+                .Replace("{{NOMBRE_APODERADO}}", nombreAbogado)
+                .Replace("{{CEDULA_APODERADO}}", cedulaAbogadoStr)
+                .Replace("{{CEDULA_APODERADO_LETRAS}}", cedulaAbogadoStr)
+                .Replace("{{ESTADO_CIVIL_APODERADO}}", personaAbogado?.EstadoCivil ?? "")
+                .Replace("{{OFICIO_APODERADO}}", "abogado")
+                .Replace("{{DIRECCION_APODERADO}}", personaAbogado?.Direccion2 ?? "")
+                .Replace("{{OFICINA_APODERADO}}", personaAbogado?.Direccion2 ?? "")
+                .Replace("{{CONDICION_MAYOR_APODERADO}}", "mayor")
+
+                .Replace("{{CARNE_PROFESIONAL}}", carnetProfesional)
+                .Replace("{{CARNE_PROFESIONAL_LETRAS}}", carnetProfesional)
+
+                .Replace("{{PODER_ESPECIAL_JUDICIAL}}", texto ?? "")
+                .Replace("{{TEXTO}}", texto ?? "")
+                .Replace("{{NUMERO_CAUSA}}", NumCausa ?? "")
+
+                .Replace("{{LUGAR_DOCUMENTO}}", lugarDocumento)
+                .Replace("{{FECHA_EN_PALABRAS}}", fechaMostrar);
+
+            var docPdf = new HtmlToPdfDocument
             {
-                GlobalSettings = new GlobalSettings
-                {
-                    PaperSize = PaperKind.A4,
-                    Orientation = Orientation.Portrait
-                },
-                Objects = {
-            new ObjectSettings
-            {
-                HtmlContent = htmlTemplate,
-                WebSettings = { DefaultEncoding = "utf-8" }
-            }
-        }
+                GlobalSettings = new GlobalSettings { PaperSize = PaperKind.A4, Orientation = Orientation.Portrait },
+                Objects = { new ObjectSettings { HtmlContent = htmlTemplate, WebSettings = { DefaultEncoding = "utf-8" } } }
             };
 
-            var pdf = _converter.Convert(doc);
-
+            var pdf = _converter.Convert(docPdf);
             return File(pdf, "application/pdf");
         }
-
-        [HttpGet]
-        public async Task<IActionResult> EditarDesdeHistorial(int id)
-        {
-            var historial = await _context.HistorialDocumentos.FindAsync(id);
-            if (historial == null || historial.TipoDocumento != "Poderes especiales judiciales" || historial.DocumentoIdOriginal == null)
-            {
-                return NotFound();
-            }
-
-            var docOriginal = await _context.TDocsPoderesEspecialesJudiciales
-                .FirstOrDefaultAsync(d => d.IdDoc == historial.DocumentoIdOriginal);
-
-            if (docOriginal == null)
-            {
-                return NotFound();
-            }
-
-            var model = new DocsPoderesEspecialesJudicialeDTO
-            {
-                IdDoc = docOriginal.IdDoc,
-                Fecha = docOriginal.Fecha.ToString("yyyy-MM-dd"),
-                IdAbogado = docOriginal.IdAbogado,
-                IdCliente = docOriginal.IdCliente,
-                Texto = docOriginal.Texto
-            };
-
-            ViewBag.DocumentoAnteriorId = historial.Id;
-
-            ViewData["IdAbogado"] = new SelectList(_context.TGeAbogados.Include(a => a.CedulaNavigation).Select(a => new
-            {
-                Cedula = a.Cedula,
-                Texto = a.CedulaNavigation.Nombre + " " + a.CedulaNavigation.Apellido1 + " - " + a.Cedula
-            }),
-                "Cedula",
-                "Texto", model?.IdAbogado);
-
-            ViewData["IdCliente"] = new SelectList(_context.TGePersonas.Select(p => new
-            {
-                Cedula = p.Cedula,
-                apellido = p.Apellido1,
-                Texto = p.Nombre + " " + p.Apellido1 + " - " + p.Cedula
-            }),
-            "Cedula", "Texto", model?.IdCliente);
-
-            return View("CreateDocsPoderesEspecialesJudiciales", model);
-        }
-
-
-
     }
-
 }

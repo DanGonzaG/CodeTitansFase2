@@ -3,9 +3,6 @@ using Preacepta.LN.DocsPagare.ObtenerDatos;
 using Preacepta.Modelos.AbstraccionesBD;
 using Preacepta.Modelos.AbstraccionesFrond;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace Preacepta.LN.DocsPagare.Buscar
@@ -15,7 +12,8 @@ namespace Preacepta.LN.DocsPagare.Buscar
         private readonly IBuscarPagareAD _buscarPagare;
         private readonly IObtenerDatosPagareLN _obtenerDatosPagare;
 
-        public BuscarPagareLN(IBuscarPagareAD buscarPagare,
+        public BuscarPagareLN(
+            IBuscarPagareAD buscarPagare,
             IObtenerDatosPagareLN obtenerDatosPagare)
         {
             _buscarPagare = buscarPagare;
@@ -26,24 +24,22 @@ namespace Preacepta.LN.DocsPagare.Buscar
         {
             try
             {
-                // Cambiar tipo aquí
-                TDocsPagare? resultadoBusqueda = await _buscarPagare.buscar(id);
-
-                if (resultadoBusqueda == null)
+                TDocsPagare? entity = await _buscarPagare.buscar(id);
+                if (entity == null)
                 {
-                    Console.WriteLine("No se encontró el tipo de Compra o venta.");
+                    Console.WriteLine("No se encontró el Pagaré solicitado.");
                     return null;
                 }
-                DocsPagareDTO obtenerDatos = _obtenerDatosPagare.ObtenerDeDB(resultadoBusqueda);
-                return obtenerDatos;
+
+                // Asegúrate que ObtenerDeDB mapee CedulaAbogado y HoraFirma correctamente
+                DocsPagareDTO dto = _obtenerDatosPagare.ObtenerDeDB(entity);
+                return dto;
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Error en BuscarTestimonioLN: {ex.Message}");
+                Console.WriteLine($"Error en BuscarPagareLN (id={id}): {ex.Message}");
                 return null;
             }
-
         }
-
     }
 }

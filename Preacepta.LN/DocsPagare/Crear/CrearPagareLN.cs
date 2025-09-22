@@ -2,9 +2,6 @@
 using Preacepta.LN.DocsPagare.ObtenerDatos;
 using Preacepta.Modelos.AbstraccionesFrond;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace Preacepta.LN.DocsPagare.Crear
@@ -14,35 +11,38 @@ namespace Preacepta.LN.DocsPagare.Crear
         private readonly ICrearPagareAD _crearPagareAD;
         private readonly IObtenerDatosPagareLN _obtenerDatosPagareLN;
 
-        public CrearPagareLN (ICrearPagareAD crearPagareAD, IObtenerDatosPagareLN obtenerDatosPagareLN)
+        public CrearPagareLN(
+            ICrearPagareAD crearPagareAD,
+            IObtenerDatosPagareLN obtenerDatosPagareLN)
         {
             _crearPagareAD = crearPagareAD;
             _obtenerDatosPagareLN = obtenerDatosPagareLN;
         }
 
-        public async Task<int> crear(DocsPagareDTO pagareDTO)
+        public async Task<int> crear(DocsPagareDTO dto)
         {
-            if (pagareDTO == null)
+            if (dto == null)
             {
                 Console.WriteLine("Error: Objeto nulo.");
                 return 0;
             }
+
             try
             {
-                int bandera = await _crearPagareAD.crear(_obtenerDatosPagareLN.ObtenerDeFront(pagareDTO));
-                if (bandera == null)
+                var entidad = _obtenerDatosPagareLN.ObtenerDeFront(dto);
+                var idNuevo = await _crearPagareAD.crear(entidad);
+                if (idNuevo <= 0)
                 {
-                    Console.WriteLine("Fallido");
+                    Console.WriteLine("Creación no exitosa.");
                     return 0;
                 }
-                return bandera;
+                return idNuevo;
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Error en CrearPagareLN{ex.Message}");
+                Console.WriteLine($"Error en CrearPagareLN.crear: {ex.Message}");
                 return -1;
             }
         }
-
     }
 }
