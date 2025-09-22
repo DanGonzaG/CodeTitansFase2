@@ -192,8 +192,24 @@ namespace Praecepta.UI.Controllers
 
         #region Vista para usuarios Autenticados
         [Authorize(Roles = "Gestor,Abogado,Cliente")]
-        public async Task<IActionResult> UsuarioAutenticado(string correo)
+        public async Task<IActionResult> UsuarioAutenticado(string correo, string redirectTo = null)
         {
+            Console.WriteLine($"redirectTo recibido: {redirectTo}");
+
+            if (!string.IsNullOrEmpty(redirectTo))
+            {
+                redirectTo = Uri.UnescapeDataString(redirectTo);
+                if (Url.IsLocalUrl(redirectTo))
+                {
+                    return Redirect(redirectTo);
+                }
+                else
+                {
+                    // Por seguridad, si no es URL local, ignorar redirectTo.
+                    Console.WriteLine("redirectTo no es URL local.");
+                }
+            }
+
             if (correo == "gestor@preacepta.com")
             {
                 if (User.IsInRole("Gestor"))

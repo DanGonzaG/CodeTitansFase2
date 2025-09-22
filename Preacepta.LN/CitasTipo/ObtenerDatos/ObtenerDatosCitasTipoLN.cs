@@ -29,7 +29,6 @@ namespace Preacepta.LN.CitasTipo.ObtenerDatos
         }
 
 
-        /*metodo para obtner los datos de los formularios y pasarlos al modelo de acceso a datos*/
         public TCitasTipo ObtenerDeFront(CitasTipoDTO Formulario)
         {
             return new TCitasTipo

@@ -32,12 +32,13 @@ namespace Preacepta.AD.Citas.Editar
                     return 0;
                 }
 
-                // Actualiza solo los campos necesarios
+           
                 existente.Fecha = editar.Fecha;
                 existente.Hora = editar.Hora;
                 existente.IdTipoCita = editar.IdTipoCita;
                 existente.Anfitrion = editar.Anfitrion;
                 existente.LinkVideo = editar.LinkVideo;
+                existente.Terminada = editar.Terminada;
 
                 int resultado = await _contexto.SaveChangesAsync();
                 return resultado;

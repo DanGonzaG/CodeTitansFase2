@@ -7,7 +7,7 @@
 
 
 <div class="contact-form contact-form-two contact-form-three LetraNegra">
-    <div class="container">
+        <!-- <div class="container">-->
         <div class="contact-wrap">
             <h4 class="mb-4">Información de la cita</h4>
 
@@ -31,6 +31,7 @@
                 <div class="col-sm-4">Nombre Tipo Cita</div>
                 <div class="col-sm-8">@Model.NombreTipoCita</div>
             </div>
+
             <div class="row mb-2">
                 <div class="col-sm-4">Anfitrión</div>
                 <div class="col-sm-8">
@@ -76,49 +77,69 @@
                     }
                 </div>
             </div>
-            <div class="row mb-2">
-                <div class="col-sm-4">Documentos relacionados:</div>
-                <div class="col-sm-8">
-                    @if (Model.Documentos != null && Model.Documentos.Any())
-                    {
-                        <ul class="mb-0">
-                            @foreach (var doc in Model.Documentos)
-                            {
-                                <li>
-                                    @if (doc.Descargar)
-                                    {
-                                        <a href="@doc.RutaArchivo" target="_blank">@doc.NombreArchivo</a>
-                                    }
-                                    else
-                                    {
-                                        <span>@doc.NombreArchivo</span>
-                                        <span class="text-muted">(descarga no autorizada)</span>
-                                    }
-                                    <span class="text-muted">(@doc.FechaSubida.ToString("dd/MM/yyyy HH:mm"))</span>
-                                </li>
-                            }
-                        </ul>
-                    }
-                    else
-                    {
-                        <p>No hay documentos adjuntos para esta cita.</p>
-                    }
-
-                    </div>
-                </div>
+        <div class="row mb-2">
+            <div class="col-sm-4">Documentos relacionados:</div>
+            <div class="col-sm-8">
+                @if (Model.Documentos != null && Model.Documentos.Any())
+                {
+                    <ul class="mb-0 list-unstyled">
+                        @foreach (var doc in Model.Documentos)
+                        {
+                            <li style="word-break: break-word; overflow-wrap: anywhere; margin-bottom: 0.5rem;">
+                                @if (doc.Descargar)
+                                {
+                                    <a href="@doc.RutaArchivo" target="_blank" style="display:inline-block; max-width:100%;">@doc.NombreArchivo</a>
+                                }
+                                else
+                                {
+                                    <span style="display:inline-block; max-width:100%;">@doc.NombreArchivo</span>
+                                    <span class="text-muted">(descarga no autorizada)</span>
+                                }
+                                <span class="text-muted">(@doc.FechaSubida.ToString("dd/MM/yyyy HH:mm"))</span>
+                            </li>
+                        }
+                    </ul>
+                }
+                else
+                {
+                    <p>No hay documentos adjuntos para esta cita.</p>
+                }
             </div>
+        </div>
+                
+        <div class="row mb-2">
+            <div class="col-sm-4">Estado</div>
+            <div class="col-sm-8">
+                @if (Model.Terminada)
+                {
+                    <span class="text-success">Terminada</span>
+                }
+                else
+                {
+                    <span class="text-warning">Pendiente</span>
+                }
+            </div>
+        </div>
+           
           <div class="text-center mt-4">
             @if (User.IsInRole("Abogado") || User.IsInRole("Admin"))
             {
-                <button type="button" class="contact-btn" onclick="abrirModalListarDocumentos(@Model.IdCita)">
+                <button type="button" class="contact-btn--primero" onclick="abrirModalListarDocumentos(@Model.IdCita)">
                     Documentos
                 </button>
-                <button type="button" class="contact-btn" onclick="citaSeleccionadaId='@Model.IdCita'; mostrarEditarCita()">Editar</button>
-                <button type="button" class="contact-btn" onclick="mostrarModalEliminarCita(@Model.IdCita)">Eliminar</button>
+                <button type="button" class="contact-btn--revision" onclick="citaSeleccionadaId='@Model.IdCita'; mostrarEditarCita()">Editar</button>
+                <button type="button" class="contact-btn--eliminacion" onclick="mostrarModalEliminarCita(@Model.IdCita)">Eliminar</button>
             }
-          
-                <button type="button" class="contact-btn" onclick="cerrarModal('modalDetalleCita', true)">Cerrar</button>
+
+            <button type="button" class="contact-btn--navegacion" onclick="cerrarModal('modalDetalleCita', true)">Cerrar</button>
             
         </div>
 </div>
     </div>
+
+
+@section Scripts {
+    <script src="~/calendario/scriptcalendar.js"></script>
+    <script src="~/lyso/js/Calendar-init.js"></script>
+    <link href="~/lyso/css/Daniel.css" rel="stylesheet" />
+}

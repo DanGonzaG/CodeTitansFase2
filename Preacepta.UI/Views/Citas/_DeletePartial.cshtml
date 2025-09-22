@@ -7,10 +7,12 @@
 <head>
     <link href="~/lyso/css/Daniel.css" rel="stylesheet" />
     <link href="~/calendario/stylecalendar.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 
 <div class="contact-form contact-form-two contact-form-three LetraNegra">
-    <div class="container">
+    <!-- <div class="container">-->
         <div class="contact-wrap">
             <h2 class="encabezado-gold">¿Estás seguro de que deseas eliminar esta cita?</h2>
 
@@ -35,14 +37,13 @@
                 </dl>
             </div>
 
-            <!-- No usamos form para evitar submit tradicional -->
             <input type="hidden" id="IdCitaEliminar" value="@Model.IdCita" />
             <input type="hidden" id="RequestVerificationToken" name="__RequestVerificationToken" value="@Antiforgery.GetTokens(HttpContextAccessor.HttpContext).RequestToken" />
 
 
             <div class="text-center mt-4">
-                <button type="button" class="contact-btn" onclick="eliminarCita()">Eliminar</button>
-                <button type="button" class="contact-btn" onclick="cerrarModal('modalEliminarCita', true)">Cerrar</button>
+            <button type="button" class="btn btn-danger" onclick="eliminarCita()">Eliminar</button>
+            <button type="button" class="contact-btn--eliminacion" onclick="cerrarModal('modalEliminarCita', true)">Cerrar</button>
             </div>
         </div>
     </div>

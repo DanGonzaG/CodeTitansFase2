@@ -14,5 +14,6 @@ namespace Preacepta.AD.DocumentosCitas.DocumentosCitas
         Task<TDocumentosCita> ObtenerPorIdAsync(int idDocumento);
         Task GuardarCambiosAsync();
         Task ActualizarDescargarAsync(int idDocumento, bool permitirDescarga);
+        Task<bool> EliminarAsync(TDocumentosCita documento);
     }
 }

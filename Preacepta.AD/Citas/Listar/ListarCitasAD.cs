@@ -34,15 +34,14 @@ namespace Preacepta.AD.Citas.Listar
                     IdTipoCita = cita.IdTipoCita,
                     Anfitrion = cita.Anfitrion,
                     LinkVideo = cita.LinkVideo,
+                    Terminada = cita.Terminada,
                     AnfitrionNavigation = cita.AnfitrionNavigation,
                     IdTipoCitaNavigation = cita.IdTipoCitaNavigation,
                         NombreTipoCita = cita.IdTipoCitaNavigation != null
                      ? cita.IdTipoCitaNavigation.Nombre
                      : null
 
-                        /*Anfitrion = cita.AnfitrionNavigation != null ? cita.AnfitrionNavigation.Cedula : null,
-                            LinkVideo = cita.LinkVideo,
-                        NombreTipoCita = cita.IdTipoCitaNavigation.Nombre*/
+                        
 
                     }).ToListAsync();
             }
@@ -82,7 +81,6 @@ namespace Preacepta.AD.Citas.Listar
             }
         }
 
-        /*Este metodo muestra las 3 citas proximas*/
         public async Task<List<CitasDTO>> TresCitasMasProximasXAfitrion (int id) 
         {
             return await _contexto.TCitas
@@ -113,6 +111,89 @@ namespace Preacepta.AD.Citas.Listar
                                }).Take(3).ToListAsync();
 
             return lista;
+        }
+
+        public async Task<List<CitasDTO>> ListarPorFecha(DateOnly fecha)
+        {
+            return await (
+                from c in _contexto.TCitas
+                join t in _contexto.TCitasTipos on c.IdTipoCita equals t.Id
+                where c.Fecha == fecha
+                select new CitasDTO
+                {
+                    IdCita = c.IdCita,
+                    Hora = c.Hora,
+                    NombreTipoCita = t.Nombre
+                }).ToListAsync();
+        }
+    
+    public async Task<CitasDTO> ObtenerPorId(int id)
+        {
+            return await _contexto.TCitas
+                .Include(c => c.IdTipoCitaNavigation)
+                .Include(c => c.AnfitrionNavigation)
+                    .ThenInclude(a => a.CedulaNavigation)
+                .Where(c => c.IdCita == id)
+                .Select(c => new CitasDTO
+                {
+                    IdCita = c.IdCita,
+                    Fecha = c.Fecha,
+                    Hora = c.Hora,
+                    IdTipoCita = c.IdTipoCita,
+                    LinkVideo = c.LinkVideo,
+                    Anfitrion = c.Anfitrion,
+                    Terminada = c.Terminada,
+                    NombreTipoCita = c.IdTipoCitaNavigation != null ? c.IdTipoCitaNavigation.Nombre : null,
+                    NombreAnfitrion = c.AnfitrionNavigation != null
+                        ? $"{c.AnfitrionNavigation.CedulaNavigation.Nombre} {c.AnfitrionNavigation.CedulaNavigation.Apellido1} {c.AnfitrionNavigation.CedulaNavigation.Apellido2}"
+                        : null
+                }).FirstOrDefaultAsync();
+        }
+
+        public async Task<GePersonaDTO?> ObtenerPersonaPorCedula(string cedula)
+        {
+            if (!int.TryParse(cedula, out int cedulaInt))
+                return null;
+
+            return await _contexto.TGePersonas
+                .Where(p => p.Cedula == cedulaInt) 
+                .Select(p => new GePersonaDTO
+                {
+                    Cedula = p.Cedula, 
+                    Nombre = p.Nombre,
+                    Apellido1 = p.Apellido1,
+                    Apellido2 = p.Apellido2
+                })
+                .FirstOrDefaultAsync();
+        }
+
+
+        public async Task<List<CitasTipoDTO>> ListarTiposCita()
+        {
+            return await _contexto.TCitasTipos
+                .Select(t => new CitasTipoDTO
+                {
+                    Id = t.Id,
+                    Nombre = t.Nombre
+                }).ToListAsync();
+        }
+
+        public async Task<bool> ActualizarCita(CitasDTO citaDTO)
+        {
+            var cita = await _contexto.TCitas.FindAsync(citaDTO.IdCita);
+            if (cita != null)
+            {
+                cita.Fecha = citaDTO.Fecha;
+                cita.Hora = citaDTO.Hora;
+                cita.IdTipoCita = citaDTO.IdTipoCita;
+                cita.LinkVideo = citaDTO.LinkVideo;
+                cita.Anfitrion = citaDTO.Anfitrion;
+                cita.Terminada = citaDTO.Terminada;
+
+                await _contexto.SaveChangesAsync();
+                return true;
+            }
+            return false;
         }
     }
 }

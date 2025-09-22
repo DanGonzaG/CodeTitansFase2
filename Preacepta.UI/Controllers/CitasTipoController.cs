@@ -30,6 +30,7 @@ namespace Preacepta.UI.Controllers
         }
 
         // Listar
+        [Authorize(Roles = "Gestor")]
         public async Task<IActionResult> Index()
         {
             var lista = await _listarLN.listar();
@@ -37,6 +38,7 @@ namespace Preacepta.UI.Controllers
         }
 
         // Detalles
+        [Authorize(Roles = "Gestor")]
         public async Task<IActionResult> Details(int id)
         {
             var item = (await _listarLN.listar()).FirstOrDefault(c => c.Id  == id);
@@ -45,12 +47,14 @@ namespace Preacepta.UI.Controllers
         }
 
         // Crear GET
+        [Authorize(Roles = "Gestor")]
         public IActionResult Create()
         {
             return View();
         }
 
         // Crear POST
+        [Authorize(Roles = "Gestor")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(CitasTipoDTO dto)
@@ -64,6 +68,7 @@ namespace Preacepta.UI.Controllers
         }
 
         // Editar GET
+        [Authorize(Roles = "Gestor")]
         public async Task<IActionResult> Edit(int id)
         {
             var item = (await _listarLN.listar()).FirstOrDefault(c => c.Id == id);
@@ -72,6 +77,7 @@ namespace Preacepta.UI.Controllers
         }
 
         // Editar POST
+        [Authorize(Roles = "Gestor")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, CitasTipoDTO dto)
@@ -88,6 +94,7 @@ namespace Preacepta.UI.Controllers
         }
 
         // Eliminar GET
+        [Authorize(Roles = "Gestor")]
         public async Task<IActionResult> Delete(int id)
         {
             var item = (await _listarLN.listar()).FirstOrDefault(c => c.Id == id);
@@ -99,6 +106,7 @@ namespace Preacepta.UI.Controllers
         }
 
         // Eliminar POST
+        [Authorize(Roles = "Gestor")]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
