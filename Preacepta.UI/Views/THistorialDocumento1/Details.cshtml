@@ -1,14 +1,14 @@
-﻿@model Preacepta.Modelos.AbstraccionesFrond.HistorialDocumento
+﻿@model Preacepta.Modelos.AbstraccionesBD.THistorialDocumento
 
 @{
     ViewData["Title"] = "Details";
-    Layout = "TestimoniosController";
+    Layout = "_LayoutGestor";
 }
 
 <h1>Details</h1>
 
 <div>
-    <h4>HistorialDocumento</h4>
+    <h4>THistorialDocumento</h4>
     <hr />
     <dl class="row">
         <dt class = "col-sm-2">
@@ -24,16 +24,28 @@
             @Html.DisplayFor(model => model.TipoDocumento)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Cliente)
+            @Html.DisplayNameFor(model => model.IdDocumento)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Cliente)
+            @Html.DisplayFor(model => model.IdDocumento)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Abogado)
+            @Html.DisplayNameFor(model => model.Titulo)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Abogado)
+            @Html.DisplayFor(model => model.Titulo)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.ClienteNavigation)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.ClienteNavigation.Apellido1)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.AbogadoNavigation)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.AbogadoNavigation.Cedula)
         </dd>
     </dl>
 </div>

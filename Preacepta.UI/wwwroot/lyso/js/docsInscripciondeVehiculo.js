@@ -27,7 +27,7 @@ document.getElementById('btnPrevisualizar').addEventListener('click', () => {
     const capacidad = document.getElementById('idCapacidad').value;
     const combustible = document.getElementById('idCombustible').value;
     const cilindraje = document.getElementById('idCilindraje').value;
-    const lugarFirma = document.getElementById('idLugarFirma').value;
+    const lugarFirma = document.getElementById('distrito2').value;
     const fechaFirma = document.getElementById('idFechaFirma').value;
 
     const timestamp = new Date().getTime();
