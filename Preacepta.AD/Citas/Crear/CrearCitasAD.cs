@@ -20,23 +20,31 @@ namespace Preacepta.AD.Citas.Crear
 
         public async Task<int> crear(TCita cita)
         {
-            if (cita == null)
-            {
-                Console.WriteLine("El objeto recibo fue nulo");
-                return -1;
-            }
-            try
-            {
+            if (cita == null) return -1;
+
                 await _contexto.TCitas.AddAsync(cita);
-                int guardado = await _contexto.SaveChangesAsync();
-                Console.WriteLine($"Insertando cita: Fecha={cita.Fecha}, Hora={cita.Hora}, Tipo={cita.IdTipoCita}, Link={cita.LinkVideo}, Anfitrion={cita.Anfitrion}");
-                return guardado;
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"Error en CrearCitasAD {ex.Message}");
-                return 0;
-            }
+                await _contexto.SaveChangesAsync();
+
+                return cita.IdCita; 
+           
         }
+        public async Task<bool> AsignarClienteAlaCita(int idCita, int idCliente)
+        {
+       
+            var cita = await _contexto.TCitas.FindAsync(idCita);
+            if (cita == null) return false;
+
+            var relacion = new TCitasCliente
+            {
+                IdCita = idCita,
+                IdCliente = idCliente
+            };
+
+            await _contexto.TCitasClientes.AddAsync(relacion);
+            await _contexto.SaveChangesAsync();
+            return true;
+        }
+
+
     }
 }

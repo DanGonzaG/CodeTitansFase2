@@ -46,11 +46,11 @@ namespace Preacepta.LN.Citas.BuscarXid
             {
                 try
                 {
-                    var resultados = await _buscar.obtenerTodas();  // <-- método que debes tener en IBuscarCitasAD
+                    var resultados = await _buscar.obtenerTodas(); 
                     if (resultados == null || !resultados.Any())
                         return new List<CitasDTO>();
 
-                    // Convertir a DTO
+                   
                     List<CitasDTO> citasDto = resultados.Select(cita => _obtenerDatosLN.ObtenerDeDB(cita)).ToList();
 
                     return citasDto;
@@ -62,6 +62,30 @@ namespace Preacepta.LN.Citas.BuscarXid
                 }
             }
 
+
+        public async Task<CitasDTO?> ObtenerCitaConClientes(int idCita)
+        {
+           
+            return await _buscar.ObtenerCitaConClientes(idCita);
+        }
+        public async Task<List<CitasDTO>> ListarPorIdCliente(int idCliente)
+        {
+            var citas = await _buscar.ListarPorIdCliente(idCliente); 
+            return citas.Select(c => _obtenerDatosLN.ObtenerDeDB(c)).ToList();
         }
 
+        public async Task<CitasDTO?> TerminarCitaYObtenerDatos(int idCita)
+        {
+            var cita = await _buscar.TerminarCitaYObtenerDatosAsync(idCita);
+            if (cita == null) return null;
+            return _obtenerDatosLN.ObtenerDeDB(cita);
+        }
+        public async Task<CitasDTO?> ObtenerCitaConDocumentosAsync(int idCita)
+        {
+            return await _obtenerDatosLN.ObtenerCitaConDocumentosAsync(idCita);
+        }
+
+
     }
+
+}

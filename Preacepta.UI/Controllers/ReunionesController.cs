@@ -6,18 +6,20 @@ using System.Net;
 using System.Threading.Tasks;
 using System.Linq;
 using static Preacepta.UI.Controllers.ReunionesController;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Preacepta.UI.Controllers
 {
     public class ReunionesController : Controller
     {
+        [Authorize(Roles = "Abogado,Gestor")]
         [HttpGet]
         public IActionResult Crear()
         {
             return PartialView("~/Views/Reuniones/_ProgramarReunionModal.cshtml");
         }
 
-        // Acción que recibe la petición AJAX para crear la reunión
+        [Authorize(Roles = "Abogado,Gestor")]
         [HttpPost]
         public async Task<IActionResult> CrearReunion([FromBody] ReunionesRequest request)
         {
@@ -46,9 +48,10 @@ namespace Preacepta.UI.Controllers
                 return Json(new { success = false, error = ex.Message });
             }
         }
+
+        [Authorize(Roles = "Abogado,Gestor")]
         public static class ReunionesStore
         {
-            // Guarda una lista de correos por meeting ID
             public static Dictionary<long, List<string>> MeetingParticipantes = new();
         }
         private async Task EnviarCorreosManual(List<string> correos, string url, string tema, DateTime fecha)
@@ -56,13 +59,13 @@ namespace Preacepta.UI.Controllers
         var smtp = new SmtpClient("smtp.gmail.com")
         {
             Port = 587,
-            Credentials = new NetworkCredential("valeria2024.43@gmail.com", "rkvd tmlh txrh attg"),
+            Credentials = new NetworkCredential("d.gon.guerrero@gmail.com", "oiup tfoc roio sbei"),
             EnableSsl = true
         };
 
         foreach (var correo in correos)
         {
-            var mail = new MailMessage("valeria2024.43@gmail.com", correo)
+            var mail = new MailMessage("d.gon.guerrero@gmail.com", correo)
             {
                 Subject = $"Invitación a reunión: {tema}",
                 Body = $"Hola, estás invitado a una reunión el {fecha:G}\n\nEnlace de Zoom: {url}"
@@ -71,9 +74,9 @@ namespace Preacepta.UI.Controllers
             await smtp.SendMailAsync(mail);
         }
     }
-       
-    // Clase para recibir los datos del POST JSON
-    public class ReunionesRequest
+
+        [Authorize(Roles = "Abogado,Gestor")]
+        public class ReunionesRequest
     {
         public DateTime FechaInicio { get; set; }
         public int Duracion { get; set; }
@@ -81,8 +84,8 @@ namespace Preacepta.UI.Controllers
         public string Participantes { get; set; }
     }
 }
-
-[ApiController]
+    [Authorize(Roles = "Abogado,Gestor")]
+    [ApiController]
     [Route("api/zoom/webhook")]
     public class ZoomWebhookController : ControllerBase
     {
@@ -106,7 +109,7 @@ namespace Preacepta.UI.Controllers
                 string fecha = data.payload.@object.end_time;
                 long meetingId = (long)data.payload.@object.id;
                 Console.WriteLine($"Webhook meeting ended - meetingId: {meetingId}");
-                // Puedes obtener el correo de alguna forma (ej: asociando el meeting ID)
+           
                 if (ReunionesStore.MeetingParticipantes.TryGetValue(meetingId, out List<string> correos))
                 {
                     Console.WriteLine($"Participantes encontrados: {string.Join(", ", correos)}");
@@ -125,6 +128,7 @@ namespace Preacepta.UI.Controllers
             return Ok();
         }
 
+        [Authorize(Roles = "Abogado,Gestor")]
         private async Task EnviarCorreoTestimonio(string correoDestino, string tema, string fecha)
         {
             var smtp = new SmtpClient("smtp.gmail.com")

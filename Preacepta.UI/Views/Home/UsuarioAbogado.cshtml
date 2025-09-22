@@ -72,7 +72,7 @@
                     <a class="contact-btn menuDanielBtns" asp-controller="Caso" asp-action="CasosListado">Casos en proceso</a>
                     <a class="contact-btn menuDanielBtns" asp-controller="Caso" asp-action="CasosListadoHistorial">Casos Cerrados</a>
                     <label class="menuDanielLabels">Citas</label>
-                    <a href="#" class="contact-btn menuDanielBtns">Agenda de citas</a>
+                    <a asp-controller="Citas" asp-action="Calendar" class="contact-btn menuDanielBtns">Agenda de citas</a>
 
                     <label class="menuDanielLabels">Información de usuario</label>
                     <a class="contact-btn menuDanielBtns" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Mis datos</a>

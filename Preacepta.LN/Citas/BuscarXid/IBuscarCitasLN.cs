@@ -11,6 +11,9 @@ namespace Preacepta.LN.Citas.BuscarXid
     {
         Task<CitasDTO?> buscar(int id);
         Task<List<CitasDTO>> obtenerTodas();
-
+        Task<CitasDTO> ObtenerCitaConClientes(int idCita);
+        Task<List<CitasDTO>> ListarPorIdCliente(int idCliente);
+        Task<CitasDTO?> TerminarCitaYObtenerDatos(int idCita);
+        Task<CitasDTO?> ObtenerCitaConDocumentosAsync(int idCita);
     }
 }

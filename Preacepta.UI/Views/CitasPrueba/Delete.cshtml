@@ -1,49 +1,39 @@
-﻿@using Microsoft.AspNetCore.Antiforgery
-@inject IAntiforgery Antiforgery
-@inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor
-@inject Microsoft.AspNetCore.Antiforgery.IAntiforgery Antiforgery
-@model Preacepta.Modelos.AbstraccionesFrond.CitasDTO
+﻿@model Preacepta.Modelos.AbstraccionesFrond.CitasDTO
 
-<head>
-    <link href="~/lyso/css/Daniel.css" rel="stylesheet" />
-    <link href="~/calendario/stylecalendar.css" rel="stylesheet" />
-</head>
+@{
+    ViewData["Title"] = "Eliminar Cita";
+    Layout = "_LayoutGestor";
+}
 
-<div class="contact-form contact-form-two contact-form-three LetraNegra">
-    <div class="container">
-        <div class="contact-wrap">
-            <h2 class="encabezado-gold">¿Estás seguro de que deseas eliminar esta cita?</h2>
+<h1>Eliminar Cita</h1>
+<hr />
 
-            <div>
-                <h4>Detalles de la Cita</h4>
-                <hr />
-                <dl class="row">
-                    <dt class="col-sm-2">ID</dt>
-                    <dd class="col-sm-10">@Model.IdCita</dd>
-
-                    <dt class="col-sm-2">Fecha</dt>
-                    <dd class="col-sm-10">@Model.Fecha.ToString("yyyy-MM-dd")</dd>
-
-                    <dt class="col-sm-2">Hora</dt>
-                    <dd class="col-sm-10">@Model.Hora.ToString(@"hh\:mm")</dd>
-
-                    <dt class="col-sm-2">Tipo</dt>
-                    <dd class="col-sm-10">@Model.NombreTipoCita</dd>
-
-                    <dt class="col-sm-2">Link</dt>
-                    <dd class="col-sm-10">@Model.LinkVideo</dd>
-                </dl>
-            </div>
-
-            <!-- No usamos form para evitar submit tradicional -->
-            <input type="hidden" id="IdCitaEliminar" value="@Model.IdCita" />
-            <input type="hidden" id="RequestVerificationToken" name="__RequestVerificationToken" value="@Antiforgery.GetTokens(HttpContextAccessor.HttpContext).RequestToken" />
-
-
-            <div class="text-center mt-4">
-                <button type="button" class="contact-btn" onclick="eliminarCita()">Eliminar</button>
-                <button type="button" class="contact-btn" onclick="cerrarModal('modalEliminarCita', true)">Cerrar</button>
-            </div>
-        </div>
-    </div>
+<div class="alert alert-warning">
+    <p>¿Está seguro de que desea eliminar la siguiente cita?</p>
 </div>
+
+<dl class="row">
+    <dt class="col-sm-4">ID</dt>
+    <dd class="col-sm-8">@Model.IdCita</dd>
+
+    <dt class="col-sm-4">Fecha</dt>
+    <dd class="col-sm-8">@Model.Fecha.ToShortDateString()</dd>
+
+    <dt class="col-sm-4">Hora</dt>
+    <dd class="col-sm-8">@Model.Hora</dd>
+
+    <dt class="col-sm-4">Tipo de Cita</dt>
+    <dd class="col-sm-8">@(Model.NombreTipoCita ?? Model.IdTipoCita.ToString())</dd>
+
+    <dt class="col-sm-4">Anfitrión</dt>
+    <dd class="col-sm-8">@(Model.NombreAnfitrion ?? Model.Anfitrion.ToString())</dd>
+</dl>
+
+<form asp-action="Delete" method="post">
+    @Html.AntiForgeryToken()
+    <input type="hidden" asp-for="IdCita" />
+    <div class="mt-3">
+        <a asp-action="Index" class="contact-btn--navegacion">Cancelar</a>
+        <button type="submit" class="contact-btn--eliminacion">Eliminar</button>
+    </div>
+</form>

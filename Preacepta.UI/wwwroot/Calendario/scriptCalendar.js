@@ -165,7 +165,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     });
 
     async function agregarClickEventos() {
-        const renderedEvents = document.querySelectorAll(".event");
+        const renderedEvents = document.querySelectorAll(".events .event");
         renderedEvents.forEach(ev => {
             ev.addEventListener("click", (e) => {
                 e.stopPropagation();
@@ -173,9 +173,9 @@ document.addEventListener("DOMContentLoaded", async () => {
                 if (citaId) {
                     fetch(`/Citas/Details/${citaId}`)
                         .then(res => res.text())
-                        .then(html => {
-                            document.getElementById("detalleCitaBody").innerHTML = html;
-                            document.getElementById("modalDetalleCita").style.display = "block";
+                       .then(html => {
+                           document.getElementById("detalleCitaBody").innerHTML = html;
+                           document.getElementById("modalDetalleCita").style.display = "block";
                         })
                         .catch(err => {
                             console.error("Error al cargar detalles de cita", err);
@@ -187,8 +187,6 @@ document.addEventListener("DOMContentLoaded", async () => {
             });
         });
     }
-
-    // Iniciar la aplicación
     await getEventsFromServer();
     initCalendar();
 });
@@ -199,17 +197,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (addEventBtn && addEventWrapper && addEventCloseBtn) {
 
-        // Toggle para mostrar/ocultar el formulario de añadir evento
         addEventBtn.addEventListener("click", () => {
             addEventWrapper.classList.toggle("active");
         });
 
-        // Cerrar formulario
         addEventCloseBtn.addEventListener("click", () => {
             addEventWrapper.classList.remove("active");
         });
 
-        // Cerrar formulario si haces click fuera del formulario y el botón
         document.addEventListener("click", (e) => {
             if (e.target !== addEventBtn && !addEventWrapper.contains(e.target)) {
                 addEventWrapper.classList.remove("active");
@@ -239,7 +234,7 @@ function mostrarDetalles() {
 
     mostrarDetalles();
 }
-//allow only time in eventtime from and to
+
 if (typeof addEventFrom !== 'undefined' && addEventFrom) {
     addEventFrom.addEventListener("input", (e) => {
         addEventFrom.value = addEventFrom.value.replace(/[^0-9:]/g, "");
@@ -255,7 +250,7 @@ const formCrearCita = document.getElementById("formCrearCita");
 
 if (formCrearCita) {
     formCrearCita.addEventListener("submit", (e) => {
-        e.preventDefault(); // evita el envío hasta validar
+        e.preventDefault(); 
 
         const eventTimeFrom = document.querySelector("#Hora")?.value || "";
 
@@ -340,14 +335,14 @@ if (formCrearCita) {
     });
 }
 
-//function to save events in local storage
+
 function saveEvents() {
     localStorage.setItem("events", JSON.stringify(eventsArr));
 }
 
-//function to get events from local storage
+
 function getEvents() {
-    //check if events are already saved in local storage then return event else nothing
+    
     if (localStorage.getItem("events") === null) {
         return;
     }
@@ -355,7 +350,7 @@ function getEvents() {
 }
 
 function convertTime(time) {
-    //convert time to 24 hour format
+  
     let timeArr = time.split(":");
     let timeHour = timeArr[0];
     let timeMin = timeArr[1];
@@ -365,22 +360,5 @@ function convertTime(time) {
     return time;
 }
 
-$(document).ready(function () {
-    $('#ModalCitasFuturas').on('shown.bs.modal', function () {
-        console.log($('#tablaCitasFuturas').length);
-        $('#tablaCitasFuturas').DataTable({
-            language: {
-                paginate: {
-                    previous: "Anterior",
-                    next: "Siguiente"
-                },
-                emptyTable: "No hay datos disponibles en la tabla",
-                info: "Mostrando _START_ a _END_ de _TOTAL_ entradas",
-                lengthMenu: "Mostrar _MENU_ entradas",
-                search: "Buscar:",
-                zeroRecords: "No se encontraron resultados"
-            }
 
-        });
-    });
-});
+

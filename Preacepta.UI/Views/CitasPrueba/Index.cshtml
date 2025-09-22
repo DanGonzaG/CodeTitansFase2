@@ -2,7 +2,7 @@
 
 @{
     ViewData["Title"] = "Index";
-    Layout = "_Layout";
+    Layout = "_LayoutGestor";
 }
 
 <h1>Citas</h1>
@@ -37,9 +37,9 @@
                     </td>
                     <td>@Html.DisplayFor(modelItem => item.NombreTipoCita)</td>
                     <td>
-                <a asp-action="Edit" asp-route-id="@item.IdCita">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.IdCita">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.IdCita">Delete</a>
+                    <a asp-action="Edit" asp-route-id="@item.IdCita" class="contact-btn--revision">Editar</a>
+                    <a asp-action="Details" asp-route-id="@item.IdCita" class="contact-btn--revision">Detalles</a>
+                    <a asp-action="Delete" asp-route-id="@item.IdCita" class="contact-btn--eliminacion">Eliminar</a>
             </td>
         </tr>
 }
