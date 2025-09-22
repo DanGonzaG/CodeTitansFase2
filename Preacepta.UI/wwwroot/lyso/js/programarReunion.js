@@ -1,4 +1,7 @@
-﻿document.getElementById("btnAbrirModalReunion").addEventListener("click", () => {
+﻿function abrirModalReunionZoom(inputSelector = "#crearCitaModal input[name='LinkVideo']") {
+    const inputLinkVideo = document.querySelector(inputSelector);
+    const grupoLinkVideo = document.getElementById("grupoLinkVideo");
+
     fetch('/Reuniones/Crear')
         .then(res => {
             if (!res.ok) throw new Error("Error al cargar el modal");
@@ -23,6 +26,11 @@
                         modal.style.display = "none";
                     }
                     modalContainer.innerHTML = "";
+                    // Mostrar el modal de crear cita nuevamente
+                    const crearCitaModal = document.getElementById("crearCitaModal");
+                    if (crearCitaModal) {
+                        crearCitaModal.style.display = "flex";
+                    }
                 };
             }
 
@@ -52,7 +60,11 @@
 
                     const todosValidos = emails.every(email => emailRegex.test(email));
                     if (!todosValidos) {
-                        alert("Uno o más correos electrónicos tienen un formato inválido.");
+                        Swal.fire({
+                            icon: 'warning',
+                            title: 'Correo inválido',
+                            text: 'Uno o más correos electrónicos tienen un formato incorrecto.'
+                        });
                         return;
                     }
                     fetch("/Reuniones/CrearReunion", {
@@ -65,23 +77,61 @@
                             console.log("Respuesta crear reunión:", res);
                             const resultado = document.getElementById("resultado");
                             if (res.success) {
+                            
+                                Swal.fire({
+                                    icon: 'success',
+                                    title: '¡Reunión programada!',
+                                    html: `La reunión virtual de Zoom se programó correctamente.<br>
+                                           <a href="${res.url}" target="_blank">${res.url}</a>`,
+                                    confirmButtonText: 'Aceptar'
+                                });
+                                // Insertar el link en el input del modal de Crear Cita
+                                const inputLinkVideo = document.querySelector(inputSelector);
+                                if (inputLinkVideo) {
+                                    inputLinkVideo.value = res.url;
+                                }
+
+                                const grupoLink = document.getElementById("grupoLinkVideo");
+                                if (grupoLink) {
+                                    grupoLink.classList.remove("d-none");
+                                }
+
                                 resultado.innerHTML = `<div style="color:green;">
                                 Reunión creada: <a href="${res.url}" target="_blank">${res.url}</a>
-                            </div>`;
+                                 </div>`;
+
+                                const modal = document.getElementById("modalProgramar");
+                                if (modal) modal.style.display = "none";
+
+                                const crearCitaModal = document.getElementById("crearCitaModal");
+                                if (crearCitaModal) crearCitaModal.style.display = "flex";
+
                             } else {
-                                resultado.innerHTML = `<div style="color:red;">Error: ${res.error}</div>`;
+                                Swal.fire({
+                                    icon: 'error',
+                                    title: 'Error',
+                                    text: res.error || "No se pudo programar la reunión."
+                                
+                                });
                             }
                         })
                         .catch(error => {
                             console.error(error);
-                            const resultado = document.getElementById("resultado");
-                            resultado.innerHTML = `<div style="color:red;">Error al crear la reunión</div>`;
+                            Swal.fire({
+                                icon: 'error',
+                                title: 'Error',
+                                text: "Ocurrió un error al crear la reunión"
+                            });
                         });
                 };
             }
         })
         .catch(err => {
             console.error(err);
-            alert("No se pudo cargar el formulario de reunión.");
+            Swal.fire({
+                icon: 'error',
+                title: 'Error',
+                text: "No se pudo cargar el formulario de reunión."
+            });
         });
-});
+}

@@ -1,0 +1,76 @@
+﻿@model Preacepta.Modelos.AbstraccionesFrond.CitasDTO
+
+
+<head>
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+</head>
+
+<div id="crearCitaModal" >
+    <div class="contact-form contact-form-two contact-form-three LetraNegra">
+       
+            <div class="contact-wrap">
+                <h4 class="mb-4">Crear Nueva Cita</h4>
+
+                <form asp-controller="Citas" asp-action="Create" method="post" id="formCrearCita">
+                    @Html.AntiForgeryToken()
+                    <input type="hidden" asp-for="IdCita" />
+
+                    <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+
+                <!-- Fecha -->
+                <div class="form-group mb-3">
+                    <label asp-for="Fecha" class="control-label"></label>
+                    <input asp-for="Fecha" class="form-control" type="date"/>
+                    <span asp-validation-for="Fecha" class="text-danger"></span>
+                </div>
+
+
+                <div class="form-group mb-3">
+                    <label asp-for="Hora" class="control-label"></label>
+                    <input asp-for="Hora" class="form-control" type="time" />
+                    <span asp-validation-for="Hora" class="text-danger"></span>
+                </div>
+
+                <!-- Tipo de Cita -->
+                <div class="form-group mb-3">
+                    <label asp-for="IdTipoCita">Tipo de Cita:</label>
+                    <select id="IdTipoCita" asp-for="IdTipoCita" class="form-control" asp-items="@(ViewData["CitasTipo"] as List<SelectListItem>)">
+                        <option value="">-- Seleccione Tipo de Cita --</option>
+                    </select>
+                    <span asp-validation-for="IdTipoCita" class="text-danger"></span>
+                </div>
+
+                <!-- Anfitrión -->
+                <div class="form-group mb-3">
+                    <label for="NombreAnfitrion" class="control-label"> Nombre Anfitrión</label>
+                    <input asp-for="NombreAnfitrion" class="form-control" readonly style="color:black;" />
+                    <input type="hidden" asp-for="Anfitrion" />
+                </div>
+
+                <!-- Link de Video -->
+                <div class="form-group mb-3 d-none" id="grupoLinkVideo">
+                    <label asp-for="LinkVideo" class="control-label"></label>
+                    <input asp-for="LinkVideo" class="form-control" readonly />
+                    <span asp-validation-for="LinkVideo" class="text-danger"></span>
+                </div>
+
+                <div class="form-group mb-3">
+                    <label for="IdCliente">Cliente</label>
+                    <select id="IdCliente" asp-for="IdCliente" asp-items="@(ViewData["Clientes"] as IEnumerable<SelectListItem>)" class="form-control">
+                        <option value="">-- Seleccione un cliente --</option>
+                    </select>
+                    <span asp-validation-for="IdCliente" class="text-danger"></span>
+                </div>
+                <!-- Botones -->
+                <div class="text-center mt-4">
+                    <input type="submit" value="Crear" class="contact-btn--primero" />
+                    <button type="button" class="contact-btn--navegacion" onclick="cerrarModal('morearCita', true)">Cerrar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

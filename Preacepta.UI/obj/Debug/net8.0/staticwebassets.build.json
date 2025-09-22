@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "Uybo2YlVmkTtp9c1KxI0m/+C33cy4fEmJ3TJZWVmG1Y=",
+  "Hash": "VORcni1lvVB7uhkdwCwv/tEMwl8F3i9XG1iULDrFg+U=",
   "Source": "Preacepta.UI",
   "BasePath": "_content/Preacepta.UI",
   "Mode": "Default",
@@ -3796,6 +3796,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\lyso\\img\\home-one\\team\\8.jpg"
+    },
+    {
+      "Identity": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lyso\\img\\home-two\\1.jpg",
+      "SourceId": "Preacepta.UI",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\",
+      "BasePath": "_content/Preacepta.UI",
+      "RelativePath": "lyso/img/home-two/1.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\lyso\\img\\home-two\\1.jpg"
     },
     {
       "Identity": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lyso\\img\\home-two\\1.png",

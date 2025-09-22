@@ -35,6 +35,7 @@
             <div class="contact-wrap">
                 <section>
                     <form class="LetraNegra" id="account" method="post">
+                        <input type="hidden" asp-for="ReturnUrl" />
                         <h2>Usar cuenta local para ingreso</h2>
                         <hr />
                         <div asp-validation-summary="ModelOnly" class="text-danger" role="alert"></div>
@@ -60,7 +61,7 @@
                             </label>
                         </div>
                         <div style="text-align: center;">
-                            <button id="login-submit" type="submit" class="w-100 btn-lg contact-btn">Iniciar sesión</button>
+                            <button id="login-submit" type="submit" class="w-100 btn-lg contact-btn--primario">Iniciar sesión</button>
                         </div>
                         <br />
                         <div>
@@ -96,7 +97,7 @@
                 icon: 'error',
                 confirmButtonText: 'Continuar',
                 customClass: {
-                    confirmButton: 'contact-btn' // Clase CSS personalizada
+                    confirmButton: 'contact-btn--primario' // Clase CSS personalizada
                 }
             });
         });

@@ -1,4 +1,5 @@
 ﻿using Humanizer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Preacepta.AD;
@@ -21,6 +22,7 @@ namespace Preacepta.Web.Controllers
         }
 
         // GET: Documentos de una cita
+        [Authorize(Roles = "Abogado,Gestor")]
         public IActionResult Listar(int idCita)
         {
             var documentos = _documentosLN.ObtenerPorCita(idCita);
@@ -29,6 +31,7 @@ namespace Preacepta.Web.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "Abogado,Gestor")]
         public async Task<IActionResult> Subir(int idCita, IFormFile archivo)
         {
             if (archivo == null || archivo.Length == 0)
@@ -49,7 +52,6 @@ namespace Preacepta.Web.Controllers
 
             try
             {
-                // Guardar el archivo en el sistema de archivos
                 using (var stream = new FileStream(rutaArchivo, FileMode.Create))
                 {
                     await archivo.CopyToAsync(stream);
@@ -57,7 +59,6 @@ namespace Preacepta.Web.Controllers
 
                 Console.WriteLine($"Archivo guardado en: {rutaArchivo}");
 
-                // Crear el objeto DocumentoCita y guardarlo en la base de datos
                 var documento = new TDocumentosCita
                 {
                     IdCita = idCita,
@@ -81,28 +82,23 @@ namespace Preacepta.Web.Controllers
         }
 
 
-
+        [Authorize(Roles = "Abogado,Gestor")]
         [HttpPost]
         public async Task<IActionResult> ActualizarPermisoDescarga([FromBody] DocumentosCitaDTO dto)
         {
             try
             {
-                // Verifica que el DTO llegue correctamente
                 if (dto == null)
                 {
                     return BadRequest("DTO vacío.");
                 }
 
-                // Validar que el Id sea válido
                 if (dto.Id <= 0)
                 {
                     return BadRequest("Id inválido.");
                 }
-
-                // Realizar la actualización
                 await _documentosLN.ActualizarPermisoDescargaAsync(dto.Id, dto.Descargar);
 
-                // Obtener el documento actualizado
                 var documento = await _documentosLN.ObtenerPorIdAsync(dto.Id);
 
                 if (documento == null)
@@ -110,47 +106,39 @@ namespace Preacepta.Web.Controllers
                     return NotFound("Documento no encontrado.");
                 }
 
-                // Responder con la ID de la cita
-                // Asegúrate de que la respuesta sea JSON en caso de éxito
                 return Json(new { success = true });
 
             }
             catch (Exception ex)
             {
-                // Capturar cualquier error
                 Console.WriteLine($"Error al actualizar permiso de descarga: {ex.Message}");
                 return BadRequest("Error actualizando permiso");
             }
         }
 
-
+        [Authorize(Roles = "Abogado,Gestor")]
         [HttpGet]
         public async Task<IActionResult> Descargar(int id)
         {
-            // Obtener el documento por su Id
             var documento = await _documentosLN.ObtenerPorIdAsync(id);
             if (documento == null)
             {
                 return NotFound("Documento no encontrado");
             }
 
-            // Validar si el permiso de descarga está habilitado
             if (!documento.Descargar)
             {
                 return Forbid("No tienes permiso para descargar este documento.");
             }
 
-            // Obtener la ruta del archivo desde el DTO
-            var ruta = documento.RutaArchivo; // Asumo que esta es la ruta en el sistema de archivos
+            var ruta = documento.RutaArchivo; 
             if (string.IsNullOrEmpty(ruta) || !System.IO.File.Exists(ruta))
             {
                 return NotFound("El archivo no existe o la ruta es incorrecta.");
             }
 
-            // Leer el archivo
             var bytes = await System.IO.File.ReadAllBytesAsync(ruta);
 
-            // Si quieres mostrar el nombre del archivo, podrías almacenarlo también en el DTO
             var nombreArchivo = documento.NombreArchivo ?? "archivo.pdf";
 
             // Establecer cabeceras para evitar caché
@@ -158,10 +146,9 @@ namespace Preacepta.Web.Controllers
             Response.Headers.Add("Pragma", "no-cache");
             Response.Headers.Add("Expires", "0");
 
-            // Devolver el archivo al usuario con un tipo MIME genérico
             return File(bytes, "application/octet-stream", nombreArchivo);
         }
-
+        [Authorize(Roles = "Abogado,Gestor")]
         [HttpPost]
         public async Task<IActionResult> ActualizarPermisoDescargaBatch([FromBody] List<DocumentosCitaDTO> documentos)
         {
@@ -180,7 +167,6 @@ namespace Preacepta.Web.Controllers
                 }
                 await _contexto.SaveChangesAsync();
 
-                // Después de actualizar los permisos de descarga, redirigir a la lista de documentos de la cita
                 return Json(new { success = true, redirectUrl = "/Citas/Calendar" });
             }
             catch (Exception ex)
@@ -188,6 +174,22 @@ namespace Preacepta.Web.Controllers
                 return Json(new { success = false, message = ex.Message });
             }
         }
+        [Authorize(Roles = "Abogado,Gestor")]
+        [HttpPost]
+        public async Task<IActionResult> Eliminar(int id)
+        {
+            try
+            {
+                var eliminado = await _documentosLN.EliminarAsync(id);
+                if (!eliminado)
+                    return Json(new { success = false, message = "Documento no encontrado." });
 
+                return Json(new { success = true });
+            }
+            catch (Exception ex)
+            {
+                return Json(new { success = false, message = ex.Message });
+            }
+        }
     }
 }

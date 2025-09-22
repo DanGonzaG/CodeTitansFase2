@@ -8,9 +8,7 @@ namespace Preacepta.UI.Services
     {
         public static SynchronizedConverter GetConverter()
         {
-            var context = new CustomAssemblyLoadContext();
-            context.LoadUnmanagedLibrary(Path.Combine(Directory.GetCurrentDirectory(), "DinkToPdf", "lib64", "libwkhtmltox.dll"));
-
+            //DinkToPdfAll.LibraryLoader.Load(); // Carga automática
             return new SynchronizedConverter(new PdfTools());
         }
     }

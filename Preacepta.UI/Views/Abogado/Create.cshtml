@@ -2,7 +2,7 @@
 
 @{
     ViewData["Title"] = "Create";
-    Layout = "_Layout";
+    Layout = "_LayoutGestor";
 }
 
 <h1>Registrar un nuevo Abogado</h1>
@@ -17,11 +17,7 @@
                 <label asp-for="geAbogadoDTO.Carnet" class="control-label"></label>
                 <input asp-for="geAbogadoDTO.Carnet" class="form-control" />
                 <span asp-validation-for="geAbogadoDTO.Carnet" class="text-danger"></span>
-            </div>
-            <!--<div class="form-group">
-                <label asp-for="geAbogadoDTO.Cedula" class="control-label"></label>
-                <select asp-for="geAbogadoDTO.Cedula" class="form-control" asp-items="ViewBag.Cedula"></select>
-            </div>-->
+            </div>            
             <div class="form-group">
                 <label asp-for="personaDTO.Cedula" class="control-label"></label>
                 <input asp-for="personaDTO.Cedula" class="form-control" />
@@ -95,12 +91,6 @@
                 </select>
                 <input id="inputDistrito" asp-for="personaDTO.Direccion1" class="form-control" readonly />
             </div>
-
-            <!--<div class="form-group">
-                <label asp-for="personaDTO.Direccion1" class="control-label"></label>
-                <select asp-for="personaDTO.Direccion1" class="form-control" asp-items="ViewBag.Direccion1"></select>
-            </div>-->
-
             <div class="form-group">
                 <label asp-for="personaDTO.Direccion2" class="control-label"></label>
                 <input asp-for="personaDTO.Direccion2" class="form-control" />
@@ -115,17 +105,7 @@
                 <label asp-for="personaDTO.Telefono2" class="control-label"></label>
                 <input asp-for="personaDTO.Telefono2" class="form-control" />
                 <span asp-validation-for="personaDTO.Telefono2" class="text-danger"></span>
-            </div>
-            <!--<div class="form-group">
-                <label asp-for="FechaRegistro" class="control-label"></label>
-                <input asp-for="FechaRegistro" class="form-control" />
-                <span asp-validation-for="FechaRegistro" class="text-danger"></span>
-            </div>-->
-            <!--<div class="form-group form-check">
-                <label class="form-check-label">
-                    <input class="form-check-input" asp-for="Activo" /> @Html.//DisplayNameFor(model => model.Activo)
-                </label>
-            </div>-->
+            </div>          
             <div class="form-group">
                 <label asp-for="personaDTO.Email" class="control-label"></label>
                 <input asp-for="personaDTO.Email" class="form-control" autocomplete="username" aria-required="true" placeholder="name@example.com" />

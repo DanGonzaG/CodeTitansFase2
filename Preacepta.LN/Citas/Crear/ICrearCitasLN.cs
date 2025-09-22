@@ -10,5 +10,7 @@ namespace Preacepta.LN.Citas.Crear
     public interface ICrearCitasLN
     {
         Task<int> crear(CitasDTO crear);
+        Task<bool> AsignarClienteAlaCita(int idCita, int idCliente);
+
     }
 }

@@ -1,0 +1,113 @@
+﻿@model Preacepta.Modelos.AbstraccionesFrond.CitasDTO
+
+<head>
+    <link href="~/lyso/css/Daniel.css" rel="stylesheet" />
+    <link href="~/calendario/stylecalendar.css" rel="stylesheet" />
+
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+</head>
+
+<div class="contact-form contact-form-two contact-form-three LetraNegra">
+     <div class="container">
+        <div class="contact-wrap">
+            <h4 class="mb-4">Editar Cita</h4>
+
+<form asp-controller="Citas" asp-action="Edit" method="post" id="formEditarCita">
+    @Html.AntiForgeryToken()
+    <input type="hidden" asp-for="IdCita" />
+
+    <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+
+    <div class="form-group">
+        <label asp-for="Fecha" class="control-label"></label>
+        <input asp-for="Fecha" class="form-control" type="date" />
+        <span asp-validation-for="Fecha" class="text-danger"></span>
+    </div>
+
+    <div class="form-group mb-3">
+        <label asp-for="Hora" class="control-label"></label>
+        <input asp-for="Hora" class="form-control" type="time" />
+        <span asp-validation-for="Hora" class="text-danger"></span>
+    </div>
+
+    <div class="form-group mb-3">
+        <label asp-for="IdTipoCita" class="control-label">Tipo de Cita:</label>
+        <select asp-for="IdTipoCita" class="form-control" asp-items="ViewBag.TipoCitaList">
+            <option value="">-- Seleccione Tipo de Cita --</option>
+        </select>
+        <span asp-validation-for="IdTipoCita" class="text-danger"></span>
+    </div>
+
+    <div class="form-group mb-3">
+        <label asp-for="NombreAnfitrion" class="control-label">Anfitrión</label>
+        <input asp-for="NombreAnfitrion" class="form-control" readonly />
+        <input type="hidden" asp-for="Anfitrion" />
+    </div>
+
+            <div class="form-group mb-3">
+                <label class="control-label">Cliente</label>
+                @if (Model.NombresClientes != null && Model.NombresClientes.Any())
+                {
+                    <input type="text" class="form-control" value="@Model.NombresClientes.First()" readonly />
+                    <input type="hidden" asp-for="IdCliente" />
+                }
+                else
+                {
+                    <input type="text" class="form-control" value="No asignado" readonly />
+                }
+            </div>
+
+
+    <div class="form-group">
+    <label asp-for="Terminada" class="control-label"></label>
+    <input asp-for="Terminada" class="form-check-input" type="checkbox" />
+    <span asp-validation-for="Terminada" class="text-danger"></span>
+</div>
+
+
+                <div class="text-center mt-4">
+                <input type="submit" value="Guardar" class="contact-btn--primero" />
+                <button type="button" class="contact-btn--navegacion" onclick="cerrarModal('modaEditarCita', true)">Cerrar</button>
+    </div>
+</form>
+        </div>
+    </div>
+</div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const tipoCitaDropdown = document.getElementById("IdTipoCita");
+        const grupoLinkVideo = document.getElementById("grupoLinkVideo");
+        const inputLinkVideo = document.getElementById("LinkVideo");
+
+        function toggleLinkVideo() {
+            const opcionSeleccionada = tipoCitaDropdown.options[tipoCitaDropdown.selectedIndex].text.trim().toLowerCase();
+            if (opcionSeleccionada === "virtual") {
+                grupoLinkVideo.classList.remove("d-none");
+  
+                if (!inputLinkVideo.value) abrirModalReunionZoom();
+            } else {
+                grupoLinkVideo.classList.add("d-none");
+                inputLinkVideo.value = "";
+            }
+        }
+
+        if (tipoCitaDropdown && grupoLinkVideo) {
+            tipoCitaDropdown.addEventListener("change", toggleLinkVideo);
+            toggleLinkVideo();
+        }
+
+   
+        window.abrirModalReunionZoom = function () {
+            let linkGenerado = "https://zoom.us/j/123456789";
+
+            if (inputLinkVideo) {
+                inputLinkVideo.value = linkGenerado;
+                grupoLinkVideo.classList.remove("d-none");
+            }
+
+            
+        }
+    });
+</script>
