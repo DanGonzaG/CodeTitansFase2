@@ -1,0 +1,102 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Documento de Inscripción de Vehículo</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            font-size: 12pt;
+            line-height: 1.6;
+            margin: 40px;
+        }
+
+        h2, h3 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+            ul li {
+                margin-bottom: 5px;
+            }
+
+        .firma {
+            margin-top: 80px;
+            text-align: center;
+        }
+
+        .notario {
+            margin-top: 100px;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>Documento de Inscripción de Vehículo</h2>
+    <h3>Dirección General de Registro de Bienes Muebles</h3>
+
+    <p>
+        Yo, <strong>{{NOMBRE_CLIENTE}}</strong>, con cédula de identidad número <strong>{{CEDULA_CLIENTE}}</strong>,
+        {{ESTADO_CIVIL_CLIENTE}}, {{PROFESION_CLIENTE}}, con domicilio en <strong>{{DIRECCION_CLIENTE}}</strong>,
+        por medio de la presente solicito la inscripción del vehículo con las siguientes características:
+    </p>
+
+    <ul>
+        <li><strong>Marca:</strong> {{MARCA}}</li>
+        <li><strong>Estilo:</strong> {{ESTILO}}</li>
+        <li><strong>Modelo:</strong> {{MODELO}}</li>
+        <li><strong>Categoría:</strong> {{CATEGORIA}}</li>
+        <li><strong>Marca del Motor:</strong> {{MARCA_MOTOR}}</li>
+        <li><strong>Número de Motor:</strong> {{NUMERO_MOTOR}}</li>
+        <li><strong>Serie / Chasis:</strong> {{SERIE_CHASIS}}</li>
+        <li><strong>VIN:</strong> {{VIN}}</li>
+        <li><strong>Año:</strong> {{ANIO}}</li>
+        <li><strong>Carrocería:</strong> {{CARROCERIA}}</li>
+        <li><strong>Peso Neto:</strong> {{PESO_NETO}} kg</li>
+        <li><strong>Peso Bruto:</strong> {{PESO_BRUTO}} kg</li>
+        <li><strong>Potencia:</strong> {{POTENCIA}} HP</li>
+        <li><strong>Color:</strong> {{COLOR}}</li>
+        <li><strong>Capacidad:</strong> {{CAPACIDAD}} personas</li>
+        <li><strong>Combustible:</strong> {{COMBUSTIBLE}}</li>
+        <li><strong>Cilindraje:</strong> {{CILINDRAJE}} cc</li>
+    </ul>
+
+    <p>
+        Solicito también la emisión de la placa provisional de circulación correspondiente al vehículo anteriormente descrito.
+    </p>
+
+    <p>
+        En fe de lo anterior firmo en <strong>{{LUGAR_FIRMA}}</strong>, el día <strong>{{FECHA_FIRMA}}</strong>.
+    </p>
+
+    <div class="firma">
+        <p>__________________________________________</p>
+        <p><strong>{{NOMBRE_CLIENTE}}</strong></p>
+        <p>Firmante</p>
+    </div>
+
+    <div class="notario">
+        <p>
+            Yo, <strong>{{NOMBRE_NOTARIO}}</strong>, notario público con cédula <strong>{{CEDULA_ABOGADO}}</strong>,
+            doy fe que el compareciente firmó el presente documento en mi presencia y que la firma corresponde a la
+            registrada oficialmente.
+        </p>
+
+        <p>
+            Firmado en <strong>{{LUGAR_FIRMA}}</strong>, el <strong>{{FECHA_FIRMA}}</strong>.
+        </p>
+
+        <div class="firma">
+            <p>__________________________________________</p>
+            <p><strong>{{NOMBRE_NOTARIO}}</strong></p>
+            <p>Notario Público</p>
+        </div>
+    </div>
+
+</body>
+</html>

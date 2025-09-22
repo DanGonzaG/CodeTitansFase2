@@ -192,8 +192,25 @@ namespace Preacepta.UI.Controllers
         // GET: TDocsInscripcionVehiculo/Create
         public IActionResult CreateDocsInscripcionVehiculo()
         {
-            ViewData["CedulaAbogado"] = new SelectList(_context.TGeAbogados, "Cedula", "Cedula");
-            ViewData["CedulaCliente"] = new SelectList(_context.TGePersonas, "Cedula", "Apellido1");
+            ViewData["CedulaAbogado"] = new SelectList(
+                _context.TGeAbogados.Include(a => a.CedulaNavigation).Select(a => new
+                {
+                    Cedula = a.Cedula,
+                    Texto = a.CedulaNavigation.Nombre + " " + a.CedulaNavigation.Apellido1 + " - " + a.Cedula
+                }),
+                "Cedula",
+                "Texto");
+
+            ViewData["CedulaCliente"] = new SelectList(
+                _context.TGePersonas.Select(p => new
+                {
+                    Cedula = p.Cedula,
+                    Texto = p.Nombre + " " + p.Apellido1 + " - " + p.Cedula
+                }),
+                "Cedula",
+                "Texto");
+            //ViewData["CedulaAbogado"] = new SelectList(_context.TGeAbogados, "Cedula", "Cedula");
+            //ViewData["CedulaCliente"] = new SelectList(_context.TGePersonas, "Cedula", "Apellido1");
             ViewData["EstiloVehiculo"] = new SelectList(_context.TDocsTipoVehiculos, "Id", "Nombre");
             ViewData["LugarFirma"] = new SelectList(_context.TCrDistritos, "IdDistrito", "NombreDistrito");
             ViewData["MarcaVehiculo"] = new SelectList(_context.TDocsMarcaVehiculos, "Id", "Nombre");
@@ -205,15 +222,104 @@ namespace Preacepta.UI.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> CreateDocsInscripcionVehiculo([Bind("IdDocumento,CedulaCliente,CedulaAbogado,MarcaVehiculo,EstiloVehiculo,ModeloVehiculo,Categoria,MarcaMotor,NumeroMotor,NumeroSerieChasis,Vin,Anio,Carroceria,PesoNeto,PesoBruto,Potencia,Color,Capacidad,Combustible,Cilindraje,LugarFirma,FechaFirma")] DocsInscripcionVehiculoDTO tDocsInscripcionVehiculo)
+        public async Task<IActionResult> CreateDocsInscripcionVehiculo([Bind("IdDocumento,CedulaCliente,CedulaAbogado,MarcaVehiculo,EstiloVehiculo,ModeloVehiculo,Categoria,MarcaMotor,NumeroMotor,NumeroSerieChasis,Vin,Anio,Carroceria,PesoNeto,PesoBruto,Potencia,Color,Capacidad,Combustible,Cilindraje,LugarFirma,FechaFirma")] DocsInscripcionVehiculoDTO tDocsInscripcionVehiculo,
+            [FromForm] int? DocumentoAnteriorId
+            )
         {
             if (ModelState.IsValid)
             {
+                // Eliminar documento anterior y su historial
+                if (DocumentoAnteriorId.HasValue)
+                {
+                    // Buscar historial por ID
+                    var historialAnterior = await _context.HistorialDocumentos
+                        .FirstOrDefaultAsync(h => h.Id == DocumentoAnteriorId.Value);
+
+                    if (historialAnterior != null)
+                    {
+                        // Obtener el ID del documento original desde el historial
+                        var idDocOriginal = historialAnterior.DocumentoIdOriginal;
+
+                        // Buscar y eliminar el documento original
+                        var docAnterior = await _context.TDocsInscripcionVehiculos
+                            .FirstOrDefaultAsync(p => p.IdDocumento == idDocOriginal);
+
+                        if (docAnterior != null)
+                            _context.TDocsInscripcionVehiculos.Remove(docAnterior);
+
+                        // Eliminar también el historial
+                        _context.HistorialDocumentos.Remove(historialAnterior);
+
+                        await _context.SaveChangesAsync();
+                    }
+                }
+
                 await _crear.Crear(tDocsInscripcionVehiculo);
-                return RedirectToAction(nameof(Index));
+                //return RedirectToAction(nameof(Index));
+
+                // Obtener comprador desde TGePersonas
+                var cliente = await _context.TGePersonas
+                     .FirstOrDefaultAsync(p => p.Cedula == tDocsInscripcionVehiculo.CedulaCliente);
+
+                string nombreCliente = cliente != null
+                    ? $"{cliente.Nombre} {cliente.Apellido1} {cliente.Apellido2}"
+                    : tDocsInscripcionVehiculo.CedulaCliente.ToString();
+
+                // Obtener abogado desde TGeAbogados (con su persona)
+                var abogado = await _context.TGeAbogados
+                    .Include(a => a.CedulaNavigation)
+                    .FirstOrDefaultAsync(a => a.Cedula == tDocsInscripcionVehiculo.CedulaAbogado);
+
+                string nombreAbogado = abogado != null
+                    ? $"{abogado.CedulaNavigation.Nombre} {abogado.CedulaNavigation.Apellido1} {abogado.CedulaNavigation.Apellido2}"
+                    : tDocsInscripcionVehiculo.CedulaAbogado.ToString();
+
+                // Crear nuevo historial con el ID real del documento recién creado
+                var nuevoIdDocumento = _context.TDocsInscripcionVehiculos
+                .OrderByDescending(x => x.IdDocumento)
+                .Select(x => x.IdDocumento)
+                .FirstOrDefault();
+
+
+                // Guardar en el historial
+                var historial = new HistorialDocumento
+                {
+                    Fecha = DateTime.Now,
+                    TipoDocumento = "Inscripción de Vehículos",
+                    Cliente = nombreCliente,
+                    Abogado = nombreAbogado,
+                    DocumentoIdOriginal = nuevoIdDocumento
+                };
+
+                _context.HistorialDocumentos.Add(historial);
+                await _context.SaveChangesAsync();
+                //return RedirectToAction(nameof(Index));
+                var historialDocs = await _context.HistorialDocumentos
+                .OrderByDescending(h => h.Fecha)
+                .ToListAsync();
+
+                return View("~/Views/HistorialDocumentos/DocsHistorial.cshtml", historialDocs);
             }
-            ViewData["CedulaAbogado"] = new SelectList(_context.TGeAbogados, "Cedula", "Cedula", tDocsInscripcionVehiculo.CedulaAbogado);
-            ViewData["CedulaCliente"] = new SelectList(_context.TGePersonas, "Cedula", "Apellido1", tDocsInscripcionVehiculo.CedulaCliente);
+            ViewData["CedulaAbogado"] = new SelectList(
+                _context.TGeAbogados.Include(a => a.CedulaNavigation).Select(a => new
+                {
+                    Cedula = a.Cedula,
+                    Texto = a.CedulaNavigation.Nombre + " " + a.CedulaNavigation.Apellido1 + " - " + a.Cedula
+                }),
+                "Cedula",
+                "Texto", tDocsInscripcionVehiculo?.CedulaAbogado);
+
+            ViewData["CedulaCliente"] = new SelectList(
+                _context.TGePersonas.Select(p => new
+                {
+                    Cedula = p.Cedula,
+                    Texto = p.Nombre + " " + p.Apellido1 + " - " + p.Cedula
+                }),
+                "Cedula",
+                "Texto",
+                tDocsInscripcionVehiculo?.CedulaCliente);
+            //ViewData["CedulaAbogado"] = new SelectList(_context.TGeAbogados, "Cedula", "Cedula", tDocsInscripcionVehiculo.CedulaAbogado);
+            //ViewData["CedulaCliente"] = new SelectList(_context.TGePersonas, "Cedula", "Apellido1", tDocsInscripcionVehiculo.CedulaCliente);
             ViewData["EstiloVehiculo"] = new SelectList(_context.TDocsTipoVehiculos, "Id", "Nombre", tDocsInscripcionVehiculo.EstiloVehiculo);
             ViewData["LugarFirma"] = new SelectList(_context.TCrDistritos, "IdDistrito", "NombreDistrito", tDocsInscripcionVehiculo.LugarFirma);
             ViewData["MarcaVehiculo"] = new SelectList(_context.TDocsMarcaVehiculos, "Id", "Nombre", tDocsInscripcionVehiculo.MarcaVehiculo);
@@ -303,6 +409,84 @@ namespace Preacepta.UI.Controllers
             var pdf = _converter.Convert(doc);
 
             return File(pdf, "application/pdf");
+        }
+
+        //Prueba para editar en historialDocumentos
+        [HttpGet]
+        public async Task<IActionResult> EditarDesdeHistorial(int id)
+        {
+            var historial = await _context.HistorialDocumentos.FindAsync(id);
+
+            if (historial == null || historial.TipoDocumento != "Inscripción de Vehículos" || historial.DocumentoIdOriginal == null)
+            {
+                return NotFound();
+            }
+
+
+            var docOriginal = await _context.TDocsInscripcionVehiculos
+                .FirstOrDefaultAsync(d => d.IdDocumento == historial.DocumentoIdOriginal.Value);
+
+            if (docOriginal == null)
+            {
+                return NotFound();
+            }
+
+            /*ViewData["ProvinciaFinca"] = new SelectList(_context.TCrProvincias, "IdProvincia", "NombreProvincia", docOriginal.ProvinciaFinca);
+            ViewData["DistritoFinca"] = new SelectList(_context.TCrDistritos, "IdDistrito", "NombreDistrito", docOriginal.DistritoFinca);
+            ViewData["CantonesFinca"] = new SelectList(_context.TCrCantones, "IdCanton", "NombreCanton", docOriginal.CantonFinca);*/
+
+
+            var model = new DocsInscripcionVehiculoDTO
+            {
+                CedulaCliente = docOriginal.CedulaCliente,
+                CedulaAbogado = docOriginal.CedulaAbogado,
+                MarcaVehiculo = docOriginal.MarcaVehiculo,
+                EstiloVehiculo = docOriginal.EstiloVehiculo,
+                ModeloVehiculo = docOriginal.ModeloVehiculo,
+                Categoria = docOriginal.Categoria,
+                MarcaMotor = docOriginal.MarcaMotor,
+                NumeroMotor = docOriginal.NumeroMotor,
+                NumeroSerieChasis = docOriginal.NumeroSerieChasis,
+                Vin = docOriginal.Vin,
+                Anio = docOriginal.Anio,
+                Carroceria = docOriginal.Carroceria,
+                PesoNeto = docOriginal.PesoNeto,
+                PesoBruto = docOriginal.PesoBruto,
+                Potencia = docOriginal.Potencia,
+                Color = docOriginal.Color,
+                Capacidad = docOriginal.Capacidad,
+                Combustible = docOriginal.Combustible,
+                Cilindraje = docOriginal.Cilindraje,
+                LugarFirma = docOriginal.LugarFirma,
+                FechaFirma = docOriginal.FechaFirma
+            };
+
+            ViewBag.DocumentoAnteriorId = historial.Id;
+
+            ViewData["CedulaAbogado"] = new SelectList(
+                _context.TGeAbogados.Include(a => a.CedulaNavigation).Select(a => new
+                {
+                    Cedula = a.Cedula,
+                    Texto = a.CedulaNavigation.Nombre + " " + a.CedulaNavigation.Apellido1 + " - " + a.Cedula
+                }),
+                "Cedula",
+                "Texto", model?.CedulaAbogado);
+
+            ViewData["CedulaCliente"] = new SelectList(
+                _context.TGePersonas.Select(p => new
+                {
+                    Cedula = p.Cedula,
+                    Texto = p.Nombre + " " + p.Apellido1 + " - " + p.Cedula
+                }),
+                "Cedula",
+                "Texto",
+                model?.CedulaCliente);
+            ViewData["EstiloVehiculo"] = new SelectList(_context.TDocsTipoVehiculos, "Id", "Nombre", model.EstiloVehiculo);
+            ViewData["LugarFirma"] = new SelectList(_context.TCrDistritos, "IdDistrito", "NombreDistrito", model.LugarFirma);
+            ViewData["MarcaVehiculo"] = new SelectList(_context.TDocsMarcaVehiculos, "Id", "Nombre", model.MarcaVehiculo);
+
+            return View("CreateDocsInscripcionVehiculo", model);
+
         }
 
     }

@@ -17,19 +17,7 @@
                                     <a asp-action="Contact">
                                         CONSULTA GRATUITA
                                         <i class="icofont-arrow-right"></i>
-                                    </a>
-                                    <a asp-action="UsuarioAutenticado" asp-route-correo="@User.Identity.Name">
-                                        Vista Abogado
-                                        <i class="icofont-arrow-right"></i>
-                                    </a>
-                                    <a asp-action="UsuarioGestor" asp-route-correo="@User.Identity.Name">
-                                        Vista Gestor
-                                        <i class="icofont-arrow-right"></i>
-                                    </a>
-                                    <a asp-action="UsuarioCliente" asp-route-correo="@User.Identity.Name">
-                                        Vista Cliente
-                                        <i class="icofont-arrow-right"></i>
-                                    </a>
+                                    </a>                                    
                                 </div>
                             </div>
                             <div class="col-lg-7">
@@ -180,10 +168,10 @@
                                 </li>
                             </ul>
                         </div>
-                        <div class="help-signature">
+                        <!--<div class="help-signature">
                             <img src="~/lyso/img/home-one/4.png" alt="Signature">
                         </div>
-                        <!--<a class="cmn-btn" href="practice.html">Learn More</a>-->
+                        <a class="cmn-btn" href="practice.html">Learn More</a>-->
                     </div>
                 </div>
             </div>
@@ -207,9 +195,11 @@
                     <div class="practice-icon">
                         <i class="flaticon-law"></i>
                     </div>
-                    <h3>Derecho civil</h3>
-                    <p>Je jednostavno probni tekst koji se koristi u tiskarskoj i slovoslagarskoj industriji.</p>
-                    <a asp-action="CaseStudyDetails">Read More</a>
+                    <h3>Derecho Civil</h3>
+                    <p>
+                        Representamos a nuestros clientes en casos de disputas contractuales, daños y perjuicios, responsabilidad civil, y asuntos familiares. Nuestro objetivo es proteger sus derechos e intereses con un enfoque legal sólido y ético.
+                    </p>
+                    <a asp-controller="Home" asp-action="Civil">Lea Más</a>
                     <img class="practice-shape-one" src="~/lyso/img/home-one/7.png" alt="Shape">
                     <img class="practice-shape-two" src="~/lyso/img/home-one/8.png" alt="Shape">
                 </div>
@@ -219,9 +209,9 @@
                     <div class="practice-icon">
                         <i class="flaticon-family"></i>
                     </div>
-                    <h3>Derecho penal</h3>
-                    <p>Je jednostavno probni tekst koji se koristi u tiskarskoj i slovoslagarskoj industriji.</p>
-                    <a asp-controller="Home" asp-action="CaseStudyDetails">Read More</a>
+                    <h3>Derecho Penal</h3>
+                    <p>Defendemos a personas acusadas de delitos, brindando asesoría y representación en todas las etapas del proceso penal. Nos comprometemos a garantizar un juicio justo y a proteger sus derechos fundamentales.</p>
+                    <a asp-controller="Home" asp-action="CaseStudyDetails">Lea Más</a>
                     <img class="practice-shape-one" src="~/lyso/img/home-one/7.png" alt="Shape">
                     <img class="practice-shape-two" src="~/lyso/img/home-one/8.png" alt="Shape">
                 </div>
@@ -232,8 +222,10 @@
                         <i class="flaticon-inheritance"></i>
                     </div>
                     <h3>Derecho Laboral</h3>
-                    <p>Je jednostavno probni tekst koji se koristi u tiskarskoj i slovoslagarskoj industriji.</p>
-                    <a asp-controller="Home" asp-action="CaseStudyDetails">Read More</a>
+                    <p>
+                        Asesoramos tanto a empleadores como a empleados en conflictos laborales, despidos injustificados, reclamaciones salariales, y cumplimiento de normativas laborales. Buscamos soluciones eficientes y justas.
+                    </p>
+                    <a asp-controller="Home" asp-action="Laboral">Lea Más</a>
                     <img class="practice-shape-one" src="~/lyso/img/home-one/7.png" alt="Shape">
                     <img class="practice-shape-two" src="~/lyso/img/home-one/8.png" alt="Shape">
                 </div>
@@ -244,8 +236,10 @@
                         <i class="flaticon-mortarboard"></i>
                     </div>
                     <h3>Derecho Corporativo</h3>
-                    <p>je jednostavno probni tekst koji se koristi u tiskarskoj i slovoslagarskoj industriji.</p>
-                    <a asp-controller="Home" asp-action="CaseStudyDetails">Read More</a>
+                    <p>
+                        Brindamos asesoría legal integral a empresas en su constitución, contratos comerciales, fusiones, adquisiciones y cumplimiento normativo. Apoyamos el crecimiento empresarial con respaldo jurídico sólido.
+                    </p>
+                    <a asp-controller="Home" asp-action="Corporativo">Lea Más</a>
                     <img class="practice-shape-one" src="~/lyso/img/home-one/7.png" alt="Shape">
                     <img class="practice-shape-two" src="~/lyso/img/home-one/8.png" alt="Shape">
                 </div>
@@ -255,9 +249,11 @@
                     <div class="practice-icon">
                         <i class="flaticon-auction"></i>
                     </div>
-                    <h3>Derecho administrativo</h3>
-                    <p>je jednostavno probni tekst koji se koristi u tiskarskoj i slovoslagarskoj industriji.</p>
-                    <a asp-controller="Home" asp-action="CaseStudyDetails">Read More</a>
+                    <h3>Derecho Administrativo</h3>
+                    <p>
+                        Representamos a nuestros clientes frente a la administración pública en procedimientos, sanciones, licencias y recursos administrativos. Facilitamos el diálogo entre particulares y la autoridad.
+                    </p>
+                    <a asp-controller="Home" asp-action="Administrativo">Lea Más</a>
                     <img class="practice-shape-one" src="~/lyso/img/home-one/7.png" alt="Shape">
                     <img class="practice-shape-two" src="~/lyso/img/home-one/8.png" alt="Shape">
                 </div>
@@ -268,8 +264,10 @@
                         <i class="flaticon-vulnerability"></i>
                     </div>
                     <h3>Derecho Notarial</h3>
-                    <p>je jednostavno probni tekst koji se koristi u tiskarskoj i slovoslagarskoj industriji.</p>
-                    <a asp-controller="Home" asp-action="CaseStudyDetails">Read More</a>
+                    <p>
+                        Ofrecemos servicios notariales confiables en la elaboración y autenticación de escrituras, poderes, testamentos, compraventas y otros actos jurídicos. Garantizamos legalidad, seguridad jurídica y transparencia en cada trámite.
+                    </p>
+                    <a asp-controller="Home" asp-action="Notarial">Lea Más</a>
                     <img class="practice-shape-one" src="~/lyso/img/home-one/7.png" alt="Shape">
                     <img class="practice-shape-two" src="~/lyso/img/home-one/8.png" alt="Shape">
                 </div>
@@ -285,7 +283,7 @@
         <div class="row align-items-center justify-content-center">
             <div class="col-lg-6">
                 <div class="section-title text-left">
-                    <span>NUESTRA EXPERIENCIA</span>
+                    
                     <h2>Bufete de Abogados Dedicado a Nuestros Clientes</h2>
                 </div>
                 <div class="expertise-item">
@@ -327,58 +325,7 @@
 </section>
 <!-- End Expertise -->
 
-<!-- portfolio -->
-<!--
-<section class="portfolio-area ptb-100">
-    <div class="container">
-        <div class="section-title">
-            <span>PORTFOLIO</span>
-            <h2>Check Out Our Popular Case Studies.</h2>
-        </div>
-        <div class="row justify-content-center">
-            <div class="col-sm-6 col-lg-4">
-                <div class="portfolio-item">
-                    <img src="~/lyso/img/home-one/portfolio/1.jpg" alt="Portfolio">
-                    <div class="portfolio-inner">
-                        <span>Crime</span>
-                        <h3>
-                            <a href="case-study-details.html">Critical Murder Case</a>
-                        </h3>
-                        <p>15 Feb 2024</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm-6 col-lg-4">
-                <div class="portfolio-item">
-                    <img src="~/lyso/img/home-one/portfolio/2.jpg" alt="Portfolio">
-                    <div class="portfolio-inner">
-                        <span>Rights</span>
-                        <h3>
-                            <a href="case-study-details.html">Children Rights</a>
-                        </h3>
-                        <p>16 Feb 2024</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm-6   col-lg-4">
-                <div class="portfolio-item">
-                    <img src="~/lyso/img/home-one/portfolio/3.jpg" alt="Portfolio">
-                    <div class="portfolio-inner">
-                        <span>Finance</span>
-                        <h3>
-                            <a href="case-study-details.html">Money Loundering</a>
-                        </h3>
-                        <p>17 Feb 2024</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="text-center">
-            <a class="cmn-btn" href="case-study.html">See More</a>
-        </div>
-    </div>
-</section>
--->
+
 <!-- End portfolio -->
 <!-- Team -->
 <section class="team-area">
@@ -588,7 +535,8 @@
     <!-- End Counter -->
 
     <div class="container-fluid">
-        <form id="contactForm">
+        <form id="contactForm" asp-action="EnviarSolicitudDeContacto">
+            <div asp-validation-summary="ModelOnly" class="text-danger" role="alert"></div>
             <div class="row contact-wrap">
                 <div class="col-sm-6 col-lg-6">
                     <div class="form-group">
@@ -596,6 +544,7 @@
                         <div class="help-block with-errors"></div>
                     </div>
                 </div>
+
                 <div class="col-sm-6 col-lg-6">
                     <div class="form-group">
                         <input type="text" name="name" id="name" class="form-control" required data-error="Digite el dato" placeholder="Nombre completo">
@@ -645,3 +594,19 @@
     </div>
 </div>
 <!-- End Contact Form -->
+@if (TempData["MensajeEnviado"] != null)
+{
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            Swal.fire({
+                title: 'Correo enviado',
+                text: '@TempData["MensajeEnviado"]',
+                icon: 'success',
+                confirmButtonText: 'Continuar',
+                customClass: {
+                    confirmButton: 'contact-btn--primario' // Clase CSS personalizada
+                }
+            });
+        });
+    </script>
+}

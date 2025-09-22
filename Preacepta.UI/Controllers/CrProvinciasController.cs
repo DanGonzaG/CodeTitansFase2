@@ -35,12 +35,19 @@ namespace Preacepta.UI.Controllers
             _listar = listar;
         }
 
+        /********************************************************************************************************************************************************************/
+        //controller de Framework\\
+        /********************************************************************************************************************************************************************/
+
+        #region Listar Root
         // GET: CrProvincias
         public async Task<IActionResult> Index()
         {
             return View(await _listar.listarProvincias());
         }
+        #endregion
 
+        #region Detalles Root
         // GET: CrProvincias/Details/5
         public async Task<IActionResult> Details(int id)
         {
@@ -57,7 +64,9 @@ namespace Preacepta.UI.Controllers
 
             return View(tCrProvincia);
         }
+        #endregion
 
+        #region Crear Root Metodo POST y GET
         // GET: CrProvincias/Create
         public IActionResult Create()
         {
@@ -78,7 +87,9 @@ namespace Preacepta.UI.Controllers
             }
             return View(tCrProvincia);
         }
+        #endregion
 
+        #region Editar Root Metodo POST y GET
         // GET: CrProvincias/Edit/5
         public async Task<IActionResult> Edit(int id)
         {
@@ -121,7 +132,9 @@ namespace Preacepta.UI.Controllers
             }
             return View(tCrProvincia);
         }
+        #endregion
 
+        #region Eliminar Root Metodo POST y GET
         // GET: CrProvincias/Delete/5
         public async Task<IActionResult> Delete(int id)
         {
@@ -147,5 +160,6 @@ namespace Preacepta.UI.Controllers
             await _eliminar.EliminarProvincia(id);
             return RedirectToAction(nameof(Index));
         }
+        #endregion
     }
 }

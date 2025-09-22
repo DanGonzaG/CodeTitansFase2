@@ -34,12 +34,19 @@ namespace Preacepta.UI.Controllers
             _listar = listar;
         }
 
+        /********************************************************************************************************************************************************************/
+        //controller de Framework\\
+        /********************************************************************************************************************************************************************/
+
+        #region Listar Root
         // GET: CrCantones
         public async Task<IActionResult> Index()
         {
             return View(await _listar.listarCantones());
         }
+        #endregion
 
+        #region Detalles Root
         // GET: CrCantones/Details/5
         public async Task<IActionResult> Details(int id)
         {
@@ -53,10 +60,11 @@ namespace Preacepta.UI.Controllers
             {
                 return NotFound();
             }
-
             return View(tCrCantone);
         }
+        #endregion
 
+        #region Crear Root metodo GET y POST
         // GET: CrCantones/Create
         public IActionResult Create()
         {
@@ -79,7 +87,9 @@ namespace Preacepta.UI.Controllers
             ViewData["IdProvincia"] = new SelectList(_listar.listarProvincias().Result, "IdProvincia", "NombreProvincia", tCrCantone.IdProvincia);
             return View(tCrCantone);
         }
+        #endregion
 
+        #region Editar Root metodo GET y POST
         // GET: CrCantones/Edit/5
         public async Task<IActionResult> Edit(int id)
         {
@@ -124,7 +134,9 @@ namespace Preacepta.UI.Controllers
             ViewData["IdProvincia"] = new SelectList(_listar.listarProvincias().Result, "IdProvincia", "NombreProvincia", tCrCantone.IdProvincia);
             return View(tCrCantone);
         }
+        #endregion
 
+        #region Eliminar Root metodo GET y POST
         // GET: CrCantones/Delete/5
         public async Task<IActionResult> Delete(int id)
         {
@@ -153,5 +165,6 @@ namespace Preacepta.UI.Controllers
             await _eliminar.EliminarCanton(id);
             return RedirectToAction(nameof(Index));
         }
+        #endregion
     }
 }

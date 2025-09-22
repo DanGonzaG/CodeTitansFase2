@@ -21,28 +21,27 @@
 </div>
 <!-- End Page Title -->
 <!-- Attorney Details -->
-
 <div class="attorney-details pt-100 ">
     <div class="container">
-        <div class="row justify-content-center">
+        
             <div class="attor-details-item">
                 <div class="attor-details-right">
                     <div class="attor-details-name" style="text-align:center">
                         @if (Model.personaDTO.Genero == "Femenino")
                         {
-                            <h2>Bienvenido a PreaceptaApp</h2>
-                            <h2>Licda @Model.personaDTO.Nombre @Model.personaDTO.Apellido1</h2>
+                                <h2>Bienvenido a PreaceptaApp</h2>
+                                <h2>Licda @Model.personaDTO.Nombre @Model.personaDTO.Apellido1</h2>
                         }
                         else
                         {
-                            <h2>Bienvenido a PreaceptaApp</h2>
-                            <h2>Licd0 @Model.personaDTO.Nombre @Model.personaDTO.Apellido1</h2>
+                                <h2>Bienvenido a PreaceptaApp</h2>
+                                <h2>Licd0 @Model.personaDTO.Nombre @Model.personaDTO.Apellido1</h2>
                         }
                         <p>Carnet No. @Model.geAbogadoDTO.Carnet @Model.geAbogadoDTO.IdTipoAbogadoNavigation.Nombre</p>
                     </div>
                 </div>
             </div>
-        </div>
+       
     </div>
 </div>
 
@@ -106,12 +105,13 @@
                                             {
                                                 @foreach (var item in Model.TresUltimosDocs)
                                                 {
-                                                    <p>@Html.DisplayFor(modelItem => item.IdDocumento)-Compra Finca-@Html.DisplayFor(modelItem => item.CedulaCompradorNavigation.Nombre))</p>
+                                                            <p>@Html.DisplayFor(modelItem => item.IdDocumento)</p>
+                                                            <p>@Html.DisplayFor(modelItem => item.CedulaCompradorNavigation.Nombre))</p>
                                                 }
                                             }
                                             else
                                             {
-                                                <p>No cuenta con casos recientes</p>
+                                                    <p>No cuenta con casos recientes</p>
                                             }
                                         </div>
                                     </div>
@@ -126,12 +126,12 @@
                                             {
                                                 @foreach (var item in Model.TresUltimosCasosXabogado)
                                                 {
-                                                    <p>@Html.DisplayFor(modelItem => item.Nombre)</p>
+                                                            <p>@Html.DisplayFor(modelItem => item.Nombre)</p>
                                                 }
                                             }
                                             else
                                             {
-                                                <p>No cuenta con casos recientes</p>
+                                                    <p>No cuenta con casos recientes</p>
                                             }
                                             <!--<a asp-controller="Home" asp-action="CaseStudyDetails">Read More</a>-->
                                             <img class="practice-shape-one" src="~/lyso/img/home-one/7.png" alt="Shape">
@@ -148,12 +148,12 @@
                                             {
                                                 @foreach (var item in Model.TresCitasProximasXAfitrion)
                                                 {
-                                                    <p>@Html.DisplayFor(modelItem => item.Fecha)</p>
+                                                            <p>@Html.DisplayFor(modelItem => item.Fecha)</p>
                                                 }
                                             }
                                             else
                                             {
-                                                <p>No cuenta con casos recientes</p>
+                                                    <p>No cuenta con casos recientes</p>
                                             }
                                         </div>
                                     </div>
@@ -176,8 +176,8 @@
                                                                 </div>
                                                                 <div class="col-md-12 col-lg-12">
                                                                     <div class="text-center">
-                                                                        <button type="button" id="BtnBuscarCaso" class="contact-btn--segundo">
-                                                                            Filtrar
+                                                                        <button type="button" id="BtnBuscarCaso" class="contact-btn--primario">
+                                                                            Buscar
                                                                         </button>
                                                                     </div>
                                                                     <div id="msgSubmit" class="h3 text-center hidden"></div>
@@ -204,6 +204,23 @@
     </div>
 </div>
 
+@if (TempData["PersonaCreada"] != null)
+{
+        <script>
+            document.addEventListener("DOMContentLoaded", function () {
+                Swal.fire({
+                    title: 'Sistema de usuarios',
+                    text: '@TempData["PersonaCreada"]',
+                    icon: 'success',
+                    confirmButtonText: 'Continuar',
+                    customClass: {
+                        confirmButton: 'contact-btn--secundario' // Clase CSS personalizada
+                    }
+                });
+            });
+        </script>
+}
+
 <!-- End Team -->
 <script>
     document.addEventListener('DOMContentLoaded', function () {
@@ -214,7 +231,11 @@
                 input: 'text',
                 showCancelButton: true,
                 confirmButtonText: 'Continuar',
-                icon: 'question'
+                icon: 'question',
+                customClass: {
+                   cancelButton: 'contact-btn--tercero',
+                   confirmButton: 'contact-btn--secundario'
+               }
             }).then((result) => {
                 if (result.isConfirmed) {
                     fetch('/Personas/IdExiste?id=' + result.value) // ← aquí se cerró el paréntesis correctamente
@@ -231,29 +252,33 @@
         });
 
 
-                    document.getElementById('crearCaso').addEventListener('click', function (event) {
-                    event.preventDefault();
-                    Swal.fire({
-                        title: 'Cédula del cliente',
-                        input: 'text',
-                        showCancelButton: true,
-                        confirmButtonText: 'Continuar',
-                        icon: 'question'
-                    }).then((result) => {
-                        if (result.isConfirmed) {
-                            fetch('/Personas/IdExiste?id=' + result.value) // ← aquí se cerró el paréntesis correctamente
-                                .then(respuesta => respuesta.json())
-                                .then(datos => {
-                                    if (datos.bandera) {
-                                        window.location.href = '/Caso/FormularioCaso?id=' + result.value;
-                                    } else {
-                                        Swal.fire('Sistema de búsqueda', 'La cédula ingresada no está registrada.', 'error');
-                                    }
-                                });
-                        }
-                    });
-                });
-
-        });
+       document.getElementById('crearCaso').addEventListener('click', function (event) {
+           event.preventDefault();
+           Swal.fire({
+               title: 'Cédula del cliente',
+               input: 'text',
+               icon: 'question',
+               showCancelButton: true,
+               confirmButtonText: 'Continuar',
+               customClass: {
+                   cancelButton: 'contact-btn--tercero',
+                   confirmButton: 'contact-btn--secundario'
+               }
+           }).then((result) => {
+               if (result.isConfirmed) {
+                   fetch('/Personas/IdExiste?id=' + result.value) // ← aquí se cerró el paréntesis correctamente
+                   .then(respuesta => respuesta.json())
+                   .then(datos => {
+                       if (datos.bandera) {
+                           window.location.href = '/Caso/FormularioCaso?id=' + result.value;
+                       } else {
+                           Swal.fire('Sistema de búsqueda', 'La cédula ingresada no está registrada.', 'error');
+                       }
+                   });
+               }
+           });
+       });
+    });
 
 </script>
+

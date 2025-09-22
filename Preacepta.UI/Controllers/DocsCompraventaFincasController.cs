@@ -32,7 +32,6 @@ namespace Preacepta.UI.Controllers
         private readonly IEditarDocsCompraventaFincaLN _editar;
         private readonly IEliminarDocsCompraventaFincaLN _eliminar;
         private readonly IListarDocsCompraventaFincaLN _listar;
-        
 
         public DocsCompraventaFincasController(IConverter converter,
             IBuscarAbogadoLN buscarAbogado,
@@ -194,13 +193,38 @@ namespace Preacepta.UI.Controllers
         // GET: DocsCompraventaFincas/Create
         public IActionResult CreateDocsCompraventaFincas()
         {
-            ViewData["CedulaAbogado"] = new SelectList(_context.TGeAbogados, "Cedula", "Cedula");
-            ViewData["CedulaComprador"] = new SelectList(_context.TGePersonas, "Cedula", "Cedula");
-            ViewData["CedulaVendedor"] = new SelectList(_context.TGePersonas, "Cedula", "Cedula"); //llamar a listar provincias, cantones provincias
-            ViewData["ProvinciaFinca"] = new SelectList(_context.TCrProvincias, "NombreProvincia", "NombreProvincia");
-            ViewData["DistritoFinca"] = new SelectList(_context.TCrDistritos, "NombreDistrito", "NombreDistrito");
-            ViewData["CantonesFinca"] = new SelectList(_context.TCrCantones, "NombreCanton", "NombreCanton");
-            ViewData["LugarFirma"] = new SelectList(_context.TCrDistritos, "NombreDistrito", "NombreDistrito");
+            ViewData["CedulaAbogado"] = new SelectList(
+                _context.TGeAbogados.Include(a => a.CedulaNavigation).Select(a => new
+                {
+                    Cedula = a.Cedula,
+                    Texto = a.CedulaNavigation.Nombre + " " + a.CedulaNavigation.Apellido1 + " - " + a.Cedula
+                }),
+                "Cedula",
+                "Texto");
+
+            ViewData["CedulaComprador"] = new SelectList(
+                _context.TGePersonas.Select(p => new
+                {
+                    Cedula = p.Cedula,
+                    Texto = p.Nombre + " " + p.Apellido1 + " - " + p.Cedula
+                }),
+                "Cedula",
+                "Texto");
+
+            ViewData["CedulaVendedor"] = new SelectList(
+                _context.TGePersonas.Select(p => new {
+                    Cedula = p.Cedula,
+                    Texto = p.Nombre + " " + p.Apellido1 + " - " + p.Cedula
+                }),
+                "Cedula",
+                "Texto");
+            //ViewData["CedulaAbogado"] = new SelectList(_context.TGeAbogados, "Cedula", "Cedula");
+            //ViewData["CedulaComprador"] = new SelectList(_context.TGePersonas, "Cedula", "Cedula");
+            //ViewData["CedulaVendedor"] = new SelectList(_context.TGePersonas, "Cedula", "Cedula"); //llamar a listar provincias, cantones provincias
+            ViewData["ProvinciaFinca"] = new SelectList(_context.TCrProvincias, "IdProvincia", "NombreProvincia");
+            ViewData["DistritoFinca"] = new SelectList(_context.TCrDistritos, "IdDistrito", "NombreDistrito");
+            ViewData["CantonesFinca"] = new SelectList(_context.TCrCantones, "IdCanton", "NombreCanton");
+            ViewData["LugarFirma"] = new SelectList(_context.TCrDistritos, "IdDistrito", "NombreDistrito");
             return View();
         }
 
@@ -209,17 +233,114 @@ namespace Preacepta.UI.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> CreateDocsCompraventaFincas([Bind("IdDocumento,NumeroEscritura,CedulaAbogado,CedulaVendedor,CedulaComprador,MontoVenta,PartidoFinca,MatriculaFinca,NaturalezaFinca,DistritoFinca,CantonFinca,ProvinciaFinca,AreaFincaM2,PlanoCatastrado,ColindaNorte,ColindaSur,ColindaEste,ColindaOeste,FormaPago,MedioPago,OrigenFondos,LugarFirma,HoraFirma,FechaFirma")] DocsCompraventaFincaDTO tDocsCompraventaFinca)
+        public async Task<IActionResult> CreateDocsCompraventaFincas([Bind("IdDocumento,NumeroEscritura,CedulaAbogado,CedulaVendedor,CedulaComprador,MontoVenta,PartidoFinca,MatriculaFinca,NaturalezaFinca,DistritoFinca,CantonFinca,ProvinciaFinca,AreaFincaM2,PlanoCatastrado,ColindaNorte,ColindaSur,ColindaEste,ColindaOeste,FormaPago,MedioPago,OrigenFondos,LugarFirma,HoraFirma,FechaFirma")] DocsCompraventaFincaDTO tDocsCompraventaFinca,
+            [FromForm] int? DocumentoAnteriorId
+            )
         {
-            var vendedor = await _buscarPersona.buscar(tDocsCompraventaFinca.CedulaVendedor);
             if (ModelState.IsValid)
             {
+
+                // Eliminar documento anterior y su historial
+                if (DocumentoAnteriorId.HasValue)
+                {
+                    // Buscar historial por ID
+                    var historialAnterior = await _context.HistorialDocumentos
+                        .FirstOrDefaultAsync(h => h.Id == DocumentoAnteriorId.Value);
+
+                    if (historialAnterior != null)
+                    {
+                        // Obtener el ID del documento original desde el historial
+                        var idDocOriginal = historialAnterior.DocumentoIdOriginal;
+
+                        // Buscar y eliminar el documento original
+                        var docAnterior = await _context.TDocsCompraventaFincas
+                            .FirstOrDefaultAsync(p => p.IdDocumento == idDocOriginal);
+
+                        if (docAnterior != null)
+                            _context.TDocsCompraventaFincas.Remove(docAnterior);
+
+                        // Eliminar también el historial
+                        _context.HistorialDocumentos.Remove(historialAnterior);
+
+                        await _context.SaveChangesAsync();
+                    }
+                }
+
                 await _crear.Crear(tDocsCompraventaFinca);
-                return RedirectToAction(nameof(Index));
+
+                // Obtener comprador desde TGePersonas
+                var comprador = await _context.TGePersonas
+                     .FirstOrDefaultAsync(p => p.Cedula == tDocsCompraventaFinca.CedulaComprador);
+
+                string nombreComprador = comprador != null
+                    ? $"{comprador.Nombre} {comprador.Apellido1} {comprador.Apellido2}"
+                    : tDocsCompraventaFinca.CedulaComprador.ToString();
+
+                // Obtener abogado desde TGeAbogados (con su persona)
+                var abogado = await _context.TGeAbogados
+                    .Include(a => a.CedulaNavigation)
+                    .FirstOrDefaultAsync(a => a.Cedula == tDocsCompraventaFinca.CedulaAbogado);
+
+                string nombreAbogado = abogado != null
+                    ? $"{abogado.CedulaNavigation.Nombre} {abogado.CedulaNavigation.Apellido1} {abogado.CedulaNavigation.Apellido2}"
+                    : tDocsCompraventaFinca.CedulaAbogado.ToString();
+
+                // Crear nuevo historial con el ID real del documento recién creado
+                var nuevoIdDocumento = _context.TDocsCompraventaFincas
+                .OrderByDescending(x => x.IdDocumento)
+                .Select(x => x.IdDocumento)
+                .FirstOrDefault();
+
+
+                // Guardar en el historial
+                var historial = new HistorialDocumento
+                {
+                    Fecha = DateTime.Now,
+                    TipoDocumento = "Compra y Venta de Fincas",
+                    Cliente = nombreComprador,
+                    Abogado = nombreAbogado,
+                    DocumentoIdOriginal = nuevoIdDocumento
+                };
+
+                _context.HistorialDocumentos.Add(historial);
+                await _context.SaveChangesAsync();
+                //return RedirectToAction(nameof(Index));
+                var historialDocs = await _context.HistorialDocumentos
+                .OrderByDescending(h => h.Fecha)
+                .ToListAsync();
+
+                return View("~/Views/HistorialDocumentos/DocsHistorial.cshtml", historialDocs);
             }
-            ViewData["CedulaAbogado"] = new SelectList(_context.TGeAbogados, "Cedula", "Cedula", tDocsCompraventaFinca.CedulaAbogado);
-            ViewData["CedulaComprador"] = new SelectList(_context.TGePersonas, "Cedula", "Apellido1", tDocsCompraventaFinca.CedulaComprador);
-            ViewData["CedulaVendedor"] = new SelectList(_context.TGePersonas, "Cedula", "Apellido1", tDocsCompraventaFinca.CedulaVendedor);
+            ViewData["CedulaAbogado"] = new SelectList(
+                _context.TGeAbogados.Include(a => a.CedulaNavigation).Select(a => new
+                {
+                    Cedula = a.Cedula,
+                    Texto = a.CedulaNavigation.Nombre + " " + a.CedulaNavigation.Apellido1 + " - " + a.Cedula
+                }),
+                "Cedula",
+                "Texto", tDocsCompraventaFinca?.CedulaAbogado);
+
+            ViewData["CedulaComprador"] = new SelectList(
+                _context.TGePersonas.Select(p => new
+                {
+                    Cedula = p.Cedula,
+                    Texto = p.Nombre + " " + p.Apellido1 + " - " + p.Cedula
+                }),
+                "Cedula",
+                "Texto",
+                tDocsCompraventaFinca?.CedulaComprador);
+
+            ViewData["CedulaVendedor"] = new SelectList(
+                _context.TGePersonas.Select(p => new {
+                    Cedula = p.Cedula,
+                    Texto = p.Nombre + " " + p.Apellido1 + " - " + p.Cedula
+                }),
+                "Cedula",
+                "Texto",
+                tDocsCompraventaFinca?.CedulaVendedor);
+            //ViewData["CedulaAbogado"] = new SelectList(_context.TGeAbogados, "Cedula", "Cedula", tDocsCompraventaFinca.CedulaAbogado);
+            //ViewData["CedulaComprador"] = new SelectList(_context.TGePersonas, "Cedula", "Apellido1", tDocsCompraventaFinca.CedulaComprador);
+            //ViewData["CedulaVendedor"] = new SelectList(_context.TGePersonas, "Cedula", "Apellido1", tDocsCompraventaFinca.CedulaVendedor);
             ViewData["ProvinciaFinca"] = new SelectList(_context.TCrProvincias, "IdProvincia", "NombreProvincia", tDocsCompraventaFinca.ProvinciaFinca);
             ViewData["DistritoFinca"] = new SelectList(_context.TCrDistritos, "IdDistrito", "NombreDistrito", tDocsCompraventaFinca.DistritoFinca);
             ViewData["CantonesFinca"] = new SelectList(_context.TCrCantones, "IdCanton", "NombreCanton", tDocsCompraventaFinca.CantonFinca);
@@ -260,7 +381,6 @@ namespace Preacepta.UI.Controllers
             var vendedor = await _buscarPersona.buscar(int.Parse(cedulaVendedor));
             var comprador = await _buscarPersona.buscar(int.Parse(cedulaComprador));
 
-            // Reemplazar marcadores con los datos del formulario
             htmlTemplate = htmlTemplate
     .Replace("{{NUMERO}}", numeroEscritura)
     .Replace("{{NOMBRE_NOTARIO}}", abogado.CedulaNavigation.Nombre + " " + abogado.CedulaNavigation.Apellido1 + " " + abogado.CedulaNavigation.Apellido2)
@@ -317,5 +437,101 @@ namespace Preacepta.UI.Controllers
             return File(pdf, "application/pdf");
         }
 
+        //Prueba para editar en historialDocumentos
+        [HttpGet]
+        public async Task<IActionResult> EditarDesdeHistorial(int id)
+        {
+            var historial = await _context.HistorialDocumentos.FindAsync(id);
+
+            if (historial == null || historial.TipoDocumento != "Compra y Venta de Fincas" || historial.DocumentoIdOriginal == null)
+            {
+                return NotFound();
+            }
+
+           
+            var docOriginal = await _context.TDocsCompraventaFincas
+                .FirstOrDefaultAsync(d => d.IdDocumento == historial.DocumentoIdOriginal.Value);
+
+            if (docOriginal == null)
+            {
+                return NotFound();
+            }
+
+            /*ViewData["ProvinciaFinca"] = new SelectList(_context.TCrProvincias, "IdProvincia", "NombreProvincia", docOriginal.ProvinciaFinca);
+            ViewData["DistritoFinca"] = new SelectList(_context.TCrDistritos, "IdDistrito", "NombreDistrito", docOriginal.DistritoFinca);
+            ViewData["CantonesFinca"] = new SelectList(_context.TCrCantones, "IdCanton", "NombreCanton", docOriginal.CantonFinca);*/
+
+
+            var model = new DocsCompraventaFincaDTO
+            {
+                NumeroEscritura = docOriginal.NumeroEscritura,
+                CedulaAbogado = docOriginal.CedulaAbogado,
+                CedulaVendedor = docOriginal.CedulaVendedor,
+                CedulaComprador = docOriginal.CedulaComprador,
+                MontoVenta = docOriginal.MontoVenta,
+                PartidoFinca = docOriginal.PartidoFinca,
+                MatriculaFinca = docOriginal.MatriculaFinca,
+                NaturalezaFinca = docOriginal.NaturalezaFinca,
+                DistritoFinca = docOriginal.DistritoFinca,
+                CantonFinca = docOriginal.CantonFinca,
+                ProvinciaFinca = docOriginal.ProvinciaFinca,
+                AreaFincaM2 = docOriginal.AreaFincaM2,
+                PlanoCatastrado = docOriginal.PlanoCatastrado,
+                ColindaNorte = docOriginal.ColindaNorte,
+                ColindaSur = docOriginal.ColindaSur,
+                ColindaEste = docOriginal.ColindaEste,
+                ColindaOeste = docOriginal.ColindaOeste,
+                FormaPago = docOriginal.FormaPago,
+                MedioPago = docOriginal.MedioPago,
+                OrigenFondos = docOriginal.OrigenFondos,
+                LugarFirma = docOriginal.LugarFirma,
+                HoraFirma = docOriginal.HoraFirma,
+                FechaFirma = docOriginal.FechaFirma
+            };
+
+            ViewBag.DocumentoAnteriorId = historial.Id; // ✅ Deja esto
+
+            ViewData["CedulaAbogado"] = new SelectList(
+                _context.TGeAbogados.Include(a => a.CedulaNavigation).Select(a => new
+                {
+                    Cedula = a.Cedula,
+                    Texto = a.CedulaNavigation.Nombre + " " + a.CedulaNavigation.Apellido1 + " - " + a.Cedula
+                }),
+                "Cedula",
+                "Texto", model.CedulaAbogado);
+
+            ViewData["CedulaComprador"] = new SelectList(
+                _context.TGePersonas.Select(p => new
+                {
+                    Cedula = p.Cedula,
+                    Texto = p.Nombre + " " + p.Apellido1 + " - " + p.Cedula
+                }),
+                "Cedula",
+                "Texto",
+                model.CedulaComprador);
+
+            ViewData["CedulaVendedor"] = new SelectList(
+                _context.TGePersonas.Select(p => new {
+                    Cedula = p.Cedula,
+                    Texto = p.Nombre + " " + p.Apellido1 + " - " + p.Cedula
+                }),
+                "Cedula",
+                "Texto",
+                model.CedulaVendedor);
+            //ViewData["CedulaAbogado"] = new SelectList(_context.TGeAbogados, "Cedula", "Cedula", model.CedulaAbogado);
+            //ViewData["CedulaComprador"] = new SelectList(_context.TGePersonas, "Cedula", "Apellido1", model.CedulaComprador);
+            //ViewData["CedulaVendedor"] = new SelectList(_context.TGePersonas, "Cedula", "Apellido1", model.CedulaVendedor);
+            ViewData["ProvinciaFinca"] = new SelectList(_context.TCrProvincias, "IdProvincia", "NombreProvincia", model.ProvinciaFinca);
+            ViewData["DistritoFinca"] = new SelectList(_context.TCrDistritos, "IdDistrito", "NombreDistrito", model.DistritoFinca);
+            ViewData["CantonesFinca"] = new SelectList(_context.TCrCantones, "IdCanton", "NombreCanton", model.CantonFinca);
+            ViewData["LugarFirma"] = new SelectList(_context.TCrDistritos, "IdDistrito", "NombreDistrito", model.LugarFirma);
+
+            return View("CreateDocsCompraventaFincas", model);
+
+        }
+
+        //agregar metodo post
+
     }
+
 }

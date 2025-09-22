@@ -33,12 +33,20 @@ namespace Preacepta.UI.Controllers
             _listar = listar;
         }
 
+
+        /********************************************************************************************************************************************************************/
+        //controller de Framework\\
+        /********************************************************************************************************************************************************************/
+
+        #region Listar tipo de abogado Root
         // GET: AbogadoTipo
         public async Task<IActionResult> Index()
         {
             return View(await _listar.listar());
         }
+        #endregion
 
+        #region Detalles tipo de abogado Root metodo GET
         // GET: AbogadoTipo/Details/5
         public async Task<IActionResult> Details(int id)
         {
@@ -55,7 +63,9 @@ namespace Preacepta.UI.Controllers
 
             return View(tGeAbogadoTipo);
         }
+        #endregion
 
+        #region Crear tipo de abogado Root metodo GET y POST
         // GET: AbogadoTipo/Create
         public IActionResult Create()
         {
@@ -76,7 +86,9 @@ namespace Preacepta.UI.Controllers
             }
             return View(tGeAbogadoTipo);
         }
+        #endregion
 
+        #region Editar tipo de abogado Root metodo GET y POST
         // GET: AbogadoTipo/Edit/5
         public async Task<IActionResult> Edit(int id)
         {
@@ -119,7 +131,9 @@ namespace Preacepta.UI.Controllers
             }
             return View(tGeAbogadoTipo);
         }
+        #endregion
 
+        #region Eliminar tipo de abogado Root metodo GET y POST
         // GET: AbogadoTipo/Delete/5
         public async Task<IActionResult> Delete(int id)
         {
@@ -146,5 +160,6 @@ namespace Preacepta.UI.Controllers
             await _eliminar.eliminar(id);
             return RedirectToAction(nameof(Index));
         }
+        #endregion
     }
 }

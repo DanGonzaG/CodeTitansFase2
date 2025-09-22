@@ -35,12 +35,20 @@ namespace Preacepta.UI.Controllers
             _eliminar = eliminar;
             _listar = listar;
         }
+
+        /********************************************************************************************************************************************************************/
+        /*-----------------------------------------------------------------//CONTROLLER METODOS DE FRAMEWORK\\--------------------------------------------------------------*/
+        /********************************************************************************************************************************************************************/
+
+        #region Listar Root
         // GET: CasosTipo
         public async Task<IActionResult> Index()
         {
             return View(await _listar.listar());
         }
+        #endregion
 
+        #region Detalles Root
         // GET: CasosTipo/Details/5
         public async Task<IActionResult> Details(int id)
         {
@@ -57,7 +65,9 @@ namespace Preacepta.UI.Controllers
 
             return View(tCasosTipo);
         }
+        #endregion
 
+        #region Crear Root metodo POST y GET
         // GET: CasosTipo/Create
         public IActionResult Create()
         {
@@ -78,7 +88,9 @@ namespace Preacepta.UI.Controllers
             }
             return View(tCasosTipo);
         }
+        #endregion
 
+        #region Editar Root metodo POST y GET
         // GET: CasosTipo/Edit/5
         public async Task<IActionResult> Edit(int id)
         {
@@ -121,7 +133,9 @@ namespace Preacepta.UI.Controllers
             }
             return View(tCasosTipo);
         }
+        #endregion
 
+        #region Eliminar Root metodo POST y GET
         // GET: CasosTipo/Delete/5
         public async Task<IActionResult> Delete(int id)
         {
@@ -147,5 +161,6 @@ namespace Preacepta.UI.Controllers
             await _eliminar.Eliminar(id);
             return RedirectToAction(nameof(Index));
         }
+        #endregion
     }
 }

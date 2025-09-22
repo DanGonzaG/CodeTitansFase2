@@ -76,17 +76,19 @@ namespace Preacepta.UI.Controllers
         }
 
         /********************************************************************************************************************************************************************/
-                                                                             //controller de Framework\\
+        //controller de Framework\\
         /********************************************************************************************************************************************************************/
 
+        #region Listar Abogado Root
         // GET: Abogado
         [Authorize(Roles = "Gestor")]
         public async Task<IActionResult> Index()
         {
-            //var contexto = _context.TGeAbogados.Include(t => t.CJuridicaNavigation).Include(t => t.CedulaNavigation).Include(t => t.IdTipoAbogadoNavigation);
             return View(await _listar.listar());
         }
+        #endregion
 
+        #region Detalles Abogado Root
         // GET: Abogado/Details/5
         public async Task<IActionResult> Details(int id)
         {
@@ -103,7 +105,9 @@ namespace Preacepta.UI.Controllers
 
             return View(tGeAbogado);
         }
+        #endregion
 
+        #region Crear Abogado Root metodo POST Y GET
         // GET: Abogado/Create
         [Authorize(Roles = "Gestor")]
         public async Task<IActionResult> Create()
@@ -118,6 +122,12 @@ namespace Preacepta.UI.Controllers
             new SelectListItem { Text = "Divorciado", Value = "Divorciado" },
             new SelectListItem { Text = "Viudo", Value = "Viudo" }
         };
+
+            ViewBag.Genero = new List<SelectListItem>
+                        {
+                            new SelectListItem { Text = "Femenino", Value = "Femenino" },
+                            new SelectListItem { Text = "Masculino", Value = "Masculino" },
+                        };
 
             ViewData["CJuridica"] = (await _listarNegocio.listar())
                 .Select(n => new SelectListItem
@@ -138,6 +148,7 @@ namespace Preacepta.UI.Controllers
             ViewData["IdTipoAbogado"] = new SelectList(_listarAbogadoTipo.listar().Result, "IdTipoAbogado", "Nombre");
             return View();
         }
+        
 
         // POST: Abogado/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
@@ -145,7 +156,7 @@ namespace Preacepta.UI.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize(Roles = "Gestor")]
-        public async Task<IActionResult> Create([Bind("Carnet,Cedula,IdTipoAbogado,CJuridica")] PersonaUnionAbogado tGeAbogado)
+        public async Task<IActionResult> Create([Bind("personaDTO,geAbogadoDTO")] PersonaUnionAbogado tGeAbogado)
         {
             if (ModelState.IsValid)
             {
@@ -162,6 +173,12 @@ namespace Preacepta.UI.Controllers
             new SelectListItem { Text = "Divorciado", Value = "Divorciado" },
             new SelectListItem { Text = "Viudo", Value = "Viudo" }
         };
+
+            ViewBag.Genero = new List<SelectListItem>
+                        {
+                            new SelectListItem { Text = "Femenino", Value = "Femenino" },
+                            new SelectListItem { Text = "Masculino", Value = "Masculino" },
+                        };
 
             ViewData["CJuridica"] = (await _listarNegocio.listar())
                  .Select(n => new SelectListItem
@@ -182,7 +199,9 @@ namespace Preacepta.UI.Controllers
             ViewData["IdTipoAbogado"] = new SelectList(_listarAbogadoTipo.listar().Result, "IdTipoAbogado", "Nombre");
             return View(tGeAbogado);
         }
+        #endregion
 
+        #region Editar Abogado Root metodo POST Y GET
         // GET: Abogado/Edit/5
         [Authorize(Roles = "Gestor")]
         public async Task<IActionResult> Edit(int id)
@@ -191,17 +210,11 @@ namespace Preacepta.UI.Controllers
             {
                 return NotFound();
             }
-
-
-
             var tGeAbogado = await _buscar.buscar(id);
             if (tGeAbogado == null)
             {
                 return NotFound();
             }
-
-
-
             ViewData["Direccion1"] = new SelectList(_listarDireccion.listarDistritos().Result, "IdDistrito", "NombreDistrito", tGeAbogado.CedulaNavigation.Direccion1);
 
             ViewBag.EstadoCivil = new List<SelectListItem>
@@ -210,6 +223,12 @@ namespace Preacepta.UI.Controllers
                 new SelectListItem { Text = "Divorciado", Value = "Divorciado" },
                 new SelectListItem { Text = "Viudo", Value = "Viudo" }
             };
+
+            ViewBag.Genero = new List<SelectListItem>
+                        {
+                            new SelectListItem { Text = "Femenino", Value = "Femenino" },
+                            new SelectListItem { Text = "Masculino", Value = "Masculino" },
+                        };
 
             ViewData["CJuridica"] = (await _listarNegocio.listar())
                 .Select(n => new SelectListItem
@@ -267,6 +286,12 @@ namespace Preacepta.UI.Controllers
             new SelectListItem { Text = "Viudo", Value = "Viudo" }
         };
 
+            ViewBag.Genero = new List<SelectListItem>
+                        {
+                            new SelectListItem { Text = "Femenino", Value = "Femenino" },
+                            new SelectListItem { Text = "Masculino", Value = "Masculino" },
+                        };
+
             ViewData["CJuridica"] = (await _listarNegocio.listar())
                 .Select(n => new SelectListItem
                 {
@@ -286,7 +311,9 @@ namespace Preacepta.UI.Controllers
             ViewData["IdTipoAbogado"] = new SelectList(_listarAbogadoTipo.listar().Result, "IdTipoAbogado", "Nombre");
             return View(tGeAbogado);
         }
+        #endregion
 
+        #region Eliminar Abogado Root metodo POST Y GET
         // GET: Abogado/Delete/5
         [Authorize(Roles = "Gestor")]
         public async Task<IActionResult> Delete(int id)
@@ -314,20 +341,21 @@ namespace Preacepta.UI.Controllers
             await _eliminar.Eliminar(id);
             return RedirectToAction(nameof(Index));
         }
-
+        #endregion
 
 
         /********************************************************************************************************************************************************************/
         //controller personalizados\\
         /********************************************************************************************************************************************************************/
 
+        #region Crear Abogado Usuario metodo POST Y GET
         // GET: Abogado/CrearAbogado
         [Authorize(Roles = "Gestor, Abogado")]
         public async Task<IActionResult> CrearAbogado()
         {
 
 
-            #region View data Direccion, Estado Civil, Cedula juridica, cedula y tipo abogado                 
+            #region View data Estado Civil, Genero, Cedula Juridica, Cedula y Tipo abogado                 
 
             ViewBag.EstadoCivil = new List<SelectListItem>
             {
@@ -336,6 +364,12 @@ namespace Preacepta.UI.Controllers
                 new SelectListItem { Text = "Divorciado", Value = "Divorciado" },
             new SelectListItem { Text = "Viudo", Value = "Viudo" }
             };
+
+            ViewBag.Genero = new List<SelectListItem>
+                        {
+                            new SelectListItem { Text = "Femenino", Value = "Femenino" },
+                            new SelectListItem { Text = "Masculino", Value = "Masculino" },
+                        };
 
             ViewData["CJuridica"] = (await _listarNegocio.listar())
                 .Select(n => new SelectListItem
@@ -379,7 +413,8 @@ namespace Preacepta.UI.Controllers
                         if (carnet == null)
                         {                            
                             await _crear.Crear(tGeAbogado);//llamado de los LN y AD para crear la persona
-                            return RedirectToAction(nameof(Index));
+                            TempData["PersonaCreada"] = "Se ha creado un nuevo usuario en el sistema";
+                            return RedirectToAction("UsuarioAutenticado", "Home", new { correo = User.Identity.Name });
                         }
                         else
                         {
@@ -391,6 +426,12 @@ namespace Preacepta.UI.Controllers
                                 new SelectListItem { Text = "Divorciado", Value = "Divorciado" },
                                 new SelectListItem { Text = "Viudo", Value = "Viudo" }
                             };
+
+                            ViewBag.Genero = new List<SelectListItem>
+                        {
+                            new SelectListItem { Text = "Femenino", Value = "Femenino" },
+                            new SelectListItem { Text = "Masculino", Value = "Masculino" },
+                        };
 
                             ViewData["CJuridica"] = (await _listarNegocio.listar())
                             .Select(n => new SelectListItem
@@ -425,6 +466,12 @@ namespace Preacepta.UI.Controllers
                             new SelectListItem { Text = "Casado", Value = "Casado" },
                             new SelectListItem { Text = "Divorciado", Value = "Divorciado" },
                             new SelectListItem { Text = "Viudo", Value = "Viudo" }
+                        };
+
+                        ViewBag.Genero = new List<SelectListItem>
+                        {
+                            new SelectListItem { Text = "Femenino", Value = "Femenino" },
+                            new SelectListItem { Text = "Masculino", Value = "Masculino" },
                         };
 
                         ViewData["CJuridica"] = (await _listarNegocio.listar())
@@ -464,6 +511,12 @@ namespace Preacepta.UI.Controllers
                             new SelectListItem { Text = "Viudo", Value = "Viudo" }
                         };
 
+                    ViewBag.Genero = new List<SelectListItem>
+                        {
+                            new SelectListItem { Text = "Femenino", Value = "Femenino" },
+                            new SelectListItem { Text = "Masculino", Value = "Masculino" },
+                        };
+
                     ViewData["CJuridica"] = (await _listarNegocio.listar())
                         .Select(n => new SelectListItem
                         {
@@ -487,8 +540,9 @@ namespace Preacepta.UI.Controllers
                     return View(tGeAbogado);
                     #endregion
                 }
-            }            
+            }
 
+            #region View data Estado Civil, Genero, Cedula Juridica, Cedula y Tipo abogado
             ViewBag.EstadoCivil = new List<SelectListItem>
 
             {
@@ -497,6 +551,12 @@ namespace Preacepta.UI.Controllers
                 new SelectListItem { Text = "Divorciado", Value = "Divorciado" },
                 new SelectListItem { Text = "Viudo", Value = "Viudo" }
             };
+
+            ViewBag.Genero = new List<SelectListItem>
+                        {
+                            new SelectListItem { Text = "Femenino", Value = "Femenino" },
+                            new SelectListItem { Text = "Masculino", Value = "Masculino" },
+                        };
 
             ViewData["CJuridica"] = (await _listarNegocio.listar())
                             .Select(n => new SelectListItem
@@ -516,8 +576,11 @@ namespace Preacepta.UI.Controllers
 
             ViewData["IdTipoAbogado"] = new SelectList(_listarAbogadoTipo.listar().Result, "IdTipoAbogado", "Nombre");
             return View(tGeAbogado);
+            #endregion
         }
+        #endregion
 
+        #region Comprobación de existencia
         [Authorize(Roles = "Gestor, Abogado, Cliente")]
         public async Task<JsonResult> IdExiste(int id)
         {
@@ -531,6 +594,7 @@ namespace Preacepta.UI.Controllers
             bandera = false;
             return Json(new { bandera });
         }
+        #endregion
     }
 }
 

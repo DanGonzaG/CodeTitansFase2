@@ -1,0 +1,187 @@
+2025-09-06 15:24:21.964 -06:00 [INF] Executed DbCommand (36ms) [Parameters=[@__normalizedName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[ConcurrencyStamp], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[NormalizedName] = @__normalizedName_0
+2025-09-06 15:24:22.013 -06:00 [INF] Executed DbCommand (2ms) [Parameters=[@__normalizedName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[ConcurrencyStamp], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[NormalizedName] = @__normalizedName_0
+2025-09-06 15:24:22.016 -06:00 [INF] Executed DbCommand (1ms) [Parameters=[@__normalizedName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[ConcurrencyStamp], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[NormalizedName] = @__normalizedName_0
+2025-09-06 15:24:22.049 -06:00 [INF] Executed DbCommand (1ms) [Parameters=[@__normalizedName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[ConcurrencyStamp], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[NormalizedName] = @__normalizedName_0
+2025-09-06 15:24:22.061 -06:00 [INF] Executed DbCommand (7ms) [Parameters=[@__normalizedEmail_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(2) [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[NormalizedEmail] = @__normalizedEmail_0
+2025-09-06 15:24:22.475 -06:00 [INF] Now listening on: https://localhost:7065
+2025-09-06 15:24:22.475 -06:00 [INF] Now listening on: http://localhost:5282
+2025-09-06 15:24:22.510 -06:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-09-06 15:24:22.510 -06:00 [INF] Hosting environment: Development
+2025-09-06 15:24:22.510 -06:00 [INF] Content root path: C:\Preacepta\Preacepta.UI
+2025-09-06 15:24:23.607 -06:00 [INF] Request starting HTTP/2 GET https://localhost:7065/ - null null
+2025-09-06 15:24:23.700 -06:00 [INF] Executing endpoint 'Praecepta.UI.Controllers.HomeController.Index (Preacepta.UI)'
+2025-09-06 15:24:23.711 -06:00 [INF] Route matched with {action = "Index", controller = "Home", area = "", page = ""}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Index() on controller Praecepta.UI.Controllers.HomeController (Preacepta.UI).
+2025-09-06 15:24:23.730 -06:00 [INF] Executing ViewResult, running view Index.
+2025-09-06 15:24:23.806 -06:00 [INF] Executed ViewResult - view Index executed in 75.7672ms.
+2025-09-06 15:24:23.810 -06:00 [INF] Executed action Praecepta.UI.Controllers.HomeController.Index (Preacepta.UI) in 98.3351ms
+2025-09-06 15:24:23.810 -06:00 [INF] Executed endpoint 'Praecepta.UI.Controllers.HomeController.Index (Preacepta.UI)'
+2025-09-06 15:24:23.815 -06:00 [INF] Request finished HTTP/2 GET https://localhost:7065/ - 200 null text/html; charset=utf-8 212.8094ms
+2025-09-06 15:24:23.843 -06:00 [INF] Request starting HTTP/2 GET https://localhost:7065/_vs/browserLink - null null
+2025-09-06 15:24:23.843 -06:00 [INF] Request starting HTTP/2 GET https://localhost:7065/_framework/aspnetcore-browser-refresh.js - null null
+2025-09-06 15:24:23.847 -06:00 [INF] Request finished HTTP/2 GET https://localhost:7065/_framework/aspnetcore-browser-refresh.js - 200 13760 application/javascript; charset=utf-8 4.1121ms
+2025-09-06 15:24:23.873 -06:00 [INF] Request finished HTTP/2 GET https://localhost:7065/_vs/browserLink - 200 null text/javascript; charset=UTF-8 29.8622ms
+2025-09-06 15:24:26.865 -06:00 [INF] Request starting HTTP/2 GET https://localhost:7065/Identity/Account/Login - null null
+2025-09-06 15:24:26.870 -06:00 [INF] Executing endpoint '/Account/Login'
+2025-09-06 15:24:26.876 -06:00 [INF] Route matched with {page = "/Account/Login", area = "Identity", action = "", controller = ""}. Executing page /Account/Login
+2025-09-06 15:24:26.887 -06:00 [INF] Executing handler method Praecepta.UI.Areas.Identity.Pages.Account.LoginModel.OnGetAsync - ModelState is "Valid"
+2025-09-06 15:24:26.889 -06:00 [INF] AuthenticationScheme: Identity.External signed out.
+2025-09-06 15:24:26.890 -06:00 [INF] Executed handler method OnGetAsync, returned result .
+2025-09-06 15:24:26.891 -06:00 [INF] Executing an implicit handler method - ModelState is "Valid"
+2025-09-06 15:24:26.892 -06:00 [INF] Executed an implicit handler method, returned result Microsoft.AspNetCore.Mvc.RazorPages.PageResult.
+2025-09-06 15:24:26.928 -06:00 [INF] Executed page /Account/Login in 50.9801ms
+2025-09-06 15:24:26.928 -06:00 [INF] Executed endpoint '/Account/Login'
+2025-09-06 15:24:26.928 -06:00 [INF] Request finished HTTP/2 GET https://localhost:7065/Identity/Account/Login - 200 null text/html; charset=utf-8 63.2357ms
+2025-09-06 15:24:26.933 -06:00 [INF] Request starting HTTP/2 GET https://localhost:7065/_framework/aspnetcore-browser-refresh.js - null null
+2025-09-06 15:24:26.934 -06:00 [INF] Request finished HTTP/2 GET https://localhost:7065/_framework/aspnetcore-browser-refresh.js - 200 13760 application/javascript; charset=utf-8 1.1261ms
+2025-09-06 15:24:26.937 -06:00 [INF] Request starting HTTP/2 GET https://localhost:7065/_vs/browserLink - null null
+2025-09-06 15:24:26.950 -06:00 [INF] Request finished HTTP/2 GET https://localhost:7065/_vs/browserLink - 200 null text/javascript; charset=UTF-8 12.6186ms
+2025-09-06 15:24:33.660 -06:00 [INF] Request starting HTTP/2 POST https://localhost:7065/Identity/Account/Login - application/x-www-form-urlencoded 263
+2025-09-06 15:24:33.667 -06:00 [INF] Executing endpoint '/Account/Login'
+2025-09-06 15:24:33.667 -06:00 [INF] Route matched with {page = "/Account/Login", area = "Identity", action = "", controller = ""}. Executing page /Account/Login
+2025-09-06 15:24:33.677 -06:00 [INF] Executing handler method Praecepta.UI.Areas.Identity.Pages.Account.LoginModel.OnPostAsync - ModelState is "Valid"
+2025-09-06 15:24:33.679 -06:00 [INF] Email recibido: gestor@preacepta.com
+2025-09-06 15:24:33.685 -06:00 [INF] Executed DbCommand (1ms) [Parameters=[@__normalizedEmail_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(2) [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[NormalizedEmail] = @__normalizedEmail_0
+2025-09-06 15:24:33.695 -06:00 [INF] Executed DbCommand (3ms) [Parameters=[@__normalizedUserName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[NormalizedUserName] = @__normalizedUserName_0
+2025-09-06 15:24:33.762 -06:00 [INF] Executed DbCommand (3ms) [Parameters=[@__user_Id_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a].[Id], [a].[ClaimType], [a].[ClaimValue], [a].[UserId]
+FROM [AspNetUserClaims] AS [a]
+WHERE [a].[UserId] = @__user_Id_0
+2025-09-06 15:24:33.778 -06:00 [INF] Executed DbCommand (6ms) [Parameters=[@__userId_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a0].[Name]
+FROM [AspNetUserRoles] AS [a]
+INNER JOIN [AspNetRoles] AS [a0] ON [a].[RoleId] = [a0].[Id]
+WHERE [a].[UserId] = @__userId_0
+2025-09-06 15:24:33.779 -06:00 [INF] Generando claims de roles para el usuario 7fe5f79d-42cb-49ec-9a92-d592e619466c: Gestor
+2025-09-06 15:24:33.781 -06:00 [INF] AuthenticationScheme: Identity.Application signed in.
+2025-09-06 15:24:33.783 -06:00 [INF] Executed DbCommand (1ms) [Parameters=[@__user_Id_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a].[Id], [a].[ClaimType], [a].[ClaimValue], [a].[UserId]
+FROM [AspNetUserClaims] AS [a]
+WHERE [a].[UserId] = @__user_Id_0
+2025-09-06 15:24:33.784 -06:00 [INF] Executed DbCommand (1ms) [Parameters=[@__userId_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a0].[Name]
+FROM [AspNetUserRoles] AS [a]
+INNER JOIN [AspNetRoles] AS [a0] ON [a].[RoleId] = [a0].[Id]
+WHERE [a].[UserId] = @__userId_0
+2025-09-06 15:24:33.784 -06:00 [INF] Generando claims de roles para el usuario 7fe5f79d-42cb-49ec-9a92-d592e619466c: Gestor
+2025-09-06 15:24:33.785 -06:00 [INF] Roles asignados al usuario tras login: Gestor
+2025-09-06 15:24:33.785 -06:00 [INF] Usuario conectado con rol válido.
+2025-09-06 15:24:33.785 -06:00 [INF] DanielClaim: http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier = 7fe5f79d-42cb-49ec-9a92-d592e619466c
+2025-09-06 15:24:33.785 -06:00 [INF] DanielClaim: http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name = gestor@preacepta.com
+2025-09-06 15:24:33.785 -06:00 [INF] DanielClaim: http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress = gestor@preacepta.com
+2025-09-06 15:24:33.785 -06:00 [INF] DanielClaim: AspNet.Identity.SecurityStamp = 7GOABEQCFRRPVNALAIYWT7GWKGY3J7E3
+2025-09-06 15:24:33.785 -06:00 [INF] DanielClaim: http://schemas.microsoft.com/ws/2008/06/identity/claims/role = Gestor
+2025-09-06 15:24:33.786 -06:00 [INF] Executed handler method OnPostAsync, returned result Microsoft.AspNetCore.Mvc.RedirectToActionResult.
+2025-09-06 15:24:33.787 -06:00 [INF] Executing RedirectResult, redirecting to /Home/UsuarioAutenticado?correo=gestor@preacepta.com.
+2025-09-06 15:24:33.787 -06:00 [INF] Executed page /Account/Login in 120.138ms
+2025-09-06 15:24:33.787 -06:00 [INF] Executed endpoint '/Account/Login'
+2025-09-06 15:24:33.789 -06:00 [INF] Request finished HTTP/2 POST https://localhost:7065/Identity/Account/Login - 302 0 null 128.9102ms
+2025-09-06 15:24:33.790 -06:00 [INF] Request starting HTTP/2 GET https://localhost:7065/Home/UsuarioAutenticado?correo=gestor@preacepta.com - null null
+2025-09-06 15:24:33.795 -06:00 [INF] Executing endpoint 'Praecepta.UI.Controllers.HomeController.UsuarioAutenticado (Preacepta.UI)'
+2025-09-06 15:24:33.797 -06:00 [INF] Route matched with {action = "UsuarioAutenticado", controller = "Home", area = "", page = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] UsuarioAutenticado(System.String) on controller Praecepta.UI.Controllers.HomeController (Preacepta.UI).
+2025-09-06 15:24:33.801 -06:00 [INF] Executing ViewResult, running view UsuarioGestor.
+2025-09-06 15:24:33.846 -06:00 [INF] Executed ViewResult - view UsuarioGestor executed in 45.2922ms.
+2025-09-06 15:24:33.846 -06:00 [INF] Executed action Praecepta.UI.Controllers.HomeController.UsuarioAutenticado (Preacepta.UI) in 49.2507ms
+2025-09-06 15:24:33.846 -06:00 [INF] Executed endpoint 'Praecepta.UI.Controllers.HomeController.UsuarioAutenticado (Preacepta.UI)'
+2025-09-06 15:24:33.846 -06:00 [INF] Request finished HTTP/2 GET https://localhost:7065/Home/UsuarioAutenticado?correo=gestor@preacepta.com - 200 null text/html; charset=utf-8 56.7164ms
+2025-09-06 15:24:33.850 -06:00 [INF] Request starting HTTP/2 GET https://localhost:7065/lib/bootstrap/dist/css/bootstrap.min.css - null null
+2025-09-06 15:24:33.850 -06:00 [INF] Request starting HTTP/2 GET https://localhost:7065/Preacepta.UI.styles.css?v=IQivLoIAMn6r8XXwYBNpO_K93x3i52kj9ZBjBlLttPQ - null null
+2025-09-06 15:24:33.850 -06:00 [INF] Request starting HTTP/2 GET https://localhost:7065/css/siteGestor.css?v=sAe39pRZbH-hSgYYxJaJ4RRKijakmFN3b_VfPeWIczM - null null
+2025-09-06 15:24:33.851 -06:00 [INF] Request starting HTTP/2 GET https://localhost:7065/lyso/img/preaceptalogocolornegro.png - null null
+2025-09-06 15:24:33.852 -06:00 [INF] Request starting HTTP/2 GET https://localhost:7065/lyso/js/sweetalertusuariogestor.js - null null
+2025-09-06 15:24:33.857 -06:00 [INF] Request starting HTTP/2 GET https://localhost:7065/lib/bootstrap/dist/js/bootstrap.bundle.min.js - null null
+2025-09-06 15:24:33.858 -06:00 [INF] Request starting HTTP/2 GET https://localhost:7065/_framework/aspnetcore-browser-refresh.js - null null
+2025-09-06 15:24:33.861 -06:00 [INF] Request starting HTTP/2 GET https://localhost:7065/lib/jquery/dist/jquery.min.js - null null
+2025-09-06 15:24:33.861 -06:00 [INF] Request starting HTTP/2 GET https://localhost:7065/js/site.js?v=y_Ngd8W21UpuCUhEqGbUKDEqFnNfTjAfb24GhJJGUyM - null null
+2025-09-06 15:24:33.866 -06:00 [INF] Request starting HTTP/2 GET https://localhost:7065/_vs/browserLink - null null
+2025-09-06 15:24:33.870 -06:00 [INF] The file /lib/jquery/dist/jquery.min.js was not modified
+2025-09-06 15:24:33.871 -06:00 [INF] The file /css/siteGestor.css was not modified
+2025-09-06 15:24:33.871 -06:00 [INF] The file /lib/bootstrap/dist/js/bootstrap.bundle.min.js was not modified
+2025-09-06 15:24:33.871 -06:00 [INF] The file /lyso/img/preaceptalogocolornegro.png was not modified
+2025-09-06 15:24:33.871 -06:00 [INF] The file /lyso/js/sweetalertusuariogestor.js was not modified
+2025-09-06 15:24:33.871 -06:00 [INF] The file /Preacepta.UI.styles.css was not modified
+2025-09-06 15:24:33.871 -06:00 [INF] The file /lib/bootstrap/dist/css/bootstrap.min.css was not modified
+2025-09-06 15:24:33.871 -06:00 [INF] The file /js/site.js was not modified
+2025-09-06 15:24:33.872 -06:00 [INF] Request finished HTTP/2 GET https://localhost:7065/js/site.js?v=y_Ngd8W21UpuCUhEqGbUKDEqFnNfTjAfb24GhJJGUyM - 304 null text/javascript 10.954ms
+2025-09-06 15:24:33.872 -06:00 [INF] Request finished HTTP/2 GET https://localhost:7065/lyso/img/preaceptalogocolornegro.png - 304 null image/png 21.3656ms
+2025-09-06 15:24:33.872 -06:00 [INF] Request finished HTTP/2 GET https://localhost:7065/lib/jquery/dist/jquery.min.js - 304 null text/javascript 11.1059ms
+2025-09-06 15:24:33.872 -06:00 [INF] Request finished HTTP/2 GET https://localhost:7065/_framework/aspnetcore-browser-refresh.js - 200 13760 application/javascript; charset=utf-8 15.5921ms
+2025-09-06 15:24:33.872 -06:00 [INF] Request finished HTTP/2 GET https://localhost:7065/Preacepta.UI.styles.css?v=IQivLoIAMn6r8XXwYBNpO_K93x3i52kj9ZBjBlLttPQ - 304 null text/css 21.8931ms
+2025-09-06 15:24:33.872 -06:00 [INF] Request finished HTTP/2 GET https://localhost:7065/lib/bootstrap/dist/js/bootstrap.bundle.min.js - 304 null text/javascript 15.8139ms
+2025-09-06 15:24:33.872 -06:00 [INF] Request finished HTTP/2 GET https://localhost:7065/lyso/js/sweetalertusuariogestor.js - 304 null text/javascript 20.7878ms
+2025-09-06 15:24:33.875 -06:00 [INF] Request finished HTTP/2 GET https://localhost:7065/css/siteGestor.css?v=sAe39pRZbH-hSgYYxJaJ4RRKijakmFN3b_VfPeWIczM - 304 null text/css 21.9605ms
+2025-09-06 15:24:33.872 -06:00 [INF] Request finished HTTP/2 GET https://localhost:7065/lib/bootstrap/dist/css/bootstrap.min.css - 304 null text/css 22.1326ms
+2025-09-06 15:24:33.882 -06:00 [INF] Request finished HTTP/2 GET https://localhost:7065/_vs/browserLink - 200 null text/javascript; charset=UTF-8 15.8046ms
+2025-09-06 15:24:33.925 -06:00 [INF] Request starting HTTP/1.1 GET https://localhost:7065/lib/bootstrap/dist/js/bootstrap.bundle.min.js.map - null null
+2025-09-06 15:24:33.946 -06:00 [INF] Sending file. Request path: '/lib/bootstrap/dist/js/bootstrap.bundle.min.js.map'. Physical path: 'C:\Preacepta\Preacepta.UI\wwwroot\lib\bootstrap\dist\js\bootstrap.bundle.min.js.map'
+2025-09-06 15:24:33.947 -06:00 [INF] Request finished HTTP/1.1 GET https://localhost:7065/lib/bootstrap/dist/js/bootstrap.bundle.min.js.map - 200 327261 text/plain 21.6236ms
+2025-09-06 15:24:33.962 -06:00 [INF] Request starting HTTP/2 GET https://localhost:7065/lyso/img/PreaceptaLogoColorNegro.png - null null
+2025-09-06 15:24:33.962 -06:00 [INF] The file /lyso/img/PreaceptaLogoColorNegro.png was not modified
+2025-09-06 15:24:33.962 -06:00 [INF] Request finished HTTP/2 GET https://localhost:7065/lyso/img/PreaceptaLogoColorNegro.png - 304 null image/png 0.6097ms
+2025-09-06 15:24:41.026 -06:00 [INF] Request starting HTTP/2 GET https://localhost:7065/Caso - null null
+2025-09-06 15:24:41.030 -06:00 [INF] Executing endpoint 'Preacepta.UI.Controllers.CasoController.Index (Preacepta.UI)'
+2025-09-06 15:24:41.032 -06:00 [INF] Route matched with {action = "Index", controller = "Caso", area = "", page = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Index() on controller Preacepta.UI.Controllers.CasoController (Preacepta.UI).
+2025-09-06 15:24:41.283 -06:00 [INF] Executed DbCommand (20ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [t].[Id_caso], [t].[Fecha], [t].[Nombre], [t].[Id_TipoCaso], [t].[Descripcion], [t].[Id_Abogado], [t].[Id_Cliente], [t].[Activo], [t0].[Cedula], [t0].[C_Juridica], [t0].[Carnet], [t0].[Id_TipoAbogado], [t3].[Cedula], [t3].[Activo], [t3].[Apellido1], [t3].[Apellido2], [t3].[Direccion1], [t3].[Direccion2], [t3].[Edad], [t3].[Email], [t3].[EstadoCivil], [t3].[FechaNacimiento], [t3].[FechaRegistro], [t3].[Genero], [t3].[Nombre], [t3].[Oficio], [t3].[Telefono1], [t3].[Telefono2], [t4].[idDistrito], [t4].[idCaton], [t4].[nombreDistrito], [t1].[Cedula], [t1].[Activo], [t1].[Apellido1], [t1].[Apellido2], [t1].[Direccion1], [t1].[Direccion2], [t1].[Edad], [t1].[Email], [t1].[EstadoCivil], [t1].[FechaNacimiento], [t1].[FechaRegistro], [t1].[Genero], [t1].[Nombre], [t1].[Oficio], [t1].[Telefono1], [t1].[Telefono2], [t5].[idDistrito], [t5].[idCaton], [t5].[nombreDistrito], [t2].[Id_TipoCaso], [t2].[Nombre]
+FROM [T_Casos] AS [t]
+INNER JOIN [T_GeAbogados] AS [t0] ON [t].[Id_Abogado] = [t0].[Cedula]
+INNER JOIN [T_GePersonas] AS [t1] ON [t].[Id_Cliente] = [t1].[Cedula]
+INNER JOIN [T_CasosTipos] AS [t2] ON [t].[Id_TipoCaso] = [t2].[Id_TipoCaso]
+INNER JOIN [T_GePersonas] AS [t3] ON [t0].[Cedula] = [t3].[Cedula]
+INNER JOIN [T_CrDistritos] AS [t4] ON [t3].[Direccion1] = [t4].[idDistrito]
+INNER JOIN [T_CrDistritos] AS [t5] ON [t1].[Direccion1] = [t5].[idDistrito]
+2025-09-06 15:24:41.338 -06:00 [INF] Executing ViewResult, running view Index.
+2025-09-06 15:24:41.354 -06:00 [INF] Executed ViewResult - view Index executed in 16.9026ms.
+2025-09-06 15:24:41.354 -06:00 [INF] Executed action Preacepta.UI.Controllers.CasoController.Index (Preacepta.UI) in 322.3001ms
+2025-09-06 15:24:41.354 -06:00 [INF] Executed endpoint 'Preacepta.UI.Controllers.CasoController.Index (Preacepta.UI)'
+2025-09-06 15:24:41.355 -06:00 [INF] Request finished HTTP/2 GET https://localhost:7065/Caso - 200 null text/html; charset=utf-8 329.3079ms
+2025-09-06 15:24:41.359 -06:00 [INF] Request starting HTTP/2 GET https://localhost:7065/_framework/aspnetcore-browser-refresh.js - null null
+2025-09-06 15:24:41.359 -06:00 [INF] Request starting HTTP/2 GET https://localhost:7065/_vs/browserLink - null null
+2025-09-06 15:24:41.359 -06:00 [INF] Request finished HTTP/2 GET https://localhost:7065/_framework/aspnetcore-browser-refresh.js - 200 13760 application/javascript; charset=utf-8 0.9406ms
+2025-09-06 15:24:41.371 -06:00 [INF] Request finished HTTP/2 GET https://localhost:7065/_vs/browserLink - 200 null text/javascript; charset=UTF-8 12.4158ms
+2025-09-06 15:24:42.992 -06:00 [INF] Request starting HTTP/2 GET https://localhost:7065/Caso/Create - null null
+2025-09-06 15:24:42.997 -06:00 [INF] Executing endpoint 'Preacepta.UI.Controllers.CasoController.Create (Preacepta.UI)'
+2025-09-06 15:24:42.998 -06:00 [INF] Route matched with {action = "Create", controller = "Caso", area = "", page = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Create() on controller Preacepta.UI.Controllers.CasoController (Preacepta.UI).
+2025-09-06 15:24:43.004 -06:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [t].[Id_TipoCaso] AS [IdTipoCaso], [t].[Nombre]
+FROM [T_CasosTipos] AS [t]
+2025-09-06 15:24:43.018 -06:00 [INF] Executed DbCommand (8ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [t].[Cedula], [t0].[Cedula], [t0].[Activo], [t0].[Apellido1], [t0].[Apellido2], [t0].[Direccion1], [t0].[Direccion2], [t0].[Edad], [t0].[Email], [t0].[EstadoCivil], [t0].[FechaNacimiento], [t0].[FechaRegistro], [t0].[Genero], [t0].[Nombre], [t0].[Oficio], [t0].[Telefono1], [t0].[Telefono2], [t1].[C_Juridica], [t1].[Direccion1], [t1].[Direccion2], [t1].[Email], [t1].[Fecha_Consolidacion], [t1].[Nombre], [t1].[Representante], [t1].[Telefono], [t].[Id_TipoAbogado] AS [IdTipoAbogado], [t2].[Id_TipoAbogado], [t2].[Nombre], [t].[Carnet], [t].[C_Juridica] AS [CJuridica]
+FROM [T_GeAbogados] AS [t]
+INNER JOIN [T_GePersonas] AS [t0] ON [t].[Cedula] = [t0].[Cedula]
+INNER JOIN [T_GeNegocios] AS [t1] ON [t].[C_Juridica] = [t1].[C_Juridica]
+INNER JOIN [T_GeAbogadoTipo] AS [t2] ON [t].[Id_TipoAbogado] = [t2].[Id_TipoAbogado]
+2025-09-06 15:24:43.039 -06:00 [INF] Executed DbCommand (6ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [t].[Cedula], [t].[Nombre], [t].[Apellido1], [t].[Apellido2], [t].[FechaNacimiento], [t].[Edad], [t].[EstadoCivil], [t].[Oficio], [t].[Direccion1], [t0].[idDistrito], [t0].[idCaton], [t0].[nombreDistrito], [t1].[idCanton], [t1].[idProvincia], [t1].[NombreCanton], [t].[Direccion2], [t].[Email], [t].[FechaRegistro], [t].[Activo], [t].[Telefono1], [t].[Telefono2], [t].[Genero]
+FROM [T_GePersonas] AS [t]
+INNER JOIN [T_CrDistritos] AS [t0] ON [t].[Direccion1] = [t0].[idDistrito]
+INNER JOIN [T_CrCantones] AS [t1] ON [t0].[idCaton] = [t1].[idCanton]
+2025-09-06 15:24:43.044 -06:00 [INF] Executing ViewResult, running view Create.
+2025-09-06 15:24:43.086 -06:00 [INF] Executed ViewResult - view Create executed in 42.1117ms.
+2025-09-06 15:24:43.086 -06:00 [INF] Executed action Preacepta.UI.Controllers.CasoController.Create (Preacepta.UI) in 87.7652ms
+2025-09-06 15:24:43.086 -06:00 [INF] Executed endpoint 'Preacepta.UI.Controllers.CasoController.Create (Preacepta.UI)'
+2025-09-06 15:24:43.086 -06:00 [INF] Request finished HTTP/2 GET https://localhost:7065/Caso/Create - 200 null text/html; charset=utf-8 94.7391ms
+2025-09-06 15:24:43.091 -06:00 [INF] Request starting HTTP/2 GET https://localhost:7065/_framework/aspnetcore-browser-refresh.js - null null
+2025-09-06 15:24:43.091 -06:00 [INF] Request starting HTTP/2 GET https://localhost:7065/_vs/browserLink - null null
+2025-09-06 15:24:43.091 -06:00 [INF] Request finished HTTP/2 GET https://localhost:7065/_framework/aspnetcore-browser-refresh.js - 200 13760 application/javascript; charset=utf-8 0.9608ms
+2025-09-06 15:24:43.101 -06:00 [INF] Request finished HTTP/2 GET https://localhost:7065/_vs/browserLink - 200 null text/javascript; charset=UTF-8 10.2105ms

@@ -2,7 +2,7 @@
 
 @{
     ViewData["Title"] = "Crear";
-    Layout = "_Layout";
+    Layout = "_LayoutGestor";
 }
 
 
@@ -66,9 +66,26 @@
                 <input asp-for="Oficio" class="form-control" />
                 <span asp-validation-for="Oficio" class="text-danger"></span>
             </div>
+            
             <div class="form-group">
-                <label asp-for="Direccion1" class="control-label"></label>
-                <select asp-for="Direccion1" class ="form-control" asp-items="ViewBag.Direccion1"></select>
+                <label for="provincia">Provincia:</label>
+                <select class="selectDaniel" id="provincia" name="provincia">
+                    <option value="">Seleccione una provincia</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="canton">Cantón:</label>
+                <select class="selectDaniel" id="canton" name="canton" disabled>
+                    <option value="">Seleccione un cantón</option>
+                </select>
+                <input id="inputCanton" asp-for="Direccion1" class="form-control" readonly />
+            </div>
+            <div class="form-group">
+                <label for="distrito">Distrito:</label>
+                <select class="selectDaniel" id="distrito" name="personaDTO.Direccion1" asp-for="Direccion1" disabled>
+                    <option value="">Seleccione un distrito</option>
+                </select>
+                <input id="inputDistrito" asp-for="Direccion1" class="form-control" readonly />
             </div>
             <div class="form-group">
                 <label asp-for="Direccion2" class="control-label"></label>
@@ -84,17 +101,7 @@
                 <label asp-for="Telefono2" class="control-label"></label>
                 <input asp-for="Telefono2" class="form-control" />
                 <span asp-validation-for="Telefono2" class="text-danger"></span>
-            </div>
-            <!--<div class="form-group">
-                <label asp-for="FechaRegistro" class="control-label"></label>
-                <input asp-for="FechaRegistro" class="form-control" />
-                <span asp-validation-for="FechaRegistro" class="text-danger"></span>
-            </div>-->
-            <!--<div class="form-group form-check">
-                <label class="form-check-label">
-                    <input class="form-check-input" asp-for="Activo" /> @Html.DisplayNameFor(model => model.Activo)
-                </label>
-            </div>-->            
+            </div>      
             <div class="form-group">
                 <label asp-for="Email" class="control-label"></label>
                 <input asp-for="Email" class="form-control" autocomplete="username" aria-required="true" />
@@ -132,3 +139,4 @@
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }
+<script src="~/lyso/js/FiltroProvinicaCantonDistritoGestor.js"></script>

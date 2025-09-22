@@ -1,7 +1,5 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Praecepta.UI.Models;
-using Microsoft.AspNetCore.Http;
 using Preacepta.LN.Citas.Listar;
 using Preacepta.Modelos.AbstraccionesFrond;
 using Preacepta.LN.Citas.Crear;
@@ -15,8 +13,6 @@ using Microsoft.AspNetCore.Identity;
 using Preacepta.AD;
 using Microsoft.EntityFrameworkCore;
 using Preacepta.Modelos.AbstraccionesBD;
-using System.Collections.Generic;
-using Azure.Core;
 using System.Net.Mail;
 using System.Net;
 using Preacepta.LN.GePersona.BuscarXid;
@@ -203,7 +199,9 @@ namespace Praecepta.UI.Controllers
             var smtp = new SmtpClient("smtp.gmail.com")
             {
                 Port = 587,
+
                 Credentials = new NetworkCredential("d.gon.guerrero@gmail.com", "oiup tfoc roio sbei"), 
+
                 EnableSsl = true
             };
             foreach (var correo in correos)
@@ -292,7 +290,9 @@ namespace Praecepta.UI.Controllers
                          .Where(c => c.Fecha == DateOnly.FromDateTime(fecha)).ToList();
             }
 
+
             var resultado = citas.Select(c => new
+
             {
                 idCita = c.IdCita,
                 hora = c.Hora.ToString(@"hh\:mm"),
@@ -449,6 +449,7 @@ namespace Praecepta.UI.Controllers
                 return RedirectToAction(nameof(Calendar));
             }
 
+
             if (Request.Headers["X-Requested-With"] == "XMLHttpRequest")
             {
                 var tiposCita = await _listarCitasLN.ListarTiposCita();
@@ -460,6 +461,7 @@ namespace Praecepta.UI.Controllers
 
                 return PartialView("~/Views/Citas/_EditPartial.cshtml", cita);
             }
+
 
             return View("~/Views/CitasPrueba/Edit.cshtml", cita);
         }
@@ -490,7 +492,9 @@ namespace Praecepta.UI.Controllers
                     return Forbid(); 
             }
 
+
             if (string.IsNullOrEmpty(cita.NombreTipoCita) && cita.IdTipoCita > 0)
+
             {
                 var tipos = await _listarCitasLN.ListarTiposCita();
                 var tipo = tipos.FirstOrDefault(t => t.Id == cita.IdTipoCita);
@@ -573,19 +577,22 @@ namespace Praecepta.UI.Controllers
 
         [Authorize(Roles = "Cliente,Abogado,Gestor")]
         private async Task<List<CitasDTO>> ObtenerCitasClienteActual()
-{
-    var usuarioActual = await _userManager.GetUserAsync(User);
-    if (usuarioActual == null)
-        return new List<CitasDTO>();
+        {
+            var usuarioActual = await _userManager.GetUserAsync(User);
+            if (usuarioActual == null)
+                return new List<CitasDTO>();
 
-    var emailUsuario = usuarioActual.Email;
+            var emailUsuario = usuarioActual.Email;
+
 
             var persona = await _buscarXidGePersonaLN.buscarXcorreo(emailUsuario);
             if (persona == null)
         return new List<CitasDTO>();
 
-    return await _listarCitasLN.ListarPorIdCliente(persona.Cedula);
-}
+
+            return await _listarCitasLN.ListarPorIdCliente(persona.Cedula);
+        }
+
 
         [Authorize(Roles = "Cliente,Abogado,Gestor")]
         public async Task<IActionResult> CalendarPasado()
@@ -602,6 +609,7 @@ namespace Praecepta.UI.Controllers
     var citasFuturas = lista.Where(c => c.FechaHora > DateTime.Now).ToList();
     return View(citasFuturas);
 }
+
 
         [HttpGet]
         [Authorize(Roles = "Cliente")]
