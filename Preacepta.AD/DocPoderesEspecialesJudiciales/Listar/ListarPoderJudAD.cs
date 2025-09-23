@@ -28,7 +28,8 @@ namespace Preacepta.AD.DocPoderesEspecialesJudiciales.Listar
                                     IdCliente = doc.IdCliente,
                                     Texto = doc.Texto,
                                     IdAbogadoNavigation = doc.IdAbogadoNavigation,
-                                    IdClienteNavigation = doc.IdClienteNavigation
+                                    IdClienteNavigation = doc.IdClienteNavigation,
+                                    NumCausa = doc.NumCausa,
                                 }).ToListAsync();
             return lista;
         }
@@ -45,7 +46,8 @@ namespace Preacepta.AD.DocPoderesEspecialesJudiciales.Listar
                     IdCliente = doc.IdCliente,
                     Texto = doc.Texto,
                     IdAbogadoNavigation = doc.IdAbogadoNavigation,
-                    IdClienteNavigation = doc.IdClienteNavigation
+                    IdClienteNavigation = doc.IdClienteNavigation,
+                    NumCausa = doc.NumCausa,
                 }).ToListAsync();
             }
             catch (Exception ex)

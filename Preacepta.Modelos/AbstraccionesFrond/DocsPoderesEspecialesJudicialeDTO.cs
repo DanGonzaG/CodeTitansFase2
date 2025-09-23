@@ -20,11 +20,14 @@ namespace Preacepta.Modelos.AbstraccionesFrond
         [Display(Name = "ID Abogado")]
         public int IdAbogado { get; set; }
 
-        [Display(Name = "ID Cliente")]
+        [Display(Name = "Cedula del cliente")]
         public int IdCliente { get; set; }
 
         [Display(Name = "Texto del Documento")]
         public string Texto { get; set; } = null!;
+
+        [Display(Name = "Numero de Causa")]
+        public string NumCausa { get; set; }
 
         [Display(Name = "Navegación Abogado")]
         public virtual TGeAbogado? IdAbogadoNavigation { get; set; } = null!;

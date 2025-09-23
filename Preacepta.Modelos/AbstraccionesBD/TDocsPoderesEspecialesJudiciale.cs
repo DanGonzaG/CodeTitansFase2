@@ -22,6 +22,9 @@ public partial class TDocsPoderesEspecialesJudiciale
 
     public string Texto { get; set; } = null!;
 
+    [Column("Num_Causa")]
+    public string NumCausa { get; set; }
+
     [ForeignKey("IdAbogado")]
     [InverseProperty("TDocsPoderesEspecialesJudiciales")]
     public virtual TGeAbogado IdAbogadoNavigation { get; set; } = null!;

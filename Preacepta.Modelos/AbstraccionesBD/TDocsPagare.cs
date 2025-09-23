@@ -1,6 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-//using Microsoft.EntityFrameworkCore;
 
 namespace Preacepta.Modelos.AbstraccionesBD;
 
@@ -19,22 +18,18 @@ public partial class TDocsPagare
 
     [Column("sociedad_deudor")]
     [StringLength(150)]
-    //[Unicode(false)]
     public string SociedadDeudor { get; set; } = null!;
 
     [Column("cedula_juridica_sociedad")]
     [StringLength(20)]
-    //[Unicode(false)]
     public string CedulaJuridicaSociedad { get; set; } = null!;
 
     [Column("acreedor_nombre")]
     [StringLength(150)]
-    //[Unicode(false)]
     public string AcreedorNombre { get; set; } = null!;
 
     [Column("cedula_juridica_acreedor")]
     [StringLength(20)]
-    //[Unicode(false)]
     public string CedulaJuridicaAcreedor { get; set; } = null!;
 
     [Column("acreedor_domicilio", TypeName = "text")]
@@ -57,7 +52,6 @@ public partial class TDocsPagare
 
     [Column("interes_base")]
     [StringLength(100)]
-    //[Unicode(false)]
     public string InteresBase { get; set; } = null!;
 
     [Column("lugar_pago")]
@@ -69,15 +63,29 @@ public partial class TDocsPagare
     [Column("ubicacion_firma")]
     public int UbicacionFirma { get; set; }
 
-    [ForeignKey("CedulaDeudor")]
+    [Column("cedula_abogado")]
+    public int CedulaAbogado { get; set; }
+
+    [Column("Tipo_Sociedad")]
+    [StringLength(1000)]
+    public string? TipoSociedad { get; set; }
+
+    [Column("Ubicacion_Sociedad")]
+    [StringLength(100)]
+    public string? UbicacionSociedad { get; set; }
+
+    [ForeignKey(nameof(CedulaDeudor))]
     [InverseProperty("TDocsPagareCedulaDeudorNavigations")]
-    public virtual TGePersona? CedulaDeudorNavigation { get; set; } = null!;
+    public virtual TGePersona? CedulaDeudorNavigation { get; set; }
 
-    [ForeignKey("CedulaFiador")]
+    [ForeignKey(nameof(CedulaFiador))]
     [InverseProperty("TDocsPagareCedulaFiadorNavigations")]
-    public virtual TGePersona? CedulaFiadorNavigation { get; set; } = null!;
+    public virtual TGePersona? CedulaFiadorNavigation { get; set; }
 
-    [ForeignKey("LugarPago")]
+    [ForeignKey(nameof(LugarPago))]
     [InverseProperty("TDocsPagares")]
-    public virtual TCrDistrito? LugarPagoNavigation { get; set; } = null!;
+    public virtual TCrDistrito? LugarPagoNavigation { get; set; }
+
+    [ForeignKey(nameof(CedulaAbogado))]
+    public virtual TGeAbogado? CedulaAbogadoNavigation { get; set; }
 }

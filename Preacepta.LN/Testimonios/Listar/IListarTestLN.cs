@@ -11,5 +11,7 @@ namespace Preacepta.LN.Testimonios.Listar
     {
         Task<List<TTestimonioDTO>> Listar();
         Task<List<TTestimonioDTO>> ListarTodosSinFiltro();
+
+        Task<List<TTestimonioDTO>> ListarInactivos();
     }
 }

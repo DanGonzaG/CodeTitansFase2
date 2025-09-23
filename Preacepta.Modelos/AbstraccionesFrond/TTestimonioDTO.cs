@@ -23,8 +23,10 @@ namespace Preacepta.Modelos.AbstraccionesFrond
         public int IdCliente { get; set; }
 
         [MaxLength(500, ErrorMessage = "Capacidad del comentario excedida")]
+        [Required(ErrorMessage = "El comentario es obligatorio")]
         public string? Comentario { get; set; }
 
+        [Required(ErrorMessage = "Debe seleccionar una calificación")]
         public int? Evaluacion { get; set; }
 
         [Required(ErrorMessage = "Dato requerido")]

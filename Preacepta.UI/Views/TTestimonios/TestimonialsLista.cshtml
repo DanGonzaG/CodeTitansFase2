@@ -1,6 +1,16 @@
 ﻿@model IEnumerable<Preacepta.Modelos.AbstraccionesFrond.TTestimonioDTO>
 @Html.AntiForgeryToken()
 
+<link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" rel="stylesheet" />
+
+<head>
+    <link href="~/lyso/css/daniel.css" rel="stylesheet" />
+</head>
+
+<head>
+    <link href="~/lyso/css/Testimonials.css" rel="stylesheet" />
+</head>
+
 @if (TempData["SuccessMessage"] != null)
 {
     <div class="alert alert-success">
@@ -45,31 +55,11 @@
 <br />
 <br />
 
-<div class="formulario contact-form contact-form-two">
-    <div class="container">
-        <div class="contact-wrap">
-            <form id="FormularioCaso" class="">
-                <h2>Buscar un testimonio</h2>
-                <div class="row justify-content-center">
-                    <div class="col-md-12 col-lg-12">
-                        <div class="form-group">
-                            <input name="BusquedaTestimonio" class="form-control" id="BusquedaTestimonio" required data-error="Ingrese una palabra" placeholder="Filtrar por palabras">
-                            <div class="help-block with-errors"></div>
-                        </div>
-                    </div>
-                    <div class="col-md-12 col-lg-12">
-                        <div class="text-center">
-                            <button type="button" id="BtnBuscarCaso" class="contact-btn">
-                                Filtrar
-                            </button>
-                        </div>
-                        <div id="msgSubmit" class="h3 text-center hidden"></div>
-                        <div class="clearfix"></div>
-                    </div>
-                </div>
-            </form>
-        </div>
-    </div>
+<!-- Botón centrado de "Ver testimonios reportados" -->
+<div class="text-center mb-4">
+    <a asp-action="Reportados" asp-controller="TTestimonios" class="contact-btn--revision px-4 py-2">
+        Ver testimonios reportados
+    </a>
 </div>
 
 <div class="contact-form contact-form-two contact-form-three">
@@ -79,7 +69,7 @@
                 <thead>
                     <tr>
                         <th>Fecha</th>
-                        <th>ID Cliente</th>
+                        <th>Nombre</th>
                         <th>Comentario</th>
                         <th>Evaluación</th>
                         <th>Estado</th>
@@ -91,49 +81,40 @@
                     {
                         <tr>
                             <td>@DateTime.Parse(item.Fecha).ToString("dd/MM/yyyy")</td>
-                            <td>@item.IdCliente</td>
+                            <td>
+                                @{
+                                    var persona = item.IdClienteNavigation;
+                                }
+                            @(persona != null
+                                                        ? $"{persona.Nombre} {persona.Apellido1} {persona.Apellido2}"
+                                                        : item.IdCliente.ToString())
+                        </td>
+
                             <td>@item.Comentario</td>
                             <td>
+                                <div style="white-space:nowrap">
                                 @if (item.Evaluacion.HasValue)
-                                {
-                                    @for (int i = 0; i < item.Evaluacion.Value; i++)
                                     {
-                                        <i class="icofont-star"></i>
+                                        @for (int i = 0; i < item.Evaluacion.Value; i++)
+                                        {
+                                            <i class="icofont-star"></i>
+                                        }
                                     }
-                                }
+                                </div>
                             </td>
                             <td>@(item.Activo ? "Activo" : "Inactivo")</td>
                             <td>
-                                <div>
-                                    <!-- Botón Reportar -->
+                                <div class="acciones-btns-inline">
                                     @if (item.Activo)
                                     {
-                                        <button type="button" class="contact-btn btn-reportar" style="width: 90%; margin-bottom: 2px"
-                                                data-id="@item.IdTestimonio">
-                                            Reportar
-                                        </button>
-                                        <button type="button" class="contact-btn btn-activar d-none" style="width: 90%; margin-bottom: 2px"
-                                                data-id="@item.IdTestimonio">
-                                            Activar
-                                        </button>
+                                        <button type="button" class="contact-btn--revision btn-reportar" data-id="@item.IdTestimonio">Reportar</button>
+                                        <button type="button" class="contact-btn--tercero btn-eliminar" data-id="@item.IdTestimonio">Eliminar</button>
                                     }
                                     else
                                     {
-                                        <button type="button" class="contact-btn btn-reportar d-none" style="width: 90%; margin-bottom: 2px"
-                                                data-id="@item.IdTestimonio">
-                                            Reportar
-                                        </button>
-                                        <button type="button" class="contact-btn btn-activar" style="width: 90%; margin-bottom: 2px"
-                                                data-id="@item.IdTestimonio">
-                                            Activar
-                                        </button>
+                                        <button type="button" class="contact-btn--primero btn-activar" data-id="@item.IdTestimonio">Activar</button>
+                                        <button type="button" class="contact-btn--tercero btn-eliminar" data-id="@item.IdTestimonio">Eliminar</button>
                                     }
-
-                                    <!-- Botón Eliminar -->
-                                    <button type="button" class="contact-btn btn-eliminar" style="width: 90%"
-                                            data-id="@item.IdTestimonio">
-                                        Eliminar
-                                    </button>
                                 </div>
                             </td>
                         </tr>
@@ -148,35 +129,31 @@
 </div>
 
 @section Scripts {
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
     <script>
         $(document).ready(function () {
-            // Función para reportar (solo cambia Activo a false)
+            // Función para reportar
             $('.btn-reportar').click(function () {
                 var id = $(this).data('id');
                 var $btn = $(this);
                 var $row = $btn.closest('tr');
-
                 if (confirm('¿Está seguro de marcar este testimonio como inactivo?')) {
                     $btn.prop('disabled', true).html('<i class="fas fa-spinner fa-spin"></i> Procesando...');
-
                     $.ajax({
                         url: '@Url.Action("Reportar", "TTestimonios")',
                         type: 'POST',
-                        data: { id: id }, // No necesitas JSON.stringify para datos simples
+                        data: { id: id },
                         headers: {
                             'RequestVerificationToken': $('input[name="__RequestVerificationToken"]').val()
                         },
-                                success: function (response) {
-            if (response.success) {
-                $row.find('td:eq(4)').text('Inactivo');
-                $row.addClass('bg-light');
-                $btn.addClass('d-none');
-                $row.find('.btn-activar').removeClass('d-none');
-                toastr.success(response.message);
-            } else {
-                toastr.error(response.message);
-            }
-        },
+                        success: function (response) {
+                            if (response.success) {
+                                $row.fadeOut(400, function () { $(this).remove(); });
+                                toastr.success(response.message);
+                            } else {
+                                toastr.error(response.message);
+                            }
+                        },
                         error: function (xhr) {
                             toastr.error("Error de conexión con el servidor");
                             console.error("Error:", xhr.responseText);
@@ -192,28 +169,30 @@
             $('.btn-eliminar').click(function () {
                 var id = $(this).data('id');
                 if (confirm('¿Está seguro que desea eliminar permanentemente este testimonio?')) {
-                    $.post('@Url.Action("Delete2", "TTestimonios")', { id: id })
-                        .done(function () {
+                    $.ajax({
+                        url: '@Url.Action("Delete2", "TTestimonios")',
+                        type: 'POST',
+                        data: { id: id },
+                        headers: {
+                            'RequestVerificationToken': $('input[name="__RequestVerificationToken"]').val()
+                        },
+                        success: function (response) {
                             location.reload();
-                        })
-                        .fail(function () {
+                        },
+                        error: function () {
                             alert('Error al eliminar el testimonio');
-                        });
+                        }
+                    });
                 }
             });
-        });
 
-        //Funcion Activar
-             $(document).ready(function () {
-            // Activar testimonio
+            // Función para activar
             $('.btn-activar').click(function () {
                 var id = $(this).data('id');
                 var $btn = $(this);
                 var $row = $btn.closest('tr');
-
                 if (confirm('¿Está seguro de activar este testimonio?')) {
                     $btn.prop('disabled', true).html('<i class="fas fa-spinner fa-spin"></i> Activando...');
-
                     $.ajax({
                         url: '@Url.Action("Activar", "TTestimonios")',
                         type: 'POST',
@@ -221,16 +200,10 @@
                         headers: {
                             'RequestVerificationToken': $('input[name="__RequestVerificationToken"]').val()
                         },
-                                success: function (response) {
-            if (response.success) {
-                $row.find('td:eq(4)').text('Activo');
-                $btn.addClass('d-none');
-                $row.find('.btn-reportar').removeClass('d-none');
-                toastr.success(response.message);
-            } else {
-                toastr.error(response.message);
-            }
-        },
+                        success: function (response) {
+                            $row.fadeOut(400, function () { $(this).remove(); });
+                            toastr.success(response.message);
+                        },
                         error: function (xhr) {
                             toastr.error("Error de conexión con el servidor");
                             console.error("Error:", xhr.responseText);
@@ -244,38 +217,3 @@
         });
     </script>
 }
-
-<style>
-    .icofont-star {
-        color: #ffc107;
-    }
-
-    .alert {
-        padding: 15px;
-        margin: 20px 0;
-        border: 1px solid transparent;
-        border-radius: 4px;
-    }
-
-    .alert-success {
-        color: #3c763d;
-        background-color: #dff0d8;
-        border-color: #d6e9c6;
-    }
-
-    .alert-danger {
-        color: #a94442;
-        background-color: #f2dede;
-        border-color: #ebccd1;
-    }
-
-    .contact-btn {
-        transition: all 0.3s ease;
-        cursor: pointer;
-    }
-
-        .contact-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-        }
-</style>

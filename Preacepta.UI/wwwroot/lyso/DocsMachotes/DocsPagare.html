@@ -1,70 +1,176 @@
 ﻿<!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
     <meta charset="utf-8" />
     <title>Pagaré</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            font-size: 12pt;
-            line-height: 1.5;
+        @page {
             margin: 40px;
         }
 
-        h4 {
-            margin-top: 20px;
-            text-align: center;
-            text-decoration: underline;
+        body {
+            font-family: Arial, sans-serif;
+            font-size: 12pt;
+            line-height: 1.55;
+            color: #111;
         }
 
-        .firmas {
-            margin-top: 60px;
+        .header {
+            display: table;
+            width: 100%;
+            border-bottom: 1px solid #000;
+            padding-bottom: 10px;
+            margin-bottom: 22px;
+        }
+
+        .h-left {
+            display: table-cell;
+            vertical-align: middle;
+            width: 110px;
+        }
+
+        .h-right {
+            display: table-cell;
+            vertical-align: middle;
+            text-align: right;
+        }
+
+        .logo {
+            height: 58px;
+        }
+
+        .h-title {
+            font-size: 18pt;
+            margin: 0;
+            font-weight: bold;
+        }
+
+        .h-sub {
+            margin: 0;
+            font-size: 10pt;
+        }
+
+        h3 {
             text-align: center;
+            text-decoration: underline;
+            margin: 18px 0 14px;
+        }
+
+        .section {
+            margin: 12px 0;
+        }
+
+        .small {
+            font-size: 10pt;
+        }
+        /* Panel final (oscuro) */
+        .duo {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 16px;
+        }
+
+            .duo th, .duo td {
+                border: 1px solid #fff;
+                padding: 8px 10px;
+                vertical-align: top;
+            }
+
+            .duo th {
+                background: #222;
+                color: #fff;
+                text-transform: uppercase;
+                font-weight: bold;
+                text-align: left;
+            }
+
+            .duo td {
+                background: #2b2b2b;
+                color: #fff;
+                font-size: 10pt;
+                line-height: 1.35;
+            }
+        /* Firmas */
+        .firmas {
+            margin-top: 40px;
+            display: table;
+            width: 100%;
+        }
+
+        .firma-box {
+            display: table-cell;
+            text-align: center;
+            padding: 0 15px;
+        }
+
+        .line {
+            border-top: 1px solid #000;
+            height: 50px;
+            margin: 40px 0 8px;
         }
     </style>
 </head>
 <body>
 
-    <p><strong>MONTO:</strong> {{MONTO_NUMERICO}}</p>
-    <p><strong>DEUDOR:</strong> {{CEDULA_DEUDOR}}</p>
-    <p><strong>SOCIEDAD DEUDORA:</strong> {{SOCIEDAD_DEUDOR}}</p>
-    <p><strong>CÉDULA JURÍDICA SOCIEDAD:</strong> {{CEDULA_JURIDICA_SOCIEDAD}}</p>
-    <p><strong>ACREEDOR:</strong> {{ACREEDOR_NOMBRE}}</p>
-    <p><strong>CÉDULA JURÍDICA ACREEDOR:</strong> {{CEDULA_JURIDICA_ACREEDOR}}</p>
-    <p><strong>DOMICILIO ACREEDOR:</strong> {{ACREEDOR_DOMICILIO}}</p>
-    <p><strong>FECHA DE VENCIMIENTO:</strong> {{FECHA_VENCIMIENTO}}</p>
-
-    <h4>PAGARÉ</h4>
-
-    <p>
-        Yo, {{CEDULA_DEUDOR}}, mayor de edad, en representación de la sociedad {{SOCIEDAD_DEUDOR}}, cédula jurídica número {{CEDULA_JURIDICA_SOCIEDAD}}, prometo pagar incondicionalmente a la orden de {{ACREEDOR_NOMBRE}}, cédula jurídica número {{CEDULA_JURIDICA_ACREEDOR}}, la suma de <strong>{{MONTO_NUMERICO}}</strong> dólares americanos (USD), en un único pago el día <strong>{{FECHA_VENCIMIENTO}}</strong>.
+    <h3>PAGARÉ</h3>
+    <p class="section" style="text-align:center; font-weight:bold; text-transform:uppercase;">
+        VALE POR {{MONTO_LETRAS}} DÓLARES AMERICANOS &nbsp;&nbsp; US ${{MONTO_NUMERICO}}
     </p>
 
-    <p>
-        Esta deuda devenga intereses calculados de la siguiente forma: {{INTERES_FORMULA}}, con una tasa de interés base de {{INTERES_BASE}} y una tasa actual aplicada de {{INTERES_TASA_ACTUAL}}. Los intereses se calcularán conforme a lo dispuesto por el Banco Central y se ajustarán mensualmente.
-    </p>
+    <div class="section">
+        <p>
+            Conste que , <strong>{{NOMBRE_DEUDOR}}</strong>, portador de la cédula de identidad número {{CEDULA_DEUDOR_LETRAS}},
+            mayor de edad, <strong>{{Oficio}}</strong>, <strong>{{ESTADO_CIVIL_DEUDOR}}</strong>, con domicilio en <strong>{{DOMICILIO_DEUDOR}}</strong>,
+            con facultades de apoderado generalísimo sin límite de suma de la sociedad <strong>{{SOCIEDAD_DEUDOR}}</strong>,
+            {{SOCIEDAD_TIPO}} cédula jurídica {{CEDULA_JURIDICA_SOCIEDAD_LETRAS}}, con domicilio en <strong>{{Ubicacion_Sociedad}}</strong>,
+            Oficinas de Grupo Jurídico Especializado, promete pagar incondicionalmente a la orden de <strong>{{ACREEDOR_NOMBRE}}</strong>,
+            cédula de persona jurídica número {{CEDULA_JURIDICA_ACREEDOR_LETRAS}},con domicilio en <strong>{{ACREEDOR_DOMICILIO}}</strong>,
+            o al legítimo tenedor del presente título, la suma de {{MONTO_LETRAS}} DÓLARES AMERICANOS mediante un único pago,
+            para el cual se fija una fecha de vencimiento de un año calendario que comenzará a computarse desde la firma del presente documento.
+        </p>
 
-    <p>
-        Todos los pagos deberán realizarse en el siguiente lugar: {{LUGAR_PAGO}}. En caso de incumplimiento en el pago de capital o intereses, se considerará vencida y exigible la totalidad de la deuda.
-    </p>
+        <p>
+            <strong>INTERESES:</strong> Esta deuda devenga intereses corrientes anuales en dólares, y por ende, EL DEUDOR promete pagar intereses
+            corrientes sobre el saldo, por mes vencido y hasta la cancelación total del crédito, a una tasa de interés equivalente a la
+            la Tasa de Referencia Interbancaria (TRI) en dólares a 6 meses plazo, más un recargo de 36,65% puntos
+            porcentuales por encima, lo que a la fecha de hoy representa una tasa de <strong>{{INTERES_TASA_ACTUAL}}</strong>%.- Los intereses
+            corrientes serán variables y ajustables mensualmente, pagaderos en forma mensual vencidos sobre saldos.- Los intereses se computarán día
+            a día sobre la base de trescientos sesenta y cinco días calendario y aplicando la fórmula financiera de interés simple. Para los efectos
+            de esta cláusula se entiende como "TRI" es aquella tasa de interés base para préstamos que se puede utilizar en Costa Rica elaborada por la
+            Cámara de Bancos e Instituciones Financieras de Costa Rica, y que corresponde a la tasa de interés actualizada según lo determina la
+            publicación de los indicadores económicos diarios que realiza el Banco Central de Costa Rica en la Página Web www.bccr.fi.cr. La no aceptación
+            de la tasa resultante por parte del DEUDOR será causa de vencimiento anticipado del crédito.- Los intereses serán revisados y en su caso
+            ajustados en forma mensualmente, durante la vigencia del crédito, de acuerdo con las variantes que presente la tasa "TRI".- El deudor promete
+            pagar intereses ajustables mensualmente, y para ello reconoce y acepta que tasa máxima permitida sea la tasa máxima vigente para créditos que
+            determine el Banco Central de conformidad con la legislación costarricense vigente al momento de la revisión, y considerando la comisión de
+            desembolso como parte del interés pagado.
+        </p>
 
-    <p>
-        Como fiador solidario, {{CEDULA_FIADOR}}, me obligo en los mismos términos y condiciones que el deudor principal. Ambas partes aceptamos el domicilio indicado en este documento como lugar para recibir notificaciones y cumplir obligaciones.
-    </p>
-
-    <h4>FIRMA DEL PAGARÉ</h4>
-
-    <p>El presente documento se firma en {{UBICACION_FIRMA}}, en la fecha que se indica al pie.</p>
-
-    <p><strong>Fecha:</strong> {{FECHA_FIRMA_NUEVO}} — <strong>Hora:</strong> {{HORA_FIRMA_NUEVO}}</p>
-
-    <div class="firmas">
-        <p>__________________________________________</p>
-        <p>DEUDOR<br />{{CEDULA_DEUDOR}}</p>
-        <br />
-        <p>__________________________________________</p>
-        <p>FIADOR SOLIDARIO<br />{{CEDULA_FIADOR}}</p>
+        <p>
+            Se deja constancia de que todos los pagos que deban realizarse en relación con el presente documento se harán en el domicilio del acreedor,
+            ubicado en <strong>{{LUGAR_PAGO}}</strong> y que el incumplimiento en uno de los pagos de principal y/o intereses hará vencida y exigible toda
+            la obligación. El suscrito, <strong>{{NOMBRE_FIADOR}}</strong>, de calidades antes dichas, en su condición personal, se constituye fiador
+            solidario de <strong>{{ACREEDOR_NOMBRE}}</strong> y hace las mismas estipulaciones de la deudora. Este título se rige por el Código de Comercio
+            de la República de Costa Rica y se suscribe en <strong>{{UBICACION_FIRMA}}</strong>, a las <strong>{{HORA_FIRMA_LETRAS}}</strong> del
+            <strong>{{FECHA_FIRMA_LETRAS}}</strong>.
+        </p>
     </div>
 
+    <table class="duo">
+        <tr><th>Deudor:</th><th>Fianza solidaria:</th></tr>
+        <tr>
+            <td>
+                {{SOCIEDAD_DEUDOR}}<br />
+                {{SOCIEDAD_TIPO}}<br />
+                CÉDULA JURÍDICA {{CEDULA_JURIDICA_SOCIEDAD}}<br />
+                {{NOMBRE_DEUDOR}}<br />
+                CÉDULA DE IDENTIDAD {{CEDULA_DEUDOR}}
+            </td>
+            <td>
+                <strong>{{NOMBRE_FIADOR}}</strong><br />
+                CÉDULA DE IDENTIDAD {{CEDULA_FIADOR}}
+            </td>
+        </tr>
+    </table>
 </body>
 </html>

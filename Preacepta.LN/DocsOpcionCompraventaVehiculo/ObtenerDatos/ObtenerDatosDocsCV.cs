@@ -1,114 +1,143 @@
 ﻿using Preacepta.Modelos.AbstraccionesBD;
 using Preacepta.Modelos.AbstraccionesFrond;
 using System;
-using System.Collections.Generic;
 using System.Globalization;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using static Azure.Core.HttpHeader;
 
 namespace Preacepta.LN.DocsOpcionCompraventaVehiculo.ObtenerDatos
 {
     public class ObtenerDatosDocsCV : IObtenerDatosDocsCV
     {
-        public DocsOpcionCompraventaVehiculoDTO ObtenerDeDB(TDocsOpcionCompraventaVehiculo ComVen)
+        public DocsOpcionCompraventaVehiculoDTO ObtenerDeDB(TDocsOpcionCompraventaVehiculo e)
         {
+            if (e == null) throw new ArgumentNullException(nameof(e));
+
             return new DocsOpcionCompraventaVehiculoDTO
             {
-                IdDocumento = ComVen.IdDocumento,
-                NumeroEscritura = ComVen.NumeroEscritura,
-                CedulaAbogado = ComVen.CedulaAbogado,
-                CedulaPropietario = ComVen.CedulaPropietario,
-                CedulaComprador = ComVen.CedulaComprador,
-                PlacaVehiculo = ComVen.PlacaVehiculo,
-                MarcaVehiculo = ComVen.MarcaVehiculo,
-                TipoVehiculo = ComVen.TipoVehiculo,
-                ModeloVehiculo = ComVen.ModeloVehiculo,
-                Carroceria = ComVen.Carroceria,
-                Categoria = ComVen.Categoria,
-                Chasis = ComVen.Chasis,
-                Serie = ComVen.Serie,
-                Vin = ComVen.Vin,
-                MarcaMotor = ComVen.MarcaMotor,
-                NumeroMotor = ComVen.NumeroMotor,
-                Color = ComVen.Color,
-                Combustible = ComVen.Combustible,
-                Anio = ComVen.Anio,
-                Capacidad = ComVen.Capacidad,
-                Cilindraje = ComVen.Cilindraje,
-                Precio = ComVen.Precio,
-                MonedaPrecio = ComVen.MonedaPrecio,
-                PlazoOpcionAnios = ComVen.PlazoOpcionAnios,
-                FechaInicio = ComVen.FechaInicio.ToString("yyyy-MM-dd HH:mm"),
-                MontoSenal = ComVen.MontoSenal,
-                MonedaSenal = ComVen.MonedaSenal,
-                MontoADevolver = ComVen.MontoADevolver,
-                MontoAPerder = ComVen.MontoAPerder,
-                MonedaMontoPerdido = ComVen.MonedaMontoPerdido,
-                GastosTraspasoPagadosPor = ComVen.GastosTraspasoPagadosPor,
-                LugarFirma = ComVen.LugarFirma,
-                HoraFirma = ComVen.HoraFirma.ToString("HH:mm"),
-                FechaFirma = ComVen.FechaFirma.ToString("yyyy-MM-dd"),
-                CedulaAbogadoNavigation = ComVen.CedulaAbogadoNavigation,
-                CedulaCompradorNavigation = ComVen.CedulaCompradorNavigation,
-                CedulaPropietarioNavigation = ComVen.CedulaPropietarioNavigation,
-                CombustibleNavigation = ComVen.CombustibleNavigation,
-                LugarFirmaNavigation = ComVen.LugarFirmaNavigation,
-                MarcaMotorNavigation = ComVen.MarcaMotorNavigation,
-                MarcaVehiculoNavigation = ComVen.MarcaVehiculoNavigation,
-                TipoVehiculoNavigation = ComVen.TipoVehiculoNavigation
+                IdDocumento = e.IdDocumento,
+                NumeroEscritura = e.NumeroEscritura ?? string.Empty,
+
+                CedulaAbogado = e.CedulaAbogado,
+                CedulaPropietario = e.CedulaPropietario,
+                CedulaComprador = e.CedulaComprador,
+
+                PlacaVehiculo = e.PlacaVehiculo ?? string.Empty,
+                MarcaVehiculo = e.MarcaVehiculo,
+                TipoVehiculo = e.TipoVehiculo,
+                ModeloVehiculo = e.ModeloVehiculo ?? string.Empty,
+                Carroceria = e.Carroceria ?? string.Empty,
+                Categoria = e.Categoria ?? string.Empty,
+                Chasis = e.Chasis ?? string.Empty,
+                Serie = e.Serie ?? string.Empty,
+                Vin = e.Vin ?? string.Empty,
+                MarcaMotor = e.MarcaMotor,
+                NumeroMotor = e.NumeroMotor ?? string.Empty,
+                Color = e.Color ?? string.Empty,
+                Combustible = e.Combustible,
+                Anio = e.Anio,
+                Capacidad = e.Capacidad,
+                Cilindraje = e.Cilindraje,
+
+                Precio = e.Precio,
+                MonedaPrecio = e.MonedaPrecio ?? string.Empty,
+                PlazoOpcionAnios = e.PlazoOpcionAnios,
+
+                FechaInicio = e.FechaInicio.ToString("yyyy-MM-dd", CultureInfo.InvariantCulture),
+
+                MontoSenal = e.MontoSenal,
+                MonedaSenal = e.MonedaSenal ?? string.Empty,
+                MontoADevolver = e.MontoADevolver,
+                MontoAPerder = e.MontoAPerder,
+                MonedaMontoPerdido = e.MonedaMontoPerdido ?? string.Empty,
+                GastosTraspasoPagadosPor = e.GastosTraspasoPagadosPor ?? string.Empty,
+
+                LugarFirma = e.LugarFirma,
+
+                HoraFirma = e.HoraFirma.ToString("HH:mm", CultureInfo.InvariantCulture),
+                FechaFirma = e.FechaFirma.ToString("yyyy-MM-dd", CultureInfo.InvariantCulture),
+
+                CedulaAbogadoNavigation = null,
+                CedulaCompradorNavigation = null,
+                CedulaPropietarioNavigation = null,
+                CombustibleNavigation = null,
+                LugarFirmaNavigation = null,
+                MarcaMotorNavigation = null,
+                MarcaVehiculoNavigation = null,
+                TipoVehiculoNavigation = null
             };
         }
 
-
-        /*metodo para obtner los datos de los formularios y pasarlos al modelo de acceso a datos*/
-        public TDocsOpcionCompraventaVehiculo ObtenerDeFront(DocsOpcionCompraventaVehiculoDTO ComVenDTO)
+        public TDocsOpcionCompraventaVehiculo ObtenerDeFront(DocsOpcionCompraventaVehiculoDTO dto)
         {
+            if (dto == null) throw new ArgumentNullException(nameof(dto));
+
+            // Acepta "yyyy-MM-dd" (input date), "dd/MM/yyyy" y "dd-MM-yyyy"
+            static DateOnly ParseDateOnly(string? s)
+            {
+                if (string.IsNullOrWhiteSpace(s))
+                    return DateOnly.FromDateTime(DateTime.Today);
+
+                var formats = new[] { "yyyy-MM-dd", "dd/MM/yyyy", "dd-MM-yyyy", "MM/dd/yyyy" };
+                if (DateTime.TryParseExact(s, formats, CultureInfo.InvariantCulture,
+                                           DateTimeStyles.None, out var d))
+                    return DateOnly.FromDateTime(d);
+
+                if (DateTime.TryParse(s, CultureInfo.InvariantCulture, DateTimeStyles.None, out var d2))
+                    return DateOnly.FromDateTime(d2);
+
+                return DateOnly.FromDateTime(DateTime.Today);
+            }
+
             return new TDocsOpcionCompraventaVehiculo
             {
-                IdDocumento = ComVenDTO.IdDocumento,
-                NumeroEscritura = ComVenDTO.NumeroEscritura,
-                CedulaAbogado = ComVenDTO.CedulaAbogado,
-                CedulaPropietario = ComVenDTO.CedulaPropietario,
-                CedulaComprador = ComVenDTO.CedulaComprador,
-                PlacaVehiculo = ComVenDTO.PlacaVehiculo,
-                MarcaVehiculo = ComVenDTO.MarcaVehiculo,
-                TipoVehiculo = ComVenDTO.TipoVehiculo,
-                ModeloVehiculo = ComVenDTO.ModeloVehiculo,
-                Carroceria = ComVenDTO.Carroceria,
-                Categoria = ComVenDTO.Categoria,
-                Chasis = ComVenDTO.Chasis,
-                Serie = ComVenDTO.Serie,
-                Vin = ComVenDTO.Vin,
-                MarcaMotor = ComVenDTO.MarcaMotor,
-                NumeroMotor = ComVenDTO.NumeroMotor,
-                Color = ComVenDTO.Color,
-                Combustible = ComVenDTO.Combustible,
-                Anio = ComVenDTO.Anio,
-                Capacidad = ComVenDTO.Capacidad,
-                Cilindraje = ComVenDTO.Cilindraje,
-                Precio = ComVenDTO.Precio,
-                MonedaPrecio = ComVenDTO.MonedaPrecio,
-                PlazoOpcionAnios = ComVenDTO.PlazoOpcionAnios,
-                FechaInicio = DateOnly.Parse(ComVenDTO.FechaInicio),
-                MontoSenal = ComVenDTO.MontoSenal,
-                MonedaSenal = ComVenDTO.MonedaSenal,
-                MontoADevolver = ComVenDTO.MontoADevolver,
-                MontoAPerder = ComVenDTO.MontoAPerder,
-                MonedaMontoPerdido = ComVenDTO.MonedaMontoPerdido,
-                GastosTraspasoPagadosPor = ComVenDTO.GastosTraspasoPagadosPor,
-                LugarFirma = ComVenDTO.LugarFirma,
-                FechaFirma = DateOnly.FromDateTime(DateTime.Now),    
+                IdDocumento = dto.IdDocumento,
+                NumeroEscritura = dto.NumeroEscritura,
+                CedulaAbogado = dto.CedulaAbogado,
+                CedulaPropietario = dto.CedulaPropietario,
+                CedulaComprador = dto.CedulaComprador,
+
+                PlacaVehiculo = dto.PlacaVehiculo,
+                MarcaVehiculo = dto.MarcaVehiculo,
+                TipoVehiculo = dto.TipoVehiculo,
+                ModeloVehiculo = dto.ModeloVehiculo,
+                Carroceria = dto.Carroceria,
+                Categoria = dto.Categoria,
+                Chasis = dto.Chasis,
+                Serie = dto.Serie,
+                Vin = dto.Vin,
+                MarcaMotor = dto.MarcaMotor,
+                NumeroMotor = dto.NumeroMotor,
+                Color = dto.Color,
+                Combustible = dto.Combustible,
+                Anio = dto.Anio,
+                Capacidad = dto.Capacidad,
+                Cilindraje = dto.Cilindraje,
+
+                Precio = dto.Precio,
+                MonedaPrecio = dto.MonedaPrecio,
+                PlazoOpcionAnios = dto.PlazoOpcionAnios,
+
+                FechaInicio = ParseDateOnly(dto.FechaInicio),
+
+                MontoSenal = dto.MontoSenal,
+                MonedaSenal = dto.MonedaSenal,
+                MontoADevolver = dto.MontoADevolver,
+                MontoAPerder = dto.MontoAPerder,
+                MonedaMontoPerdido = dto.MonedaMontoPerdido,
+                GastosTraspasoPagadosPor = dto.GastosTraspasoPagadosPor,
+
+                LugarFirma = dto.LugarFirma,
+
+                FechaFirma = DateOnly.FromDateTime(DateTime.Now),
                 HoraFirma = TimeOnly.FromDateTime(DateTime.Now),
-                CedulaAbogadoNavigation = ComVenDTO.CedulaAbogadoNavigation,
-                CedulaCompradorNavigation = ComVenDTO.CedulaCompradorNavigation,
-                CedulaPropietarioNavigation = ComVenDTO.CedulaPropietarioNavigation,
-                CombustibleNavigation = ComVenDTO.CombustibleNavigation,
-                LugarFirmaNavigation = ComVenDTO.LugarFirmaNavigation,
-                MarcaMotorNavigation = ComVenDTO.MarcaMotorNavigation,
-                MarcaVehiculoNavigation = ComVenDTO.MarcaVehiculoNavigation,
-                TipoVehiculoNavigation = ComVenDTO.TipoVehiculoNavigation
+
+                CedulaAbogadoNavigation = null,
+                CedulaCompradorNavigation = null,
+                CedulaPropietarioNavigation = null,
+                CombustibleNavigation = null,
+                LugarFirmaNavigation = null,
+                MarcaMotorNavigation = null,
+                MarcaVehiculoNavigation = null,
+                TipoVehiculoNavigation = null
             };
         }
     }

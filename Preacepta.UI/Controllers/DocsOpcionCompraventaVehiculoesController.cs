@@ -1,21 +1,28 @@
 ﻿using DinkToPdf;
 using DinkToPdf.Contracts;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.EntityFrameworkCore;
 using Preacepta.AD;
+using Preacepta.LN.CrDireccion1.BuscarXid;
+using Preacepta.LN.CrDireccion1.Listar;
+using Preacepta.LN.DocsCombustible.Listar;
+using Preacepta.LN.DocsMarcaVehiculo.Listar;
 using Preacepta.LN.DocsOpcionCompraventaVehiculo.Buscar;
 using Preacepta.LN.DocsOpcionCompraventaVehiculo.Crear;
 using Preacepta.LN.DocsOpcionCompraventaVehiculo.Editar;
 using Preacepta.LN.DocsOpcionCompraventaVehiculo.Eliminar;
 using Preacepta.LN.DocsOpcionCompraventaVehiculo.Listar;
-using Preacepta.Modelos.AbstraccionesBD;
+using Preacepta.LN.DocsTipoVehiculo.Listar;
+using Preacepta.LN.GePersona.BuscarXid;
+using Preacepta.LN.HistorialDocumentos.Crear;
+using Preacepta.LN.HistorialDocumentos.Listar;
 using Preacepta.Modelos.AbstraccionesFrond;
 using System;
-using System.Collections.Generic;
+using System.Globalization;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
-using System.Text;
 
 namespace Preacepta.UI.Controllers
 {
@@ -23,527 +30,484 @@ namespace Preacepta.UI.Controllers
     {
         private readonly IConverter _converter;
         private readonly Contexto _context;
+
+        // Documento
         private readonly IBuscarDocCVLN _buscar;
         private readonly ICrearDocCVLN _crear;
         private readonly IEditarDocCVLN _editar;
         private readonly IEliminarDocCVLN _eliminar;
         private readonly IListarDocCVLN _listar;
 
-        public DocsOpcionCompraventaVehiculoesController(IBuscarDocCVLN buscar,
+        // Personas
+        private readonly IBuscarXidGePersonaLN _buscarPersona;
+
+        // Historial
+        private readonly ICrearHistorialLN _crearHistorial;
+        private readonly IListarHistorialLN _listarHistorial;
+
+        // Catálogos
+        private readonly IListarDocsCombustibleLN _listarCombustibles;
+        private readonly IListarDocsMarcaVehiculoLN _listarMarcas;
+        private readonly IListarTipoVehiculoLN _listarTipos;
+
+        //Direccion
+        private readonly IListarCrDireccion1LN _listarDirecciones;
+        private readonly IBuscarCrDireccion1LN _buscarDistrito;
+
+        public DocsOpcionCompraventaVehiculoesController(
+            IConverter converter,
+            Contexto context,
+            IBuscarDocCVLN buscar,
             ICrearDocCVLN crear,
             IEditarDocCVLN editar,
             IEliminarDocCVLN eliminar,
             IListarDocCVLN listar,
-            IConverter converter,
-            Contexto context)
+            IBuscarXidGePersonaLN buscarPersona,
+            ICrearHistorialLN crearHistorial,
+            IListarHistorialLN listarHistorial,
+            IListarDocsCombustibleLN listarCombustibles,
+            IListarDocsMarcaVehiculoLN listarMarcas,
+            IListarTipoVehiculoLN listarTipos,
+            IListarCrDireccion1LN listarDirecciones,
+            IBuscarCrDireccion1LN buscarDistrito
+        )
         {
             _converter = converter;
             _context = context;
+
             _buscar = buscar;
             _crear = crear;
             _editar = editar;
             _eliminar = eliminar;
-            _listar = listar;                       
+            _listar = listar;
+
+            _buscarPersona = buscarPersona;
+
+            _crearHistorial = crearHistorial;
+            _listarHistorial = listarHistorial;
+
+            _listarCombustibles = listarCombustibles;
+            _listarMarcas = listarMarcas;
+            _listarTipos = listarTipos;
+
+            _listarDirecciones = listarDirecciones;
+
+            _buscarDistrito = buscarDistrito;
         }
 
-        // GET: DocsOpcionCompraventaVehiculoes
+        // ================= CRUD base =================
+
+        [Authorize(Roles = "Gestor")]
         public async Task<IActionResult> Index()
-        {
-            return View(await _listar.Listar());
-        }
+            => View(await _listar.Listar());
 
-        // GET: DocsOpcionCompraventaVehiculoes/Details/5
+        [Authorize(Roles = "Gestor")]
         public async Task<IActionResult> Details(int id)
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var comV = await _buscar.buscar(id);
-            if (comV == null)
-            {
-                return NotFound();
-            }
-
-            return View(comV);
+            var dto = await _buscar.buscar(id);
+            if (dto == null) return NotFound();
+            return View(dto);
         }
 
-        // GET: DocsOpcionCompraventaVehiculoes/Create
-        public IActionResult Create()
+        [Authorize(Roles = "Gestor")]
+        public async Task<IActionResult> Create()
         {
-            ViewData["CedulaAbogado"] = new SelectList(_context.TGeAbogados, "Cedula", "Cedula");
-            ViewData["CedulaComprador"] = new SelectList(_context.TGePersonas, "Cedula", "Cedula");
-            ViewData["CedulaPropietario"] = new SelectList(_context.TGePersonas, "Cedula", "Cedula");
-            ViewData["Combustible"] = new SelectList(_context.TDocsCombustibles, "IdCombustible", "Nombre");
-            ViewData["LugarFirma"] = new SelectList(_context.TCrDistritos, "IdDistrito", "Nombre");
-            ViewData["MarcaMotor"] = new SelectList(_context.TDocsMarcaVehiculos, "IdMarca", "Nombre");
-            ViewData["MarcaVehiculo"] = new SelectList(_context.TDocsMarcaVehiculos, "IdMarca", "Nombre");
-            ViewData["TipoVehiculo"] = new SelectList(_context.TDocsTipoVehiculos, "IdTipo", "Nombre");
-            return View();
+            var marcas = await _listarMarcas.listar();
+            var tipos = await _listarTipos.Listar();
+            var combustibles = await _listarCombustibles.listar();
+
+            ViewData["MarcaVehiculo"] = new SelectList(marcas, "Id", "Nombre");
+            ViewData["MarcaMotor"] = new SelectList(marcas, "Id", "Nombre");
+            ViewData["TipoVehiculo"] = new SelectList(tipos, "Id", "Nombre");
+            ViewData["Combustible"] = new SelectList(combustibles, "Id", "Nombre");
+
+            ViewData["LugarFirma"] = new SelectList(_context.TCrDistritos, "IdDistrito", "NombreDistrito");
+
+            var model = new DocsOpcionCompraventaVehiculoDTO
+            {
+                FechaInicio = DateTime.Today.ToString("yyyy-MM-dd"),
+                FechaFirma = DateTime.Today.ToString("yyyy-MM-dd"),
+                HoraFirma = DateTime.Now.ToString("HH:mm")
+            };
+            return View(model);
         }
 
-        // POST: DocsOpcionCompraventaVehiculoes/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("IdDocumento,NumeroEscritura,CedulaAbogado,CedulaPropietario,CedulaComprador,PlacaVehiculo,MarcaVehiculo,TipoVehiculo,ModeloVehiculo,Carroceria,Categoria,Chasis,Serie,Vin,MarcaMotor,NumeroMotor,Color,Combustible,Anio,Capacidad,Cilindraje,Precio,MonedaPrecio,PlazoOpcionAnios,FechaInicio,MontoSenal,MonedaSenal,MontoADevolver,MontoAPerder,MonedaMontoPerdido,GastosTraspasoPagadosPor,LugarFirma,HoraFirma,FechaFirma")] DocsOpcionCompraventaVehiculoDTO tDocsOpcionCompraventaVehiculo)
+        [Authorize(Roles = "Gestor")]
+        public async Task<IActionResult> Create(
+            [Bind("IdDocumento,NumeroEscritura,CedulaAbogado,CedulaPropietario,CedulaComprador,PlacaVehiculo,MarcaVehiculo,TipoVehiculo,ModeloVehiculo,Carroceria,Categoria,Chasis,Serie,Vin,MarcaMotor,NumeroMotor,Color,Combustible,Anio,Capacidad,Cilindraje,Precio,MonedaPrecio,PlazoOpcionAnios,FechaInicio,MontoSenal,MonedaSenal,MontoADevolver,MontoAPerder,MonedaMontoPerdido,GastosTraspasoPagadosPor,LugarFirma,HoraFirma,FechaFirma")]
+            DocsOpcionCompraventaVehiculoDTO dto)
         {
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
-                tDocsOpcionCompraventaVehiculo.FechaInicio = DateTime.Today.ToString("yyyy-MM-dd");
-                tDocsOpcionCompraventaVehiculo.HoraFirma = DateTime.Now.ToString("HH:mm");
+                // recargar combos
+                var marcas = await _listarMarcas.listar();
+                var tipos = await _listarTipos.Listar();
+                var combustibles = await _listarCombustibles.listar();
 
-                await _crear.crear(tDocsOpcionCompraventaVehiculo);
-                return RedirectToAction(nameof(Index));
+                ViewData["MarcaVehiculo"] = new SelectList(marcas, "Id", "Nombre", dto.MarcaVehiculo);
+                ViewData["MarcaMotor"] = new SelectList(marcas, "Id", "Nombre", dto.MarcaMotor);
+                ViewData["TipoVehiculo"] = new SelectList(tipos, "Id", "Nombre", dto.TipoVehiculo);
+                ViewData["Combustible"] = new SelectList(combustibles, "Id", "Nombre", dto.Combustible);
+                ViewData["LugarFirma"] = new SelectList(_context.TCrDistritos, "IdDistrito", "NombreDistrito", dto.LugarFirma);
+                return View(dto);
             }
-            ViewData["CedulaAbogado"] = new SelectList(_context.TGeAbogados, "Cedula", "Cedula");
-            ViewData["CedulaComprador"] = new SelectList(_context.TGePersonas, "Cedula", "Cedula");
-            ViewData["CedulaPropietario"] = new SelectList(_context.TGePersonas, "Cedula", "Cedula");
-            ViewData["Combustible"] = new SelectList(_context.TDocsCombustibles, "IdCombustible", "Nombre");
-            ViewData["LugarFirma"] = new SelectList(_context.TCrDistritos, "IdDistrito", "Nombre");
-            ViewData["MarcaMotor"] = new SelectList(_context.TDocsMarcaVehiculos, "IdMarca", "Nombre");
-            ViewData["MarcaVehiculo"] = new SelectList(_context.TDocsMarcaVehiculos, "IdMarca", "Nombre");
-            ViewData["TipoVehiculo"] = new SelectList(_context.TDocsTipoVehiculos, "IdTipo", "Nombre");
-            return View(tDocsOpcionCompraventaVehiculo);
+
+            await _crear.crear(dto);
+
+            // Crear historial (estilo Autorización)
+            var ultimo = (await _listar.Listar())?.OrderByDescending(x => x.IdDocumento).FirstOrDefault();
+            if (ultimo != null)
+            {
+                var historial = new HistorialDocumentoDTO
+                {
+                    Fecha = DateTime.Now.ToString("dd/MM/yyyy"),
+                    TipoDocumento = "Compra y venta de vehículos",
+                    Cliente = dto.CedulaComprador,
+                    Abogado = dto.CedulaAbogado,
+                    IdDocumento = ultimo.IdDocumento,
+                    Titulo = $"Doc.no.{ultimo.IdDocumento} Compraventa Vehículo"
+                };
+                await _crearHistorial.Crear(historial);
+            }
+
+            return RedirectToAction(nameof(Index));
         }
 
-        // GET: DocsOpcionCompraventaVehiculoes/Edit/5
+        [Authorize(Roles = "Gestor")]
         public async Task<IActionResult> Edit(int id)
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
+            var dto = await _buscar.buscar(id);
+            if (dto == null) return NotFound();
 
-            var tDocsOpcionCompraventaVehiculo = await _buscar.buscar(id);
-            if (tDocsOpcionCompraventaVehiculo == null)
-            {
-                return NotFound();
-            }
-            ViewData["CedulaAbogado"] = new SelectList(_context.TGeAbogados, "Cedula", "Cedula");
-            ViewData["CedulaComprador"] = new SelectList(_context.TGePersonas, "Cedula", "Cedula");
-            ViewData["CedulaPropietario"] = new SelectList(_context.TGePersonas, "Cedula", "Cedula");
-            ViewData["Combustible"] = new SelectList(_context.TDocsCombustibles, "IdCombustible", "Nombre");
-            ViewData["LugarFirma"] = new SelectList(_context.TCrDistritos, "IdDistrito", "Nombre");
-            ViewData["MarcaMotor"] = new SelectList(_context.TDocsMarcaVehiculos, "IdMarca", "Nombre");
-            ViewData["MarcaVehiculo"] = new SelectList(_context.TDocsMarcaVehiculos, "IdMarca", "Nombre");
-            ViewData["TipoVehiculo"] = new SelectList(_context.TDocsTipoVehiculos, "IdTipo", "Nombre");
-            return View(tDocsOpcionCompraventaVehiculo);
+            var marcas = await _listarMarcas.listar();
+            var tipos = await _listarTipos.Listar();
+            var combustibles = await _listarCombustibles.listar();
+
+            ViewData["MarcaVehiculo"] = new SelectList(marcas, "Id", "Nombre", dto.MarcaVehiculo);
+            ViewData["MarcaMotor"] = new SelectList(marcas, "Id", "Nombre", dto.MarcaMotor);
+            ViewData["TipoVehiculo"] = new SelectList(tipos, "Id", "Nombre", dto.TipoVehiculo);
+            ViewData["Combustible"] = new SelectList(combustibles, "Id", "Nombre", dto.Combustible);
+            ViewData["LugarFirma"] = new SelectList(_context.TCrDistritos, "IdDistrito", "NombreDistrito", dto.LugarFirma);
+
+            return View(dto);
         }
 
-        // POST: DocsOpcionCompraventaVehiculoes/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("IdDocumento,NumeroEscritura,CedulaAbogado,CedulaPropietario,CedulaComprador,PlacaVehiculo,MarcaVehiculo,TipoVehiculo,ModeloVehiculo,Carroceria,Categoria,Chasis,Serie,Vin,MarcaMotor,NumeroMotor,Color,Combustible,Anio,Capacidad,Cilindraje,Precio,MonedaPrecio,PlazoOpcionAnios,FechaInicio,MontoSenal,MonedaSenal,MontoADevolver,MontoAPerder,MonedaMontoPerdido,GastosTraspasoPagadosPor,LugarFirma,HoraFirma,FechaFirma")] DocsOpcionCompraventaVehiculoDTO tDocsOpcionCompraventaVehiculo)
+        [Authorize(Roles = "Gestor")]
+        public async Task<IActionResult> Edit(
+            int id,
+            [Bind("IdDocumento,NumeroEscritura,CedulaAbogado,CedulaPropietario,CedulaComprador,PlacaVehiculo,MarcaVehiculo,TipoVehiculo,ModeloVehiculo,Carroceria,Categoria,Chasis,Serie,Vin,MarcaMotor,NumeroMotor,Color,Combustible,Anio,Capacidad,Cilindraje,Precio,MonedaPrecio,PlazoOpcionAnios,FechaInicio,MontoSenal,MonedaSenal,MontoADevolver,MontoAPerder,MonedaMontoPerdido,GastosTraspasoPagadosPor,LugarFirma,HoraFirma,FechaFirma")]
+            DocsOpcionCompraventaVehiculoDTO dto)
         {
-            if (id != tDocsOpcionCompraventaVehiculo.IdDocumento)
+            if (id != dto.IdDocumento) return NotFound();
+
+            if (!ModelState.IsValid)
             {
-                return NotFound();
+                var marcas = await _listarMarcas.listar();
+                var tipos = await _listarTipos.Listar();
+                var combustibles = await _listarCombustibles.listar();
+
+                ViewData["MarcaVehiculo"] = new SelectList(marcas, "Id", "Nombre", dto.MarcaVehiculo);
+                ViewData["MarcaMotor"] = new SelectList(marcas, "Id", "Nombre", dto.MarcaMotor);
+                ViewData["TipoVehiculo"] = new SelectList(tipos, "Id", "Nombre", dto.TipoVehiculo);
+                ViewData["Combustible"] = new SelectList(combustibles, "Id", "Nombre", dto.Combustible);
+                ViewData["LugarFirma"] = new SelectList(_context.TCrDistritos, "IdDistrito", "NombreDistrito", dto.LugarFirma);
+                return View(dto);
             }
 
-            if (ModelState.IsValid)
-            {
-                try
-                {
-                    await _editar.editar(tDocsOpcionCompraventaVehiculo);
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    return NotFound();
-                }
-                return RedirectToAction(nameof(Index));
-            }
-            ViewData["CedulaAbogado"] = new SelectList(_context.TGeAbogados, "Cedula", "Cedula");
-            ViewData["CedulaComprador"] = new SelectList(_context.TGePersonas, "Cedula", "Cedula");
-            ViewData["CedulaPropietario"] = new SelectList(_context.TGePersonas, "Cedula", "Cedula");
-            ViewData["Combustible"] = new SelectList(_context.TDocsCombustibles, "IdCombustible", "Nombre");
-            ViewData["LugarFirma"] = new SelectList(_context.TCrDistritos, "IdDistrito", "Nombre");
-            ViewData["MarcaMotor"] = new SelectList(_context.TDocsMarcaVehiculos, "IdMarca", "Nombre");
-            ViewData["MarcaVehiculo"] = new SelectList(_context.TDocsMarcaVehiculos, "IdMarca", "Nombre");
-            ViewData["TipoVehiculo"] = new SelectList(_context.TDocsTipoVehiculos, "IdTipo", "Nombre");
-            return View(tDocsOpcionCompraventaVehiculo);
+            await _editar.editar(dto);
+            return RedirectToAction(nameof(Index));
         }
 
-        // GET: DocsOpcionCompraventaVehiculoes/Delete/5
+        [Authorize(Roles = "Gestor")]
         public async Task<IActionResult> Delete(int id)
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var tDocsOpcionCompraventaVehiculo = await _buscar.buscar(id);
-            if (tDocsOpcionCompraventaVehiculo == null)
-            {
-                return NotFound();
-            }
-
-            return View(tDocsOpcionCompraventaVehiculo);
+            var dto = await _buscar.buscar(id);
+            if (dto == null) return NotFound();
+            return View(dto);
         }
 
-        // POST: DocsOpcionCompraventaVehiculoes/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Gestor")]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             await _eliminar.eliminar(id);
             return RedirectToAction(nameof(Index));
         }
 
-        //De aquí en adelante estan mis metodos
-        // GET: DocsOpcionCompraventaVehiculoes/Create
-        public IActionResult CreateDocsOpcionCompraventaVehiculoes()
+        // ================ MIS MÉTODOS =================
+
+        // GET personalizado
+        [HttpGet]
+        [Authorize(Roles = "Gestor, Abogado")]
+        public async Task<IActionResult> CreateDocsOpcionCompraventaVehiculoes(int CedulaPropietario, int CedulaComprador)
         {
-            try
+            var propietario = await _buscarPersona.buscar(CedulaPropietario);
+            var comprador = await _buscarPersona.buscar(CedulaComprador);
+            var abogado = await _buscarPersona.buscarXcorreo(User.Identity.Name);
+
+            ViewBag.ClienteCedula = comprador?.Cedula ?? 0;
+            ViewBag.ClienteNombre = comprador?.Nombre ?? "";
+            ViewBag.ClienteApellido1 = comprador?.Apellido1 ?? "";
+            ViewBag.ClienteApellido2 = comprador?.Apellido2 ?? "";
+            ViewBag.AbogadoCedula = abogado?.Cedula ?? 0;
+
+            ViewBag.PropietarioCedula = propietario?.Cedula ?? 0;
+            ViewBag.PropietarioNombre = propietario?.Nombre ?? "";
+            ViewBag.PropietarioApellido1 = propietario?.Apellido1 ?? "";
+            ViewBag.PropietarioApellido2 = propietario?.Apellido2 ?? "";
+
+            
+
+            var distritos = await _listarDirecciones.listarDistritos();
+            ViewBag.UbicacionFirma = new SelectList(distritos, "IdDistrito", "NombreDistrito");
+
+            var marcas = await _listarMarcas.listar();
+            var tipos = await _listarTipos.Listar();
+            var combs = await _listarCombustibles.listar();
+
+            ViewData["MarcaVehiculo"] = new SelectList(marcas, "Id", "Nombre");
+            ViewData["MarcaMotor"] = new SelectList(marcas, "Id", "Nombre");
+            ViewData["TipoVehiculo"] = new SelectList(tipos, "Id", "Nombre");
+            ViewData["Combustible"] = new SelectList(combs, "Id", "Nombre");
+
+            var model = new DocsOpcionCompraventaVehiculoDTO
             {
-                ViewData["CedulaAbogado"] = new SelectList(
-                _context.TGeAbogados.Include(a => a.CedulaNavigation).Select(a => new
-                {
-                    Cedula = a.Cedula,
-                    Texto = a.CedulaNavigation.Nombre + " " + a.CedulaNavigation.Apellido1 + " - " + a.Cedula
-                }),
-                "Cedula",
-                "Texto");
-                ViewData["CedulaComprador"] = new SelectList(_context.TGePersonas.Select(p => new
-                {
-                    Cedula = p.Cedula,
-                    apellido = p.Apellido1,
-                    Texto = p.Nombre + " " + p.Apellido1 + " - " + p.Cedula
-                }),
-            "Cedula", "Texto");
-                ViewData["CedulaPropietario"] = new SelectList(_context.TGePersonas.Select(p => new
-                {
-                    Cedula = p.Cedula,
-                    apellido = p.Apellido1,
-                    Texto = p.Nombre + " " + p.Apellido1 + " - " + p.Cedula
-                }),
-            "Cedula", "Texto");
+                CedulaPropietario = propietario?.Cedula ?? 0,
+                CedulaComprador = comprador?.Cedula ?? 0,
+                CedulaAbogado = abogado?.Cedula ?? 0,
+                FechaInicio = DateTime.Today.ToString("yyyy-MM-dd"),
+                FechaFirma = DateTime.Today.ToString("yyyy-MM-dd"),
+                HoraFirma = DateTime.Now.ToString("HH:mm")
+            };
 
-                ViewData["Combustible"] = new SelectList(_context.TDocsCombustibles, "Id", "Nombre");
-
-                ViewData["LugarFirma"] = new SelectList(_context.TCrDistritos, "IdDistrito", "NombreDistrito");
-
-                ViewData["MarcaMotor"] = new SelectList(_context.TDocsMarcaVehiculos, "Id", "Nombre");
-                ViewData["MarcaVehiculo"] = new SelectList(_context.TDocsMarcaVehiculos, "Id", "Nombre");
-
-                ViewData["TipoVehiculo"] = new SelectList(_context.TDocsTipoVehiculos, "Id", "Nombre");
-
-            }
-            catch (Exception ex)
-            {
-                return Content($"Error cargando combos: {ex.Message}");
-            }
-
-            return View();
+            return View("CreateDocsOpcionCompraventaVehiculoes", model);
         }
 
-        // POST: DocsOpcionCompraventaVehiculoes/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+
+        // POST personalizado
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Gestor, Abogado")]
         public async Task<IActionResult> CreateDocsOpcionCompraventaVehiculoes(
-    [Bind("NumeroEscritura,CedulaAbogado,CedulaPropietario,CedulaComprador,PlacaVehiculo,MarcaVehiculo,TipoVehiculo,ModeloVehiculo,Carroceria,Categoria,Chasis,Serie,Vin,MarcaMotor,NumeroMotor,Color,Combustible,Anio,Capacidad,Cilindraje,Precio,MonedaPrecio,PlazoOpcionAnios,FechaInicio,MontoSenal,MonedaSenal,MontoADevolver,MontoAPerder,MonedaMontoPerdido,GastosTraspasoPagadosPor,LugarFirma")] DocsOpcionCompraventaVehiculoDTO tcompraventa,
-    [FromForm] int? DocumentoAnteriorId)
+            [Bind("NumeroEscritura,CedulaAbogado,CedulaPropietario,CedulaComprador,PlacaVehiculo,MarcaVehiculo,TipoVehiculo,ModeloVehiculo,Carroceria,Categoria,Chasis,Serie,Vin,MarcaMotor,NumeroMotor,Color,Combustible,Anio,Capacidad,Cilindraje,Precio,MonedaPrecio,PlazoOpcionAnios,FechaInicio,MontoSenal,MonedaSenal,MontoADevolver,MontoAPerder,MonedaMontoPerdido,GastosTraspasoPagadosPor,LugarFirma,HoraFirma,FechaFirma")]
+    DocsOpcionCompraventaVehiculoDTO dto)
         {
-            /*ModelState.Remove("FechaFirma");
-            ModelState.Remove("HoraFirma");*/
+            if (string.IsNullOrWhiteSpace(dto.FechaFirma))
+                dto.FechaFirma = DateTime.Today.ToString("yyyy-MM-dd");
 
-            if (ModelState.IsValid)
+            if (string.IsNullOrWhiteSpace(dto.HoraFirma))
+                dto.HoraFirma = DateTime.Now.ToString("HH:mm");
+
+            ModelState.Remove(nameof(dto.FechaFirma));
+            ModelState.Remove(nameof(dto.HoraFirma));
+            TryValidateModel(dto);
+
+            if (!ModelState.IsValid)
             {
+                var propietario = await _buscarPersona.buscar(dto.CedulaPropietario);
+                var comprador = await _buscarPersona.buscar(dto.CedulaComprador);
+                var abogado = await _buscarPersona.buscarXcorreo(User.Identity.Name);
 
-                // Eliminar documento anterior y su historial (si aplica)
-                /*if (DocumentoAnteriorId.HasValue)
-                {
-                    // Buscar el historial con ese ID
-                    var historialAnterior = await _context.HistorialDocumentos
-                        .FirstOrDefaultAsync(h => h.Id == DocumentoAnteriorId.Value);
+                ViewBag.ClienteCedula = comprador?.Cedula ?? 0;
+                ViewBag.ClienteNombre = comprador?.Nombre ?? "";
+                ViewBag.ClienteApellido1 = comprador?.Apellido1 ?? "";
+                ViewBag.ClienteApellido2 = comprador?.Apellido2 ?? "";
+                ViewBag.AbogadoCedula = abogado?.Cedula ?? 0;
 
-                    if (historialAnterior != null)
-                    {
-                        // Obtener el ID del documento a eliminar
-                        var idDocOriginal = historialAnterior.DocumentoIdOriginal;
+                ViewBag.PropietarioNombre = $"{propietario?.Nombre} {propietario?.Apellido1} {propietario?.Apellido2}".Trim();
+                ViewBag.PropietarioCedula = propietario?.Cedula ?? 0;
 
-                        // Buscar y eliminar el documento original
-                        var docAnterior = await _context.TDocsOpcionCompraventaVehiculos
-                            .FirstOrDefaultAsync(d => d.IdDocumento == idDocOriginal);
+                var marcas = await _listarMarcas.listar();
+                var tipos = await _listarTipos.Listar();
+                var combs = await _listarCombustibles.listar();
 
-                        if (docAnterior != null)
-                            _context.TDocsOpcionCompraventaVehiculos.Remove(docAnterior);
+                ViewData["MarcaVehiculo"] = new SelectList(marcas, "Id", "Nombre", dto.MarcaVehiculo);
+                ViewData["MarcaMotor"] = new SelectList(marcas, "Id", "Nombre", dto.MarcaMotor);
+                ViewData["TipoVehiculo"] = new SelectList(tipos, "Id", "Nombre", dto.TipoVehiculo);
+                ViewData["Combustible"] = new SelectList(combs, "Id", "Nombre", dto.Combustible);
 
-                        // Eliminar historial también
-                        _context.HistorialDocumentos.Remove(historialAnterior);
-
-                        await _context.SaveChangesAsync();
-                    }
-                }*/
-
-                // Asignar automáticamente fecha y hora actual
-                /*tcompraventa.FechaFirma = DateTime.Now.ToString("yyyy-MM-dd");
-                tcompraventa.HoraFirma = DateTime.Now.ToString("HH:mm");*/
-
-
-                // Crear nuevo documento
-                await _crear.crear(tcompraventa);
-
-                // Obtener nombre del comprador
-                var comprador = await _context.TGePersonas
-                    .FirstOrDefaultAsync(p => p.Cedula == tcompraventa.CedulaComprador);
-
-                string nombreComprador = comprador != null
-                    ? $"{comprador.Nombre} {comprador.Apellido1} {comprador.Apellido2}"
-                    : tcompraventa.CedulaComprador.ToString();
-
-                // Obtener nombre del abogado
-                var abogado = await _context.TGeAbogados
-                    .Where(a => a.Cedula == tcompraventa.CedulaAbogado)
-                    .Join(_context.TGePersonas,
-                          ab => ab.Cedula,
-                          per => per.Cedula,
-                          (ab, per) => new
-                          {
-                              NombreCompleto = per.Nombre + " " + per.Apellido1 + " " + per.Apellido2
-                          })
-                    .FirstOrDefaultAsync();
-
-                string nombreAbogado = abogado?.NombreCompleto ?? "SIN_ABOGADO";
-
-                // Crear nuevo historial con el ID real del documento recién creado
-                var nuevoIdDocumento = _context.TDocsOpcionCompraventaVehiculos
-                    .OrderByDescending(x => x.IdDocumento)
-                    .Select(x => x.IdDocumento)
-                    .FirstOrDefault();
-
-                var historial = new HistorialDocumento
-                {
-                    Fecha = DateTime.Now,
-                    TipoDocumento = "Compra y venta de vehículos",
-                    Cliente = nombreComprador,
-                    Abogado = nombreAbogado,
-                    DocumentoIdOriginal = nuevoIdDocumento
-                };
-
-                _context.HistorialDocumentos.Add(historial);
-                await _context.SaveChangesAsync();
-
-                return RedirectToAction("DocsHistorial", "HistorialDocumentos");
+                return View(dto);
             }
 
-            // Si el modelo no es válido, retornar vista con datos actuales
-            ViewData["CedulaAbogado"] = new SelectList(_context.TGeAbogados.Include(a => a.CedulaNavigation).Select(a => new
+            await _crear.crear(dto);
+
+            var ultimo = (await _listar.Listar())?.OrderByDescending(x => x.IdDocumento).FirstOrDefault();
+            if (ultimo != null)
+            {
+                var historial = new HistorialDocumentoDTO
                 {
-                    Cedula = a.Cedula,
-                    Texto = a.CedulaNavigation.Nombre + " " + a.CedulaNavigation.Apellido1 + " - " + a.Cedula
-                }),
-                "Cedula",
-                "Texto", tcompraventa?.CedulaAbogado);
+                    Fecha = DateTime.Now.ToString("dd/MM/yyyy"),
+                    TipoDocumento = "Compra y venta de vehículos",
+                    Cliente = dto.CedulaComprador,
+                    Abogado = dto.CedulaAbogado,
+                    IdDocumento = ultimo.IdDocumento,
+                    Titulo = $"Doc.no.{ultimo.IdDocumento} Compraventa Vehículo"
+                };
+                await _crearHistorial.Crear(historial);
+            }
 
-            ViewData["CedulaComprador"] = new SelectList(_context.TGePersonas.Select(p => new
-            {
-                Cedula = p.Cedula,
-                apellido = p.Apellido1,
-                Texto = p.Nombre + " " + p.Apellido1 + " - " + p.Cedula
-            }),
-        "Cedula",
-        "Texto", tcompraventa?.CedulaComprador);
-
-            ViewData["CedulaPropietario"] = new SelectList(_context.TGePersonas.Select(p => new
-            {
-                Cedula = p.Cedula,
-                apellido = p.Apellido1,
-                Texto = p.Nombre + " " + p.Apellido1 + " - " + p.Cedula
-            }),
-        "Cedula",
-        "Texto", tcompraventa ?.CedulaPropietario);
-
-
-            ViewData["Combustible"] = new SelectList(_context.TDocsCombustibles, "Id", "Nombre");
-
-            ViewData["LugarFirma"] = new SelectList(_context.TCrDistritos, "IdDistrito", "NombreDistrito");
-
-            ViewData["MarcaMotor"] = new SelectList(_context.TDocsMarcaVehiculos, "Id", "Nombre");
-            ViewData["MarcaVehiculo"] = new SelectList(_context.TDocsMarcaVehiculos, "Id", "Nombre");
-
-            ViewData["TipoVehiculo"] = new SelectList(_context.TDocsTipoVehiculos, "Id", "Nombre");
-
-            return View(tcompraventa);
+            return RedirectToAction("DocsHistorial", "THistorialDocumento1");
         }
 
-
-
-
+        // -------- PDF --------
         [HttpGet]
-        public IActionResult PrevisualizarPDF()
+        [Authorize(Roles = "Gestor, Abogado")]
+        public async Task<IActionResult> PrevisualizarPDF(
+            string LugarFirma
+            )
         {
             var htmlPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "lyso", "DocsMachotes", "OpcionCompraVentaVehiculos.html");
             var htmlTemplate = System.IO.File.ReadAllText(htmlPath);
 
             var q = Request.Query;
 
-            // Mostrar los parámetros que llegan para depurar
-            foreach (var key in q.Keys)
-            {
-                Console.WriteLine($"[DEBUG] Param: '{key}' = '{q[key]}'");
-            }
+            string logoBase64 = "";
+            string nombreBufete = "";
+            string cedJuridica = "";
+            string telDespacho = "";
+            string emailDespacho = "";
 
-            htmlTemplate = htmlTemplate
+            var logoPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "lyso", "img", "PreaceptaLogoColorNegro.png");
+            if (System.IO.File.Exists(logoPath))
+                logoBase64 = Convert.ToBase64String(System.IO.File.ReadAllBytes(logoPath));
+
+            _ = int.TryParse(q["cedulaAbogado"], out var cedAbogado);
+            _ = int.TryParse(q["cedulaPropietario"], out var cedProp);
+            _ = int.TryParse(q["cedulaComprador"], out var cedComp);
+
+            _ = int.TryParse(q["marcaVehiculo"], out var idMarcaVeh);
+            _ = int.TryParse(q["tipoVehiculo"], out var idTipoVeh);
+            _ = int.TryParse(q["marcaMotor"], out var idMarcaMotor);
+            _ = int.TryParse(q["combustible"], out var idComb);
+
+            var ab = await _buscarPersona.buscar(cedAbogado);
+            var prop = await _buscarPersona.buscar(cedProp);
+            var comp = await _buscarPersona.buscar(cedComp);
+
+            var nombreNotario = ab != null ? $"{ab.Nombre} {ab.Apellido1} {(ab.Apellido2 ?? "")}".Trim() : q["cedulaAbogado"].ToString();
+            var cedulaNotario = ab?.Cedula.ToString() ?? q["cedulaAbogado"].ToString();
+
+            var nombreVendedor = prop != null ? $"{prop.Nombre} {prop.Apellido1} {(prop.Apellido2 ?? "")}".Trim() : q["cedulaPropietario"].ToString();
+            var cedulaVendedor = prop?.Cedula.ToString() ?? q["cedulaPropietario"].ToString();
+
+            var nombreComprador = comp != null ? $"{comp.Nombre} {comp.Apellido1} {(comp.Apellido2 ?? "")}".Trim() : q["cedulaComprador"].ToString();
+            var cedulaComprador = comp?.Cedula.ToString() ?? q["cedulaComprador"].ToString();
+
+            string marcaVehiculoNombre = q["marcaVehiculo"].ToString();
+            string tipoVehiculoNombre = q["tipoVehiculo"].ToString();
+            string marcaMotorNombre = q["marcaMotor"].ToString();
+            string combustibleNombre = q["combustible"].ToString();
+
+            try
+            {
+                var marcas = await _listarMarcas.listar();
+                var tipos = await _listarTipos.Listar();
+                var combs = await _listarCombustibles.listar();
+
+                marcaVehiculoNombre = marcas?.FirstOrDefault(x => x.Id == idMarcaVeh)?.Nombre ?? marcaVehiculoNombre;
+                tipoVehiculoNombre = tipos?.FirstOrDefault(x => x.Id == idTipoVeh)?.Nombre ?? tipoVehiculoNombre;
+                marcaMotorNombre = marcas?.FirstOrDefault(x => x.Id == idMarcaMotor)?.Nombre ?? marcaMotorNombre;
+                combustibleNombre = combs?.FirstOrDefault(x => x.Id == idComb)?.Nombre ?? combustibleNombre;
+            }
+            catch { }
+
+            string lugarFirmaMostrar = LugarFirma.ToString() ?? "";
+            var LugarFirmas = await _buscarDistrito.buscarDistrito(int.Parse(lugarFirmaMostrar));
+
+            string fechaInicioMostrar = q["fechaInicio"];
+            if (DateTime.TryParse(fechaInicioMostrar, out var fIni))
+                fechaInicioMostrar = fIni.ToString("dd/MM/yyyy");
+
+            string fechaFirmaMostrar = q["fechaFirma"];
+            if (string.IsNullOrWhiteSpace(fechaFirmaMostrar))
+                fechaFirmaMostrar = DateTime.Now.ToString("dd/MM/yyyy");
+            else if (DateTime.TryParse(fechaFirmaMostrar, out var fFirma))
+                fechaFirmaMostrar = fFirma.ToString("dd/MM/yyyy");
+
+            string horaFirmaMostrar = q["horaFirma"];
+            if (string.IsNullOrWhiteSpace(horaFirmaMostrar))
+                horaFirmaMostrar = DateTime.Now.ToString("hh:mm tt", CultureInfo.InvariantCulture);
+            else if (DateTime.TryParse(horaFirmaMostrar, out var dtHora))
+                horaFirmaMostrar = dtHora.ToString("hh:mm tt", CultureInfo.InvariantCulture);
+            else if (TimeSpan.TryParse(horaFirmaMostrar, out var tsHora))
+                horaFirmaMostrar = DateTime.Today.Add(tsHora).ToString("hh:mm tt", CultureInfo.InvariantCulture);
+
+            var gastosRaw = (q["gastosTraspasoPagadosPor"].ToString() ?? "").Trim().ToUpperInvariant();
+            string gastosTexto = gastosRaw switch
+            {
+                "COMPRADOR" => nombreComprador,
+                "VENDEDOR" => nombreVendedor,
+                _ => string.IsNullOrWhiteSpace(gastosRaw) ? nombreComprador : gastosRaw
+            };
+
+            var html = htmlTemplate
+                .Replace("{{LOGO}}", logoBase64)
+                .Replace("{{NombreBufete}}", nombreBufete)
+                .Replace("{{CedulaJuridica}}", cedJuridica)
+                .Replace("{{TelefonoDespacho}}", telDespacho)
+                .Replace("{{EmailDespacho}}", emailDespacho)
+
                 .Replace("{{ID_DOCUMENTO}}", q["idDocumento"])
                 .Replace("{{NUMERO_ESCRITURA}}", q["numeroEscritura"])
-                .Replace("{{CEDULA_NOTARIO}}", q["cedulaAbogado"])
-                .Replace("{{CEDULA_VENDEDOR}}", q["cedulaPropietario"])
-                .Replace("{{CEDULA_COMPRADOR}}", q["cedulaComprador"])
+                .Replace("{{NOMBRE_NOTARIO}}", nombreNotario)
+                .Replace("{{CEDULA_NOTARIO}}", cedulaNotario)
+                .Replace("{{DIRECCION_NOTARIO}}", ab?.Direccion2 ?? "")
+
+                .Replace("{{NOMBRE_VENDEDOR}}", nombreVendedor)
+                .Replace("{{CEDULA_VENDEDOR}}", cedulaVendedor)
+                .Replace("{{ESTADO_CIVIL_VENDEDOR}}", prop?.EstadoCivil ?? "")
+                .Replace("{{OFICIO_VENDEDOR}}", prop?.Oficio ?? "")
+                .Replace("{{DIRECCION_EXACTA_VENDEDOR}}", prop?.Direccion2 ?? "")
+
+                .Replace("{{NOMBRE_COMPRADOR}}", nombreComprador)
+                .Replace("{{CEDULA_COMPRADOR}}", cedulaComprador)
+                .Replace("{{ESTADO_CIVIL_COMPRADOR}}", comp?.EstadoCivil ?? "")
+                .Replace("{{OFICIO_COMPRADOR}}", comp?.Oficio ?? "")
+                .Replace("{{DIRECCION_EXACTA_COMPRADOR}}", comp?.Direccion2 ?? "")
+
                 .Replace("{{PLACA_VEHICULO}}", q["placaVehiculo"])
-                .Replace("{{MARCA_VEHICULO}}", q["marcaVehiculo"])
-                .Replace("{{TIPO_VEHICULO}}", q["tipoVehiculo"])
+                .Replace("{{MARCA_VEHICULO}}", marcaVehiculoNombre)
+                .Replace("{{TIPO_VEHICULO}}", tipoVehiculoNombre)
                 .Replace("{{MODELO_VEHICULO}}", q["modeloVehiculo"])
                 .Replace("{{CARROCERIA}}", q["carroceria"])
                 .Replace("{{CATEGORIA}}", q["categoria"])
                 .Replace("{{CHASIS}}", q["chasis"])
                 .Replace("{{SERIE}}", q["serie"])
                 .Replace("{{VIN}}", q["vin"])
-                .Replace("{{MARCA_MOTOR}}", q["marcaMotor"])
+                .Replace("{{MARCA_MOTOR}}", marcaMotorNombre)
                 .Replace("{{NUMERO_MOTOR}}", q["numeroMotor"])
                 .Replace("{{COLOR}}", q["color"])
-                .Replace("{{COMBUSTIBLE}}", q["combustible"])
+                .Replace("{{COMBUSTIBLE}}", combustibleNombre)
                 .Replace("{{ANIO}}", q["anio"])
                 .Replace("{{CAPACIDAD}}", q["capacidad"])
                 .Replace("{{CILINDRAJE}}", q["cilindraje"])
                 .Replace("{{PRECIO}}", q["precio"])
                 .Replace("{{MONEDA_PRECIO}}", q["monedaPrecio"])
                 .Replace("{{PLAZO_OPCION_ANIOS}}", q["plazoOpcionAnios"])
-                .Replace("{{FECHA_INICIO}}", q["fechaInicio"])
+                .Replace("{{FECHA_INICIO}}", fechaInicioMostrar)
                 .Replace("{{MONTO_SENAL}}", q["montoSenal"])
                 .Replace("{{MONEDA_SENAL}}", q["monedaSenal"])
                 .Replace("{{MONTO_A_DEVOLVER}}", q["montoADevolver"])
                 .Replace("{{MONTO_A_PERDER}}", q["montoAPerder"])
                 .Replace("{{MONEDA_MONTO_PERDIDO}}", q["monedaMontoPerdido"])
-                .Replace("{{GASTOS_TRASPASO_PAGADOS_POR}}", q["gastosTraspasoPagadosPor"])
-                .Replace("{{LUGAR_FIRMA}}", q["lugarFirma"]);
+                .Replace("{{GASTOS_TRASPASO_PAGADOS_POR}}", gastosTexto)
+                .Replace("{{LUGAR_FIRMA}}", LugarFirmas.NombreDistrito)
+                .Replace("{{HORA_FIRMA}}", horaFirmaMostrar)
+                .Replace("{{FECHA_FIRMA}}", fechaFirmaMostrar);
 
-                var ahora = DateTime.Now;
-
-                htmlTemplate = htmlTemplate
-                    .Replace("{{HORA_FIRMA}}", ahora.ToString("hh:mm tt"))     
-                    .Replace("{{FECHA_FIRMA}}", ahora.ToString("yyyy-MM-dd")); 
-
-
-            var doc = new HtmlToPdfDocument()
+            var doc = new HtmlToPdfDocument
             {
-                GlobalSettings = new GlobalSettings
-                {
-                    PaperSize = PaperKind.A4,
-                    Orientation = Orientation.Portrait
-                },
-                Objects = {
-            new ObjectSettings
-            {
-                HtmlContent = htmlTemplate,
-                WebSettings = { DefaultEncoding = "utf-8" }
-            }
-        }
+                GlobalSettings = new GlobalSettings { PaperSize = PaperKind.A4, Orientation = Orientation.Portrait },
+                Objects = { new ObjectSettings { HtmlContent = html, WebSettings = { DefaultEncoding = "utf-8" } } }
             };
 
             var pdf = _converter.Convert(doc);
             return File(pdf, "application/pdf");
         }
-
-
-        [HttpGet]
-        public async Task<IActionResult> EditarDesdeHistorial(int id)
-        {
-            var historial = await _context.HistorialDocumentos.FindAsync(id);
-            if (historial == null || historial.TipoDocumento != "Compra y venta de vehículos" || historial.DocumentoIdOriginal == null)
-            {
-                return NotFound();
-            }
-
-            // ✅ Buscar por ID directo (seguro y preciso)
-            var docOriginal = await _context.TDocsOpcionCompraventaVehiculos
-                .FirstOrDefaultAsync(d => d.IdDocumento == historial.DocumentoIdOriginal);
-
-            if (docOriginal == null)
-            {
-                return NotFound();
-            }
-
-            var model = new DocsOpcionCompraventaVehiculoDTO
-            {
-                NumeroEscritura = docOriginal.NumeroEscritura,
-                CedulaAbogado = docOriginal.CedulaAbogado,
-                CedulaPropietario = docOriginal.CedulaPropietario,
-                CedulaComprador = docOriginal.CedulaComprador,
-                PlacaVehiculo = docOriginal.PlacaVehiculo,
-                MarcaVehiculo = docOriginal.MarcaVehiculo,
-                TipoVehiculo = docOriginal.TipoVehiculo,
-                ModeloVehiculo = docOriginal.ModeloVehiculo,
-                Carroceria = docOriginal.Carroceria,
-                Categoria = docOriginal.Categoria,
-                Chasis = docOriginal.Chasis,
-                Serie = docOriginal.Serie,
-                Vin = docOriginal.Vin,
-                MarcaMotor = docOriginal.MarcaMotor,
-                NumeroMotor = docOriginal.NumeroMotor,
-                Color = docOriginal.Color,
-                Combustible = docOriginal.Combustible,
-                Anio = docOriginal.Anio,
-                Capacidad = docOriginal.Capacidad,
-                Cilindraje = docOriginal.Cilindraje,
-                Precio = docOriginal.Precio,
-                MonedaPrecio = docOriginal.MonedaPrecio,
-                PlazoOpcionAnios = docOriginal.PlazoOpcionAnios,
-                FechaInicio = docOriginal.FechaInicio.ToString("yyyy-MM-dd"),
-                MontoSenal = docOriginal.MontoSenal,
-                MonedaSenal = docOriginal.MonedaSenal,
-                MontoADevolver = docOriginal.MontoADevolver,
-                MontoAPerder = docOriginal.MontoAPerder,
-                MonedaMontoPerdido = docOriginal.MonedaMontoPerdido,
-                GastosTraspasoPagadosPor = docOriginal.GastosTraspasoPagadosPor,
-                LugarFirma = docOriginal.LugarFirma,
-                HoraFirma = docOriginal.HoraFirma.ToString("HH:mm"),
-                FechaFirma = docOriginal.FechaFirma.ToString("yyyy-MM-dd")
-            };
-
-            ViewBag.DocumentoAnteriorId = historial.Id;
-
-            ViewData["CedulaAbogado"] = new SelectList(_context.TGeAbogados.Include(a => a.CedulaNavigation).Select(a => new
-            {
-                Cedula = a.Cedula,
-                Texto = a.CedulaNavigation.Nombre + " " + a.CedulaNavigation.Apellido1 + " - " + a.Cedula
-            }),
-                "Cedula",
-                "Texto", model?.CedulaAbogado);
-
-            ViewData["CedulaComprador"] = new SelectList(_context.TGePersonas.Select(p => new
-            {
-                Cedula = p.Cedula,
-                apellido = p.Apellido1,
-                Texto = p.Nombre + " " + p.Apellido1 + " - " + p.Cedula
-            }),
-                "Cedula",
-                "Texto", model?.CedulaComprador);
-
-            ViewData["CedulaPropietario"] = new SelectList(_context.TGePersonas.Select(p => new
-            {
-                Cedula = p.Cedula,
-                apellido = p.Apellido1,
-                Texto = p.Nombre + " " + p.Apellido1 + " - " + p.Cedula
-            }),
-                "Cedula",
-                "Texto", model?.CedulaPropietario);
-
-            ViewData["Combustible"] = new SelectList(_context.TDocsCombustibles, "Id", "Nombre", model.Combustible);
-            ViewData["LugarFirma"] = new SelectList(_context.TCrDistritos, "IdDistrito", "NombreDistrito", model.LugarFirma);
-            ViewData["MarcaMotor"] = new SelectList(_context.TDocsMarcaVehiculos, "Id", "Nombre", model.MarcaMotor);
-            ViewData["MarcaVehiculo"] = new SelectList(_context.TDocsMarcaVehiculos, "Id", "Nombre", model.MarcaVehiculo);
-            ViewData["TipoVehiculo"] = new SelectList(_context.TDocsTipoVehiculos, "Id", "Nombre", model.TipoVehiculo);
-
-            return View("CreateDocsOpcionCompraventaVehiculoes", model);
-        }
-
-
     }
 }

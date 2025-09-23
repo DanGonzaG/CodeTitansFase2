@@ -2,9 +2,6 @@
 using Preacepta.LN.DocsPagare.ObtenerDatos;
 using Preacepta.Modelos.AbstraccionesFrond;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace Preacepta.LN.DocsPagare.Editar
@@ -19,19 +16,20 @@ namespace Preacepta.LN.DocsPagare.Editar
             _editarPagareAD = editarPagareAD;
             _obtenerDatosPagareLN = obtenerDatosPagareLN;
         }
-
+        
         public async Task<int> editar(DocsPagareDTO pagareDTO)
         {
-            if (pagareDTO == null)
+            if (pagareDTO == null || pagareDTO.IdDocumento <= 0)
             {
+                Console.WriteLine("EditarPagareLN: DTO nulo o IdDocumento inválido.");
                 return 0;
             }
 
             try
             {
-                int bandera = await _editarPagareAD.editar(_obtenerDatosPagareLN.ObtenerDeFront(pagareDTO));
-                return bandera;
-
+                var entidad = _obtenerDatosPagareLN.ObtenerDeFront(pagareDTO);
+                var filas = await _editarPagareAD.editar(entidad);
+                return filas;
             }
             catch (Exception ex)
             {
@@ -39,6 +37,5 @@ namespace Preacepta.LN.DocsPagare.Editar
                 return 0;
             }
         }
-
     }
 }

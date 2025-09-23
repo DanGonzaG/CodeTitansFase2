@@ -1,8 +1,6 @@
-﻿using Preacepta.Modelos.AbstraccionesBD;
+﻿using Microsoft.EntityFrameworkCore;
+using Preacepta.Modelos.AbstraccionesBD;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace Preacepta.AD.DocsPagare.Buscar
@@ -20,12 +18,18 @@ namespace Preacepta.AD.DocsPagare.Buscar
         {
             try
             {
-                var lista = await _contexto.TDocsPagares.FindAsync(id);
-                return lista;
+                var entity = await _contexto.TDocsPagares
+                    .AsNoTracking()
+                    .Include(x => x.CedulaDeudorNavigation)
+                    .Include(x => x.CedulaFiadorNavigation)
+                    .Include(x => x.LugarPagoNavigation)
+                    .FirstOrDefaultAsync(x => x.IdDocumento == id);
+
+                return entity;
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Error en BuscarPagareAD, no se encontro id: {ex.Message}");
+                Console.WriteLine($"Error en BuscarPagareAD (id={id}): {ex.Message}");
                 return null;
             }
         }
