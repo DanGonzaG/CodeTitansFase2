@@ -13,5 +13,6 @@ namespace Preacepta.LN.Citas.ObtenerDatos
         CitasDTO ObtenerDeDB(TCita baseDatos);
         TCita ObtenerDeFront(CitasDTO Formulario);
         Task<List<CitasDTO>> ListarCitasAsync();
+        Task<CitasDTO> ObtenerCitaConDocumentosAsync(int idCita);
     }
 }

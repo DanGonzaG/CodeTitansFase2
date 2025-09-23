@@ -26,7 +26,7 @@
  
 <head>
 <link href="~/lyso/css/Andy.css" rel="stylesheet" />
-<link href="~/lyso/css/daniel.css" rel="stylesheet" />
+<link href="~/lyso/css/Daniel.css" rel="stylesheet" />
 </head>
  
 <!-- Page Title -->
@@ -54,7 +54,6 @@
 <div class="contact-form contact-form-two contact-form-three">
 <div class="container">
 <div class="contact-wrap">
-<form asp-action="DocsHistorial" method="get">
 <h2 class="text-center">Filtrar el listado de documentos</h2>
  
                 <div class="row justify-content-center">
@@ -62,7 +61,7 @@
 <div class="col-sm-4 col-md-3 filtro-campo">
 <div class="form-group">
 <label for="fecha">Fecha</label>
-<input type="date" name="fecha" class="form-control" value="@(ViewContext.HttpContext.Request.Query["fecha"])" />
+<input id="inputFechaHistorial" type="date" name="fecha" class="form-control" value="@(ViewContext.HttpContext.Request.Query["fecha"])" />
 </div>
 </div>
  
@@ -70,7 +69,7 @@
 <div class="col-sm-4 col-md-4 filtro-campo">
 <div class="form-group">
 <label for="tipo">Tipo de documento</label>
-<select name="tipo" class="form-control" asp-items="ViewBag.TipoDocumento">
+<select id="selectTipoDocumento" name="tipo" class="form-control" asp-items="ViewBag.TipoDocumento">
 <option value="">-- Todos los tipos --</option>
 </select>
 </div>
@@ -79,10 +78,9 @@
  
                 <div class="row mt-3">
 <div class="col text-center">
-<button type="submit" class="boton-buscar">Buscar</button>
+<button id="botonBuscarHistorial" class="boton-buscar">Buscar</button>
 </div>
 </div>
-</form>
 </div>
 </div>
 </div>
@@ -118,12 +116,16 @@
                     foreach (var item in Model)
 
                     {
-<tr>
+
+<tr class="filtrosHistorial" 
+    fecha="@(DateTime.TryParse(item.Fecha, out var f) ? f.ToString("yyyy-MM-dd") : item.Fecha)" 
+    nombreTipoDocumento="@item.TipoDocumento">
+
 <td>
 
-                                @(DateTime.TryParse(item.Fecha, out var f)
+                                @(DateTime.TryParse(item.Fecha, out var t)
 
-                                                        ? f.ToString("dd/MM/yyyy", CultureInfo.InvariantCulture)
+                                                        ? t.ToString("dd/MM/yyyy", CultureInfo.InvariantCulture)
 
                                                         : item.Fecha)
 </td>
@@ -140,7 +142,7 @@
 
                                    asp-action="PrevisualizarDesdeHistorial"
 
-                                   asp-route-Id="@item.Id"
+                                   asp-route-id="@item.Id"
 
                                    target="_blank">
 <i class="fa-solid fa-eye"></i>
@@ -169,5 +171,6 @@
 <script src="~/lib/jquery/dist/jquery.min.js"></script>
 <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
 <script src="~/lyso/js/configuraciontablas.js"></script>
+<script src="~/lyso/js/fltradoHistorialDocs.js"></script>
 
  

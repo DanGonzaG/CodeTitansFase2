@@ -54,22 +54,16 @@
 
                             <ul>
                                 <li>
-                                    <i class="flaticon-login"></i>
-                                    <!--<a href="tel:+07554332322">-->
-                                    @Model.casoDTO.IdClienteNavigation.Nombre @Model.casoDTO.IdClienteNavigation.Apellido1 @Model.casoDTO.IdClienteNavigation.Apellido2
-                                    <!--</a>-->
+                                    <i class="flaticon-login"></i>                                    
+                                    @Model.casoDTO.IdClienteNavigation.Nombre @Model.casoDTO.IdClienteNavigation.Apellido1 @Model.casoDTO.IdClienteNavigation.Apellido2                                  
                                 </li>
                                 <li>
-                                    <i class="flaticon-login"></i>
-                                    <!--<a href="tel:+07554332322">-->
-                                    @Model.casoDTO.IdClienteNavigation.Cedula
-                                    <!--</a>-->
+                                    <i class="flaticon-login"></i>                                    
+                                    @Model.casoDTO.IdClienteNavigation.Cedula                                    
                                 </li>
                                 <li>
-                                    <i class="flaticon-call"></i>
-                                    <!--<a href="tel:+07554332322">-->
-                                    @Model.casoDTO.IdClienteNavigation.Telefono1 / @Model.casoDTO.IdClienteNavigation.Telefono2
-                                    <!--</a>-->
+                                    <i class="flaticon-call"></i>                                   
+                                    @Model.casoDTO.IdClienteNavigation.Telefono1 / @Model.casoDTO.IdClienteNavigation.Telefono2                                    
                                 </li>
                                 <li>
                                     <i class="flaticon-email"></i>
@@ -135,26 +129,19 @@
                                                 <input type="hidden" name="IdCaso" value="@Model.casoDTO.IdCaso" />
                                                 <button type="submit" class="contact-btn--primario EtapaPLestilos">Nueva Etapa Procesal</button>
                                             </form>
-                                            <!--<bottom type="button" class="contact-btn"><a style="color:white" asp-controller="CasosEtapa" asp-action="FormularioEtapaPL" asp-route-id="@Model.casoDTO.IdCaso">Nueva Etapa Procesal</a></bottom>-->
-
                                         </div>
                                     }
                                 
                                 }
                             }
 
-                            <div class="attor-details-things">
-                                <!--<bottom type="button" class="contact-btn EtapaPLestilos">Descargar Caso Completo</bottom>-->
+                            <div class="attor-details-things">                               
                                 <form asp-controller="Caso" asp-action="DescargarCasoCompleto" method="get">
                                     <input type="hidden" name="IdCaso" value="@Model.casoDTO.IdCaso" />
                                     <button type="submit" class="contact-btn--secundario EtapaPLestilos">Descargar</button>
                                 </form>
                             </div>
-
-                            
-
                         </div>
-
                     </div>
                 </div>
             </div>
@@ -290,7 +277,8 @@
 </div>
 <!-- End Lista con Etapas del proceso legal -->
 
-<script src="~/lyso/js/mostrardetallespl.js"></script>
+
+<script src="~/lyso/js/MostrarDetallesPL.js"></script>
 
 
 @if (TempData["MensajeModificacion"] != null)
@@ -327,13 +315,13 @@
     </script>
 }
 
-@if (TempData["CasoCerrado"] != null)
+@if (TempData["EtapaCreada"] != null)
 {
     <script>
         document.addEventListener("DOMContentLoaded", function () {
             Swal.fire({
                 title: 'Etapas del Proceso',
-                text: '@TempData["CasoCerrado"]',
+                text: '@TempData["EtapaCreada"]',
                 icon: 'success',
                 confirmButtonText: 'Continuar',
                 customClass: {
@@ -343,4 +331,6 @@
         });
     </script>
 }
+
+
 

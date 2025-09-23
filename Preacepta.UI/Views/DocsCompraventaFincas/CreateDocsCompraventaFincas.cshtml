@@ -38,7 +38,7 @@
     <div class="contact-form contact-form-two contact-form-three">
         <div class="container">
             <div class="col-md-12 col-lg-12 encabezadoForm">
-                <img src="~/lyso/img/docs3.png" width="200px" />
+                <!-- <img src="~/lyso/img/docs3.png" width="200px" />-->
             </div>
             <div class="contact-wrap">
                 <form asp-action="CreateDocsCompraventaFincas" id="CreateDocsCompraventaFincas">
@@ -53,7 +53,10 @@
                         </div>
                         <div class="col-sm-6 col-lg-6">
                             <div class="form-group">
-                                <select asp-for="CedulaAbogado" class="form-control" asp-items="ViewBag.CedulaAbogado" id="idCedulaAbogado"></select>
+                                <input type="text" class="form-control" value="@ViewBag.AbogadoNombre @ViewBag.AbogadoApellido1 @ViewBag.AbogadoApellido2 @ViewBag.Dash @ViewBag.AbogadoCedula" readonly />
+                                <!--<select asp-for="CedulaAbogado" class="form-control" asp-items="ViewBag.CedulaAbogado" id="idCedulaAbogado"></select>-->
+                                <input type="hidden" asp-for="CedulaAbogado" class="form-control" value="@ViewBag.AbogadoCedula" id="idCedulaAbogado" lang="es" spellcheck="true" readonly />
+                                <span asp-validation-for="CedulaAbogado" class="text-danger"></span>
                             </div>
                         </div>
 
@@ -66,11 +69,14 @@
                         </div>
                         <div class="col-sm-6 col-lg-6">
                             <div class="form-group">
-                                <select asp-for="CedulaVendedor" class="form-control" asp-items="ViewBag.CedulaVendedor" id="idCedulaVendedor"></select>
+                                <!--<input asp-for="CedulaVendedor" class="form-control" value="@ViewBag.VendedorCedula" asp-items="ViewBag.CedulaVendedor" id="idCedulaVendedor"></input>-->
+                                <input type="text" class="form-control" value="@ViewBag.VendedorNombre @ViewBag.VendedorApellido1 @ViewBag.VendedorApellido2 @ViewBag.Dash @ViewBag.VendedorCedula" readonly  />
+                                <input type="hidden" asp-for="CedulaVendedor" class="form-control" value="@ViewBag.VendedorCedula" id="idCedulaVendedor" lang="es" spellcheck="true" readonly />
+                                <span asp-validation-for="CedulaVendedor" class="text-danger"></span>
                             </div>
                         </div>
 
-                        <div class="seccion-titulo">Información del Vendedor</div>
+                        <div class="seccion-titulo">Información del Comprador</div>
 
                         <div class="col-sm-6 col-lg-6 centro">
                             <div class="LetraNegra">
@@ -79,7 +85,10 @@
                         </div>
                         <div class="col-sm-6 col-lg-6">
                             <div class="form-group">
-                                <select asp-for="CedulaComprador" class="form-control" asp-items="ViewBag.CedulaComprador" id="idCedulaComprador"></select>
+                                <input type="text" class="form-control" value="@ViewBag.CompradorNombre @ViewBag.CompradorApellido1 @ViewBag.CompradorApellido2 @ViewBag.Dash @ViewBag.CompradorCedula" readonly  />
+                                <input type="hidden" asp-for="CedulaComprador" class="form-control" value="@ViewBag.CompradorCedula" id="idCedulaComprador" lang="es" spellcheck="true" readonly />
+                                <!--<input asp-for="CedulaComprador" class="form-control" value="@ViewBag." id="idCedulaVendedor" lang="es" spellcheck="true" readonly />-->
+                                <span asp-validation-for="CedulaComprador" class="text-danger"></span>
                             </div>
                         </div>
 
@@ -316,16 +325,57 @@
                             </div>
                         </div>
 
-                       
-
-                        <div class="col-sm-6 col-lg-6 centro">
+                        <!--<div class="col-sm-6 col-lg-6 centro">
                             <div class="LetraNegra">
-                                <label asp-for="LugarFirma" class="control-label"></label>
+                                <label asp-for="LugarFirma">Lugar de Firma:</label>
                             </div>
                         </div>
                         <div class="col-sm-6 col-lg-6">
                             <div class="form-group">
-                                <select asp-for="LugarFirma" class="form-control" asp-items="ViewBag.LugarFirma" id="idLugarFirma"></select>
+                                <select class="selectDaniel" id="idLugarFirma" name="LugarFirma" asp-for="LugarFirma" asp-items="ViewBag.LugarFirma">
+                                    <option value="">Seleccione el lugar de la Firma</option>
+                                </select>
+                            </div>
+                        </div>-->
+
+                        <div class="seccion-titulo">Ubicación de la Firma </div>
+
+                        <div class="col-sm-6 col-lg-6 centro">
+                            <div class="form-group">
+                                <label for="provincia">Provincia:</label>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-lg-6">
+                            <div class="form-group">
+                                <select class="selectDaniel" id="provincia2" name="provincia">
+                                    <option value="">Seleccione una provincia</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-lg-6 centro">
+                            <div class="form-group">
+                                <label for="canton">Cantón:</label>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-lg-6">
+                            <div class="form-group">
+                                <select class="selectDaniel" id="canton2" name="canton2" disabled>
+                                    <option value="">Seleccione un cantón</option>
+                                </select>
+                                <input id="inputCanton2" asp-for="LugarFirma" class="form-control" readonly />
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-lg-6 centro">
+                            <div class="form-group">
+                                <label for="distrito">Distrito:</label>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-lg-6">
+                            <div class="form-group">
+                                <select class="selectDaniel" id="distrito2" name="LugarFirma" asp-for="LugarFirma" disabled>
+                                    <option value="">Seleccione un distrito</option>
+                                </select>
+                                <input id="inputDistrito2" name="LugarFirma" asp-for="LugarFirma" class="form-control" readonly />
                             </div>
                         </div>
 
@@ -335,10 +385,10 @@
                         <div class="col-md-12 col-lg-12">
                             <div class="text-center d-flex justify-content-center gap-3">
                                 <div class="form-group" id="btnCrearCaso">
-                                    <input type="submit" value="Crear Documento" class="contact-btn" />
+                                    <input type="submit" value="Crear Documento" class="contact-btn--primario" />
                                 </div>
                                 <div class="form-group">
-                                    <button type="button" id="btnPrevisualizar" class="contact-btn">
+                                    <button type="button" id="btnPrevisualizar" class="contact-btn--secundario">
                                         Previsualizar PDF
                                     </button>
                                 </div>
@@ -362,3 +412,4 @@
 
 <script src="~/lyso/js/docsFinca.js"></script>
 <script src="~/lyso/js/FiltroProvinicaCantonDistrito.js"></script>
+<script src="~/lyso/js/FiltroProvinicaCantonDistritoParaFirmas.js"></script>

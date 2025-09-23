@@ -594,9 +594,12 @@ button {
     display: inline-block;
     color: $white-color;
     background-color: $gold-color;
-    font-weight: 600;
-    font-size: 16px;
-    padding: 14px 30px;
+    //font-weight: 600;
+    font-weight: 500;
+    //font-size: 16px;
+    font-size: 14px;
+    //padding: 14px 30px;
+    padding: 10px 26px;
     position: relative;
     z-index: 1;
 
@@ -1151,7 +1154,7 @@ button {
 }
 
 .location-bg {
-    background-image: url('../img/home-one/location-bg.jpg');
+    background-image: url('../img/home-one/location-bg.jpg');    
     background-size: cover;
     background-position: center center;
     background-repeat: no-repeat;
@@ -1317,11 +1320,13 @@ button {
 }
 
 .contact-btn {
-    font-weight: 600;
-    font-size: $all-size;
+    //font-weight: 600;
+    //font-size: $all-size;
+    font-weight: 500;
+    font-size: 14px;
     color: $white-color;
     background-color: $gold-color;
-    padding: 16px 40px;
+    padding: 12px 36px;
     border: 0;
     position: relative;
     z-index: 1;
@@ -1412,7 +1417,7 @@ button {
     color: #dc3545;
     margin-top: 25px;
     margin-bottom: 0;
-    font-size: 24px;
+    font-size: 18px;
 }
 
 .text-success {
@@ -4038,4 +4043,16 @@ footer {
         color: $white-color;
         background-color: #94be5d;
     }
+}
+#crearCitaModal .select2-container--default .select2-selection--single {
+    background-color: #fff;
+    color: #000;
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+    height: 38px;
+}
+
+#crearCitaModal .select2-container--default .select2-selection--single .select2-selection__rendered {
+    line-height: 38px;
+    color: #000;
 }

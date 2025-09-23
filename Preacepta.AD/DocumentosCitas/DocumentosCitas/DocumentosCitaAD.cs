@@ -1,4 +1,5 @@
-﻿using Preacepta.Modelos.AbstraccionesBD;
+﻿using Microsoft.EntityFrameworkCore;
+using Preacepta.Modelos.AbstraccionesBD;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -60,6 +61,17 @@ namespace Preacepta.AD.DocumentosCitas.DocumentosCitas
 
             documento.Descargar = permitirDescarga;
             await _contexto.SaveChangesAsync();  // Guarda los cambios en la base de datos
+        }
+        
+        public async Task<bool> EliminarAsync(TDocumentosCita documento)
+        {
+            if (documento == null) return false;
+
+            // Remover de la base de datos
+            _contexto.TDocumentosCita.Remove(documento);
+            await _contexto.SaveChangesAsync();
+
+            return true;
         }
     }
 }

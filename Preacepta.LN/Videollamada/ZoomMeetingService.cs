@@ -17,7 +17,7 @@ namespace Preacepta.LN.Videollamada
             var data = new
             {
                 topic = tema,
-                type = 2, // Reunión programada
+                type = 2, 
                 start_time = fechaHoraInicio.ToUniversalTime().ToString("yyyy-MM-ddTHH:mm:ssZ"),
                 duration = duracionMinutos,
                 timezone = "America/Costa_Rica", 

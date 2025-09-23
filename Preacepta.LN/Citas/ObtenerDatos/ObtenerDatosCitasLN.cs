@@ -9,7 +9,6 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace Preacepta.LN.Citas.ObtenerDatos
-
 {
     public class ObtenerDatosCitasLN : IObtenerDatosCitasLN
     {
@@ -18,6 +17,7 @@ namespace Preacepta.LN.Citas.ObtenerDatos
         {
             _contexto = contexto ?? throw new ArgumentNullException(nameof(contexto));
         }
+
         public CitasDTO ObtenerDeDB(TCita baseDatos)
         {
             return new CitasDTO
@@ -28,13 +28,18 @@ namespace Preacepta.LN.Citas.ObtenerDatos
                 IdTipoCita = baseDatos.IdTipoCita,
                 LinkVideo = baseDatos.LinkVideo,
                 Anfitrion = baseDatos.Anfitrion,
+                Terminada = baseDatos.Terminada,
                 NombreTipoCita = baseDatos.IdTipoCitaNavigation?.Nombre,
-                NombreAnfitrion = $"{baseDatos.AnfitrionNavigation?.CedulaNavigation?.Nombre} {baseDatos.AnfitrionNavigation?.CedulaNavigation?.Apellido1} {baseDatos.AnfitrionNavigation?.CedulaNavigation?.Apellido2}"
+                NombreAnfitrion = $"{baseDatos.AnfitrionNavigation?.CedulaNavigation?.Nombre} {baseDatos.AnfitrionNavigation?.CedulaNavigation?.Apellido1} {baseDatos.AnfitrionNavigation?.CedulaNavigation?.Apellido2}",
+
+               
+                NombresClientes = baseDatos.TCitasClientes?
+    .Select(tc => $"{tc.IdClienteNavigation.Nombre} {tc.IdClienteNavigation.Apellido1} {tc.IdClienteNavigation.Apellido2}")
+    .ToList() ?? new List<string>()
+
             };
         }
 
-
-        /*metodo para obtner los datos de los formularios y pasarlos al modelo de acceso a datos*/
         public TCita ObtenerDeFront(CitasDTO Formulario)
         {
             return new TCita
@@ -45,12 +50,16 @@ namespace Preacepta.LN.Citas.ObtenerDatos
                 IdTipoCita = Formulario.IdTipoCita,
                 LinkVideo = Formulario.LinkVideo,
                 Anfitrion = Formulario.Anfitrion,
+                Terminada = Formulario.Terminada,
             };
         }
+
         public async Task<List<CitasDTO>> ListarCitasAsync()
         {
             var citasDb = await _contexto.TCitas
-                .Include(c => c.IdTipoCitaNavigation) // si quieres incluir la navegación para NombreTipoCita
+                .Include(c => c.IdTipoCitaNavigation)
+                .Include(c => c.AnfitrionNavigation).ThenInclude(a => a.CedulaNavigation)
+                .Include(c => c.TCitasClientes).ThenInclude(tc => tc.IdClienteNavigation)
                 .ToListAsync();
 
             return citasDb.Select(c => ObtenerDeDB(c)).ToList();
@@ -61,16 +70,18 @@ namespace Preacepta.LN.Citas.ObtenerDatos
             var citas = await _contexto.TCitas
                 .Include(c => c.IdTipoCitaNavigation)
                 .Include(c => c.AnfitrionNavigation).ThenInclude(a => a.CedulaNavigation)
-                .Include(c => c.TCitasClientes)
+                .Include(c => c.TCitasClientes).ThenInclude(tc => tc.IdClienteNavigation)
                 .Where(c => c.TCitasClientes.Any(cc => cc.IdCliente == idCliente))
                 .ToListAsync();
 
             return citas.Select(c => ObtenerDeDB(c)).ToList();
         }
+
         public async Task<List<CitasDTO>> ListarAnfitrionAsync()
         {
             var citasDb = await _contexto.TCitas
-                .Include(c => c.AnfitrionNavigation) // si quieres incluir la navegación para Anfitrion
+                .Include(c => c.AnfitrionNavigation)
+                .Include(c => c.TCitasClientes).ThenInclude(tc => tc.IdClienteNavigation)
                 .ToListAsync();
 
             return citasDb.Select(c => ObtenerDeDB(c)).ToList();
@@ -81,6 +92,7 @@ namespace Preacepta.LN.Citas.ObtenerDatos
             var cita = await _contexto.TCitas
                 .Include(c => c.IdTipoCitaNavigation)
                 .Include(c => c.AnfitrionNavigation).ThenInclude(a => a.CedulaNavigation)
+                .Include(c => c.TCitasClientes).ThenInclude(tc => tc.IdClienteNavigation)
                 .FirstOrDefaultAsync(c => c.IdCita == idCita);
 
             if (cita == null) return null;
@@ -102,6 +114,21 @@ namespace Preacepta.LN.Citas.ObtenerDatos
             }).ToList();
 
             return dto;
+        }
+
+        public async Task<CitasDTO?> TerminarCitaYObtenerDatosAsync(int idCita)
+        {
+            var cita = await _contexto.TCitas
+                .Include(c => c.AnfitrionNavigation).ThenInclude(a => a.CedulaNavigation)
+                .Include(c => c.TCitasClientes).ThenInclude(tc => tc.IdClienteNavigation)
+                .FirstOrDefaultAsync(c => c.IdCita == idCita);
+
+            if (cita == null) return null;
+
+            cita.Terminada = true;
+            await _contexto.SaveChangesAsync();
+
+            return ObtenerDeDB(cita);
         }
     }
 }

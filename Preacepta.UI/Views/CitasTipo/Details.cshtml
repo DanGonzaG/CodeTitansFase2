@@ -2,7 +2,7 @@
 
 @{
     ViewData["Title"] = "Detalles del Tipo de Cita";
-    Layout = "_Layout";
+    Layout = "_LayoutGestor";
 }
 
 <h2>Detalles del Tipo de Cita</h2>
@@ -18,5 +18,9 @@
 
 <div class="mt-3">
     <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-warning">Editar</a>
-    <a asp-action="Index" class="btn btn-secondary">Volver al listado</a>
+    <a asp-action="Index" class="contact-btn--navegacion">Volver al listado</a>
 </div>
+
+@section Styles {
+    <link href="~/lyso/css/style.css" rel="stylesheet" />
+}

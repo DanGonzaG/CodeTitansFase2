@@ -10,6 +10,7 @@ using Preacepta.LN.GePersona.BuscarXid;
 using Preacepta.LN.GePersona.Editar;
 using System.ComponentModel.DataAnnotations;
 using System.Diagnostics.CodeAnalysis;
+using System.Security.Claims;
 
 namespace Praecepta.UI.Areas.Identity.Pages.Account
 {
@@ -112,86 +113,102 @@ namespace Praecepta.UI.Areas.Identity.Pages.Account
 
 
         //Método POST para validar credenciales
+        [IgnoreAntiforgeryToken]
         public async Task<IActionResult> OnPostAsync(string returnUrl = null)
         {
-            var usuario = await _userManager.FindByEmailAsync(Input.Email); // Obtiene al objeto User de la BD
-            if (usuario == null) //Valida si el usuario existe
+            _logger.LogInformation("Email recibido: {Email}", Input.Email);
+            var usuario = await _userManager.FindByEmailAsync(Input.Email);
+            if (usuario == null)
             {
                 ModelState.AddModelError(string.Empty, $"Usuario no se encuentra registrado");
                 return Page();
             }
-            
-            int contadorIntentos = await _userManager.GetAccessFailedCountAsync(usuario); //Obtiene los intentos fallidos, siempre empieza en 0
-            contadorIntentos = contadorIntentos + 1; // se asigna un 1 para que muestre el dato correcto en la vista
-            int intestosRestantes = 3 - contadorIntentos; // el sistema solo permite 3 intentos
+
+            int contadorIntentos = await _userManager.GetAccessFailedCountAsync(usuario);
+            contadorIntentos++;
+            int intentosRestantes = 3 - contadorIntentos;
 
             returnUrl ??= Url.Content("~/");
-
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
 
             if (ModelState.IsValid)
             {
-                
-                // This doesn't count login failures towards account lockout
-                // To enable password failures to trigger account lockout, set lockoutOnFailure: true
                 var result = await _signInManager.PasswordSignInAsync(
-                    Input.Email, 
-                    Input.Password, 
-                    Input.RememberMe, 
-                    lockoutOnFailure: true); //se activo el bloqueo automatico
+                    Input.Email,
+                    Input.Password,
+                    Input.RememberMe,
+                    lockoutOnFailure: true);
 
                 if (result.Succeeded)
                 {
+                    // 🔄 Obtener ClaimsPrincipal actualizado
+                    var principal = await _signInManager.CreateUserPrincipalAsync(usuario);
+                    var roles = principal.Claims
+                        .Where(c => c.Type == ClaimTypes.Role)
+                        .Select(c => c.Value)
+                        .ToList();
 
-                    if (!User.IsInRole("Gestor")) // Valida que el usuario no es gestor
+                    _logger.LogInformation("Roles asignados al usuario tras login: {Roles}", string.Join(", ", roles));
+
+                    if (!roles.Contains("Gestor"))
                     {
-                        var persona = await _buscarPersona.buscarXcorreo(Input.Email); // obtiene le objeto persona
-                        if (!persona.Activo) //Valida si el usuario esta activo en la tabla TGePesona en BD
+                        var persona = await _buscarPersona.buscarXcorreo(Input.Email);
+                        if (!persona.Activo)
                         {
-                            await _signInManager.SignOutAsync(); //si la persona esta inactiva este metodo cierra la sesion del usuario
-                            ModelState.AddModelError(string.Empty, "Su cuenta esta desactivada, favor comuniquese con el despacho"); //HU PP-MA - 1 criterio 2
+                            await _signInManager.SignOutAsync();
+                            ModelState.AddModelError(string.Empty, "Su cuenta está desactivada, favor comuníquese con el despacho");
                             return Page();
                         }
                     }
 
-                    
-
-                    if(User.IsInRole("Gestor")|| User.IsInRole("Cliente")|| User.IsInRole("Abogado")) 
+                    if (roles.Any(r => r == "Gestor" || r == "Cliente" || r == "Abogado"))
                     {
-                        _logger.LogInformation("Usuario conectado.");
-                        //return LocalRedirect(returnUrl);
-                        return RedirectToAction("UsuarioAutenticado", "Home", new { correo = Input.Email });// Ingreso exitóso HU PP-MA-1 criterio 1
-                }
 
-            }
+                       _logger.LogInformation("Usuario conectado con rol válido.");
+                       foreach (var claim in principal.Claims)
+                        {
+                            _logger.LogInformation("DanielClaim: {Type} = {Value}", claim.Type, claim.Value);
+                        }
+                        //return LocalRedirect(returnUrl);
+                        if (!string.IsNullOrEmpty(returnUrl) && Url.IsLocalUrl(returnUrl))
+                        {
+                            var decodedReturnUrl = Uri.UnescapeDataString(returnUrl);
+
+                            // Verifica que decodedReturnUrl contenga "correo="
+                            if (decodedReturnUrl.Contains("correo=", StringComparison.OrdinalIgnoreCase))
+                            {
+                                return LocalRedirect(returnUrl);
+                        }
+                        else
+                        {
+                            return RedirectToAction("UsuarioAutenticado", "Home", new { correo = Input.Email });
+                        }
+                    }
+                    }
+                }
+               
                 if (result.RequiresTwoFactor)
                 {
                     return RedirectToPage("./LoginWith2fa", new { ReturnUrl = returnUrl, RememberMe = Input.RememberMe });
                 }
-                if (result.IsLockedOut) //Valida si el usuario esta bloqueado
+
+                if (result.IsLockedOut)
                 {
-
                     _logger.LogWarning("Cuenta de usuario bloqueada.");
-                    //ModelState.AddModelError(string.Empty, "Su cuenta esta bloqueda por multiples intentos, favor comuniquese con el despacho");
-                    TempData["Lockout"] = "Su cuenta esta bloqueda por multiples intentos, favor comuniquese con el despacho"; //PP-MA-2 Criterio 3
-                    //return RedirectToPage("./Lockout");
+                    TempData["Lockout"] = "Su cuenta está bloqueada por múltiples intentos, favor comuníquese con el despacho";
                     return Page();
                 }
-                else
-                {   
-                    //His
-                    if(intestosRestantes == 1) 
-                    {
-                        ModelState.AddModelError(string.Empty, $"Correo o contraseña son inválidos. Cuenta con {intestosRestantes} intento más"); //PP-MA-2 Criterio 1 y 2 
-                        return Page();
-                    }
 
-                    ModelState.AddModelError(string.Empty, $"Correo o contraseña son inválidos. Cuenta con {intestosRestantes} intentos más"); //PP-MA-2 Criterio 1 y 2
+                if (intentosRestantes == 1)
+                {
+                    ModelState.AddModelError(string.Empty, $"Correo o contraseña son inválidos. Cuenta con {intentosRestantes} intento más");
                     return Page();
                 }
+
+                ModelState.AddModelError(string.Empty, $"Correo o contraseña son inválidos. Cuenta con {intentosRestantes} intentos más");
+                return Page();
             }
 
-            // If we got this far, something failed, redisplay form
             return Page();
         }
     }

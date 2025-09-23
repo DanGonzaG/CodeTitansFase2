@@ -12,28 +12,6 @@ namespace Preacepta.AD.Casos.BuscarXid
             _contexto = contexto;
         }
 
-        /*public async Task<TCaso?> buscar(int id)
-        {
-            try
-            {
-                var lista = await _contexto.TCasos
-                .Include(t => t.IdAbogadoNavigation)
-                .ThenInclude(a => a.CedulaNavigation)
-                .Include(t => t.IdClienteNavigation)
-                .ThenInclude(a => a.Direccion1Navigation)
-                .Include(t => t.IdTipoCasoNavigation)
-                .FirstOrDefaultAsync(m => m.IdCaso == id);
-                return lista;
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"Error en BuscarCasosAD, no se encontro id: {ex.Message}");
-                return null;
-            }
-
-        }*/
-
-
         public async Task<TCaso?> buscar(int id)
         {
             try

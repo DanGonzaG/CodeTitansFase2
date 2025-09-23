@@ -1,22 +1,28 @@
 ﻿using DinkToPdf;
 using DinkToPdf.Contracts;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Preacepta.AD;
+using Preacepta.LN.CrDireccion1.BuscarXid;
+using Preacepta.LN.CrDireccion1.Listar;
 using Preacepta.LN.DocsInscripcionVehiculo.BuscarXid;
 using Preacepta.LN.DocsInscripcionVehiculo.Crear;
 using Preacepta.LN.DocsInscripcionVehiculo.Editar;
 using Preacepta.LN.DocsInscripcionVehiculo.Eliminar;
 using Preacepta.LN.DocsInscripcionVehiculo.Listar;
-using Preacepta.LN.GeAbogado.BuscarXid;
+using Preacepta.LN.DocsMarcaVehiculo.BuscarXid;
+using Preacepta.LN.DocsMarcaVehiculo.Listar;
+using Preacepta.LN.DocsTipoVehiculo.Buscar;
+using Preacepta.LN.DocsTipoVehiculo.Listar;
 using Preacepta.LN.GePersona.BuscarXid;
-using Preacepta.Modelos.AbstraccionesBD;
+using Preacepta.LN.GePersona.Listar;
+using Preacepta.LN.HistorialDocumentos.BuscarXid;
+using Preacepta.LN.HistorialDocumentos.Crear;
+using Preacepta.LN.HistorialDocumentos.Eliminar;
+using Preacepta.LN.HistorialDocumentos.Listar;
 using Preacepta.Modelos.AbstraccionesFrond;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace Preacepta.UI.Controllers
 {
@@ -25,42 +31,73 @@ namespace Preacepta.UI.Controllers
         private readonly IConverter _converter;
         private readonly Contexto _context;
         private readonly IBuscarDocsInscripcionVehiculoLN _buscar;
-        private readonly IBuscarAbogadoLN _buscarAbogado;
-        private readonly IBuscarXidGePersonaLN _buscarPersona;
         private readonly ICrearDocsInscripcionVehiculoLN _crear;
         private readonly IEditarDocsInscripcionVehiculoLN _editar;
         private readonly IEliminarDocsInscripcionVehiculoLN _eliminar;
         private readonly IListarDocsInscripcionVehiculoLN _listar;
+        private readonly IBuscarXidGePersonaLN _buscarPersona;
+        private readonly IListarGePersonaLN _listarPersonas;
+        private readonly ICrearHistorialLN _crearHistorialLN;
+        private readonly IListarHistorialLN _listarHistorialLN;
+        private readonly IBuscarHistorialLN _buscarHistorialLN;
+        private readonly IELiminarHistorialLN _eLiminarHistorialLN;
+        private readonly IBuscarCrDireccion1LN _buscarDistrito;
+        private readonly IListarCrDireccion1LN _listarDistrito;
+        private readonly IBuscarTipoVehiculoLN _buscarTipoVehiculo;
+        private readonly IListarTipoVehiculoLN _listarTipoVehiculo;
+        private readonly IBuscarDocsMarcaVehiculoLN _buscarMarcaVehiculo;
+        private readonly IListarDocsMarcaVehiculoLN _listarMarcaVehiculo;
 
         public DocsInscripcionVehiculoController(IConverter converter,
-            IBuscarAbogadoLN buscarAbogado,
-            IBuscarXidGePersonaLN buscarPersona,
             Contexto context,
             IBuscarDocsInscripcionVehiculoLN buscar,
             ICrearDocsInscripcionVehiculoLN crear,
             IEditarDocsInscripcionVehiculoLN editar,
             IEliminarDocsInscripcionVehiculoLN eliminar,
-            IListarDocsInscripcionVehiculoLN listar)
+            IListarDocsInscripcionVehiculoLN listar,
+            IBuscarXidGePersonaLN buscarPersona,
+            IListarGePersonaLN listarPersonas,
+            ICrearHistorialLN crearHistorialLN,
+            IListarHistorialLN listarHistorialLN,
+            IBuscarHistorialLN buscarHistorialLN,
+            IELiminarHistorialLN eLiminarHistorialLN,
+            IBuscarCrDireccion1LN buscarDistrito,
+            IListarCrDireccion1LN listarDistrito,
+            IBuscarTipoVehiculoLN buscarTipoVehiculo,
+            IListarTipoVehiculoLN listarTipoVehiculo,
+            IBuscarDocsMarcaVehiculoLN buscarMarcaVehiculo,
+            IListarDocsMarcaVehiculoLN listarMarcaVehiculo)
         {
             _converter = converter;
-            _buscarAbogado = buscarAbogado;
-            _buscarPersona = buscarPersona;
             _context = context;
             _buscar = buscar;
             _crear = crear;
             _editar = editar;
             _eliminar = eliminar;
             _listar = listar;
+            _buscarPersona = buscarPersona;
+            _listarPersonas = listarPersonas;
+            _crearHistorialLN = crearHistorialLN;
+            _listarHistorialLN = listarHistorialLN;
+            _buscarHistorialLN = buscarHistorialLN;
+            _eLiminarHistorialLN = eLiminarHistorialLN;
+            _buscarDistrito = buscarDistrito;
+            _listarDistrito = listarDistrito;
+            _buscarTipoVehiculo = buscarTipoVehiculo;
+            _listarTipoVehiculo = listarTipoVehiculo;
+            _buscarMarcaVehiculo = buscarMarcaVehiculo;
+            _listarMarcaVehiculo = listarMarcaVehiculo;
         }
 
         // GET: TDocsInscripcionVehiculo
+        [Authorize(Roles = "Gestor")]
         public async Task<IActionResult> Index()
         {
-            //var contexto = _context.TDocsInscripcionVehiculos.Include(t => t.CedulaAbogadoNavigation).Include(t => t.CedulaClienteNavigation).Include(t => t.EstiloVehiculoNavigation).Include(t => t.LugarFirmaNavigation).Include(t => t.MarcaVehiculoNavigation);
             return View(await _listar.listar());
         }
 
         // GET: TDocsInscripcionVehiculo/Details/5
+        [Authorize(Roles = "Gestor")]
         public async Task<IActionResult> Details(int id)
         {
             if (id == null)
@@ -78,13 +115,14 @@ namespace Preacepta.UI.Controllers
         }
 
         // GET: TDocsInscripcionVehiculo/Create
+        [Authorize(Roles = "Gestor")]
         public IActionResult Create()
         {
-            ViewData["CedulaAbogado"] = new SelectList(_context.TGeAbogados, "Cedula", "Cedula");
-            ViewData["CedulaCliente"] = new SelectList(_context.TGePersonas, "Cedula", "Apellido1");
-            ViewData["EstiloVehiculo"] = new SelectList(_context.TDocsTipoVehiculos, "Id", "Nombre");
-            ViewData["LugarFirma"] = new SelectList(_context.TCrDistritos, "IdDistrito", "NombreDistrito");
-            ViewData["MarcaVehiculo"] = new SelectList(_context.TDocsMarcaVehiculos, "Id", "Nombre");
+            ViewData["CedulaAbogado"] = new SelectList(_listarPersonas.listar().Result, "Cedula", "Cedula");
+            ViewData["CedulaCliente"] = new SelectList(_listarPersonas.listar().Result, "Cedula", "Apellido1");
+            ViewData["EstiloVehiculo"] = new SelectList(_listarTipoVehiculo.Listar().Result, "Id", "Nombre");
+            ViewData["LugarFirma"] = new SelectList(_listarDistrito.listarDistritos().Result, "IdDistrito", "NombreDistrito");
+            ViewData["MarcaVehiculo"] = new SelectList(_listarMarcaVehiculo.listar().Result, "Id", "Nombre");
             return View();
         }
 
@@ -93,22 +131,37 @@ namespace Preacepta.UI.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Gestor")]
         public async Task<IActionResult> Create([Bind("IdDocumento,CedulaCliente,CedulaAbogado,MarcaVehiculo,EstiloVehiculo,ModeloVehiculo,Categoria,MarcaMotor,NumeroMotor,NumeroSerieChasis,Vin,Anio,Carroceria,PesoNeto,PesoBruto,Potencia,Color,Capacidad,Combustible,Cilindraje,LugarFirma,FechaFirma")] DocsInscripcionVehiculoDTO tDocsInscripcionVehiculo)
         {
             if (ModelState.IsValid)
             {
                 await _crear.Crear(tDocsInscripcionVehiculo);
+                var Registros = await _listar.listar();
+                var idDocumento = Registros.LastOrDefault();
+                HistorialDocumentoDTO historialDocumentoDTO = new HistorialDocumentoDTO
+                {
+                    Cliente = tDocsInscripcionVehiculo.CedulaCliente,
+                    Abogado = tDocsInscripcionVehiculo.CedulaAbogado,
+                    Fecha = DateTime.Now.ToString(),
+                    TipoDocumento = "Inscripción de vehiculo",
+                    IdDocumento = idDocumento.IdDocumento,
+                    Titulo = $"Doc.no.{idDocumento.IdDocumento} Inscripción de vehiculo"
+
+                };
+                await _crearHistorialLN.Crear(historialDocumentoDTO);
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["CedulaAbogado"] = new SelectList(_context.TGeAbogados, "Cedula", "Cedula", tDocsInscripcionVehiculo.CedulaAbogado);
-            ViewData["CedulaCliente"] = new SelectList(_context.TGePersonas, "Cedula", "Apellido1", tDocsInscripcionVehiculo.CedulaCliente);
-            ViewData["EstiloVehiculo"] = new SelectList(_context.TDocsTipoVehiculos, "Id", "Nombre", tDocsInscripcionVehiculo.EstiloVehiculo);
-            ViewData["LugarFirma"] = new SelectList(_context.TCrDistritos, "IdDistrito", "NombreDistrito", tDocsInscripcionVehiculo.LugarFirma);
-            ViewData["MarcaVehiculo"] = new SelectList(_context.TDocsMarcaVehiculos, "Id", "Nombre", tDocsInscripcionVehiculo.MarcaVehiculo);
+            ViewData["CedulaAbogado"] = new SelectList(_listarPersonas.listar().Result, "Cedula", "Cedula", tDocsInscripcionVehiculo.CedulaAbogado);
+            ViewData["CedulaCliente"] = new SelectList(_listarPersonas.listar().Result, "Cedula", "Apellido1", tDocsInscripcionVehiculo.CedulaCliente);
+            ViewData["EstiloVehiculo"] = new SelectList(_listarTipoVehiculo.Listar().Result, "Id", "Nombre", tDocsInscripcionVehiculo.EstiloVehiculo);
+            ViewData["LugarFirma"] = new SelectList(_listarDistrito.listarDistritos().Result, "IdDistrito", "NombreDistrito", tDocsInscripcionVehiculo.LugarFirma);
+            ViewData["MarcaVehiculo"] = new SelectList(_listarMarcaVehiculo.listar().Result, "Id", "Nombre", tDocsInscripcionVehiculo.MarcaVehiculo);
             return View(tDocsInscripcionVehiculo);
         }
 
         // GET: TDocsInscripcionVehiculo/Edit/5
+        [Authorize(Roles = "Gestor")]
         public async Task<IActionResult> Edit(int id)
         {
             if (id == null)
@@ -121,11 +174,11 @@ namespace Preacepta.UI.Controllers
             {
                 return NotFound();
             }
-            ViewData["CedulaAbogado"] = new SelectList(_context.TGeAbogados, "Cedula", "Cedula", tDocsInscripcionVehiculo.CedulaAbogado);
-            ViewData["CedulaCliente"] = new SelectList(_context.TGePersonas, "Cedula", "Apellido1", tDocsInscripcionVehiculo.CedulaCliente);
-            ViewData["EstiloVehiculo"] = new SelectList(_context.TDocsTipoVehiculos, "Id", "Nombre", tDocsInscripcionVehiculo.EstiloVehiculo);
-            ViewData["LugarFirma"] = new SelectList(_context.TCrDistritos, "IdDistrito", "NombreDistrito", tDocsInscripcionVehiculo.LugarFirma);
-            ViewData["MarcaVehiculo"] = new SelectList(_context.TDocsMarcaVehiculos, "Id", "Nombre", tDocsInscripcionVehiculo.MarcaVehiculo);
+            ViewData["CedulaAbogado"] = new SelectList(_listarPersonas.listar().Result, "Cedula", "Cedula", tDocsInscripcionVehiculo.CedulaAbogado);
+            ViewData["CedulaCliente"] = new SelectList(_listarPersonas.listar().Result, "Cedula", "Apellido1", tDocsInscripcionVehiculo.CedulaCliente);
+            ViewData["EstiloVehiculo"] = new SelectList(_listarTipoVehiculo.Listar().Result, "Id", "Nombre", tDocsInscripcionVehiculo.EstiloVehiculo);
+            ViewData["LugarFirma"] = new SelectList(_listarDistrito.listarDistritos().Result, "IdDistrito", "NombreDistrito", tDocsInscripcionVehiculo.LugarFirma);
+            ViewData["MarcaVehiculo"] = new SelectList(_listarMarcaVehiculo.listar().Result, "Id", "Nombre", tDocsInscripcionVehiculo.MarcaVehiculo);
             return View(tDocsInscripcionVehiculo);
         }
 
@@ -134,6 +187,7 @@ namespace Preacepta.UI.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Gestor")]
         public async Task<IActionResult> Edit(int id, [Bind("IdDocumento,CedulaCliente,CedulaAbogado,MarcaVehiculo,EstiloVehiculo,ModeloVehiculo,Categoria,MarcaMotor,NumeroMotor,NumeroSerieChasis,Vin,Anio,Carroceria,PesoNeto,PesoBruto,Potencia,Color,Capacidad,Combustible,Cilindraje,LugarFirma,FechaFirma")] DocsInscripcionVehiculoDTO tDocsInscripcionVehiculo)
         {
             if (id != tDocsInscripcionVehiculo.IdDocumento)
@@ -153,15 +207,16 @@ namespace Preacepta.UI.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["CedulaAbogado"] = new SelectList(_context.TGeAbogados, "Cedula", "Cedula", tDocsInscripcionVehiculo.CedulaAbogado);
-            ViewData["CedulaCliente"] = new SelectList(_context.TGePersonas, "Cedula", "Apellido1", tDocsInscripcionVehiculo.CedulaCliente);
-            ViewData["EstiloVehiculo"] = new SelectList(_context.TDocsTipoVehiculos, "Id", "Nombre", tDocsInscripcionVehiculo.EstiloVehiculo);
-            ViewData["LugarFirma"] = new SelectList(_context.TCrDistritos, "IdDistrito", "NombreDistrito", tDocsInscripcionVehiculo.LugarFirma);
-            ViewData["MarcaVehiculo"] = new SelectList(_context.TDocsMarcaVehiculos, "Id", "Nombre", tDocsInscripcionVehiculo.MarcaVehiculo);
+            ViewData["CedulaAbogado"] = new SelectList(_listarPersonas.listar().Result, "Cedula", "Cedula", tDocsInscripcionVehiculo.CedulaAbogado);
+            ViewData["CedulaCliente"] = new SelectList(_listarPersonas.listar().Result, "Cedula", "Apellido1", tDocsInscripcionVehiculo.CedulaCliente);
+            ViewData["EstiloVehiculo"] = new SelectList(_listarTipoVehiculo.Listar().Result, "Id", "Nombre", tDocsInscripcionVehiculo.EstiloVehiculo);
+            ViewData["LugarFirma"] = new SelectList(_listarDistrito.listarDistritos().Result, "IdDistrito", "NombreDistrito", tDocsInscripcionVehiculo.LugarFirma);
+            ViewData["MarcaVehiculo"] = new SelectList(_listarMarcaVehiculo.listar().Result, "Id", "Nombre", tDocsInscripcionVehiculo.MarcaVehiculo);
             return View(tDocsInscripcionVehiculo);
         }
 
         // GET: TDocsInscripcionVehiculo/Delete/5
+        [Authorize(Roles = "Gestor")]
         public async Task<IActionResult> Delete(int id)
         {
             if (id == null)
@@ -179,41 +234,61 @@ namespace Preacepta.UI.Controllers
         }
 
         // POST: TDocsInscripcionVehiculo/Delete/5
+        [Authorize(Roles = "Gestor")]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            await _eliminar.Eliminar(id);
+            var tDocsInscripcionVehiculo = await _buscar.buscar(id);
+            if (tDocsInscripcionVehiculo != null)
+            {
+                await _eliminar.Eliminar(id);
+                int buscarHistorial = await _buscarHistorialLN.BuscarXidDocumento(id, "Inscripción de vehiculo");
+
+                await _eLiminarHistorialLN.Eliminar(buscarHistorial); 
+            }
             return RedirectToAction(nameof(Index));
         }
 
 
         // DE AQUI EN ADELANTE VAN MIS METODOS
         // GET: TDocsInscripcionVehiculo/Create
-        public IActionResult CreateDocsInscripcionVehiculo()
+        [HttpGet]
+        [Authorize(Roles = "Abogado")]
+        public async Task<IActionResult> CreateDocsInscripcionVehiculo(int id)
         {
-            ViewData["CedulaAbogado"] = new SelectList(
-                _context.TGeAbogados.Include(a => a.CedulaNavigation).Select(a => new
-                {
-                    Cedula = a.Cedula,
-                    Texto = a.CedulaNavigation.Nombre + " " + a.CedulaNavigation.Apellido1 + " - " + a.Cedula
-                }),
-                "Cedula",
-                "Texto");
+            var cliente = await _buscarPersona.buscar(id);
+            var abogado = await _buscarPersona.buscarXcorreo(User.Identity.Name);
 
-            ViewData["CedulaCliente"] = new SelectList(
-                _context.TGePersonas.Select(p => new
-                {
-                    Cedula = p.Cedula,
-                    Texto = p.Nombre + " " + p.Apellido1 + " - " + p.Cedula
-                }),
-                "Cedula",
-                "Texto");
-            //ViewData["CedulaAbogado"] = new SelectList(_context.TGeAbogados, "Cedula", "Cedula");
-            //ViewData["CedulaCliente"] = new SelectList(_context.TGePersonas, "Cedula", "Apellido1");
-            ViewData["EstiloVehiculo"] = new SelectList(_context.TDocsTipoVehiculos, "Id", "Nombre");
-            ViewData["LugarFirma"] = new SelectList(_context.TCrDistritos, "IdDistrito", "NombreDistrito");
-            ViewData["MarcaVehiculo"] = new SelectList(_context.TDocsMarcaVehiculos, "Id", "Nombre");
+            ViewBag.ClienteCedula = cliente.Cedula;
+            ViewBag.ClienteNombre = cliente.Nombre;
+            ViewBag.ClienteApellido1 = cliente.Apellido1;
+            ViewBag.ClienteApellido2 = cliente.Apellido2;
+            ViewBag.Dash = " - ";
+
+            ViewBag.AbogadoCedula = abogado.Cedula;
+            ViewBag.AbogadoNombre = abogado.Nombre;
+            ViewBag.AbogadoApellido1 = abogado.Apellido1;
+            ViewBag.AbogadoApellido2 = abogado.Apellido2;
+
+            ViewBag.LugarFirma = new SelectList(
+                (await _listarDistrito.listarDistritos()),
+                "IdDistrito",
+                "NombreDistrito"
+            );
+
+            ViewBag.EstiloVehiculo = new SelectList(
+                (await _listarTipoVehiculo.Listar()),
+                "Id",
+                "Nombre"
+            );
+
+            ViewBag.MarcaVehiculo = new SelectList(
+                (await _listarMarcaVehiculo.listar()),
+                "Id",
+                "Nombre"
+            );
+
             return View();
         }
 
@@ -222,111 +297,45 @@ namespace Preacepta.UI.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> CreateDocsInscripcionVehiculo([Bind("IdDocumento,CedulaCliente,CedulaAbogado,MarcaVehiculo,EstiloVehiculo,ModeloVehiculo,Categoria,MarcaMotor,NumeroMotor,NumeroSerieChasis,Vin,Anio,Carroceria,PesoNeto,PesoBruto,Potencia,Color,Capacidad,Combustible,Cilindraje,LugarFirma,FechaFirma")] DocsInscripcionVehiculoDTO tDocsInscripcionVehiculo,
-            [FromForm] int? DocumentoAnteriorId
-            )
+        [Authorize(Roles = "Abogado")]
+        public async Task<IActionResult> CreateDocsInscripcionVehiculo([Bind("IdDocumento,CedulaCliente,CedulaAbogado,MarcaVehiculo,EstiloVehiculo,ModeloVehiculo,Categoria,MarcaMotor,NumeroMotor,NumeroSerieChasis,Vin,Anio,Carroceria,PesoNeto,PesoBruto,Potencia,Color,Capacidad,Combustible,Cilindraje,LugarFirma,FechaFirma")] DocsInscripcionVehiculoDTO tDocsInscripcionVehiculo)
         {
+            var cliente = await _buscarPersona.buscar(tDocsInscripcionVehiculo.CedulaCliente);
+            var abogado = await _buscarPersona.buscarXcorreo(User.Identity.Name);
             if (ModelState.IsValid)
             {
-                // Eliminar documento anterior y su historial
-                if (DocumentoAnteriorId.HasValue)
-                {
-                    // Buscar historial por ID
-                    var historialAnterior = await _context.HistorialDocumentos
-                        .FirstOrDefaultAsync(h => h.Id == DocumentoAnteriorId.Value);
-
-                    if (historialAnterior != null)
-                    {
-                        // Obtener el ID del documento original desde el historial
-                        var idDocOriginal = historialAnterior.DocumentoIdOriginal;
-
-                        // Buscar y eliminar el documento original
-                        var docAnterior = await _context.TDocsInscripcionVehiculos
-                            .FirstOrDefaultAsync(p => p.IdDocumento == idDocOriginal);
-
-                        if (docAnterior != null)
-                            _context.TDocsInscripcionVehiculos.Remove(docAnterior);
-
-                        // Eliminar también el historial
-                        _context.HistorialDocumentos.Remove(historialAnterior);
-
-                        await _context.SaveChangesAsync();
-                    }
-                }
-
                 await _crear.Crear(tDocsInscripcionVehiculo);
-                //return RedirectToAction(nameof(Index));
-
-                // Obtener comprador desde TGePersonas
-                var cliente = await _context.TGePersonas
-                     .FirstOrDefaultAsync(p => p.Cedula == tDocsInscripcionVehiculo.CedulaCliente);
-
-                string nombreCliente = cliente != null
-                    ? $"{cliente.Nombre} {cliente.Apellido1} {cliente.Apellido2}"
-                    : tDocsInscripcionVehiculo.CedulaCliente.ToString();
-
-                // Obtener abogado desde TGeAbogados (con su persona)
-                var abogado = await _context.TGeAbogados
-                    .Include(a => a.CedulaNavigation)
-                    .FirstOrDefaultAsync(a => a.Cedula == tDocsInscripcionVehiculo.CedulaAbogado);
-
-                string nombreAbogado = abogado != null
-                    ? $"{abogado.CedulaNavigation.Nombre} {abogado.CedulaNavigation.Apellido1} {abogado.CedulaNavigation.Apellido2}"
-                    : tDocsInscripcionVehiculo.CedulaAbogado.ToString();
-
-                // Crear nuevo historial con el ID real del documento recién creado
-                var nuevoIdDocumento = _context.TDocsInscripcionVehiculos
-                .OrderByDescending(x => x.IdDocumento)
-                .Select(x => x.IdDocumento)
-                .FirstOrDefault();
-
-
-                // Guardar en el historial
-                var historial = new HistorialDocumento
+                var Registros = await _listar.listar();
+                var idDocumento = Registros.LastOrDefault();
+                HistorialDocumentoDTO historialDocumentoDTO = new HistorialDocumentoDTO
                 {
-                    Fecha = DateTime.Now,
-                    TipoDocumento = "Inscripción de Vehículos",
-                    Cliente = nombreCliente,
-                    Abogado = nombreAbogado,
-                    DocumentoIdOriginal = nuevoIdDocumento
+                    Cliente = tDocsInscripcionVehiculo.CedulaCliente,
+                    Abogado = tDocsInscripcionVehiculo.CedulaAbogado,
+                    Fecha = DateTime.Now.ToString(),
+                    TipoDocumento = "Inscripción de vehiculo",
+                    IdDocumento = idDocumento.IdDocumento,
+                    Titulo = $"Doc.no.{idDocumento.IdDocumento} Inscripción de vehiculo"
+
                 };
-
-                _context.HistorialDocumentos.Add(historial);
-                await _context.SaveChangesAsync();
-                //return RedirectToAction(nameof(Index));
-                var historialDocs = await _context.HistorialDocumentos
-                .OrderByDescending(h => h.Fecha)
-                .ToListAsync();
-
-                return View("~/Views/HistorialDocumentos/DocsHistorial.cshtml", historialDocs);
+                await _crearHistorialLN.Crear(historialDocumentoDTO);
+                return RedirectToAction("DocsHistorial", "THistorialDocumento1");
             }
-            ViewData["CedulaAbogado"] = new SelectList(
-                _context.TGeAbogados.Include(a => a.CedulaNavigation).Select(a => new
-                {
-                    Cedula = a.Cedula,
-                    Texto = a.CedulaNavigation.Nombre + " " + a.CedulaNavigation.Apellido1 + " - " + a.Cedula
-                }),
-                "Cedula",
-                "Texto", tDocsInscripcionVehiculo?.CedulaAbogado);
+            ViewBag.ClienteCedula = cliente.Cedula;
+            ViewBag.ClienteNombre = cliente.Nombre;
+            ViewBag.ClienteApellido1 = cliente.Apellido1;
+            ViewBag.ClienteApellido2 = cliente.Apellido2;
+            ViewBag.Dash = " - ";
 
-            ViewData["CedulaCliente"] = new SelectList(
-                _context.TGePersonas.Select(p => new
-                {
-                    Cedula = p.Cedula,
-                    Texto = p.Nombre + " " + p.Apellido1 + " - " + p.Cedula
-                }),
-                "Cedula",
-                "Texto",
-                tDocsInscripcionVehiculo?.CedulaCliente);
-            //ViewData["CedulaAbogado"] = new SelectList(_context.TGeAbogados, "Cedula", "Cedula", tDocsInscripcionVehiculo.CedulaAbogado);
-            //ViewData["CedulaCliente"] = new SelectList(_context.TGePersonas, "Cedula", "Apellido1", tDocsInscripcionVehiculo.CedulaCliente);
-            ViewData["EstiloVehiculo"] = new SelectList(_context.TDocsTipoVehiculos, "Id", "Nombre", tDocsInscripcionVehiculo.EstiloVehiculo);
-            ViewData["LugarFirma"] = new SelectList(_context.TCrDistritos, "IdDistrito", "NombreDistrito", tDocsInscripcionVehiculo.LugarFirma);
-            ViewData["MarcaVehiculo"] = new SelectList(_context.TDocsMarcaVehiculos, "Id", "Nombre", tDocsInscripcionVehiculo.MarcaVehiculo);
+            ViewBag.AbogadoCedula = abogado.Cedula;
+            ViewBag.AbogadoNombre = abogado.Nombre;
+            ViewBag.AbogadoApellido1 = abogado.Apellido1;
+            ViewBag.AbogadoApellido2 = abogado.Apellido2;
+
             return View(tDocsInscripcionVehiculo);
         }
 
         [HttpGet]
+        [Authorize(Roles = "Abogado")]
         public async Task<IActionResult> PrevisualizarPDFInscripcionVehiculo(
                 string nombreCliente,
                 string cedulaCliente,
@@ -358,10 +367,11 @@ namespace Preacepta.UI.Controllers
         {
             var templatePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "lyso", "DocsMachotes", "InscripcionDeVehiculoMachote.html");
             var htmlTemplate = System.IO.File.ReadAllText(templatePath);
-            var abogado = await _buscarAbogado.buscar(int.Parse(cedulaAbogado));
+            
             var cliente = await _buscarPersona.buscar(int.Parse(cedulaCliente));
+            var abogado = await _buscarPersona.buscarXcorreo(User.Identity.Name);
+            var dist = await _buscarDistrito.buscarDistrito(int.Parse(lugarFirma));
 
-            // Reemplazar marcadores con los datos del formulario
             htmlTemplate = htmlTemplate
                 .Replace("{{NOMBRE_CLIENTE}}", cliente.Nombre + " " + cliente.Apellido1 + " " + cliente.Apellido2)
                 .Replace("{{CEDULA_CLIENTE}}", cedulaCliente)
@@ -385,9 +395,9 @@ namespace Preacepta.UI.Controllers
                 .Replace("{{CAPACIDAD}}", capacidad)
                 .Replace("{{COMBUSTIBLE}}", combustible)
                 .Replace("{{CILINDRAJE}}", cilindraje)
-                .Replace("{{LUGAR_FIRMA}}", lugarFirma)
+                .Replace("{{LUGAR_FIRMA}}", dist.NombreDistrito)
                 .Replace("{{FECHA_FIRMA}}", fechaFirma)
-                .Replace("{{NOMBRE_NOTARIO}}", abogado.CedulaNavigation.Nombre + " " + abogado.CedulaNavigation.Apellido1 + " " + abogado.CedulaNavigation.Apellido2)
+                .Replace("{{NOMBRE_NOTARIO}}", abogado.Nombre + " " + abogado.Apellido1 + " " + abogado.Apellido2)
                 .Replace("{{CEDULA_ABOGADO}}", cedulaAbogado);
 
             var doc = new HtmlToPdfDocument()
@@ -410,84 +420,5 @@ namespace Preacepta.UI.Controllers
 
             return File(pdf, "application/pdf");
         }
-
-        //Prueba para editar en historialDocumentos
-        [HttpGet]
-        public async Task<IActionResult> EditarDesdeHistorial(int id)
-        {
-            var historial = await _context.HistorialDocumentos.FindAsync(id);
-
-            if (historial == null || historial.TipoDocumento != "Inscripción de Vehículos" || historial.DocumentoIdOriginal == null)
-            {
-                return NotFound();
-            }
-
-
-            var docOriginal = await _context.TDocsInscripcionVehiculos
-                .FirstOrDefaultAsync(d => d.IdDocumento == historial.DocumentoIdOriginal.Value);
-
-            if (docOriginal == null)
-            {
-                return NotFound();
-            }
-
-            /*ViewData["ProvinciaFinca"] = new SelectList(_context.TCrProvincias, "IdProvincia", "NombreProvincia", docOriginal.ProvinciaFinca);
-            ViewData["DistritoFinca"] = new SelectList(_context.TCrDistritos, "IdDistrito", "NombreDistrito", docOriginal.DistritoFinca);
-            ViewData["CantonesFinca"] = new SelectList(_context.TCrCantones, "IdCanton", "NombreCanton", docOriginal.CantonFinca);*/
-
-
-            var model = new DocsInscripcionVehiculoDTO
-            {
-                CedulaCliente = docOriginal.CedulaCliente,
-                CedulaAbogado = docOriginal.CedulaAbogado,
-                MarcaVehiculo = docOriginal.MarcaVehiculo,
-                EstiloVehiculo = docOriginal.EstiloVehiculo,
-                ModeloVehiculo = docOriginal.ModeloVehiculo,
-                Categoria = docOriginal.Categoria,
-                MarcaMotor = docOriginal.MarcaMotor,
-                NumeroMotor = docOriginal.NumeroMotor,
-                NumeroSerieChasis = docOriginal.NumeroSerieChasis,
-                Vin = docOriginal.Vin,
-                Anio = docOriginal.Anio,
-                Carroceria = docOriginal.Carroceria,
-                PesoNeto = docOriginal.PesoNeto,
-                PesoBruto = docOriginal.PesoBruto,
-                Potencia = docOriginal.Potencia,
-                Color = docOriginal.Color,
-                Capacidad = docOriginal.Capacidad,
-                Combustible = docOriginal.Combustible,
-                Cilindraje = docOriginal.Cilindraje,
-                LugarFirma = docOriginal.LugarFirma,
-                FechaFirma = docOriginal.FechaFirma
-            };
-
-            ViewBag.DocumentoAnteriorId = historial.Id;
-
-            ViewData["CedulaAbogado"] = new SelectList(
-                _context.TGeAbogados.Include(a => a.CedulaNavigation).Select(a => new
-                {
-                    Cedula = a.Cedula,
-                    Texto = a.CedulaNavigation.Nombre + " " + a.CedulaNavigation.Apellido1 + " - " + a.Cedula
-                }),
-                "Cedula",
-                "Texto", model?.CedulaAbogado);
-
-            ViewData["CedulaCliente"] = new SelectList(
-                _context.TGePersonas.Select(p => new
-                {
-                    Cedula = p.Cedula,
-                    Texto = p.Nombre + " " + p.Apellido1 + " - " + p.Cedula
-                }),
-                "Cedula",
-                "Texto",
-                model?.CedulaCliente);
-            ViewData["EstiloVehiculo"] = new SelectList(_context.TDocsTipoVehiculos, "Id", "Nombre", model.EstiloVehiculo);
-            ViewData["LugarFirma"] = new SelectList(_context.TCrDistritos, "IdDistrito", "NombreDistrito", model.LugarFirma);
-            ViewData["MarcaVehiculo"] = new SelectList(_context.TDocsMarcaVehiculos, "Id", "Nombre", model.MarcaVehiculo);
-
-            return View("CreateDocsInscripcionVehiculo", model);
-
-        }
-
     }
 }

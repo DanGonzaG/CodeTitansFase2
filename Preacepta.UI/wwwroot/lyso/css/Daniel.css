@@ -188,9 +188,6 @@ ul{
 }
 
 
-
-
-/* Modal de ListarDocumentos */
 #modalListarDocumentos {
     z-index: 1050;
     position: fixed;
@@ -198,30 +195,66 @@ ul{
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.7); /* Fondo semi-transparente */
+    background-color: rgba(0, 0, 0, 0.7);
     display: none;
+    display: flex;
     align-items: center;
     justify-content: center;
+}
+.documento-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    flex-wrap: nowrap;
+    width: 100%; 
 }
 
-/* Modal de DetalleCita */
-#modalDetalleCita {
-    z-index: 1040;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.7); /* Fondo semi-transparente */
-    display: none;
-    align-items: center;
-    justify-content: center;
+    .documento-item .documento-info {
+        flex: 1 1 auto; 
+        min-width: 0; 
+        display: flex; 
+        align-items: center;
+        gap: 0.5rem;
+        overflow: hidden;
+    }
+
+        .documento-item .documento-info strong {
+            flex: 1 1 auto;
+            min-width: 0;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: block;
+        }
+
+    .documento-item .fecha {
+        white-space: nowrap;
+        font-size: 0.85rem;
+        flex-shrink: 0; 
+    }
+    .documento-item .estado {
+        display: inline-flex;
+        align-items: center;
+        line-height: 1; 
+        font-size: 0.85rem;
+        flex-shrink: 0;
+        white-space: nowrap;
+    }
+    .documento-item .btnEliminarDoc {
+        flex-shrink: 0;
+    }
+#modalListarDocumentos .documento-item .estado.text-danger {
+    margin-top: 0; 
 }
+#modalListarDocumentos ul li.documento-item {
+    margin-bottom: 0.75rem; 
+}
+
 
 .switch-container {
     display: flex;
-    flex-direction: column; 
-    align-items: flex-start; 
+    flex-direction: column;
+    align-items: flex-start;
     gap: 10px;
     margin-top: 0.5rem;
 }
@@ -229,8 +262,8 @@ ul{
 .switch {
     position: relative;
     display: inline-block;
-    width: 40px;
-    height: 24px;
+    width: 35px;
+    height: 20px;
 }
 
     .switch input {
@@ -254,8 +287,8 @@ ul{
     .slider:before {
         position: absolute;
         content: "";
-        height: 19px;
-        width: 19px;
+        height: 17px;
+        width: 17px;
         left: 3px;
         bottom: 3px;
         background-color: White;
@@ -290,29 +323,28 @@ ul{
     font-size: 0.95rem; 
 }
 .select2-container--default .select2-selection--single {
-    height: calc(2.25rem + 2px); /* Altura consistente con los otros campos */
-    padding: .375rem .75rem; /* Espaciado interno similar al de .form-control */
-    font-size: 1rem; /* Tamaño de fuente consistente */
-    border: 1px solid #ced4da; /* Borde gris similar a los otros campos */
-    border-radius: .25rem; /* Bordes redondeados */
-    background-color: #fff; /* Fondo blanco */
+    height: calc(2.25rem + 2px); 
+    padding: .375rem .75rem; 
+    font-size: 1rem; 
+    border: 1px solid #ced4da; 
+    border-radius: .25rem; 
+    background-color: #fff; 
 }
 
-    /* Estilo para el texto dentro del select2 */
     .select2-container--default .select2-selection--single .select2-selection__rendered {
-        color: #495057; /* Color de texto similar al de .form-control */
+        color: #495057; 
     }
 
-    /* Estilo para el icono de dropdown dentro de select2 */
+    
     .select2-container--default .select2-selection--single .select2-selection__arrow {
-        height: 30px; /* Ajustar altura para que se vea consistente */
-        right: 10px; /* Ajustar la posición del icono */
+        height: 30px; 
+        right: 10px; 
     }
 
-/* Estilo cuando el select2 está en focus (cuando se hace clic en él) */
+
 .select2-container--default.select2-container--focus .select2-selection--single {
-    border-color: #80bdff; /* Color de borde cuando está en foco (similar al foco en .form-control) */
-    box-shadow: 0 0 0 .2rem rgba(38, 143, 255, .25); /* Sombra similar a .form-control cuando está en foco */
+    border-color: #80bdff; 
+    box-shadow: 0 0 0 .2rem rgba(38, 143, 255, .25); 
 }
 
 /*Estilos para los radio en Testimonio*/

@@ -27,7 +27,7 @@ namespace Preacepta.LN.Citas.Listar
         }
         public async Task<List<CitasDTO>> ListarPorIdCliente(int idCliente)
         {
-            return await _listar.ListarPorIdCliente(idCliente); // <- NUEVO
+            return await _listar.ListarPorIdCliente(idCliente); 
         }
 
         public async Task<List<CitasDTO>> TresCitasMasProximasXAfitrion(int idCliente)
@@ -38,6 +38,33 @@ namespace Preacepta.LN.Citas.Listar
         public async Task<List<TCitasCliente>> TresCitasMasProximasXCliente(int idCliente)
         {
             return await _listar.TresCitasMasProximasXCliente(idCliente);
+        }
+        public async Task<List<CitasDTO>> ListarPorFecha(DateTime fecha)
+        {
+            
+            DateOnly fechaOnly = DateOnly.FromDateTime(fecha);
+
+            
+            return await _listar.ListarPorFecha(fechaOnly);
+        }
+        public async Task<CitasDTO> ObtenerPorId(int id)
+        {
+            return await _listar.ObtenerPorId(id);
+        }
+
+        public async Task<GePersonaDTO> ObtenerPersonaPorCedula(string cedula)
+        {
+            return await _listar.ObtenerPersonaPorCedula(cedula);
+        }
+
+        public async Task<List<CitasTipoDTO>> ListarTiposCita()
+        {
+            return await _listar.ListarTiposCita();
+        }
+
+        public async Task<List<CitasDTO>> ListarPorFecha(DateOnly fecha)
+        {
+            return await _listar.ListarPorFecha(fecha); 
         }
     }
 }

@@ -2,7 +2,7 @@
 
 @{
     ViewData["Title"] = "Eliminar Tipo de Cita";
-    Layout = "_Layout";
+    Layout = "_LayoutGestor";
 }
 
 <h2>¿Estás seguro que deseas eliminar este tipo de cita?</h2>
@@ -19,5 +19,5 @@
 <form asp-action="Delete" method="post">
     <input type="hidden" asp-for="Id" />
     <input type="submit" value="Eliminar" class="btn btn-danger" /> |
-    <a asp-controller="Citas" asp-action="Citas" class="btn btn-secondary">Cancelar</a>
+    <a asp-controller="Citas" asp-action="Citas" class="contact-btn--navegacion">Cancelar</a>
 </form>

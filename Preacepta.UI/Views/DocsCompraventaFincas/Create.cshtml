@@ -2,7 +2,7 @@
 
 @{
     ViewData["Title"] = "Create";
-    Layout = "_Layout";
+    Layout = "_LayoutGestor";
 }
 
 <h1>Create</h1>
@@ -51,19 +51,17 @@
                 <span asp-validation-for="NaturalezaFinca" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="DistritoFinca" class="control-label"></label>
-                <select asp-for="DistritoFinca" class ="form-control" asp-items="ViewBag.DistritoFinca"></select>
+                <label asp-for="ProvinciaFinca" class="control-label"></label>
+                <select asp-for="ProvinciaFinca" class="form-control" asp-items="ViewBag.ProvinciaFinca"></select>
             </div>
             <div class="form-group">
                 <label asp-for="CantonFinca" class="control-label"></label>
-                <input asp-for="CantonFinca" class="form-control" />
-                <span asp-validation-for="CantonFinca" class="text-danger"></span>
+                <select asp-for="CantonFinca" class="form-control" asp-items="ViewBag.CantonFinca"></select>
             </div>
             <div class="form-group">
-                <label asp-for="ProvinciaFinca" class="control-label"></label>
-                <input asp-for="ProvinciaFinca" class="form-control" />
-                <span asp-validation-for="ProvinciaFinca" class="text-danger"></span>
-            </div>
+                <label asp-for="DistritoFinca" class="control-label"></label>
+                <select asp-for="DistritoFinca" class ="form-control" asp-items="ViewBag.DistritoFinca"></select>
+            </div>           
             <div class="form-group">
                 <label asp-for="AreaFincaM2" class="control-label"></label>
                 <input asp-for="AreaFincaM2" class="form-control" />
@@ -110,10 +108,6 @@
                 <span asp-validation-for="OrigenFondos" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="LugarFirma" class="control-label"></label>
-                <select asp-for="LugarFirma" class ="form-control" asp-items="ViewBag.LugarFirma"></select>
-            </div>
-            <div class="form-group">
                 <label asp-for="HoraFirma" class="control-label"></label>
                 <input asp-for="HoraFirma" class="form-control" />
                 <span asp-validation-for="HoraFirma" class="text-danger"></span>
@@ -124,9 +118,12 @@
                 <span asp-validation-for="FechaFirma" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+                <label asp-for="LugarFirma" class="control-label"></label>
+                <select asp-for="LugarFirma" class="form-control" asp-items="ViewBag.LugarFirma"></select>
             </div>
-
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>           
         </form>
     </div>
 </div>

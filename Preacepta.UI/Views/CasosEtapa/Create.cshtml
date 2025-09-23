@@ -2,7 +2,7 @@
 
 @{
     ViewData["Title"] = "Create";
-    Layout = "_Layout";
+    Layout = "_LayoutGestor";
 }
 
 <h1>Crear</h1>
@@ -12,12 +12,7 @@
 <div class="row">
     <div class="col-md-4">
         <form asp-action="Create">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <!--<div class="form-group">
-                <label asp-for="Fecha" class="control-label"></label>
-                <input asp-for="Fecha" class="form-control" />
-                <span asp-validation-for="Fecha" class="text-danger"></span>
-            </div>-->
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>          
             <div class="form-group">
                 <label asp-for="Nombre" class="control-label"></label>
                 <input asp-for="Nombre" class="form-control" />
@@ -31,15 +26,8 @@
             <div class="form-group">
                 <label asp-for="IdCaso" class="control-label"></label>
                 <select asp-for="IdCaso" class ="form-control" asp-items="ViewBag.IdCaso"></select>
-            </div>
-            <!--<div class="form-group form-check">
-                <label class="form-check-label">
-                    <input class="form-check-input" asp-for="Activo" /> @Html.DisplayNameFor(model => model.Activo)
-                </label>
-            </div>-->
-
+            </div>           
             <br />
-
             <div class="form-group">
                 <input type="submit" value="Crear" class="btn btn-primary" style=" width: 115px; height: 40px;" />
             </div>

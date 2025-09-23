@@ -142,15 +142,19 @@ namespace Preacepta.UI.Controllers
             if (ModelState.IsValid)
             {
                 await _crear.Crear(tCasosEtapa);
-                if (tCasosEtapa.Activo == true) 
+                
+                if (tCasosEtapa.Activo == true) //Valida si la etapa que se va a crear tiene la opcion de Cerrar caso activada
                 {
-                    caso.Activo = false;
+                    caso.Activo = false; //modifica el objeto en BD para que sea Activo false
                     await _editarCaso.Editar(caso);
+                    TempData["CasoCerrado"] = "El caso fue cerrado exitosamente";
+                    return RedirectToAction("CasosListadoHistorial", "Caso", new { id = IdCaso });
                 }
-                TempData["CasoCerrado"] = "El caso fue cerrado y se encuentra en Casos cerrados";
-                return RedirectToAction("CasosListado", "CasosListado", new { id = IdCaso });
+                
+                TempData["EtapaCreada"] = "Se ha agregado la nueva etapa su caso legal";
+                return RedirectToAction("EtapasPL", new { id = IdCaso });
             }
-            
+
             ViewBag.IdCaso = caso.IdCaso;
             ViewBag.NombreCaso = caso.Nombre;
             return View(tCasosEtapa);
@@ -357,6 +361,7 @@ namespace Preacepta.UI.Controllers
         /*-----------------------------------------------------------------//CONTROLLER METODOS DE FRAMEWORK\\--------------------------------------------------------------*/
         /********************************************************************************************************************************************************************/
 
+        #region Listar etapas de caso Root
         // GET: CasosEtapa
         [Authorize(Roles = "Gestor")]
         public async Task<IActionResult> Index()
@@ -364,7 +369,9 @@ namespace Preacepta.UI.Controllers
             //var contexto = _context.TCasosEtapas.Include(t => t.IdCasoNavigation);
             return View(await _listar.listar());
         }
+        #endregion
 
+        #region Detalles Etapas de Caso Root metodo GET
         // GET: CasosEtapa/Details/5
         [Authorize(Roles = "Gestor")]
         public async Task<IActionResult> Details(int id)
@@ -382,7 +389,9 @@ namespace Preacepta.UI.Controllers
 
             return View(tCasosEtapa);
         }
+        #endregion
 
+        #region Crear Etapas de Caso Root metodo GET y POST
         // GET: CasosEtapa/Create
         [Authorize(Roles = "Gestor")]
         public IActionResult Create()
@@ -407,7 +416,9 @@ namespace Preacepta.UI.Controllers
             ViewData["IdCaso"] = new SelectList(_listarCasos.listar().Result, "IdCaso", "Nombre", tCasosEtapa.IdCaso);
             return View(tCasosEtapa);
         }
+        #endregion
 
+        #region Editar Etapas de Caso Root metodo GET y POST
         // GET: CasosEtapa/Edit/5
         [Authorize(Roles = "Gestor")]
         public async Task<IActionResult> Edit(int id)
@@ -453,7 +464,9 @@ namespace Preacepta.UI.Controllers
             ViewData["IdCaso"] = new SelectList(_listarCasos.listar().Result, "IdCaso", "Nombre", tCasosEtapa.IdCaso);
             return View(tCasosEtapa);
         }
+        #endregion
 
+        #region Eliminar Etapas de Caso Root metodo GET y POST
         // GET: CasosEtapa/Delete/5
         [Authorize(Roles = "Gestor")]
         public async Task<IActionResult> Delete(int id)
@@ -480,6 +493,7 @@ namespace Preacepta.UI.Controllers
         {
             await _eliminar.Eliminar(id);
             return RedirectToAction(nameof(Index));
-        } 
+        }
+        #endregion
     }
 }
