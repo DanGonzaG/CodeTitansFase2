@@ -1,0 +1,181 @@
+﻿@model IEnumerable<Preacepta.Modelos.AbstraccionesFrond.TTestimonioDTO>
+@Html.AntiForgeryToken()
+
+<link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" rel="stylesheet" />
+
+<head>
+    <link href="~/lyso/css/daniel.css" rel="stylesheet" />
+</head>
+
+<head>
+    <link href="~/lyso/css/Testimonials.css" rel="stylesheet" />
+</head>
+
+@if (TempData["SuccessMessage"] != null)
+{
+    <div class="alert alert-success">
+        @TempData["SuccessMessage"]
+    </div>
+}
+
+@if (TempData["ErrorMessage"] != null)
+{
+    <div class="alert alert-danger">
+        @TempData["ErrorMessage"]
+    </div>
+}
+
+<!-- Page Title -->
+<div class="page-title-area page-title-area-two title-img-one">
+    <div class="d-table">
+        <div class="d-table-cell">
+            <div class="page-title-text">
+                <h2>Lista de Testimonios Reportados</h2>
+                <ul>
+                    <li>
+                        <a asp-controller="Home" asp-action="Index">Home</a>
+                    </li>
+                    <li>
+                        <i class="icofont-simple-right"></i>
+                    </li>
+                    <li>
+                        <a asp-controller="Home" asp-action="UsuarioAutenticado" asp-route-correo="@User.Identity.Name">PreaceptaApp</a>
+                    </li>
+                    <li>
+                        <i class="icofont-simple-right"></i>
+                    </li>
+                    <li>
+                        <a asp-controller="TTestimonios" asp-action="TestimonialsLista">Lista Testimonios</a>
+                    </li>
+                    <li>
+                        <i class="icofont-simple-right"></i>
+                    </li>
+                    <li>
+                        <strong>Testimonios Reportados</strong>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<br />
+<br />
+<br />
+
+
+<div class="contact-form contact-form-two contact-form-three">
+    <div class="container">
+        <div class="contact-wrap">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Fecha</th>
+                        <th>Nombre</th>
+                        <th>Comentario</th>
+                        <th>Evaluación</th>
+                        <th>Estado</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@DateTime.Parse(item.Fecha).ToString("dd/MM/yyyy")</td>
+                            <td>
+                                @{
+                                    var persona = item.IdClienteNavigation;
+                                }
+                            @(persona != null
+                                                        ? $"{persona.Nombre} {persona.Apellido1} {persona.Apellido2}"
+                                                        : item.IdCliente.ToString())
+                        </td>
+
+                            <td>@item.Comentario</td>
+                            <td>
+                                <div style="white-space:nowrap">
+                                    @if (item.Evaluacion.HasValue)
+                                        {
+                                            @for (int i = 0; i < item.Evaluacion.Value; i++)
+                                            {
+                                                <i class="icofont-star"></i>
+                                            }
+                                        }
+                                </div>
+                            </td>
+                            <td>@(item.Activo ? "Activo" : "Inactivo")</td>
+                            <td>
+                                <div class="acciones-btns-inline">
+                                    <button type="button" class="contact-btn--revision btn-activar" data-id="@item.IdTestimonio">Activar</button>
+                                    <button type="button" class="contact-btn--tercero btn-eliminar" data-id="@item.IdTestimonio">Eliminar</button>
+                                </div>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+            <div class="help-shape">
+                <img src="~/lyso/img/home-one/6.png" alt="Shape">
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    <script>
+        $(document).ready(function () {
+
+            // Función para eliminar
+            $('.btn-eliminar').click(function () {
+                var id = $(this).data('id');
+                if (confirm('¿Está seguro que desea eliminar permanentemente este testimonio?')) {
+                    $.ajax({
+                        url: '@Url.Action("Delete2", "TTestimonios")',
+                        type: 'POST',
+                        data: { id: id },
+                        headers: {
+                            'RequestVerificationToken': $('input[name="__RequestVerificationToken"]').val()
+                        },
+                        success: function (response) {
+                            location.reload();
+                        },
+                        error: function () {
+                            alert('Error al eliminar el testimonio');
+                        }
+                    });
+                }
+            });
+
+            // Activar testimonio
+            $('.btn-activar').click(function () {
+                var id = $(this).data('id');
+                var $btn = $(this);
+                var $row = $btn.closest('tr');
+                if (confirm('¿Está seguro de activar este testimonio?')) {
+                    $btn.prop('disabled', true).html('<i class="fas fa-spinner fa-spin"></i> Activando...');
+                    $.ajax({
+                        url: '@Url.Action("Activar", "TTestimonios")',
+                        type: 'POST',
+                        data: { id: id },
+                        headers: {
+                            'RequestVerificationToken': $('input[name="__RequestVerificationToken"]').val()
+                        },
+                        success: function (response) {
+                            $row.fadeOut(400, function () { $(this).remove(); });
+                            toastr.success(response.message);
+                        },
+                        error: function (xhr) {
+                            toastr.error("Error de conexión con el servidor");
+                            console.error("Error:", xhr.responseText);
+                        },
+                        complete: function () {
+                            $btn.prop('disabled', false).text('Activar');
+                        }
+                    });
+                }
+            });
+        });
+    </script>
+}

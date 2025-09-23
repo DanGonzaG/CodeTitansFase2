@@ -27,7 +27,7 @@ document.getElementById('btnPrevisualizar').addEventListener('click', () => {
     const formaPago = document.getElementById('idFormaPago').value;
     const medioPago = document.getElementById('idMedioPago').value;
     const origenFondos = document.getElementById('idOrigenFondos').value;
-    const lugarFirma = document.getElementById('idLugarFirma').value;
+    const lugarFirma = document.getElementById('distrito2').value;
     const horaFirma = document.getElementById('idHoraFirma').value;
     const fechaFirma = document.getElementById('idFechaFirma').value;
 

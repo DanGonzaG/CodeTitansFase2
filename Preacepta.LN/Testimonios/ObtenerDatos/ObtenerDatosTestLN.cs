@@ -37,7 +37,7 @@ namespace Preacepta.LN.Testimonios.ObtenerDatos
                 IdCliente = testDTO.IdCliente,
                 Comentario = testDTO.Comentario,
                 Evaluacion = testDTO.Evaluacion,
-                Activo = true, // Forzado explícitamente
+                Activo = testDTO.Activo, // Forzado explícitamente
                 IdClienteNavigation = testDTO.IdClienteNavigation,
                 Fecha = DateTime.Now,
             };

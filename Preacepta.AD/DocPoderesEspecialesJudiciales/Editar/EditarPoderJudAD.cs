@@ -1,4 +1,5 @@
-﻿using Preacepta.Modelos.AbstraccionesBD;
+﻿using Microsoft.EntityFrameworkCore;
+using Preacepta.Modelos.AbstraccionesBD;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,24 +17,21 @@ namespace Preacepta.AD.DocPoderesEspecialesJudiciales.Editar
             _contexto = contexto;
         }
 
+        // using Microsoft.EntityFrameworkCore;
+
         public async Task<int> editar(TDocsPoderesEspecialesJudiciale poderJud)
         {
-            if (poderJud == null)
-            {
-                return 0;
-            }
+            if (poderJud == null || poderJud.IdDoc <= 0) return 0;
 
-            try
-            {
-                _contexto.TDocsPoderesEspecialesJudiciales.Update(poderJud);
-                int bandera = await _contexto.SaveChangesAsync();
-                return bandera;
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"Error en EditarPoderJudAD : {ex.Message}");
-                return -1;
-            }
+            _contexto.TDocsPoderesEspecialesJudiciales.Attach(poderJud);
+
+            // marca SOLO lo que realmente quieras cambiar:
+            _contexto.Entry(poderJud).Property(x => x.IdAbogado).IsModified = true;
+
+            // si envías NumCausa desde arriba:
+            // _contexto.Entry(poderJud).Property(x => x.NumCausa).IsModified = true;
+
+            return await _contexto.SaveChangesAsync();
         }
 
     }

@@ -21,19 +21,29 @@ namespace Preacepta.AD.Testimonios.Listar
         /*Nueva prueba*/
         public async Task<List<TTestimonioDTO>> listar2()
         {
-            List<TTestimonioDTO> lista = await (from test in _contexto.TTestimonios
-                                              select new TTestimonioDTO
-                                              {
-                                                  IdTestimonio = test.IdTestimonio,
-                                                  Fecha = test.Fecha.ToString("yyyy-MM-dd HH:mm"),
-                                                  IdCliente = test.IdCliente,
-                                                  Comentario = test.Comentario,
-                                                  Evaluacion = test.Evaluacion,
-                                                  Activo = test.Activo,
-                                                  IdClienteNavigation = test.IdClienteNavigation
-                                              }).ToListAsync();
+            var lista = await _contexto.TTestimonios
+                .Include(t => t.IdClienteNavigation)
+                .Select(test => new TTestimonioDTO
+                {
+                    IdTestimonio = test.IdTestimonio,
+                    Fecha = test.Fecha.ToString("yyyy-MM-dd HH:mm"),
+                    IdCliente = test.IdCliente,
+                    Comentario = test.Comentario,
+                    Evaluacion = test.Evaluacion,
+                    Activo = test.Activo,
+                    IdClienteNavigation = test.IdClienteNavigation != null ? new TGePersona
+                    {
+                        Cedula = test.IdClienteNavigation.Cedula,
+                        Nombre = test.IdClienteNavigation.Nombre,
+                        Apellido1 = test.IdClienteNavigation.Apellido1,
+                        Apellido2 = test.IdClienteNavigation.Apellido2
+                    } : null
+                })
+                .ToListAsync();
+
             return lista;
         }
+
 
         public async Task<List<TTestimonioDTO>> Listar()
         {

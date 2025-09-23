@@ -1,23 +1,16 @@
 ﻿using Preacepta.Modelos.AbstraccionesBD;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Preacepta.Modelos.AbstraccionesFrond
 {
     public class DocsPagareDTO
     {
-
         [Display(Name = "ID del Documento")]
         public int IdDocumento { get; set; }
 
         [Required(ErrorMessage = "El monto numérico es requerido.")]
         [Range(0.01, 999999999999.99, ErrorMessage = "El monto debe ser mayor que cero.")]
-        [Display(Name = "Monto Numérico")]
+        [Display(Name = "Monto del Pagaré")]
         public decimal MontoNumerico { get; set; }
 
         [Display(Name = "Cédula Deudor")]
@@ -50,7 +43,7 @@ namespace Preacepta.Modelos.AbstraccionesFrond
         public string? HoraFirma { get; set; }
 
         [Display(Name = "Fecha de Vencimiento")]
-        public string FechaVencimiento { get; set; }
+        public string FechaVencimiento { get; set; } = null!;
 
         [Display(Name = "Fórmula de Interés")]
         public string InteresFormula { get; set; } = null!;
@@ -79,13 +72,28 @@ namespace Preacepta.Modelos.AbstraccionesFrond
         [Display(Name = "Ubicación de Firma")]
         public int UbicacionFirma { get; set; }
 
+        [Required(ErrorMessage = "La cédula del abogado es requerida.")]
+        [Range(1, int.MaxValue, ErrorMessage = "Debe seleccionar un abogado válido.")]
+        [Display(Name = "Cédula Abogado")]
+        public int CedulaAbogado { get; set; }
+
+        [Display(Name = "Tipo de Sociedad")]
+        [MaxLength(1000, ErrorMessage = "Capacidad de Tipo de Sociedad excedida")]
+        public string? TipoSociedad { get; set; }
+
+        [Display(Name = "Ubicación de la Sociedad")]
+        [MaxLength(100, ErrorMessage = "Capacidad de Ubicación de la Sociedad excedida")]
+        public string? UbicacionSociedad { get; set; }
+
         [Display(Name = "Cedula del deudor en Navigation")]
-        public virtual TGePersona? CedulaDeudorNavigation { get; set; } = null!;
+        public virtual TGePersona? CedulaDeudorNavigation { get; set; }
 
         [Display(Name = "Cedula del Fiador en Navigation")]
-        public virtual TGePersona? CedulaFiadorNavigation { get; set; } = null!;
+        public virtual TGePersona? CedulaFiadorNavigation { get; set; }
 
         [Display(Name = "Lugar de pago en Navigation")]
-        public virtual TCrDistrito? LugarPagoNavigation { get; set; } = null!;
+        public virtual TCrDistrito? LugarPagoNavigation { get; set; }
+
+        public virtual TGeAbogado? CedulaAbogadoNavigation { get; set; }
     }
 }
