@@ -1,418 +1,429 @@
 ﻿using DinkToPdf;
 using DinkToPdf.Contracts;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.EntityFrameworkCore;
-using Preacepta.AD;
+using Preacepta.LN.CrDireccion1.BuscarXid;
+using Preacepta.LN.CrDireccion1.Listar;
 using Preacepta.LN.DocsPagare.Buscar;
 using Preacepta.LN.DocsPagare.Crear;
 using Preacepta.LN.DocsPagare.Editar;
 using Preacepta.LN.DocsPagare.Eliminar;
 using Preacepta.LN.DocsPagare.Listar;
-using Preacepta.Modelos.AbstraccionesBD;
+using Preacepta.LN.GePersona.BuscarXid;
+using Preacepta.LN.HistorialDocumentos.BuscarXid;
+using Preacepta.LN.HistorialDocumentos.Crear;
+using Preacepta.LN.HistorialDocumentos.Eliminar;
+using Preacepta.LN.HistorialDocumentos.Listar;
 using Preacepta.Modelos.AbstraccionesFrond;
 using System;
-using System.Collections.Generic;
 using System.Globalization;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace Preacepta.UI.Controllers
 {
     public class TDocsPagaresController : Controller
     {
         private readonly IConverter _converter;
-        private readonly Contexto _context;
+
+        // LN de pagaré
         private readonly IBuscarPagareLN _buscar;
         private readonly ICrearPagareLN _crear;
         private readonly IEditarPagareLN _editar;
         private readonly IEliminarPagareLN _eliminar;
         private readonly IListarPagareLN _listar;
 
+        // Personas
+        private readonly IBuscarXidGePersonaLN _buscarPersona;
 
-        public TDocsPagaresController(IBuscarPagareLN buscar,
+        // Historial
+        private readonly ICrearHistorialLN _crearHistorialLN;
+        private readonly IListarHistorialLN _listarHistorialLN;
+        private readonly IBuscarHistorialLN _buscarHistorialLN;
+        private readonly IELiminarHistorialLN _eliminarHistorialLN;
+
+        // Direcciones
+        private readonly IListarCrDireccion1LN _listarDirecciones;
+        private readonly IBuscarCrDireccion1LN _buscarDistrito;
+
+        public TDocsPagaresController(
+            IConverter converter,
+            IBuscarPagareLN buscar,
             ICrearPagareLN crear,
             IEditarPagareLN editar,
             IEliminarPagareLN eliminar,
             IListarPagareLN listar,
-            IConverter converter,
-            Contexto context)
+            IBuscarXidGePersonaLN buscarPersona,
+            ICrearHistorialLN crearHistorialLN,
+            IListarHistorialLN listarHistorialLN,
+            IBuscarHistorialLN buscarHistorialLN,
+            IELiminarHistorialLN eliminarHistorialLN,
+            IListarCrDireccion1LN listarDirecciones,
+            IBuscarCrDireccion1LN buscarDistrito
+        )
         {
             _converter = converter;
-            _context = context;
+
             _buscar = buscar;
             _crear = crear;
             _editar = editar;
             _eliminar = eliminar;
-            _listar = listar;           
+            _listar = listar;
+
+            _buscarPersona = buscarPersona;
+
+            _crearHistorialLN = crearHistorialLN;
+            _listarHistorialLN = listarHistorialLN;
+            _buscarHistorialLN = buscarHistorialLN;
+            _eliminarHistorialLN = eliminarHistorialLN;
+
+            _listarDirecciones = listarDirecciones;
+
+            _buscarDistrito = buscarDistrito;
         }
 
-        // GET: TDocsPagares
+        /********************************************************/
+        // controller de Framework
+        /********************************************************/
+
+        #region Listar
+        [Authorize(Roles = "Gestor")]
         public async Task<IActionResult> Index()
         {
             return View(await _listar.Listar());
         }
+        #endregion
 
-        // GET: TDocsPagares/Details/5
+        #region Detalles
+        [Authorize(Roles = "Gestor")]
         public async Task<IActionResult> Details(int id)
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var tDocsPagare = await _buscar.buscar(id);
-            if (tDocsPagare == null)
-            {
-                return NotFound();
-            }
-
-            return View(tDocsPagare);
+            var dto = await _buscar.buscar(id);
+            if (dto == null) return NotFound();
+            return View(dto);
         }
+        #endregion
 
-        // GET: TDocsPagares/Create
-        public IActionResult Create()
+        #region Crear (Root)
+        [Authorize(Roles = "Gestor")]
+        public async Task<IActionResult> Create()
         {
-            return View();
+            // Ubicación de firma como lista plana de distritos
+            var distritos = await _listarDirecciones.listarDistritos();
+            ViewBag.UbicacionFirma = new SelectList(distritos, "IdDistrito", "NombreDistrito");
+
+            return View(new DocsPagareDTO
+            {
+                FechaFirma = DateTime.Today.ToString("yyyy-MM-dd"),
+                HoraFirma = DateTime.Now.ToString("HH:mm")
+            });
         }
 
-        // POST: TDocsPagares/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("IdDocumento,MontoNumerico,CedulaDeudor,SociedadDeudor,CedulaJuridicaSociedad,AcreedorNombre,CedulaJuridicaAcreedor,AcreedorDomicilio,FechaFirma,HoraFirma,FechaVencimiento,InteresFormula,InteresTasaActual,InteresBase,LugarPago,CedulaFiador,UbicacionFirma")] DocsPagareDTO tDocsPagare)
+        [Authorize(Roles = "Gestor")]
+        public async Task<IActionResult> Create([Bind(
+            "IdDocumento,MontoNumerico,CedulaDeudor,SociedadDeudor,CedulaJuridicaSociedad," +
+            "AcreedorNombre,CedulaJuridicaAcreedor,AcreedorDomicilio,FechaFirma,HoraFirma," +
+            "FechaVencimiento,InteresFormula,InteresTasaActual,InteresBase,LugarPago," +
+            "CedulaFiador,UbicacionFirma,CedulaAbogado,TipoSociedad,UbicacionSociedad"
+        )] DocsPagareDTO dto)
         {
-            if (ModelState.IsValid)
-            {
-                /*tDocsPagare.FechaFirma = DateTime.Today.ToString("yyyy-MM-dd");
-                tDocsPagare.HoraFirma = DateTime.Now.ToString("HH:mm"); ;*/
+            if (!ModelState.IsValid) return View(dto);
 
-                await _crear.crear(tDocsPagare);
-                return RedirectToAction(nameof(Index));
-            }
-            return View(tDocsPagare);
-        }
+            await _crear.crear(dto);
 
-        // GET: TDocsPagares/Edit/5
-        public async Task<IActionResult> Edit(int id)
-        {
-            if (id == null)
+            // Obtener el último Id creado y registrar historial (mismo patrón que Autorización)
+            var registros = await _listar.Listar();
+            var ultimo = registros.LastOrDefault();
+            if (ultimo != null)
             {
-                return NotFound();
-            }
-
-            var tDocsPagare = await _buscar.buscar(id);
-            if (tDocsPagare == null)
-            {
-                return NotFound();
-            }
-            return View(tDocsPagare);
-        }
-
-        // POST: TDocsPagares/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("IdDocumento,MontoNumerico,CedulaDeudor,SociedadDeudor,CedulaJuridicaSociedad,AcreedorNombre,CedulaJuridicaAcreedor,AcreedorDomicilio,FechaFirma,HoraFirma,FechaVencimiento,InteresFormula,InteresTasaActual,InteresBase,LugarPago,CedulaFiador,UbicacionFirma")] DocsPagareDTO tDocsPagare)
-        {
-            if (id != tDocsPagare.IdDocumento)
-            {
-                return NotFound();
-            }
-
-            if (ModelState.IsValid)
-            {
-                try
+                var hist = new HistorialDocumentoDTO
                 {
-                    await _editar.editar(tDocsPagare);
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    return NotFound();
-                }
-                return RedirectToAction(nameof(Index));
-            }
-            return View(tDocsPagare);
-        }
-
-        // GET: TDocsPagares/Delete/5
-        public async Task<IActionResult> Delete(int id)
-        {
-            if (id == null)
-            {
-                return NotFound();
+                    Cliente = dto.CedulaDeudor,
+                    Abogado = dto.CedulaAbogado,
+                    Fecha = DateTime.Now.ToString(),
+                    TipoDocumento = "Pagaré",
+                    IdDocumento = ultimo.IdDocumento,
+                    Titulo = $"Doc.no.{ultimo.IdDocumento} Pagaré"
+                };
+                await _crearHistorialLN.Crear(hist);
             }
 
-            var tDocsPagare = await _buscar.buscar(id);
-            if (tDocsPagare == null)
-            {
-                return NotFound();
-            }
-
-            return View(tDocsPagare);
-        }
-
-        // POST: TDocsPagares/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
-        {
-            await _eliminar.eliminar(id);
             return RedirectToAction(nameof(Index));
         }
+        #endregion
 
-        //De aquí en adelante estan mis metodos
-        //Creacion de paagare
-        public IActionResult CreateDocsPagares()
+        #region Editar (Root)
+        [Authorize(Roles = "Gestor")]
+        public async Task<IActionResult> Edit(int id)
         {
-            ViewData["CedulaDeudor"] = new SelectList(
-            _context.TGePersonas.Select(p => new
-            {
-                Cedula = p.Cedula,
-                apellido = p.Apellido1,
-                Texto = p.Nombre + " " + p.Apellido1 + " - " + p.Cedula
-            }),
-            "Cedula",
-            "Texto");
+            var dto = await _buscar.buscar(id);
+            if (dto == null) return NotFound();
 
-            /*ViewData["CedulaDeudor"] = new SelectList(_context.TGePersonas, "Cedula", "Cedula");*/
-            ViewData["CedulaFiador"] = new SelectList(_context.TGePersonas, "Cedula", "Cedula");
+            var distritos = await _listarDirecciones.listarDistritos();
+            ViewBag.UbicacionFirma = new SelectList(distritos, "IdDistrito", "NombreDistrito", dto.UbicacionFirma);
 
-            ViewData["LugarPago"] = new SelectList(_context.TCrDistritos, "IdDistrito", "NombreDistrito");
-            ViewData["UbicacionFirma"] = new SelectList(_context.TCrDistritos, "IdDistrito", "NombreDistrito");
-
-            return View();
-
+            return View(dto);
         }
 
-        // POST: TDocsPagares/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> CreateDocsPagares(
-        [Bind("IdDocumento,MontoNumerico,CedulaDeudor,SociedadDeudor,CedulaJuridicaSociedad,AcreedorNombre,CedulaJuridicaAcreedor,AcreedorDomicilio,FechaVencimiento,InteresFormula,InteresTasaActual,InteresBase,LugarPago,CedulaFiador,UbicacionFirma")] DocsPagareDTO tDocsPagare,
-        [FromForm] int? DocumentoAnteriorId
-)
+        [Authorize(Roles = "Gestor")]
+        public async Task<IActionResult> Edit(int id, [Bind(
+            "IdDocumento,MontoNumerico,CedulaDeudor,SociedadDeudor,CedulaJuridicaSociedad," +
+            "AcreedorNombre,CedulaJuridicaAcreedor,AcreedorDomicilio,FechaFirma,HoraFirma," +
+            "FechaVencimiento,InteresFormula,InteresTasaActual,InteresBase,LugarPago," +
+            "CedulaFiador,UbicacionFirma,CedulaAbogado,TipoSociedad,UbicacionSociedad"
+        )] DocsPagareDTO dto)
         {
-            if (ModelState.IsValid)
-            {
-                // Establecer fecha y hora actuales si no vienen
-               /* tDocsPagare.FechaFirma = DateTime.Today.ToString("yyyy-MM-dd");
-                tDocsPagare.HoraFirma = DateTime.Now.ToString("HH:mm");*/
+            if (id != dto.IdDocumento) return NotFound();
+            if (!ModelState.IsValid) return View(dto);
 
-                // Eliminar documento anterior y su historial
-                /*if (DocumentoAnteriorId.HasValue)
-                {
-                    // Buscar historial por ID
-                    var historialAnterior = await _context.HistorialDocumentos
-                        .FirstOrDefaultAsync(h => h.Id == DocumentoAnteriorId.Value);
+            await _editar.editar(dto);
+            return RedirectToAction(nameof(Index));
+        }
+        #endregion
 
-                    if (historialAnterior != null)
-                    {
-                        // Obtener el ID del documento original desde el historial
-                        var idDocOriginal = historialAnterior.DocumentoIdOriginal;
-
-                        // Buscar y eliminar el documento original
-                        var docAnterior = await _context.TDocsPagares
-                            .FirstOrDefaultAsync(p => p.IdDocumento == idDocOriginal);
-
-                        if (docAnterior != null)
-                            _context.TDocsPagares.Remove(docAnterior);
-
-                        // Eliminar también el historial
-                        _context.HistorialDocumentos.Remove(historialAnterior);
-
-                        await _context.SaveChangesAsync();
-                    }
-                }*/
-
-                // Crear nuevo documento
-                await _crear.crear(tDocsPagare);
-
-                // Obtener nombre del deudor
-                var deudor = await _context.TGePersonas
-                    .FirstOrDefaultAsync(p => p.Cedula == tDocsPagare.CedulaDeudor);
-
-                string nombreDeudor = deudor != null
-                    ? $"{deudor.Nombre} {deudor.Apellido1} {deudor.Apellido2}"
-                    : tDocsPagare.CedulaDeudor.ToString();
-
-                // Crear nuevo historial con ID real del documento creado
-                var nuevoIdDocumento = _context.TDocsPagares
-                    .OrderByDescending(p => p.IdDocumento)
-                    .Select(p => p.IdDocumento)
-                    .FirstOrDefault();
-
-                var nuevoHistorial = new HistorialDocumento
-                {
-                    Fecha = DateTime.Now,
-                    TipoDocumento = "Pagaré",
-                    Cliente = nombreDeudor,
-                    Abogado = tDocsPagare.AcreedorNombre,
-                    DocumentoIdOriginal = nuevoIdDocumento
-                };
-
-                _context.HistorialDocumentos.Add(nuevoHistorial);
-                await _context.SaveChangesAsync();
-
-                return RedirectToAction("DocsHistorial", "HistorialDocumentos");
-            }
-
-            // Si falla la validación, recargar listas
-            ViewData["LugarPago"] = new SelectList(_context.TCrDistritos, "IdDistrito", "NombreDistrito", tDocsPagare.LugarPago);
-            ViewData["CedulaDeudor"] = new SelectList(_context.TGePersonas.Select(p => new
-            {
-                Cedula = p.Cedula,
-                apellido = p.Apellido1,
-                Texto = p.Nombre + " " + p.Apellido1 + " - " + p.Cedula
-            }),
-            "Cedula", "Texto", tDocsPagare?.CedulaDeudor);
-            ViewData["CedulaDeudor"] = new SelectList(_context.TGePersonas, "Cedula", "Cedula", tDocsPagare.CedulaDeudor);
-            ViewData["CedulaFiador"] = new SelectList(_context.TGePersonas, "Cedula", "Cedula", tDocsPagare.CedulaFiador);
-            ViewData["UbicacionFirma"] = new SelectList(_context.TCrDistritos, "IdDistrito", "NombreDistrito", tDocsPagare.UbicacionFirma);
-
-            return View(tDocsPagare);
+        #region Eliminar (Root)
+        [Authorize(Roles = "Gestor")]
+        public async Task<IActionResult> Delete(int id)
+        {
+            var dto = await _buscar.buscar(id);
+            if (dto == null) return NotFound();
+            return View(dto);
         }
 
-
-
-
-
-        [HttpGet]
-        public IActionResult PrevisualizarPDF(
-        string idDocumento,
-        string montoNumerico,
-        string cedulaDeudor,
-        string sociedadDeudor,
-        string cedulaJuridicaSociedad,
-        string acreedorNombre,
-        string cedulaJuridicaAcreedor,
-        string acreedorDomicilio,
-        string? fechaFirmaNuevo,
-        string? horaFirmaNuevo,
-        string fechaVencimiento,
-        string interesFormula,
-        string interesTasaActual,
-        string interesBase,
-        string lugarPago,
-        string cedulaFiador,
-        string ubicacionFirma
- )
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Gestor")]
+        public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var templatePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "lyso", "DocsMachotes", "DocsPagare.html");
-            var htmlTemplate = System.IO.File.ReadAllText(templatePath);
+            var doc = await _buscar.buscar(id);
+            if (doc != null)
+            {
+                await _eliminar.eliminar(id);
 
-            htmlTemplate = htmlTemplate
-                .Replace("{{ID_DOCUMENTO}}", idDocumento)
-                .Replace("{{MONTO_NUMERICO}}", montoNumerico)
-                .Replace("{{CEDULA_DEUDOR}}", cedulaDeudor)
-                .Replace("{{SOCIEDAD_DEUDOR}}", sociedadDeudor)
-                .Replace("{{CEDULA_JURIDICA_SOCIEDAD}}", cedulaJuridicaSociedad)
-                .Replace("{{ACREEDOR_NOMBRE}}", acreedorNombre)
-                .Replace("{{CEDULA_JURIDICA_ACREEDOR}}", cedulaJuridicaAcreedor)
-                .Replace("{{ACREEDOR_DOMICILIO}}", acreedorDomicilio)
-
-                /*.Replace("{{FECHA_FIRMA_NUEVO}}", fechaFirmaNuevo)
-
-                .Replace("{{HORA_FIRMA_NUEVO}}",
-                DateTime.TryParse(horaFirmaNuevo, out var hora) ? hora.ToString("hh:mm tt") : "[Hora inválida]")*/
-
-                .Replace("{{FECHA_VENCIMIENTO}}", fechaVencimiento)
-                .Replace("{{INTERES_FORMULA}}", interesFormula)
-                .Replace("{{INTERES_TASA_ACTUAL}}", interesTasaActual)
-                .Replace("{{INTERES_BASE}}", interesBase)
-                .Replace("{{LUGAR_PAGO}}", lugarPago)
-                .Replace("{{CEDULA_FIADOR}}", cedulaFiador)
-                .Replace("{{UBICACION_FIRMA}}", ubicacionFirma);
-
-                var ahora = DateTime.Now;
-
-                htmlTemplate = htmlTemplate
-                    .Replace("{{HORA_FIRMA_NUEVO}}", ahora.ToString("hh:mm tt"))
-                    .Replace("{{FECHA_FIRMA_NUEVO}}", ahora.ToString("yyyy-MM-dd"));
-
-                var doc = new HtmlToPdfDocument()
-                {
-                    GlobalSettings = new GlobalSettings
-                    {
-                        PaperSize = PaperKind.A4,
-                        Orientation = Orientation.Portrait
-                    },
-                    Objects = {
-                new ObjectSettings
-                {
-                    HtmlContent = htmlTemplate,
-                    WebSettings = { DefaultEncoding = "utf-8" }
-                }
+                // Mismo patrón de Autorización: buscar id del historial por (id, tipo) y eliminar
+                var idHist = await _buscarHistorialLN.BuscarXidDocumento(id, "Pagaré");
+                if (idHist > 0)
+                    await _eliminarHistorialLN.Eliminar(idHist);
             }
-                };
+            return RedirectToAction(nameof(Index));
+        }
+        #endregion
 
-                var pdf = _converter.Convert(doc);
+        /********************************************************/
+        // controller personalizados
+        /********************************************************/
 
-                return File(pdf, "application/pdf");
-            }
-
-
-        //Prueba para editar en historialDocumentos
+        #region Crear Documento – Abogado
         [HttpGet]
-        public async Task<IActionResult> EditarDesdeHistorial(int id)
+        [Authorize(Roles = "Gestor, Abogado")]
+        public async Task<IActionResult> CreateDocsPagares(int CedulaDeudor, int CedulaFiador)
         {
-            var historial = await _context.HistorialDocumentos.FindAsync(id);
-            if (historial == null || historial.TipoDocumento != "Pagaré" || historial.DocumentoIdOriginal == null)
-            {
-                return NotFound();
-            }
+            var deudor  = await _buscarPersona.buscar(CedulaDeudor);
+            var fiador  = await _buscarPersona.buscar(CedulaFiador);
+            var abogado = await _buscarPersona.buscarXcorreo(User.Identity.Name);
 
-            var docOriginal = await _context.TDocsPagares
-                .FirstOrDefaultAsync(d => d.IdDocumento == historial.DocumentoIdOriginal.Value);
+            ViewBag.DeudorCedula = deudor?.Cedula ?? 0;
+            ViewBag.DeudorNombre = deudor?.Nombre ?? "";
+            ViewBag.DeudorApellido1 = deudor?.Apellido1 ?? "";
+            ViewBag.DeudorApellido2 = deudor?.Apellido2 ?? "";
 
-            if (docOriginal == null)
-            {
-                return NotFound();
-            }
+            ViewBag.FiadorCedula = fiador?.Cedula ?? 0;
+            ViewBag.FiadorNombre = fiador?.Nombre ?? "";
+            ViewBag.FiadorApellido1 = fiador?.Apellido1 ?? "";
+            ViewBag.FiadorApellido2 = fiador?.Apellido2 ?? "";
+
+            ViewBag.FiadorNombreCompleto = $"{ViewBag.FiadorNombre} {ViewBag.FiadorApellido1} {ViewBag.FiadorApellido2}".Trim();
+
+            ViewBag.AbogadoCedula = abogado?.Cedula ?? 0;
+
+            var distritos = await _listarDirecciones.listarDistritos();
+            ViewBag.UbicacionFirma = new SelectList(distritos, "IdDistrito", "NombreDistrito");
 
             var model = new DocsPagareDTO
             {
-                MontoNumerico = docOriginal.MontoNumerico,
-                CedulaDeudor = docOriginal.CedulaDeudor,
-                SociedadDeudor = docOriginal.SociedadDeudor,
-                CedulaJuridicaSociedad = docOriginal.CedulaJuridicaSociedad,
-                AcreedorNombre = docOriginal.AcreedorNombre,
-                CedulaJuridicaAcreedor = docOriginal.CedulaJuridicaAcreedor,
-                AcreedorDomicilio = docOriginal.AcreedorDomicilio,
-                FechaVencimiento = docOriginal.FechaVencimiento.ToString("yyyy-MM-dd"),
-                InteresFormula = docOriginal.InteresFormula,
-                InteresTasaActual = docOriginal.InteresTasaActual,
-                InteresBase = docOriginal.InteresBase,
-                LugarPago = docOriginal.LugarPago,
-                CedulaFiador = docOriginal.CedulaFiador,
-                UbicacionFirma = docOriginal.UbicacionFirma,
-                FechaFirma = docOriginal.FechaFirma.ToString("yyyy-MM-dd"),
-                HoraFirma = docOriginal.HoraFirma.ToString("HH:mm")
-
+                CedulaDeudor  = deudor?.Cedula ?? 0,
+                CedulaFiador  = fiador?.Cedula ?? 0,
+                CedulaAbogado = abogado?.Cedula ?? 0,
+                FechaFirma    = DateTime.Today.ToString("yyyy-MM-dd"),
+                HoraFirma     = DateTime.Now.ToString("HH:mm")
             };
-
-            ViewBag.DocumentoAnteriorId = historial.Id; // ✅ Deja esto
-
-            ViewData["CedulaDeudor"] = new SelectList(
-            _context.TGePersonas.Select(p => new
-            {
-                Cedula = p.Cedula,
-                apellido = p.Apellido1,
-                Texto = p.Nombre + " " + p.Apellido1 + " - " + p.Cedula
-            }),
-            "Cedula",
-            "Texto", model.CedulaDeudor);
-            ViewData["CedulaFiador"] = new SelectList(_context.TGePersonas, "Cedula", "Cedula", model.CedulaFiador);
-            ViewData["LugarPago"] = new SelectList(_context.TCrDistritos, "IdDistrito", "NombreDistrito", model.LugarPago);
-            ViewData["UbicacionFirma"] = new SelectList(_context.TCrDistritos, "IdDistrito", "NombreDistrito", model.UbicacionFirma);
 
             return View("CreateDocsPagares", model);
         }
 
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Gestor, Abogado")]
+        public async Task<IActionResult> CreateDocsPagares(DocsPagareDTO dto)
+        {
+            dto.FechaFirma ??= DateTime.Now.ToString("yyyy-MM-dd");
+            dto.FechaVencimiento ??= DateTime.Now.ToString("yyyy-MM-dd");
 
+            if (!ModelState.IsValid)
+            {
+                var deudor = await _buscarPersona.buscar(dto.CedulaDeudor);
+                var fiador = await _buscarPersona.buscar(dto.CedulaFiador);
+                var abogado = await _buscarPersona.buscarXcorreo(User.Identity.Name);
+
+                ViewBag.DeudorCedula = deudor?.Cedula ?? 0;
+                ViewBag.DeudorNombre = deudor?.Nombre ?? "";
+                ViewBag.DeudorApellido1 = deudor?.Apellido1 ?? "";
+                ViewBag.DeudorApellido2 = deudor?.Apellido2 ?? "";
+
+                ViewBag.FiadorCedula = fiador?.Cedula ?? 0;
+                ViewBag.FiadorNombre = $"{fiador?.Nombre} {fiador?.Apellido1} {fiador?.Apellido2}".Trim();
+
+                ViewBag.AbogadoCedula = abogado?.Cedula ?? 0;
+
+                var distritos = await _listarDirecciones.listarDistritos();
+                ViewBag.UbicacionFirma = new SelectList(distritos, "IdDistrito", "NombreDistrito");
+            }
+
+            await _crear.crear(dto);
+
+            var registros = await _listar.Listar();
+            var ultimo = registros.LastOrDefault();
+            if (ultimo != null)
+            {
+                var historial = new HistorialDocumentoDTO
+                {
+                    Cliente = dto.CedulaDeudor,
+                    Abogado = dto.CedulaAbogado,
+                    Fecha = DateTime.Now.ToString(),
+                    TipoDocumento = "Pagaré",
+                    IdDocumento = ultimo.IdDocumento,
+                    Titulo = $"Doc.no.{ultimo.IdDocumento} Pagaré"
+                };
+                await _crearHistorialLN.Crear(historial);
+            }
+
+            return RedirectToAction("DocsHistorial", "THistorialDocumento1");
+        }
+        #endregion
+
+        #region Previsualizar PDF
+        [HttpGet]
+        [Authorize(Roles = "Gestor, Abogado")]
+        public async Task<IActionResult> PrevisualizarPDF(
+            string idDocumento,
+            string montoNumerico,
+            string cedulaDeudor,
+            string sociedadDeudor,
+            string cedulaJuridicaSociedad,
+            string acreedorNombre,
+            string cedulaJuridicaAcreedor,
+            string acreedorDomicilio,
+            string? fechaFirmaNuevo,
+            string? horaFirmaNuevo,
+            string fechaVencimiento,
+            string interesFormula,
+            string interesTasaActual,
+            string interesBase,
+            string LugarPago,        
+            string cedulaFiador,
+            string UbicacionFirma,   
+            string TipoSociedad,
+            string UbicacionSociedad
+        )
+        {
+            var templatePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "lyso", "DocsMachotes", "DocsPagare.html");
+            var htmlTemplate = System.IO.File.ReadAllText(templatePath);
+
+            string logoBase64 = "";
+            var logoPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "lyso", "img", "PreaceptaLogoColorNegro.png");
+            if (System.IO.File.Exists(logoPath))
+                logoBase64 = Convert.ToBase64String(System.IO.File.ReadAllBytes(logoPath));
+
+            _ = int.TryParse(cedulaDeudor, out var cedDeudorInt);
+            _ = int.TryParse(cedulaFiador, out var cedFiadorInt);
+
+            var deudor = cedDeudorInt > 0 ? await _buscarPersona.buscar(cedDeudorInt) : null;
+            var fiador = cedFiadorInt > 0 ? await _buscarPersona.buscar(cedFiadorInt) : null;
+
+            var deudorNombre = deudor != null
+                ? $"{deudor.Nombre} {deudor.Apellido1} {(deudor.Apellido2 ?? "")}".Trim()
+                : "";
+
+            var fiadorNombre = fiador != null
+                ? $"{fiador.Nombre} {fiador.Apellido1} {(fiador.Apellido2 ?? "")}".Trim()
+                : "";
+
+            string lugarPagoMostrar = LugarPago.ToString() ?? "";
+            var lugarPagos = await _buscarDistrito.buscarDistrito(int.Parse(lugarPagoMostrar));
+
+            string UbicacionFirmaMostrar = UbicacionFirma.ToString() ?? "";
+            var UbicacionFirmas = await _buscarDistrito.buscarDistrito(int.Parse(UbicacionFirmaMostrar));
+
+            var ahora = DateTime.Now;
+            var fechaFirmaStr = !string.IsNullOrWhiteSpace(fechaFirmaNuevo)
+                ? fechaFirmaNuevo
+                : ahora.ToString("yyyy-MM-dd", CultureInfo.InvariantCulture);
+
+            var horaFirmaStr = !string.IsNullOrWhiteSpace(horaFirmaNuevo)
+                ? (DateTime.TryParse(horaFirmaNuevo, out var dt) ? dt.ToString("HH:mm")
+                    : (TimeSpan.TryParse(horaFirmaNuevo, out var ts) ? ahora.Date.Add(ts).ToString("HH:mm") : horaFirmaNuevo))
+                : ahora.ToString("HH:mm");
+
+            var abogado = await _buscarPersona.buscarXcorreo(User.Identity?.Name ?? "");
+            var cedulaAbogado = (abogado?.Cedula ?? 0).ToString();
+
+            htmlTemplate = htmlTemplate
+                .Replace("{{LOGO}}", logoBase64)
+                .Replace("{{ID_DOCUMENTO}}", idDocumento ?? "")
+                .Replace("{{MONTO_NUMERICO}}", montoNumerico ?? "")
+                .Replace("{{MONTO_LETRAS}}", montoNumerico ?? "")
+                .Replace("{{NOMBRE_DEUDOR}}", deudorNombre)
+                .Replace("{{CEDULA_DEUDOR}}", cedulaDeudor ?? "")
+                .Replace("{{CEDULA_DEUDOR_LETRAS}}", cedulaDeudor ?? "")
+                .Replace("{{ESTADO_CIVIL_DEUDOR}}", deudor?.EstadoCivil ?? "")
+                .Replace("{{DOMICILIO_DEUDOR}}", deudor?.Direccion2 ?? "")
+                .Replace("{{Oficio}}", deudor?.Oficio ?? "")
+                .Replace("{{NOMBRE_FIADOR}}", fiadorNombre)
+                .Replace("{{CEDULA_FIADOR}}", cedulaFiador ?? "")
+                .Replace("{{SOCIEDAD_DEUDOR}}", sociedadDeudor ?? "")
+                .Replace("{{SOCIEDAD_TIPO}}", TipoSociedad ?? "")
+                .Replace("{{CEDULA_JURIDICA_SOCIEDAD}}", cedulaJuridicaSociedad ?? "")
+                .Replace("{{CEDULA_JURIDICA_SOCIEDAD_LETRAS}}", cedulaJuridicaSociedad ?? "")
+                .Replace("{{Ubicacion_Sociedad}}", UbicacionSociedad ?? "")
+                .Replace("{{ACREEDOR_NOMBRE}}", acreedorNombre ?? "")
+                .Replace("{{CEDULA_JURIDICA_ACREEDOR}}", cedulaJuridicaAcreedor ?? "")
+                .Replace("{{CEDULA_JURIDICA_ACREEDOR_LETRAS}}", cedulaJuridicaAcreedor ?? "")
+                .Replace("{{ACREEDOR_DOMICILIO}}", acreedorDomicilio ?? "")
+                .Replace("{{INTERES_FORMULA}}", interesFormula ?? "")
+                .Replace("{{INTERES_TASA_ACTUAL}}", interesTasaActual ?? "")
+                .Replace("{{INTERES_BASE}}", interesBase ?? "")
+                .Replace("{{FECHA_VENCIMIENTO}}", fechaVencimiento ?? "")
+                .Replace("{{LUGAR_PAGO}}", lugarPagos.NombreDistrito)
+                .Replace("{{UBICACION_FIRMA}}", UbicacionFirmas.NombreDistrito)
+                .Replace("{{HORA_FIRMA_NUEVO}}", horaFirmaStr)
+                .Replace("{{FECHA_FIRMA_NUEVO}}", fechaFirmaStr)
+                .Replace("{{HORA_FIRMA_LETRAS}}", horaFirmaStr)
+                .Replace("{{FECHA_FIRMA_LETRAS}}", fechaFirmaStr)
+                .Replace("{{CEDULA_ABOGADO}}", cedulaAbogado);
+
+            var doc = new HtmlToPdfDocument
+            {
+                GlobalSettings = new GlobalSettings
+                {
+                    PaperSize = PaperKind.A4,
+                    Orientation = Orientation.Portrait
+                },
+                Objects =
+                {
+                    new ObjectSettings
+                    {
+                        HtmlContent = htmlTemplate,
+                        WebSettings = { DefaultEncoding = "utf-8" }
+                    }
+                }
+            };
+
+            var pdf = _converter.Convert(doc);
+            return File(pdf, "application/pdf");
+        }
+        #endregion
     }
 }

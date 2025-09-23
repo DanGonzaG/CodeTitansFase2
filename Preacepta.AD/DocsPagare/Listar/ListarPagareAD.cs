@@ -3,7 +3,6 @@ using Preacepta.Modelos.AbstraccionesFrond;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace Preacepta.AD.DocsPagare.Listar
@@ -19,44 +18,9 @@ namespace Preacepta.AD.DocsPagare.Listar
 
         public async Task<List<DocsPagareDTO>> listar2()
         {
-            List<DocsPagareDTO> lista = await (from doc in _contexto.TDocsPagares
-                                               select new DocsPagareDTO
-                                               {
-                                                   IdDocumento = doc.IdDocumento,
-                                                   MontoNumerico = doc.MontoNumerico,
-                                                   CedulaDeudor = doc.CedulaDeudor,
-                                                   SociedadDeudor = doc.SociedadDeudor,
-                                                   CedulaJuridicaSociedad = doc.CedulaJuridicaSociedad,
-                                                   AcreedorNombre = doc.AcreedorNombre,
-                                                   CedulaJuridicaAcreedor = doc.CedulaJuridicaAcreedor,
-                                                   AcreedorDomicilio = doc.AcreedorDomicilio,
-                                                   FechaFirma = doc.FechaFirma.ToString("yyyy-MM-dd"),
-                                                   HoraFirma = doc.FechaFirma.ToString("HH:mm"),
-                                                   FechaVencimiento = doc.FechaVencimiento.ToString("yyyy-MM-dd"),
-                                                   InteresFormula = doc.InteresFormula,
-                                                   InteresTasaActual = doc.InteresTasaActual,
-                                                   InteresBase = doc.InteresBase,
-                                                   LugarPago = doc.LugarPago,
-                                                   CedulaFiador = doc.CedulaFiador,
-                                                   UbicacionFirma = doc.UbicacionFirma,
-                                                   CedulaDeudorNavigation = doc.CedulaDeudorNavigation,
-                                                   CedulaFiadorNavigation = doc.CedulaFiadorNavigation,
-                                                   LugarPagoNavigation = doc.LugarPagoNavigation
-                                               }).ToListAsync();
-            return lista;
-        }
-
-        public async Task<List<DocsPagareDTO>> Listar()
-        {
-            try
-            {
-                // 1) Trae TODO desde la BD
-                var raws = await _contexto.TDocsPagares
-                                         .AsNoTracking()
-                                         .ToListAsync();
-
-                // 2) Proyecta en memoria y formatea strings
-                var lista = raws.Select(doc => new DocsPagareDTO
+            return await _contexto.TDocsPagares
+                .AsNoTracking()
+                .Select(doc => new DocsPagareDTO
                 {
                     IdDocumento = doc.IdDocumento,
                     MontoNumerico = doc.MontoNumerico,
@@ -67,8 +31,6 @@ namespace Preacepta.AD.DocsPagare.Listar
                     CedulaJuridicaAcreedor = doc.CedulaJuridicaAcreedor,
                     AcreedorDomicilio = doc.AcreedorDomicilio,
 
-                    // >>> Aquí usa la propiedad HoraFirma (TimeOnly),
-                    //     no FechaFirma, para formatear la hora:
                     FechaFirma = doc.FechaFirma.ToString("yyyy-MM-dd"),
                     HoraFirma = doc.HoraFirma.ToString("HH:mm"),
                     FechaVencimiento = doc.FechaVencimiento.ToString("yyyy-MM-dd"),
@@ -80,6 +42,53 @@ namespace Preacepta.AD.DocsPagare.Listar
                     CedulaFiador = doc.CedulaFiador,
                     UbicacionFirma = doc.UbicacionFirma,
 
+                    CedulaAbogado = doc.CedulaAbogado,
+
+                    TipoSociedad = doc.TipoSociedad,
+                    UbicacionSociedad = doc.UbicacionSociedad,
+
+                    CedulaDeudorNavigation = doc.CedulaDeudorNavigation,
+                    CedulaFiadorNavigation = doc.CedulaFiadorNavigation,
+                    LugarPagoNavigation = doc.LugarPagoNavigation
+                })
+                .ToListAsync();
+        }
+
+        public async Task<List<DocsPagareDTO>> Listar()
+        {
+            try
+            {
+                var raws = await _contexto.TDocsPagares
+                    .AsNoTracking()
+                    .ToListAsync();
+
+                var lista = raws.Select(doc => new DocsPagareDTO
+                {
+                    IdDocumento = doc.IdDocumento,
+                    MontoNumerico = doc.MontoNumerico,
+                    CedulaDeudor = doc.CedulaDeudor,
+                    SociedadDeudor = doc.SociedadDeudor,
+                    CedulaJuridicaSociedad = doc.CedulaJuridicaSociedad,
+                    AcreedorNombre = doc.AcreedorNombre,
+                    CedulaJuridicaAcreedor = doc.CedulaJuridicaAcreedor,
+                    AcreedorDomicilio = doc.AcreedorDomicilio,
+
+                    FechaFirma = doc.FechaFirma.ToString("yyyy-MM-dd"),
+                    HoraFirma = doc.HoraFirma.ToString("HH:mm"),
+                    FechaVencimiento = doc.FechaVencimiento.ToString("yyyy-MM-dd"),
+
+                    InteresFormula = doc.InteresFormula,
+                    InteresTasaActual = doc.InteresTasaActual,
+                    InteresBase = doc.InteresBase,
+                    LugarPago = doc.LugarPago,
+                    CedulaFiador = doc.CedulaFiador,
+                    UbicacionFirma = doc.UbicacionFirma,
+
+                    CedulaAbogado = doc.CedulaAbogado,
+
+                    TipoSociedad = doc.TipoSociedad,
+                    UbicacionSociedad = doc.UbicacionSociedad,
+
                     CedulaDeudorNavigation = doc.CedulaDeudorNavigation,
                     CedulaFiadorNavigation = doc.CedulaFiadorNavigation,
                     LugarPagoNavigation = doc.LugarPagoNavigation
@@ -90,7 +99,7 @@ namespace Preacepta.AD.DocsPagare.Listar
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Error al obtener datos {ex.Message}");
+                Console.WriteLine($"Error al obtener datos: {ex.Message}");
                 return new List<DocsPagareDTO>();
             }
         }

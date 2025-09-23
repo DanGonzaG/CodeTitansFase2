@@ -1,0 +1,605 @@
+@model Preacepta.Modelos.AbstraccionesFrond.DocsOpcionCompraventaVehiculoDTO
+@using System.Globalization
+@{
+    CultureInfo.DefaultThreadCurrentCulture = new CultureInfo("en-US");
+    CultureInfo.DefaultThreadCurrentUICulture = new CultureInfo("en-US");
+}
+
+<head>
+    <link href="~/lyso/css/Daniel.css" rel="stylesheet" />
+</head>
+
+<body>
+    <!-- Page Title -->
+    <div class="page-title-area page-title-area-two title-img-one">
+        <div class="d-table">
+            <div class="d-table-cell">
+                <div class="page-title-text">
+                    <h2>Generador de Documentos Legales</h2>
+                    <ul>
+                        <li><a asp-controller="Home" asp-action="Index">Inicio</a></li>
+                        <li><i class="icofont-simple-right"></i></li>
+                        <li>
+                            <a asp-controller="Home"
+                               asp-action="UsuarioAutenticado"
+                               asp-route-correo="@User.Identity.Name">PreaceptaApp</a>
+                        </li>
+                        <li><i class="icofont-simple-right"></i></li>
+                        <li>Generador de documentos para compra y venta de vehículos</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Page Title -->
+
+    <br />
+    <br />
+    <br />
+
+    <div class="contact-form contact-form-two contact-form-three">
+        <div class="container">
+            <div class="contact-wrap">
+
+                <form asp-controller="DocsOpcionCompraventaVehiculoes" asp-action="CreateDocsOpcionCompraventaVehiculoes" id="CreateDocsOpcionCompraventaVehiculoes">
+                      method="post">
+                    @Html.AntiForgeryToken()
+
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <h2>Formulario para compraventa de vehículo</h2>
+
+                    <div class="row justify-content-center">
+
+                        <div class="seccion-titulo">Propietario</div>
+
+                        <!-- CÉDULA (PROPIETARIO) -->
+                        <div class="col-sm-6 col-lg-6 centro">
+                            <div class="form-group">
+                                <label class="control-label">Cédula</label>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-lg-6">
+                            <div class="form-group">
+                                <input asp-for="CedulaPropietario"
+                                       id="idCedulaPropietario"
+                                       type="text"
+                                       inputmode="numeric" pattern="\d*"
+                                       value="@ViewBag.PropietarioCedula"
+                                       class="form-control LetraNegra"
+                                       readonly />
+                                <span asp-validation-for="CedulaPropietario" class="text-danger"></span>
+                            </div>
+                        </div>
+
+                        <!-- PROPIETARIO -->
+                        <div class="col-sm-6 col-lg-6 centro">
+                            <div class="form-group">
+                                <label class="control-label">Propietario</label>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-lg-6">
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col">
+                                        <input class="form-control LetraNegra text-center"
+                                               value="@ViewBag.PropietarioNombre" readonly />
+                                        <div class="text-center" style="font-size:15px">
+                                            <label class="control-label">Nombre</label>
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <input class="form-control LetraNegra text-center"
+                                               value="@ViewBag.PropietarioApellido1" readonly />
+                                        <div class="text-center" style="font-size:15px">
+                                            <label class="control-label">Primer apellido</label>
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <input class="form-control LetraNegra text-center"
+                                               value="@ViewBag.PropietarioApellido2" readonly />
+                                        <div class="text-center" style="font-size:15px">
+                                            <label class="control-label">Segundo apellido</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <br /><br /><br /><br />
+
+                        <div class="seccion-titulo">Comprador</div>
+                        <!-- CÉDULA (COMPRADOR) -->
+                        <div class="col-sm-6 col-lg-6 centro">
+                            <div class="form-group">
+                                <label class="control-label">Cédula</label>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-lg-6">
+                            <div class="form-group">
+                                <input asp-for="CedulaComprador"
+                                       id="idCedulaComprador"
+                                       type="text"
+                                       inputmode="numeric" pattern="\d*"
+                                       value="@ViewBag.ClienteCedula"
+                                       class="form-control LetraNegra"
+                                       readonly />
+                                <span asp-validation-for="CedulaComprador" class="text-danger"></span>
+                                <input type="hidden" asp-for="CedulaAbogado" value="@ViewBag.AbogadoCedula" id="idCedulaAbogado" />
+                            </div>
+                        </div>
+
+                        <!-- COMPRADOR -->
+                        <div class="col-sm-6 col-lg-6 centro">
+                            <div class="form-group">
+                                <label class="control-label">Comprador</label>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-lg-6">
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col">
+                                        <input class="form-control LetraNegra text-center"
+                                               value="@ViewBag.ClienteNombre" readonly />
+                                        <div class="text-center" style="font-size:15px">
+                                            <label class="control-label">Nombre</label>
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <input class="form-control LetraNegra text-center"
+                                               value="@ViewBag.ClienteApellido1" readonly />
+                                        <div class="text-center" style="font-size:15px">
+                                            <label class="control-label">Primer apellido</label>
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <input class="form-control LetraNegra text-center"
+                                               value="@ViewBag.ClienteApellido2" readonly />
+                                        <div class="text-center" style="font-size:15px">
+                                            <label class="control-label">Segundo apellido</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="seccion-titulo">Detalles del Vehículo</div>
+
+                        <!-- Placa Vehiculo -->
+                        <div class="col-sm-6 col-lg-6 centro">
+                            <div class="form-group">
+                                <label asp-for="PlacaVehiculo" class="control-label"></label>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-lg-6">
+                            <div class="form-group">
+                                <input id="idPlacaVehiculo" asp-for="PlacaVehiculo" class="form-control" />
+                                <span asp-validation-for="PlacaVehiculo" class="text-danger"></span>
+                            </div>
+                        </div>
+
+                        <!-- Marca Vehiculo -->
+                        <div class="col-sm-6 col-lg-6 centro">
+                            <div class="form-group">
+                                <label asp-for="MarcaVehiculo" class="control-label"></label>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-lg-6">
+                            <div class="form-group">
+                                <select id="idMarcaVehiculo" asp-for="MarcaVehiculo" class="form-control" asp-items="ViewBag.MarcaVehiculo"></select>
+                            </div>
+                        </div>
+
+                        <br /><br /><br /><br />
+
+                        <!-- Tipo de Vehículo -->
+                        <div class="col-sm-6 col-lg-6 centro">
+                            <div class="form-group">
+                                <label asp-for="TipoVehiculo" class="control-label"></label>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-lg-6">
+                            <div class="form-group">
+                                <select id="idTipoVehiculo" asp-for="TipoVehiculo" class="form-control" asp-items="ViewBag.TipoVehiculo"></select>
+                            </div>
+                        </div>
+
+                        <br /><br /><br /><br />
+
+                        <!-- Modelo -->
+                        <div class="col-sm-6 col-lg-6 centro">
+                            <div class="form-group">
+                                <label asp-for="ModeloVehiculo" class="control-label"></label>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-lg-6">
+                            <div class="form-group">
+                                <input id="idModeloVehiculo" asp-for="ModeloVehiculo" class="form-control" />
+                                <span asp-validation-for="ModeloVehiculo" class="text-danger"></span>
+                            </div>
+                        </div>
+
+                        <!-- Carrocería -->
+                        <div class="col-sm-6 col-lg-6 centro">
+                            <div class="form-group">
+                                <label asp-for="Carroceria" class="control-label"></label>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-lg-6">
+                            <div class="form-group">
+                                <input id="idCarroceria" asp-for="Carroceria" class="form-control" />
+                                <span asp-validation-for="Carroceria" class="text-danger"></span>
+                            </div>
+                        </div>
+
+                        <!-- Categoría -->
+                        <div class="col-sm-6 col-lg-6 centro">
+                            <div class="form-group">
+                                <label asp-for="Categoria" class="control-label"></label>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-lg-6">
+                            <div class="form-group">
+                                <input id="idCategoria" asp-for="Categoria" class="form-control" />
+                                <span asp-validation-for="Categoria" class="text-danger"></span>
+                            </div>
+                        </div>
+
+                        <!-- Chasis -->
+                        <div class="col-sm-6 col-lg-6 centro">
+                            <div class="form-group">
+                                <label asp-for="Chasis" class="control-label"></label>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-lg-6">
+                            <div class="form-group">
+                                <input id="idChasis" asp-for="Chasis" class="form-control" />
+                                <span asp-validation-for="Chasis" class="text-danger"></span>
+                            </div>
+                        </div>
+
+                        <!-- Serie -->
+                        <div class="col-sm-6 col-lg-6 centro">
+                            <div class="form-group">
+                                <label asp-for="Serie" class="control-label"></label>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-lg-6">
+                            <div class="form-group">
+                                <input id="idSerie" asp-for="Serie" class="form-control" />
+                                <span asp-validation-for="Serie" class="text-danger"></span>
+                            </div>
+                        </div>
+
+                        <!-- VIN -->
+                        <div class="col-sm-6 col-lg-6 centro">
+                            <div class="form-group">
+                                <label asp-for="Vin" class="control-label"></label>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-lg-6">
+                            <div class="form-group">
+                                <input id="idVin" asp-for="Vin" class="form-control" />
+                                <span asp-validation-for="Vin" class="text-danger"></span>
+                            </div>
+                        </div>
+
+                        <!-- Marca Motor -->
+                        <div class="col-sm-6 col-lg-6 centro">
+                            <div class="form-group">
+                                <label asp-for="MarcaMotor" class="control-label"></label>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-lg-6">
+                            <div class="form-group">
+                                <select id="idMarcaMotor" asp-for="MarcaMotor" class="form-control" asp-items="ViewBag.MarcaMotor"></select>
+                            </div>
+                        </div>
+
+                        <br /><br /><br /><br />
+
+                        <!-- Número Motor -->
+                        <div class="col-sm-6 col-lg-6 centro">
+                            <div class="form-group">
+                                <label asp-for="NumeroMotor" class="control-label"></label>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-lg-6">
+                            <div class="form-group">
+                                <input id="idNumeroMotor" asp-for="NumeroMotor" class="form-control" />
+                                <span asp-validation-for="NumeroMotor" class="text-danger"></span>
+                            </div>
+                        </div>
+
+                        <!-- Color -->
+                        <div class="col-sm-6 col-lg-6 centro">
+                            <div class="form-group">
+                                <label asp-for="Color" class="control-label"></label>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-lg-6">
+                            <div class="form-group">
+                                <input id="idColor" asp-for="Color" class="form-control" />
+                                <span asp-validation-for="Color" class="text-danger"></span>
+                            </div>
+                        </div>
+
+                        <!-- Combustible -->
+                        <div class="col-sm-6 col-lg-6 centro">
+                            <div class="form-group">
+                                <label asp-for="Combustible" class="control-label"></label>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-lg-6">
+                            <div class="form-group">
+                                <select id="idCombustible" asp-for="Combustible" class="form-control" asp-items="ViewBag.Combustible"></select>
+                            </div>
+                        </div>
+
+                        <br /><br /><br /><br />
+
+                        <!-- Año -->
+                        <div class="col-sm-6 col-lg-6 centro">
+                            <div class="form-group">
+                                <label asp-for="Anio" class="control-label"></label>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-lg-6">
+                            <div class="form-group">
+                                <input id="idAnio" asp-for="Anio" class="form-control" />
+                                <span asp-validation-for="Anio" class="text-danger"></span>
+                            </div>
+                        </div>
+
+                        <!-- Capacidad -->
+                        <div class="col-sm-6 col-lg-6 centro">
+                            <div class="form-group">
+                                <label asp-for="Capacidad" class="control-label"></label>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-lg-6">
+                            <div class="form-group">
+                                <input id="idCapacidad" asp-for="Capacidad" class="form-control" />
+                                <span asp-validation-for="Capacidad" class="text-danger"></span>
+                            </div>
+                        </div>
+
+                        <!-- Cilindraje -->
+                        <div class="col-sm-6 col-lg-6 centro">
+                            <div class="form-group">
+                                <label asp-for="Cilindraje" class="control-label"></label>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-lg-6">
+                            <div class="form-group">
+                                <input id="idCilindraje" asp-for="Cilindraje" class="form-control" />
+                                <span asp-validation-for="Cilindraje" class="text-danger"></span>
+                            </div>
+                        </div>
+
+                        <div class="seccion-titulo">Condiciones del Contrato</div>
+
+                        <!-- Precio -->
+                        <div class="col-sm-6 col-lg-6 centro">
+                            <div class="form-group">
+                                <label asp-for="Precio" class="control-label"></label>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-lg-6">
+                            <div class="form-group">
+                                <input id="idPrecio" asp-for="Precio" class="form-control" step="0.01" inputmode="decimal" />
+                                <span asp-validation-for="Precio" class="text-danger"></span>
+                            </div>
+                        </div>
+
+                        <!-- Moneda Precio -->
+                        <div class="col-sm-6 col-lg-6 centro">
+                            <div class="form-group">
+                                <label asp-for="MonedaPrecio" class="control-label"></label>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-lg-6">
+                            <div class="form-group">
+                                <input id="idMonedaPrecio" asp-for="MonedaPrecio" class="form-control" />
+                                <span asp-validation-for="MonedaPrecio" class="text-danger"></span>
+                            </div>
+                        </div>
+
+                        <!-- Plazo Opción -->
+                        <div class="col-sm-6 col-lg-6 centro">
+                            <div class="form-group">
+                                <label asp-for="PlazoOpcionAnios" class="control-label"></label>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-lg-6">
+                            <div class="form-group">
+                                <input id="idPlazoOpcionAnios" asp-for="PlazoOpcionAnios" class="form-control" />
+                                <span asp-validation-for="PlazoOpcionAnios" class="text-danger"></span>
+                            </div>
+                        </div>
+
+                        <!-- Fecha Inicio -->
+                        <div class="col-sm-6 col-lg-6 centro">
+                            <div class="form-group">
+                                <label asp-for="FechaInicio" class="control-label"></label>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-lg-6">
+                            <div class="form-group">
+                                <input id="idFechaInicio" asp-for="FechaInicio" type="date" class="form-control" />
+                                <span asp-validation-for="FechaInicio" class="text-danger"></span>
+                            </div>
+                        </div>
+
+                        <!-- Monto Señal -->
+                        <div class="col-sm-6 col-lg-6 centro">
+                            <div class="form-group">
+                                <label asp-for="MontoSenal" class="control-label"></label>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-lg-6">
+                            <div class="form-group">
+                                <input id="idMontoSenal" asp-for="MontoSenal" class="form-control" step="0.01" inputmode="decimal" />
+                                <span asp-validation-for="MontoSenal" class="text-danger"></span>
+                            </div>
+                        </div>
+
+                        <!-- Moneda Señal -->
+                        <div class="col-sm-6 col-lg-6 centro">
+                            <div class="form-group">
+                                <label asp-for="MonedaSenal" class="control-label"></label>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-lg-6">
+                            <div class="form-group">
+                                <input id="idMonedaSenal" asp-for="MonedaSenal" class="form-control" />
+                                <span asp-validation-for="MonedaSenal" class="text-danger"></span>
+                            </div>
+                        </div>
+
+                        <!-- Monto a Devolver -->
+                        <div class="col-sm-6 col-lg-6 centro">
+                            <div class="form-group">
+                                <label asp-for="MontoADevolver" class="control-label"></label>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-lg-6">
+                            <div class="form-group">
+                                <input id="idMontoADevolver" asp-for="MontoADevolver" class="form-control" step="0.01" inputmode="decimal" />
+                                <span asp-validation-for="MontoADevolver" class="text-danger"></span>
+                            </div>
+                        </div>
+
+                        <!-- Monto a Perder -->
+                        <div class="col-sm-6 col-lg-6 centro">
+                            <div class="form-group">
+                                <label asp-for="MontoAPerder" class="control-label"></label>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-lg-6">
+                            <div class="form-group">
+                                <input id="idMontoAPerder" asp-for="MontoAPerder" class="form-control" step="0.01" inputmode="decimal" />
+                                <span asp-validation-for="MontoAPerder" class="text-danger"></span>
+                            </div>
+                        </div>
+
+                        <!-- Moneda Monto Perdido -->
+                        <div class="col-sm-6 col-lg-6 centro">
+                            <div class="form-group">
+                                <label asp-for="MonedaMontoPerdido" class="control-label"></label>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-lg-6">
+                            <div class="form-group">
+                                <input id="idMonedaMontoPerdido" asp-for="MonedaMontoPerdido" class="form-control" />
+                                <span asp-validation-for="MonedaMontoPerdido" class="text-danger"></span>
+                            </div>
+                        </div>
+
+                        <!-- Gastos Traspaso Pagados Por -->
+                        <div class="col-sm-6 col-lg-6 centro">
+                            <div class="form-group">
+                                <label asp-for="GastosTraspasoPagadosPor" class="control-label"></label>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-lg-6">
+                            <div class="form-group">
+                                <input id="idGastosTraspasoPagadosPor" asp-for="GastosTraspasoPagadosPor" class="form-control" />
+                                <span asp-validation-for="GastosTraspasoPagadosPor" class="text-danger"></span>
+                            </div>
+                        </div>
+
+                        <!-- ========== UBICACIÓN DE FIRMA ========== -->
+                        <div class="seccion-titulo">Ubicación de Firma</div>
+
+                        <!-- Provincia -->
+                        <div class="col-sm-6 col-lg-6 centro">
+                            <div class="LetraNegra"><label>Provincia:</label></div>
+                        </div>
+                        <div class="col-sm-6 col-lg-6">
+                            <div class="form-group">
+                                <select class="selectDaniel" id="provincia">
+                                    <option value="">Seleccione una provincia</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <!-- Cantón -->
+                        <div class="col-sm-6 col-lg-6 centro">
+                            <div class="LetraNegra"><label>Cantón:</label></div>
+                        </div>
+                        <div class="col-sm-6 col-lg-6">
+                            <div class="form-group">
+                                <select class="selectDaniel" id="canton" disabled>
+                                    <option value="">Seleccione un cantón</option>
+                                </select>
+                                <input id="inputCanton" class="form-control" readonly />
+                            </div>
+                        </div>
+
+                        <!-- Distrito -->
+                        <div class="col-sm-6 col-lg-6 centro">
+                            <div class="LetraNegra"><label>Distrito:</label></div>
+                        </div>
+                        <div class="col-sm-6 col-lg-6">
+                            <div class="form-group">
+                                <select class="selectDaniel" id="distrito" name="LugarFirma" asp-for="LugarFirma" disabled>
+                                    <option value="">Seleccione un distrito</option>
+                                </select>
+                                <input id="inputDistrito" name="LugarFirma" class="form-control" readonly />
+                                <span asp-validation-for="LugarFirma" class="text-danger"></span>
+                                <input type="hidden" id="idLugarFirma" />
+                            </div>
+                        </div>
+
+                        <input type="hidden" asp-for="FechaFirma" id="idFechaFirma" />
+                        <input type="hidden" asp-for="HoraFirma" id="idHoraFirma" />
+
+
+                        <br /><br /><br /><br />
+
+                        <div class="col-md-12 col-lg-12">
+                            <div class="text-center d-flex justify-content-center gap-3">
+                                <div class="form-group" id="btnCrearCaso">
+                                    <input type="submit" value="Crear Documento" class="contact-btn--primario" />
+                                </div>
+                                <div class="form-group">
+                                    <button type="button" id="btnPrevisualizar" class="contact-btn--secundario">
+                                        Previsualizar PDF
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+
+<div class="modal fade" id="PrevioModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Revisión de datos ingresados</h5>
+                <button id="Retroceso2" type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p style="color: black"><strong>Ubicación Firma:</strong> <span id="previoUbicacionFirma"></span></p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="contact-btn" data-bs-dismiss="modal" id="Retroceso">Hacer Cambios</button>
+                <button type="button" id="BtnConfirmar" class="contact-btn">Confirmar datos</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+
+    <script src="~/lyso/js/FiltroProvinicaCantonDistrito.js"></script>
+
+    <script src="~/lyso/js/DocsCompraVentaVehiculos.js"></script>
+}

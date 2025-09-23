@@ -1,0 +1,176 @@
+@model Preacepta.Modelos.AbstraccionesFrond.DocsPoderesEspecialesJudicialeDTO
+
+<head>
+    <link href="~/lyso/css/daniel.css" rel="stylesheet" />
+</head>
+
+<body>
+    <div class="page-title-area page-title-area-two title-img-one">
+        <div class="d-table">
+            <div class="d-table-cell">
+                <div class="page-title-text">
+                    <h2>Generador de Documentos Legales</h2>
+                    <ul>
+                        <li><a asp-controller="Home" asp-action="Index">Inicio</a></li>
+                        <li><i class="icofont-simple-right"></i></li>
+                        <li>Generador de poderes especiales judiciales</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <br />
+    <br />
+    <br />
+
+    <div class="contact-form contact-form-two contact-form-three">
+        <div class="container">
+
+            <div class="contact-wrap">
+                <form asp-controller="TDocsPoderesEspecialesJudiciales" asp-action="CreateDocsPoderesEspecialesJudiciales" id="CreateDocsPoderesEspecialesJudiciales">
+                    @Html.AntiForgeryToken()
+
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                    <h2>Formulario para generar poder judicial</h2>
+
+                    <div class="row justify-content-center">
+                        <div class="seccion-titulo">Datos del cliente</div>
+
+                        <div class="col-sm-6 col-lg-6 centro">
+                            <div class="form-group">
+                                <label class="control-label">Cédula</label>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-lg-6">
+                            <div class="form-group">
+                                <input asp-for="IdCliente"
+                                       id="idIdCliente"
+                                       type="text"
+                                       inputmode="numeric"
+                                       pattern="\d*"
+                                       class="form-control LetraNegra"
+                                       value="@(Model?.IdCliente > 0 ? Model.IdCliente : (int)(ViewBag.ClienteCedula ?? 0))"
+                                       readonly />
+                                <span asp-validation-for="IdCliente" class="text-danger"></span>
+
+                                <input type="hidden"
+                                       asp-for="IdAbogado"
+                                       id="idIdAbogado"
+                                       value="@(Model?.IdAbogado > 0 ? Model.IdAbogado : (int)(ViewBag.AbogadoCedula ?? 0))" />
+                            </div>
+                        </div>
+
+                        <div class="col-sm-6 col-lg-6 centro">
+                            <div class="form-group">
+                                <label class="control-label">Cliente</label>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-lg-6">
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col">
+                                        <input class="form-control LetraNegra text-center"
+                                               value="@ViewBag.ClienteNombre" readonly />
+                                        <div class="text-center" style="font-size:15px">
+                                            <label class="control-label">Nombre</label>
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <input class="form-control LetraNegra text-center"
+                                               value="@ViewBag.ClienteApellido1" readonly />
+                                        <div class="text-center" style="font-size:15px">
+                                            <label class="control-label">Primer apellido</label>
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <input class="form-control LetraNegra text-center"
+                                               value="@ViewBag.ClienteApellido2" readonly />
+                                        <div class="text-center" style="font-size:15px">
+                                            <label class="control-label">Segundo apellido</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <br /><br /><br /><br />
+
+                        <div class="seccion-titulo">Datos del documento</div>
+
+                        <!-- Número de Causa  -->
+                        <div class="col-sm-6 col-lg-6 centro">
+                            <div class="form-group">
+                                <label asp-for="NumCausa" class="control-label">Número de Causa</label>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-lg-6">
+                            <div class="form-group">
+                                <input asp-for="NumCausa" class="form-control" id="idNumCausa" />
+                                <span asp-validation-for="NumCausa" class="text-danger"></span>
+                            </div>
+                        </div>
+
+                        <!-- Texto -->
+                        <div class="col-sm-6 col-lg-6 centro">
+                            <div class="form-group">
+                                <label asp-for="Texto" class="control-label"></label>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-lg-6">
+                            <div class="form-group">
+                                <input asp-for="Texto" class="form-control" id="idTexto" />
+                                <span asp-validation-for="Texto" class="text-danger"></span>
+                            </div>
+                        </div>
+
+                        <!-- Botones -->
+                        <div class="col-md-12 col-lg-12">
+                            <div class="text-center d-flex justify-content-center gap-3">
+                                <div class="form-group" id="btnCrearCaso">
+                                    <input type="submit" value="Crear Documento" class="contact-btn--primario" />
+                                </div>
+                                <div class="form-group">
+                                    <button type="button" id="btnPrevisualizar" class="contact-btn--secundario">
+                                        Previsualizar PDF
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div> 
+                </form>
+            </div> 
+        </div> 
+    </div> 
+    
+    <div class="modal fade" id="PrevioModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Revisión de datos ingresados</h5>
+                    <button id="Retroceso2" type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p style="color: black"><strong>Fecha:</strong> <span id="previoFecha"></span></p>
+                    <p style="color: black"><strong>Abogado:</strong> <span id="previoIdAbogado"></span></p>
+                    <p style="color: black"><strong>Cliente:</strong> <span id="previoIdCliente"></span></p>
+                    <p style="color: black"><strong>Número de Causa:</strong> <span id="previoNumCausa"></span></p>
+                    <p style="color: black"><strong>Texto:</strong> <span id="previoTexto"></span></p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="contact-btn" data-bs-dismiss="modal" id="Retroceso">Hacer Cambios</button>
+                    <button type="button" id="BtnConfirmar" class="contact-btn">Confirmar datos</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    @section Scripts {
+        @{
+            await Html.RenderPartialAsync("_ValidationScriptsPartial");
+        }
+    }
+
+    <script src="~/lyso/js/DocsPoderesEspecialesJudiciales.js"></script>
+</body>

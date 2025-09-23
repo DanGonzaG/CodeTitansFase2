@@ -1,8 +1,5 @@
 ﻿using Preacepta.Modelos.AbstraccionesBD;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace Preacepta.AD.DocsPagare.Crear
@@ -20,18 +17,20 @@ namespace Preacepta.AD.DocsPagare.Crear
         {
             if (pagare == null)
             {
-                Console.WriteLine("El objeto recibo fue nulo");
-                return -1;
+                Console.WriteLine("CrearPagareAD: El objeto recibido fue nulo.");
+                return 0;
             }
+
             try
             {
                 await _contexto.TDocsPagares.AddAsync(pagare);
-                int guardado = await _contexto.SaveChangesAsync();
-                return guardado;
+                await _contexto.SaveChangesAsync();
+
+                return pagare.IdDocumento;
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Error en CrearTestAD {ex.Message}");
+                Console.WriteLine($"Error en CrearPagareAD: {ex.Message}");
                 return 0;
             }
         }

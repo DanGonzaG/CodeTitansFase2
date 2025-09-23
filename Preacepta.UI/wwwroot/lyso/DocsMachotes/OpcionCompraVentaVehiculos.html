@@ -1,88 +1,153 @@
 ﻿<!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
     <meta charset="utf-8" />
-    <title>Opción de Compraventa de Vehículo</title>
+    <title>Opción de compraventa de vehículo</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            font-size: 12pt;
-            line-height: 1.5;
+        @page {
             margin: 40px;
         }
 
-        h4 {
-            margin-top: 20px;
-            text-align: center;
-            text-decoration: underline;
+        body {
+            font-family: Arial, sans-serif;
+            font-size: 12pt;
+            line-height: 1.55;
+            color: #111;
         }
 
-        .firmas {
-            margin-top: 60px;
+        .header {
+            display: table;
+            width: 100%;
+            border-bottom: 1px solid #000;
+            padding-bottom: 10px;
+            margin-bottom: 22px;
+        }
+
+        .h-left {
+            display: table-cell;
+            vertical-align: middle;
+            width: 110px;
+        }
+
+        .h-right {
+            display: table-cell;
+            vertical-align: middle;
+            text-align: right;
+        }
+
+        .logo {
+            height: 58px;
+        }
+
+        .h-title {
+            font-size: 18pt;
+            margin: 0;
+            font-weight: bold;
+        }
+
+        .h-sub {
+            margin: 0;
+            font-size: 10pt;
+        }
+
+        h4 {
             text-align: center;
+            text-decoration: underline;
+            margin: 18px 0 14px;
+        }
+
+        .section {
+            margin: 12px 0;
+        }
+
+        .small {
+            font-size: 10pt;
+        }
+        /* Firmas */
+        .firmas {
+            margin-top: 46px;
+            display: table;
+            width: 100%;
+        }
+
+        .firma-box {
+            display: table-cell;
+            text-align: center;
+            padding: 0 15px;
+        }
+
+        .line {
+            border-top: 1px solid #000;
+            height: 50px;
+            margin: 40px 0 8px;
         }
     </style>
 </head>
 <body>
-
     <h4>OPCIÓN DE COMPRAVENTA DE VEHÍCULO</h4>
 
-    <p>
-        NÚMERO {{ID_DOCUMENTO}}: Ante mí {{CEDULA_NOTARIO}}, Notario Público con oficina en {{LUGAR_FIRMA}}, comparece {{CEDULA_VENDEDOR}},
-        cédula de identidad número {{CEDULA_VENDEDOR}}, vecino de {{LUGAR_FIRMA}}, y {{CEDULA_COMPRADOR}},
-        cédula de identidad número {{CEDULA_COMPRADOR}}, vecino de {{LUGAR_FIRMA}} Y DICEN:
+    <p class="section">
+        NÚMERO {{NUMERO_ESCRITURA}}: Ante mí <strong>{{NOMBRE_NOTARIO}}</strong>, Notario Público con oficina en {{DIRECCION_NOTARIO}}, comparece
+        <strong>{{NOMBRE_VENDEDOR}}</strong>, cédula de identidad número {{CEDULA_VENDEDOR}}, <strong>{{ESTADO_CIVIL_VENDEDOR}}</strong>,
+        <strong>{{OFICIO_VENDEDOR}}</strong>, vecino de {{DIRECCION_EXACTA_VENDEDOR}} y <strong>{{NOMBRE_COMPRADOR}}</strong>, cédula de identidad número
+        {{CEDULA_COMPRADOR}}, <strong>{{ESTADO_CIVIL_COMPRADOR}}</strong>, <strong>{{OFICIO_COMPRADOR}}</strong>, vecino de
+        {{DIRECCION_EXACTA_COMPRADOR}} Y DICEN:
     </p>
 
-    <p>
-        PRIMERO: Que el primer compareciente es dueño del vehículo inscrito en el Registro de Bienes Muebles bajo el número de placa {{PLACA_VEHICULO}}
-        con las siguientes características: MARCA {{MARCA_VEHICULO}}, TIPO {{TIPO_VEHICULO}}, MODELO {{MODELO_VEHICULO}}, CARROCERÍA {{CARROCERIA}},
-        CATEGORÍA {{CATEGORIA}}, CHASIS {{CHASIS}}, SERIE {{SERIE}}, VIN {{VIN}}, MARCA DEL MOTOR {{MARCA_MOTOR}}, NÚMERO DE MOTOR {{NUMERO_MOTOR}},
-        COLOR {{COLOR}}, COMBUSTIBLE {{COMBUSTIBLE}}, AÑO {{ANIO}}, CAPACIDAD {{CAPACIDAD}}, CILINDRAJE {{CILINDRAJE}}.
+    <p class="section">
+        PRIMERO: Que el primer compareciente es dueño del vehículo inscrito en el Registro de Bienes Muebles bajo el número de placa {{PLACA_VEHICULO}} con
+        las siguientes características: MARCA {{MARCA_VEHICULO}}, ESTILO {{TIPO_VEHICULO}}, MODELO {{MODELO_VEHICULO}}, CARROCERIA {{CARROCERIA}},
+        CATEGORIA {{CATEGORIA}}, CHASIS {{CHASIS}}, SERIE {{SERIE}} Y VIN: {{VIN}}, MARCA MOTOR {{MARCA_MOTOR}}, MOTOR NUMERO {{NUMERO_MOTOR}}, COLOR
+        {{COLOR}}, COMBUSTIBLE {{COMBUSTIBLE}}, AÑO {{ANIO}}, CAPACIDAD {{CAPACIDAD}}, CILINDRAJE {{CILINDRAJE}}.
     </p>
 
-    <p>
-        SEGUNDO: Que en este acto el primer compareciente otorga OPCIÓN EXCLUSIVA E IRREVOCABLE DE VENTA sobre dicho vehículo al segundo compareciente, quien acepta.
+    <p class="section">
+        SEGUNDO: Que en este acto el primer compareciente otorga OPCION EXCLUSIVA E IRREVOCABLE DE VENTA sobre dicho vehículo al segundo compareciente, quien acepta.
     </p>
 
-    <p>
+    <p class="section">
         TERCERO: Que el precio de la venta será la suma de {{PRECIO}} {{MONEDA_PRECIO}}, los cuales deberán cancelarse en dinero efectivo al momento de suscribirse la respectiva escritura de traspaso.
     </p>
 
-    <p>
+    <p class="section">
         CUARTO: El plazo de esta opción será de {{PLAZO_OPCION_ANIOS}} años contados a partir del {{FECHA_INICIO}}.
     </p>
 
-    <p>
-        QUINTO: Al momento del pago se suscribirá la escritura de traspaso a nombre de la persona que {{CEDULA_VENDEDOR}} indique, libre de gravámenes prendarios, anotaciones e infracciones.
+    <p class="section">
+        QUINTO: Al momento del pago se suscribirá la escritura de traspaso a nombre de la persona que <strong>{{NOMBRE_VENDEDOR}}</strong> indique, libre de gravámenes prendarios, anotaciones e infracciones.
     </p>
 
-    <p>
-        SEXTO: En señal de trato, el segundo compareciente cancela en este acto y en dinero efectivo, la suma de {{MONTO_SENAL}} {{MONEDA_SENAL}}, que {{CEDULA_NOTARIO}} acepta de conformidad.
-        Dicho monto será abonado al precio al momento de otorgarse la escritura definitiva de traspaso.
+    <p class="section">
+        SEXTO: En señal de trato, el segundo compareciente cancela en este acto y en dinero efectivo, la suma de {{MONTO_SENAL}} {{MONEDA_SENAL}} que
+        <strong>{{NOMBRE_COMPRADOR}}</strong> acepta de conformidad. Dicho monto será abonado al precio al momento de otorgarse la escritura definitiva de traspaso.
     </p>
 
-    <p>
-        SÉTIMO: En caso de no verificarse el traspaso dentro del plazo convenido por causas imputables al vendedor, éste devolverá al comprador la suma de {{MONTO_A_DEVOLVER}}.
-        En caso de que la venta no se pueda realizar por causas imputables al comprador, el vendedor conservará los {{MONTO_A_PERDER}} {{MONEDA_MONTO_PERDIDO}} entregados en este acto como señal de trato.
+    <p class="section">
+        SÉTIMO: En caso de no verificarse el traspaso dentro del plazo convenido por causas imputables al vendedor, éste devolverá al comprador, la suma de {{MONTO_A_DEVOLVER}} que en este acto le ha sido entregada. En caso de que la venta no se pueda realizar por causas imputables al comprador, el vendedor conservará los montos a perder entregados en este acto como señal de trato.
     </p>
 
-    <p>
+    <p class="section">
         OCTAVO: Los gastos de traspaso correrán exclusivamente por cuenta de {{GASTOS_TRASPASO_PAGADOS_POR}}.
     </p>
 
-    <p>
+    <p class="section">
         ES TODO. Se expide un primer testimonio. Leída esta escritura a los otorgantes, resulta conforme, la aprueban, y juntos firmamos en la ciudad de {{LUGAR_FIRMA}} a las {{HORA_FIRMA}} del {{FECHA_FIRMA}}.
     </p>
 
+    <!-- Firmas -->
     <div class="firmas">
-        <p>__________________________________________</p>
-        <p>VENDEDOR: {{CEDULA_VENDEDOR}}</p>
-        <br />
-        <p>__________________________________________</p>
-        <p>COMPRADOR: {{CEDULA_COMPRADOR}}</p>
-        <br />
-        <p>__________________________________________</p>
-        <p>NOTARIO: {{CEDULA_NOTARIO}}</p>
+        <div class="firma-box">
+            <div class="line"></div>
+            <div><strong>VENDEDOR:</strong><br /><strong>{{NOMBRE_VENDEDOR}}</strong><br /><span class="small">Cédula: {{CEDULA_VENDEDOR}}</span></div>
+        </div>
+        <div class="firma-box">
+            <div class="line"></div>
+            <div><strong>COMPRADOR:</strong><br /><strong>{{NOMBRE_COMPRADOR}}</strong><br /><span class="small">Cédula: {{CEDULA_COMPRADOR}}</span></div>
+        </div>
+        <div class="firma-box">
+            <div class="line"></div>
+            <div><strong>NOTARIO:</strong><br /><strong>{{NOMBRE_NOTARIO}}</strong><br /><span class="small">Cédula: {{CEDULA_NOTARIO}}</span></div>
+        </div>
     </div>
 
 </body>
