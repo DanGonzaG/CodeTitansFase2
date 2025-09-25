@@ -322,30 +322,6 @@ ul{
     font-weight: 400; 
     font-size: 0.95rem; 
 }
-.select2-container--default .select2-selection--single {
-    height: calc(2.25rem + 2px); 
-    padding: .375rem .75rem; 
-    font-size: 1rem; 
-    border: 1px solid #ced4da; 
-    border-radius: .25rem; 
-    background-color: #fff; 
-}
-
-    .select2-container--default .select2-selection--single .select2-selection__rendered {
-        color: #495057; 
-    }
-
-    
-    .select2-container--default .select2-selection--single .select2-selection__arrow {
-        height: 30px; 
-        right: 10px; 
-    }
-
-
-.select2-container--default.select2-container--focus .select2-selection--single {
-    border-color: #80bdff; 
-    box-shadow: 0 0 0 .2rem rgba(38, 143, 255, .25); 
-}
 
 /*Estilos para los radio en Testimonio*/
 .clasificacion input[type="radio"] {

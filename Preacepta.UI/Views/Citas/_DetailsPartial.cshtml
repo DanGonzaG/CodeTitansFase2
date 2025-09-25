@@ -124,14 +124,13 @@
           <div class="text-center mt-4">
             @if (User.IsInRole("Abogado") || User.IsInRole("Admin"))
             {
-                <button type="button" class="contact-btn--primero" onclick="abrirModalListarDocumentos(@Model.IdCita)">
-                    Documentos
-                </button>
+                <button type="button" class="contact-btn--primario" onclick="abrirModalListarDocumentos(@Model.IdCita)">Documentos</button>
                 <button type="button" class="contact-btn--revision" onclick="citaSeleccionadaId='@Model.IdCita'; mostrarEditarCita()">Editar</button>
                 <button type="button" class="contact-btn--eliminacion" onclick="mostrarModalEliminarCita(@Model.IdCita)">Eliminar</button>
+                <button type="button" class="contact-btn--navegacion" onclick="cerrarModal('modalDetalleCita', true)">Cerrar</button>
             }
 
-            <button type="button" class="contact-btn--navegacion" onclick="cerrarModal('modalDetalleCita', true)">Cerrar</button>
+            
             
         </div>
 </div>
