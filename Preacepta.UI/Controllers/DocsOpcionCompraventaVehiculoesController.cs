@@ -358,13 +358,44 @@ namespace Preacepta.UI.Controllers
         [HttpGet]
         [Authorize(Roles = "Gestor, Abogado")]
         public async Task<IActionResult> PrevisualizarPDF(
-            string LugarFirma
-            )
+    string idDocumento,
+    string numeroEscritura,
+    string cedulaAbogado,
+    string cedulaPropietario,
+    string cedulaComprador,
+    string placaVehiculo,
+    string marcaVehiculo,
+    string tipoVehiculo,
+    string modeloVehiculo,
+    string carroceria,
+    string categoria,
+    string chasis,
+    string serie,
+    string vin,
+    string marcaMotor,
+    string numeroMotor,
+    string color,
+    string combustible,
+    string anio,
+    string capacidad,
+    string cilindraje,
+    string precio,
+    string monedaPrecio,
+    string plazoOpcionAnios,
+    string fechaInicio,
+    string montoSenal,
+    string monedaSenal,
+    string montoADevolver,
+    string montoAPerder,
+    string monedaMontoPerdido,
+    string gastosTraspasoPagadosPor,
+    string LugarFirma,
+    string? fechaFirma,
+    string? horaFirma
+)
         {
             var htmlPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "lyso", "DocsMachotes", "OpcionCompraVentaVehiculos.html");
             var htmlTemplate = System.IO.File.ReadAllText(htmlPath);
-
-            var q = Request.Query;
 
             string logoBase64 = "";
             string nombreBufete = "";
@@ -376,32 +407,32 @@ namespace Preacepta.UI.Controllers
             if (System.IO.File.Exists(logoPath))
                 logoBase64 = Convert.ToBase64String(System.IO.File.ReadAllBytes(logoPath));
 
-            _ = int.TryParse(q["cedulaAbogado"], out var cedAbogado);
-            _ = int.TryParse(q["cedulaPropietario"], out var cedProp);
-            _ = int.TryParse(q["cedulaComprador"], out var cedComp);
+            _ = int.TryParse(cedulaAbogado, out var cedAbogadoInt);
+            _ = int.TryParse(cedulaPropietario, out var cedPropInt);
+            _ = int.TryParse(cedulaComprador, out var cedCompInt);
 
-            _ = int.TryParse(q["marcaVehiculo"], out var idMarcaVeh);
-            _ = int.TryParse(q["tipoVehiculo"], out var idTipoVeh);
-            _ = int.TryParse(q["marcaMotor"], out var idMarcaMotor);
-            _ = int.TryParse(q["combustible"], out var idComb);
+            var ab = cedAbogadoInt > 0 ? await _buscarPersona.buscar(cedAbogadoInt) : null;
+            var prop = cedPropInt > 0 ? await _buscarPersona.buscar(cedPropInt) : null;
+            var comp = cedCompInt > 0 ? await _buscarPersona.buscar(cedCompInt) : null;
 
-            var ab = await _buscarPersona.buscar(cedAbogado);
-            var prop = await _buscarPersona.buscar(cedProp);
-            var comp = await _buscarPersona.buscar(cedComp);
+            var nombreNotario = ab != null ? $"{ab.Nombre} {ab.Apellido1} {(ab.Apellido2 ?? "")}".Trim() : cedulaAbogado;
+            var cedulaNotario = ab?.Cedula.ToString() ?? cedulaAbogado;
 
-            var nombreNotario = ab != null ? $"{ab.Nombre} {ab.Apellido1} {(ab.Apellido2 ?? "")}".Trim() : q["cedulaAbogado"].ToString();
-            var cedulaNotario = ab?.Cedula.ToString() ?? q["cedulaAbogado"].ToString();
+            var nombreVendedor = prop != null ? $"{prop.Nombre} {prop.Apellido1} {(prop.Apellido2 ?? "")}".Trim() : cedulaPropietario;
+            var cedulaVendedor = prop?.Cedula.ToString() ?? cedulaPropietario;
 
-            var nombreVendedor = prop != null ? $"{prop.Nombre} {prop.Apellido1} {(prop.Apellido2 ?? "")}".Trim() : q["cedulaPropietario"].ToString();
-            var cedulaVendedor = prop?.Cedula.ToString() ?? q["cedulaPropietario"].ToString();
+            var nombreComprador = comp != null ? $"{comp.Nombre} {comp.Apellido1} {(comp.Apellido2 ?? "")}".Trim() : cedulaComprador;
+            var cedulaCompradorStr = comp?.Cedula.ToString() ?? cedulaComprador;
 
-            var nombreComprador = comp != null ? $"{comp.Nombre} {comp.Apellido1} {(comp.Apellido2 ?? "")}".Trim() : q["cedulaComprador"].ToString();
-            var cedulaComprador = comp?.Cedula.ToString() ?? q["cedulaComprador"].ToString();
+            _ = int.TryParse(marcaVehiculo, out var idMarcaVeh);
+            _ = int.TryParse(tipoVehiculo, out var idTipoVeh);
+            _ = int.TryParse(marcaMotor, out var idMarcaMotor);
+            _ = int.TryParse(combustible, out var idComb);
 
-            string marcaVehiculoNombre = q["marcaVehiculo"].ToString();
-            string tipoVehiculoNombre = q["tipoVehiculo"].ToString();
-            string marcaMotorNombre = q["marcaMotor"].ToString();
-            string combustibleNombre = q["combustible"].ToString();
+            string marcaVehiculoNombre = marcaVehiculo;
+            string tipoVehiculoNombre = tipoVehiculo;
+            string marcaMotorNombre = marcaMotor;
+            string combustibleNombre = combustible;
 
             try
             {
@@ -414,30 +445,41 @@ namespace Preacepta.UI.Controllers
                 marcaMotorNombre = marcas?.FirstOrDefault(x => x.Id == idMarcaMotor)?.Nombre ?? marcaMotorNombre;
                 combustibleNombre = combs?.FirstOrDefault(x => x.Id == idComb)?.Nombre ?? combustibleNombre;
             }
-            catch { }
+            catch
+            {
 
-            string lugarFirmaMostrar = LugarFirma.ToString() ?? "";
-            var LugarFirmas = await _buscarDistrito.buscarDistrito(int.Parse(lugarFirmaMostrar));
+            }
 
-            string fechaInicioMostrar = q["fechaInicio"];
-            if (DateTime.TryParse(fechaInicioMostrar, out var fIni))
-                fechaInicioMostrar = fIni.ToString("dd/MM/yyyy");
+            string lugarFirmaNombre = "";
+            if (int.TryParse(LugarFirma, out var idLugarFirma))
+            {
+                var lugar = await _buscarDistrito.buscarDistrito(idLugarFirma);
+                lugarFirmaNombre = lugar?.NombreDistrito ?? "";
+            }
 
-            string fechaFirmaMostrar = q["fechaFirma"];
-            if (string.IsNullOrWhiteSpace(fechaFirmaMostrar))
-                fechaFirmaMostrar = DateTime.Now.ToString("dd/MM/yyyy");
-            else if (DateTime.TryParse(fechaFirmaMostrar, out var fFirma))
-                fechaFirmaMostrar = fFirma.ToString("dd/MM/yyyy");
+            string fechaInicioMostrar = fechaInicio;
+            if (DateTime.TryParse(fechaInicio, out var fIni))
+                fechaInicioMostrar = fIni.ToString("dd/MM/yyyy", CultureInfo.InvariantCulture);
 
-            string horaFirmaMostrar = q["horaFirma"];
-            if (string.IsNullOrWhiteSpace(horaFirmaMostrar))
+            string fechaFirmaMostrar;
+            if (string.IsNullOrWhiteSpace(fechaFirma))
+                fechaFirmaMostrar = DateTime.Now.ToString("dd/MM/yyyy", CultureInfo.InvariantCulture);
+            else if (DateTime.TryParse(fechaFirma, out var fFirma))
+                fechaFirmaMostrar = fFirma.ToString("dd/MM/yyyy", CultureInfo.InvariantCulture);
+            else
+                fechaFirmaMostrar = fechaFirma;
+
+            string horaFirmaMostrar;
+            if (string.IsNullOrWhiteSpace(horaFirma))
                 horaFirmaMostrar = DateTime.Now.ToString("hh:mm tt", CultureInfo.InvariantCulture);
-            else if (DateTime.TryParse(horaFirmaMostrar, out var dtHora))
+            else if (DateTime.TryParse(horaFirma, out var dtHora))
                 horaFirmaMostrar = dtHora.ToString("hh:mm tt", CultureInfo.InvariantCulture);
-            else if (TimeSpan.TryParse(horaFirmaMostrar, out var tsHora))
+            else if (TimeSpan.TryParse(horaFirma, out var tsHora))
                 horaFirmaMostrar = DateTime.Today.Add(tsHora).ToString("hh:mm tt", CultureInfo.InvariantCulture);
+            else
+                horaFirmaMostrar = horaFirma;
 
-            var gastosRaw = (q["gastosTraspasoPagadosPor"].ToString() ?? "").Trim().ToUpperInvariant();
+            var gastosRaw = (gastosTraspasoPagadosPor ?? "").Trim().ToUpperInvariant();
             string gastosTexto = gastosRaw switch
             {
                 "COMPRADOR" => nombreComprador,
@@ -447,13 +489,9 @@ namespace Preacepta.UI.Controllers
 
             var html = htmlTemplate
                 .Replace("{{LOGO}}", logoBase64)
-                .Replace("{{NombreBufete}}", nombreBufete)
-                .Replace("{{CedulaJuridica}}", cedJuridica)
-                .Replace("{{TelefonoDespacho}}", telDespacho)
-                .Replace("{{EmailDespacho}}", emailDespacho)
 
-                .Replace("{{ID_DOCUMENTO}}", q["idDocumento"])
-                .Replace("{{NUMERO_ESCRITURA}}", q["numeroEscritura"])
+                .Replace("{{ID_DOCUMENTO}}", idDocumento)
+                .Replace("{{NUMERO_ESCRITURA}}", numeroEscritura)
                 .Replace("{{NOMBRE_NOTARIO}}", nombreNotario)
                 .Replace("{{CEDULA_NOTARIO}}", cedulaNotario)
                 .Replace("{{DIRECCION_NOTARIO}}", ab?.Direccion2 ?? "")
@@ -465,45 +503,56 @@ namespace Preacepta.UI.Controllers
                 .Replace("{{DIRECCION_EXACTA_VENDEDOR}}", prop?.Direccion2 ?? "")
 
                 .Replace("{{NOMBRE_COMPRADOR}}", nombreComprador)
-                .Replace("{{CEDULA_COMPRADOR}}", cedulaComprador)
+                .Replace("{{CEDULA_COMPRADOR}}", cedulaCompradorStr)
                 .Replace("{{ESTADO_CIVIL_COMPRADOR}}", comp?.EstadoCivil ?? "")
                 .Replace("{{OFICIO_COMPRADOR}}", comp?.Oficio ?? "")
                 .Replace("{{DIRECCION_EXACTA_COMPRADOR}}", comp?.Direccion2 ?? "")
 
-                .Replace("{{PLACA_VEHICULO}}", q["placaVehiculo"])
+                .Replace("{{PLACA_VEHICULO}}", placaVehiculo)
                 .Replace("{{MARCA_VEHICULO}}", marcaVehiculoNombre)
                 .Replace("{{TIPO_VEHICULO}}", tipoVehiculoNombre)
-                .Replace("{{MODELO_VEHICULO}}", q["modeloVehiculo"])
-                .Replace("{{CARROCERIA}}", q["carroceria"])
-                .Replace("{{CATEGORIA}}", q["categoria"])
-                .Replace("{{CHASIS}}", q["chasis"])
-                .Replace("{{SERIE}}", q["serie"])
-                .Replace("{{VIN}}", q["vin"])
+                .Replace("{{MODELO_VEHICULO}}", modeloVehiculo)
+                .Replace("{{CARROCERIA}}", carroceria)
+                .Replace("{{CATEGORIA}}", categoria)
+                .Replace("{{CHASIS}}", chasis)
+                .Replace("{{SERIE}}", serie)
+                .Replace("{{VIN}}", vin)
                 .Replace("{{MARCA_MOTOR}}", marcaMotorNombre)
-                .Replace("{{NUMERO_MOTOR}}", q["numeroMotor"])
-                .Replace("{{COLOR}}", q["color"])
+                .Replace("{{NUMERO_MOTOR}}", numeroMotor)
+                .Replace("{{COLOR}}", color)
                 .Replace("{{COMBUSTIBLE}}", combustibleNombre)
-                .Replace("{{ANIO}}", q["anio"])
-                .Replace("{{CAPACIDAD}}", q["capacidad"])
-                .Replace("{{CILINDRAJE}}", q["cilindraje"])
-                .Replace("{{PRECIO}}", q["precio"])
-                .Replace("{{MONEDA_PRECIO}}", q["monedaPrecio"])
-                .Replace("{{PLAZO_OPCION_ANIOS}}", q["plazoOpcionAnios"])
+                .Replace("{{ANIO}}", anio)
+                .Replace("{{CAPACIDAD}}", capacidad)
+                .Replace("{{CILINDRAJE}}", cilindraje)
+                .Replace("{{PRECIO}}", precio)
+                .Replace("{{MONEDA_PRECIO}}", monedaPrecio)
+                .Replace("{{PLAZO_OPCION_ANIOS}}", plazoOpcionAnios)
                 .Replace("{{FECHA_INICIO}}", fechaInicioMostrar)
-                .Replace("{{MONTO_SENAL}}", q["montoSenal"])
-                .Replace("{{MONEDA_SENAL}}", q["monedaSenal"])
-                .Replace("{{MONTO_A_DEVOLVER}}", q["montoADevolver"])
-                .Replace("{{MONTO_A_PERDER}}", q["montoAPerder"])
-                .Replace("{{MONEDA_MONTO_PERDIDO}}", q["monedaMontoPerdido"])
+                .Replace("{{MONTO_SENAL}}", montoSenal)
+                .Replace("{{MONEDA_SENAL}}", monedaSenal)
+                .Replace("{{MONTO_A_DEVOLVER}}", montoADevolver)
+                .Replace("{{MONTO_A_PERDER}}", montoAPerder)
+                .Replace("{{MONEDA_MONTO_PERDIDO}}", monedaMontoPerdido)
                 .Replace("{{GASTOS_TRASPASO_PAGADOS_POR}}", gastosTexto)
-                .Replace("{{LUGAR_FIRMA}}", LugarFirmas.NombreDistrito)
+                .Replace("{{LUGAR_FIRMA}}", lugarFirmaNombre)
                 .Replace("{{HORA_FIRMA}}", horaFirmaMostrar)
                 .Replace("{{FECHA_FIRMA}}", fechaFirmaMostrar);
 
             var doc = new HtmlToPdfDocument
             {
-                GlobalSettings = new GlobalSettings { PaperSize = PaperKind.A4, Orientation = Orientation.Portrait },
-                Objects = { new ObjectSettings { HtmlContent = html, WebSettings = { DefaultEncoding = "utf-8" } } }
+                GlobalSettings = new GlobalSettings
+                {
+                    PaperSize = PaperKind.A4,
+                    Orientation = Orientation.Portrait
+                },
+                Objects =
+        {
+            new ObjectSettings
+            {
+                HtmlContent = html,
+                WebSettings = { DefaultEncoding = "utf-8" }
+            }
+        }
             };
 
             var pdf = _converter.Convert(doc);
