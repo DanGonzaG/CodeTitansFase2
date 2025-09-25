@@ -33,7 +33,7 @@
     @Html.AntiForgeryToken()
     <input type="hidden" asp-for="IdCita" />
     <div class="mt-3">
-        <a asp-action="Index" class="contact-btn--navegacion">Cancelar</a>
-        <button type="submit" class="contact-btn--eliminacion">Eliminar</button>
+        <button type="submit" class="btn btn-danger">Eliminar</button>
+        <a asp-action="Index" class="btn btn-info">Cancelar</a>
     </div>
 </form>
