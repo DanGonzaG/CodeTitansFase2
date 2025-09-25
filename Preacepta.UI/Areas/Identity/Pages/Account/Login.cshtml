@@ -35,6 +35,7 @@
             <div class="contact-wrap">
                 <section>
                     <form class="LetraNegra" id="account" method="post">
+                        <input type="hidden" asp-for="ReturnUrl" />
                         <h2>Usar cuenta local para ingreso</h2>
                         <hr />
                         <div asp-validation-summary="ModelOnly" class="text-danger" role="alert"></div>

@@ -17,7 +17,7 @@ namespace Preacepta.Modelos.AbstraccionesFrond
         public int? IdTipoCita { get; set; }
         public int Anfitrion { get; set; }
         public string? LinkVideo { get; set; }
-
+        public bool Terminada { get; set; }
         public virtual TGeAbogado? AnfitrionNavigation { get; set; } = null!;
 
 
@@ -26,7 +26,7 @@ namespace Preacepta.Modelos.AbstraccionesFrond
 
         public virtual ICollection<TCitasCliente>? TCitasClientes { get; set; } = new List<TCitasCliente>();
 
-        // Campo adicional informativo (navegación)
+       
         public string? NombreTipoCita { get; set; }
 
         public string? NombreAnfitrion { get; set; }

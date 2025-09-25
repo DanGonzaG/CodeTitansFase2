@@ -3,7 +3,6 @@ using Preacepta.Modelos.AbstraccionesFrond;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace Preacepta.LN.DocsPagare.Listar
@@ -21,20 +20,20 @@ namespace Preacepta.LN.DocsPagare.Listar
         {
             try
             {
-                List<DocsPagareDTO> lista = await _listarPagareAD.Listar();
+                var lista = await _listarPagareAD.Listar();
+
                 if (lista == null || !lista.Any())
                 {
-                    Console.WriteLine("No se encontraron Pagare");
+                    Console.WriteLine("No se encontraron Pagarés.");
                 }
 
-                return lista;
+                return lista ?? new List<DocsPagareDTO>();
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Error al listar Pagare: {ex.Message}");
+                Console.WriteLine($"Error al listar Pagarés: {ex.Message}");
                 return new List<DocsPagareDTO>();
             }
         }
-
     }
 }

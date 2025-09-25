@@ -2,6 +2,7 @@
 using Preacepta.Modelos.AbstraccionesFrond;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -18,9 +19,10 @@ namespace Preacepta.LN.DocPoderesEspecialesJudiciales.ObtenerDatos
                 IdAbogado = poderJud.IdAbogado,
                 IdCliente = poderJud.IdCliente,
                 Texto = poderJud.Texto,
-                Fecha = poderJud.Fecha.ToString(),
+                Fecha = poderJud.Fecha.ToString("yyyy-MM-dd"),
                 IdAbogadoNavigation = poderJud.IdAbogadoNavigation,
-                IdClienteNavigation = poderJud.IdClienteNavigation
+                IdClienteNavigation = poderJud.IdClienteNavigation,
+                NumCausa = poderJud.NumCausa,
             };
         }
 
@@ -28,15 +30,27 @@ namespace Preacepta.LN.DocPoderesEspecialesJudiciales.ObtenerDatos
         /*metodo para obtner los datos de los formularios y pasarlos al modelo de acceso a datos*/
         public TDocsPoderesEspecialesJudiciale ObtenerDeFront(DocsPoderesEspecialesJudicialeDTO poderJudDTO)
         {
+            DateTime fechaGuardada;
+            if (!string.IsNullOrWhiteSpace(poderJudDTO.Fecha) &&
+                DateTime.TryParse(poderJudDTO.Fecha, CultureInfo.InvariantCulture, DateTimeStyles.None, out var f))
+            {
+                fechaGuardada = f;
+            }
+            else
+            {
+                fechaGuardada = DateTime.Now;
+            }
+
             return new TDocsPoderesEspecialesJudiciale
             {
                 IdDoc = poderJudDTO.IdDoc,
                 IdAbogado = poderJudDTO.IdAbogado,
                 IdCliente = poderJudDTO.IdCliente,
                 Texto = poderJudDTO.Texto,
-                Fecha = DateTime.Parse(poderJudDTO.Fecha),
+                Fecha = fechaGuardada,
                 IdAbogadoNavigation = poderJudDTO.IdAbogadoNavigation,
-                IdClienteNavigation = poderJudDTO.IdClienteNavigation
+                IdClienteNavigation = poderJudDTO.IdClienteNavigation,
+                NumCausa = poderJudDTO.NumCausa,
             };
         }
     }

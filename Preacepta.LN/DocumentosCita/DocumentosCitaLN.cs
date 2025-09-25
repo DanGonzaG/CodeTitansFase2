@@ -39,7 +39,7 @@ namespace Preacepta.LN.DocumentosCita
             var nombre = Path.GetFileName(archivo.FileName);
             var carpetaDocumentos = Path.Combine("wwwroot", "documentos");
 
-            // Crear la carpeta si no existe
+           
             if (!Directory.Exists(carpetaDocumentos))
             {
                 Directory.CreateDirectory(carpetaDocumentos);
@@ -72,7 +72,7 @@ namespace Preacepta.LN.DocumentosCita
 
             documento.Descargar = permitirDescarga;
 
-            // Aquí es donde debes pasar correctamente los argumentos
+           
             await _documentosAD.ActualizarDescargarAsync(idDocumento, permitirDescarga);
         }
 
@@ -91,6 +91,19 @@ namespace Preacepta.LN.DocumentosCita
                 FechaSubida = entidad.FechaSubida,
                 Descargar = entidad.Descargar
             };
+        }
+        public async Task<bool> EliminarAsync(int id)
+        {
+            var documento = await _documentosAD.ObtenerPorIdAsync(id);
+            if (documento == null)
+                return false;
+
+            
+            var rutaFisica = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", documento.RutaArchivo.TrimStart('/').Replace("/", "\\"));
+            if (System.IO.File.Exists(rutaFisica))
+                System.IO.File.Delete(rutaFisica);
+
+            return await _documentosAD.EliminarAsync(documento);
         }
     }
 }

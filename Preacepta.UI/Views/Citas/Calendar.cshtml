@@ -4,6 +4,9 @@
     <link href="~/calendario/stylecalendar.css" rel="stylesheet" />
     <link href="~/calendario/calendardaniel.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
     <title>Calendar with Events</title>
 </head>
 
@@ -65,24 +68,14 @@
         </div>
 
         <div class="events">
-            @foreach (var cita in Model)
-            {
-                <div class="event" data-id="@cita.IdCita">
-                    <span>@cita.NombreTipoCita</span>
-                </div>
-            }
+
         </div>
-        @if (User.IsInRole("Abogado") || User.IsInRole("Admin"))
+        @if (User.IsInRole("Abogado") || User.IsInRole("Gestor"))
 {
         <div style="display: flex; gap: 10px; align-items: center;">
             <button class="add-event" id="btnAbrirModal" title="Crear nueva cita">
                 <i class="fas fa-plus"></i>
             </button>
-
-            <button id="btnAbrirModalReunion" class="add-event" title="Programar Videollamada" style="right: 110px;"> 
-                <i class="fas fa-video"></i>
-            </button>
-            <div id="modalContainer"></div>
             </div>
         }
     </div>
@@ -91,10 +84,10 @@
 <div class="formulario contact-form contact-form-two contact-form-three">
     <div class="container">
         <div class="contact-wrap" style="display: flex; justify-content: center; align-items: center;">
-            <button style="margin-right: 5px" type="button" id="PrevioBtn" class="contact-btn" data-bs-toggle="modal" data-bs-target="#ModalCitasPasadas">
+            <button style="margin-right: 5px" type="button" id="PrevioBtn" class="contact-btn--revision" data-bs-toggle="modal" data-bs-target="#ModalCitasPasadas">
                 Citas Pasadas
             </button>
-            <button style="margin-left: 5px" type="button" id="PrevioBtn" class="contact-btn" data-bs-toggle="modal" data-bs-target="#ModalCitasFuturas">
+            <button style="margin-left: 5px" type="button" id="PrevioBtn" class="contact-btn--revision" data-bs-toggle="modal" data-bs-target="#ModalCitasFuturas">
                 Citas Futuras
             </button>
         </div>
@@ -116,6 +109,7 @@
     </div>
 </div>
 </div>
+<div id="modalContainer"></div>
 <!-- Modal para Detalles de Cita -->
 <div id="modalDetalleCita" class="custom-modal" style="display:none;">
         <div class="container">
@@ -126,7 +120,6 @@
                 </div>
 
                 <div id="detalleCitaBody" class="modal-body">
-                    <!-- Aquí se cargará el contenido de los detalles -->
                 </div>
       
             </div>
@@ -143,7 +136,6 @@
             </div>
 
             <div id="editarCitaBody" class="modal-body">
-                <!-- Aquí se cargará dinámicamente el partial view _EditPartial -->
             </div>
 
         </div>
@@ -159,13 +151,10 @@
             </div>
 
             <div id="eliminarCitaBody" class="modal-body">
-                <!-- Aquí se cargará dinámicamente el partial view _DeletePartial -->
             </div>
         </div>
     </div>
 </div>
-
-<div id="modalContainer"></div>
 
 <!-- Modal Citas Futuras -->
 <div class="modal fade" id="ModalCitasFuturas" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -199,7 +188,7 @@
                             </tbody>
                         </table>
                         <div class="modal-footer">
-                            <button type="button" class="contact-btn" data-bs-dismiss="modal" id="Retroceso">Cerrar</button>
+                            <button type="button" class="contact-btn--navegacion" data-bs-dismiss="modal" id="Retroceso">Cerrar</button>
                         </div>
                     </div>
                 </div>
@@ -210,7 +199,7 @@
 
 <!-- Modal Citas Pasadas -->
 <div class="modal fade" id="ModalCitasPasadas" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
+    <div class="modal-dialog modal-lg DanielModalCitasFuturas">
         <div class="modal-content">
             <div class="formulario contact-form contact-form-two">
                 <div class="container">
@@ -240,7 +229,7 @@
                             </tbody>
                         </table>
                         <div class="modal-footer">
-                            <button type="button" class="contact-btn" data-bs-dismiss="modal" id="Retroceso">Cerrar</button>
+                            <button type="button" class="contact-btn--navegacion" data-bs-dismiss="modal" id="Retroceso">Cerrar</button>
                         </div>
                     </div>
                 </div>
@@ -261,10 +250,4 @@
 
 }
 
-@using System.Text.Json
-<script>
-    const fechasConCita = @Html.Raw(JsonSerializer.Serialize(Model.Select(c => new {
-        fecha = c.Fecha.ToString("yyyy-MM-dd"),
-        idCita = c.IdCita
-        })));
-</script>
+

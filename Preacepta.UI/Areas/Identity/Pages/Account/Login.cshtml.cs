@@ -163,16 +163,30 @@ namespace Praecepta.UI.Areas.Identity.Pages.Account
 
                     if (roles.Any(r => r == "Gestor" || r == "Cliente" || r == "Abogado"))
                     {
-                        _logger.LogInformation("Usuario conectado con rol válido.");
-                        foreach (var claim in principal.Claims)
+
+                       _logger.LogInformation("Usuario conectado con rol válido.");
+                       foreach (var claim in principal.Claims)
                         {
                             _logger.LogInformation("DanielClaim: {Type} = {Value}", claim.Type, claim.Value);
                         }
+                        //return LocalRedirect(returnUrl);
+                        if (!string.IsNullOrEmpty(returnUrl) && Url.IsLocalUrl(returnUrl))
+                        {
+                            var decodedReturnUrl = Uri.UnescapeDataString(returnUrl);
 
-                        return RedirectToAction("UsuarioAutenticado", "Home", new { correo = Input.Email });
+                            // Verifica que decodedReturnUrl contenga "correo="
+                            if (decodedReturnUrl.Contains("correo=", StringComparison.OrdinalIgnoreCase))
+                            {
+                                return LocalRedirect(returnUrl);
+                        }
+                        else
+                        {
+                            return RedirectToAction("UsuarioAutenticado", "Home", new { correo = Input.Email });
+                        }
+                    }
                     }
                 }
-
+               
                 if (result.RequiresTwoFactor)
                 {
                     return RedirectToPage("./LoginWith2fa", new { ReturnUrl = returnUrl, RememberMe = Input.RememberMe });

@@ -55,5 +55,12 @@ namespace Preacepta.LN.Testimonios.Listar
             }
         }
 
+        public async Task<List<TTestimonioDTO>> ListarInactivos()
+        {
+            var todos = await _listarTestAD.listar2();
+            return todos.Where(x => !x.Activo).ToList();
+        }
+
+
     }
 }

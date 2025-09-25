@@ -14,19 +14,7 @@
                 @foreach (var doc in Model)
                 {
                     var inputId = $"chkPermitir_{doc.Id}";
-                    <li style="margin-bottom: 1rem;">
-                        <strong>@doc.NombreArchivo</strong> -
-                        @if (doc.Descargar)
-                        {
-                            <span class="text-success-light">Descarga Autorizada</span>
-                            <a href="@doc.RutaArchivo" download>Descargar</a>
-                        }
-                        else
-                        {
-                            <span class="text-danger">Descarga sin Autorización</span>
-                        }
-                        <span class="text-muted">(subido el @doc.FechaSubida.ToShortDateString())</span>
-
+                    <li data-id="@doc.Id" class="documento-item">
                         <div class="switch-container">
                             <label class="switch">
                                 <input type="checkbox" class="chk-permitir"
@@ -34,17 +22,33 @@
                                 <span class="slider"></span>
                             </label>
                         </div>
+
+                        <div class="documento-info">
+                            <strong>@doc.NombreArchivo</strong>
+                            <span class="estado @(doc.Descargar ? "text-success-light" : "text-danger")">
+                                @(doc.Descargar ? "Descarga Autorizada" : "Descarga sin Autorización")
+                            </span>
+                            @if (doc.Descargar)
+                            {
+                                <a href="@doc.RutaArchivo" download>Descargar</a>
+                            }
+                            <span class="fecha text-muted">(subido el @doc.FechaSubida.ToShortDateString())</span>
+                        </div>
+
+                        <button class="contact-btn--eliminacion btnEliminarDoc">Eliminar</button>
+                   
                     </li>
                 }
             </ul>
 
-            <button id="btnActualizarTodos" type="button" style="margin-top:1rem;" class="contact-btn">
+            <button id="btnActualizarTodos" type="button" style="margin-top:1rem;" class="contact-btn--primario">
                 Actualizar permisos
             </button>
         }
         else
         {
-            <p>No hay documentos aún.</p>
+            <p id="mensajeSinDocumentos" style="display:none;">No hay documentos aún.</p>
+
         }
         <hr />
 
@@ -53,9 +57,12 @@
               action="/DocumentosCita/Subir?idCita=@ViewBag.IdCita">
             <input type="file" id="archivo" name="archivo" accept=".pdf,.docx,.jpg,.png">
             <div style="margin-top: 1.5rem; text-align: center;">
-                <button type="submit" class="contact-btn">Subir Documento</button>
+                <button type="submit" class="contact-btn--primario">Subir Documento</button>
             </div>
         </form>
+        <div style="margin-top:1rem; text-align:center;">
+            <button onclick="cerrarModalListarDocumentos()" class="contact-btn--navegacion">Cerrar</button>
+        </div>
     </div>
 </div>
 

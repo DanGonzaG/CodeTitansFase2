@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-//using Microsoft.EntityFrameworkCore;
+
 
 namespace Preacepta.Modelos.AbstraccionesBD;
 
@@ -35,4 +35,5 @@ public partial class TCita
 
     public virtual ICollection<TDocumentosCita> DocumentosCita { get; set; } = new List<TDocumentosCita>();
 
+    public bool Terminada { get; set; } = false;
 }

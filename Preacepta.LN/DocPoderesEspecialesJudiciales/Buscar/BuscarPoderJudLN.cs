@@ -25,7 +25,6 @@ namespace Preacepta.LN.DocPoderesEspecialesJudiciales.Buscar
         {
             try
             {
-                // Cambiar tipo aquí
                 TDocsPoderesEspecialesJudiciale? resultadoBusqueda = await _buscar.buscar(id);
 
                 if (resultadoBusqueda == null)

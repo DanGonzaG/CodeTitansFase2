@@ -1,0 +1,52 @@
+﻿@model Preacepta.Modelos.AbstraccionesBD.THistorialDocumento
+
+@{
+    ViewData["Title"] = "Create";
+    Layout = "_LayoutGestor";
+}
+
+<h1>Create</h1>
+
+<h4>THistorialDocumento</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Cliente" class="control-label"></label>
+                <select asp-for="Cliente" class ="form-control" asp-items="ViewBag.Cliente"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="Abogado" class="control-label"></label>
+                <select asp-for="Abogado" class ="form-control" asp-items="ViewBag.Abogado"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="TipoDocumento" class="control-label"></label>
+                <input asp-for="TipoDocumento" class="form-control" />
+                <span asp-validation-for="TipoDocumento" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="IdDocumento" class="control-label"></label>
+                <input asp-for="IdDocumento" class="form-control" />
+                <span asp-validation-for="IdDocumento" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Titulo" class="control-label"></label>
+                <input asp-for="Titulo" class="form-control" />
+                <span asp-validation-for="Titulo" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

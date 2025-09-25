@@ -1,5 +1,6 @@
 ﻿using DinkToPdf;
 using DinkToPdf.Contracts;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -9,14 +10,13 @@ using Preacepta.LN.DocsAutorizacionRevisionExpediente.Crear;
 using Preacepta.LN.DocsAutorizacionRevisionExpediente.Editar;
 using Preacepta.LN.DocsAutorizacionRevisionExpediente.Eliminar;
 using Preacepta.LN.DocsAutorizacionRevisionExpediente.Listar;
-using Preacepta.Modelos.AbstraccionesBD;
-using Preacepta.Modelos.AbstraccionesFrond;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using System.Text;
 using Preacepta.LN.GePersona.BuscarXid;
+using Preacepta.LN.GePersona.Listar;
+using Preacepta.LN.HistorialDocumentos.BuscarXid;
+using Preacepta.LN.HistorialDocumentos.Crear;
+using Preacepta.LN.HistorialDocumentos.Eliminar;
+using Preacepta.LN.HistorialDocumentos.Listar;
+using Preacepta.Modelos.AbstraccionesFrond;
 
 namespace Preacepta.UI.Controllers
 {
@@ -30,6 +30,12 @@ namespace Preacepta.UI.Controllers
         private readonly IEliminarDocsAutorizacionRevisionExpedienteLN _eliminar;
         private readonly IListarDocsAutorizacionRevisionExpedienteLN _listar;
         private readonly IBuscarXidGePersonaLN _buscarPersona;
+        private readonly IListarGePersonaLN _listarPersonas;
+
+        private readonly ICrearHistorialLN _crearHistorialLN;
+        private readonly IListarHistorialLN _listarHistorialLN;
+        private readonly IBuscarHistorialLN _buscarHistorialLN;
+        private readonly IELiminarHistorialLN _eLiminarHistorialLN;
 
         public DocsAutorizacionRevisionExpedientesController(IConverter converter,
             Contexto context,
@@ -38,7 +44,12 @@ namespace Preacepta.UI.Controllers
             IEditarDocsAutorizacionRevisionExpedienteLN editar,
             IEliminarDocsAutorizacionRevisionExpedienteLN eliminar,
             IListarDocsAutorizacionRevisionExpedienteLN listar,
-            IBuscarXidGePersonaLN buscarPersona)
+            IBuscarXidGePersonaLN buscarPersona,
+            IListarGePersonaLN listarPersonas,
+            ICrearHistorialLN crearHistorialLN,
+            IListarHistorialLN listarHistorialLN,
+            IBuscarHistorialLN buscarHistorialLN,
+            IELiminarHistorialLN eLiminarHistorialLN)
         {
             _converter = converter;
             _context = context;
@@ -48,16 +59,30 @@ namespace Preacepta.UI.Controllers
             _eliminar = eliminar;
             _listar = listar;
             _buscarPersona = buscarPersona;
+            _listarPersonas = listarPersonas;
+            _crearHistorialLN = crearHistorialLN;
+            _listarHistorialLN = listarHistorialLN;
+            _buscarHistorialLN = buscarHistorialLN;
+            _eLiminarHistorialLN = eLiminarHistorialLN;
         }
 
-        // GET: AutorizacionRevisionExpedientes
+        /********************************************************/
+        //controller de Framework\\
+        /********************************************************/
+
+
+        #region ListarRoot
+        // GET: TDocsAutorizacionRevisionDaniel
+        [Authorize(Roles = "Gestor")]
         public async Task<IActionResult> Index()
         {
-            //var contexto = _context.TDocsAutorizacionRevisionExpedientes.Include(t => t.CedulaAbogadoNavigation).Include(t => t.CedulaAsistenteNavigation).Include(t => t.CedulaImputadoNavigation);
             return View(await _listar.listar());
         }
+        #endregion
 
-        // GET: AutorizacionRevisionExpedientes/Details/5
+        #region Detalles Root
+        // GET: TDocsAutorizacionRevisionDaniel/Details/5
+        [Authorize(Roles = "Gestor")]
         public async Task<IActionResult> Details(int id)
         {
             if (id == null)
@@ -73,101 +98,55 @@ namespace Preacepta.UI.Controllers
 
             return View(tDocsAutorizacionRevisionExpediente);
         }
+        #endregion
 
-        // GET: AutorizacionRevisionExpedientes/Create
+        #region Crear Root metodo POST y GET
+        // GET: TDocsAutorizacionRevisionDaniel/Create
+        [Authorize(Roles = "Gestor")]
         public IActionResult Create()
         {
-            ViewData["CedulaAbogado"] = new SelectList(_context.TGeAbogados, "Cedula", "Cedula");
-            ViewData["CedulaAsistente"] = new SelectList(_context.TGePersonas, "Cedula", "Apellido1");
-            ViewData["CedulaImputado"] = new SelectList(_context.TGePersonas, "Cedula", "Apellido1");
+            ViewData["CedulaAbogado"] = new SelectList(_listarPersonas.listar().Result, "Cedula", "Cedula");
+            ViewData["CedulaAsistente"] = new SelectList(_listarPersonas.listar().Result, "Cedula", "Cedula");
+            ViewData["CedulaImputado"] = new SelectList(_listarPersonas.listar().Result, "Cedula", "Cedula");
             return View();
         }
 
-        // POST: AutorizacionRevisionExpedientes/Create
+        // POST: TDocsAutorizacionRevisionDaniel/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("IdDocumento,Expediente,Delito,CedulaImputado,Ofendido,CedulaAbogado,CedulaAsistente")] DocsAutorizacionRevisionExpedienteDTO tDocsAutorizacionRevisionExpediente,
-            [FromForm] int? DocumentoAnteriorId
-            )
+        [Authorize(Roles = "Gestor")]
+        public async Task<IActionResult> Create([Bind("IdDocumento,Expediente,Delito,CedulaImputado,Ofendido,CedulaAbogado,CedulaAsistente")] DocsAutorizacionRevisionExpedienteDTO tDocsAutorizacionRevisionExpediente)
         {
             if (ModelState.IsValid)
             {
-
-                // Eliminar documento anterior y su historial
-                if (DocumentoAnteriorId.HasValue)
-                {
-                    // Buscar historial por ID
-                    var historialAnterior = await _context.HistorialDocumentos
-                        .FirstOrDefaultAsync(h => h.Id == DocumentoAnteriorId.Value);
-
-                    if (historialAnterior != null)
-                    {
-                        // Obtener el ID del documento original desde el historial
-                        var idDocOriginal = historialAnterior.DocumentoIdOriginal;
-
-                        // Buscar y eliminar el documento original
-                        var docAnterior = await _context.TDocsAutorizacionRevisionExpedientes
-                            .FirstOrDefaultAsync(p => p.IdDocumento == idDocOriginal);
-
-                        if (docAnterior != null)
-                            _context.TDocsAutorizacionRevisionExpedientes.Remove(docAnterior);
-
-                        // Eliminar también el historial
-                        _context.HistorialDocumentos.Remove(historialAnterior);
-
-                        await _context.SaveChangesAsync();
-                    }
-                }
-
                 await _crear.Crear(tDocsAutorizacionRevisionExpediente);
-
-                // Obtener cliente desde TGePersonas
-                var cliente = await _context.TGePersonas
-                     .FirstOrDefaultAsync(p => p.Cedula == tDocsAutorizacionRevisionExpediente.CedulaImputado);
-
-                string nombreCliente = cliente != null
-                    ? $"{cliente.Nombre} {cliente.Apellido1} {cliente.Apellido2}"
-                    : tDocsAutorizacionRevisionExpediente.CedulaImputado.ToString();
-
-                // Obtener abogado desde TGeAbogados (con su persona)
-                var abogado = await _context.TGeAbogados
-                    .Include(a => a.CedulaNavigation)
-                    .FirstOrDefaultAsync(a => a.Cedula == tDocsAutorizacionRevisionExpediente.CedulaAbogado);
-
-                string nombreAbogado = abogado != null
-                    ? $"{abogado.CedulaNavigation.Nombre} {abogado.CedulaNavigation.Apellido1} {abogado.CedulaNavigation.Apellido2}"
-                    : tDocsAutorizacionRevisionExpediente.CedulaAbogado.ToString();
-
-                // Crear nuevo historial con ID real del documento creado
-                var nuevoIdDocumento = _context.TDocsAutorizacionRevisionExpedientes
-                    .OrderByDescending(p => p.IdDocumento)
-                    .Select(p => p.IdDocumento)
-                    .FirstOrDefault();
-
-                // Guardar en el historial
-                var historial = new HistorialDocumento
+                var Registros = await _listar.listar();
+                var idDocumento = Registros.LastOrDefault();
+                HistorialDocumentoDTO historialDocumentoDTO = new HistorialDocumentoDTO
                 {
-                    Fecha = DateTime.Now,
-                    TipoDocumento = "Autorización de revisión de expedientes",
-                    Cliente = nombreCliente,
-                    Abogado = nombreAbogado,
-                    DocumentoIdOriginal = nuevoIdDocumento
+                    Cliente = tDocsAutorizacionRevisionExpediente.CedulaImputado,
+                    Abogado = tDocsAutorizacionRevisionExpediente.CedulaAbogado,
+                    Fecha = DateTime.Now.ToString(),
+                    TipoDocumento = "Atorización RE.",
+                    IdDocumento = idDocumento.IdDocumento,
+                    Titulo = $"Doc.no.{idDocumento.IdDocumento} Atorización"
+
                 };
-
-                _context.HistorialDocumentos.Add(historial);
-                await _context.SaveChangesAsync();
-
+                await _crearHistorialLN.Crear(historialDocumentoDTO);
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["CedulaAbogado"] = new SelectList(_context.TGeAbogados, "Cedula", "Cedula", tDocsAutorizacionRevisionExpediente.CedulaAbogado);
-            ViewData["CedulaAsistente"] = new SelectList(_context.TGePersonas, "Cedula", "Apellido1", tDocsAutorizacionRevisionExpediente.CedulaAsistente);
-            ViewData["CedulaImputado"] = new SelectList(_context.TGePersonas, "Cedula", "Apellido1", tDocsAutorizacionRevisionExpediente.CedulaImputado);
+            ViewData["CedulaAbogado"] = new SelectList(_listarPersonas.listar().Result, "Cedula", "Cedula", tDocsAutorizacionRevisionExpediente.CedulaAbogado);
+            ViewData["CedulaAsistente"] = new SelectList(_listarPersonas.listar().Result, "Cedula", "Cedula", tDocsAutorizacionRevisionExpediente.CedulaAsistente);
+            ViewData["CedulaImputado"] = new SelectList(_listarPersonas.listar().Result, "Cedula", "Cedula", tDocsAutorizacionRevisionExpediente.CedulaImputado);
             return View(tDocsAutorizacionRevisionExpediente);
         }
+        #endregion
 
-        // GET: AutorizacionRevisionExpedientes/Edit/5
+        #region Editar Root metodo POST y GET
+        // GET: TDocsAutorizacionRevisionDaniel/Edit/5
+        [Authorize(Roles = "Gestor")]
         public async Task<IActionResult> Edit(int id)
         {
             if (id == null)
@@ -180,17 +159,18 @@ namespace Preacepta.UI.Controllers
             {
                 return NotFound();
             }
-            ViewData["CedulaAbogado"] = new SelectList(_context.TGeAbogados, "Cedula", "Cedula", tDocsAutorizacionRevisionExpediente.CedulaAbogado);
-            ViewData["CedulaAsistente"] = new SelectList(_context.TGePersonas, "Cedula", "Apellido1", tDocsAutorizacionRevisionExpediente.CedulaAsistente);
-            ViewData["CedulaImputado"] = new SelectList(_context.TGePersonas, "Cedula", "Apellido1", tDocsAutorizacionRevisionExpediente.CedulaImputado);
+            ViewData["CedulaAbogado"] = new SelectList(_listarPersonas.listar().Result, "Cedula", "Cedula", tDocsAutorizacionRevisionExpediente.CedulaAbogado);
+            ViewData["CedulaAsistente"] = new SelectList(_listarPersonas.listar().Result, "Cedula", "Cedula", tDocsAutorizacionRevisionExpediente.CedulaAsistente);
+            ViewData["CedulaImputado"] = new SelectList(_listarPersonas.listar().Result, "Cedula", "Cedula", tDocsAutorizacionRevisionExpediente.CedulaImputado);
             return View(tDocsAutorizacionRevisionExpediente);
         }
 
-        // POST: AutorizacionRevisionExpedientes/Edit/5
+        // POST: TDocsAutorizacionRevisionDaniel/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Gestor")]
         public async Task<IActionResult> Edit(int id, [Bind("IdDocumento,Expediente,Delito,CedulaImputado,Ofendido,CedulaAbogado,CedulaAsistente")] DocsAutorizacionRevisionExpedienteDTO tDocsAutorizacionRevisionExpediente)
         {
             if (id != tDocsAutorizacionRevisionExpediente.IdDocumento)
@@ -210,13 +190,16 @@ namespace Preacepta.UI.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["CedulaAbogado"] = new SelectList(_context.TGeAbogados, "Cedula", "Cedula", tDocsAutorizacionRevisionExpediente.CedulaAbogado);
-            ViewData["CedulaAsistente"] = new SelectList(_context.TGePersonas, "Cedula", "Apellido1", tDocsAutorizacionRevisionExpediente.CedulaAsistente);
-            ViewData["CedulaImputado"] = new SelectList(_context.TGePersonas, "Cedula", "Apellido1", tDocsAutorizacionRevisionExpediente.CedulaImputado);
+            ViewData["CedulaAbogado"] = new SelectList(_listarPersonas.listar().Result, "Cedula", "Cedula", tDocsAutorizacionRevisionExpediente.CedulaAbogado);
+            ViewData["CedulaAsistente"] = new SelectList(_listarPersonas.listar().Result, "Cedula", "Cedula", tDocsAutorizacionRevisionExpediente.CedulaAsistente);
+            ViewData["CedulaImputado"] = new SelectList(_listarPersonas.listar().Result, "Cedula", "Cedula", tDocsAutorizacionRevisionExpediente.CedulaImputado);
             return View(tDocsAutorizacionRevisionExpediente);
         }
+        #endregion
 
-        // GET: AutorizacionRevisionExpedientes/Delete/5
+        #region Eliminar Root metodo POST y GET
+        // GET: TDocsAutorizacionRevisionDaniel/Delete/5
+        [Authorize(Roles = "Gestor")]
         public async Task<IActionResult> Delete(int id)
         {
             if (id == null)
@@ -233,156 +216,111 @@ namespace Preacepta.UI.Controllers
             return View(tDocsAutorizacionRevisionExpediente);
         }
 
-        // POST: AutorizacionRevisionExpedientes/Delete/5
+        // POST: TDocsAutorizacionRevisionDaniel/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            await _eliminar.Eliminar(id);
+            var tDocsAutorizacionRevisionExpediente = await _buscar.buscar(id);
+            if (tDocsAutorizacionRevisionExpediente != null)
+            {
+                await _eliminar.Eliminar(id);
+                int buscarHistorial = await _buscarHistorialLN.BuscarXidDocumento(id, "Atorización RE.");
+                await _eLiminarHistorialLN.Eliminar(buscarHistorial);
+            }
             return RedirectToAction(nameof(Index));
         }
+        #endregion
 
-        // DE ACA EN ADELNATE ESTAN MIS METODOS
-        // GET: AutorizacionRevisionExpedientes/Create
+        /********************************************************/
+        //controller de personalizados\\
+        /********************************************************/
+
+
+        #region Crear Documento Abogado
         [HttpGet]
-        public async Task<IActionResult> CreateDocsAutorizacionRevisionExpedientes(int id)            
+        [Authorize(Roles = "Abogado")]
+        public async Task<IActionResult> CreateDocsAutorizacionRevisionExpedientes(int cedulaImputado, int cedulaAsistente)
         {
-            var cliente = await _buscarPersona.buscar(id);
+            var cliente = await _buscarPersona.buscar(cedulaImputado);
+            var asistente = await _buscarPersona.buscar(cedulaAsistente);
+            
             var abogado = await _buscarPersona.buscarXcorreo(User.Identity.Name);
 
-            ViewBag.CedulaCliente = cliente.Cedula;
-            ViewBag.NombreCliente = cliente.Nombre;
-            ViewBag.Apellido1Cliente = cliente.Apellido1;
-            ViewBag.Apellido2Cliente = cliente.Apellido2;
-            ViewBag.CedulaAbogadoDaniel = abogado.Cedula;
+            ViewBag.ClienteCedula = cliente.Cedula;
+            ViewBag.ClienteNombre = cliente.Nombre;
+            ViewBag.ClienteApellido1 = cliente.Apellido1;
+            ViewBag.ClienteApellido2 = cliente.Apellido2;
+            ViewBag.Dash = " - ";
 
-            ViewData["CedulaAbogado"] = new SelectList(_context.TGeAbogados, "Cedula", "Cedula");
-            ViewData["CedulaAsistente"] = new SelectList(_context.TGePersonas, "Cedula", "Cedula");
-            ViewData["CedulaImputado"] = new SelectList(_context.TGePersonas, "Cedula", "Cedula");
+            ViewBag.AbogadoCedula = abogado.Cedula;
+            ViewBag.AbogadoNombre = abogado.Nombre;
+            ViewBag.AbogadoApellido1 = abogado.Apellido1;
+            ViewBag.AbogadoApellido2 = abogado.Apellido2;
+
+            ViewBag.CedulaAsistente = asistente.Cedula;
+            ViewBag.NombreAsistente = asistente.Nombre;
+            ViewBag.Apellido1Cliente = asistente.Apellido1;
+            ViewBag.Apellido2Cliente = asistente.Apellido2;
+
             return View();
+
         }
 
-        // POST: AutorizacionRevisionExpedientes/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> CreateDocsAutorizacionRevisionExpedientes([Bind("IdDocumento,Expediente,Delito,CedulaImputado,Ofendido,CedulaAbogado,CedulaAsistente")] DocsAutorizacionRevisionExpedienteDTO tDocsAutorizacionRevisionExpediente,
-            [FromForm] int? DocumentoAnteriorId
-            )
+        [Authorize(Roles = "Abogado")]
+        public async Task<IActionResult> CreateDocsAutorizacionRevisionExpedientes([Bind("IdDocumento,Expediente,Delito,CedulaImputado,Ofendido,CedulaAbogado,CedulaAsistente")] DocsAutorizacionRevisionExpedienteDTO tDocsAutorizacionRevisionExpediente)
         {
+            var cliente = await _buscarPersona.buscar(tDocsAutorizacionRevisionExpediente.CedulaImputado);
+            var asistente = await _buscarPersona.buscar(tDocsAutorizacionRevisionExpediente.CedulaAsistente);
+            var abogado = await _buscarPersona.buscarXcorreo(User.Identity.Name);
             if (ModelState.IsValid)
             {
-
-                // Eliminar documento anterior y su historial
-                if (DocumentoAnteriorId.HasValue)
-                {
-                    // Buscar historial por ID
-                    var historialAnterior = await _context.HistorialDocumentos
-                        .FirstOrDefaultAsync(h => h.Id == DocumentoAnteriorId.Value);
-
-                    if (historialAnterior != null)
-                    {
-                        // Obtener el ID del documento original desde el historial
-                        var idDocOriginal = historialAnterior.DocumentoIdOriginal;
-
-                        // Buscar y eliminar el documento original
-                        var docAnterior = await _context.TDocsAutorizacionRevisionExpedientes
-                            .FirstOrDefaultAsync(p => p.IdDocumento == idDocOriginal);
-
-                        if (docAnterior != null)
-                            _context.TDocsAutorizacionRevisionExpedientes.Remove(docAnterior);
-
-                        // Eliminar también el historial
-                        _context.HistorialDocumentos.Remove(historialAnterior);
-
-                        await _context.SaveChangesAsync();
-                    }
-                }
-
                 await _crear.Crear(tDocsAutorizacionRevisionExpediente);
-
-                // Obtener cliente desde TGePersonas
-                var cliente = await _context.TGePersonas
-                     .FirstOrDefaultAsync(p => p.Cedula == tDocsAutorizacionRevisionExpediente.CedulaImputado);
-
-                string nombreCliente = cliente != null
-                    ? $"{cliente.Nombre} {cliente.Apellido1} {cliente.Apellido2}"
-                    : tDocsAutorizacionRevisionExpediente.CedulaImputado.ToString();
-
-                // Obtener abogado desde TGeAbogados (con su persona)
-                var abogado = await _context.TGeAbogados
-                    .Include(a => a.CedulaNavigation)
-                    .FirstOrDefaultAsync(a => a.Cedula == tDocsAutorizacionRevisionExpediente.CedulaAbogado);
-
-                string nombreAbogado = abogado != null
-                    ? $"{abogado.CedulaNavigation.Nombre} {abogado.CedulaNavigation.Apellido1} {abogado.CedulaNavigation.Apellido2}"
-                    : tDocsAutorizacionRevisionExpediente.CedulaAbogado.ToString();
-
-                // Crear nuevo historial con ID real del documento creado
-                var nuevoIdDocumento = _context.TDocsAutorizacionRevisionExpedientes
-                    .OrderByDescending(p => p.IdDocumento)
-                    .Select(p => p.IdDocumento)
-                    .FirstOrDefault();
-
-                // Guardar en el historial
-                var historial = new HistorialDocumento
+                var Registros = await _listar.listar();
+                var idDocumento = Registros.LastOrDefault();
+                HistorialDocumentoDTO historialDocumentoDTO = new HistorialDocumentoDTO
                 {
-                    Fecha = DateTime.Now,
-                    TipoDocumento = "Autorización de revisión de expedientes",
-                    Cliente = nombreCliente,
-                    Abogado = nombreAbogado,
-                    DocumentoIdOriginal = nuevoIdDocumento
+                    Cliente = tDocsAutorizacionRevisionExpediente.CedulaImputado,
+                    Abogado = tDocsAutorizacionRevisionExpediente.CedulaAbogado,
+                    Fecha = DateTime.Now.ToString(),
+                    TipoDocumento = "Atorización RE.",
+                    IdDocumento = idDocumento.IdDocumento,
+                    Titulo = $"Doc.no.{idDocumento.IdDocumento} Atorización"
+
                 };
-
-                _context.HistorialDocumentos.Add(historial);
-                await _context.SaveChangesAsync();
-                //return RedirectToAction(nameof(Index));
-                var historialDocs = await _context.HistorialDocumentos
-                .OrderByDescending(h => h.Fecha)
-                .ToListAsync();
-
-                return View("~/Views/HistorialDocumentos/DocsHistorial.cshtml", historialDocs);
+                await _crearHistorialLN.Crear(historialDocumentoDTO);
+                return RedirectToAction("DocsHistorial", "THistorialDocumento1");
             }
+            ViewBag.ClienteCedula = cliente.Cedula;
+            ViewBag.ClienteNombre = cliente.Nombre;
+            ViewBag.ClienteApellido1 = cliente.Apellido1;
+            ViewBag.ClienteApellido2 = cliente.Apellido2;
+            ViewBag.Dash = " - ";
 
-            ViewData["CedulaAbogado"] = new SelectList(
-                _context.TGeAbogados.Include(a => a.CedulaNavigation).Select(a => new
-                {
-                    Cedula = a.Cedula,
-                    Texto = a.CedulaNavigation.Nombre + " " + a.CedulaNavigation.Apellido1 + " - " + a.Cedula
-                }),
-                "Cedula",
-                "Texto", tDocsAutorizacionRevisionExpediente?.CedulaAbogado);
+            ViewBag.AbogadoCedula = abogado.Cedula;
+            ViewBag.AbogadoNombre = abogado.Nombre;
+            ViewBag.AbogadoApellido1 = abogado.Apellido1;
+            ViewBag.AbogadoApellido2 = abogado.Apellido2;
 
-            ViewData["CedulaAsistente"] = new SelectList(
-                _context.TGePersonas.Select(p => new
-                {
-                    Cedula = p.Cedula,
-                    Texto = p.Nombre + " " + p.Apellido1 + " - " + p.Cedula
-                }),
-                "Cedula",
-                "Texto",
-                tDocsAutorizacionRevisionExpediente?.CedulaAsistente);
-
-            ViewData["CedulaImputado"] = new SelectList(
-                _context.TGePersonas.Select(p => new {
-                    Cedula = p.Cedula,
-                    Texto = p.Nombre + " " + p.Apellido1 + " - " + p.Cedula
-                }),
-                "Cedula",
-                "Texto",
-                tDocsAutorizacionRevisionExpediente?.CedulaImputado);
+            ViewBag.CedulaAsistente = asistente.Cedula;
+            ViewBag.NombreAsistente = asistente.Nombre;
+            ViewBag.Apellido1Cliente = asistente.Apellido1;
+            ViewBag.Apellido2Cliente = asistente.Apellido2;
 
             return View(tDocsAutorizacionRevisionExpediente);
         }
+        #endregion
 
+        #region Previzualizar PDF Abogado
         [HttpGet]
+        [Authorize(Roles = "Abogado")]
         public IActionResult PrevisualizarPDF(string expediente, string delito, string cedulaImputado, string ofendido, string cedulaAbogado, string cedulaAsistente)
         {
             var templatePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "lyso", "DocsMachotes", "AutorizacionExpedienteMachote.html");
             var htmlTemplate = System.IO.File.ReadAllText(templatePath);
 
-            // Reemplazar marcadores con los datos del formulario
             htmlTemplate = htmlTemplate
                 .Replace("{{EXPEDIENTE}}", expediente)
                 .Replace("{{DELITO}}", delito)
@@ -411,66 +349,6 @@ namespace Preacepta.UI.Controllers
 
             return File(pdf, "application/pdf");
         }
-
-        [HttpGet]
-        public async Task<IActionResult> EditarDesdeHistorial(int id)
-        {
-            var historial = await _context.HistorialDocumentos.FindAsync(id);
-            if (historial == null || historial.TipoDocumento != "Autorización de revisión de expedientes" || historial.DocumentoIdOriginal == null)
-            {
-                return NotFound();
-            }
-
-            // ✅ Buscar por ID directo (seguro y preciso)
-            var docOriginal = await _context.TDocsAutorizacionRevisionExpedientes
-                .FirstOrDefaultAsync(d => d.IdDocumento == historial.DocumentoIdOriginal);
-
-            if (docOriginal == null)
-            {
-                return NotFound();
-            }
-
-            var model = new DocsAutorizacionRevisionExpedienteDTO
-            {
-                Expediente = docOriginal.Expediente,
-                Delito = docOriginal.Delito,
-                CedulaImputado = docOriginal.CedulaImputado,
-                Ofendido = docOriginal.Ofendido,
-                CedulaAbogado = docOriginal.CedulaAbogado,
-                CedulaAsistente = docOriginal.CedulaAsistente
-            };
-
-            ViewBag.DocumentoAnteriorId = historial.Id;
-
-            ViewData["CedulaAbogado"] = new SelectList(
-                _context.TGeAbogados.Include(a => a.CedulaNavigation).Select(a => new
-                {
-                    Cedula = a.Cedula,
-                    Texto = a.CedulaNavigation.Nombre + " " + a.CedulaNavigation.Apellido1 + " - " + a.Cedula
-                }),
-                "Cedula",
-                "Texto", model.CedulaAbogado);
-
-            ViewData["CedulaAsistente"] = new SelectList(
-                _context.TGePersonas.Select(p => new
-                {
-                    Cedula = p.Cedula,
-                    Texto = p.Nombre + " " + p.Apellido1 + " - " + p.Cedula
-                }),
-                "Cedula",
-                "Texto", model.CedulaAsistente);
-
-            ViewData["CedulaImputado"] = new SelectList(
-                _context.TGePersonas.Select(p => new {
-                    Cedula = p.Cedula,
-                    Texto = p.Nombre + " " + p.Apellido1 + " - " + p.Cedula
-                }),
-                "Cedula",
-                "Texto",
-                model.CedulaImputado);
-
-            return View("CreateDocsAutorizacionRevisionExpedientes", model);
-        }
-
+        #endregion
     }
 }

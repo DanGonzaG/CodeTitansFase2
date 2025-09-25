@@ -1,16 +1,15 @@
-﻿<head>
-    <link href="~/lyso/css/Daniel.css" rel="stylesheet" />
-    <link href="~/calendario/stylecalendar.css" rel="stylesheet" />
-</head>
+﻿<div id="modalProgramar" class="custom-modal">
+    <div class="contact-form contact-form-two contact-form-three LetraNegra">
+        <!--<div class="container">-->
+            <div class="contact-wrap">
+                <h4 class="mb-4">Programar Reunión</h4>
 
-<div id="modalProgramar" class="custom-modal">
-        <div class="contact-form contact-form-two contact-form-three LetraNegra">
-            <div class="container">
-                <div class="contact-wrap">
-            <h4 class="mb-4">Programar Reunión</h4>
+                <div id="mensajeReunionExitosa" class="alert alert-success d-none text-center mb-3">
+                    ¡Reunión creada con éxito!
+                </div>
 
-            <form asp-controller="CrearReunion" asp-action="Crear" method="post" id="formReunion">
- 
+                <form asp-controller="CrearReunion" asp-action="Crear" method="post" id="formReunion">
+
              <!-- Fecha -->
                     <div class="form-group mb-3">
                             <label for="FechaInicio" class="control-label">Fecha y hora de inicio:</label>
@@ -41,13 +40,13 @@
 
                     <!-- Botones -->
                     <div class="text-center mt-4">
-                        <button type="submit" class="contact-btn">Crear reunión</button>
-                        <button type="button" id="btnCerrarModal" class="contact-btn">Cerrar</button>
+                    <button type="submit" class="contact-btn--primario">Crear reunión</button>
+                    <button type="button" id="btnCerrarModal" class="contact-btn--navegacion">Cerrar</button>
                     </div>
-
                     </form>
 
                     <div id="resultado" class="mt-3 text-center fw-bold"></div>
                 </div>
             </div>
     </div>
+</div>
