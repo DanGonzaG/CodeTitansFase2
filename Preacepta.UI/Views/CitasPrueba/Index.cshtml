@@ -37,9 +37,9 @@
                     </td>
                     <td>@Html.DisplayFor(modelItem => item.NombreTipoCita)</td>
                     <td>
-                    <a asp-action="Edit" asp-route-id="@item.IdCita" class="contact-btn--revision">Editar</a>
-                    <a asp-action="Details" asp-route-id="@item.IdCita" class="contact-btn--revision">Detalles</a>
-                    <a asp-action="Delete" asp-route-id="@item.IdCita" class="contact-btn--eliminacion">Eliminar</a>
+                    <a asp-action="Edit" asp-route-id="@item.IdCita" class="btn btn-warning">Editar</a>
+                    <a asp-action="Details" asp-route-id="@item.IdCita" class="btn btn-info">Detalles</a>
+                    <a asp-action="Delete" asp-route-id="@item.IdCita" class="btn btn-danger">Eliminar</a>
             </td>
         </tr>
 }
