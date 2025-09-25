@@ -169,8 +169,8 @@ namespace Praecepta.UI.Controllers
         public IActionResult Guillermo()
         {
             return View("AttorneyDetails/Guillermo");
-
-/*Este metodo envia un correo electronico al despacho para contactar con los abogados*/
+        }
+        /*Este metodo envia un correo electronico al despacho para contactar con los abogados*/
         public async Task<IActionResult> EnviarSolicitudDeContacto([Bind("cedula,name,email,phone_number")] ContactoViewModel formulario)
         {
 

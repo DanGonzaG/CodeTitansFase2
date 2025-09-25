@@ -24,9 +24,11 @@ namespace Preacepta.Modelos.AbstraccionesFrond
         public int IdCliente { get; set; }
 
         [Display(Name = "Texto del Documento")]
+        [Required(ErrorMessage = "Debe de ingresar la informacion del poder judicial.")]
         public string Texto { get; set; } = null!;
 
         [Display(Name = "Numero de Causa")]
+        [Required(ErrorMessage = "Debe de ingresar el numero de causa.")]
         public string NumCausa { get; set; }
 
         [Display(Name = "Navegación Abogado")]
