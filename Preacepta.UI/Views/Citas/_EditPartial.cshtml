@@ -67,7 +67,7 @@
 
 
                 <div class="text-center mt-4">
-                <input type="submit" value="Guardar" class="contact-btn--primero" />
+                <input type="submit" value="Guardar" class="contact-btn--primario" />
                 <button type="button" class="contact-btn--navegacion" onclick="cerrarModal('modaEditarCita', true)">Cerrar</button>
     </div>
 </form>
@@ -97,17 +97,7 @@
             tipoCitaDropdown.addEventListener("change", toggleLinkVideo);
             toggleLinkVideo();
         }
-
-   
-        window.abrirModalReunionZoom = function () {
-            let linkGenerado = "https://zoom.us/j/123456789";
-
-            if (inputLinkVideo) {
-                inputLinkVideo.value = linkGenerado;
-                grupoLinkVideo.classList.remove("d-none");
-            }
-
             
         }
-    });
+    );
 </script>
