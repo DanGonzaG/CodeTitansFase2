@@ -15,7 +15,7 @@ namespace Preacepta.Modelos.AbstraccionesFrond
 
         public string? Fecha { get; set; }
 
-        [DisplayName("Id Tipo de caso")]
+        [DisplayName("Tipo de caso")]
         public int IdTipoCaso { get; set; }
 
         [Required(ErrorMessage = "Debe de agregar una descripción del caso")]
