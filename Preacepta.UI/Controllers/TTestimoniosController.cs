@@ -349,6 +349,8 @@ namespace Preacepta.UI.Controllers
             return View(testimonios);
         }
 
+
+
         //// GET: TTestimonios/TestimonialsLista
         [Authorize(Roles = "Gestor, Abogado, Cliente")]
         public async Task<IActionResult> TestimonialsLista()
@@ -357,6 +359,8 @@ namespace Preacepta.UI.Controllers
             var activos = testimonios.Where(t => t.Activo).ToList();
             return View(activos);
         }
+
+
 
         [Authorize(Roles = "Gestor, Abogado, Cliente")]
         public async Task<JsonResult> IdExiste(int id)

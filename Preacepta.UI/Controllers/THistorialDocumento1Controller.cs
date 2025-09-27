@@ -1414,5 +1414,10 @@ namespace Preacepta.UI.Controllers
                 return RedirectToAction(nameof(Index));
             }
         }
+
+        public IActionResult Tutorial()
+        {
+            return View();
+        }
     }
 }
