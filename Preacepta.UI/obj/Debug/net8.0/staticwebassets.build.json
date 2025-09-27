@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "C74qc8A/3ZNHlprn8yyf7U92c3wz4b+UhBaoCRPgogc=",
+  "Hash": "jvVOkTQXqGA6h/wrJPyT5pIXr4NgV2tk834/encxtdI=",
   "Source": "Preacepta.UI",
   "BasePath": "_content/Preacepta.UI",
   "Mode": "Default",
@@ -1630,6 +1630,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\lyso\\css\\style.scss"
+    },
+    {
+      "Identity": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lyso\\css\\Testimonials.css",
+      "SourceId": "Preacepta.UI",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\",
+      "BasePath": "_content/Preacepta.UI",
+      "RelativePath": "lyso/css/Testimonials.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\lyso\\css\\Testimonials.css"
     },
     {
       "Identity": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lyso\\css\\theme-dark.css",
@@ -4936,6 +4955,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\lyso\\js\\bootstrap.bundle.min.js"
+    },
+    {
+      "Identity": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lyso\\js\\BuscarUsuario.js",
+      "SourceId": "Preacepta.UI",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\",
+      "BasePath": "_content/Preacepta.UI",
+      "RelativePath": "lyso/js/BuscarUsuario.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\lyso\\js\\BuscarUsuario.js"
     },
     {
       "Identity": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lyso\\js\\CalculoEdad.js",
