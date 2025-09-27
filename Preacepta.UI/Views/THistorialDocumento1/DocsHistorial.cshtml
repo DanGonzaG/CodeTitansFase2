@@ -116,7 +116,6 @@
                     foreach (var item in Model)
 
                     {
-
 <tr class="filtrosHistorial" 
     fecha="@(DateTime.TryParse(item.Fecha, out var f) ? f.ToString("yyyy-MM-dd") : item.Fecha)" 
     nombreTipoDocumento="@item.TipoDocumento">
