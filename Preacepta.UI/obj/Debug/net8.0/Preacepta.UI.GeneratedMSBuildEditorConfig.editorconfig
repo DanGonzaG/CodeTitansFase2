@@ -938,6 +938,10 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVEhpc3RvcmlhbERvY3VtZW50bzFcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Preacepta/Preacepta.UI/Views/THistorialDocumento1/Tutorial.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVEhpc3RvcmlhbERvY3VtZW50bzFcVHV0b3JpYWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Preacepta/Preacepta.UI/Views/TTestimonios1/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVFRlc3RpbW9uaW9zMVxDcmVhdGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
