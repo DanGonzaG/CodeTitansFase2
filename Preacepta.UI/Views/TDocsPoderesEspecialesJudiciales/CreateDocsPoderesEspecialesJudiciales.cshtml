@@ -99,10 +99,7 @@
 
                         <div class="seccion-titulo">Datos del documento</div>
 
-                        <input type="hidden"
-                               asp-for="Fecha"
-                               id="idFecha"
-                               value="@(Model?.Fecha ?? DateTime.Now.ToString("yyyy-MM-dd"))" />
+                        <input asp-for="Fecha" type="hidden" />
 
                         <br /><br /><br /><br />
 

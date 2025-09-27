@@ -15,8 +15,6 @@ using Preacepta.LN.DocsOpcionCompraventaVehiculo.Buscar;
 using Preacepta.LN.DocsPagare.Buscar;
 using Preacepta.LN.DocsTipoVehiculo.Listar;
 using Preacepta.LN.GeAbogado.BuscarXid;
-using Preacepta.LN.DocsAutorizacionRevisionExpediente.BuscarXid;
-using Preacepta.LN.DocsAutorizacionRevisionExpediente.Editar;
 using Preacepta.LN.DocsCompraventaFinca.BuscarXid;
 using Preacepta.LN.DocsCompraventaFinca.Editar;
 using Preacepta.LN.DocsContratoPrestacionServicios.BuscarXid;
@@ -31,11 +29,8 @@ using Preacepta.LN.HistorialDocumentos.Crear;
 using Preacepta.LN.HistorialDocumentos.Editar;
 using Preacepta.LN.HistorialDocumentos.Eliminar;
 using Preacepta.LN.HistorialDocumentos.Listar;
-using Preacepta.Modelos.AbstraccionesBD;
 using Preacepta.Modelos.AbstraccionesFrond;
-using System.Collections.Generic;
 using System.Globalization;
-using Preacepta.LN.DocsCompraventaFinca.Listar;
 
 namespace Preacepta.UI.Controllers
 {
@@ -60,9 +55,6 @@ namespace Preacepta.UI.Controllers
         //Autorizacion y revision de expedientes, insertar aqui las de los demas documentos
         private readonly IBuscarDocsAutorizacionRevisionExpedienteLN _buscarDocsAutorizacionRevision;
         private readonly IEditarDocsAutorizacionRevisionExpedienteLN _editardocsAutorizacionRevision;
-
-        private readonly IListarCrDireccion1LN _listarDirecciones;
-
         private readonly IBuscarPagareLN _buscarPagare;
 
         private readonly IBuscarDocCVLN _buscarcompraventaV;
@@ -75,20 +67,20 @@ namespace Preacepta.UI.Controllers
         //compra venta de fincas
         private readonly IBuscarDocsCompraventaFincaLN _buscarDocsCompraVentaFinca;
         private readonly IEditarDocsCompraventaFincaLN _editarDocsCompraVentaFinca;
-        private readonly IBuscarCrDireccion1LN _buscarDistritoDocsCompraVentaFinca;//Deben de cambiarse por la linea 84
-        private readonly IListarCrDireccion1LN _listarDistritoDocsCompraVentaFinca;
 
         //prestacion de servicios
         private readonly IBuscarDocsContratoPrestacionServiciosLN _buscarDocsContratoPrestacionServicios;
         private readonly IEditarDocsContratoPrestacionServiciosLN _editarDocsContratoPrestacionServicios;
-        private readonly IBuscarCrDireccion1LN _buscarDistrito;
-
 
         //incripción de vehiculo
         private readonly IBuscarDocsInscripcionVehiculoLN _buscarDocsInscVehiculo;
         private readonly IEditarDocsInscripcionVehiculoLN _editarDocsInscVehiculo;
         private readonly IListarTipoVehiculoLN _listarTipoVehiculoDocsInscVehiculo;
         private readonly IListarDocsMarcaVehiculoLN _listarMarcaVehiculoDocsInscVehiculo;
+
+        //listar direcciones
+        private readonly IBuscarCrDireccion1LN _buscarDireccion;
+        private readonly IListarCrDireccion1LN _listarDireccion;
 
         public THistorialDocumento1Controller(Contexto context,
             IConverter converter,
@@ -104,13 +96,9 @@ namespace Preacepta.UI.Controllers
          IListarGePersonaLN listarGePersona,
          IBuscarAbogadoLN buscarAbogado,
 
-
          //Autorizacion y revision de expedientes
          IBuscarDocsAutorizacionRevisionExpedienteLN buscarDocsAutorizacionRevision,
          IEditarDocsAutorizacionRevisionExpedienteLN editardocsAutorizacionRevision,
-
-         IListarCrDireccion1LN listarDirecciones,
-
          IBuscarPagareLN buscarPagare,
 
          //Compra venta de vehiculo
@@ -121,23 +109,23 @@ namespace Preacepta.UI.Controllers
          IBuscarPoderJudLN buscarPoderJud,
 
          //Direccion
-         IBuscarCrDireccion1LN buscarDistrito,
-         
          IBuscarDocsCompraventaFincaLN buscarDocsCompraVentaFinca,
          IEditarDocsCompraventaFincaLN editarDocsCompraVentaFinca,
          IBuscarCrDireccion1LN buscarDistritoDocsCompraVentaFinca,
-         IListarCrDireccion1LN listarDistritoDocsCompraVentaFinca,
 
          //prestacion de servicios
          IBuscarDocsContratoPrestacionServiciosLN buscarDocsContratoPrestacionServicios,
          IEditarDocsContratoPrestacionServiciosLN editarDocsContratoPrestacionServicios,
-         //IBuscarCrDireccion1LN buscarDistrito,
 
          //incripción de vehiculo
          IBuscarDocsInscripcionVehiculoLN buscarDocsInscVehiculo,
          IEditarDocsInscripcionVehiculoLN editarDocsInscVehiculo,
          IListarTipoVehiculoLN listarTipoVehiculoDocsInscVehiculo,
-         IListarDocsMarcaVehiculoLN listarMarcaVehiculoDocsInscVehiculo
+         IListarDocsMarcaVehiculoLN listarMarcaVehiculoDocsInscVehiculo,
+
+         //listar y buscar direcciones
+         IBuscarCrDireccion1LN buscarDireccion,
+         IListarCrDireccion1LN listarDireccion
          )
 
         {
@@ -163,19 +151,30 @@ namespace Preacepta.UI.Controllers
             //compra venta de fincas
             _buscarDocsCompraVentaFinca = buscarDocsCompraVentaFinca;
             _editarDocsCompraVentaFinca = editarDocsCompraVentaFinca;
-            _buscarDistritoDocsCompraVentaFinca = buscarDistritoDocsCompraVentaFinca;
-            //_listarDistritoDocsCompraVentaFinca = listarDistritoDocsCompraVentaFinca;
 
             //prestacion de servicios
             _buscarDocsContratoPrestacionServicios = buscarDocsContratoPrestacionServicios;
             _editarDocsContratoPrestacionServicios = editarDocsContratoPrestacionServicios;
-            _buscarDistrito = buscarDistrito;
 
             //incripción de vehiculo
             _buscarDocsInscVehiculo = buscarDocsInscVehiculo;
             _editarDocsInscVehiculo = editarDocsInscVehiculo;
             _listarTipoVehiculoDocsInscVehiculo = listarTipoVehiculoDocsInscVehiculo;
             _listarMarcaVehiculoDocsInscVehiculo = listarMarcaVehiculoDocsInscVehiculo;
+
+            //compra y vent de vehiculos
+            _buscarcompraventaV = buscarcompraventaV;
+            _listarMarcas = listarMarcaVehiculoDocsInscVehiculo;
+            _listarTipos = listarTipoVehiculoDocsInscVehiculo;
+            _listarCombustibles = listarCombustibles;
+
+            //poderes judiciales
+            _buscarPoderJud = buscarPoderJud;
+            _buscarPagare = buscarPagare;
+
+            //listar y buscar direcciones
+            _buscarDireccion = buscarDireccion;
+            _listarDireccion = listarDireccion;
         }
 
         [Authorize(Roles = "Abogado")]
@@ -342,7 +341,7 @@ namespace Preacepta.UI.Controllers
 
             ViewBag.AbogadoCedula = abogado?.Cedula ?? 0;
 
-            var distritos = await _listarDirecciones.listarDistritos();
+            var distritos = await _listarDireccion.listarDistritos();
             ViewBag.UbicacionFirma = new SelectList(distritos, "IdDistrito", "NombreDistrito");
 
             var model = new DocsPagareDTO
@@ -377,7 +376,7 @@ namespace Preacepta.UI.Controllers
             ViewBag.PropietarioApellido1 = propietario?.Apellido1 ?? "";
             ViewBag.PropietarioApellido2 = propietario?.Apellido2 ?? "";
 
-            var distritos = await _listarDirecciones.listarDistritos();
+            var distritos = await _listarDireccion.listarDistritos();
             ViewBag.UbicacionFirma = new SelectList(distritos, "IdDistrito", "NombreDistrito");
 
             var marcas = await _listarMarcas.listar();
@@ -451,7 +450,7 @@ namespace Preacepta.UI.Controllers
             ViewBag.AbogadoApellido2 = abogado.Apellido2;
 
             ViewBag.LugarFirma = new SelectList(
-                (await _listarDistritoDocsCompraVentaFinca.listarDistritos()),
+                (await _listarDireccion.listarDistritos()),
                 "IdDistrito",
                 "NombreDistrito"
             );
@@ -477,13 +476,13 @@ namespace Preacepta.UI.Controllers
             ViewBag.AbogadoApellido2 = abogado.Apellido2;
 
             ViewBag.CiudadFirma = new SelectList(
-                (await _listarDistritoDocsCompraVentaFinca.listarDistritos()),
+                (await _listarDireccion.listarDistritos()),
                 "IdDistrito",
                 "NombreDistrito"
             );
 
             ViewBag.Provincia = new SelectList(
-                (await _listarDistritoDocsCompraVentaFinca.listarProvincias()),
+                (await _listarDireccion.listarProvincias()),
                 "IdProvincia",
                 "NombreProvincia"
             );
@@ -510,7 +509,7 @@ namespace Preacepta.UI.Controllers
             ViewBag.AbogadoApellido2 = abogado.Apellido2;
 
             ViewBag.LugarFirma = new SelectList(
-                (await _listarDistritoDocsCompraVentaFinca.listarDistritos()),
+                (await _listarDireccion.listarDistritos()),
                 "IdDistrito",
                 "NombreDistrito"
             );
@@ -637,10 +636,10 @@ namespace Preacepta.UI.Controllers
                     var vendedor = await _buscarPersona.buscar(int.Parse(cedulaVendedor));
                     var comprador = await _buscarPersona.buscar(int.Parse(cedulaComprador));
                     var abogado = await _buscarPersona.buscarXcorreo(User.Identity.Name);
-                    var prov = await _buscarDistrito.buscarProvincia(int.Parse(provinciaFinca));
-                    var cant = await _buscarDistrito.buscarCanton(int.Parse(cantonFinca));
-                    var distF = await _buscarDistrito.buscarDistrito(int.Parse(distritoFinca));
-                    var dist = await _buscarDistrito.buscarDistrito(int.Parse(lugarFirma));
+                    var prov = await _buscarDireccion.buscarProvincia(int.Parse(provinciaFinca));
+                    var cant = await _buscarDireccion.buscarCanton(int.Parse(cantonFinca));
+                    var distF = await _buscarDireccion.buscarDistrito(int.Parse(distritoFinca));
+                    var dist = await _buscarDireccion.buscarDistrito(int.Parse(lugarFirma));
 
                     // Reemplazar marcadores con los datos del formulario
                     htmlTemplate = htmlTemplate2
@@ -727,8 +726,8 @@ namespace Preacepta.UI.Controllers
 
                     var cliente = await _buscarPersona.buscar(int.Parse(cedulaCliente));
                     abogado = await _buscarPersona.buscarXcorreo(User.Identity.Name);
-                    var prov1 = await _buscarDistrito.buscarProvincia(int.Parse(provincia));
-                    var dist1 = await _buscarDistrito.buscarDistrito(int.Parse(ciudadFirma));
+                    var prov1 = await _buscarDireccion.buscarProvincia(int.Parse(provincia));
+                    var dist1 = await _buscarDireccion.buscarDistrito(int.Parse(ciudadFirma));
                     var fecha = DateTime.Parse(fechaFirma);
 
                     // Reemplazar marcadores con los datos del formulario
@@ -820,7 +819,7 @@ namespace Preacepta.UI.Controllers
 
                     cliente = await _buscarPersona.buscar(int.Parse(cedulaCliente));
                     abogado = await _buscarPersona.buscarXcorreo(User.Identity.Name);
-                    var dist2 = await _buscarDistrito.buscarDistrito(int.Parse(lugarFirma));
+                    var dist2 = await _buscarDireccion.buscarDistrito(int.Parse(lugarFirma));
 
 
                     // Reemplazar marcadores con los datos del formulario
@@ -936,10 +935,10 @@ namespace Preacepta.UI.Controllers
                         : ahora.ToString("HH:mm");
 
                     string lugarPagoMostrar = resultadoPagare.LugarPago.ToString() ?? "";
-                    var lugarPagos = await _buscarDistrito.buscarDistrito(int.Parse(lugarPagoMostrar));
+                    var lugarPagos = await _buscarDireccion.buscarDistrito(int.Parse(lugarPagoMostrar));
 
                     string UbicacionFirmaMostrar = resultadoPagare.UbicacionFirma.ToString() ?? "";
-                    var UbicacionFirma = await _buscarDistrito.buscarDistrito(int.Parse(UbicacionFirmaMostrar));
+                    var UbicacionFirma = await _buscarDireccion.buscarDistrito(int.Parse(UbicacionFirmaMostrar));
 
                     var abogadopagare = await _buscarPersona.buscarXcorreo(User.Identity?.Name ?? "");
                     var cedulaAbogadopagare = (abogadopagare?.Cedula ?? 0).ToString();
@@ -1106,7 +1105,7 @@ namespace Preacepta.UI.Controllers
                         string lugarFirmaIdStr = resultadoCV.LugarFirma.ToString();
                         if (int.TryParse(lugarFirmaIdStr, out var idLugarFirma))
                         {
-                            var lugar = await _buscarDistrito.buscarDistrito(idLugarFirma);
+                            var lugar = await _buscarDireccion.buscarDistrito(idLugarFirma);
                             lugarFirmaNombre = lugar?.NombreDistrito ?? "";
                         }
 

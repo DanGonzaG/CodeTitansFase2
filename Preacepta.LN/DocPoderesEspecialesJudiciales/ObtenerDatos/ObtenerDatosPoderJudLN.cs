@@ -43,7 +43,7 @@ namespace Preacepta.LN.DocPoderesEspecialesJudiciales.ObtenerDatos
 
             return new TDocsPoderesEspecialesJudiciale
             {
-                IdDoc = poderJudDTO.IdDoc,
+                //IdDoc = poderJudDTO.IdDoc,
                 IdAbogado = poderJudDTO.IdAbogado,
                 IdCliente = poderJudDTO.IdCliente,
                 Texto = poderJudDTO.Texto,
