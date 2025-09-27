@@ -260,8 +260,8 @@ namespace Preacepta.UI.Controllers
 
             ViewBag.CedulaAsistente = asistente.Cedula;
             ViewBag.NombreAsistente = asistente.Nombre;
-            ViewBag.Apellido1Cliente = asistente.Apellido1;
-            ViewBag.Apellido2Cliente = asistente.Apellido2;
+            ViewBag.Apellido1Asistente = asistente.Apellido1;
+            ViewBag.Apellido2Asistente = asistente.Apellido2;
 
             return View();
 

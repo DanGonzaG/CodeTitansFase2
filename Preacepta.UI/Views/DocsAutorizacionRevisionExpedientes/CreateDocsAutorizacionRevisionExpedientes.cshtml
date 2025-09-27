@@ -79,7 +79,7 @@
                             </div>
                             <div class="col-sm-6 col-lg-6">
                                 <div class="form-group">
-                                    <input type="text" class="form-control" value="@ViewBag.ClienteCedula" readonly />
+                                    <input type="text" class="form-control" value="@ViewBag.ClienteNombre @ViewBag.ClienteApellido1 @ViewBag.ClienteApellido2 @ViewBag.Dash @ViewBag.ClienteCedula" readonly />
                                     <input type="hidden" asp-for="CedulaImputado" class="form-control" value="@ViewBag.ClienteCedula" id="idCedulaImputado" lang="es" spellcheck="true" readonly />
                                     <span asp-validation-for="CedulaImputado" class="text-danger"></span>
                                 </div>
@@ -110,7 +110,7 @@
                             </div>
                             <div class="col-sm-6 col-lg-6 centro">
                                 <div class="form-group">
-                                    <input type="text" class="form-control" value="@ViewBag.AbogadoCedula" readonly />
+                                    <input type="text" class="form-control" value="@ViewBag.AbogadoNombre @ViewBag.AbogadoApellido1 @ViewBag.AbogadoApellido2 @ViewBag.Dash @ViewBag.AbogadoCedula" readonly />
                                     <input type="hidden" asp-for="CedulaAbogado" class="form-control" value="@ViewBag.AbogadoCedula" id="idCedulaAbogado" lang="es" spellcheck="true" readonly />
                                     <span asp-validation-for="CedulaAbogado" class="text-danger"></span>
                                 </div>
@@ -126,7 +126,7 @@
                             </div>
                             <div class="col-sm-6 col-lg-6 centro">
                                 <div class="form-group">
-                                    <input type="text" class="form-control" value="@ViewBag.CedulaAsistente" readonly />
+                                    <input type="text" class="form-control" value="@ViewBag.NombreAsistente @ViewBag.Apellido1Asistente @ViewBag.Apellido2Asistente @ViewBag.Dash @ViewBag.CedulaAsistente" readonly />
                                     <input type="hidden" asp-for="CedulaAsistente" class="form-control" value="@ViewBag.CedulaAsistente" id="idCedulaAsistente" lang="es" spellcheck="true" readonly />
                                     <span asp-validation-for="CedulaAsistente" class="text-danger"></span>
                                 </div>
