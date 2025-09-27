@@ -13,6 +13,7 @@ using Preacepta.Modelos.AbstraccionesFrond;
 namespace Preacepta.UI.Controllers
 {
     [Authorize]
+
     public class PersonasController : Controller
     {
         private readonly IListarGePersonaLN _listarPersona;
@@ -146,8 +147,45 @@ namespace Preacepta.UI.Controllers
             return View(tGePersona);
 
         }
-        #endregion      
+        #endregion
 
+        #region DetallesPersona
+        // GET: TGePersonas/Details/5
+        [Authorize(Roles = "Abogado")]
+        public async Task<IActionResult> DetallesPersona(int id)
+        {
+            
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var tGePersona = await _buscarPersona.buscar(id);
+
+            if (tGePersona == null)
+            {
+                var noEncontrado = new {
+                    mensaje = "El usuario no se encuentra en nuestros registros",
+                    Bandera = false
+                };
+                return Json(noEncontrado);
+            }
+
+            var datos = new
+            {
+                Bandera = true,
+                Cedula = tGePersona.Cedula,
+                Nombre = tGePersona.Nombre,
+                Apellido1 = tGePersona.Apellido1,
+                Apellido2 = tGePersona.Apellido2,
+                Ocupacion = tGePersona.Oficio,
+                Telefono = tGePersona.Telefono1,
+                Correo = tGePersona.Email
+            };           
+
+            return Json(datos);
+        }
+        #endregion
 
         /********************************************************************************************************************************************************************/
         //controller de Framework\\
@@ -162,7 +200,7 @@ namespace Preacepta.UI.Controllers
         }
 
         // GET: TGePersonas/Details/5
-        [Authorize(Roles = "Gestor")]        
+        [Authorize(Roles = "Gestor, Abogado")]        
         public async Task<IActionResult> Details(int id)
         {
             if (id == null)

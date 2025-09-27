@@ -52,8 +52,8 @@
                 <div class="btn-group-vertical menuDaniel">
                     <label class="menuDanielLabels">Clientes y Abogados</label>
                     <a class="contact-btn menuDanielBtns" asp-controller="Personas" asp-action="CrearPersona">Nuevo cliente</a>
-                    <a class="contact-btn menuDanielBtns" asp-controller="Abogado" asp-action="CrearAbogado">Nuevo abogado</a>
-                    <button type="button" class="contact-btn menuDanielBtns" style="text-align:left" id="testimonio" title="Lista de testimonios">Lista de testimonios</button>
+                    <a class="contact-btn menuDanielBtns" asp-controller="Abogado" asp-action="CrearAbogado">Nuevo abogado</a>                    
+                    <a class="contact-btn menuDanielBtns" asp-controller="TTestimonios" asp-action="TestimonialsLista">Lista de testimonios</a>
                     <label class="menuDanielLabels">Documentos Legales</label>
                     <button type="button" class="contact-btn menuDanielBtns" style="text-align:left" id="cvVehiculo" title="Al hacer click aquí usted puede generar un documento legal para la compra y venta de vehiculos">Documento para la compra y venta de vehiculos</button>
                     <!--<a class="contact-btn menuDanielBtns" id="doc1" asp-controller="DocsAutorizacionRevisionExpedientes" asp-action="CreateDocsAutorizacionRevisionExpedientes">Documento de autorización revisión de expedientes</a>-->
@@ -65,10 +65,9 @@
                     <!--<a class="contact-btn menuDanielBtns" asp-controller="DocsContratoPrestacionServicios" asp-action="CreateDocsContratoPrestacionServicios">Documento de contrato de prestacion de servicios</a>-->
                     <button type="button" class="contact-btn menuDanielBtns" style="text-align:left" id="docPrestacion" title="Este botón le permite generar un documento legal en formato PDF la prestar servicios profesionales">Documento de contrato de prestacion de servicios</button>
                     <!--<a class="contact-btn menuDanielBtns" asp-controller="DocsInscripcionVehiculo" asp-action="CreateDocsInscripcionVehiculo">Documento de inscripción de vehículos</a>-->
-                    <button type="button" class="contact-btn menuDanielBtns" style="text-align:left" id="docInscripcion" title="Este botón le permite generar un documento legal en formato PDF la inscripción de un vehiculo">Documento de inscripción de vehículos</button>
-                    <a href="#" class="contact-btn menuDanielBtns">Documentos recientes</a>
+                    <button type="button" class="contact-btn menuDanielBtns" style="text-align:left" id="docInscripcion" title="Este botón le permite generar un documento legal en formato PDF la inscripción de un vehiculo">Documento de inscripción de vehículos</button>                    
                     <a class="contact-btn menuDanielBtns" asp-controller="THistorialDocumento1" asp-action="DocsHistorial">Historial de documentos</a>
-                    <a class="contact-btn menuDanielBtns" asp-controller="DocsGenerator" asp-action="Tutorial">Tutorial para genera documentos</a>
+                    <a class="contact-btn menuDanielBtns" asp-controller="THistorialDocumento1" asp-action="Tutorial">Tutorial para genera documentos</a>
                     <label class="menuDanielLabels">Casos legales</label>
                     <button type="button" class="contact-btn menuDanielBtns" id="crearCaso" style="text-align:left">Crear Caso</button>
                     <a class="contact-btn menuDanielBtns" asp-controller="Caso" asp-action="CasosListado">Casos en proceso</a>
@@ -171,15 +170,15 @@
                                                             <div class="row justify-content-center">
                                                                 <div class="col-md-12 col-lg-12">
                                                                     <div class="form-group">
-                                                                        <input name="BusquedaCaso" class="form-control LetraNegra" id="InputBusquedaCaso" placeholder="Ingrese el número de cédula" style="background-color:white">
+                                                                        <input name="BuscarPersona" class="form-control LetraNegra" id="InputBuscarPersona" placeholder="Ingrese el número de cédula" style="background-color:white">
                                                                         <div class="help-block with-errors"></div>
                                                                     </div>
                                                                 </div>
                                                                 <div class="col-md-12 col-lg-12">
                                                                     <div class="text-center">
-                                                                        <button type="button" id="BtnBuscarCaso" class="contact-btn--primario">
-                                                                            Buscar
-                                                                        </button>
+                                                                         <button value=BuscarPersona.value type="button" id="PrevioBtn" class="contact-btn--primario" data-bs-toggle="modal" data-bs-target="#PrevioModal">
+                                        Detalles
+                                    </button>
                                                                     </div>
                                                                     <div id="msgSubmit" class="h3 text-center hidden"></div>
                                                                     <div class="clearfix"></div>
@@ -202,6 +201,43 @@
     </div>
 </div>
 
+
+
+   <div class="modal fade" id="PrevioModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Revisión de datos ingresados</h5>
+                <button id="Retroceso2" type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+            </div>
+            <div class="modal-body">
+                @if (TempData["PersonaNoEncontrada"] != null)
+                {
+                    <p style="color: black"><strong>Error en su busqueda:</strong> <span>El usuario buscando no se encuentra en nuestros registros</span></p>
+                }else
+                {
+                     <p style="color: black"><strong>Nombre:</strong> <span id="Nombre"></span></p>
+                     <p style="color: black"><strong>Apellidos:</strong> <span id="Apellido1"></span></p>
+                     <p style="color: black"><strong>Ocupación:</strong> <span id="Oficio"></span></p>
+                     <p style="color: black"><strong>Telefono:</strong> <span id="Telefono"></span></p>
+                     <p style="color: black"><strong>Correo:</strong> <span id="Correo"></span></p>
+                }
+               
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="contact-btn--navegacion" data-bs-dismiss="modal" id="Retroceso">Cerrar</button>
+                
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Button trigger modal -->
+<!-- Modal -->
+
+
+<script src="~/lyso/js/buscarusuario.js"></script>
+
 @if (TempData["PersonaCreada"] != null)
 {
     <script>
@@ -218,6 +254,8 @@
         });
     </script>
 }
+
+
 
 <!-- End Team -->
 <script>
@@ -283,6 +321,10 @@
                 showCancelButton: true,
                 confirmButtonText: 'Continuar',
                 icon: 'question',
+                customClass: {
+                    cancelButton: 'contact-btn--tercero',
+                    confirmButton: 'contact-btn--secundario'
+                },
                 preConfirm: () => {
                     const CedulaImputado = document.getElementById('CedulaImputado').value.trim();
                     const CedulaAsistente = document.getElementById('CedulaAsistente').value.trim();
@@ -454,6 +496,10 @@
                 showCancelButton: true,
                 confirmButtonText: 'Continuar',
                 icon: 'question',
+                customClass: {
+                    cancelButton: 'contact-btn--tercero',
+                    confirmButton: 'contact-btn--secundario'
+                },
                 preConfirm: () => {
                     const CedulaVendedor = document.getElementById('CedulaVendedor').value.trim();
                     const CedulaComprador = document.getElementById('CedulaComprador').value.trim();
@@ -495,7 +541,11 @@
                 input: 'text',
                 showCancelButton: true,
                 confirmButtonText: 'Continuar',
-                icon: 'question'
+                icon: 'question',
+                customClass: {
+                    cancelButton: 'contact-btn--tercero',
+                    confirmButton: 'contact-btn--secundario'
+                },
             }).then((result) => {
                 if (result.isConfirmed) {
                     fetch('/Personas/IdExiste?id=' + result.value)
@@ -538,12 +588,7 @@
                         });
                 }
             });
-        });
-
-
-
-
-
+        });      
 
 
         document.getElementById('crearCaso').addEventListener('click', function (event) {
