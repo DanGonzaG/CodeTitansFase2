@@ -1,0 +1,596 @@
+2025-09-27 13:01:17.832 -06:00 [INF] Executed DbCommand (38ms) [Parameters=[@__normalizedName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[ConcurrencyStamp], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[NormalizedName] = @__normalizedName_0
+2025-09-27 13:01:17.895 -06:00 [INF] Executed DbCommand (2ms) [Parameters=[@__normalizedName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[ConcurrencyStamp], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[NormalizedName] = @__normalizedName_0
+2025-09-27 13:01:17.897 -06:00 [INF] Executed DbCommand (1ms) [Parameters=[@__normalizedName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[ConcurrencyStamp], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[NormalizedName] = @__normalizedName_0
+2025-09-27 13:01:17.935 -06:00 [INF] Executed DbCommand (1ms) [Parameters=[@__normalizedName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[ConcurrencyStamp], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[NormalizedName] = @__normalizedName_0
+2025-09-27 13:01:17.944 -06:00 [INF] Executed DbCommand (3ms) [Parameters=[@__normalizedEmail_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(2) [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[NormalizedEmail] = @__normalizedEmail_0
+2025-09-27 13:01:18.406 -06:00 [INF] Now listening on: https://localhost:7065
+2025-09-27 13:01:18.406 -06:00 [INF] Now listening on: http://localhost:5282
+2025-09-27 13:01:18.459 -06:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-09-27 13:01:18.459 -06:00 [INF] Hosting environment: Development
+2025-09-27 13:01:18.459 -06:00 [INF] Content root path: C:\Preacepta\Preacepta.UI
+2025-09-27 13:01:19.730 -06:00 [INF] Request starting HTTP/2 GET https://localhost:7065/ - null null
+2025-09-27 13:01:19.845 -06:00 [INF] Executing endpoint 'Praecepta.UI.Controllers.HomeController.Index (Preacepta.UI)'
+2025-09-27 13:01:19.857 -06:00 [INF] Route matched with {action = "Index", controller = "Home", area = "", page = ""}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Index() on controller Praecepta.UI.Controllers.HomeController (Preacepta.UI).
+2025-09-27 13:01:19.878 -06:00 [INF] Executing ViewResult, running view Index.
+2025-09-27 13:01:19.963 -06:00 [INF] Executed ViewResult - view Index executed in 84.3792ms.
+2025-09-27 13:01:19.966 -06:00 [INF] Executed action Praecepta.UI.Controllers.HomeController.Index (Preacepta.UI) in 108.6692ms
+2025-09-27 13:01:19.966 -06:00 [INF] Executed endpoint 'Praecepta.UI.Controllers.HomeController.Index (Preacepta.UI)'
+2025-09-27 13:01:19.969 -06:00 [INF] Request finished HTTP/2 GET https://localhost:7065/ - 200 null text/html; charset=utf-8 244.9117ms
+2025-09-27 13:01:19.995 -06:00 [INF] Request starting HTTP/2 GET https://localhost:7065/lyso/img/home-one/nara3.png - null null
+2025-09-27 13:01:19.995 -06:00 [INF] Request starting HTTP/2 GET https://localhost:7065/lyso/img/home-one/team/guille.jpeg - null null
+2025-09-27 13:01:19.995 -06:00 [INF] Request starting HTTP/2 GET https://localhost:7065/_framework/aspnetcore-browser-refresh.js - null null
+2025-09-27 13:01:19.995 -06:00 [INF] Request starting HTTP/2 GET https://localhost:7065/lyso/img/home-one/team/ema.jpeg - null null
+2025-09-27 13:01:19.995 -06:00 [INF] Request starting HTTP/2 GET https://localhost:7065/lyso/img/home-one/team/nara.jpeg - null null
+2025-09-27 13:01:20.004 -06:00 [INF] Request starting HTTP/2 GET https://localhost:7065/_vs/browserLink - null null
+2025-09-27 13:01:20.013 -06:00 [INF] Request finished HTTP/2 GET https://localhost:7065/_framework/aspnetcore-browser-refresh.js - 200 13760 application/javascript; charset=utf-8 17.0951ms
+2025-09-27 13:01:20.013 -06:00 [INF] The file /lyso/img/home-one/team/guille.jpeg was not modified
+2025-09-27 13:01:20.013 -06:00 [INF] The file /lyso/img/home-one/team/nara.jpeg was not modified
+2025-09-27 13:01:20.013 -06:00 [INF] The file /lyso/img/home-one/nara3.png was not modified
+2025-09-27 13:01:20.013 -06:00 [INF] The file /lyso/img/home-one/team/ema.jpeg was not modified
+2025-09-27 13:01:20.018 -06:00 [INF] Request finished HTTP/2 GET https://localhost:7065/lyso/img/home-one/team/guille.jpeg - 304 null image/jpeg 23.1156ms
+2025-09-27 13:01:20.018 -06:00 [INF] Request finished HTTP/2 GET https://localhost:7065/lyso/img/home-one/team/nara.jpeg - 304 null image/jpeg 22.5712ms
+2025-09-27 13:01:20.018 -06:00 [INF] Request finished HTTP/2 GET https://localhost:7065/lyso/img/home-one/nara3.png - 304 null image/png 23.1346ms
+2025-09-27 13:01:20.018 -06:00 [INF] Request finished HTTP/2 GET https://localhost:7065/lyso/img/home-one/team/ema.jpeg - 304 null image/jpeg 23.1101ms
+2025-09-27 13:01:20.122 -06:00 [INF] Request finished HTTP/2 GET https://localhost:7065/_vs/browserLink - 200 null text/javascript; charset=UTF-8 117.5361ms
+2025-09-27 13:01:21.395 -06:00 [INF] Request starting HTTP/2 GET https://localhost:7065/Identity/Account/Login - null null
+2025-09-27 13:01:21.401 -06:00 [INF] Executing endpoint '/Account/Login'
+2025-09-27 13:01:21.407 -06:00 [INF] Route matched with {page = "/Account/Login", area = "Identity", action = "", controller = ""}. Executing page /Account/Login
+2025-09-27 13:01:21.419 -06:00 [INF] Executing handler method Praecepta.UI.Areas.Identity.Pages.Account.LoginModel.OnGetAsync - ModelState is "Valid"
+2025-09-27 13:01:21.422 -06:00 [INF] AuthenticationScheme: Identity.External signed out.
+2025-09-27 13:01:21.422 -06:00 [INF] Executed handler method OnGetAsync, returned result .
+2025-09-27 13:01:21.423 -06:00 [INF] Executing an implicit handler method - ModelState is "Valid"
+2025-09-27 13:01:21.423 -06:00 [INF] Executed an implicit handler method, returned result Microsoft.AspNetCore.Mvc.RazorPages.PageResult.
+2025-09-27 13:01:21.467 -06:00 [INF] Executed page /Account/Login in 59.2001ms
+2025-09-27 13:01:21.467 -06:00 [INF] Executed endpoint '/Account/Login'
+2025-09-27 13:01:21.467 -06:00 [INF] Request finished HTTP/2 GET https://localhost:7065/Identity/Account/Login - 200 null text/html; charset=utf-8 72.2071ms
+2025-09-27 13:01:21.473 -06:00 [INF] Request starting HTTP/2 GET https://localhost:7065/lyso/css/daniel.css - null null
+2025-09-27 13:01:21.473 -06:00 [INF] Request starting HTTP/2 GET https://localhost:7065/_framework/aspnetcore-browser-refresh.js - null null
+2025-09-27 13:01:21.473 -06:00 [INF] The file /lyso/css/daniel.css was not modified
+2025-09-27 13:01:21.474 -06:00 [INF] Request finished HTTP/2 GET https://localhost:7065/lyso/css/daniel.css - 304 null text/css 1.1466ms
+2025-09-27 13:01:21.474 -06:00 [INF] Request finished HTTP/2 GET https://localhost:7065/_framework/aspnetcore-browser-refresh.js - 200 13760 application/javascript; charset=utf-8 1.3159ms
+2025-09-27 13:01:21.477 -06:00 [INF] Request starting HTTP/2 GET https://localhost:7065/_vs/browserLink - null null
+2025-09-27 13:01:21.485 -06:00 [INF] Request finished HTTP/2 GET https://localhost:7065/_vs/browserLink - 200 null text/javascript; charset=UTF-8 8.7885ms
+2025-09-27 13:01:33.316 -06:00 [INF] Request starting HTTP/2 POST https://localhost:7065/Identity/Account/Login - application/x-www-form-urlencoded 275
+2025-09-27 13:01:33.325 -06:00 [INF] Executing endpoint '/Account/Login'
+2025-09-27 13:01:33.325 -06:00 [INF] Route matched with {page = "/Account/Login", area = "Identity", action = "", controller = ""}. Executing page /Account/Login
+2025-09-27 13:01:33.337 -06:00 [INF] Executing handler method Praecepta.UI.Areas.Identity.Pages.Account.LoginModel.OnPostAsync - ModelState is "Valid"
+2025-09-27 13:01:33.339 -06:00 [INF] Email recibido: juan@preacepta.com
+2025-09-27 13:01:33.346 -06:00 [INF] Executed DbCommand (1ms) [Parameters=[@__normalizedEmail_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(2) [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[NormalizedEmail] = @__normalizedEmail_0
+2025-09-27 13:01:33.355 -06:00 [INF] Executed DbCommand (2ms) [Parameters=[@__normalizedUserName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[NormalizedUserName] = @__normalizedUserName_0
+2025-09-27 13:01:33.405 -06:00 [INF] Executed DbCommand (1ms) [Parameters=[@__normalizedUserName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[NormalizedUserName] = @__normalizedUserName_0
+2025-09-27 13:01:33.460 -06:00 [INF] Executed DbCommand (9ms) [Parameters=[@p14='?' (Size = 450), @p0='?' (DbType = Int32), @p1='?' (Size = 4000), @p15='?' (Size = 4000), @p2='?' (Size = 256), @p3='?' (DbType = Boolean), @p4='?' (DbType = Boolean), @p5='?' (DbType = DateTimeOffset), @p6='?' (Size = 256), @p7='?' (Size = 256), @p8='?' (Size = 4000), @p9='?' (Size = 4000), @p10='?' (DbType = Boolean), @p11='?' (Size = 4000), @p12='?' (DbType = Boolean), @p13='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+UPDATE [AspNetUsers] SET [AccessFailedCount] = @p0, [ConcurrencyStamp] = @p1, [Email] = @p2, [EmailConfirmed] = @p3, [LockoutEnabled] = @p4, [LockoutEnd] = @p5, [NormalizedEmail] = @p6, [NormalizedUserName] = @p7, [PasswordHash] = @p8, [PhoneNumber] = @p9, [PhoneNumberConfirmed] = @p10, [SecurityStamp] = @p11, [TwoFactorEnabled] = @p12, [UserName] = @p13
+OUTPUT 1
+WHERE [Id] = @p14 AND [ConcurrencyStamp] = @p15;
+2025-09-27 13:01:33.468 -06:00 [INF] Executed handler method OnPostAsync, returned result Microsoft.AspNetCore.Mvc.RazorPages.PageResult.
+2025-09-27 13:01:33.472 -06:00 [INF] Executed page /Account/Login in 146.9977ms
+2025-09-27 13:01:33.472 -06:00 [INF] Executed endpoint '/Account/Login'
+2025-09-27 13:01:33.474 -06:00 [INF] Request finished HTTP/2 POST https://localhost:7065/Identity/Account/Login - 200 null text/html; charset=utf-8 158.0365ms
+2025-09-27 13:01:33.478 -06:00 [INF] Request starting HTTP/2 GET https://localhost:7065/_framework/aspnetcore-browser-refresh.js - null null
+2025-09-27 13:01:33.479 -06:00 [INF] Request starting HTTP/2 GET https://localhost:7065/_vs/browserLink - null null
+2025-09-27 13:01:33.480 -06:00 [INF] Request finished HTTP/2 GET https://localhost:7065/_framework/aspnetcore-browser-refresh.js - 200 13760 application/javascript; charset=utf-8 1.5138ms
+2025-09-27 13:01:33.492 -06:00 [INF] Request finished HTTP/2 GET https://localhost:7065/_vs/browserLink - 200 null text/javascript; charset=UTF-8 13.8089ms
+2025-09-27 13:01:38.569 -06:00 [INF] Request starting HTTP/2 POST https://localhost:7065/Identity/Account/Login - application/x-www-form-urlencoded 275
+2025-09-27 13:01:38.572 -06:00 [INF] Executing endpoint '/Account/Login'
+2025-09-27 13:01:38.572 -06:00 [INF] Route matched with {page = "/Account/Login", area = "Identity", action = "", controller = ""}. Executing page /Account/Login
+2025-09-27 13:01:38.575 -06:00 [INF] Executing handler method Praecepta.UI.Areas.Identity.Pages.Account.LoginModel.OnPostAsync - ModelState is "Valid"
+2025-09-27 13:01:38.575 -06:00 [INF] Email recibido: juan@preacepta.com
+2025-09-27 13:01:38.577 -06:00 [INF] Executed DbCommand (1ms) [Parameters=[@__normalizedEmail_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(2) [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[NormalizedEmail] = @__normalizedEmail_0
+2025-09-27 13:01:38.580 -06:00 [INF] Executed DbCommand (1ms) [Parameters=[@__normalizedUserName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[NormalizedUserName] = @__normalizedUserName_0
+2025-09-27 13:01:38.623 -06:00 [INF] Executed DbCommand (1ms) [Parameters=[@__normalizedUserName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[NormalizedUserName] = @__normalizedUserName_0
+2025-09-27 13:01:38.627 -06:00 [INF] Executed DbCommand (1ms) [Parameters=[@p14='?' (Size = 450), @p0='?' (DbType = Int32), @p1='?' (Size = 4000), @p15='?' (Size = 4000), @p2='?' (Size = 256), @p3='?' (DbType = Boolean), @p4='?' (DbType = Boolean), @p5='?' (DbType = DateTimeOffset), @p6='?' (Size = 256), @p7='?' (Size = 256), @p8='?' (Size = 4000), @p9='?' (Size = 4000), @p10='?' (DbType = Boolean), @p11='?' (Size = 4000), @p12='?' (DbType = Boolean), @p13='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+UPDATE [AspNetUsers] SET [AccessFailedCount] = @p0, [ConcurrencyStamp] = @p1, [Email] = @p2, [EmailConfirmed] = @p3, [LockoutEnabled] = @p4, [LockoutEnd] = @p5, [NormalizedEmail] = @p6, [NormalizedUserName] = @p7, [PasswordHash] = @p8, [PhoneNumber] = @p9, [PhoneNumberConfirmed] = @p10, [SecurityStamp] = @p11, [TwoFactorEnabled] = @p12, [UserName] = @p13
+OUTPUT 1
+WHERE [Id] = @p14 AND [ConcurrencyStamp] = @p15;
+2025-09-27 13:01:38.652 -06:00 [INF] Executed DbCommand (3ms) [Parameters=[@__user_Id_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a].[Id], [a].[ClaimType], [a].[ClaimValue], [a].[UserId]
+FROM [AspNetUserClaims] AS [a]
+WHERE [a].[UserId] = @__user_Id_0
+2025-09-27 13:01:38.673 -06:00 [INF] Executed DbCommand (3ms) [Parameters=[@__userId_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a0].[Name]
+FROM [AspNetUserRoles] AS [a]
+INNER JOIN [AspNetRoles] AS [a0] ON [a].[RoleId] = [a0].[Id]
+WHERE [a].[UserId] = @__userId_0
+2025-09-27 13:01:38.675 -06:00 [INF] Generando claims de roles para el usuario e166b46f-6768-427f-b21f-7090ad56afab: Abogado
+2025-09-27 13:01:38.678 -06:00 [INF] AuthenticationScheme: Identity.Application signed in.
+2025-09-27 13:01:38.680 -06:00 [INF] Executed DbCommand (1ms) [Parameters=[@__user_Id_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a].[Id], [a].[ClaimType], [a].[ClaimValue], [a].[UserId]
+FROM [AspNetUserClaims] AS [a]
+WHERE [a].[UserId] = @__user_Id_0
+2025-09-27 13:01:38.683 -06:00 [INF] Executed DbCommand (1ms) [Parameters=[@__userId_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a0].[Name]
+FROM [AspNetUserRoles] AS [a]
+INNER JOIN [AspNetRoles] AS [a0] ON [a].[RoleId] = [a0].[Id]
+WHERE [a].[UserId] = @__userId_0
+2025-09-27 13:01:38.683 -06:00 [INF] Generando claims de roles para el usuario e166b46f-6768-427f-b21f-7090ad56afab: Abogado
+2025-09-27 13:01:38.684 -06:00 [INF] Roles asignados al usuario tras login: Abogado
+2025-09-27 13:01:38.970 -06:00 [INF] Executed DbCommand (6ms) [Parameters=[@__correo_0='?' (Size = 100)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [t].[Cedula], [t].[Activo], [t].[Apellido1], [t].[Apellido2], [t].[Direccion1], [t].[Direccion2], [t].[Edad], [t].[Email], [t].[EstadoCivil], [t].[FechaNacimiento], [t].[FechaRegistro], [t].[Genero], [t].[Nombre], [t].[Oficio], [t].[Telefono1], [t].[Telefono2], [t0].[idDistrito], [t0].[idCaton], [t0].[nombreDistrito], [t1].[idCanton], [t1].[idProvincia], [t1].[NombreCanton], [t2].[IdProvincia], [t2].[NombreProvincia]
+FROM [T_GePersonas] AS [t]
+INNER JOIN [T_CrDistritos] AS [t0] ON [t].[Direccion1] = [t0].[idDistrito]
+INNER JOIN [T_CrCantones] AS [t1] ON [t0].[idCaton] = [t1].[idCanton]
+INNER JOIN [T_CrProvincias] AS [t2] ON [t1].[idProvincia] = [t2].[IdProvincia]
+WHERE [t].[Email] = @__correo_0
+2025-09-27 13:01:39.030 -06:00 [INF] Usuario conectado con rol válido.
+2025-09-27 13:01:39.030 -06:00 [INF] DanielClaim: http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier = e166b46f-6768-427f-b21f-7090ad56afab
+2025-09-27 13:01:39.030 -06:00 [INF] DanielClaim: http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name = juan@preacepta.com
+2025-09-27 13:01:39.030 -06:00 [INF] DanielClaim: http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress = juan@preacepta.com
+2025-09-27 13:01:39.030 -06:00 [INF] DanielClaim: AspNet.Identity.SecurityStamp = LZGZMWKLJ4AEJVANPZBYHZDCWJ3SSM2Q
+2025-09-27 13:01:39.030 -06:00 [INF] DanielClaim: http://schemas.microsoft.com/ws/2008/06/identity/claims/role = Abogado
+2025-09-27 13:01:39.030 -06:00 [INF] Executed handler method OnPostAsync, returned result Microsoft.AspNetCore.Mvc.RedirectToActionResult.
+2025-09-27 13:01:39.031 -06:00 [INF] Executing RedirectResult, redirecting to /Home/UsuarioAutenticado?correo=juan@preacepta.com.
+2025-09-27 13:01:39.031 -06:00 [INF] Executed page /Account/Login in 458.9327ms
+2025-09-27 13:01:39.031 -06:00 [INF] Executed endpoint '/Account/Login'
+2025-09-27 13:01:39.031 -06:00 [INF] Request finished HTTP/2 POST https://localhost:7065/Identity/Account/Login - 302 0 null 462.4264ms
+2025-09-27 13:01:39.034 -06:00 [INF] Request starting HTTP/2 GET https://localhost:7065/Home/UsuarioAutenticado?correo=juan@preacepta.com - null null
+2025-09-27 13:01:39.041 -06:00 [INF] Executing endpoint 'Praecepta.UI.Controllers.HomeController.UsuarioAutenticado (Preacepta.UI)'
+2025-09-27 13:01:39.044 -06:00 [INF] Route matched with {action = "UsuarioAutenticado", controller = "Home", area = "", page = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] UsuarioAutenticado(System.String, System.String) on controller Praecepta.UI.Controllers.HomeController (Preacepta.UI).
+2025-09-27 13:01:39.049 -06:00 [INF] Executed DbCommand (1ms) [Parameters=[@__correo_0='?' (Size = 100)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [t].[Cedula], [t].[Activo], [t].[Apellido1], [t].[Apellido2], [t].[Direccion1], [t].[Direccion2], [t].[Edad], [t].[Email], [t].[EstadoCivil], [t].[FechaNacimiento], [t].[FechaRegistro], [t].[Genero], [t].[Nombre], [t].[Oficio], [t].[Telefono1], [t].[Telefono2], [t0].[idDistrito], [t0].[idCaton], [t0].[nombreDistrito], [t1].[idCanton], [t1].[idProvincia], [t1].[NombreCanton], [t2].[IdProvincia], [t2].[NombreProvincia]
+FROM [T_GePersonas] AS [t]
+INNER JOIN [T_CrDistritos] AS [t0] ON [t].[Direccion1] = [t0].[idDistrito]
+INNER JOIN [T_CrCantones] AS [t1] ON [t0].[idCaton] = [t1].[idCanton]
+INNER JOIN [T_CrProvincias] AS [t2] ON [t1].[idProvincia] = [t2].[IdProvincia]
+WHERE [t].[Email] = @__correo_0
+2025-09-27 13:01:39.066 -06:00 [INF] Executed DbCommand (6ms) [Parameters=[@__id_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [t].[Cedula], [t].[C_Juridica], [t].[Carnet], [t].[Id_TipoAbogado], [t0].[C_Juridica], [t0].[Direccion1], [t0].[Direccion2], [t0].[Email], [t0].[Fecha_Consolidacion], [t0].[Nombre], [t0].[Representante], [t0].[Telefono], [t1].[Cedula], [t1].[Activo], [t1].[Apellido1], [t1].[Apellido2], [t1].[Direccion1], [t1].[Direccion2], [t1].[Edad], [t1].[Email], [t1].[EstadoCivil], [t1].[FechaNacimiento], [t1].[FechaRegistro], [t1].[Genero], [t1].[Nombre], [t1].[Oficio], [t1].[Telefono1], [t1].[Telefono2], [t2].[Id_TipoAbogado], [t2].[Nombre]
+FROM [T_GeAbogados] AS [t]
+INNER JOIN [T_GeNegocios] AS [t0] ON [t].[C_Juridica] = [t0].[C_Juridica]
+INNER JOIN [T_GePersonas] AS [t1] ON [t].[Cedula] = [t1].[Cedula]
+INNER JOIN [T_GeAbogadoTipo] AS [t2] ON [t].[Id_TipoAbogado] = [t2].[Id_TipoAbogado]
+WHERE [t].[Cedula] = @__id_0
+2025-09-27 13:01:39.100 -06:00 [INF] Executed DbCommand (2ms) [Parameters=[@__p_1='?' (DbType = Int32), @__cedula_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(@__p_1) [t].[Id_caso] AS [IdCaso], [t].[Nombre], [t].[Activo]
+FROM [T_Casos] AS [t]
+WHERE [t].[Id_Abogado] = @__cedula_0 AND [t].[Activo] = CAST(1 AS bit)
+ORDER BY [t].[Fecha] DESC
+2025-09-27 13:01:39.124 -06:00 [INF] Executed DbCommand (7ms) [Parameters=[@__p_1='?' (DbType = Int32), @__cedulaAbogado_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [t].[Id], [t].[Abogado], [t].[Cliente], [t].[Fecha], [t].[IdDocumento], [t].[TipoDocumento], [t].[Titulo], [t0].[Cedula], [t0].[C_Juridica], [t0].[Carnet], [t0].[Id_TipoAbogado], [t1].[Cedula], [t1].[Activo], [t1].[Apellido1], [t1].[Apellido2], [t1].[Direccion1], [t1].[Direccion2], [t1].[Edad], [t1].[Email], [t1].[EstadoCivil], [t1].[FechaNacimiento], [t1].[FechaRegistro], [t1].[Genero], [t1].[Nombre], [t1].[Oficio], [t1].[Telefono1], [t1].[Telefono2], [t2].[idDistrito], [t2].[idCaton], [t2].[nombreDistrito], [t3].[Cedula], [t3].[Activo], [t3].[Apellido1], [t3].[Apellido2], [t3].[Direccion1], [t3].[Direccion2], [t3].[Edad], [t3].[Email], [t3].[EstadoCivil], [t3].[FechaNacimiento], [t3].[FechaRegistro], [t3].[Genero], [t3].[Nombre], [t3].[Oficio], [t3].[Telefono1], [t3].[Telefono2], [t4].[idDistrito], [t4].[idCaton], [t4].[nombreDistrito]
+FROM (
+    SELECT TOP(@__p_1) [h].[Id], [h].[Abogado], [h].[Cliente], [h].[Fecha], [h].[IdDocumento], [h].[TipoDocumento], [h].[Titulo]
+    FROM [HistorialDocumentos] AS [h]
+    WHERE [h].[Abogado] = @__cedulaAbogado_0
+    ORDER BY [h].[Fecha] DESC
+) AS [t]
+LEFT JOIN [T_GeAbogados] AS [t0] ON [t].[Abogado] = [t0].[Cedula]
+LEFT JOIN [T_GePersonas] AS [t1] ON [t0].[Cedula] = [t1].[Cedula]
+LEFT JOIN [T_CrDistritos] AS [t2] ON [t1].[Direccion1] = [t2].[idDistrito]
+LEFT JOIN [T_GePersonas] AS [t3] ON [t].[Cliente] = [t3].[Cedula]
+LEFT JOIN [T_CrDistritos] AS [t4] ON [t3].[Direccion1] = [t4].[idDistrito]
+ORDER BY [t].[Fecha] DESC
+2025-09-27 13:01:39.135 -06:00 [INF] Executed DbCommand (2ms) [Parameters=[@__p_1='?' (DbType = Int32), @__id_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(@__p_1) [t].[Id_Cita] AS [IdCita], [t].[Fecha]
+FROM [T_Citas] AS [t]
+WHERE [t].[Anfitrion] = @__id_0 AND [t].[Fecha] >= CAST(CONVERT(date, GETDATE()) AS date)
+ORDER BY [t].[Fecha] DESC
+2025-09-27 13:01:39.137 -06:00 [INF] Executing ViewResult, running view UsuarioAbogado.
+2025-09-27 13:01:39.152 -06:00 [INF] Executed ViewResult - view UsuarioAbogado executed in 14.8859ms.
+2025-09-27 13:01:39.152 -06:00 [INF] Executed action Praecepta.UI.Controllers.HomeController.UsuarioAutenticado (Preacepta.UI) in 107.8787ms
+2025-09-27 13:01:39.152 -06:00 [INF] Executed endpoint 'Praecepta.UI.Controllers.HomeController.UsuarioAutenticado (Preacepta.UI)'
+2025-09-27 13:01:39.152 -06:00 [INF] Request finished HTTP/2 GET https://localhost:7065/Home/UsuarioAutenticado?correo=juan@preacepta.com - 200 null text/html; charset=utf-8 118.4439ms
+2025-09-27 13:01:39.156 -06:00 [INF] Request starting HTTP/2 GET https://localhost:7065/_framework/aspnetcore-browser-refresh.js - null null
+2025-09-27 13:01:39.156 -06:00 [INF] Request starting HTTP/2 GET https://localhost:7065/_vs/browserLink - null null
+2025-09-27 13:01:39.157 -06:00 [INF] Request finished HTTP/2 GET https://localhost:7065/_framework/aspnetcore-browser-refresh.js - 200 13760 application/javascript; charset=utf-8 0.9791ms
+2025-09-27 13:01:39.165 -06:00 [INF] Request finished HTTP/2 GET https://localhost:7065/_vs/browserLink - 200 null text/javascript; charset=UTF-8 9.1729ms
+2025-09-27 13:01:43.549 -06:00 [INF] Request starting HTTP/2 GET https://localhost:7065/Caso/CasosListado - null null
+2025-09-27 13:01:43.554 -06:00 [INF] Executing endpoint 'Preacepta.UI.Controllers.CasoController.CasosListado (Preacepta.UI)'
+2025-09-27 13:01:43.556 -06:00 [INF] Route matched with {action = "CasosListado", controller = "Caso", area = "", page = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] CasosListado() on controller Preacepta.UI.Controllers.CasoController (Preacepta.UI).
+2025-09-27 13:01:43.560 -06:00 [INF] Executed DbCommand (1ms) [Parameters=[@__correo_0='?' (Size = 100)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [t].[Cedula], [t].[Activo], [t].[Apellido1], [t].[Apellido2], [t].[Direccion1], [t].[Direccion2], [t].[Edad], [t].[Email], [t].[EstadoCivil], [t].[FechaNacimiento], [t].[FechaRegistro], [t].[Genero], [t].[Nombre], [t].[Oficio], [t].[Telefono1], [t].[Telefono2], [t0].[idDistrito], [t0].[idCaton], [t0].[nombreDistrito], [t1].[idCanton], [t1].[idProvincia], [t1].[NombreCanton], [t2].[IdProvincia], [t2].[NombreProvincia]
+FROM [T_GePersonas] AS [t]
+INNER JOIN [T_CrDistritos] AS [t0] ON [t].[Direccion1] = [t0].[idDistrito]
+INNER JOIN [T_CrCantones] AS [t1] ON [t0].[idCaton] = [t1].[idCanton]
+INNER JOIN [T_CrProvincias] AS [t2] ON [t1].[idProvincia] = [t2].[IdProvincia]
+WHERE [t].[Email] = @__correo_0
+2025-09-27 13:01:43.585 -06:00 [INF] Executed DbCommand (9ms) [Parameters=[@__cedula_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [t].[Id_caso], [t].[Fecha], [t].[Nombre], [t].[Id_TipoCaso], [t].[Descripcion], [t].[Id_Abogado], [t].[Id_Cliente], [t].[Activo], [t0].[Cedula], [t0].[C_Juridica], [t0].[Carnet], [t0].[Id_TipoAbogado], [t3].[Cedula], [t3].[Activo], [t3].[Apellido1], [t3].[Apellido2], [t3].[Direccion1], [t3].[Direccion2], [t3].[Edad], [t3].[Email], [t3].[EstadoCivil], [t3].[FechaNacimiento], [t3].[FechaRegistro], [t3].[Genero], [t3].[Nombre], [t3].[Oficio], [t3].[Telefono1], [t3].[Telefono2], [t4].[idDistrito], [t4].[idCaton], [t4].[nombreDistrito], [t1].[Cedula], [t1].[Activo], [t1].[Apellido1], [t1].[Apellido2], [t1].[Direccion1], [t1].[Direccion2], [t1].[Edad], [t1].[Email], [t1].[EstadoCivil], [t1].[FechaNacimiento], [t1].[FechaRegistro], [t1].[Genero], [t1].[Nombre], [t1].[Oficio], [t1].[Telefono1], [t1].[Telefono2], [t5].[idDistrito], [t5].[idCaton], [t5].[nombreDistrito], [t2].[Id_TipoCaso], [t2].[Nombre]
+FROM [T_Casos] AS [t]
+INNER JOIN [T_GeAbogados] AS [t0] ON [t].[Id_Abogado] = [t0].[Cedula]
+INNER JOIN [T_GePersonas] AS [t1] ON [t].[Id_Cliente] = [t1].[Cedula]
+INNER JOIN [T_CasosTipos] AS [t2] ON [t].[Id_TipoCaso] = [t2].[Id_TipoCaso]
+INNER JOIN [T_GePersonas] AS [t3] ON [t0].[Cedula] = [t3].[Cedula]
+INNER JOIN [T_CrDistritos] AS [t4] ON [t3].[Direccion1] = [t4].[idDistrito]
+INNER JOIN [T_CrDistritos] AS [t5] ON [t1].[Direccion1] = [t5].[idDistrito]
+WHERE [t].[Id_Abogado] = @__cedula_0
+2025-09-27 13:01:43.592 -06:00 [INF] Executing ViewResult, running view CasosListado.
+2025-09-27 13:01:43.606 -06:00 [INF] Executed ViewResult - view CasosListado executed in 15.039ms.
+2025-09-27 13:01:43.606 -06:00 [INF] Executed action Preacepta.UI.Controllers.CasoController.CasosListado (Preacepta.UI) in 50.0098ms
+2025-09-27 13:01:43.606 -06:00 [INF] Executed endpoint 'Preacepta.UI.Controllers.CasoController.CasosListado (Preacepta.UI)'
+2025-09-27 13:01:43.606 -06:00 [INF] Request finished HTTP/2 GET https://localhost:7065/Caso/CasosListado - 200 null text/html; charset=utf-8 57.7359ms
+2025-09-27 13:01:43.615 -06:00 [INF] Request starting HTTP/2 GET https://localhost:7065/_framework/aspnetcore-browser-refresh.js - null null
+2025-09-27 13:01:43.615 -06:00 [INF] Request starting HTTP/2 GET https://localhost:7065/_vs/browserLink - null null
+2025-09-27 13:01:43.616 -06:00 [INF] Request finished HTTP/2 GET https://localhost:7065/_framework/aspnetcore-browser-refresh.js - 200 13760 application/javascript; charset=utf-8 1.1754ms
+2025-09-27 13:01:43.629 -06:00 [INF] Request finished HTTP/2 GET https://localhost:7065/_vs/browserLink - 200 null text/javascript; charset=UTF-8 13.6583ms
+2025-09-27 13:01:48.118 -06:00 [INF] Request starting HTTP/2 GET https://localhost:7065/CasosEtapa/EtapasPL/1015 - null null
+2025-09-27 13:01:48.126 -06:00 [INF] Executing endpoint 'Preacepta.UI.Controllers.CasosEtapaController.EtapasPL (Preacepta.UI)'
+2025-09-27 13:01:48.128 -06:00 [INF] Route matched with {action = "EtapasPL", controller = "CasosEtapa", area = "", page = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] EtapasPL(Int32) on controller Preacepta.UI.Controllers.CasosEtapaController (Preacepta.UI).
+2025-09-27 13:01:48.152 -06:00 [INF] Executed DbCommand (8ms) [Parameters=[@__id_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [t].[Id_caso], [t].[Activo], [t].[Descripcion], [t].[Fecha], [t].[Id_Abogado], [t].[Id_Cliente], [t].[Id_TipoCaso], [t].[Nombre], [t0].[Cedula], [t0].[C_Juridica], [t0].[Carnet], [t0].[Id_TipoAbogado], [t1].[Cedula], [t1].[Activo], [t1].[Apellido1], [t1].[Apellido2], [t1].[Direccion1], [t1].[Direccion2], [t1].[Edad], [t1].[Email], [t1].[EstadoCivil], [t1].[FechaNacimiento], [t1].[FechaRegistro], [t1].[Genero], [t1].[Nombre], [t1].[Oficio], [t1].[Telefono1], [t1].[Telefono2], [t2].[C_Juridica], [t2].[Direccion1], [t2].[Direccion2], [t2].[Email], [t2].[Fecha_Consolidacion], [t2].[Nombre], [t2].[Representante], [t2].[Telefono], [t3].[Cedula], [t3].[Activo], [t3].[Apellido1], [t3].[Apellido2], [t3].[Direccion1], [t3].[Direccion2], [t3].[Edad], [t3].[Email], [t3].[EstadoCivil], [t3].[FechaNacimiento], [t3].[FechaRegistro], [t3].[Genero], [t3].[Nombre], [t3].[Oficio], [t3].[Telefono1], [t3].[Telefono2], [t4].[idDistrito], [t4].[idCaton], [t4].[nombreDistrito], [t5].[Id_TipoCaso], [t5].[Nombre]
+FROM [T_Casos] AS [t]
+INNER JOIN [T_GeAbogados] AS [t0] ON [t].[Id_Abogado] = [t0].[Cedula]
+INNER JOIN [T_GePersonas] AS [t1] ON [t0].[Cedula] = [t1].[Cedula]
+INNER JOIN [T_GeNegocios] AS [t2] ON [t0].[C_Juridica] = [t2].[C_Juridica]
+INNER JOIN [T_GePersonas] AS [t3] ON [t].[Id_Cliente] = [t3].[Cedula]
+INNER JOIN [T_CrDistritos] AS [t4] ON [t3].[Direccion1] = [t4].[idDistrito]
+INNER JOIN [T_CasosTipos] AS [t5] ON [t].[Id_TipoCaso] = [t5].[Id_TipoCaso]
+WHERE [t].[Id_caso] = @__id_0
+2025-09-27 13:01:48.168 -06:00 [INF] Executed DbCommand (4ms) [Parameters=[@__id_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [t].[Id_EtapaPL], [t].[Nombre], [t].[Fecha], [t].[Descripcion], [t].[Id_Caso], [t0].[Id_caso], [t0].[Activo], [t0].[Descripcion], [t0].[Fecha], [t0].[Id_Abogado], [t0].[Id_Cliente], [t0].[Id_TipoCaso], [t0].[Nombre], [t].[Activo]
+FROM [T_CasosEtapas] AS [t]
+INNER JOIN [T_Casos] AS [t0] ON [t].[Id_Caso] = [t0].[Id_caso]
+WHERE [t].[Id_Caso] = @__id_0
+2025-09-27 13:01:48.169 -06:00 [INF] Executing ViewResult, running view EtapasPL.
+2025-09-27 13:01:48.183 -06:00 [INF] Executed ViewResult - view EtapasPL executed in 14.3461ms.
+2025-09-27 13:01:48.183 -06:00 [INF] Executed action Preacepta.UI.Controllers.CasosEtapaController.EtapasPL (Preacepta.UI) in 55.2138ms
+2025-09-27 13:01:48.183 -06:00 [INF] Executed endpoint 'Preacepta.UI.Controllers.CasosEtapaController.EtapasPL (Preacepta.UI)'
+2025-09-27 13:01:48.183 -06:00 [INF] Request finished HTTP/2 GET https://localhost:7065/CasosEtapa/EtapasPL/1015 - 200 null text/html; charset=utf-8 65.7607ms
+2025-09-27 13:01:48.189 -06:00 [INF] Request starting HTTP/2 GET https://localhost:7065/lyso/img/PreaceptaLogoColorNegro.png - null null
+2025-09-27 13:01:48.189 -06:00 [INF] Request starting HTTP/2 GET https://localhost:7065/lyso/js/MostrarDetallesPL.js - null null
+2025-09-27 13:01:48.189 -06:00 [INF] The file /lyso/js/MostrarDetallesPL.js was not modified
+2025-09-27 13:01:48.189 -06:00 [INF] The file /lyso/img/PreaceptaLogoColorNegro.png was not modified
+2025-09-27 13:01:48.189 -06:00 [INF] Request finished HTTP/2 GET https://localhost:7065/lyso/js/MostrarDetallesPL.js - 304 null text/javascript 0.7651ms
+2025-09-27 13:01:48.189 -06:00 [INF] Request finished HTTP/2 GET https://localhost:7065/lyso/img/PreaceptaLogoColorNegro.png - 304 null image/png 0.814ms
+2025-09-27 13:01:48.193 -06:00 [INF] Request starting HTTP/2 GET https://localhost:7065/_framework/aspnetcore-browser-refresh.js - null null
+2025-09-27 13:01:48.193 -06:00 [INF] Request starting HTTP/2 GET https://localhost:7065/_vs/browserLink - null null
+2025-09-27 13:01:48.194 -06:00 [INF] Request finished HTTP/2 GET https://localhost:7065/_framework/aspnetcore-browser-refresh.js - 200 13760 application/javascript; charset=utf-8 1.2631ms
+2025-09-27 13:01:48.203 -06:00 [INF] Request finished HTTP/2 GET https://localhost:7065/_vs/browserLink - 200 null text/javascript; charset=UTF-8 9.8575ms
+2025-09-27 13:01:50.841 -06:00 [INF] Request starting HTTP/2 GET https://localhost:7065/Caso/DescargarCasoCompleto?IdCaso=1015 - null null
+2025-09-27 13:01:50.845 -06:00 [INF] Executing endpoint 'Preacepta.UI.Controllers.CasoController.DescargarCasoCompleto (Preacepta.UI)'
+2025-09-27 13:01:50.847 -06:00 [INF] Route matched with {action = "DescargarCasoCompleto", controller = "Caso", area = "", page = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] DescargarCasoCompleto(Int32) on controller Preacepta.UI.Controllers.CasoController (Preacepta.UI).
+2025-09-27 13:01:50.858 -06:00 [INF] Executed DbCommand (1ms) [Parameters=[@__id_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [t].[Id_caso], [t].[Activo], [t].[Descripcion], [t].[Fecha], [t].[Id_Abogado], [t].[Id_Cliente], [t].[Id_TipoCaso], [t].[Nombre], [t0].[Cedula], [t0].[C_Juridica], [t0].[Carnet], [t0].[Id_TipoAbogado], [t1].[Cedula], [t1].[Activo], [t1].[Apellido1], [t1].[Apellido2], [t1].[Direccion1], [t1].[Direccion2], [t1].[Edad], [t1].[Email], [t1].[EstadoCivil], [t1].[FechaNacimiento], [t1].[FechaRegistro], [t1].[Genero], [t1].[Nombre], [t1].[Oficio], [t1].[Telefono1], [t1].[Telefono2], [t2].[C_Juridica], [t2].[Direccion1], [t2].[Direccion2], [t2].[Email], [t2].[Fecha_Consolidacion], [t2].[Nombre], [t2].[Representante], [t2].[Telefono], [t3].[Cedula], [t3].[Activo], [t3].[Apellido1], [t3].[Apellido2], [t3].[Direccion1], [t3].[Direccion2], [t3].[Edad], [t3].[Email], [t3].[EstadoCivil], [t3].[FechaNacimiento], [t3].[FechaRegistro], [t3].[Genero], [t3].[Nombre], [t3].[Oficio], [t3].[Telefono1], [t3].[Telefono2], [t4].[idDistrito], [t4].[idCaton], [t4].[nombreDistrito], [t5].[Id_TipoCaso], [t5].[Nombre]
+FROM [T_Casos] AS [t]
+INNER JOIN [T_GeAbogados] AS [t0] ON [t].[Id_Abogado] = [t0].[Cedula]
+INNER JOIN [T_GePersonas] AS [t1] ON [t0].[Cedula] = [t1].[Cedula]
+INNER JOIN [T_GeNegocios] AS [t2] ON [t0].[C_Juridica] = [t2].[C_Juridica]
+INNER JOIN [T_GePersonas] AS [t3] ON [t].[Id_Cliente] = [t3].[Cedula]
+INNER JOIN [T_CrDistritos] AS [t4] ON [t3].[Direccion1] = [t4].[idDistrito]
+INNER JOIN [T_CasosTipos] AS [t5] ON [t].[Id_TipoCaso] = [t5].[Id_TipoCaso]
+WHERE [t].[Id_caso] = @__id_0
+2025-09-27 13:01:50.863 -06:00 [INF] Executed DbCommand (1ms) [Parameters=[@__id_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [t].[Id_EtapaPL], [t].[Nombre], [t].[Fecha], [t].[Descripcion], [t].[Id_Caso], [t0].[Id_caso], [t0].[Activo], [t0].[Descripcion], [t0].[Fecha], [t0].[Id_Abogado], [t0].[Id_Cliente], [t0].[Id_TipoCaso], [t0].[Nombre], [t].[Activo]
+FROM [T_CasosEtapas] AS [t]
+INNER JOIN [T_Casos] AS [t0] ON [t].[Id_Caso] = [t0].[Id_caso]
+WHERE [t].[Id_Caso] = @__id_0
+2025-09-27 13:01:51.445 -06:00 [INF] Executing FileContentResult, sending file with download name '' ...
+2025-09-27 13:01:51.450 -06:00 [INF] Executed action Preacepta.UI.Controllers.CasoController.DescargarCasoCompleto (Preacepta.UI) in 602.4417ms
+2025-09-27 13:01:51.450 -06:00 [INF] Executed endpoint 'Preacepta.UI.Controllers.CasoController.DescargarCasoCompleto (Preacepta.UI)'
+2025-09-27 13:01:51.450 -06:00 [INF] Request finished HTTP/2 GET https://localhost:7065/Caso/DescargarCasoCompleto?IdCaso=1015 - 200 43983 application/pdf 608.6714ms
+2025-09-27 13:02:40.935 -06:00 [INF] Executed DbCommand (24ms) [Parameters=[@__normalizedName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[ConcurrencyStamp], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[NormalizedName] = @__normalizedName_0
+2025-09-27 13:02:40.992 -06:00 [INF] Executed DbCommand (4ms) [Parameters=[@__normalizedName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[ConcurrencyStamp], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[NormalizedName] = @__normalizedName_0
+2025-09-27 13:02:40.993 -06:00 [INF] Executed DbCommand (1ms) [Parameters=[@__normalizedName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[ConcurrencyStamp], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[NormalizedName] = @__normalizedName_0
+2025-09-27 13:02:41.025 -06:00 [INF] Executed DbCommand (1ms) [Parameters=[@__normalizedName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[ConcurrencyStamp], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[NormalizedName] = @__normalizedName_0
+2025-09-27 13:02:41.031 -06:00 [INF] Executed DbCommand (1ms) [Parameters=[@__normalizedEmail_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(2) [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[NormalizedEmail] = @__normalizedEmail_0
+2025-09-27 13:02:41.317 -06:00 [INF] Now listening on: https://localhost:7065
+2025-09-27 13:02:41.317 -06:00 [INF] Now listening on: http://localhost:5282
+2025-09-27 13:02:41.354 -06:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-09-27 13:02:41.354 -06:00 [INF] Hosting environment: Development
+2025-09-27 13:02:41.354 -06:00 [INF] Content root path: C:\Preacepta\Preacepta.UI
+2025-09-27 13:02:41.804 -06:00 [INF] Request starting HTTP/2 GET https://localhost:7065/ - null null
+2025-09-27 13:02:41.890 -06:00 [INF] Executing endpoint 'Praecepta.UI.Controllers.HomeController.Index (Preacepta.UI)'
+2025-09-27 13:02:41.902 -06:00 [INF] Route matched with {action = "Index", controller = "Home", area = "", page = ""}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Index() on controller Praecepta.UI.Controllers.HomeController (Preacepta.UI).
+2025-09-27 13:02:41.920 -06:00 [INF] Executing ViewResult, running view Index.
+2025-09-27 13:02:42.001 -06:00 [INF] Executed ViewResult - view Index executed in 81.9871ms.
+2025-09-27 13:02:42.003 -06:00 [INF] Executed action Praecepta.UI.Controllers.HomeController.Index (Preacepta.UI) in 100.5831ms
+2025-09-27 13:02:42.003 -06:00 [INF] Executed endpoint 'Praecepta.UI.Controllers.HomeController.Index (Preacepta.UI)'
+2025-09-27 13:02:42.008 -06:00 [INF] Request finished HTTP/2 GET https://localhost:7065/ - 200 null text/html; charset=utf-8 209.7954ms
+2025-09-27 13:02:42.031 -06:00 [INF] Request starting HTTP/2 GET https://localhost:7065/_vs/browserLink - null null
+2025-09-27 13:02:42.031 -06:00 [INF] Request starting HTTP/2 GET https://localhost:7065/_framework/aspnetcore-browser-refresh.js - null null
+2025-09-27 13:02:42.035 -06:00 [INF] Request finished HTTP/2 GET https://localhost:7065/_framework/aspnetcore-browser-refresh.js - 200 13760 application/javascript; charset=utf-8 5.3346ms
+2025-09-27 13:02:42.056 -06:00 [INF] Request finished HTTP/2 GET https://localhost:7065/_vs/browserLink - 200 null text/javascript; charset=UTF-8 25.3386ms
+2025-09-27 13:02:43.655 -06:00 [INF] Request starting HTTP/2 GET https://localhost:7065/Identity/Account/Login - null null
+2025-09-27 13:02:43.661 -06:00 [INF] Executing endpoint '/Account/Login'
+2025-09-27 13:02:43.667 -06:00 [INF] Route matched with {page = "/Account/Login", area = "Identity", action = "", controller = ""}. Executing page /Account/Login
+2025-09-27 13:02:43.678 -06:00 [INF] Executing handler method Praecepta.UI.Areas.Identity.Pages.Account.LoginModel.OnGetAsync - ModelState is "Valid"
+2025-09-27 13:02:43.680 -06:00 [INF] AuthenticationScheme: Identity.External signed out.
+2025-09-27 13:02:43.681 -06:00 [INF] Executed handler method OnGetAsync, returned result .
+2025-09-27 13:02:43.683 -06:00 [INF] Executing an implicit handler method - ModelState is "Valid"
+2025-09-27 13:02:43.683 -06:00 [INF] Executed an implicit handler method, returned result Microsoft.AspNetCore.Mvc.RazorPages.PageResult.
+2025-09-27 13:02:43.718 -06:00 [INF] Executed page /Account/Login in 51.1575ms
+2025-09-27 13:02:43.718 -06:00 [INF] Executed endpoint '/Account/Login'
+2025-09-27 13:02:43.718 -06:00 [INF] Request finished HTTP/2 GET https://localhost:7065/Identity/Account/Login - 200 null text/html; charset=utf-8 63.7464ms
+2025-09-27 13:02:43.724 -06:00 [INF] Request starting HTTP/2 GET https://localhost:7065/_framework/aspnetcore-browser-refresh.js - null null
+2025-09-27 13:02:43.725 -06:00 [INF] Request finished HTTP/2 GET https://localhost:7065/_framework/aspnetcore-browser-refresh.js - 200 13760 application/javascript; charset=utf-8 1.3335ms
+2025-09-27 13:02:43.727 -06:00 [INF] Request starting HTTP/2 GET https://localhost:7065/_vs/browserLink - null null
+2025-09-27 13:02:43.744 -06:00 [INF] Request finished HTTP/2 GET https://localhost:7065/_vs/browserLink - 200 null text/javascript; charset=UTF-8 17.3614ms
+2025-09-27 13:02:49.844 -06:00 [INF] Request starting HTTP/2 POST https://localhost:7065/Identity/Account/Login - application/x-www-form-urlencoded 275
+2025-09-27 13:02:49.852 -06:00 [INF] Executing endpoint '/Account/Login'
+2025-09-27 13:02:49.852 -06:00 [INF] Route matched with {page = "/Account/Login", area = "Identity", action = "", controller = ""}. Executing page /Account/Login
+2025-09-27 13:02:49.863 -06:00 [INF] Executing handler method Praecepta.UI.Areas.Identity.Pages.Account.LoginModel.OnPostAsync - ModelState is "Valid"
+2025-09-27 13:02:49.865 -06:00 [INF] Email recibido: juan@preacepta.com
+2025-09-27 13:02:49.873 -06:00 [INF] Executed DbCommand (1ms) [Parameters=[@__normalizedEmail_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(2) [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[NormalizedEmail] = @__normalizedEmail_0
+2025-09-27 13:02:49.879 -06:00 [INF] Executed DbCommand (1ms) [Parameters=[@__normalizedUserName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[NormalizedUserName] = @__normalizedUserName_0
+2025-09-27 13:02:49.947 -06:00 [INF] Executed DbCommand (1ms) [Parameters=[@__user_Id_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a].[Id], [a].[ClaimType], [a].[ClaimValue], [a].[UserId]
+FROM [AspNetUserClaims] AS [a]
+WHERE [a].[UserId] = @__user_Id_0
+2025-09-27 13:02:49.961 -06:00 [INF] Executed DbCommand (1ms) [Parameters=[@__userId_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a0].[Name]
+FROM [AspNetUserRoles] AS [a]
+INNER JOIN [AspNetRoles] AS [a0] ON [a].[RoleId] = [a0].[Id]
+WHERE [a].[UserId] = @__userId_0
+2025-09-27 13:02:49.963 -06:00 [INF] Generando claims de roles para el usuario e166b46f-6768-427f-b21f-7090ad56afab: Abogado
+2025-09-27 13:02:49.965 -06:00 [INF] AuthenticationScheme: Identity.Application signed in.
+2025-09-27 13:02:49.968 -06:00 [INF] Executed DbCommand (1ms) [Parameters=[@__user_Id_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a].[Id], [a].[ClaimType], [a].[ClaimValue], [a].[UserId]
+FROM [AspNetUserClaims] AS [a]
+WHERE [a].[UserId] = @__user_Id_0
+2025-09-27 13:02:49.969 -06:00 [INF] Executed DbCommand (1ms) [Parameters=[@__userId_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a0].[Name]
+FROM [AspNetUserRoles] AS [a]
+INNER JOIN [AspNetRoles] AS [a0] ON [a].[RoleId] = [a0].[Id]
+WHERE [a].[UserId] = @__userId_0
+2025-09-27 13:02:49.969 -06:00 [INF] Generando claims de roles para el usuario e166b46f-6768-427f-b21f-7090ad56afab: Abogado
+2025-09-27 13:02:49.970 -06:00 [INF] Roles asignados al usuario tras login: Abogado
+2025-09-27 13:02:50.221 -06:00 [INF] Executed DbCommand (1ms) [Parameters=[@__correo_0='?' (Size = 100)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [t].[Cedula], [t].[Activo], [t].[Apellido1], [t].[Apellido2], [t].[Direccion1], [t].[Direccion2], [t].[Edad], [t].[Email], [t].[EstadoCivil], [t].[FechaNacimiento], [t].[FechaRegistro], [t].[Genero], [t].[Nombre], [t].[Oficio], [t].[Telefono1], [t].[Telefono2], [t0].[idDistrito], [t0].[idCaton], [t0].[nombreDistrito], [t1].[idCanton], [t1].[idProvincia], [t1].[NombreCanton], [t2].[IdProvincia], [t2].[NombreProvincia]
+FROM [T_GePersonas] AS [t]
+INNER JOIN [T_CrDistritos] AS [t0] ON [t].[Direccion1] = [t0].[idDistrito]
+INNER JOIN [T_CrCantones] AS [t1] ON [t0].[idCaton] = [t1].[idCanton]
+INNER JOIN [T_CrProvincias] AS [t2] ON [t1].[idProvincia] = [t2].[IdProvincia]
+WHERE [t].[Email] = @__correo_0
+2025-09-27 13:02:50.272 -06:00 [INF] Usuario conectado con rol válido.
+2025-09-27 13:02:50.272 -06:00 [INF] DanielClaim: http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier = e166b46f-6768-427f-b21f-7090ad56afab
+2025-09-27 13:02:50.272 -06:00 [INF] DanielClaim: http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name = juan@preacepta.com
+2025-09-27 13:02:50.272 -06:00 [INF] DanielClaim: http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress = juan@preacepta.com
+2025-09-27 13:02:50.272 -06:00 [INF] DanielClaim: AspNet.Identity.SecurityStamp = LZGZMWKLJ4AEJVANPZBYHZDCWJ3SSM2Q
+2025-09-27 13:02:50.272 -06:00 [INF] DanielClaim: http://schemas.microsoft.com/ws/2008/06/identity/claims/role = Abogado
+2025-09-27 13:02:50.273 -06:00 [INF] Executed handler method OnPostAsync, returned result Microsoft.AspNetCore.Mvc.RedirectToActionResult.
+2025-09-27 13:02:50.274 -06:00 [INF] Executing RedirectResult, redirecting to /Home/UsuarioAutenticado?correo=juan@preacepta.com.
+2025-09-27 13:02:50.274 -06:00 [INF] Executed page /Account/Login in 422.179ms
+2025-09-27 13:02:50.274 -06:00 [INF] Executed endpoint '/Account/Login'
+2025-09-27 13:02:50.275 -06:00 [INF] Request finished HTTP/2 POST https://localhost:7065/Identity/Account/Login - 302 0 null 431.8582ms
+2025-09-27 13:02:50.277 -06:00 [INF] Request starting HTTP/2 GET https://localhost:7065/Home/UsuarioAutenticado?correo=juan@preacepta.com - null null
+2025-09-27 13:02:50.283 -06:00 [INF] Executing endpoint 'Praecepta.UI.Controllers.HomeController.UsuarioAutenticado (Preacepta.UI)'
+2025-09-27 13:02:50.286 -06:00 [INF] Route matched with {action = "UsuarioAutenticado", controller = "Home", area = "", page = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] UsuarioAutenticado(System.String, System.String) on controller Praecepta.UI.Controllers.HomeController (Preacepta.UI).
+2025-09-27 13:02:50.292 -06:00 [INF] Executed DbCommand (1ms) [Parameters=[@__correo_0='?' (Size = 100)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [t].[Cedula], [t].[Activo], [t].[Apellido1], [t].[Apellido2], [t].[Direccion1], [t].[Direccion2], [t].[Edad], [t].[Email], [t].[EstadoCivil], [t].[FechaNacimiento], [t].[FechaRegistro], [t].[Genero], [t].[Nombre], [t].[Oficio], [t].[Telefono1], [t].[Telefono2], [t0].[idDistrito], [t0].[idCaton], [t0].[nombreDistrito], [t1].[idCanton], [t1].[idProvincia], [t1].[NombreCanton], [t2].[IdProvincia], [t2].[NombreProvincia]
+FROM [T_GePersonas] AS [t]
+INNER JOIN [T_CrDistritos] AS [t0] ON [t].[Direccion1] = [t0].[idDistrito]
+INNER JOIN [T_CrCantones] AS [t1] ON [t0].[idCaton] = [t1].[idCanton]
+INNER JOIN [T_CrProvincias] AS [t2] ON [t1].[idProvincia] = [t2].[IdProvincia]
+WHERE [t].[Email] = @__correo_0
+2025-09-27 13:02:50.308 -06:00 [INF] Executed DbCommand (6ms) [Parameters=[@__id_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [t].[Cedula], [t].[C_Juridica], [t].[Carnet], [t].[Id_TipoAbogado], [t0].[C_Juridica], [t0].[Direccion1], [t0].[Direccion2], [t0].[Email], [t0].[Fecha_Consolidacion], [t0].[Nombre], [t0].[Representante], [t0].[Telefono], [t1].[Cedula], [t1].[Activo], [t1].[Apellido1], [t1].[Apellido2], [t1].[Direccion1], [t1].[Direccion2], [t1].[Edad], [t1].[Email], [t1].[EstadoCivil], [t1].[FechaNacimiento], [t1].[FechaRegistro], [t1].[Genero], [t1].[Nombre], [t1].[Oficio], [t1].[Telefono1], [t1].[Telefono2], [t2].[Id_TipoAbogado], [t2].[Nombre]
+FROM [T_GeAbogados] AS [t]
+INNER JOIN [T_GeNegocios] AS [t0] ON [t].[C_Juridica] = [t0].[C_Juridica]
+INNER JOIN [T_GePersonas] AS [t1] ON [t].[Cedula] = [t1].[Cedula]
+INNER JOIN [T_GeAbogadoTipo] AS [t2] ON [t].[Id_TipoAbogado] = [t2].[Id_TipoAbogado]
+WHERE [t].[Cedula] = @__id_0
+2025-09-27 13:02:50.341 -06:00 [INF] Executed DbCommand (1ms) [Parameters=[@__p_1='?' (DbType = Int32), @__cedula_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(@__p_1) [t].[Id_caso] AS [IdCaso], [t].[Nombre], [t].[Activo]
+FROM [T_Casos] AS [t]
+WHERE [t].[Id_Abogado] = @__cedula_0 AND [t].[Activo] = CAST(1 AS bit)
+ORDER BY [t].[Fecha] DESC
+2025-09-27 13:02:50.362 -06:00 [INF] Executed DbCommand (4ms) [Parameters=[@__p_1='?' (DbType = Int32), @__cedulaAbogado_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [t].[Id], [t].[Abogado], [t].[Cliente], [t].[Fecha], [t].[IdDocumento], [t].[TipoDocumento], [t].[Titulo], [t0].[Cedula], [t0].[C_Juridica], [t0].[Carnet], [t0].[Id_TipoAbogado], [t1].[Cedula], [t1].[Activo], [t1].[Apellido1], [t1].[Apellido2], [t1].[Direccion1], [t1].[Direccion2], [t1].[Edad], [t1].[Email], [t1].[EstadoCivil], [t1].[FechaNacimiento], [t1].[FechaRegistro], [t1].[Genero], [t1].[Nombre], [t1].[Oficio], [t1].[Telefono1], [t1].[Telefono2], [t2].[idDistrito], [t2].[idCaton], [t2].[nombreDistrito], [t3].[Cedula], [t3].[Activo], [t3].[Apellido1], [t3].[Apellido2], [t3].[Direccion1], [t3].[Direccion2], [t3].[Edad], [t3].[Email], [t3].[EstadoCivil], [t3].[FechaNacimiento], [t3].[FechaRegistro], [t3].[Genero], [t3].[Nombre], [t3].[Oficio], [t3].[Telefono1], [t3].[Telefono2], [t4].[idDistrito], [t4].[idCaton], [t4].[nombreDistrito]
+FROM (
+    SELECT TOP(@__p_1) [h].[Id], [h].[Abogado], [h].[Cliente], [h].[Fecha], [h].[IdDocumento], [h].[TipoDocumento], [h].[Titulo]
+    FROM [HistorialDocumentos] AS [h]
+    WHERE [h].[Abogado] = @__cedulaAbogado_0
+    ORDER BY [h].[Fecha] DESC
+) AS [t]
+LEFT JOIN [T_GeAbogados] AS [t0] ON [t].[Abogado] = [t0].[Cedula]
+LEFT JOIN [T_GePersonas] AS [t1] ON [t0].[Cedula] = [t1].[Cedula]
+LEFT JOIN [T_CrDistritos] AS [t2] ON [t1].[Direccion1] = [t2].[idDistrito]
+LEFT JOIN [T_GePersonas] AS [t3] ON [t].[Cliente] = [t3].[Cedula]
+LEFT JOIN [T_CrDistritos] AS [t4] ON [t3].[Direccion1] = [t4].[idDistrito]
+ORDER BY [t].[Fecha] DESC
+2025-09-27 13:02:50.372 -06:00 [INF] Executed DbCommand (2ms) [Parameters=[@__p_1='?' (DbType = Int32), @__id_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(@__p_1) [t].[Id_Cita] AS [IdCita], [t].[Fecha]
+FROM [T_Citas] AS [t]
+WHERE [t].[Anfitrion] = @__id_0 AND [t].[Fecha] >= CAST(CONVERT(date, GETDATE()) AS date)
+ORDER BY [t].[Fecha] DESC
+2025-09-27 13:02:50.374 -06:00 [INF] Executing ViewResult, running view UsuarioAbogado.
+2025-09-27 13:02:50.390 -06:00 [INF] Executed ViewResult - view UsuarioAbogado executed in 16.7027ms.
+2025-09-27 13:02:50.393 -06:00 [INF] Executed action Praecepta.UI.Controllers.HomeController.UsuarioAutenticado (Preacepta.UI) in 106.7449ms
+2025-09-27 13:02:50.393 -06:00 [INF] Executed endpoint 'Praecepta.UI.Controllers.HomeController.UsuarioAutenticado (Preacepta.UI)'
+2025-09-27 13:02:50.394 -06:00 [INF] Request finished HTTP/2 GET https://localhost:7065/Home/UsuarioAutenticado?correo=juan@preacepta.com - 200 null text/html; charset=utf-8 117.6213ms
+2025-09-27 13:02:50.416 -06:00 [INF] Request starting HTTP/2 GET https://localhost:7065/_vs/browserLink - null null
+2025-09-27 13:02:50.416 -06:00 [INF] Request starting HTTP/2 GET https://localhost:7065/_framework/aspnetcore-browser-refresh.js - null null
+2025-09-27 13:02:50.418 -06:00 [INF] Request finished HTTP/2 GET https://localhost:7065/_framework/aspnetcore-browser-refresh.js - 200 13760 application/javascript; charset=utf-8 2.3668ms
+2025-09-27 13:02:50.427 -06:00 [INF] Request finished HTTP/2 GET https://localhost:7065/_vs/browserLink - 200 null text/javascript; charset=UTF-8 11.478ms
+2025-09-27 13:02:53.956 -06:00 [INF] Request starting HTTP/2 GET https://localhost:7065/Caso/CasosListado - null null
+2025-09-27 13:02:53.960 -06:00 [INF] Executing endpoint 'Preacepta.UI.Controllers.CasoController.CasosListado (Preacepta.UI)'
+2025-09-27 13:02:53.962 -06:00 [INF] Route matched with {action = "CasosListado", controller = "Caso", area = "", page = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] CasosListado() on controller Preacepta.UI.Controllers.CasoController (Preacepta.UI).
+2025-09-27 13:02:53.966 -06:00 [INF] Executed DbCommand (1ms) [Parameters=[@__correo_0='?' (Size = 100)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [t].[Cedula], [t].[Activo], [t].[Apellido1], [t].[Apellido2], [t].[Direccion1], [t].[Direccion2], [t].[Edad], [t].[Email], [t].[EstadoCivil], [t].[FechaNacimiento], [t].[FechaRegistro], [t].[Genero], [t].[Nombre], [t].[Oficio], [t].[Telefono1], [t].[Telefono2], [t0].[idDistrito], [t0].[idCaton], [t0].[nombreDistrito], [t1].[idCanton], [t1].[idProvincia], [t1].[NombreCanton], [t2].[IdProvincia], [t2].[NombreProvincia]
+FROM [T_GePersonas] AS [t]
+INNER JOIN [T_CrDistritos] AS [t0] ON [t].[Direccion1] = [t0].[idDistrito]
+INNER JOIN [T_CrCantones] AS [t1] ON [t0].[idCaton] = [t1].[idCanton]
+INNER JOIN [T_CrProvincias] AS [t2] ON [t1].[idProvincia] = [t2].[IdProvincia]
+WHERE [t].[Email] = @__correo_0
+2025-09-27 13:02:53.984 -06:00 [INF] Executed DbCommand (1ms) [Parameters=[@__cedula_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [t].[Id_caso], [t].[Fecha], [t].[Nombre], [t].[Id_TipoCaso], [t].[Descripcion], [t].[Id_Abogado], [t].[Id_Cliente], [t].[Activo], [t0].[Cedula], [t0].[C_Juridica], [t0].[Carnet], [t0].[Id_TipoAbogado], [t3].[Cedula], [t3].[Activo], [t3].[Apellido1], [t3].[Apellido2], [t3].[Direccion1], [t3].[Direccion2], [t3].[Edad], [t3].[Email], [t3].[EstadoCivil], [t3].[FechaNacimiento], [t3].[FechaRegistro], [t3].[Genero], [t3].[Nombre], [t3].[Oficio], [t3].[Telefono1], [t3].[Telefono2], [t4].[idDistrito], [t4].[idCaton], [t4].[nombreDistrito], [t1].[Cedula], [t1].[Activo], [t1].[Apellido1], [t1].[Apellido2], [t1].[Direccion1], [t1].[Direccion2], [t1].[Edad], [t1].[Email], [t1].[EstadoCivil], [t1].[FechaNacimiento], [t1].[FechaRegistro], [t1].[Genero], [t1].[Nombre], [t1].[Oficio], [t1].[Telefono1], [t1].[Telefono2], [t5].[idDistrito], [t5].[idCaton], [t5].[nombreDistrito], [t2].[Id_TipoCaso], [t2].[Nombre]
+FROM [T_Casos] AS [t]
+INNER JOIN [T_GeAbogados] AS [t0] ON [t].[Id_Abogado] = [t0].[Cedula]
+INNER JOIN [T_GePersonas] AS [t1] ON [t].[Id_Cliente] = [t1].[Cedula]
+INNER JOIN [T_CasosTipos] AS [t2] ON [t].[Id_TipoCaso] = [t2].[Id_TipoCaso]
+INNER JOIN [T_GePersonas] AS [t3] ON [t0].[Cedula] = [t3].[Cedula]
+INNER JOIN [T_CrDistritos] AS [t4] ON [t3].[Direccion1] = [t4].[idDistrito]
+INNER JOIN [T_CrDistritos] AS [t5] ON [t1].[Direccion1] = [t5].[idDistrito]
+WHERE [t].[Id_Abogado] = @__cedula_0
+2025-09-27 13:02:53.991 -06:00 [INF] Executing ViewResult, running view CasosListado.
+2025-09-27 13:02:54.007 -06:00 [INF] Executed ViewResult - view CasosListado executed in 15.7969ms.
+2025-09-27 13:02:54.007 -06:00 [INF] Executed action Preacepta.UI.Controllers.CasoController.CasosListado (Preacepta.UI) in 44.8541ms
+2025-09-27 13:02:54.007 -06:00 [INF] Executed endpoint 'Preacepta.UI.Controllers.CasoController.CasosListado (Preacepta.UI)'
+2025-09-27 13:02:54.007 -06:00 [INF] Request finished HTTP/2 GET https://localhost:7065/Caso/CasosListado - 200 null text/html; charset=utf-8 51.7507ms
+2025-09-27 13:02:54.015 -06:00 [INF] Request starting HTTP/2 GET https://localhost:7065/_framework/aspnetcore-browser-refresh.js - null null
+2025-09-27 13:02:54.016 -06:00 [INF] Request starting HTTP/2 GET https://localhost:7065/_vs/browserLink - null null
+2025-09-27 13:02:54.016 -06:00 [INF] Request finished HTTP/2 GET https://localhost:7065/_framework/aspnetcore-browser-refresh.js - 200 13760 application/javascript; charset=utf-8 1.5312ms
+2025-09-27 13:02:54.026 -06:00 [INF] Request finished HTTP/2 GET https://localhost:7065/_vs/browserLink - 200 null text/javascript; charset=UTF-8 10.8446ms
+2025-09-27 13:02:57.118 -06:00 [INF] Request starting HTTP/2 GET https://localhost:7065/CasosEtapa/EtapasPL/1008 - null null
+2025-09-27 13:02:57.126 -06:00 [INF] Executing endpoint 'Preacepta.UI.Controllers.CasosEtapaController.EtapasPL (Preacepta.UI)'
+2025-09-27 13:02:57.127 -06:00 [INF] Route matched with {action = "EtapasPL", controller = "CasosEtapa", area = "", page = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] EtapasPL(Int32) on controller Preacepta.UI.Controllers.CasosEtapaController (Preacepta.UI).
+2025-09-27 13:02:57.140 -06:00 [INF] Executed DbCommand (1ms) [Parameters=[@__id_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [t].[Id_caso], [t].[Activo], [t].[Descripcion], [t].[Fecha], [t].[Id_Abogado], [t].[Id_Cliente], [t].[Id_TipoCaso], [t].[Nombre], [t0].[Cedula], [t0].[C_Juridica], [t0].[Carnet], [t0].[Id_TipoAbogado], [t1].[Cedula], [t1].[Activo], [t1].[Apellido1], [t1].[Apellido2], [t1].[Direccion1], [t1].[Direccion2], [t1].[Edad], [t1].[Email], [t1].[EstadoCivil], [t1].[FechaNacimiento], [t1].[FechaRegistro], [t1].[Genero], [t1].[Nombre], [t1].[Oficio], [t1].[Telefono1], [t1].[Telefono2], [t2].[C_Juridica], [t2].[Direccion1], [t2].[Direccion2], [t2].[Email], [t2].[Fecha_Consolidacion], [t2].[Nombre], [t2].[Representante], [t2].[Telefono], [t3].[Cedula], [t3].[Activo], [t3].[Apellido1], [t3].[Apellido2], [t3].[Direccion1], [t3].[Direccion2], [t3].[Edad], [t3].[Email], [t3].[EstadoCivil], [t3].[FechaNacimiento], [t3].[FechaRegistro], [t3].[Genero], [t3].[Nombre], [t3].[Oficio], [t3].[Telefono1], [t3].[Telefono2], [t4].[idDistrito], [t4].[idCaton], [t4].[nombreDistrito], [t5].[Id_TipoCaso], [t5].[Nombre]
+FROM [T_Casos] AS [t]
+INNER JOIN [T_GeAbogados] AS [t0] ON [t].[Id_Abogado] = [t0].[Cedula]
+INNER JOIN [T_GePersonas] AS [t1] ON [t0].[Cedula] = [t1].[Cedula]
+INNER JOIN [T_GeNegocios] AS [t2] ON [t0].[C_Juridica] = [t2].[C_Juridica]
+INNER JOIN [T_GePersonas] AS [t3] ON [t].[Id_Cliente] = [t3].[Cedula]
+INNER JOIN [T_CrDistritos] AS [t4] ON [t3].[Direccion1] = [t4].[idDistrito]
+INNER JOIN [T_CasosTipos] AS [t5] ON [t].[Id_TipoCaso] = [t5].[Id_TipoCaso]
+WHERE [t].[Id_caso] = @__id_0
+2025-09-27 13:02:57.154 -06:00 [INF] Executed DbCommand (1ms) [Parameters=[@__id_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [t].[Id_EtapaPL], [t].[Nombre], [t].[Fecha], [t].[Descripcion], [t].[Id_Caso], [t0].[Id_caso], [t0].[Activo], [t0].[Descripcion], [t0].[Fecha], [t0].[Id_Abogado], [t0].[Id_Cliente], [t0].[Id_TipoCaso], [t0].[Nombre], [t].[Activo]
+FROM [T_CasosEtapas] AS [t]
+INNER JOIN [T_Casos] AS [t0] ON [t].[Id_Caso] = [t0].[Id_caso]
+WHERE [t].[Id_Caso] = @__id_0
+2025-09-27 13:02:57.155 -06:00 [INF] Executing ViewResult, running view EtapasPL.
+2025-09-27 13:02:57.166 -06:00 [INF] Executed ViewResult - view EtapasPL executed in 11.4834ms.
+2025-09-27 13:02:57.167 -06:00 [INF] Executed action Preacepta.UI.Controllers.CasosEtapaController.EtapasPL (Preacepta.UI) in 39.0099ms
+2025-09-27 13:02:57.167 -06:00 [INF] Executed endpoint 'Preacepta.UI.Controllers.CasosEtapaController.EtapasPL (Preacepta.UI)'
+2025-09-27 13:02:57.167 -06:00 [INF] Request finished HTTP/2 GET https://localhost:7065/CasosEtapa/EtapasPL/1008 - 200 null text/html; charset=utf-8 49.7554ms
+2025-09-27 13:02:57.173 -06:00 [INF] Request starting HTTP/2 GET https://localhost:7065/_framework/aspnetcore-browser-refresh.js - null null
+2025-09-27 13:02:57.174 -06:00 [INF] Request starting HTTP/2 GET https://localhost:7065/_vs/browserLink - null null
+2025-09-27 13:02:57.174 -06:00 [INF] Request finished HTTP/2 GET https://localhost:7065/_framework/aspnetcore-browser-refresh.js - 200 13760 application/javascript; charset=utf-8 1.4112ms
+2025-09-27 13:02:57.181 -06:00 [INF] Request finished HTTP/2 GET https://localhost:7065/_vs/browserLink - 200 null text/javascript; charset=UTF-8 7.4752ms
+2025-09-27 13:03:01.076 -06:00 [INF] Request starting HTTP/2 GET https://localhost:7065/Caso/CasosListado - null null
+2025-09-27 13:03:01.079 -06:00 [INF] Executing endpoint 'Preacepta.UI.Controllers.CasoController.CasosListado (Preacepta.UI)'
+2025-09-27 13:03:01.080 -06:00 [INF] Route matched with {action = "CasosListado", controller = "Caso", area = "", page = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] CasosListado() on controller Preacepta.UI.Controllers.CasoController (Preacepta.UI).
+2025-09-27 13:03:01.084 -06:00 [INF] Executed DbCommand (1ms) [Parameters=[@__correo_0='?' (Size = 100)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [t].[Cedula], [t].[Activo], [t].[Apellido1], [t].[Apellido2], [t].[Direccion1], [t].[Direccion2], [t].[Edad], [t].[Email], [t].[EstadoCivil], [t].[FechaNacimiento], [t].[FechaRegistro], [t].[Genero], [t].[Nombre], [t].[Oficio], [t].[Telefono1], [t].[Telefono2], [t0].[idDistrito], [t0].[idCaton], [t0].[nombreDistrito], [t1].[idCanton], [t1].[idProvincia], [t1].[NombreCanton], [t2].[IdProvincia], [t2].[NombreProvincia]
+FROM [T_GePersonas] AS [t]
+INNER JOIN [T_CrDistritos] AS [t0] ON [t].[Direccion1] = [t0].[idDistrito]
+INNER JOIN [T_CrCantones] AS [t1] ON [t0].[idCaton] = [t1].[idCanton]
+INNER JOIN [T_CrProvincias] AS [t2] ON [t1].[idProvincia] = [t2].[IdProvincia]
+WHERE [t].[Email] = @__correo_0
+2025-09-27 13:03:01.087 -06:00 [INF] Executed DbCommand (1ms) [Parameters=[@__cedula_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [t].[Id_caso], [t].[Fecha], [t].[Nombre], [t].[Id_TipoCaso], [t].[Descripcion], [t].[Id_Abogado], [t].[Id_Cliente], [t].[Activo], [t0].[Cedula], [t0].[C_Juridica], [t0].[Carnet], [t0].[Id_TipoAbogado], [t3].[Cedula], [t3].[Activo], [t3].[Apellido1], [t3].[Apellido2], [t3].[Direccion1], [t3].[Direccion2], [t3].[Edad], [t3].[Email], [t3].[EstadoCivil], [t3].[FechaNacimiento], [t3].[FechaRegistro], [t3].[Genero], [t3].[Nombre], [t3].[Oficio], [t3].[Telefono1], [t3].[Telefono2], [t4].[idDistrito], [t4].[idCaton], [t4].[nombreDistrito], [t1].[Cedula], [t1].[Activo], [t1].[Apellido1], [t1].[Apellido2], [t1].[Direccion1], [t1].[Direccion2], [t1].[Edad], [t1].[Email], [t1].[EstadoCivil], [t1].[FechaNacimiento], [t1].[FechaRegistro], [t1].[Genero], [t1].[Nombre], [t1].[Oficio], [t1].[Telefono1], [t1].[Telefono2], [t5].[idDistrito], [t5].[idCaton], [t5].[nombreDistrito], [t2].[Id_TipoCaso], [t2].[Nombre]
+FROM [T_Casos] AS [t]
+INNER JOIN [T_GeAbogados] AS [t0] ON [t].[Id_Abogado] = [t0].[Cedula]
+INNER JOIN [T_GePersonas] AS [t1] ON [t].[Id_Cliente] = [t1].[Cedula]
+INNER JOIN [T_CasosTipos] AS [t2] ON [t].[Id_TipoCaso] = [t2].[Id_TipoCaso]
+INNER JOIN [T_GePersonas] AS [t3] ON [t0].[Cedula] = [t3].[Cedula]
+INNER JOIN [T_CrDistritos] AS [t4] ON [t3].[Direccion1] = [t4].[idDistrito]
+INNER JOIN [T_CrDistritos] AS [t5] ON [t1].[Direccion1] = [t5].[idDistrito]
+WHERE [t].[Id_Abogado] = @__cedula_0
+2025-09-27 13:03:01.088 -06:00 [INF] Executing ViewResult, running view CasosListado.
+2025-09-27 13:03:01.095 -06:00 [INF] Executed ViewResult - view CasosListado executed in 6.8246ms.
+2025-09-27 13:03:01.095 -06:00 [INF] Executed action Preacepta.UI.Controllers.CasoController.CasosListado (Preacepta.UI) in 15.5101ms
+2025-09-27 13:03:01.095 -06:00 [INF] Executed endpoint 'Preacepta.UI.Controllers.CasoController.CasosListado (Preacepta.UI)'
+2025-09-27 13:03:01.095 -06:00 [INF] Request finished HTTP/2 GET https://localhost:7065/Caso/CasosListado - 200 null text/html; charset=utf-8 19.4316ms
+2025-09-27 13:03:01.100 -06:00 [INF] Request starting HTTP/2 GET https://localhost:7065/_framework/aspnetcore-browser-refresh.js - null null
+2025-09-27 13:03:01.100 -06:00 [INF] Request starting HTTP/2 GET https://localhost:7065/_vs/browserLink - null null
+2025-09-27 13:03:01.101 -06:00 [INF] Request finished HTTP/2 GET https://localhost:7065/_framework/aspnetcore-browser-refresh.js - 200 13760 application/javascript; charset=utf-8 1.0131ms
+2025-09-27 13:03:01.110 -06:00 [INF] Request finished HTTP/2 GET https://localhost:7065/_vs/browserLink - 200 null text/javascript; charset=UTF-8 9.9607ms
+2025-09-27 13:03:03.686 -06:00 [INF] Request starting HTTP/2 GET https://localhost:7065/CasosEtapa/EtapasPL/1006 - null null
+2025-09-27 13:03:03.688 -06:00 [INF] Executing endpoint 'Preacepta.UI.Controllers.CasosEtapaController.EtapasPL (Preacepta.UI)'
+2025-09-27 13:03:03.688 -06:00 [INF] Route matched with {action = "EtapasPL", controller = "CasosEtapa", area = "", page = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] EtapasPL(Int32) on controller Preacepta.UI.Controllers.CasosEtapaController (Preacepta.UI).
+2025-09-27 13:03:03.695 -06:00 [INF] Executed DbCommand (1ms) [Parameters=[@__id_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [t].[Id_caso], [t].[Activo], [t].[Descripcion], [t].[Fecha], [t].[Id_Abogado], [t].[Id_Cliente], [t].[Id_TipoCaso], [t].[Nombre], [t0].[Cedula], [t0].[C_Juridica], [t0].[Carnet], [t0].[Id_TipoAbogado], [t1].[Cedula], [t1].[Activo], [t1].[Apellido1], [t1].[Apellido2], [t1].[Direccion1], [t1].[Direccion2], [t1].[Edad], [t1].[Email], [t1].[EstadoCivil], [t1].[FechaNacimiento], [t1].[FechaRegistro], [t1].[Genero], [t1].[Nombre], [t1].[Oficio], [t1].[Telefono1], [t1].[Telefono2], [t2].[C_Juridica], [t2].[Direccion1], [t2].[Direccion2], [t2].[Email], [t2].[Fecha_Consolidacion], [t2].[Nombre], [t2].[Representante], [t2].[Telefono], [t3].[Cedula], [t3].[Activo], [t3].[Apellido1], [t3].[Apellido2], [t3].[Direccion1], [t3].[Direccion2], [t3].[Edad], [t3].[Email], [t3].[EstadoCivil], [t3].[FechaNacimiento], [t3].[FechaRegistro], [t3].[Genero], [t3].[Nombre], [t3].[Oficio], [t3].[Telefono1], [t3].[Telefono2], [t4].[idDistrito], [t4].[idCaton], [t4].[nombreDistrito], [t5].[Id_TipoCaso], [t5].[Nombre]
+FROM [T_Casos] AS [t]
+INNER JOIN [T_GeAbogados] AS [t0] ON [t].[Id_Abogado] = [t0].[Cedula]
+INNER JOIN [T_GePersonas] AS [t1] ON [t0].[Cedula] = [t1].[Cedula]
+INNER JOIN [T_GeNegocios] AS [t2] ON [t0].[C_Juridica] = [t2].[C_Juridica]
+INNER JOIN [T_GePersonas] AS [t3] ON [t].[Id_Cliente] = [t3].[Cedula]
+INNER JOIN [T_CrDistritos] AS [t4] ON [t3].[Direccion1] = [t4].[idDistrito]
+INNER JOIN [T_CasosTipos] AS [t5] ON [t].[Id_TipoCaso] = [t5].[Id_TipoCaso]
+WHERE [t].[Id_caso] = @__id_0
+2025-09-27 13:03:03.697 -06:00 [INF] Executed DbCommand (1ms) [Parameters=[@__id_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [t].[Id_EtapaPL], [t].[Nombre], [t].[Fecha], [t].[Descripcion], [t].[Id_Caso], [t0].[Id_caso], [t0].[Activo], [t0].[Descripcion], [t0].[Fecha], [t0].[Id_Abogado], [t0].[Id_Cliente], [t0].[Id_TipoCaso], [t0].[Nombre], [t].[Activo]
+FROM [T_CasosEtapas] AS [t]
+INNER JOIN [T_Casos] AS [t0] ON [t].[Id_Caso] = [t0].[Id_caso]
+WHERE [t].[Id_Caso] = @__id_0
+2025-09-27 13:03:03.698 -06:00 [INF] Executing ViewResult, running view EtapasPL.
+2025-09-27 13:03:03.705 -06:00 [INF] Executed ViewResult - view EtapasPL executed in 7.3914ms.
+2025-09-27 13:03:03.706 -06:00 [INF] Executed action Preacepta.UI.Controllers.CasosEtapaController.EtapasPL (Preacepta.UI) in 17.1776ms
+2025-09-27 13:03:03.706 -06:00 [INF] Executed endpoint 'Preacepta.UI.Controllers.CasosEtapaController.EtapasPL (Preacepta.UI)'
+2025-09-27 13:03:03.706 -06:00 [INF] Request finished HTTP/2 GET https://localhost:7065/CasosEtapa/EtapasPL/1006 - 200 null text/html; charset=utf-8 20.1992ms
+2025-09-27 13:03:03.710 -06:00 [INF] Request starting HTTP/2 GET https://localhost:7065/_framework/aspnetcore-browser-refresh.js - null null
+2025-09-27 13:03:03.710 -06:00 [INF] Request starting HTTP/2 GET https://localhost:7065/_vs/browserLink - null null
+2025-09-27 13:03:03.711 -06:00 [INF] Request finished HTTP/2 GET https://localhost:7065/_framework/aspnetcore-browser-refresh.js - 200 13760 application/javascript; charset=utf-8 1.3941ms
+2025-09-27 13:03:03.719 -06:00 [INF] Request finished HTTP/2 GET https://localhost:7065/_vs/browserLink - 200 null text/javascript; charset=UTF-8 9.1094ms
+2025-09-27 13:03:06.532 -06:00 [INF] Request starting HTTP/2 GET https://localhost:7065/CasosEtapa/DetalleEtapas/1004 - null null
+2025-09-27 13:03:06.532 -06:00 [INF] Executing endpoint 'Preacepta.UI.Controllers.CasosEtapaController.DetalleEtapas (Preacepta.UI)'
+2025-09-27 13:03:06.535 -06:00 [INF] Route matched with {action = "DetalleEtapas", controller = "CasosEtapa", area = "", page = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] DetalleEtapas(Int32) on controller Preacepta.UI.Controllers.CasosEtapaController (Preacepta.UI).
+2025-09-27 13:03:06.556 -06:00 [INF] Executed DbCommand (7ms) [Parameters=[@__id_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [t].[Id_EtapaPL], [t].[Activo], [t].[Descripcion], [t].[Fecha], [t].[Id_Caso], [t].[Nombre], [t0].[Id_caso], [t0].[Activo], [t0].[Descripcion], [t0].[Fecha], [t0].[Id_Abogado], [t0].[Id_Cliente], [t0].[Id_TipoCaso], [t0].[Nombre], [t1].[Cedula], [t1].[C_Juridica], [t1].[Carnet], [t1].[Id_TipoAbogado], [t2].[C_Juridica], [t2].[Direccion1], [t2].[Direccion2], [t2].[Email], [t2].[Fecha_Consolidacion], [t2].[Nombre], [t2].[Representante], [t2].[Telefono], [t3].[Cedula], [t3].[Activo], [t3].[Apellido1], [t3].[Apellido2], [t3].[Direccion1], [t3].[Direccion2], [t3].[Edad], [t3].[Email], [t3].[EstadoCivil], [t3].[FechaNacimiento], [t3].[FechaRegistro], [t3].[Genero], [t3].[Nombre], [t3].[Oficio], [t3].[Telefono1], [t3].[Telefono2], [t4].[idDistrito], [t4].[idCaton], [t4].[nombreDistrito], [t5].[Cedula], [t5].[Activo], [t5].[Apellido1], [t5].[Apellido2], [t5].[Direccion1], [t5].[Direccion2], [t5].[Edad], [t5].[Email], [t5].[EstadoCivil], [t5].[FechaNacimiento], [t5].[FechaRegistro], [t5].[Genero], [t5].[Nombre], [t5].[Oficio], [t5].[Telefono1], [t5].[Telefono2]
+FROM [T_CasosEtapas] AS [t]
+INNER JOIN [T_Casos] AS [t0] ON [t].[Id_Caso] = [t0].[Id_caso]
+INNER JOIN [T_GeAbogados] AS [t1] ON [t0].[Id_Abogado] = [t1].[Cedula]
+INNER JOIN [T_GeNegocios] AS [t2] ON [t1].[C_Juridica] = [t2].[C_Juridica]
+INNER JOIN [T_GePersonas] AS [t3] ON [t1].[Cedula] = [t3].[Cedula]
+INNER JOIN [T_CrDistritos] AS [t4] ON [t3].[Direccion1] = [t4].[idDistrito]
+INNER JOIN [T_GePersonas] AS [t5] ON [t0].[Id_Cliente] = [t5].[Cedula]
+WHERE [t].[Id_EtapaPL] = @__id_0
+2025-09-27 13:03:06.562 -06:00 [INF] Executing JsonResult, writing value of type '<>f__AnonymousType12`5[[System.Int32, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Int32, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2025-09-27 13:03:06.567 -06:00 [INF] Executed action Preacepta.UI.Controllers.CasosEtapaController.DetalleEtapas (Preacepta.UI) in 31.7995ms
+2025-09-27 13:03:06.567 -06:00 [INF] Executed endpoint 'Preacepta.UI.Controllers.CasosEtapaController.DetalleEtapas (Preacepta.UI)'
+2025-09-27 13:03:06.567 -06:00 [INF] Request finished HTTP/2 GET https://localhost:7065/CasosEtapa/DetalleEtapas/1004 - 200 null application/json; charset=utf-8 35.3516ms
+2025-09-27 13:03:10.133 -06:00 [INF] Request starting HTTP/2 GET https://localhost:7065/CasosEtapa/DescargaPDFetapaPL?id=1004 - null null
+2025-09-27 13:03:10.135 -06:00 [INF] Executing endpoint 'Preacepta.UI.Controllers.CasosEtapaController.DescargaPDFetapaPL (Preacepta.UI)'
+2025-09-27 13:03:10.138 -06:00 [INF] Route matched with {action = "DescargaPDFetapaPL", controller = "CasosEtapa", area = "", page = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] DescargaPDFetapaPL(Int32) on controller Preacepta.UI.Controllers.CasosEtapaController (Preacepta.UI).
+2025-09-27 13:03:10.144 -06:00 [INF] Executed DbCommand (1ms) [Parameters=[@__id_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [t].[Id_EtapaPL], [t].[Activo], [t].[Descripcion], [t].[Fecha], [t].[Id_Caso], [t].[Nombre], [t0].[Id_caso], [t0].[Activo], [t0].[Descripcion], [t0].[Fecha], [t0].[Id_Abogado], [t0].[Id_Cliente], [t0].[Id_TipoCaso], [t0].[Nombre], [t1].[Cedula], [t1].[C_Juridica], [t1].[Carnet], [t1].[Id_TipoAbogado], [t2].[C_Juridica], [t2].[Direccion1], [t2].[Direccion2], [t2].[Email], [t2].[Fecha_Consolidacion], [t2].[Nombre], [t2].[Representante], [t2].[Telefono], [t3].[Cedula], [t3].[Activo], [t3].[Apellido1], [t3].[Apellido2], [t3].[Direccion1], [t3].[Direccion2], [t3].[Edad], [t3].[Email], [t3].[EstadoCivil], [t3].[FechaNacimiento], [t3].[FechaRegistro], [t3].[Genero], [t3].[Nombre], [t3].[Oficio], [t3].[Telefono1], [t3].[Telefono2], [t4].[idDistrito], [t4].[idCaton], [t4].[nombreDistrito], [t5].[Cedula], [t5].[Activo], [t5].[Apellido1], [t5].[Apellido2], [t5].[Direccion1], [t5].[Direccion2], [t5].[Edad], [t5].[Email], [t5].[EstadoCivil], [t5].[FechaNacimiento], [t5].[FechaRegistro], [t5].[Genero], [t5].[Nombre], [t5].[Oficio], [t5].[Telefono1], [t5].[Telefono2]
+FROM [T_CasosEtapas] AS [t]
+INNER JOIN [T_Casos] AS [t0] ON [t].[Id_Caso] = [t0].[Id_caso]
+INNER JOIN [T_GeAbogados] AS [t1] ON [t0].[Id_Abogado] = [t1].[Cedula]
+INNER JOIN [T_GeNegocios] AS [t2] ON [t1].[C_Juridica] = [t2].[C_Juridica]
+INNER JOIN [T_GePersonas] AS [t3] ON [t1].[Cedula] = [t3].[Cedula]
+INNER JOIN [T_CrDistritos] AS [t4] ON [t3].[Direccion1] = [t4].[idDistrito]
+INNER JOIN [T_GePersonas] AS [t5] ON [t0].[Id_Cliente] = [t5].[Cedula]
+WHERE [t].[Id_EtapaPL] = @__id_0
+2025-09-27 13:03:10.574 -06:00 [INF] Executing FileContentResult, sending file with download name '' ...
+2025-09-27 13:03:10.579 -06:00 [INF] Executed action Preacepta.UI.Controllers.CasosEtapaController.DescargaPDFetapaPL (Preacepta.UI) in 441.1873ms
+2025-09-27 13:03:10.579 -06:00 [INF] Executed endpoint 'Preacepta.UI.Controllers.CasosEtapaController.DescargaPDFetapaPL (Preacepta.UI)'
+2025-09-27 13:03:10.579 -06:00 [INF] Request finished HTTP/2 GET https://localhost:7065/CasosEtapa/DescargaPDFetapaPL?id=1004 - 200 44552 application/pdf 446.8631ms
