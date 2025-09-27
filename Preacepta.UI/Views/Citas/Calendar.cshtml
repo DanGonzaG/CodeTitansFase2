@@ -17,7 +17,7 @@
             <div class="page-title-text">
                 <h2>Calendario y eventos</h2>
                 <ul>
-                    <li><a asp-controller="Home" asp-action="Index">Home</a></li>
+                    <li><a asp-controller="Home" asp-action="Index">Página de Inicio</a></li>
                     <li><i class="icofont-simple-right"></i></li>
                     <li>
                         <a asp-controller="Home" asp-action="UsuarioAutenticado" asp-route-correo=@User.Identity.Name>PreaceptaApp</a>
@@ -100,10 +100,6 @@
     <div class="container">
         <div class="contact-wrap">
 
-            <div class="page-title-text mb-4">
-                <h5 class="modal-title">Crear Nueva Cita</h5>
-
-            </div>
             <div class="modal-body" id="crearCitaModalBody">
         </div>
     </div>
@@ -114,10 +110,6 @@
 <div id="modalDetalleCita" class="custom-modal" style="display:none;">
         <div class="container">
             <div class="contact-wrap">
-
-                <div class="page-title-text mb-4">
-                    <h5>Detalles de la Cita</h5>
-                </div>
 
                 <div id="detalleCitaBody" class="modal-body">
                 </div>
@@ -131,10 +123,6 @@
     <div class="container">
         <div class="contact-wrap">
 
-            <div class="page-title-text mb-4">
-                <h5>Editar Cita</h5>
-            </div>
-
             <div id="editarCitaBody" class="modal-body">
             </div>
 
@@ -145,10 +133,6 @@
 <div id="modalEliminarCita" class="custom-modal" style="display:none;">
     <div class="container">
         <div class="contact-wrap">
-
-            <div class="page-title-text mb-4">
-                <h5>Eliminar Cita</h5>
-            </div>
 
             <div id="eliminarCitaBody" class="modal-body">
             </div>
