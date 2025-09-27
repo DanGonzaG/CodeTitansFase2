@@ -1,0 +1,143 @@
+﻿.table-responsive {
+    width: 100%;
+    overflow-x: auto;
+}
+
+.table {
+    min-width: 900px;
+}
+
+/* Botones alineados, área clickeable completa y sin bordes */
+.btn-acciones-testimonio {
+    display: inline-flex !important;
+    align-items: center;
+    justify-content: center;
+    min-width: 90px;
+    width: auto;
+    padding: 6px 10px;
+    height: 36px;
+    border-radius: 5px;
+    border: none !important;
+    outline: none !important;
+    font-weight: 500;
+    margin: 0;
+    box-sizing: border-box;
+    transition: background 0.2s, box-shadow 0.2s;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.03);
+    cursor: pointer;
+    white-space: nowrap;
+    position: relative;
+    z-index: 10;
+}
+
+    .btn-acciones-testimonio:hover,
+    .btn-acciones-testimonio:focus {
+        background-color: #e0e0e0;
+        color: #222;
+        border: none !important;
+        outline: none !important;
+    }
+
+    .btn-acciones-testimonio:active {
+        border: none !important;
+        outline: none !important;
+    }
+
+/* Contenedor flex para los botones */
+.acciones-btns-alineados {
+    display: flex !important;
+    flex-direction: row !important;
+    justify-content: center;
+    align-items: center;
+    gap: 0.7rem;
+    flex-wrap: wrap;
+    position: relative;
+    z-index: 10;
+}
+/* Estrellas doradas SIEMPRE */
+.icofont-star {
+    color: #FFD700 !important;
+    font-size: 18px !important;
+}
+
+/* Otros estilos generales de alertas */
+.alert {
+    padding: 15px;
+    margin: 20px 0;
+    border: 1px solid transparent;
+    border-radius: 4px;
+}
+
+.alert-success {
+    color: #3c763d;
+    background-color: #dff0d8;
+    border-color: #d6e9c6;
+}
+
+.alert-danger {
+    color: #a94442;
+    background-color: #f2dede;
+    border-color: #ebccd1;
+}
+
+/*Botones de reportar y activar*/
+/* NUEVA CLASE solo para esta parte */
+.acciones-btns-inline {
+    display: flex;
+    flex-direction: row !important;
+    justify-content: center;
+    align-items: center;
+    gap: 0.7rem;
+    /* Elimina cualquier salto de línea */
+    flex-wrap: nowrap !important;
+}
+
+.acciones-btns-inline .btn-acciones-testimonio {
+    /* Opcional: puedes ajustar el ancho aquí si quieres */
+    min-width: 100px;
+    margin: 0;
+}
+
+/* Estilos para el formulario de testimonios*/
+/* Centrar el título de agradecimiento */
+.titulo-agradecimiento {
+    text-align: center;
+    margin-top: 38px;
+    margin-bottom: 36px;
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: #222;
+    letter-spacing: 0.5px;
+}
+
+/* Caja de comentario más grande y agradable */
+.textarea-comentario {
+    min-height: 180px !important;
+    width: 100%;
+    resize: vertical;
+    font-size: 1.08rem;
+    padding: 14px 16px;
+    border-radius: 7px;
+    border: 1px solid #cfcfcf;
+    box-sizing: border-box;
+    background: #fafafa;
+    transition: border-color 0.2s;
+}
+
+    .textarea-comentario:focus {
+        border-color: #ccb173;
+        outline: none;
+    }
+
+/* Ajusta el ancho máximo del form para que no sea tan largo en pantalla grande */
+.contact-form-four .container-fluid {
+    max-width: 680px;
+    margin: 0 auto;
+}
+
+.btn-centro {
+    display: flex !important;
+    justify-content: center;
+    align-items: center;
+    margin-top: 28px; /* Más margen arriba */
+}

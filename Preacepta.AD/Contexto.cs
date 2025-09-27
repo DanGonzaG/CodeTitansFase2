@@ -78,7 +78,7 @@ public partial class Contexto : DbContext
     string Server = "Data Source=DANLAPTOPASUS\\DEVELOPERSERVER;Initial Catalog=PreaceptaBD;Integrated Security=True;Connect Timeout=30;Encrypt=False;Trust Server Certificate=True;Application Intent=ReadWrite;Multi Subnet Failover=False"; //Conexion Daniel
 
     //string Server = "Data Source=ANDY;Initial Catalog=PreaceptaBD;Integrated Security=True;Connect Timeout=30;Encrypt=False;Trust Server Certificate=True"; // Conexion Andy
-    //string Server = "Data Source=DESKTOP-BREQ0TF\\SQLEXPRESS;Initial Catalog=PreaceptaBD;Integrated Security=True;Trust Server Certificate=True"; //Conexion Alonso
+    string Server = "Data Source=DESKTOP-BREQ0TF\\SQLEXPRESS;Initial Catalog=PreaceptaBD;Integrated Security=True;Trust Server Certificate=True"; //Conexion Alonso
 
     //string Server = "Data Source=DESKTOP-L8MJ1I5\\SQLEXPRESS03;Initial Catalog=PreaceptaBD;User ID=db_connect;Password=1357;Connect Timeout=30;Encrypt=False;Trust Server Certificate=True";
     //string Server = "Data Source=DESKTOP-SN6P8CV;Initial Catalog=PreaceptaBD;Integrated Security=True;Connect Timeout=30;Encrypt=False;Trust Server Certificate=True";//Andy
@@ -92,8 +92,8 @@ public partial class Contexto : DbContext
 
 
 
-       
-    
+
+
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.Entity<TCaso>(entity =>
@@ -218,7 +218,7 @@ public partial class Contexto : DbContext
 
         modelBuilder.Entity<TDocsAutorizacionRevisionExpediente>(entity =>
         {
-            entity.HasKey(e => e.IdDocumento).HasName("PK__T_DocsAu__B79DF372F42F6683");
+            entity.HasKey(e => e.IdDocumento).HasName("PK_T_DocsAu_B79DF372F42F6683");
 
             entity.HasOne(d => d.CedulaAbogadoNavigation).WithMany(p => p.TDocsAutorizacionRevisionExpedientes)
                 .OnDelete(DeleteBehavior.ClientSetNull)
@@ -240,7 +240,7 @@ public partial class Contexto : DbContext
 
         modelBuilder.Entity<TDocsCompraventaFinca>(entity =>
         {
-            entity.HasKey(e => e.IdDocumento).HasName("PK__T_DocsCo__B79DF372A6CEC896");
+            entity.HasKey(e => e.IdDocumento).HasName("PK_T_DocsCo_B79DF372A6CEC896");
 
             entity.HasOne(d => d.CedulaAbogadoNavigation).WithMany(p => p.TDocsCompraventaFincas)
                 .OnDelete(DeleteBehavior.ClientSetNull)
@@ -265,7 +265,7 @@ public partial class Contexto : DbContext
 
         modelBuilder.Entity<TDocsContratoPrestacionServicio>(entity =>
         {
-            entity.HasKey(e => e.IdDocumento).HasName("PK__T_DocsCo__B79DF372EAA42CDE");
+            entity.HasKey(e => e.IdDocumento).HasName("PK_T_DocsCo_B79DF372EAA42CDE");
 
             entity.HasOne(d => d.CedulaAbogadoNavigation).WithMany(p => p.TDocsContratoPrestacionServicios)
                 .OnDelete(DeleteBehavior.ClientSetNull)
@@ -286,7 +286,7 @@ public partial class Contexto : DbContext
 
         modelBuilder.Entity<TDocsInscripcionVehiculo>(entity =>
         {
-            entity.HasKey(e => e.IdDocumento).HasName("PK__T_DocsIn__B79DF372AC8F0937");
+            entity.HasKey(e => e.IdDocumento).HasName("PK_T_DocsIn_B79DF372AC8F0937");
 
             entity.HasOne(d => d.CedulaAbogadoNavigation).WithMany(p => p.TDocsInscripcionVehiculos)
                 .OnDelete(DeleteBehavior.ClientSetNull)
@@ -316,12 +316,8 @@ public partial class Contexto : DbContext
 
         modelBuilder.Entity<TDocsOpcionCompraventaVehiculo>(entity =>
         {
-            entity.ToTable("T_DocsOpcionCompraventaVehiculo", tb =>
-            {
-                tb.HasTrigger("TR_ANY");
-            });
 
-            entity.HasKey(e => e.IdDocumento).HasName("PK__T_DocsOp__B79DF372A755DA7E");
+            entity.HasKey(e => e.IdDocumento).HasName("PK_T_DocsOp_B79DF372A755DA7E");
 
             entity.HasOne(d => d.CedulaAbogadoNavigation).WithMany(p => p.TDocsOpcionCompraventaVehiculos)
                 .OnDelete(DeleteBehavior.ClientSetNull)
@@ -354,12 +350,12 @@ public partial class Contexto : DbContext
             entity.HasOne(d => d.TipoVehiculoNavigation).WithMany(p => p.TDocsOpcionCompraventaVehiculos)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_TDOCV_tipo_vehiculo");
-           
+
         });
 
         modelBuilder.Entity<TDocsPagare>(entity =>
         {
-            entity.HasKey(e => e.IdDocumento).HasName("PK__T_DocsPa__B79DF372BE9D476B");
+            entity.HasKey(e => e.IdDocumento).HasName("PK_T_DocsPa_B79DF372BE9D476B");
 
             entity.HasOne(d => d.CedulaDeudorNavigation).WithMany(p => p.TDocsPagareCedulaDeudorNavigations)
                 .OnDelete(DeleteBehavior.ClientSetNull)
@@ -372,30 +368,10 @@ public partial class Contexto : DbContext
             entity.HasOne(d => d.LugarPagoNavigation).WithMany(p => p.TDocsPagares)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_T_DocsPagare_T_CrDistritos");
-
-            entity.ToTable("T_DocsPagare", tb =>
-            {
-                tb.HasTrigger("TR_DocsPagare_dummy");
-            });
         });
 
         modelBuilder.Entity<TDocsPoderesEspecialesJudiciale>(entity =>
         {
-            entity.ToTable("T_DocsPoderesEspecialesJudiciales", tb =>
-            {
-                tb.HasTrigger("EF_FORCE_OUTPUT_INTO");
-            });
-
-            entity.HasKey(e => e.IdDoc);
-
-            entity.Property(e => e.IdDoc)
-                  .HasColumnName("ID_Documento")
-                  .UseIdentityColumn();     
-
-            entity.Property(e => e.Fecha).HasColumnName("Fecha");
-            entity.Property(e => e.IdAbogado).HasColumnName("Id_Abogado");
-            entity.Property(e => e.IdCliente).HasColumnName("Id_Cliente");
-            entity.Property(e => e.Texto).HasColumnName("Texto");
 
             entity.HasOne(d => d.IdAbogadoNavigation)
                   .WithMany(p => p.TDocsPoderesEspecialesJudiciales)
@@ -494,7 +470,7 @@ public partial class Contexto : DbContext
                   .HasForeignKey(d => d.Abogado)
                   .OnDelete(DeleteBehavior.NoAction)
                   .HasConstraintName("FK_Historial_Abogado");
-    });
+        });
 
         OnModelCreatingPartial(modelBuilder);
     }
