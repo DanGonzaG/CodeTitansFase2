@@ -32,6 +32,7 @@ namespace Preacepta.LN.HistorialDocumentos.ObtenerDatos
         {
             return new THistorialDocumento
             {
+                Fecha = DateTime.Now,
                 Cliente = datos.Cliente,
                 Abogado = datos.Abogado,
                 TipoDocumento = (datos.TipoDocumento ?? string.Empty).Trim(),

@@ -288,7 +288,7 @@ namespace Preacepta.UI.Controllers
         [Authorize(Roles = "Gestor, Abogado")]
         public async Task<IActionResult> PrevisualizarPDF(
             string idDoc,
-            string fecha,
+            string Fecha,
             string idAbogado,
             string idCliente,
             string texto,
@@ -327,7 +327,7 @@ namespace Preacepta.UI.Controllers
             var abogadoDetalle = (cedAbogado > 0) ? await _buscarAbogado.buscar(cedAbogado) : null;
             string carnetProfesional = abogadoDetalle?.Carnet.ToString() ?? "";
 
-            string fechaMostrar = DateTime.TryParse(fecha, out var f)
+            string fechaMostrar = DateTime.TryParse(Fecha, out var f)
                 ? f.ToString("dd/MM/yyyy")
                 : DateTime.Today.ToString("dd/MM/yyyy");
 

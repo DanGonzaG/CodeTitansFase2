@@ -23,25 +23,25 @@
 <!-- Attorney Details -->
 <div class="attorney-details pt-100 ">
     <div class="container">
-        
-            <div class="attor-details-item">
-                <div class="attor-details-right">
-                    <div class="attor-details-name" style="text-align:center">
-                        @if (Model.personaDTO.Genero == "Femenino")
-                        {
-                                <h2>Bienvenido a PreaceptaApp</h2>
-                                <h2>Licda @Model.personaDTO.Nombre @Model.personaDTO.Apellido1</h2>
-                        }
-                        else
-                        {
-                                <h2>Bienvenido a PreaceptaApp</h2>
-                                <h2>Licd0 @Model.personaDTO.Nombre @Model.personaDTO.Apellido1</h2>
-                        }
-                        <p>Carnet No. @Model.geAbogadoDTO.Carnet @Model.geAbogadoDTO.IdTipoAbogadoNavigation.Nombre</p>
-                    </div>
+
+        <div class="attor-details-item">
+            <div class="attor-details-right">
+                <div class="attor-details-name" style="text-align:center">
+                    @if (Model.personaDTO.Genero == "Femenino")
+                    {
+                        <h2>Bienvenido a PreaceptaApp</h2>
+                        <h2>Licda @Model.personaDTO.Nombre @Model.personaDTO.Apellido1</h2>
+                    }
+                    else
+                    {
+                        <h2>Bienvenido a PreaceptaApp</h2>
+                        <h2>Licd0 @Model.personaDTO.Nombre @Model.personaDTO.Apellido1</h2>
+                    }
+                    <p>Carnet No. @Model.geAbogadoDTO.Carnet @Model.geAbogadoDTO.IdTipoAbogadoNavigation.Nombre</p>
                 </div>
             </div>
-       
+        </div>
+
     </div>
 </div>
 
@@ -113,7 +113,7 @@
                                             }
                                             else
                                             {
-                                                    <p>No cuenta con casos recientes</p>
+                                                <p>No cuenta con casos recientes</p>
                                             }
                                         </div>
                                     </div>
@@ -128,12 +128,12 @@
                                             {
                                                 @foreach (var item in Model.TresUltimosCasosXabogado)
                                                 {
-                                                            <p>@Html.DisplayFor(modelItem => item.Nombre)</p>
+                                                    <p>@Html.DisplayFor(modelItem => item.Nombre)</p>
                                                 }
                                             }
                                             else
                                             {
-                                                    <p>No cuenta con casos recientes</p>
+                                                <p>No cuenta con casos recientes</p>
                                             }
                                             <!--<a asp-controller="Home" asp-action="CaseStudyDetails">Read More</a>-->
                                             <img class="practice-shape-one" src="~/lyso/img/home-one/7.png" alt="Shape">
@@ -150,12 +150,12 @@
                                             {
                                                 @foreach (var item in Model.TresCitasProximasXAfitrion)
                                                 {
-                                                            <p>@Html.DisplayFor(modelItem => item.Fecha)</p>
+                                                    <p>@Html.DisplayFor(modelItem => item.Fecha)</p>
                                                 }
                                             }
                                             else
                                             {
-                                                    <p>No cuenta con casos recientes</p>
+                                                <p>No cuenta con casos recientes</p>
                                             }
                                         </div>
                                     </div>
@@ -168,11 +168,10 @@
                                                 <div class="container">
                                                     <div class="contact-wrap">
                                                         <form id="FormularioCaso" class="">
-
                                                             <div class="row justify-content-center">
                                                                 <div class="col-md-12 col-lg-12">
                                                                     <div class="form-group">
-                                                                        <input name="BusquedaCaso" class="form-control LetraNegra" id="InputBusquedaCaso" placeholder="Ingrese el número de cédula">
+                                                                        <input name="BusquedaCaso" class="form-control LetraNegra" id="InputBusquedaCaso" placeholder="Ingrese el número de cédula" style="background-color:white">
                                                                         <div class="help-block with-errors"></div>
                                                                     </div>
                                                                 </div>
@@ -191,9 +190,6 @@
                                                 </div>
                                             </div>
 
-                                            <!--<a asp-controller="Home" asp-action="CaseStudyDetails">Read More</a>-->
-                                            <img class="practice-shape-one" src="~/lyso/img/home-one/7.png" alt="Shape">
-                                            <img class="practice-shape-two" src="~/lyso/img/home-one/8.png" alt="Shape">
                                         </div>
                                     </div>
                                 </div>
@@ -208,346 +204,374 @@
 
 @if (TempData["PersonaCreada"] != null)
 {
-        <script>
-            document.addEventListener("DOMContentLoaded", function () {
-                Swal.fire({
-                    title: 'Sistema de usuarios',
-                    text: '@TempData["PersonaCreada"]',
-                    icon: 'success',
-                    confirmButtonText: 'Continuar',
-                    customClass: {
-                        confirmButton: 'contact-btn--secundario' // Clase CSS personalizada
-                    }
-                });
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            Swal.fire({
+                title: 'Sistema de usuarios',
+                text: '@TempData["PersonaCreada"]',
+                icon: 'success',
+                confirmButtonText: 'Continuar',
+                customClass: {
+                    confirmButton: 'contact-btn--secundario' // Clase CSS personalizada
+                }
             });
-        </script>
+        });
+    </script>
 }
 
 <!-- End Team -->
 <script>
     document.addEventListener('DOMContentLoaded', function () {
-        document.getElementById('doc1').addEventListener('click', function (event) {
-                            event.preventDefault();
-                            Swal.fire({
-                                title: 'Ingrese las cédulas',
-                                html: `
-                                    <input id="CedulaImputado" class="swal2-input" placeholder="Cédula del Imputado">
-                                    <input id="CedulaAsistente" class="swal2-input" placeholder="Cédula del Asistente Legal">
-                                `,
-                                showCancelButton: true,
-                                confirmButtonText: 'Continuar',
-                                icon: 'question',
-                                preConfirm: () => {
-                                    const CedulaImputado = document.getElementById('CedulaImputado').value.trim();
-                                    const CedulaAsistente = document.getElementById('CedulaAsistente').value.trim();
-                                    if (!CedulaImputado || !CedulaAsistente) {
-                                        Swal.showValidationMessage('Debe ingresar ambas cédulas');
-                                        return false;
-                                    }
-                                    return { CedulaImputado, CedulaAsistente };
-                                }
-                            }).then((result) => {
-                                if (result.isConfirmed) {
-                                    // Validar ambos en el servidor
-                                    Promise.all([
-                                        fetch('/Personas/IdExiste?id=' + result.value.CedulaImputado).then(r => r.json()),
-                                        fetch('/Personas/IdExiste?id=' + result.value.CedulaAsistente).then(r => r.json())
-                                    ]).then(([resImputado, resAsistente]) => {
-                                        if (resImputado.bandera && resAsistente.bandera) {
-                                            // Ambos existen, redirigir
-                                            window.location.href = `/DocsAutorizacionRevisionExpedientes/CreateDocsAutorizacionRevisionExpedientes?CedulaImputado=${result.value.CedulaImputado}&CedulaAsistente=${result.value.CedulaAsistente}`;
-                                        } else {
-                                            let msg = "";
-                                            if (!resImputado.bandera && !resAsistente.bandera) {
-                                                msg = "Ninguna de las cédulas está registrada.";
-                                            } else if (!resImputado.bandera) {
-                                                msg = "La cédula del imputado no está registrada.";
-                                            } else {
-                                                msg = "La cédula del asistente no está registrada.";
-                                            }
-                                            Swal.fire('Sistema de búsqueda', msg, 'error');
-                                        }
-                                    });
-                                }
-                            });
-                        }); 
 
-
-       <script>
-    document.addEventListener('DOMContentLoaded', function () {
         document.getElementById('doc1').addEventListener('click', function (event) {
-                            event.preventDefault();
-                            Swal.fire({
-                                title: 'Ingrese las cédulas',
-                                html: `
-                                    <input id="CedulaImputado" class="swal2-input" placeholder="Cédula del Imputado">
-                                    <input id="CedulaAsistente" class="swal2-input" placeholder="Cédula del Asistente Legal">
-                                `,
-                                showCancelButton: true,
-                                confirmButtonText: 'Continuar',
-                                icon: 'question',
-                                preConfirm: () => {
-                                    const CedulaImputado = document.getElementById('CedulaImputado').value.trim();
-                                    const CedulaAsistente = document.getElementById('CedulaAsistente').value.trim();
-                                    if (!CedulaImputado || !CedulaAsistente) {
-                                        Swal.showValidationMessage('Debe ingresar ambas cédulas');
-                                        return false;
-                                    }
-                                    return { CedulaImputado, CedulaAsistente };
-                                }
-                            }).then((result) => {
-                                if (result.isConfirmed) {
-                                    // Validar ambos en el servidor
-                                    Promise.all([
-                                        fetch('/Personas/IdExiste?id=' + result.value.CedulaImputado).then(r => r.json()),
-                                        fetch('/Personas/IdExiste?id=' + result.value.CedulaAsistente).then(r => r.json())
-                                    ]).then(([resImputado, resAsistente]) => {
-                                        if (resImputado.bandera && resAsistente.bandera) {
-                                            // Ambos existen, redirigir
-                                            window.location.href = `/DocsAutorizacionRevisionExpedientes/CreateDocsAutorizacionRevisionExpedientes?CedulaImputado=${result.value.CedulaImputado}&CedulaAsistente=${result.value.CedulaAsistente}`;
-                                        } else {
-                                            let msg = "";
-                                            if (!resImputado.bandera && !resAsistente.bandera) {
-                                                msg = "Ninguna de las cédulas está registrada.";
-                                            } else if (!resImputado.bandera) {
-                                                msg = "La cédula del imputado no está registrada.";
-                                            } else {
-                                                msg = "La cédula del asistente no está registrada.";
-                                            }
-                                            Swal.fire('Sistema de búsqueda', msg, 'error');
-                                        }
-                                    });
-                                }
-                            });
-                        });
+            event.preventDefault();
+            Swal.fire({
+                title: 'Ingrese las cédulas',
+                html:
+                    `<input id="CedulaImputado" class="swal2-input" placeholder="Cédula del Imputado">
+                <input id="CedulaAsistente" class="swal2-input" placeholder="Cédula del Asistente Legal">`,
+                showCancelButton: true,
+                confirmButtonText: 'Continuar',
+                icon: 'question',
+                customClass: {
+                    cancelButton: 'contact-btn--tercero',
+                    confirmButton: 'contact-btn--secundario'
+                },
+                preConfirm: () => {
+                    const CedulaImputado = document.getElementById('CedulaImputado').value.trim();
+                    const CedulaAsistente = document.getElementById('CedulaAsistente').value.trim();
+                    if (!CedulaImputado || !CedulaAsistente) {
+                        Swal.showValidationMessage('Debe ingresar ambas cédulas');
+                        return false;
+                    }
+                    return { CedulaImputado, CedulaAsistente };
+                }
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    // Validar ambos en el servidor
+                    Promise.all([
+                        fetch('/Personas/IdExiste?id=' + result.value.CedulaImputado).then(r => r.json()),
+                        fetch('/Personas/IdExiste?id=' + result.value.CedulaAsistente).then(r => r.json())
+                    ]).then(([resImputado, resAsistente]) => {
+                        if (resImputado.bandera && resAsistente.bandera) {
+                            // Ambos existen, redirigir
+                            window.location.href = `/DocsAutorizacionRevisionExpedientes/CreateDocsAutorizacionRevisionExpedientes?CedulaImputado=${result.value.CedulaImputado}&CedulaAsistente=${result.value.CedulaAsistente}`;
+                        } else {
+                            let msg = "";
+                            if (!resImputado.bandera && !resAsistente.bandera) {
+                                msg = "Ninguna de las cédulas está registrada.";
+                            } else if (!resImputado.bandera) {
+                                msg = "La cédula del imputado no está registrada.";
+                            } else {
+                                msg = "La cédula del asistente no está registrada.";
+                            }
+                            Swal.fire('Sistema de búsqueda', msg, 'error');
+                        }
+                    });
+                }
+            });
+        });
+
+        document.getElementById('doc1').addEventListener('click', function (event) {
+            event.preventDefault();
+            Swal.fire({
+                title: 'Ingrese las cédulas',
+                html: `
+                                            <input id="CedulaImputado" class="swal2-input" placeholder="Cédula del Imputado">
+                                            <input id="CedulaAsistente" class="swal2-input" placeholder="Cédula del Asistente Legal">
+                                        `,
+                showCancelButton: true,
+                confirmButtonText: 'Continuar',
+                icon: 'question',
+                preConfirm: () => {
+                    const CedulaImputado = document.getElementById('CedulaImputado').value.trim();
+                    const CedulaAsistente = document.getElementById('CedulaAsistente').value.trim();
+                    if (!CedulaImputado || !CedulaAsistente) {
+                        Swal.showValidationMessage('Debe ingresar ambas cédulas');
+                        return false;
+                    }
+                    return { CedulaImputado, CedulaAsistente };
+                }
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    // Validar ambos en el servidor
+                    Promise.all([
+                        fetch('/Personas/IdExiste?id=' + result.value.CedulaImputado).then(r => r.json()),
+                        fetch('/Personas/IdExiste?id=' + result.value.CedulaAsistente).then(r => r.json())
+                    ]).then(([resImputado, resAsistente]) => {
+                        if (resImputado.bandera && resAsistente.bandera) {
+                            // Ambos existen, redirigir
+                            window.location.href = `/DocsAutorizacionRevisionExpedientes/CreateDocsAutorizacionRevisionExpedientes?CedulaImputado=${result.value.CedulaImputado}&CedulaAsistente=${result.value.CedulaAsistente}`;
+                        } else {
+                            let msg = "";
+                            if (!resImputado.bandera && !resAsistente.bandera) {
+                                msg = "Ninguna de las cédulas está registrada.";
+                            } else if (!resImputado.bandera) {
+                                msg = "La cédula del imputado no está registrada.";
+                            } else {
+                                msg = "La cédula del asistente no está registrada.";
+                            }
+                            Swal.fire('Sistema de búsqueda', msg, 'error');
+                        }
+                    });
+                }
+            });
+        });
 
         document.getElementById('cvVehiculo').addEventListener('click', function (event) {
-        event.preventDefault();
-        Swal.fire({
-            title: 'Ingrese las cédulas',
-            html: `
-                <input id="CedulaPropietario" class="swal2-input" placeholder="Cédula del Propietario">
-                <input id="CedulaComprador" class="swal2-input" placeholder="Cédula del Comprador">
-            `,
-            showCancelButton: true,
-            confirmButtonText: 'Continuar',
-            icon: 'question',
-            customClass: {
-              cancelButton: 'contact-btn--tercero',
-              confirmButton: 'contact-btn--secundario'
-            },
-            preConfirm: () => {
-                const CedulaPropietario = document.getElementById('CedulaPropietario').value.trim();
-                const CedulaComprador = document.getElementById('CedulaComprador').value.trim();
-                if (!CedulaPropietario || !CedulaComprador) {
-                    Swal.showValidationMessage('Debe ingresar ambas cédulas');
-                    return false;
-                }
-                return { CedulaPropietario, CedulaComprador };
-            }
-        }).then((result) => {
-            if (result.isConfirmed) {
-                // Validar ambos en el servidor
-                Promise.all([
-                    fetch('/Personas/IdExiste?id=' + result.value.CedulaPropietario).then(r => r.json()),
-                    fetch('/Personas/IdExiste?id=' + result.value.CedulaComprador).then(r => r.json())
-                ]).then(([resPropietario, resComprador]) => {
-                    if (resPropietario.bandera && resComprador.bandera) {
-                        // Ambos existen, redirigir
-                        window.location.href = `/DocsOpcionCompraventaVehiculoes/CreateDocsOpcionCompraventaVehiculoes?CedulaPropietario=${result.value.CedulaPropietario}&CedulaComprador=${result.value.CedulaComprador}`;
-                    } else {
-                        let msg = "";
-                        if (!resPropietario.bandera && !resComprador.bandera) {
-                            msg = "Ninguna de las cédulas está registrada.";
-                        } else if (!resPropietario.bandera) {
-                            msg = "La cédula del propietario no está registrada.";
-                        } else {
-                            msg = "La cédula del comprador no está registrada.";
-                        }
-                        Swal.fire('Sistema de búsqueda', msg, 'error');
+            event.preventDefault();
+            Swal.fire({
+                title: 'Ingrese las cédulas',
+                html: `
+                        <input id="CedulaPropietario" class="swal2-input" placeholder="Cédula del Propietario">
+                        <input id="CedulaComprador" class="swal2-input" placeholder="Cédula del Comprador">
+                    `,
+                showCancelButton: true,
+                confirmButtonText: 'Continuar',
+                icon: 'question',
+                customClass: {
+                    cancelButton: 'contact-btn--tercero',
+                    confirmButton: 'contact-btn--secundario'
+                },
+                preConfirm: () => {
+                    const CedulaPropietario = document.getElementById('CedulaPropietario').value.trim();
+                    const CedulaComprador = document.getElementById('CedulaComprador').value.trim();
+                    if (!CedulaPropietario || !CedulaComprador) {
+                        Swal.showValidationMessage('Debe ingresar ambas cédulas');
+                        return false;
                     }
-                });
-            }
+                    return { CedulaPropietario, CedulaComprador };
+                }
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    // Validar ambos en el servidor
+                    Promise.all([
+                        fetch('/Personas/IdExiste?id=' + result.value.CedulaPropietario).then(r => r.json()),
+                        fetch('/Personas/IdExiste?id=' + result.value.CedulaComprador).then(r => r.json())
+                    ]).then(([resPropietario, resComprador]) => {
+                        if (resPropietario.bandera && resComprador.bandera) {
+                            // Ambos existen, redirigir
+                            window.location.href = `/DocsOpcionCompraventaVehiculoes/CreateDocsOpcionCompraventaVehiculoes?CedulaPropietario=${result.value.CedulaPropietario}&CedulaComprador=${result.value.CedulaComprador}`;
+                        } else {
+                            let msg = "";
+                            if (!resPropietario.bandera && !resComprador.bandera) {
+                                msg = "Ninguna de las cédulas está registrada.";
+                            } else if (!resPropietario.bandera) {
+                                msg = "La cédula del propietario no está registrada.";
+                            } else {
+                                msg = "La cédula del comprador no está registrada.";
+                            }
+                            Swal.fire('Sistema de búsqueda', msg, 'error');
+                        }
+                    });
+                }
+            });
         });
-    });
-
-    /*Prueba Para testimonio*/
-        document.getElementById('testimonio').addEventListener('click', function (event) {
-        event.preventDefault(); // Evita que haga submit si está dentro de un form
-        window.location.href = '/TTestimonios/TestimonialsLista';
-    });
-    //--------------------------------------------------------------
 
         document.getElementById('pagare').addEventListener('click', function (event) {
-      event.preventDefault();
+            event.preventDefault();
 
-      Swal.fire({
-        title: 'Ingrese las cédulas',
-        html: `
-          <input id="CedulaDeudor" class="swal2-input" placeholder="Cédula del Deudor">
-          <input id="CedulaFiador" class="swal2-input" placeholder="Cédula del Fiador">
-        `,
-        showCancelButton: true,
-        confirmButtonText: 'Continuar',
-        cancelButtonText: 'Cancelar',
-        icon: 'question',
-        customClass: {
-          cancelButton: 'contact-btn--tercero',
-          confirmButton: 'contact-btn--secundario'
-        },
-        preConfirm: () => {
-          const CedulaDeudor = document.getElementById('CedulaDeudor').value.trim();
-          const CedulaFiador = document.getElementById('CedulaFiador').value.trim();
-          if (!CedulaDeudor || !CedulaFiador) {
-            Swal.showValidationMessage('Debe ingresar ambas cédulas');
-            return false;
-          }
-          return { CedulaDeudor, CedulaFiador };
-        }
-      }).then((result) => {
-        if (result.isConfirmed) {
-          Promise.all([
-            fetch('/Personas/IdExiste?id=' + result.value.CedulaDeudor).then(r => r.json()),
-            fetch('/Personas/IdExiste?id=' + result.value.CedulaFiador).then(r => r.json())
-          ]).then(([resDeudor, resFiador]) => {
-            if (resDeudor.bandera && resFiador.bandera) {
-              window.location.href =
-                `/TDocsPagares/CreateDocsPagares?CedulaDeudor=${result.value.CedulaDeudor}&CedulaFiador=${result.value.CedulaFiador}`;
-            } else {
-              let msg = "";
-              if (!resDeudor.bandera && !resFiador.bandera) msg = "Ninguna de las cédulas está registrada.";
-              else if (!resDeudor.bandera) msg = "La cédula del deudor no está registrada.";
-              else msg = "La cédula del fiador no está registrada.";
-              Swal.fire('Sistema de búsqueda', msg, 'error');
-            }
-          });
-        }
-      });
-    });
-
-    document.getElementById('poderesJud').addEventListener('click', function (event) {
-    event.preventDefault();
-    Swal.fire({
-        title: 'Cédula del cliente',
-        input: 'text',
-        showCancelButton: true,
-        confirmButtonText: 'Continuar',
-        icon: 'question',
-        customClass: {
-        cancelButton: 'contact-btn--tercero',
-        confirmButton: 'contact-btn--secundario'
-    }
-    }).then((result) => {
-        if (result.isConfirmed) {
-            fetch('/Personas/IdExiste?id=' + result.value) // ← aquí se cerró el paréntesis correctamente
-                .then(respuesta => respuesta.json())
-                .then(datos => {
-                    if (datos.bandera) {
-                        window.location.href = '/TDocsPoderesEspecialesJudiciales/CreateDocsPoderesEspecialesJudiciales?id=' + result.value;
-                    } else {
-                        Swal.fire('Sistema de búsqueda', 'La cédula ingresada no está registrada.', 'error');
+            Swal.fire({
+                title: 'Ingrese las cédulas',
+                html: `
+                  <input id="CedulaDeudor" class="swal2-input" placeholder="Cédula del Deudor">
+                  <input id="CedulaFiador" class="swal2-input" placeholder="Cédula del Fiador">
+                `,
+                showCancelButton: true,
+                confirmButtonText: 'Continuar',
+                cancelButtonText: 'Cancelar',
+                icon: 'question',
+                customClass: {
+                    cancelButton: 'contact-btn--tercero',
+                    confirmButton: 'contact-btn--secundario'
+                },
+                preConfirm: () => {
+                    const CedulaDeudor = document.getElementById('CedulaDeudor').value.trim();
+                    const CedulaFiador = document.getElementById('CedulaFiador').value.trim();
+                    if (!CedulaDeudor || !CedulaFiador) {
+                        Swal.showValidationMessage('Debe ingresar ambas cédulas');
+                        return false;
                     }
-                });
-          
-                        document.getElementById('docFinca').addEventListener('click', function (event) {
-                            event.preventDefault();
-                            Swal.fire({
-                                title: 'Ingrese las cédulas',
-                                html: `
-                                    <input id="CedulaVendedor" class="swal2-input" placeholder="Cédula del Vendedor">
-                                    <input id="CedulaComprador" class="swal2-input" placeholder="Cédula del Comprador">
-                                `,
-                                showCancelButton: true,
-                                confirmButtonText: 'Continuar',
-                                icon: 'question',
-                                preConfirm: () => {
-                                    const CedulaVendedor = document.getElementById('CedulaVendedor').value.trim();
-                                    const CedulaComprador = document.getElementById('CedulaComprador').value.trim();
-                                    if (!CedulaVendedor || !CedulaComprador) {
-                                        Swal.showValidationMessage('Debe ingresar ambas cédulas');
-                                        return false;
-                                    }
-                                    return { CedulaVendedor, CedulaComprador };
-                                }
-                            }).then((result) => {
-                                if (result.isConfirmed) {
-                                    // Validar ambos en el servidor
-                                    Promise.all([
-                                        fetch('/Personas/IdExiste?id=' + result.value.CedulaVendedor).then(r => r.json()),
-                                        fetch('/Personas/IdExiste?id=' + result.value.CedulaComprador).then(r => r.json())
-                                    ]).then(([resVendedor, resComprador]) => {
-                                        if (resVendedor.bandera && resComprador.bandera) {
-                                            // Ambos existen, redirigir
-                                            window.location.href = `/DocsCompraventaFincas/CreateDocsCompraventaFincas?CedulaVendedor=${result.value.CedulaVendedor}&CedulaComprador=${result.value.CedulaComprador}`;
-                                        } else {
-                                            let msg = "";
-                                            if (!resVendedor.bandera && !resComprador.bandera) {
-                                                msg = "Ninguna de las cédulas está registrada.";
-                                            } else if (!resVendedor.bandera) {
-                                                msg = "La cédula del vendedor no está registrada.";
-                                            } else {
-                                                msg = "La cédula del comprador no está registrada.";
-                                            }
-                                            Swal.fire('Sistema de búsqueda', msg, 'error');
-                                        }
-                                    });
-                                }
-                            });
-                        });
-
-
-                document.getElementById('docPrestacion').addEventListener('click', function (event) {
-                    event.preventDefault();
-                    Swal.fire({
-                        title: 'Cédula del cliente',
-                        input: 'text',
-                        showCancelButton: true,
-                        confirmButtonText: 'Continuar',
-                        icon: 'question'
-                    }).then((result) => {
-                        if (result.isConfirmed) {
-                            fetch('/Personas/IdExiste?id=' + result.value) // ← aquí se cerró el paréntesis correctamente
-                                .then(respuesta => respuesta.json())
-                                .then(datos => {
-                                    if (datos.bandera) {
-                                        window.location.href = '/DocsContratoPrestacionServicios/CreateDocsContratoPrestacionServicios?id=' + result.value;
-                                    } else {
-                                        Swal.fire('Sistema de búsqueda', 'La cédula ingresada no está registrada.', 'error');
-                                    }
-                                });
+                    return { CedulaDeudor, CedulaFiador };
+                }
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    Promise.all([
+                        fetch('/Personas/IdExiste?id=' + result.value.CedulaDeudor).then(r => r.json()),
+                        fetch('/Personas/IdExiste?id=' + result.value.CedulaFiador).then(r => r.json())
+                    ]).then(([resDeudor, resFiador]) => {
+                        if (resDeudor.bandera && resFiador.bandera) {
+                            window.location.href =
+                                `/TDocsPagares/CreateDocsPagares?CedulaDeudor=${result.value.CedulaDeudor}&CedulaFiador=${result.value.CedulaFiador}`;
+                        } else {
+                            let msg = "";
+                            if (!resDeudor.bandera && !resFiador.bandera) msg = "Ninguna de las cédulas está registrada.";
+                            else if (!resDeudor.bandera) msg = "La cédula del deudor no está registrada.";
+                            else msg = "La cédula del fiador no está registrada.";
+                            Swal.fire('Sistema de búsqueda', msg, 'error');
                         }
                     });
-                });
-
-                document.getElementById('docInscripcion').addEventListener('click', function (event) {
-                    event.preventDefault();
-                    Swal.fire({
-                        title: 'Cédula del cliente',
-                        input: 'text',
-                        showCancelButton: true,
-                        confirmButtonText: 'Continuar',
-                        icon: 'question',
-                        customClass: {
-                            cancelButton: 'contact-btn--tercero',
-                        confirmButton: 'contact-btn--secundario'
-    }
-                    }).then((result) => {
-                        if (result.isConfirmed) {
-                            fetch('/Personas/IdExiste?id=' + result.value) // ← aquí se cerró el paréntesis correctamente
-                                .then(respuesta => respuesta.json())
-                                .then(datos => {
-                                    if (datos.bandera) {
-                                        window.location.href = '/DocsInscripcionVehiculo/CreateDocsInscripcionVehiculo?id=' + result.value;
-                                    } else {
-                                        Swal.fire('Sistema de búsqueda', 'La cédula ingresada no está registrada.', 'error');
-                                    }
-                                });
-                        }
-                    });
-                });
-
-
-
+                }
+            });
         });
+
+        document.getElementById('poderesJud').addEventListener('click', function (event) {
+            event.preventDefault();
+            Swal.fire({
+                title: 'Cédula del cliente',
+                input: 'text',
+                showCancelButton: true,
+                confirmButtonText: 'Continuar',
+                icon: 'question',
+                customClass: {
+                    cancelButton: 'contact-btn--tercero',
+                    confirmButton: 'contact-btn--secundario'
+                }
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    fetch('/Personas/IdExiste?id=' + result.value)
+                        .then(respuesta => respuesta.json())
+                        .then(datos => {
+                            if (datos.bandera) {
+                                window.location.href = '/TDocsPoderesEspecialesJudiciales/CreateDocsPoderesEspecialesJudiciales ? id =' + result.value;
+                            } else {
+                                Swal.fire('Sistema de búsqueda', 'La cédula ingresada no está registrada.', 'error');
+                            }
+                        });
+                }
+            });
+        });
+
+        // COMPRAVENTA FINCA
+        document.getElementById('docFinca').addEventListener('click', function (event) {
+            event.preventDefault();
+            Swal.fire({
+                title: 'Ingrese las cédulas',
+                html: `
+                            <input id="CedulaVendedor" class="swal2-input" placeholder="Cédula del Vendedor">
+                            <input id="CedulaComprador" class="swal2-input" placeholder="Cédula del Comprador">
+                        `,
+                showCancelButton: true,
+                confirmButtonText: 'Continuar',
+                icon: 'question',
+                preConfirm: () => {
+                    const CedulaVendedor = document.getElementById('CedulaVendedor').value.trim();
+                    const CedulaComprador = document.getElementById('CedulaComprador').value.trim();
+                    if (!CedulaVendedor || !CedulaComprador) {
+                        Swal.showValidationMessage('Debe ingresar ambas cédulas');
+                        return false;
+                    }
+                    return { CedulaVendedor, CedulaComprador };
+                }
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    Promise.all([
+                        fetch('/Personas/IdExiste?id=' + result.value.CedulaVendedor).then(r => r.json()),
+                        fetch('/Personas/IdExiste?id=' + result.value.CedulaComprador).then(r => r.json())
+                    ]).then(([resVendedor, resComprador]) => {
+                        if (resVendedor.bandera && resComprador.bandera) {
+                            window.location.href = `/DocsCompraventaFincas/CreateDocsCompraventaFincas ? CedulaVendedor = ${result.value.CedulaVendedor}& CedulaComprador=${result.value.CedulaComprador}`;
+                        } else {
+                            let msg = "";
+                            if (!resVendedor.bandera && !resComprador.bandera) {
+                                msg = "Ninguna de las cédulas está registrada.";
+                            } else if (!resVendedor.bandera) {
+                                msg = "La cédula del vendedor no está registrada.";
+                            } else {
+                                msg = "La cédula del comprador no está registrada.";
+                            }
+                            Swal.fire('Sistema de búsqueda', msg, 'error');
+                        }
+                    });
+                }
+            });
+        });
+
+        // CONTRATO DE PRESTACIÓN DE SERVICIOS
+        document.getElementById('docPrestacion').addEventListener('click', function (event) {
+            event.preventDefault();
+            Swal.fire({
+                title: 'Cédula del cliente',
+                input: 'text',
+                showCancelButton: true,
+                confirmButtonText: 'Continuar',
+                icon: 'question'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    fetch('/Personas/IdExiste?id=' + result.value)
+                        .then(respuesta => respuesta.json())
+                        .then(datos => {
+                            if (datos.bandera) {
+                                window.location.href = '/DocsContratoPrestacionServicios/CreateDocsContratoPrestacionServicios?id=' + result.value;
+                            } else {
+                                Swal.fire('Sistema de búsqueda', 'La cédula ingresada no está registrada.', 'error');
+                            }
+                        });
+                }
+            });
+        });
+
+
+        // INSCRIPCIÓN VEHÍCULO
+        document.getElementById('docInscripcion').addEventListener('click', function (event) {
+            event.preventDefault();
+            Swal.fire({
+                title: 'Cédula del cliente',
+                input: 'text',
+                showCancelButton: true,
+                confirmButtonText: 'Continuar',
+                icon: 'question',
+                customClass: {
+                    cancelButton: 'contact-btn--tercero',
+                    confirmButton: 'contact-btn--secundario'
+                }
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    fetch('/Personas/IdExiste?id=' + result.value)
+                        .then(respuesta => respuesta.json())
+                        .then(datos => {
+                            if (datos.bandera) {
+                                window.location.href = '/DocsInscripcionVehiculo/CreateDocsInscripcionVehiculo?id=' + result.value;
+                            } else {
+                                Swal.fire('Sistema de búsqueda', 'La cédula ingresada no está registrada.', 'error');
+                            }
+                        });
+                }
+            });
+        });
+
+
+
+
+
+
+
+        document.getElementById('crearCaso').addEventListener('click', function (event) {
+            event.preventDefault();
+            Swal.fire({
+                title: 'Cédula del cliente',
+                input: 'text',
+                icon: 'question',
+                showCancelButton: true,
+                confirmButtonText: 'Continuar',
+                customClass: {
+                    cancelButton: 'contact-btn--tercero',
+                    confirmButton: 'contact-btn--secundario'
+                }
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    fetch('/Personas/IdExiste?id=' + result.value) // ← aquí se cerró el paréntesis correctamente
+                        .then(respuesta => respuesta.json())
+                        .then(datos => {
+                            if (datos.bandera) {
+                                window.location.href = '/Caso/FormularioCaso?id=' + result.value;
+                            } else {
+                                Swal.fire('Sistema de búsqueda', 'La cédula ingresada no está registrada.', 'error');
+                            }
+                        });
+                }
+            });
+        });
+    });
 
 </script>

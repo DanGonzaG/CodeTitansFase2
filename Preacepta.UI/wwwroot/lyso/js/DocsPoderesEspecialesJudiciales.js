@@ -4,7 +4,7 @@ document.getElementById('CreateDocsPoderesEspecialesJudiciales').addEventListene
 });
 
 document.getElementById('btnPrevisualizar').addEventListener('click', () => {
-    const fecha = document.getElementById('idFecha').value;
+    const fecha = document.getElementById('Fecha').value;
     const idAbogado = document.getElementById('idIdAbogado').value;
     const idCliente = document.getElementById('idIdCliente').value;
     const texto = document.getElementById('idTexto').value;
