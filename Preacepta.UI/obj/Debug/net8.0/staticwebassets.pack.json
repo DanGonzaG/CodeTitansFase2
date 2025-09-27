@@ -573,6 +573,18 @@
       "PackagePath": "staticwebassets\\lyso\\img\\attorney-details\\1.jpg"
     },
     {
+      "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lyso\\img\\attorney-details\\abogadoEmanuel.jpg",
+      "PackagePath": "staticwebassets\\lyso\\img\\attorney-details\\abogadoEmanuel.jpg"
+    },
+    {
+      "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lyso\\img\\attorney-details\\abogadoGuillermo.jpg",
+      "PackagePath": "staticwebassets\\lyso\\img\\attorney-details\\abogadoGuillermo.jpg"
+    },
+    {
+      "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lyso\\img\\attorney-details\\abogadoNara2.jpg",
+      "PackagePath": "staticwebassets\\lyso\\img\\attorney-details\\abogadoNara2.jpg"
+    },
+    {
       "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lyso\\img\\blog-details\\1.jpg",
       "PackagePath": "staticwebassets\\lyso\\img\\blog-details\\1.jpg"
     },
@@ -599,6 +611,10 @@
     {
       "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lyso\\img\\docs3.png",
       "PackagePath": "staticwebassets\\lyso\\img\\docs3.png"
+    },
+    {
+      "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lyso\\img\\docs33.png",
+      "PackagePath": "staticwebassets\\lyso\\img\\docs33.png"
     },
     {
       "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lyso\\img\\docs4.png",
@@ -665,6 +681,22 @@
       "PackagePath": "staticwebassets\\lyso\\img\\home-one\\9.png"
     },
     {
+      "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lyso\\img\\home-one\\AbogadoNara1.jpg",
+      "PackagePath": "staticwebassets\\lyso\\img\\home-one\\AbogadoNara1.jpg"
+    },
+    {
+      "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lyso\\img\\home-one\\abogadoEmanuel.jpg",
+      "PackagePath": "staticwebassets\\lyso\\img\\home-one\\abogadoEmanuel.jpg"
+    },
+    {
+      "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lyso\\img\\home-one\\abogadoGuillermo.jpg",
+      "PackagePath": "staticwebassets\\lyso\\img\\home-one\\abogadoGuillermo.jpg"
+    },
+    {
+      "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lyso\\img\\home-one\\abogadoNara2.jpg",
+      "PackagePath": "staticwebassets\\lyso\\img\\home-one\\abogadoNara2.jpg"
+    },
+    {
       "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lyso\\img\\home-one\\blog\\1.jpg",
       "PackagePath": "staticwebassets\\lyso\\img\\home-one\\blog\\1.jpg"
     },
@@ -713,6 +745,10 @@
       "PackagePath": "staticwebassets\\lyso\\img\\home-one\\location-bg.jpg"
     },
     {
+      "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lyso\\img\\home-one\\nara3.png",
+      "PackagePath": "staticwebassets\\lyso\\img\\home-one\\nara3.png"
+    },
+    {
       "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lyso\\img\\home-one\\newsletter.png",
       "PackagePath": "staticwebassets\\lyso\\img\\home-one\\newsletter.png"
     },
@@ -753,6 +789,22 @@
       "PackagePath": "staticwebassets\\lyso\\img\\home-one\\portfolio\\9.jpg"
     },
     {
+      "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lyso\\img\\home-one\\portfolio\\admi1.jpg",
+      "PackagePath": "staticwebassets\\lyso\\img\\home-one\\portfolio\\admi1.jpg"
+    },
+    {
+      "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lyso\\img\\home-one\\portfolio\\admi2.jpg",
+      "PackagePath": "staticwebassets\\lyso\\img\\home-one\\portfolio\\admi2.jpg"
+    },
+    {
+      "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lyso\\img\\home-one\\portfolio\\admi3.jpg",
+      "PackagePath": "staticwebassets\\lyso\\img\\home-one\\portfolio\\admi3.jpg"
+    },
+    {
+      "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lyso\\img\\home-one\\portfolio\\admi4.jpg",
+      "PackagePath": "staticwebassets\\lyso\\img\\home-one\\portfolio\\admi4.jpg"
+    },
+    {
       "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lyso\\img\\home-one\\portfolio\\civil1.jpg",
       "PackagePath": "staticwebassets\\lyso\\img\\home-one\\portfolio\\civil1.jpg"
     },
@@ -767,6 +819,54 @@
     {
       "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lyso\\img\\home-one\\portfolio\\civil4.jpg",
       "PackagePath": "staticwebassets\\lyso\\img\\home-one\\portfolio\\civil4.jpg"
+    },
+    {
+      "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lyso\\img\\home-one\\portfolio\\corpo1.jpg",
+      "PackagePath": "staticwebassets\\lyso\\img\\home-one\\portfolio\\corpo1.jpg"
+    },
+    {
+      "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lyso\\img\\home-one\\portfolio\\corpo2.jpg",
+      "PackagePath": "staticwebassets\\lyso\\img\\home-one\\portfolio\\corpo2.jpg"
+    },
+    {
+      "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lyso\\img\\home-one\\portfolio\\corpo3.jpg",
+      "PackagePath": "staticwebassets\\lyso\\img\\home-one\\portfolio\\corpo3.jpg"
+    },
+    {
+      "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lyso\\img\\home-one\\portfolio\\corpo4.jpg",
+      "PackagePath": "staticwebassets\\lyso\\img\\home-one\\portfolio\\corpo4.jpg"
+    },
+    {
+      "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lyso\\img\\home-one\\portfolio\\laboral1.jpg",
+      "PackagePath": "staticwebassets\\lyso\\img\\home-one\\portfolio\\laboral1.jpg"
+    },
+    {
+      "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lyso\\img\\home-one\\portfolio\\laboral2.jpeg",
+      "PackagePath": "staticwebassets\\lyso\\img\\home-one\\portfolio\\laboral2.jpeg"
+    },
+    {
+      "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lyso\\img\\home-one\\portfolio\\laboral3.jpg",
+      "PackagePath": "staticwebassets\\lyso\\img\\home-one\\portfolio\\laboral3.jpg"
+    },
+    {
+      "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lyso\\img\\home-one\\portfolio\\laboral4.jpg",
+      "PackagePath": "staticwebassets\\lyso\\img\\home-one\\portfolio\\laboral4.jpg"
+    },
+    {
+      "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lyso\\img\\home-one\\portfolio\\nota1.jpg",
+      "PackagePath": "staticwebassets\\lyso\\img\\home-one\\portfolio\\nota1.jpg"
+    },
+    {
+      "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lyso\\img\\home-one\\portfolio\\nota2.jpg",
+      "PackagePath": "staticwebassets\\lyso\\img\\home-one\\portfolio\\nota2.jpg"
+    },
+    {
+      "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lyso\\img\\home-one\\portfolio\\nota3.jpeg",
+      "PackagePath": "staticwebassets\\lyso\\img\\home-one\\portfolio\\nota3.jpeg"
+    },
+    {
+      "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lyso\\img\\home-one\\portfolio\\nota4.jpg",
+      "PackagePath": "staticwebassets\\lyso\\img\\home-one\\portfolio\\nota4.jpg"
     },
     {
       "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lyso\\img\\home-one\\portfolio\\penal1.jpg",
@@ -815,6 +915,18 @@
     {
       "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lyso\\img\\home-one\\team\\8.jpg",
       "PackagePath": "staticwebassets\\lyso\\img\\home-one\\team\\8.jpg"
+    },
+    {
+      "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lyso\\img\\home-one\\team\\ema.jpeg",
+      "PackagePath": "staticwebassets\\lyso\\img\\home-one\\team\\ema.jpeg"
+    },
+    {
+      "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lyso\\img\\home-one\\team\\guille.jpeg",
+      "PackagePath": "staticwebassets\\lyso\\img\\home-one\\team\\guille.jpeg"
+    },
+    {
+      "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lyso\\img\\home-one\\team\\nara.jpeg",
+      "PackagePath": "staticwebassets\\lyso\\img\\home-one\\team\\nara.jpeg"
     },
     {
       "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lyso\\img\\home-two\\1.jpg",
@@ -965,6 +1077,10 @@
       "PackagePath": "staticwebassets\\lyso\\js\\FiltroProvinicaCantonDistritoGestor.js"
     },
     {
+      "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lyso\\js\\FiltroProvinicaCantonDistritoParaFirmas.js",
+      "PackagePath": "staticwebassets\\lyso\\js\\FiltroProvinicaCantonDistritoParaFirmas.js"
+    },
+    {
       "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lyso\\js\\Mensajes.js",
       "PackagePath": "staticwebassets\\lyso\\js\\Mensajes.js"
     },
@@ -1011,6 +1127,10 @@
     {
       "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lyso\\js\\docsPrueba.js",
       "PackagePath": "staticwebassets\\lyso\\js\\docsPrueba.js"
+    },
+    {
+      "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lyso\\js\\fltradoHistorialDocs.js",
+      "PackagePath": "staticwebassets\\lyso\\js\\fltradoHistorialDocs.js"
     },
     {
       "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lyso\\js\\form-validator.min.js",
