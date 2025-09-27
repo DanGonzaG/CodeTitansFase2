@@ -212,7 +212,7 @@ document.addEventListener("DOMContentLoaded", () => {
         });
 
     } else {
-        console.warn("No se encontraron los elementos necesarios para agregar eventos");
+        
     }
 })
 function mostrarDetalles() {

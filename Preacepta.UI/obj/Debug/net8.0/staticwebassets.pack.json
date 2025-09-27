@@ -317,6 +317,10 @@
       "PackagePath": "staticwebassets\\lyso\\css\\Daniel.css"
     },
     {
+      "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lyso\\css\\Testimonials.css",
+      "PackagePath": "staticwebassets\\lyso\\css\\Testimonials.css"
+    },
+    {
       "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lyso\\css\\animate.min.css",
       "PackagePath": "staticwebassets\\lyso\\css\\animate.min.css"
     },
@@ -1027,6 +1031,10 @@
     {
       "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lyso\\img\\tutorial\\Imagen4.png",
       "PackagePath": "staticwebassets\\lyso\\img\\tutorial\\Imagen4.png"
+    },
+    {
+      "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lyso\\js\\BuscarUsuario.js",
+      "PackagePath": "staticwebassets\\lyso\\js\\BuscarUsuario.js"
     },
     {
       "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lyso\\js\\CalculoEdad.js",
