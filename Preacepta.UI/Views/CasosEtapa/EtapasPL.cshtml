@@ -136,7 +136,7 @@
                             }
 
                             <div class="attor-details-things">                               
-                                <form asp-controller="Caso" asp-action="DescargarCasoCompleto" method="get">
+                                <form asp-controller="Caso" asp-action="DescargarCasoCompleto" method="get" target="_blank">
                                     <input type="hidden" name="IdCaso" value="@Model.casoDTO.IdCaso" />
                                     <button type="submit" class="contact-btn--secundario EtapaPLestilos">Descargar</button>
                                 </form>
@@ -253,7 +253,7 @@
                 </div>
             </div>
             <div class="modal-footer">               
-                <form asp-controller="CasosEtapa" asp-action="DescargaPDFetapaPL" method="get">
+                <form asp-controller="CasosEtapa" asp-action="DescargaPDFetapaPL" method="get" target="_blank">
                     <input id="inputDescargaEtapaPL" type="hidden" value="" name="id" />
                     <button type="submit" class="contact-btn--secundario">Descargar</button>
                 </form>
