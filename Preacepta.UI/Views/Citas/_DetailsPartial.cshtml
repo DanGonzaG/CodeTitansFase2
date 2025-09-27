@@ -3,6 +3,7 @@
 <head>
     <link href="~/lyso/css/Daniel.css" rel="stylesheet" />
     <link href="~/calendario/stylecalendar.css" rel="stylesheet" />
+    <link href="~/lyso/css/style.css" rel="stylesheet" />
 </head>
 
 
@@ -127,9 +128,9 @@
                 <button type="button" class="contact-btn--primario" onclick="abrirModalListarDocumentos(@Model.IdCita)">Documentos</button>
                 <button type="button" class="contact-btn--revision" onclick="citaSeleccionadaId='@Model.IdCita'; mostrarEditarCita()">Editar</button>
                 <button type="button" class="contact-btn--eliminacion" onclick="mostrarModalEliminarCita(@Model.IdCita)">Eliminar</button>
-                <button type="button" class="contact-btn--navegacion" onclick="cerrarModal('modalDetalleCita', true)">Cerrar</button>
-            }
 
+            }
+            <button type="button" class="contact-btn--navegacion" onclick="cerrarModal('modalDetalleCita', true)">Cerrar</button>
             
             
         </div>
@@ -141,4 +142,5 @@
     <script src="~/calendario/scriptcalendar.js"></script>
     <script src="~/lyso/js/Calendar-init.js"></script>
     <link href="~/lyso/css/Daniel.css" rel="stylesheet" />
+    <link href="~/lyso/css/Style.css" rel="stylesheet" />
 }

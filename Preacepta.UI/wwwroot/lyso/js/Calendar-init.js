@@ -442,10 +442,12 @@ function eliminarCita() {
                     title: '¡Cita Eliminada!',
                     text: 'La cita se eliminó correctamente.',
                     timer: 2000,
-                    showConfirmButton: false
+                    showConfirmButton: false,
+                    didClose: () => { 
+                        cerrarModal('modalEliminarCita');
+                        window.location.href = "/Citas/Calendar";
+                    }
                 });
-                cerrarModal('modalEliminarCita');
-                window.location.href = "/Citas/Calendar";
             } else {
                 Swal.fire({
                     icon: 'error',
@@ -734,7 +736,7 @@ async function cargarCitasCliente() {
             contenedor.innerHTML = html;
             agregarClickEventos();
         } else {
-            console.warn("Contenedor de citas cliente no encontrado.");
+            
         }
     } catch (error) {
         console.error("Error al cargar citas del cliente:", error);
