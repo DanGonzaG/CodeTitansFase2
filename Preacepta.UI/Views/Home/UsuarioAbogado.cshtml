@@ -475,7 +475,7 @@
                         .then(respuesta => respuesta.json())
                         .then(datos => {
                             if (datos.bandera) {
-                                window.location.href = '/TDocsPoderesEspecialesJudiciales/CreateDocsPoderesEspecialesJudiciales ? id =' + result.value;
+                                window.location.href = '/TDocsPoderesEspecialesJudiciales/CreateDocsPoderesEspecialesJudiciales?id='+result.value;
                             } else {
                                 Swal.fire('Sistema de búsqueda', 'La cédula ingresada no está registrada.', 'error');
                             }
@@ -516,7 +516,7 @@
                         fetch('/Personas/IdExiste?id=' + result.value.CedulaComprador).then(r => r.json())
                     ]).then(([resVendedor, resComprador]) => {
                         if (resVendedor.bandera && resComprador.bandera) {
-                            window.location.href = `/DocsCompraventaFincas/CreateDocsCompraventaFincas ? CedulaVendedor = ${result.value.CedulaVendedor}& CedulaComprador=${result.value.CedulaComprador}`;
+                            window.location.href = `/DocsCompraventaFincas/CreateDocsCompraventaFincas?CedulaVendedor=${result.value.CedulaVendedor}&CedulaComprador=${result.value.CedulaComprador}`;
                         } else {
                             let msg = "";
                             if (!resVendedor.bandera && !resComprador.bandera) {
@@ -552,7 +552,7 @@
                         .then(respuesta => respuesta.json())
                         .then(datos => {
                             if (datos.bandera) {
-                                window.location.href = '/DocsContratoPrestacionServicios/CreateDocsContratoPrestacionServicios?id=' + result.value;
+                                window.location.href = '/DocsContratoPrestacionServicios/CreateDocsContratoPrestacionServicios?id='+result.value;
                             } else {
                                 Swal.fire('Sistema de búsqueda', 'La cédula ingresada no está registrada.', 'error');
                             }
@@ -581,7 +581,7 @@
                         .then(respuesta => respuesta.json())
                         .then(datos => {
                             if (datos.bandera) {
-                                window.location.href = '/DocsInscripcionVehiculo/CreateDocsInscripcionVehiculo?id=' + result.value;
+                                window.location.href = '/DocsInscripcionVehiculo/CreateDocsInscripcionVehiculo?id='+result.value;
                             } else {
                                 Swal.fire('Sistema de búsqueda', 'La cédula ingresada no está registrada.', 'error');
                             }
@@ -609,7 +609,7 @@
                         .then(respuesta => respuesta.json())
                         .then(datos => {
                             if (datos.bandera) {
-                                window.location.href = '/Caso/FormularioCaso?id=' + result.value;
+                                window.location.href = '/Caso/FormularioCaso?id='+result.value;
                             } else {
                                 Swal.fire('Sistema de búsqueda', 'La cédula ingresada no está registrada.', 'error');
                             }

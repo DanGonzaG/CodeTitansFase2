@@ -25,6 +25,9 @@ namespace Preacepta.Modelos.AbstraccionesFrond
 
         public bool Activo { get; set; }
 
+        [Required(ErrorMessage = "Debe agregar pruebas")]
+        public string Pruebas { get; set; }
+
         [DisplayName("Nombre Caso")]
         public virtual TCaso? IdCasoNavigation { get; set; } = null!;
 

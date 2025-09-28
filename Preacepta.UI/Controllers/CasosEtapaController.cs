@@ -131,7 +131,7 @@ namespace Preacepta.UI.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize(Roles = "Gestor, Abogado")]
-        public async Task<IActionResult> FormularioEtapaPL([Bind("IdEtapaPl,Fecha,Nombre,Descripcion,IdCaso,Activo")] CasosEtapaDTO tCasosEtapa, int IdCaso)
+        public async Task<IActionResult> FormularioEtapaPL([Bind("IdEtapaPl,Fecha,Nombre,Descripcion,IdCaso,Activo,Pruebas")] CasosEtapaDTO tCasosEtapa, int IdCaso)
         {
             var caso = await _buscarCaso.buscar(IdCaso);
             if(caso == null) 
@@ -142,7 +142,7 @@ namespace Preacepta.UI.Controllers
             if (ModelState.IsValid)
             {
                 await _crear.Crear(tCasosEtapa);
-                
+                TempData["EtapaCreada"] = "Se ha agregado la nueva etapa su caso legal";
                 if (tCasosEtapa.Activo == true) //Valida si la etapa que se va a crear tiene la opcion de Cerrar caso activada
                 {
                     caso.Activo = false; //modifica el objeto en BD para que sea Activo false
@@ -150,8 +150,6 @@ namespace Preacepta.UI.Controllers
                     TempData["CasoCerrado"] = "El caso fue cerrado exitosamente";
                     return RedirectToAction("CasosListadoHistorial", "Caso", new { id = IdCaso });
                 }
-                
-                TempData["EtapaCreada"] = "Se ha agregado la nueva etapa su caso legal";
                 return RedirectToAction("EtapasPL", new { id = IdCaso });
             }
 
@@ -220,7 +218,7 @@ namespace Preacepta.UI.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize(Roles = "Gestor, Abogado")]
-        public async Task<IActionResult> EditarEtapaPL(int IdEtapaPl, [Bind("IdEtapaPl,Fecha,Nombre,Descripcion,IdCaso,Activo")] CasosEtapaDTO tCasosEtapa)
+        public async Task<IActionResult> EditarEtapaPL(int IdEtapaPl, [Bind("IdEtapaPl,Fecha,Nombre,Descripcion,IdCaso,Activo,Pruebas")] CasosEtapaDTO tCasosEtapa)
         {
             if (IdEtapaPl != tCasosEtapa.IdEtapaPl)
             {
@@ -231,12 +229,13 @@ namespace Preacepta.UI.Controllers
                 try
                 {
                     await _editar.Editar(tCasosEtapa);
+                    TempData["MensajeModificacion"] = "La etapa ha sido modificada";
                 }
                 catch (DbUpdateConcurrencyException)
                 {
                     return NotFound();
                 }
-                TempData["MensajeModificacion"] = "La etapa ha sido modificada";
+                
                 return RedirectToAction("EtapasPL", "CasosEtapa", new { id = tCasosEtapa.IdCaso });
             }
             var caso = await _buscarCaso.buscar(tCasosEtapa.IdCaso);
