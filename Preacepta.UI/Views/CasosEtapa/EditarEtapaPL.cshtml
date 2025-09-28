@@ -50,7 +50,7 @@
                     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                     <input type="hidden" asp-for="IdEtapaPl" />
                     <input type="hidden" asp-for="Fecha" />
-                    <h2>Formulario para creación de etapa</h2>
+                    <h2>Formulario para modificación de etapa</h2>
                     <div class="row justify-content-center">
                         <div class="col-sm-6 col-lg-6">
                             <div class="form-group">
@@ -61,7 +61,7 @@
                         <div class="col-sm-6 col-lg-6">
                             <div class="form-group">
                                 <label asp-for="IdCasoNavigation.Nombre" class="control-label"></label>                               
-                                <input asp-for="IdCasoNavigation.Nombre" name="IdCasoNavigation.Nombre" id="IdCasoNavigation.Nombre" class="form-control" value="@ViewBag.NombreCaso"/>
+                                <input asp-for="IdCasoNavigation.Nombre" name="IdCasoNavigation.Nombre" id="IdCasoNavigation.Nombre" class="form-control" value="@ViewBag.NombreCaso" readonly/>
                             </div>
                         </div>
                         <div class="col-sm-6 col-lg-6">                           
@@ -73,9 +73,9 @@
                         </div>
                         <div class="col-sm-6 col-lg-6">
                             <div class="form-group">
-                                <label class="control-label">Pruebas</label>
-                                <input type="text" name="PruebasPL" id="PruebasPL" class="form-control" required data-error="Favor ingrese el dato">
-                                <div class="help-block with-errors"></div>
+                                <label asp-for="Pruebas" class="control-label"></label>
+                                <input asp-for="Pruebas" class="form-control" />
+                                <span asp-validation-for="Pruebas" class="text-danger"></span>
                             </div>
                         </div>
 
@@ -87,12 +87,12 @@
                                 <span asp-validation-for="Descripcion" class="text-danger"></span>
                             </div>
                         </div>
-                        <div class="form-check">
+                        <!--<div class="form-check">
                             <input asp-for="Activo" class="form-check-input" type="checkbox" id="flexCheckDefault">
                             <label style="color:black" class="text" for="flexCheckDefault">
                                 Caso Cerrado
                             </label>
-                        </div>
+                        </div>-->
                         <div class="col-md-12 col-lg-12">
 
                             <div class="text-center">
