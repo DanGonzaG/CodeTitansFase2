@@ -62,6 +62,12 @@
                                     @Model.casoDTO.IdClienteNavigation.Cedula                                    
                                 </li>
                                 <li>
+                                    <i class="flaticon-age"></i>
+                                    <!--<a href="mailto:hello@lyzo.com">-->
+                                    Edad: @Model.casoDTO.IdClienteNavigation.Edad
+                                    <!--</a>-->
+                                </li>
+                                <li>
                                     <i class="flaticon-call"></i>                                   
                                     @Model.casoDTO.IdClienteNavigation.Telefono1 / @Model.casoDTO.IdClienteNavigation.Telefono2                                    
                                 </li>
@@ -71,15 +77,10 @@
                                     @Model.casoDTO.IdClienteNavigation.Email
                                     <!--</a>-->
                                 </li>
-                                <li>
-                                    <i class="flaticon-age"></i>
-                                    <!--<a href="mailto:hello@lyzo.com">-->
-                                    Edad: @Model.casoDTO.IdClienteNavigation.Edad
-                                    <!--</a>-->
-                                </li>
+                            
                                 <li>
                                     <i class="flaticon-pin"></i>
-                                    @Model.casoDTO?.IdClienteNavigation?.Direccion1Navigation.NombreDistrito
+                                    @Model.casoDTO?.IdClienteNavigation?.Direccion1Navigation.NombreDistrito, 
                                     @Model.casoDTO?.IdClienteNavigation?.Direccion2
 
                                 </li>
@@ -112,9 +113,7 @@
                         <div class="attor-details-things">
                             <h3>Pruebas Iniciales</h3>
                             <ul>
-                                <li>Documentos legales</li>
-                                <li>Correos electrónicos</li>
-
+                                <li>@Model.casoDTO.Pruebas</li>
                             </ul>
                         </div>
                         <div>

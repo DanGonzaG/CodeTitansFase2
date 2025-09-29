@@ -26,7 +26,12 @@
             <div class="form-group">
                 <label asp-for="IdCaso" class="control-label"></label>
                 <select asp-for="IdCaso" class ="form-control" asp-items="ViewBag.IdCaso"></select>
-            </div>           
+            </div>
+            <div class="form-group">
+                <label asp-for="Pruebas" class="control-label"></label>
+                <textarea asp-for="Pruebas" class="form-control"></textarea>
+                <span asp-validation-for="Pruebas" class="text-danger"></span>
+            </div>
             <br />
             <div class="form-group">
                 <input type="submit" value="Crear" class="btn btn-primary" style=" width: 115px; height: 40px;" />

@@ -71,9 +71,9 @@
                         </div>
                         <div class="col-sm-6 col-lg-6">
                             <div class="form-group">
-                                <label class="control-label">Pruebas</label>
-                                <input type="text" name="PruebasPL" id="PruebasPL" class="form-control" required data-error="Favor ingrese el dato">
-                                <div class="help-block with-errors"></div>
+                                <label asp-for="Pruebas" class="control-label"></label>
+                                <input asp-for="Pruebas" id="Pruebas" class="form-control" />
+                                <span asp-validation-for="Pruebas" class="text-danger"></span>
                             </div>
                         </div>
                         
