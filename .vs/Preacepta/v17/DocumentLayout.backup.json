@@ -1,7 +1,16 @@
 {
   "Version": 1,
   "WorkspaceRootPath": "C:\\Preacepta\\",
-  "Documents": [],
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{18AD59F4-3C32-4F5A-9C07-4B4448F18661}|Preacepta.UI\\Preacepta.UI.csproj|c:\\preacepta\\preacepta.ui\\areas\\identity\\pages\\account\\login.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{18AD59F4-3C32-4F5A-9C07-4B4448F18661}|Preacepta.UI\\Preacepta.UI.csproj|solutionrelative:preacepta.ui\\areas\\identity\\pages\\account\\login.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{18AD59F4-3C32-4F5A-9C07-4B4448F18661}|Preacepta.UI\\Preacepta.UI.csproj|c:\\preacepta\\preacepta.ui\\areas\\identity\\pages\\account\\login.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{18AD59F4-3C32-4F5A-9C07-4B4448F18661}|Preacepta.UI\\Preacepta.UI.csproj|solutionrelative:preacepta.ui\\areas\\identity\\pages\\account\\login.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    }
+  ],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
@@ -9,7 +18,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": -1,
+          "SelectedChildIndex": 5,
           "Children": [
             {
               "$type": "Bookmark",
@@ -26,6 +35,31 @@
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{aa2115a1-9712-457b-9047-dbb71ca2cdd2}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Login.cshtml",
+              "DocumentMoniker": "C:\\Preacepta\\Preacepta.UI\\Areas\\Identity\\Pages\\Account\\Login.cshtml",
+              "RelativeDocumentMoniker": "Preacepta.UI\\Areas\\Identity\\Pages\\Account\\Login.cshtml",
+              "ToolTip": "C:\\Preacepta\\Preacepta.UI\\Areas\\Identity\\Pages\\Account\\Login.cshtml",
+              "RelativeToolTip": "Preacepta.UI\\Areas\\Identity\\Pages\\Account\\Login.cshtml",
+              "ViewState": "AgIAAFsAAAAAAAAAAAAYwHAAAAA0AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-09-29T02:21:10.754Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Login.cshtml.cs",
+              "DocumentMoniker": "C:\\Preacepta\\Preacepta.UI\\Areas\\Identity\\Pages\\Account\\Login.cshtml.cs",
+              "RelativeDocumentMoniker": "Preacepta.UI\\Areas\\Identity\\Pages\\Account\\Login.cshtml.cs",
+              "ToolTip": "C:\\Preacepta\\Preacepta.UI\\Areas\\Identity\\Pages\\Account\\Login.cshtml.cs",
+              "RelativeToolTip": "Preacepta.UI\\Areas\\Identity\\Pages\\Account\\Login.cshtml.cs",
+              "ViewState": "AgIAAIYAAAAAAAAAAAArwJsAAAAYAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-29T02:18:03.226Z",
+              "EditorCaption": ""
             }
           ]
         }

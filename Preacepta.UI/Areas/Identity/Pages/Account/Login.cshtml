@@ -103,3 +103,20 @@
         });
     </script>
 }
+
+@if (TempData["UsuarioDesactivado"] != null)
+{
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            Swal.fire({
+                title: 'Sistema de autenticación',
+                text: '@TempData["UsuarioDesactivado"]',
+                icon: 'error',
+                confirmButtonText: 'Continuar',
+                customClass: {
+                    confirmButton: 'contact-btn--primario' // Clase CSS personalizada
+                }
+            });
+        });
+    </script>
+}
