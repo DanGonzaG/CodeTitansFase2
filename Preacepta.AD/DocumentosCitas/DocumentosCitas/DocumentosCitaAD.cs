@@ -62,13 +62,25 @@ namespace Preacepta.AD.DocumentosCitas.DocumentosCitas
             documento.Descargar = permitirDescarga;
             await _contexto.SaveChangesAsync();  // Guarda los cambios en la base de datos
         }
-        
-        public async Task<bool> EliminarAsync(TDocumentosCita documento)
+
+        /*public async Task<bool> EliminarAsync(TDocumentosCita documento)
         {
             if (documento == null) return false;
 
             // Remover de la base de datos
             _contexto.TDocumentosCita.Remove(documento);
+            await _contexto.SaveChangesAsync();
+
+            return true;
+        }*/
+
+        public async Task<bool> DeshabilitarAsync(int id)
+        {
+            var documento = await _contexto.TDocumentosCita.FindAsync(id);
+            if (documento == null) return false;
+
+            documento.Activo = false;
+            _contexto.TDocumentosCita.Update(documento);
             await _contexto.SaveChangesAsync();
 
             return true;

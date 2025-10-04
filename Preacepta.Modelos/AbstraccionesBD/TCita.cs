@@ -35,5 +35,7 @@ public partial class TCita
 
     public virtual ICollection<TDocumentosCita> DocumentosCita { get; set; } = new List<TDocumentosCita>();
 
-    public bool Terminada { get; set; } = false;
+    public int Estado { get; set; }
+ 
+
 }

@@ -11,6 +11,7 @@ namespace Preacepta.LN.DocumentosCita
         void SubirArchivo(int idCita, IFormFile archivo);
         Task ActualizarPermisoDescargaAsync(int idDocumento, bool permitirDescarga);
         Task<DocumentosCitaDTO> ObtenerPorIdAsync(int idDocumento);
-        Task<bool> EliminarAsync(int id);
+      
+        Task<bool> DeshabilitarAsync(int id);
     }
 }

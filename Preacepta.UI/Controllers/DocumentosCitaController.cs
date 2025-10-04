@@ -29,35 +29,28 @@ namespace Preacepta.Web.Controllers
             ViewBag.IdCita = idCita;
             return PartialView("_ListarPartial", documentos);
         }
-
         [HttpPost]
         [Authorize(Roles = "Abogado,Gestor")]
         public async Task<IActionResult> Subir(int idCita, IFormFile archivo)
         {
             if (archivo == null || archivo.Length == 0)
             {
-                return PartialView("_ListarPartial", new List<DocumentosCitaDTO>());
+                return Json(new { success = false, message = "Debes seleccionar un archivo." });
             }
-
-            Console.WriteLine($"Archivo recibido: {archivo.FileName}, Tamaño: {archivo.Length}");
-
-            var carpeta = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "uploads", "citas", idCita.ToString());
-            if (!Directory.Exists(carpeta))
-            {
-                Directory.CreateDirectory(carpeta);
-            }
-
-            var nombreArchivo = Path.GetFileName(archivo.FileName);
-            var rutaArchivo = Path.Combine(carpeta, nombreArchivo);
 
             try
             {
+                var carpeta = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "uploads", "citas", idCita.ToString());
+                if (!Directory.Exists(carpeta))
+                    Directory.CreateDirectory(carpeta);
+
+                var nombreArchivo = Path.GetFileName(archivo.FileName);
+                var rutaArchivo = Path.Combine(carpeta, nombreArchivo);
+
                 using (var stream = new FileStream(rutaArchivo, FileMode.Create))
                 {
                     await archivo.CopyToAsync(stream);
                 }
-
-                Console.WriteLine($"Archivo guardado en: {rutaArchivo}");
 
                 var documento = new TDocumentosCita
                 {
@@ -70,16 +63,15 @@ namespace Preacepta.Web.Controllers
 
                 _contexto.TDocumentosCita.Add(documento);
                 await _contexto.SaveChangesAsync();
-                var documentos = _documentosLN.ObtenerPorCita(idCita);
 
-                return RedirectToAction("Calendar", "Citas");
+                return Json(new { success = true, message = "Documento subido correctamente." });
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Error al subir el archivo: {ex.Message}");
                 return Json(new { success = false, message = $"Hubo un error al subir el archivo: {ex.Message}" });
             }
         }
+
 
 
         [Authorize(Roles = "Abogado,Gestor")]
@@ -174,14 +166,15 @@ namespace Preacepta.Web.Controllers
                 return Json(new { success = false, message = ex.Message });
             }
         }
+        
         [Authorize(Roles = "Abogado,Gestor")]
         [HttpPost]
-        public async Task<IActionResult> Eliminar(int id)
+        public async Task<IActionResult> Deshabilitar(int id)
         {
             try
             {
-                var eliminado = await _documentosLN.EliminarAsync(id);
-                if (!eliminado)
+                var deshabilitado = await _documentosLN.DeshabilitarAsync(id); // Nuevo método en tu capa lógica
+                if (!deshabilitado)
                     return Json(new { success = false, message = "Documento no encontrado." });
 
                 return Json(new { success = true });
@@ -191,5 +184,33 @@ namespace Preacepta.Web.Controllers
                 return Json(new { success = false, message = ex.Message });
             }
         }
+        [Authorize(Roles = "Abogado")]
+        [HttpPost]
+        public async Task<IActionResult> ActualizarPermisosBatch([FromBody] List<DocumentosCitaDTO> documentos)
+        {
+            try
+            {
+                if (documentos == null || !documentos.Any())
+                    return BadRequest("Sin datos para actualizar.");
+
+                foreach (var dto in documentos)
+                {
+                    var doc = await _contexto.TDocumentosCita.FindAsync(dto.Id);
+                    if (doc != null)
+                    {
+                        doc.Descargar = dto.Descargar;
+                        doc.Activo = dto.Activo;
+                    }
+                }
+                await _contexto.SaveChangesAsync();
+
+                return Json(new { success = true, redirectUrl = "/Citas/Calendar" });
+            }
+            catch (Exception ex)
+            {
+                return Json(new { success = false, message = ex.Message });
+            }
+        }
+
     }
 }
