@@ -157,6 +157,8 @@ namespace Praecepta.UI.Areas.Identity.Pages.Account
                         {
                             await _signInManager.SignOutAsync();
                             ModelState.AddModelError(string.Empty, "Su cuenta está desactivada, favor comuníquese con el despacho");
+                            //ModelState.AddModelError(string.Empty, $"Correo o contraseña son inválidos. Cuenta con {intentosRestantes} intentos más");
+                            //TempData["UsuarioDesactivado"] = "Su cuenta está desactivada, favor comuníquese con el despacho";
                             return Page();
                         }
                     }
