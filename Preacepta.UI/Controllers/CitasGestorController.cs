@@ -164,7 +164,7 @@ public class CitasGestorController : Controller
 
 
     // GET: CitasGestor/Delete
-    public async Task<IActionResult> Delete(int id)
+    /*public async Task<IActionResult> Delete(int id)
     {
         var cita = await _listarCitasLN.ObtenerPorId(id);
         if (cita == null)
@@ -180,5 +180,5 @@ public class CitasGestorController : Controller
     {
         await _eliminarCitasLN.Eliminar(id);
         return RedirectToAction(nameof(Index));
-    }
+    }*/
 }

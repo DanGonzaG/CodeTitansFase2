@@ -1,4 +1,5 @@
-﻿using Preacepta.Modelos.AbstraccionesFrond;
+﻿using Preacepta.Modelos.AbstraccionesBD;
+using Preacepta.Modelos.AbstraccionesFrond;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,7 +14,7 @@ namespace Preacepta.LN.Citas.BuscarXid
         Task<List<CitasDTO>> obtenerTodas();
         Task<CitasDTO> ObtenerCitaConClientes(int idCita);
         Task<List<CitasDTO>> ListarPorIdCliente(int idCliente);
-        Task<CitasDTO?> TerminarCitaYObtenerDatos(int idCita);
-        Task<CitasDTO?> ObtenerCitaConDocumentosAsync(int idCita);
+        Task<CitasDTO> CambiarEstadoYObtenerDatosAsync(int idCita, int nuevoEstado);
+        Task<CitasDTO> ObtenerCitaConDocumentosAsync(int idCita);
     }
 }

@@ -34,7 +34,7 @@ namespace Preacepta.AD.Citas.Listar
                     IdTipoCita = cita.IdTipoCita,
                     Anfitrion = cita.Anfitrion,
                     LinkVideo = cita.LinkVideo,
-                    Terminada = cita.Terminada,
+                    Estado = cita.Estado,
                     AnfitrionNavigation = cita.AnfitrionNavigation,
                     IdTipoCitaNavigation = cita.IdTipoCitaNavigation,
                         NombreTipoCita = cita.IdTipoCitaNavigation != null
@@ -56,23 +56,40 @@ namespace Preacepta.AD.Citas.Listar
         {
             try
             {
-                var citas = await (
-                from cc in _contexto.TCitasClientes
-                join c in _contexto.TCitas on cc.IdCita equals c.IdCita
-                join t in _contexto.TCitasTipos on c.IdTipoCita equals t.Id
-                where cc.IdCliente == idCliente
-                select new CitasDTO
+                var citas = await _contexto.TCitasClientes
+    .Where(cc => cc.IdCliente == idCliente)
+    .Include(cc => cc.IdCitaNavigation) // La cita
+        .ThenInclude(c => c.IdTipoCitaNavigation) // Tipo de cita
+    .Include(cc => cc.IdCitaNavigation.TCitasClientes) // Clientes de la cita
+        .ThenInclude(tc => tc.IdClienteNavigation) // Info del cliente
+    .Include(cc => cc.IdCitaNavigation.AnfitrionNavigation) // Anfitrión
+        .ThenInclude(a => a.CedulaNavigation)
+    .ToListAsync();
+
+                var citasDTO = citas.Select(cc => new CitasDTO
                 {
-                    IdCita = c.IdCita,
-                    Fecha = c.Fecha,
-                    Hora = c.Hora,
-                    IdTipoCita = c.IdTipoCita,
-                    NombreTipoCita = t.Nombre,
-                    Anfitrion = c.Anfitrion,
-                    LinkVideo = c.LinkVideo,
-                }
-                ).ToListAsync();
-                return citas;
+                        IdCita = cc.IdCitaNavigation.IdCita,
+                        Fecha = cc.IdCitaNavigation.Fecha,
+                        Hora = cc.IdCitaNavigation.Hora,
+                        IdTipoCita = cc.IdCitaNavigation.IdTipoCita,
+                        LinkVideo = cc.IdCitaNavigation.LinkVideo,
+                        Anfitrion = cc.IdCitaNavigation.Anfitrion,
+                        Estado = cc.IdCitaNavigation.Estado,
+                        NombreTipoCita = cc.IdCitaNavigation.IdTipoCitaNavigation != null
+                                         ? cc.IdCitaNavigation.IdTipoCitaNavigation.Nombre
+                                         : null,
+                        TCitasClientes = cc.IdCitaNavigation.TCitasClientes
+                            .Select(c => new TCitasCliente
+                            {
+                                IdCiCliente = c.IdCiCliente,
+                                IdCita = c.IdCita,
+                                IdCliente = c.IdCliente,
+                                IdClienteNavigation = c.IdClienteNavigation
+                            }).ToList()
+                    }
+                ).ToList();
+
+                return citasDTO;
             }
             catch (Exception ex)
             {
@@ -80,6 +97,7 @@ namespace Preacepta.AD.Citas.Listar
                 return new List<CitasDTO>();
             }
         }
+
 
         public async Task<List<CitasDTO>> TresCitasMasProximasXAfitrion (int id) 
         {
@@ -126,13 +144,15 @@ namespace Preacepta.AD.Citas.Listar
                     NombreTipoCita = t.Nombre
                 }).ToListAsync();
         }
-    
-    public async Task<CitasDTO> ObtenerPorId(int id)
+
+        public async Task<CitasDTO> ObtenerPorId(int id)
         {
             return await _contexto.TCitas
                 .Include(c => c.IdTipoCitaNavigation)
                 .Include(c => c.AnfitrionNavigation)
                     .ThenInclude(a => a.CedulaNavigation)
+                .Include(c => c.TCitasClientes) 
+                    .ThenInclude(tc => tc.IdClienteNavigation) 
                 .Where(c => c.IdCita == id)
                 .Select(c => new CitasDTO
                 {
@@ -142,11 +162,19 @@ namespace Preacepta.AD.Citas.Listar
                     IdTipoCita = c.IdTipoCita,
                     LinkVideo = c.LinkVideo,
                     Anfitrion = c.Anfitrion,
-                    Terminada = c.Terminada,
+                    Estado = c.Estado,
                     NombreTipoCita = c.IdTipoCitaNavigation != null ? c.IdTipoCitaNavigation.Nombre : null,
                     NombreAnfitrion = c.AnfitrionNavigation != null
                         ? $"{c.AnfitrionNavigation.CedulaNavigation.Nombre} {c.AnfitrionNavigation.CedulaNavigation.Apellido1} {c.AnfitrionNavigation.CedulaNavigation.Apellido2}"
-                        : null
+                        : null,
+                   
+                    TCitasClientes = c.TCitasClientes.Select(tc => new TCitasCliente
+                    {
+                        IdCiCliente = tc.IdCiCliente,
+                        IdCita = tc.IdCita,
+                        IdCliente = tc.IdCliente,
+                        IdClienteNavigation = tc.IdClienteNavigation
+                    }).ToList()
                 }).FirstOrDefaultAsync();
         }
 
@@ -188,7 +216,7 @@ namespace Preacepta.AD.Citas.Listar
                 cita.IdTipoCita = citaDTO.IdTipoCita;
                 cita.LinkVideo = citaDTO.LinkVideo;
                 cita.Anfitrion = citaDTO.Anfitrion;
-                cita.Terminada = citaDTO.Terminada;
+                cita.Estado = citaDTO.Estado;
 
                 await _contexto.SaveChangesAsync();
                 return true;

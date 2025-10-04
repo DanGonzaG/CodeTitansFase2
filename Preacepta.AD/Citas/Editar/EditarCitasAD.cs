@@ -1,4 +1,5 @@
-﻿using Preacepta.AD.Citas.Editar;
+﻿using Microsoft.EntityFrameworkCore;
+using Preacepta.AD.Citas.Editar;
 using Preacepta.Modelos.AbstraccionesBD;
 using System;
 using System.Collections.Generic;
@@ -25,7 +26,10 @@ namespace Preacepta.AD.Citas.Editar
 
             try
             {
-                var existente = await _contexto.TCitas.FindAsync(editar.IdCita);
+                var existente = await _contexto.TCitas
+                     .Include(c => c.TCitasClientes)
+                     .ThenInclude(tc => tc.IdClienteNavigation)
+                     .FirstOrDefaultAsync(c => c.IdCita == editar.IdCita);
                 if (existente == null)
                 {
                     Console.WriteLine("No se encontró la cita para editar.");
@@ -38,7 +42,7 @@ namespace Preacepta.AD.Citas.Editar
                 existente.IdTipoCita = editar.IdTipoCita;
                 existente.Anfitrion = editar.Anfitrion;
                 existente.LinkVideo = editar.LinkVideo;
-                existente.Terminada = editar.Terminada;
+                existente.Estado = editar.Estado;
 
                 int resultado = await _contexto.SaveChangesAsync();
                 return resultado;

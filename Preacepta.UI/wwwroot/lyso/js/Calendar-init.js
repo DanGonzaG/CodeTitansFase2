@@ -82,19 +82,22 @@ function mostrarDetallesCita(idCita) {
 function abrirModalListarDocumentos(idCita) {
     const modalDetalleCita = document.getElementById('modalDetalleCita');
     if (modalDetalleCita) {
-        modalDetalleCita.style.display = 'none'; 
+        modalDetalleCita.style.display = 'none';
         modalDetalleCita.setAttribute('aria-hidden', 'true');
     }
+
     fetch(`/DocumentosCita/Listar?idCita=${idCita}`)
         .then(response => response.text())
         .then(html => {
             const modalContainer = document.getElementById('modalContainer');
             modalContainer.innerHTML = html;
+
             setTimeout(() => {
                 const modal = document.getElementById('modalListarDocumentos');
                 if (modal) {
                     modal.style.display = "block";
-                    inicializarEventosModal(); 
+                    inicializarEventosModal();
+                    inicializarEventosSubida(); 
                 } else {
                     console.error("El modal no se cargó correctamente.");
                 }
@@ -103,57 +106,69 @@ function abrirModalListarDocumentos(idCita) {
         .catch(err => console.error("Error cargando el modal de documentos:", err));
 }
 
+function inicializarEventosSubida() {
+    const btnSubir = document.getElementById("btnSubir");
+    if (!btnSubir) return;
 
-const form = document.getElementById("formSubirDocumento");
-if (form) {
-    form.addEventListener("submit", function (e) {
-        e.preventDefault();
+    btnSubir.addEventListener("click", function () {
+        const form = document.getElementById("formSubirDocumento");
+        const idCita = form.dataset.idCita;
+        const fileInput = document.getElementById("archivo");
 
+        // Validación básica en frontend
+        if (!fileInput || fileInput.files.length === 0) {
+            Swal.fire({
+                icon: 'warning',
+                title: 'Sin archivo',
+                text: 'Por favor selecciona un documento antes de subir.',
+                confirmButtonText: 'OK'
+            });
+            return;
+        }
+
+        // Crear el FormData directamente desde el form
         const formData = new FormData(form);
-        fetch(form.action, {
+
+        fetch(`/DocumentosCita/Subir?idCita=${idCita}`, {
             method: "POST",
             body: formData
         })
-            .then(response => response.json())
+            .then(res => res.json())
             .then(data => {
                 if (data.success) {
                     Swal.fire({
                         icon: 'success',
                         title: 'Documento subido',
-                        text: 'El documento se subió correctamente.',
-                        confirmButtonText: 'Aceptar'
+                        text: data.message,
+                        timer: 2000,
+                        showConfirmButton: false
                     });
 
-                    const idCita = form.dataset.idCita; 
-                    if (idCita) {
-                        fetch(`/DocumentosCita/Listar?idCita=${idCita}`)
-                            .then(res => res.text())
-                            .then(html => {
-                                document.getElementById('modalListarDocumentosBody').innerHTML = html;
-                                inicializarEventosModal();
-                            });
-                    }
+                 
+                    fileInput.value = "";
 
+                   
+                    abrirModalListarDocumentos(idCita);
                 } else {
                     Swal.fire({
                         icon: 'error',
                         title: 'Error al subir',
-                        text: data.message || 'Ocurrió un error al intentar subir el documento.',
+                        text: data.message, 
                         confirmButtonText: 'OK'
                     });
                 }
             })
             .catch(err => {
-                console.error("Error al subir documento:", err);
                 Swal.fire({
                     icon: 'error',
-                    title: 'Error',
-                    text: 'Ocurrió un error inesperado al intentar subir el documento.',
+                    title: 'Error inesperado',
+                    text: err.message,
                     confirmButtonText: 'OK'
                 });
             });
     });
 }
+
 
 function cerrarModalListarDocumentos() {
     var modal = document.getElementById('modalListarDocumentos');
@@ -165,7 +180,7 @@ function inicializarEventosModal() {
     const switches = document.querySelectorAll('.chk-permitir');
     switches.forEach(function (switchElement) {
         switchElement.addEventListener('change', function () {
-           
+            // Opcional: lógica si quieres hacer algo al cambiar permisos de descarga
         });
     });
 
@@ -173,11 +188,13 @@ function inicializarEventosModal() {
     if (btnActualizar) {
         btnActualizar.addEventListener("click", function () {
             const documentos = [];
-            document.querySelectorAll('.chk-permitir').forEach(function (switchElement) {
-                documentos.push({
-                    id: parseInt(switchElement.getAttribute('data-id')),
-                    descargar: switchElement.checked
-                });
+
+            document.querySelectorAll('.documento-item').forEach(function (li) {
+                const id = parseInt(li.dataset.id);
+                const descargar = li.querySelector('.chk-permitir').checked;
+                const activo = li.querySelector('.chk-activo').checked;
+
+                documentos.push({ id, descargar, activo });
             });
 
             if (documentos.length === 0) {
@@ -190,76 +207,90 @@ function inicializarEventosModal() {
                 return;
             }
 
-            fetch('/DocumentosCita/ActualizarPermisoDescargaBatch', {
+            fetch('/DocumentosCita/ActualizarPermisosBatch', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(documentos),
             })
-                .then(response => response.json())
+                .then(res => res.json())
                 .then(data => {
                     if (data.success) {
                         Swal.fire({
                             icon: 'success',
                             title: '¡Actualizado!',
-                            text: 'Permisos actualizados correctamente.',
+                            text: 'Permisos y estado de documentos actualizados correctamente.',
                             timer: 2000,
                             showConfirmButton: false
-                        }).then(() => {
-                            cerrarModalListarDocumentos();
-                            if (data.redirectUrl) {
-                                window.location.href = data.redirectUrl;
-                            } else {
-                                window.location.reload();
+                        });
+
+                        documentos.forEach(d => {
+                            const li = document.querySelector(`.documento-item[data-id='${d.id}']`);
+                            if (li) {
+                                const chkActivo = li.querySelector('.chk-activo');
+                                const spanEstado = li.querySelector('.estado-activo');
+
+                                chkActivo.checked = d.activo;
+                                spanEstado.innerText = d.activo ? "Habilitado" : "Deshabilitado";
+                                li.style.opacity = d.activo ? 1 : 0.5;
                             }
                         });
                     } else {
                         Swal.fire({
                             icon: 'error',
                             title: 'Error',
-                            text: 'No se pudo actualizar el permiso: ' + (data.message || ''),
+                            text: 'No se pudo actualizar: ' + (data.message || ''),
                             confirmButtonText: 'OK'
                         });
                     }
                 })
                 .catch(err => {
-                    console.error("Error al actualizar permisos:", err);
+                    console.error("Error al actualizar permisos batch:", err);
                     Swal.fire({
                         icon: 'error',
                         title: 'Error',
-                        text: 'Ocurrió un error al intentar actualizar los permisos.',
+                        text: 'Ocurrió un error al actualizar los permisos.',
                         confirmButtonText: 'OK'
                     });
                 });
         });
     }
+
     const modal = document.getElementById('modalListarDocumentos');
     if (modal) {
         modal.addEventListener('click', function (e) {
-            if (e.target.classList.contains('btnEliminarDoc')) {
+            if (e.target.classList.contains('btnDeshabilitarDoc')) {
                 const li = e.target.closest('li');
                 const idDoc = parseInt(li.dataset.id);
+
                 Swal.fire({
-                    title: '¿Eliminar documento?',
-                    text: "Esta acción no se puede deshacer.",
+                    title: '¿Deshabilitar documento?',
+                    text: "Ya no estará disponible en detalles.",
                     icon: 'warning',
                     showCancelButton: true,
-                    confirmButtonText: 'Sí, eliminar',
+                    confirmButtonText: 'Sí, deshabilitar',
                     cancelButtonText: 'Cancelar'
                 }).then((result) => {
                     if (result.isConfirmed) {
-                        fetch(`/DocumentosCita/Eliminar?id=${idDoc}`, { method: 'POST' })
+                        fetch(`/DocumentosCita/Deshabilitar?id=${idDoc}`, { method: 'POST' })
                             .then(res => res.json())
                             .then(data => {
                                 if (data.success) {
                                     Swal.fire({
                                         icon: 'success',
-                                        title: '¡Eliminado!',
-                                        text: 'Documento eliminado correctamente.',
+                                        title: '¡Deshabilitado!',
+                                        text: 'El documento ya no estará disponible.',
                                         timer: 2000,
                                         showConfirmButton: false
                                     });
 
-                                    if (li) li.remove();
+                                    if (li) {
+                                        const chkActivo = li.querySelector('.chk-activo');
+                                        const spanEstado = li.querySelector('.estado-activo');
+                                        chkActivo.checked = false;
+                                        spanEstado.innerText = "Deshabilitado";
+                                        li.style.opacity = 0.5;
+                                    }
+                                    
                                     if (document.querySelectorAll('#modalListarDocumentos li').length === 0) {
                                         const msg = document.getElementById('mensajeSinDocumentos');
                                         if (msg) msg.style.display = "block";
@@ -268,7 +299,7 @@ function inicializarEventosModal() {
                                     Swal.fire({
                                         icon: 'error',
                                         title: 'Error',
-                                        text: 'No se pudo eliminar el documento.',
+                                        text: 'No se pudo deshabilitar el documento.',
                                         confirmButtonText: 'OK'
                                     });
                                 }
@@ -277,7 +308,7 @@ function inicializarEventosModal() {
                                 Swal.fire({
                                     icon: 'error',
                                     title: 'Error',
-                                    text: 'Ocurrió un error al eliminar el documento.',
+                                    text: 'Ocurrió un error al deshabilitar el documento.',
                                     confirmButtonText: 'OK'
                                 });
                             });
@@ -406,69 +437,7 @@ window.mostrarModalEliminarCita = function (idCita) {
         });
 }
 
-function eliminarCita() {
-    const idInput = document.getElementById('IdCitaEliminar');
-    const tokenInput = document.querySelector('input[name="__RequestVerificationToken"]');
 
-    if (!idInput || !tokenInput) {
-        Swal.fire({
-            icon: 'warning',
-            title: 'Datos incompletos',
-            text: 'No se encontraron los datos necesarios para eliminar la cita.',
-            confirmButtonText: 'OK'
-        });
-        return;
-    }
-
-    const id = idInput.value;
-    const token = tokenInput.value;
-
-    const formData = new FormData();
-    formData.append('IdCita', id);
-    formData.append('__RequestVerificationToken', token);
-
-    fetch('/Citas/Delete', {
-        method: 'POST',
-        body: formData
-    })
-        .then(response => {
-            if (!response.ok) throw new Error('Error en la eliminación');
-            return response.json();
-        })
-        .then(data => {
-            if (data.success) {
-                Swal.fire({
-                    icon: 'success',
-                    title: '¡Cita Eliminada!',
-                    text: 'La cita se eliminó correctamente.',
-                    timer: 2000,
-                    showConfirmButton: false,
-                    didClose: () => { 
-                        cerrarModal('modalEliminarCita');
-                        window.location.href = "/Citas/Calendar";
-                    }
-                });
-            } else {
-                Swal.fire({
-                    icon: 'error',
-                    title: 'Error',
-                    text: 'No se pudo eliminar la cita.',
-                    showConfirmButton: true
-                });
-            }
-        })
-        .catch(error => {
-            console.error("Error al eliminar cita:", error);
-            Swal.fire({
-                icon: 'error',
-                title: 'Error',
-                text: 'Ocurrió un error al eliminar la cita.',
-                showConfirmButton: true
-            });
-        });
-}
-
-// Cerrar modal de eliminación
 function cerrarModal(idModal, redirigir = false) {
     const modal = document.getElementById(idModal);
     if (modal) {
@@ -558,7 +527,7 @@ document.addEventListener("DOMContentLoaded", function () {
             if (modal && e.target === modal) cerrarCrearModal();
         });
 
-        // Submit AJAX del formulario dentro del modal
+      
         $('#crearCitaModalBody').on('submit', 'form', function (e) {
             e.preventDefault();
             var $form = $(this);
@@ -622,6 +591,10 @@ document.addEventListener("DOMContentLoaded", function () {
             success: function (response) {
                 if (response.success) {
                     document.getElementById('modalEditarCita').style.display = 'none';
+                    const estadoInput = $form.find('select[name="Estado"]').val();
+                    if (estadoInput === "1") {  
+                        cambiarEstadoCita(response.idCita, 1);
+                    }
                     Swal.fire({
                         icon: 'success',
                         title: '¡Cita Actualizada!',
@@ -753,19 +726,37 @@ document.addEventListener('DOMContentLoaded', () => {
     cargarCitasCliente();
 });
 
-async function terminarCita(idCita) {
-    const response = await fetch('/Citas/TerminarCitaEnviarCorreo', {
+async function cambiarEstadoCita(idCita, nuevoEstado) {
+    const response = await fetch('/Citas/CambiarEstadoEnviarCorreo', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ idCita })
+        body: JSON.stringify({ idCita, nuevoEstado })
     });
 
-    const data = await response.json();
+    const text = await response.text();
+    console.log("Respuesta servidor:", text);
+
+    let data;
+    try {
+        data = JSON.parse(text);
+    } catch (err) {
+        console.error("No es JSON válido:", err);
+        Swal.fire({
+            icon: 'error',
+            title: 'Error',
+            text: 'El servidor no devolvió una respuesta válida.',
+        });
+        return;
+    }
     if (data.success) {
+        let mensaje = "Estado actualizado correctamente.";
+        if (nuevoEstado === 1) {
+            mensaje = "¡Cita terminada! El correo fue enviado al cliente.";
+        }
         Swal.fire({
             icon: 'success',
-            title: '¡Cita terminada!',
-            text: 'El correo fue enviado al cliente.',
+            title: 'Éxito',
+            text: mensaje,
             timer: 2000,
             showConfirmButton: false
         });
@@ -773,7 +764,7 @@ async function terminarCita(idCita) {
         Swal.fire({
             icon: 'error',
             title: 'Error',
-            text: 'No se pudo terminar la cita.',
+            text: 'No se pudo actualizar la cita.',
             showConfirmButton: true
         });
     }

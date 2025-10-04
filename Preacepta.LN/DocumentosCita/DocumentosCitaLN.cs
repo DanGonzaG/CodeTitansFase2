@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Http;
+using Microsoft.EntityFrameworkCore;
 using Preacepta.AD;
 using Preacepta.AD.DocumentosCitas.DocumentosCitas;
 using Preacepta.Modelos.AbstraccionesBD;
@@ -31,6 +32,7 @@ namespace Preacepta.LN.DocumentosCita
                 RutaArchivo = d.RutaArchivo,
                 FechaSubida = d.FechaSubida,
                 Descargar = d.Descargar,
+                Activo = d.Activo,
             }).ToList();
         }
 
@@ -92,18 +94,12 @@ namespace Preacepta.LN.DocumentosCita
                 Descargar = entidad.Descargar
             };
         }
-        public async Task<bool> EliminarAsync(int id)
+       
+
+        public async Task<bool> DeshabilitarAsync(int id)
         {
-            var documento = await _documentosAD.ObtenerPorIdAsync(id);
-            if (documento == null)
-                return false;
-
-            
-            var rutaFisica = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", documento.RutaArchivo.TrimStart('/').Replace("/", "\\"));
-            if (System.IO.File.Exists(rutaFisica))
-                System.IO.File.Delete(rutaFisica);
-
-            return await _documentosAD.EliminarAsync(documento);
+            return await _documentosAD.DeshabilitarAsync(id);
         }
+
     }
 }
