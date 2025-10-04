@@ -15,6 +15,7 @@ namespace Preacepta.Modelos.AbstraccionesBD
         public DateTime FechaSubida { get; set; }
         public virtual TCita Cita { get; set; }
         public bool Descargar { get; set; } = true;
+        public bool Activo { get; set; } = true;
 
     }
 }

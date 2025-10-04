@@ -208,19 +208,21 @@ namespace Praecepta.UI.Controllers
             {
                 try
                 {
-                    var innerUrl = $"/Home/UsuarioAutenticado?correo={Uri.EscapeDataString(correo)}&redirectTo={Uri.EscapeDataString("/TTestimonios/TestimonialForm")}";
-                var loginUrl = $"https://localhost:7065/Identity/Account/Login?ReturnUrl={Uri.EscapeDataString(innerUrl)}";
+                    var cuerpo = $"Hola {nombreCliente},\n\n" +
+        $"Su cita ha sido agendada exitosamente.\n\n" +
+        $"Detalles de la cita:\n" +
+        $"Fecha: {fecha.ToString("dd/MM/yyyy")}\n" +
+        $"Hora: {fecha.ToString("HH:mm")}\n" +
+        $"Abogado: {nombreAbogado}\n\n" +
+        $"Por favor, asegúrese de estar disponible a la hora programada.\n\n" +
+        $"Gracias por confiar en nuestros servicios.\n\n" +
+        $"Atentamente,\n" +
+        $"Equipo Praecepta";
 
-                var cuerpo = $"Saludos {nombreCliente},\n\n" +
-                    $"Gracias por haber asistido a su cita.\n\n" +
-                    $"Nos gustaría conocer su opinión sobre el servicio brindado.\n" +
-                    $"Después de su cita, puede dejar su testimonio aquí:\n{loginUrl}\n\n" +
-                    $"(Debe iniciar sesión para dejar su testimonio.)";
-
-                var mail = new MailMessage("d.gon.guerrero@gmail.com", correo)
+                    var mail = new MailMessage("d.gon.guerrero@gmail.com", correo)
                 {
 
-                    Subject = "Notificación de cita agendada",
+                    Subject = "Confirmación de cita agendada",
                     Body = cuerpo,
                     IsBodyHtml = false
                 };
@@ -310,6 +312,15 @@ namespace Praecepta.UI.Controllers
             var cita = await _buscarCitasLN.ObtenerCitaConClientes(id);
             if (cita == null)
                 return NotFound();
+            var estados = new List<SelectListItem>
+{
+    new SelectListItem { Value = "0", Text = "En proceso" },
+    new SelectListItem { Value = "1", Text = "Terminada" },
+    new SelectListItem { Value = "2", Text = "Cancelada por cliente" },
+    new SelectListItem { Value = "3", Text = "Cancelada por Abogado" },
+    new SelectListItem { Value = "4", Text = "Reprogramada" }
+};
+            ViewBag.EstadoList = new SelectList(estados, "Value", "Text", cita.Estado);
 
             var tiposCita = await _listarCitasLN.ListarTiposCita();
             ViewBag.TipoCitaList = tiposCita.Select(n => new SelectListItem
@@ -375,16 +386,23 @@ namespace Praecepta.UI.Controllers
             cita.Anfitrion = citaOriginal.Anfitrion;
             cita.IdCliente = citaOriginal.IdCliente; 
             cita.NombresClientes = citaOriginal.NombresClientes;
+            cita.TCitasClientes = citaOriginal.TCitasClientes;
 
             var persona = await _listarCitasLN.ObtenerPersonaPorCedula(cita.Anfitrion.ToString());
             if (persona != null)
             {
                 cita.NombreAnfitrion = $"{persona.Nombre} {persona.Apellido1} {persona.Apellido2}";
             }
-
+            var fechaSeleccionada = cita.Fecha.ToDateTime(cita.Hora);
+            bool fechaCambiada = fechaSeleccionada != citaOriginal.Fecha.ToDateTime(citaOriginal.Hora);
+            if (fechaCambiada && fechaSeleccionada < DateTime.Now)
+            {
+                ModelState.AddModelError("Fecha", "La fecha debe ser posterior a la actual.");
+                ModelState.AddModelError("Hora", "La hora debe ser posterior a la actual.");
+            }
             if (ModelState.IsValid)
             {
-                bool enviarCorreo = !citaOriginal.Terminada && cita.Terminada;
+                bool enviarCorreo = citaOriginal.Estado != 1 && cita.Estado == 1;
 
                 var tipoCita = await _listarCitasLN.ListarTiposCita();
                 var nombreTipoCita = tipoCita.FirstOrDefault(t => t.Id == cita.IdTipoCita)?.Nombre;
@@ -415,26 +433,18 @@ namespace Praecepta.UI.Controllers
                         mensaje = "Se eliminó el link de la reunión virtual porque la cita ya no es virtual"
                     });
                 }
-                if (enviarCorreo)
+
+                if (ModelState.IsValid)
                 {
-                    var clienteCedula = citaOriginal.TCitasClientes.FirstOrDefault()?.IdCliente;
-                    if (clienteCedula != null)
+                    var estadoAnterior = citaOriginal.Estado;
+                    await _editarCitasLN.editar(cita); // Guardar cambios
+
+                    // Enviar correo si cambió a "Terminada"
+                    if (estadoAnterior != 1 && cita.Estado == 1)
                     {
-                        var cliente = await _listarCitasLN.ObtenerPersonaPorCedula(clienteCedula.ToString());
-                        var abogado = persona; 
-
-                        if (cliente != null && !string.IsNullOrWhiteSpace(cliente.Email))
-                        {
-                            var correos = new List<string> { cliente.Email };
-                            var nombreCliente = $"{cliente.Nombre} {cliente.Apellido1} {cliente.Apellido2}";
-                            var nombreAbogado = $"{abogado.Nombre} {abogado.Apellido1} {abogado.Apellido2}";
-                            DateTime fecha = cita.Fecha.ToDateTime(cita.Hora);
-
-                            await EnviarCorreoNotificacionCita(correos, fecha, nombreCliente, nombreAbogado);
-                        }
+                        await EnviarCorreoAlTerminarCita(cita);
                     }
                 }
-
                 if (Request.Headers["X-Requested-With"] == "XMLHttpRequest")
                 {
                     return Json(new
@@ -452,6 +462,17 @@ namespace Praecepta.UI.Controllers
 
             if (Request.Headers["X-Requested-With"] == "XMLHttpRequest")
             {
+                var estados = new List<SelectListItem>
+    {
+        new SelectListItem { Value = "0", Text = "En proceso" },
+        new SelectListItem { Value = "1", Text = "Terminada" },
+        new SelectListItem { Value = "2", Text = "Cancelada por cliente" },
+        new SelectListItem { Value = "3", Text = "Cancelada por Abogado" },
+        new SelectListItem { Value = "4", Text = "Reprogramada" }
+    };
+                ViewBag.EstadoList = new SelectList(estados, "Value", "Text", cita.Estado.ToString());
+
+
                 var tiposCita = await _listarCitasLN.ListarTiposCita();
                 ViewBag.TipoCitaList = tiposCita.Select(n => new SelectListItem
                 {
@@ -459,9 +480,25 @@ namespace Praecepta.UI.Controllers
                     Text = n.Nombre
                 }).ToList();
 
+                var usuariosCliente = await _userManager.GetUsersInRoleAsync("Cliente");
+                var emailsClientes = usuariosCliente.Select(u => u.Email).ToList();
+                var personasClientes = new List<SelectListItem>();
+                foreach (var email in emailsClientes)
+                {
+                    var personaCliente = await _buscarXidGePersonaLN.buscarXcorreo(email);
+                    if (personaCliente != null)
+                    {
+                        personasClientes.Add(new SelectListItem
+                        {
+                            Value = personaCliente.Cedula.ToString(),
+                            Text = $"{personaCliente.Nombre} {personaCliente.Apellido1} {personaCliente.Apellido2}"
+                        });
+                    }
+                }
+                ViewData["Clientes"] = new SelectList(personasClientes, "Value", "Text", cita.IdCliente?.ToString());
+
                 return PartialView("~/Views/Citas/_EditPartial.cshtml", cita);
             }
-
 
             return View("~/Views/CitasPrueba/Edit.cshtml", cita);
         }
@@ -505,42 +542,6 @@ namespace Praecepta.UI.Controllers
             return PartialView("~/Views/Citas/_DetailsPartial.cshtml", cita);
         }
 
-
-
-        // GET: Citas/Delete
-        [Authorize(Roles = "Abogado,Gestor")]
-        public async Task<IActionResult> Delete(int id)
-        {
-            var cita = (await _listarCitasLN.listar()).FirstOrDefault(c => c.IdCita == id);
-            if (cita == null)
-                return NotFound();
-
-            return PartialView("~/Views/Citas/_DeletePartial.cshtml", cita);
-
-        }
-
-        // POST: Citas/Delete
-        [Authorize(Roles = "Abogado,Gestor")]
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int IdCita)
-        {
-            var cita = (await _listarCitasLN.listar()).FirstOrDefault(c => c.IdCita == IdCita);
-            if (cita == null)
-            {
-                return Json(new { success = false });
-            }
-
-            await _eliminarCitasLN.Eliminar(IdCita);
-
-            return Json(new
-            {
-                success = true,
-                fechaAnterior = cita.Fecha.ToString("yyyy-MM-dd"),
-                idCita = cita.IdCita
-            });
-
-        }
 
         [Authorize(Roles = "Cliente,Abogado,Gestor")]
         public async Task<IActionResult> Calendar()
@@ -674,41 +675,147 @@ namespace Praecepta.UI.Controllers
         }
 
         [Authorize(Roles = "Abogado,Gestor")]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> TerminarCitaEnviarCorreo(int idCita)
+        [HttpPost]
+        public async Task<IActionResult> MarcarComoTerminada(int idCita)
         {
-            var cita = await _buscarCitasLN.ObtenerCitaConClientes(idCita);
-
+           
+            var cita = await _listarCitasLN.ObtenerPorId(idCita);
             if (cita == null)
-                return NotFound();
+                return NotFound("Cita no encontrada.");
 
-            var citaActualizada = await _buscarCitasLN.TerminarCitaYObtenerDatos(idCita);
+         
+            cita.Estado = 1;
 
-            if (citaActualizada == null)
-                return NotFound();
+           
+            await _editarCitasLN.editar(cita);
 
-
-            var relacionCliente = cita.TCitasClientes.FirstOrDefault();
-            if (relacionCliente == null)
-                return NotFound();
-
-            var cliente = await _buscarXidGePersonaLN.buscar(relacionCliente.IdCliente);
-            var abogadoPersona = await _buscarXidGePersonaLN.buscar(citaActualizada.Anfitrion);
-
-            if (cliente != null && !string.IsNullOrWhiteSpace(cliente.Email))
-            {
-                var correos = new List<string> { cliente.Email };
-                var nombreCliente = $"{cliente.Nombre} {cliente.Apellido1} {cliente.Apellido2}";
-                var nombreAbogado = abogadoPersona != null
-                    ? $"{abogadoPersona.Nombre} {abogadoPersona.Apellido1} {abogadoPersona.Apellido2}"
-                    : "Su abogado";
-
-                DateTime fecha = cita.Fecha.ToDateTime(cita.Hora);
-                await EnviarCorreoNotificacionCita(correos, fecha, nombreCliente, nombreAbogado);
-            }
+           
+            await EnviarCorreoAlTerminarCita(cita);
 
             return Ok(new { success = true, message = "Cita marcada como terminada y correo enviado." });
         }
+
+
+
+        public class CambiarEstadoRequest
+        {
+            public int IdCita { get; set; }
+            public int NuevoEstado { get; set; }
+        }
+
+        [Authorize(Roles = "Abogado,Gestor")]
+        private async Task<bool> EnviarCorreoAlTerminarCita(CitasDTO cita)
+        {
+            if (cita.TCitasClientes != null)
+            {
+                foreach (var cc in cita.TCitasClientes)
+                {
+                }
+            }
+
+            try
+            {
+                
+                var clienteRelacion = cita.TCitasClientes?.FirstOrDefault();
+                if (clienteRelacion == null)
+                {
+                    return false;
+                }
+
+                var cliente = clienteRelacion.IdClienteNavigation;
+                    if (cliente == null || string.IsNullOrWhiteSpace(cliente.Email))
+                {
+                    return false;
+                }
+
+                var abogado = await _buscarXidGePersonaLN.buscar(cita.Anfitrion);
+                var nombreAbogado = abogado != null
+                    ? $"{abogado.Nombre} {abogado.Apellido1} {abogado.Apellido2}"
+                    : "Su abogado";
+
+                DateTime fechaCita;
+                try
+                {
+                    fechaCita = cita.Fecha.ToDateTime(cita.Hora);
+                }
+                catch
+                {
+                    fechaCita = DateTime.Now;
+                }
+
+                var correos = new List<string> { cliente.Email };
+                var nombreCliente = $"{cliente.Nombre} {cliente.Apellido1} {cliente.Apellido2}";
+
+                string innerUrl = $"/Home/UsuarioAutenticado?correo={Uri.EscapeDataString(cliente.Email)}&redirectTo={Uri.EscapeDataString("/TTestimonios/TestimonialForm")}";
+                string loginUrl = $"https://localhost:7065/Identity/Account/Login?ReturnUrl={Uri.EscapeDataString(innerUrl)}";
+
+                string cuerpo = $"Saludos {nombreCliente},\n\n" +
+                                $"Gracias por haber asistido a su cita el {fechaCita:dd/MM/yyyy HH:mm}.\n\n" +
+                                $"Nos gustaría conocer su opinión sobre el servicio brindado.\n" +
+                                $"Después de su cita, puede dejar su testimonio aquí:\n{loginUrl}\n\n" +
+                                $"(Debe iniciar sesión para dejar su testimonio.)";
+
+                using (var smtp = new SmtpClient("smtp.gmail.com")
+                {
+                    Port = 587,
+                    Credentials = new NetworkCredential("d.gon.guerrero@gmail.com", "oiup tfoc roio sbei"),
+                    EnableSsl = true
+                })
+                {
+                    foreach (var correo in correos)
+                    {
+                        var mail = new MailMessage("d.gon.guerrero@gmail.com", correo)
+                        {
+                            Subject = "Notificación de cita finalizada",
+                            Body = cuerpo,
+                            IsBodyHtml = false
+                        };
+
+                        try
+                        {
+                            await smtp.SendMailAsync(mail);
+                        }
+                        catch (Exception ex)
+                        {
+                        }
+                    }
+                }
+
+                return true;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
+
+        [HttpPost]
+public async Task<IActionResult> CambiarEstadoEnviarCorreo([FromBody] dynamic payload)
+{
+    try
+    {
+        int idCita = (int)payload.idCita;
+        int nuevoEstado = (int)payload.nuevoEstado;
+
+       
+        var cita = await _listarCitasLN.ObtenerPorId(idCita);
+        if (cita == null)
+            return Json(new { success = false, message = "Cita no encontrada" });
+
+        cita.Estado = nuevoEstado;
+        await _editarCitasLN.editar(cita);
+
+        if (nuevoEstado == 1) 
+            await EnviarCorreoAlTerminarCita(cita);
+
+        return Json(new { success = true });
+    }
+    catch (Exception ex)
+    {
+        return Json(new { success = false, message = ex.Message });
+    }
+}
+
 
     }
 }

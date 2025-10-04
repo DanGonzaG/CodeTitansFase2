@@ -58,11 +58,24 @@
             <span>No asignado</span>
         }
     </dd>
-    <dt class="col-sm-4">Estado</dt>
-    <dd class="col-sm-8">@((Model.Terminada) ? "Terminada" : "Pendiente")</dd>
+    <dd class="col-sm-8">
+        @{
+            string estadoTexto;
+            switch (Model.Estado)
+            {
+                case 0: estadoTexto = "En proceso"; break;
+                case 1: estadoTexto = "Terminada"; break;
+                case 2: estadoTexto = "Cancelada por cliente"; break;
+                case 3: estadoTexto = "Cancelada por Abogado"; break;
+                case 4: estadoTexto = "Reprogramada"; break;
+                default: estadoTexto = "Desconocido"; break;
+            }
+        }
+        @estadoTexto
+    </dd>
 </dl>
 
 <div class="mt-3">
-    <a asp-action="Delete" asp-route-id="@Model.IdCita" class="btn btn-danger">Eliminar</a>
+    
     <a asp-action="Index" class="btn btn-info">Regresar</a>
 </div>

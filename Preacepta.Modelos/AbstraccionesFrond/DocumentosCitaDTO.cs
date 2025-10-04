@@ -14,5 +14,6 @@ namespace Preacepta.Modelos.AbstraccionesFrond
         public string RutaArchivo { get; set; }
         public DateTime FechaSubida { get; set; }
         public bool Descargar { get; set; }
+        public bool Activo { get; set; }
     }
 }

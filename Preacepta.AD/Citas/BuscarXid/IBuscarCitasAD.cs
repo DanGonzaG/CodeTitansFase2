@@ -15,7 +15,7 @@ namespace Preacepta.AD.Citas.BuscarXid
         Task<CitasDTO> ObtenerCitaConClientes(int idCita);
 
         Task<List<TCita>> ListarPorIdCliente(int idCliente);
-        Task<TCita?> TerminarCitaYObtenerDatosAsync(int idCita);
+        Task<TCita?> CambiarEstadoYObtenerDatosAsync(int idCita, int nuevoEstado);
 
     }
 }
