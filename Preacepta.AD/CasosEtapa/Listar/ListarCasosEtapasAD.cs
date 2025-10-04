@@ -24,7 +24,8 @@ namespace Preacepta.AD.CasosEtapa.Listar
                     Descripcion = lista.Descripcion,
                     IdCaso = lista.IdCaso,
                     IdCasoNavigation = lista.IdCasoNavigation,
-                    Activo = lista.Activo
+                    Activo = lista.Activo,
+                    Pruebas = lista.Pruebas                    
                 }).ToListAsync();
             }
             catch (Exception ex)
@@ -47,7 +48,8 @@ namespace Preacepta.AD.CasosEtapa.Listar
                     Descripcion = lista.Descripcion,
                     IdCaso = lista.IdCaso,
                     IdCasoNavigation = lista.IdCasoNavigation,
-                    Activo = lista.Activo
+                    Activo = lista.Activo,
+                    Pruebas = lista.Pruebas
                 }).ToListAsync();
             }
             catch (Exception ex)

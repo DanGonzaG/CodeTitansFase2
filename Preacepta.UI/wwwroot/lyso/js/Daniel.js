@@ -6,7 +6,7 @@ document.getElementById('btnCrearCaso').style.display = 'none';
 document.getElementById('PrevioBtn').addEventListener('click', () => {
     const TipoCaso = document.getElementById('IdTipoCaso').value;
     const titulo = document.getElementById('Nombre').value;
-    //const Pruebas = document.getElementById('Pruebas').value;
+    const Pruebas = document.getElementById('Pruebas').value;
     const NomCliente = document.getElementById('IdCliente').value;
     const descripcionCaso = document.getElementById('Descripcion').value;
     
@@ -14,7 +14,7 @@ document.getElementById('PrevioBtn').addEventListener('click', () => {
     // Actualiza el contenido del modal
     document.getElementById('previoTipoCaso').textContent = TipoCaso;
     document.getElementById('previotitulo').textContent = titulo;
-    //document.getElementById('previoPruebas').textContent = Pruebas;
+    document.getElementById('previoPruebas').textContent = Pruebas;
     document.getElementById('previoCliente').textContent = NomCliente;
     document.getElementById('previoDescripcion').textContent = descripcionCaso;
 
@@ -26,7 +26,7 @@ document.getElementById('PrevioBtn').addEventListener('click', () => {
         console.log('Confirmando');
         document.getElementById('IdTipoCaso').value = TipoCaso;
         document.getElementById('Nombre').value = titulo;
-        //document.getElementById('Pruebas').value = Pruebas;
+        document.getElementById('Pruebas').value = Pruebas;
         document.getElementById('IdCliente').value = NomCliente;
         document.getElementById('Descripcion').value = descripcionCaso;
         const previewModalInstance = bootstrap.Modal.getInstance(document.getElementById('PrevioModal'));
@@ -51,7 +51,7 @@ document.getElementById('PrevioBtn').addEventListener('click', () => {
        
         document.getElementById('IdTipoCaso').value = TipoCaso;
         document.getElementById('Nombre').value = titulo;
-        //document.getElementById('Pruebas').value = Pruebas;
+        document.getElementById('Pruebas').value = Pruebas;
         document.getElementById('IdCliente').value = NomCliente;
         document.getElementById('Descripcion').value = descripcionCaso;
         const previewModalInstance = bootstrap.Modal.getInstance(document.getElementById('PrevioModal'));
@@ -77,7 +77,7 @@ document.getElementById('PrevioBtn').addEventListener('click', () => {
 
         document.getElementById('IdTipoCaso').value = TipoCaso;
         document.getElementById('Nombre').value = titulo;
-        //document.getElementById('Pruebas').value = Pruebas;
+        document.getElementById('Pruebas').value = Pruebas;
         document.getElementById('IdCliente').value = NomCliente;
         document.getElementById('Descripcion').value = descripcionCaso;
         const previewModalInstance = bootstrap.Modal.getInstance(document.getElementById('PrevioModal'));
