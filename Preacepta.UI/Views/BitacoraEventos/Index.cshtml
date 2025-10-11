@@ -1,0 +1,52 @@
+﻿@model List<Preacepta.Modelos.AbstraccionesFrond.BitacoraEventosDTO>
+
+@{
+    ViewData["Title"] = "Bitácora de Eventos";
+    var usuarioFiltro = ViewData["Usuario"] as string;
+    var tablaFiltro = ViewData["Tabla"] as string;
+    Layout = "_LayoutGestor";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<form method="get" class="form-inline mb-3">
+    <div class="form-group mr-2">
+        <label for="usuario" class="mr-1">Usuario:</label>
+        <input type="text" name="usuario" id="usuario" class="form-control" value="@usuarioFiltro" />
+    </div>
+    <div class="form-group mr-2">
+        <label for="tabla" class="mr-1">Tabla:</label>
+        <input type="text" name="tabla" id="tabla" class="form-control" value="@tablaFiltro" />
+    </div>
+    <button type="submit" class="btn btn-primary">Filtrar</button>
+    <a asp-action="Index" class="btn btn-secondary ml-2">Limpiar</a>
+</form>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>N.Actividad</th>
+            <th>Usuario</th>
+            <th>Fecha y Hora</th>
+            <th>Registro Afectado</th>
+            <th>Tabla Afectada</th>
+            <th>Acción</th>
+            <th>Stack Error</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var evento in Model)
+        {
+            <tr>
+                <td>@evento.Id_evento</td>
+                <td>@evento.Usuario</td>
+                <td>@evento.Fecha_Hora.ToString("g")</td>
+                <td>@evento.Id_registro_afectado</td>
+                <td>@evento.Tabla_Afectada</td>
+                <td>@evento.Accion</td>
+                <td>@evento.Stack_error</td>
+
+            </tr>
+        }
+    </tbody>
+</table>
