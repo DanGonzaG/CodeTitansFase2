@@ -45,11 +45,11 @@ namespace Preacepta.Modelos.AbstraccionesFrond
         public string Direccion2 { get; set; } = null!;
 
         [Required(ErrorMessage = "Ingrese un primer contacto")]
-        [DisplayName("Telefono 1")]
+        [DisplayName("Celular")]
         public string Telefono1 { get; set; } = null!;
 
         [Required(ErrorMessage = "Ingrese un segundo contacto")]
-        [DisplayName("Telefono 2")]
+        [DisplayName("Otro Contacto")]
         public string? Telefono2 { get; set; }
 
         [DisplayName("Fecha de registro")]
@@ -114,7 +114,7 @@ namespace Preacepta.Modelos.AbstraccionesFrond
         [Display(Name = "Confirmación de contraseña")]
         [Compare("Password", ErrorMessage = "La contraseña y la contraseña de confirmación no coinciden.")]
         public string? ConfirmPassword { get; set; }
-
+        
 
 
     }

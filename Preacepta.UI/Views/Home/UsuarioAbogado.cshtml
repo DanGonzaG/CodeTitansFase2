@@ -51,7 +51,8 @@
             <div class="col-lg-3">
                 <div class="btn-group-vertical menuDaniel">
                     <label class="menuDanielLabels">Clientes y Abogados</label>
-                    <a class="contact-btn menuDanielBtns" asp-controller="Personas" asp-action="CrearPersona">Nuevo cliente</a>
+                    <!--<a class="contact-btn menuDanielBtns" asp-controller="Personas" asp-action="CrearPersona">Nuevo cliente</a>-->
+                    <a class="contact-btn menuDanielBtns" asp-area="Identity" asp-page="/Account/Register">Registro</a>
                     <a class="contact-btn menuDanielBtns" asp-controller="Abogado" asp-action="CrearAbogado">Nuevo abogado</a>                    
                     <a class="contact-btn menuDanielBtns" asp-controller="TTestimonios" asp-action="TestimonialsLista">Lista de testimonios</a>
                     <label class="menuDanielLabels">Documentos Legales</label>

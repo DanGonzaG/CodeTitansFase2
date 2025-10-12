@@ -77,39 +77,9 @@ namespace Preacepta.UI.Controllers
         {
             if (ModelState.IsValid)//validacion de formulario
             {
+                #region Validacion de cédula
                 var existe = await _buscarPersona.buscar(tGePersona.Cedula);
-                if (existe == null)//valida si hay un cedula igual registrada
-                {
-                    var correo = await _buscarPersona.buscarXcorreo(tGePersona.Email);
-                    if (correo == null)//valida si hay un correo igual registrado
-                    {
-                        await _crearPesona.crear(tGePersona);//llamado de los LN y AD para crear la persona
-                        TempData["PersonaCreada"] = "Se ha creado un nuevo usuario en el sistema";
-                        return RedirectToAction("UsuarioAutenticado", "Home", new { correo = User.Identity.Name });
-                    }
-                    else
-                    {
-                        ViewData["Direccion1"] = new SelectList(_listarDireccion.listarDistritos().Result, "IdDistrito", "NombreDistrito", tGePersona.Direccion1);
-
-                        ViewBag.EstadoCivil = new List<SelectListItem>
-                        {
-                            new SelectListItem { Text = "Soltero", Value = "Soltero" },
-                            new SelectListItem { Text = "Casado", Value = "Casado" },
-                            new SelectListItem { Text = "Divorciado", Value = "Divorciado" },
-                            new SelectListItem { Text = "Viudo", Value = "Viudo" }
-                        };
-
-                        ViewBag.Genero = new List<SelectListItem>
-                        {
-                            new SelectListItem { Text = "Femenino", Value = "Femenino" },
-                            new SelectListItem { Text = "Masculino", Value = "Masculino" },                           
-                        };
-
-                        TempData["ErrorEmail"] = "Correo Electronico ya registrado en el sistema";
-                        return View(tGePersona);
-                    }
-                }
-                else
+                if (existe != null)//valida si hay un cedula igual registrada
                 {
                     ViewData["Direccion1"] = new SelectList(_listarDireccion.listarDistritos().Result, "IdDistrito", "NombreDistrito", tGePersona.Direccion1);
 
@@ -128,6 +98,85 @@ namespace Preacepta.UI.Controllers
                     TempData["ErrorCedula"] = "Cedula ya registrada en el sistema";
                     return View(tGePersona);
                 }
+                #endregion
+
+                #region Validacion de correo
+                var correo = await _buscarPersona.buscarXcorreo(tGePersona.Email);
+                if (correo != null)//valida si hay un correo igual registrado
+                {
+                    ViewData["Direccion1"] = new SelectList(_listarDireccion.listarDistritos().Result, "IdDistrito", "NombreDistrito", tGePersona.Direccion1);
+
+                    ViewBag.EstadoCivil = new List<SelectListItem>
+                        {
+                            new SelectListItem { Text = "Soltero", Value = "Soltero" },
+                            new SelectListItem { Text = "Casado", Value = "Casado" },
+                            new SelectListItem { Text = "Divorciado", Value = "Divorciado" },
+                            new SelectListItem { Text = "Viudo", Value = "Viudo" }
+                        };
+
+                    ViewBag.Genero = new List<SelectListItem>
+                        {
+                            new SelectListItem { Text = "Femenino", Value = "Femenino" },
+                            new SelectListItem { Text = "Masculino", Value = "Masculino" },
+                        };
+
+                    TempData["ErrorEmail"] = "Correo Electronico ya registrado en el sistema";
+                    return View(tGePersona);
+                }
+                #endregion
+
+                #region Validacion de teléfonos
+                var telefono1 = await _buscarPersona.buscarXtelefono1(tGePersona.Telefono1);
+                var telefono2 = await _buscarPersona.buscarXtelefono1(tGePersona.Telefono2);
+                if(telefono1 != null) 
+                {
+                    ViewData["Direccion1"] = new SelectList(_listarDireccion.listarDistritos().Result, "IdDistrito", "NombreDistrito", tGePersona.Direccion1);
+
+                    ViewBag.EstadoCivil = new List<SelectListItem>
+                        {
+                            new SelectListItem { Text = "Soltero", Value = "Soltero" },
+                            new SelectListItem { Text = "Casado", Value = "Casado" },
+                            new SelectListItem { Text = "Divorciado", Value = "Divorciado" },
+                            new SelectListItem { Text = "Viudo", Value = "Viudo" }
+                        };
+
+                    ViewBag.Genero = new List<SelectListItem>
+                        {
+                            new SelectListItem { Text = "Femenino", Value = "Femenino" },
+                            new SelectListItem { Text = "Masculino", Value = "Masculino" },
+                        };
+
+                    TempData["ErrorTelefono1"] = $"El telefono {tGePersona.Telefono1} ya esta registrado";
+                    return View(tGePersona);
+
+                }
+                if (telefono2 != null)
+                {
+                    ViewData["Direccion1"] = new SelectList(_listarDireccion.listarDistritos().Result, "IdDistrito", "NombreDistrito", tGePersona.Direccion1);
+
+                    ViewBag.EstadoCivil = new List<SelectListItem>
+                        {
+                            new SelectListItem { Text = "Soltero", Value = "Soltero" },
+                            new SelectListItem { Text = "Casado", Value = "Casado" },
+                            new SelectListItem { Text = "Divorciado", Value = "Divorciado" },
+                            new SelectListItem { Text = "Viudo", Value = "Viudo" }
+                        };
+
+                    ViewBag.Genero = new List<SelectListItem>
+                        {
+                            new SelectListItem { Text = "Femenino", Value = "Femenino" },
+                            new SelectListItem { Text = "Masculino", Value = "Masculino" },
+                        };
+
+                    TempData["ErrorTelefono2"] = $"El telefono {tGePersona.Telefono2} ya esta registrado";
+                    return View(tGePersona);
+
+                }
+                #endregion
+
+                await _crearPesona.crear(tGePersona);//llamado de los LN y AD para crear la persona
+                TempData["PersonaCreada"] = "Se ha creado un nuevo usuario en el sistema";
+                return RedirectToAction("UsuarioAutenticado", "Home", new { correo = User.Identity.Name });                
             }
             ViewData["Direccion1"] = new SelectList(_listarDireccion.listarDistritos().Result, "IdDistrito", "NombreDistrito", tGePersona.Direccion1);
 
@@ -143,7 +192,6 @@ namespace Preacepta.UI.Controllers
                             new SelectListItem { Text = "Femenino", Value = "Femenino" },
                             new SelectListItem { Text = "Masculino", Value = "Masculino" },
                         };
-
             return View(tGePersona);
 
         }
@@ -154,7 +202,7 @@ namespace Preacepta.UI.Controllers
         [Authorize(Roles = "Abogado")]
         public async Task<IActionResult> DetallesPersona(int id)
         {
-            
+
             if (id == null)
             {
                 return NotFound();
@@ -164,7 +212,8 @@ namespace Preacepta.UI.Controllers
 
             if (tGePersona == null)
             {
-                var noEncontrado = new {
+                var noEncontrado = new
+                {
                     mensaje = "El usuario no se encuentra en nuestros registros",
                     Bandera = false
                 };
@@ -181,7 +230,7 @@ namespace Preacepta.UI.Controllers
                 Ocupacion = tGePersona.Oficio,
                 Telefono = tGePersona.Telefono1,
                 Correo = tGePersona.Email
-            };           
+            };
 
             return Json(datos);
         }
@@ -200,7 +249,7 @@ namespace Preacepta.UI.Controllers
         }
 
         // GET: TGePersonas/Details/5
-        [Authorize(Roles = "Gestor, Abogado")]        
+        [Authorize(Roles = "Gestor, Abogado")]
         public async Task<IActionResult> Details(int id)
         {
             if (id == null)
@@ -210,7 +259,7 @@ namespace Preacepta.UI.Controllers
 
             var tGePersona = await _buscarPersona.buscar(id);
             if (tGePersona == null)
-            {                
+            {
                 return NotFound();
             }
 
@@ -371,7 +420,11 @@ namespace Preacepta.UI.Controllers
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
 
-            await _eliminarPersona.eliminar(id);
+            int resultado = await _eliminarPersona.eliminar(id);
+            if (resultado == 0) 
+            {
+                TempData["ErrorElimanacion"] = "El usuario no pudo ser eliminado";
+            }
             return RedirectToAction(nameof(Index));
         }
 
