@@ -1,0 +1,415 @@
+﻿@page
+@model RegisterAbogadoGestorModel
+@{
+    ViewData["Title"] = "Register";
+    Layout = "_LayoutGestor";
+}
+
+<head>
+    <link href="~/lyso/css/Daniel.css" rel="stylesheet" />   
+</head>
+<!-- Page Title -->
+<body>
+    <div class="page-title-area page-title-area-two title-img-one">
+        <div class="d-table">
+            <div class="d-table-cell">
+                <div class="page-title-text">
+                    <h2>Registrar Nuevo Cliente</h2>
+                    <ul>
+                        <li>
+                            <a asp-controller="Home" asp-action="Index">Página Principal</a>
+                        </li>
+                        <li>
+                            <i class="icofont-simple-right"></i>
+                        </li>
+                        <li>
+                            <a asp-controller="Home" asp-action="UsuarioAutenticado" asp-route-correo=@User.Identity.Name>PreaceptaApp</a>
+                        </li>
+                        <li>
+                            <i class="icofont-simple-right"></i>
+                        </li>
+                        <li>Crear Abogado</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Page Title -->
+
+    <br />
+    <br />
+    <br />
+
+
+    <div class="contact-form contact-form-two contact-form-three">
+        <div class="container">
+            <!--<div class="col-md-12 col-lg-12 encabezadoForm">
+                <img src="~/lyso/img/iconoPersona.png" width="200px"/>
+            </div>-->
+            <div class="contact-wrap">
+                <form id="registerForm" asp-route-returnUrl="@Model.ReturnUrl" method="post">
+                    <<div asp-validation-summary="ModelOnly" class="text-danger" role="alert"></div>
+
+                    <h2>Formulario para crear abogado</h2>
+                    <div class="row justify-content-center">
+                        <div class="seccion-titulo">Información del personal</div>
+                        <div class="col-sm-6 col-lg-6 centro">
+                            <div class="form-group centro">
+                                <label asp-for="tGePersona.Cedula" class="control-label"></label>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-lg-6">
+                            <div class="form-group">
+                                <input asp-for="tGePersona.Cedula" class="form-control" />
+                                <span asp-validation-for="tGePersona.Cedula" class="text-danger"></span>
+                                @if (TempData["ErrorCedula"] != null)
+                                {
+                                    <span class="text-danger">@TempData["ErrorCedula"]</span>
+                                }
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-lg-6 centro">
+                            <div class="form-group">
+                                <label asp-for="tGePersona.Nombre" class="control-label"></label>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-lg-6">
+                            <div class="form-group">
+                                <input asp-for="tGePersona.Nombre" class="form-control" />
+                                <span asp-validation-for="tGePersona.Nombre" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-lg-6 centro">
+                            <div class="form-group">
+                                <label asp-for="tGePersona.Apellido1" class="control-label"></label>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-lg-6">
+                            <div class="form-group">
+                                <input asp-for="tGePersona.Apellido1" class="form-control" />
+                                <span asp-validation-for="tGePersona.Apellido1" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-lg-6 centro">
+                            <div class="form-group">
+                                <label asp-for="tGePersona.Apellido2" class="control-label"></label>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-lg-6">
+                            <div class="form-group">
+                                <input asp-for="tGePersona.Apellido2" class="form-control" />
+                                <span asp-validation-for="tGePersona.Apellido2" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-lg-6 centro">
+                            <div class="form-group">
+                                <label asp-for="tGePersona.FechaNacimiento" class="control-label"></label>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-lg-3">
+                            <div class="form-group">
+                                <input id="InputFechaNacimiento" type="date" asp-for="tGePersona.FechaNacimiento" class="form-control" />
+                                <span asp-validation-for="tGePersona.FechaNacimiento" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-lg-1 centro">
+                            <div class="form-group">
+                                <label asp-for="tGePersona.Edad" class="control-label"></label>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-lg-2">
+                            <div class="form-group">
+                                <input id="InputEdad" asp-for="tGePersona.Edad" class="form-control" readonly />
+                                <span asp-validation-for="tGePersona.Edad" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-lg-6 centro">
+                            <div class="form-group">
+                                <label asp-for="tGePersona.Genero" class="control-label"></label>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-lg-6">
+                            <div class="form-group">
+                                <select asp-for="tGePersona.Genero" class="form-control" asp-items="ViewBag.Genero"></select>
+                                <span asp-validation-for="tGePersona.Genero" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <br />
+                        <br />
+                        <br />
+                        <br />
+                        <div class="col-sm-6 col-lg-6 centro">
+                            <div class="form-group">
+                                <label asp-for="tGePersona.Oficio" class="control-label"></label>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-lg-6">
+                            <div class="form-group">
+                                <input asp-for="tGePersona.Oficio" class="form-control" />
+                                <span asp-validation-for="tGePersona.Oficio" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-lg-6 centro">
+                            <div class="form-group">
+                                <label asp-for="tGePersona.EstadoCivil" class="control-label"></label>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-lg-6">
+                            <div class="form-group">
+                                <select asp-for="tGePersona.EstadoCivil" asp-items="ViewBag.EstadoCivil" class="form-control"></select>
+                                <span asp-validation-for="tGePersona.EstadoCivil" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="seccion-titulo">Información del Dirreción</div>
+                        <div class="col-sm-6 col-lg-6 centro">
+                            <div class="form-group">
+                                <label for="provincia">Provincia:</label>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-lg-6">
+                            <div class="form-group">
+                                <select class="selectDaniel" id="provincia" name="provincia">
+                                    <option value="">Seleccione una provincia</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-6 col-lg-6 centro">
+                            <div class="form-group">
+                                <label for="canton">Cantón:</label>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-lg-6">
+                            <div class="form-group">
+                                <select class="selectDaniel" id="canton" name="canton" disabled>
+                                    <option value="">Seleccione un cantón</option>
+                                </select>
+                                <input id="inputCanton" asp-for="tGePersona.Direccion1" class="form-control" readonly />
+                            </div>
+                        </div>
+
+                        <div class="col-sm-6 col-lg-6 centro">
+                            <div class="form-group">
+                                <label for="distrito">Distrito:</label>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-lg-6">
+                            <div class="form-group">
+                                <select class="selectDaniel" id="distrito" name="tGePersona.Direccion1" asp-for="tGePersona.Direccion1" disabled>
+                                    <option value="">Seleccione un distrito</option>
+                                </select>
+                                <input id="inputDistrito" asp-for="tGePersona.Direccion1" class="form-control" readonly />
+                            </div>
+                        </div>
+
+                        <div class="col-sm-6 col-lg-6 centro">
+                            <div class="form-group">
+                                <label asp-for="tGePersona.Direccion2" class="control-label"></label>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-lg-6">
+                            <div class="form-group">
+                                <textarea asp-for="tGePersona.Direccion2" class="form-control" cols="6"></textarea>
+                                <span asp-validation-for="tGePersona.Direccion2" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="seccion-titulo">Información del profesional</div>
+
+
+                        <div class="col-sm-6 col-lg-6 centro">
+                            <div class="form-group">
+                                <label asp-for="geAbogado.CJuridica" class="control-label"></label>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-lg-6">
+                            <div class="form-group">
+                                <select asp-for="geAbogado.CJuridica" class="form-control" asp-items="ViewBag.CJuridica"></select>
+                            </div>
+                        </div>
+                        <br />
+                        <br />
+                        <br />
+                        <br />
+                        <div class="col-sm-6 col-lg-6 centro">
+                            <div class="form-group">
+                                <label asp-for="geAbogado.IdTipoAbogado" class="control-label"></label>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-lg-6">
+                            <div class="form-group">
+                                <select asp-for="geAbogado.IdTipoAbogado" class="form-control" asp-items="ViewBag.IdTipoAbogado"></select>
+                            </div>
+                        </div>
+                        <br />
+                        <br />
+                        <br />
+                        <br />
+                        <div class="col-sm-6 col-lg-6 centro">
+                            <div class="form-group">
+                                <label asp-for="geAbogado.Carnet" class="control-label"></label>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-lg-6">
+                            <div class="form-group">
+                                <input asp-for="geAbogado.Carnet" class="form-control" />
+                                <span asp-validation-for="geAbogado.Carnet" class="text-danger"></span>
+                                @if (TempData["ErrorCarnet"] != null)
+                                {
+                                    <span class="text-danger">@TempData["ErrorCarnet"]</span>
+                                }
+                            </div>
+                        </div>
+                        <div class="seccion-titulo">Contactos</div>
+                        <div class="col-sm-6 col-lg-6 centro">
+                            <div class="form-group">
+                                <label asp-for="tGePersona.Telefono1" class="control-label"></label>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-lg-6">
+                            <div class="form-group">
+                                <input asp-for="tGePersona.Telefono1" class="form-control" />
+                                <span asp-validation-for="tGePersona.Telefono1" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-lg-6 centro">
+                            <div class="form-group">
+                                <label asp-for="tGePersona.Telefono2" class="control-label"></label>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-lg-6">
+                            <div class="form-group">
+                                <input asp-for="tGePersona.Telefono2" class="form-control" />
+                                <span asp-validation-for="tGePersona.Telefono2" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="seccion-titulo">Autenticacion para el sistema</div>
+                        <div class="col-sm-6 col-lg-6 centro">
+                            <div class="form-group">
+                                <label asp-for="tGePersona.Email">Correro electrónico</label>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-lg-6">
+                            <div class="form-group">
+                                <input asp-for="tGePersona.Email" class="form-control" autocomplete="username" aria-required="true" placeholder="nombre@ejemplo.com" />
+                                <span asp-validation-for="tGePersona.Email" class="text-danger"></span>
+                                @if (TempData["ErrorEmail"] != null)
+                                {
+                                    <span class="text-danger">@TempData["ErrorEmail"]</span>
+                                }
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-lg-6 centro">
+                            <!--<div class="form-floating mb-3">-->
+                            <div class="form-group">
+                                <label asp-for="tGePersona.Password">Contraseña</label>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-lg-6">
+                            <div class="form-group">
+                                <input asp-for="tGePersona.Password" class="form-control" autocomplete="new-password" aria-required="true" placeholder="ej. 123Abd$" />
+                                <span asp-validation-for="tGePersona.Password" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-lg-6 centro">
+                            <!--<div class="form-floating mb-3">-->
+                            <div class="form-group">
+                                <label asp-for="tGePersona.ConfirmPassword">Confirmación de contraseña</label>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-lg-6">
+                            <div class="form-group">
+                                <input asp-for="tGePersona.ConfirmPassword" class="form-control" autocomplete="new-password" aria-required="true" placeholder="ej. 123Abd$" />
+                                <span asp-validation-for=tGePersona.ConfirmPassword class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col-md-12 col-lg-12" style="margin-top: 100px">
+
+                            <div class="text-center">
+                                <div class="form-group">
+                                    <input type="submit" value="Crear" class="contact-btn--primario btn-lg" style="width:30%" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
+
+@if (TempData["ErrorCedula"] != null)
+{
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            Swal.fire({
+                title: 'Sistema de usuarios',
+                text: '@TempData["ErrorCedula"]',
+                icon: 'error',
+                confirmButtonText: 'Continuar',
+                customClass: {
+                    confirmButton: 'contact-btn--secundario' // Clase CSS personalizada
+                }
+            });
+        });
+    </script>
+}
+
+@if (TempData["ErrorEmail"] != null)
+{
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            Swal.fire({
+                title: 'Sistema de usuarios',
+                text: '@TempData["ErrorEmail"]',
+                icon: 'error',
+                confirmButtonText: 'Continuar',
+                customClass: {
+                    confirmButton: 'contact-btn--secundario' // Clase CSS personalizada
+                }
+            });
+        });
+    </script>
+}
+
+@if (TempData["ErrorTelefono1"] != null)
+{
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            Swal.fire({
+                title: 'Sistema de usuarios',
+                text: '@TempData["ErrorTelefono1"]',
+                icon: 'error',
+                confirmButtonText: 'Continuar',
+                customClass: {
+                    confirmButton: 'contact-btn--secundario' // Clase CSS personalizada
+                }
+            });
+        });
+    </script>
+}
+
+@if (TempData["ErrorTelefono2"] != null)
+{
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            Swal.fire({
+                title: 'Sistema de usuarios',
+                text: '@TempData["ErrorTelefono2"]',
+                icon: 'error',
+                confirmButtonText: 'Continuar',
+                customClass: {
+                    confirmButton: 'contact-btn--secundario' // Clase CSS personalizada
+                }
+            });
+        });
+    </script>
+}
+
+<script src="~/lyso/js/calculoedad.js"></script>
+<script src="~/lyso/js/filtroprovinicacantondistrito.js"></script>
