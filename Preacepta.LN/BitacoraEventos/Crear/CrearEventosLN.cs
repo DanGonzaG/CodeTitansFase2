@@ -14,6 +14,7 @@ namespace Preacepta.LN.BitacoraEventos.Crear
         public CrearEventosLN(ICrearEventosAD crearEventosAD)
         {
             _crearEventosAD = crearEventosAD;
+            
         }
         public async Task <int> CrearEvento(TBitacoraEventos evento)
         {
@@ -21,6 +22,20 @@ namespace Preacepta.LN.BitacoraEventos.Crear
                 throw new ArgumentException("Evento Inválido");
 
             return await _crearEventosAD.InsertarEvento(evento);
+        }
+        public async Task RegistrarBitacoraAsync(string usuario, string tabla, string accion, int idRegistro, string? stackError = null)
+        {
+            var evento = new TBitacoraEventos
+            {
+                Usuario = usuario,
+                Fecha_Hora = DateTime.Now,
+                Tabla_Afectada = tabla,
+                Accion = accion,
+                Id_registro_afectado = idRegistro,
+                Stack_error = stackError
+            };
+            await _crearEventosAD.InsertarEvento(evento);
+
         }
     }
 }

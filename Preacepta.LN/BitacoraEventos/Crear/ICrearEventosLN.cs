@@ -11,5 +11,7 @@ namespace Preacepta.LN.BitacoraEventos.Crear
     public interface ICrearEventosLN
     {
         Task<int> CrearEvento(TBitacoraEventos evento);
+        Task RegistrarBitacoraAsync(string usuario, string tabla, string accion, int idRegistro, string? stackError = null);
+
     }
 }

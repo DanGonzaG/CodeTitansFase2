@@ -17,8 +17,6 @@ namespace Preacepta.LN.DocumentosCita
 
         Task<bool> DeshabilitarAsync(int id);
 
-        Task RegistrarBitacoraAsync(string usuario, string tabla, string accion, int idRegistro, string? stackError = null);
-
         Task ActualizarBatchAsync(List<DocumentosCitaDTO> documentos);
     }
 }

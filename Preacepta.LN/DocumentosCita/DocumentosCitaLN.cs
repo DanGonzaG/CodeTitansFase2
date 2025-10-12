@@ -101,19 +101,7 @@ namespace Preacepta.LN.DocumentosCita
             return await _documentosAD.DeshabilitarAsync(id);
         }
 
-        public async Task RegistrarBitacoraAsync(string usuario, string tabla, string accion, int idRegistro, string? stackError = null)
-        {
-            await _documentosAD.RegistrarBitacoraAsync(new TBitacoraEventos
-            {
-                Usuario = usuario,
-                Fecha_Hora = DateTime.Now,
-                Tabla_Afectada = tabla,
-                Accion = accion,
-                Id_registro_afectado = idRegistro,
-                Stack_error = stackError
-            });
-
-        }
+        
         public async Task<TDocumentosCita> SubirDocumentoAsync(int idCita, string nombreArchivo, string rutaArchivo)
         {
             var documento = new TDocumentosCita

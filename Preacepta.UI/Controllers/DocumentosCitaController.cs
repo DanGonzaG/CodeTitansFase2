@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Preacepta.LN.DocumentosCita;
+using Preacepta.LN.BitacoraEventos.Crear;
 using Preacepta.Modelos.AbstraccionesBD;
 using Preacepta.Modelos.AbstraccionesFrond;
 using System.IO;
@@ -14,10 +15,12 @@ namespace Preacepta.Web.Controllers
     public class DocumentosCitaController : Controller
     {
         private readonly IDocumentosCitaLN _documentosLN;
+        private readonly ICrearEventosLN _bitacoraLN;
 
-        public DocumentosCitaController(IDocumentosCitaLN documentosLN)
+        public DocumentosCitaController(IDocumentosCitaLN documentosLN, ICrearEventosLN bitacoraLN)
         {
             _documentosLN = documentosLN;
+            _bitacoraLN = bitacoraLN;
         }
 
         // Método para obtener nombre corto de archivo (máx 50 caracteres)
@@ -63,7 +66,7 @@ namespace Preacepta.Web.Controllers
                 var usuario = User.Identity?.Name ?? "Desconocido";
                 var nombreCorto = ObtenerNombreCorto(nombreArchivo);
                 var accion = $"Se adjuntó el documento '{nombreCorto}' a la cita {idCita}";
-                await _documentosLN.RegistrarBitacoraAsync(usuario, "T_DocumentosCita", accion, idCita);
+                await _bitacoraLN.RegistrarBitacoraAsync(usuario, "T_DocumentosCita", accion, idCita);
 
                 return Json(new { success = true, message = "Documento subido correctamente." });
             }
@@ -95,7 +98,7 @@ namespace Preacepta.Web.Controllers
                     ? $"Otorgó permiso de descarga al documento '{nombreCorto}'"
                     : $"Revocó permiso de descarga al documento '{nombreCorto}'";
 
-                await _documentosLN.RegistrarBitacoraAsync(usuario, "T_DocumentosCita", accion, dto.Id);
+                await _bitacoraLN.RegistrarBitacoraAsync(usuario, "T_DocumentosCita", accion, dto.Id);
 
                 return Json(new { success = true });
             }
@@ -122,6 +125,13 @@ namespace Preacepta.Web.Controllers
 
             var bytes = await System.IO.File.ReadAllBytesAsync(rutaFisica);
             var nombreArchivo = documento.NombreArchivo ?? "documento.pdf";
+
+            var usuario = User.Identity?.Name ?? "Desconocido";
+            var nombreCorto = ObtenerNombreCorto(nombreArchivo);
+            var accion = $"Descargó el documento '{nombreCorto}'";
+
+            await _bitacoraLN.RegistrarBitacoraAsync(usuario, "T_DocumentosCita", accion, documento.Id);
+
 
             Response.Headers.Add("Cache-Control", "no-store, no-cache, must-revalidate, proxy-revalidate");
             Response.Headers.Add("Pragma", "no-cache");
@@ -151,7 +161,7 @@ namespace Preacepta.Web.Controllers
                         ? $"Otorgó permiso de descarga al documento '{nombreCorto}'"
                         : $"Revocó permiso de descarga al documento '{nombreCorto}'";
 
-                    await _documentosLN.RegistrarBitacoraAsync(usuario, "T_DocumentosCita", accion, dto.Id);
+                    await _bitacoraLN.RegistrarBitacoraAsync(usuario, "T_DocumentosCita", accion, dto.Id);
                 }
             }
 
@@ -175,7 +185,7 @@ namespace Preacepta.Web.Controllers
                 {
                     var usuario = User.Identity?.Name ?? "Desconocido";
                     var nombreCorto = ObtenerNombreCorto(documento.NombreArchivo);
-                    await _documentosLN.RegistrarBitacoraAsync(
+                    await _bitacoraLN.RegistrarBitacoraAsync(
                         usuario,
                         "T_DocumentosCita",
                         $"Documento '{nombreCorto}' deshabilitado",
@@ -219,7 +229,7 @@ namespace Preacepta.Web.Controllers
                         ? $"Otorgó permiso de descarga al documento '{nombreCorto}'"
                         : $"Revocó permiso de descarga al documento '{nombreCorto}'";
 
-                    await _documentosLN.RegistrarBitacoraAsync(usuario, "T_DocumentosCita", accion, doc.Id);
+                    await _bitacoraLN.RegistrarBitacoraAsync(usuario, "T_DocumentosCita", accion, doc.Id);
                 }
 
                 if (cambioActivo)
@@ -228,7 +238,7 @@ namespace Preacepta.Web.Controllers
                         ? $"Documento '{nombreCorto}' habilitado"
                         : $"Documento '{nombreCorto}' deshabilitado";
 
-                    await _documentosLN.RegistrarBitacoraAsync(usuario, "T_DocumentosCita", accion, doc.Id);
+                    await _bitacoraLN.RegistrarBitacoraAsync(usuario, "T_DocumentosCita", accion, doc.Id);
                 }
             }
 
