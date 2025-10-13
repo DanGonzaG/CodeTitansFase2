@@ -2,29 +2,74 @@
 @model LoginWithRecoveryCodeModel
 @{
     ViewData["Title"] = "Verificación del código de recuperación";
+    Layout = "_LayoutLysoIdentiy";
 }
 
-<h1>@ViewData["Title"]</h1>
-<hr />
-<p class="LetraNegra">
-    Has solicitado iniciar sesión con un código de recuperación. 
-    Este inicio de sesión no se recordará hasta que proporciones un código de la aplicación de autenticación al iniciar sesión o 
-    desactives la autenticación de dos factores (2FA) y vuelvas a iniciar sesión.
-</p>
-<div class="row">
-    <div class="col-md-4">
-        <form method="post">
-            <div asp-validation-summary="ModelOnly" class="text-danger" role="alert"></div>
-            <!--<div class="form-floating mb-3">-->
-            <div class="form-control">
-                <label asp-for="Input.RecoveryCode" class="form-label"></label>
-                <input asp-for="Input.RecoveryCode" class="form-control" autocomplete="off" placeholder="Código de recuperación" />               
-                <span asp-validation-for="Input.RecoveryCode" class="text-danger"></span>
+<!-- Page Title -->
+<div class="page-title-area page-title-area-three title-img-one">
+    <div class="d-table">
+        <div class="d-table-cell">
+            <div class="page-title-text">
+                <h2>Modulo de autenticación</h2>
+                <ul>
+                    <li>
+                        <a asp-action="Index">Página de inicio</a>
+                    </li>
+                    <li>
+                        <i class="icofont-simple-right"></i>
+                    </li>
+                    <li>                        
+                        <a asp-area="Identity" asp-page="/Account/LoginWith2fa">Doble factor de autenticación</a>
+                    </li>
+                    <li>
+                        <i class="icofont-simple-right"></i>
+                    </li>
+                    <li>Autencación</li>
+                </ul>
             </div>
-            <button type="submit" class="w-100 btn btn-lg contact-btn--primario">Log in</button>
-        </form>
+        </div>
     </div>
 </div>
+<!-- End Page Title -->
+<br />
+<br />
+
+<div class="contact-form contact-form-two contact-form-three" style="padding-left:20%; padding-right:20%">
+    <div class="container">
+        <div class="contact-wrap">
+            
+            <h2>@ViewData["Title"]</h2>
+            <hr />
+            <div class="row">
+                <div class="col">
+                    <p class="LetraNegra">
+                        Usted ha solicitado iniciar sesión con un código de recuperación.
+                        Este inicio de sesión no se recordará hasta que proporciones un código de la aplicación de autenticación al iniciar sesión o
+                        desactive la autenticación de dos factores (2FA) y vuelvas a iniciar sesión.
+                    </p>
+                </div>
+            </div>
+           
+            <div class="row">
+                <div class="col">
+                    <form method="post">
+                        <div asp-validation-summary="ModelOnly" class="text-danger" role="alert"></div>
+                        <!--<div class="form-floating mb-3">-->
+                        <div class="form-group">
+                            <label asp-for="Input.RecoveryCode" class="form-label"></label>
+                            <input asp-for="Input.RecoveryCode" class="form-control" autocomplete="off" placeholder="Ingrese el código" />
+                            <span asp-validation-for="Input.RecoveryCode" class="text-danger"></span>
+                        </div>
+                        <button type="submit" class="w-100 btn-lg contact-btn--primario">Acceder</button>
+                    </form>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+</div>
+
 
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />

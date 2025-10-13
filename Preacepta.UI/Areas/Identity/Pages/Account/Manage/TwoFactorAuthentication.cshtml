@@ -7,7 +7,7 @@
 }
 
 <partial name="_StatusMessage" for="StatusMessage" />
-<h3>@ViewData["Title"]</h3>
+<h2>@ViewData["Title"]</h2>
 @{
     var consentFeature = HttpContext.Features.Get<ITrackingConsentFeature>();
     @if (consentFeature?.CanTrack ?? true)
@@ -35,26 +35,55 @@
                     <p>Debería <a asp-page="./GenerateRecoveryCodes">generar un nuevo conjunto de códigos de recuperación</a>.</p>
                 </div>
             }
-
             if (Model.IsMachineRemembered)
             {
                 <form method="post" style="display: inline-block">
-                    <button type="submit" class="btn btn-primary">Olvídar de este navegador</button>
+                    <button type="submit" class="contact-btn--primario">Olvídar de este navegador</button>
                 </form>
             }
-            <a asp-page="./Disable2fa" class="btn btn-primary">Desactivar 2FA</a>
-            <a asp-page="./GenerateRecoveryCodes" class="btn btn-primary">Restablecer códigos de recuperación</a>
+
+            <div class="row justify-content-center">
+                <div class="col-auto">
+                    <div class="row m-1 w-100">
+                        <a asp-page="./Disable2fa" class="contact-btn--primario">Desactivar doble factor de autenticación</a>
+                    </div>
+                    <div class="row m-1 w-100">
+                        <a asp-page="./GenerateRecoveryCodes" class="contact-btn--primario">Restablecer códigos de recuperación</a>
+
+                    </div>
+
+                </div>
+            </div>
+
+
         }
 
-        <h4>Authenticator app</h4>
+        <br />
+        <br />
+
+        <h2>Aplicación de autenticación</h2>
         @if (!Model.HasAuthenticator)
         {
-            <a id="enable-authenticator" asp-page="./EnableAuthenticator" class="btn btn-primary">Agregar aplicación de autenticación</a>
+            <div class="row justify-content-center">
+                <div class="col">
+                    <div class="row m-1 w-100">
+                        <a id="enable-authenticator" asp-page="./EnableAuthenticator" class="contact-btn--primario">Agregar aplicación de autenticación</a>
+                    </div>
+                </div>
+            </div>
         }
         else
         {
-            <a id="enable-authenticator" asp-page="./EnableAuthenticator" class="btn btn-primary">Configurar la aplicación de autenticación</a>
-            <a id="reset-authenticator" asp-page="./ResetAuthenticator" class="btn btn-primary">Restablecer la aplicación de autenticación</a>
+            <div class="row justify-content-center">
+                <div class="col-auto">
+                    <div class="row m-1 w-100">
+                        <a id="enable-authenticator" asp-page="./EnableAuthenticator" class="contact-btn--primario">Configurar la aplicación de autenticación</a>
+                    </div>
+                    <div class="row m-1 w-100">
+                        <a id="reset-authenticator" asp-page="./ResetAuthenticator" class="contact-btn--primario">Restablecer la aplicación de autenticación</a>
+                    </div>
+                </div>
+            </div>
         }
     }
     else

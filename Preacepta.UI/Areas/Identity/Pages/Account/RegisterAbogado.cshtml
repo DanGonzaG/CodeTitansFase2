@@ -48,8 +48,7 @@
             </div>-->
             <div class="contact-wrap">
                 <form id="registerForm" asp-route-returnUrl="@Model.ReturnUrl" method="post">
-                    <<div asp-validation-summary="ModelOnly" class="text-danger" role="alert"></div>
-
+                    <div asp-validation-summary="ModelOnly" class="text-danger" role="alert"></div>
                     <h2>Formulario para crear abogado</h2>
                     <div class="row justify-content-center">
                         <div class="seccion-titulo">Información del personal</div>
@@ -130,7 +129,7 @@
                         </div>
                         <div class="col-sm-6 col-lg-6">
                             <div class="form-group">
-                                <select asp-for="tGePersona.Genero" class="form-control" asp-items="ViewBag.Genero"></select>
+                                <select asp-for="tGePersona.Genero" class="form-control" asp-items="Model.Genero"></select>
                                 <span asp-validation-for="tGePersona.Genero" class="text-danger"></span>
                             </div>
                         </div>
@@ -156,7 +155,7 @@
                         </div>
                         <div class="col-sm-6 col-lg-6">
                             <div class="form-group">
-                                <select asp-for="tGePersona.EstadoCivil" asp-items="ViewBag.EstadoCivil" class="form-control"></select>
+                                <select asp-for="tGePersona.EstadoCivil" asp-items="Model.EstadoCivil" class="form-control"></select>
                                 <span asp-validation-for="tGePersona.EstadoCivil" class="text-danger"></span>
                             </div>
                         </div>
@@ -223,7 +222,7 @@
                         </div>
                         <div class="col-sm-6 col-lg-6">
                             <div class="form-group">
-                                <select asp-for="geAbogado.CJuridica" class="form-control" asp-items="ViewBag.CJuridica"></select>
+                                <select asp-for="geAbogado.CJuridica" class="form-control" asp-items="Model.Negocio"></select>
                             </div>
                         </div>
                         <br />
@@ -237,7 +236,7 @@
                         </div>
                         <div class="col-sm-6 col-lg-6">
                             <div class="form-group">
-                                <select asp-for="geAbogado.IdTipoAbogado" class="form-control" asp-items="ViewBag.IdTipoAbogado"></select>
+                                <select asp-for="geAbogado.IdTipoAbogado" class="form-control" asp-items="Model.TipoAbogado"></select>
                             </div>
                         </div>
                         <br />

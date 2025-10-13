@@ -138,7 +138,7 @@ namespace Praecepta.UI.Areas.Identity.Pages.Account
 
 
 
-        [Authorize(Roles = "Gestor, Abogado")]
+        [Authorize(Roles = "Abogado")]
         public async Task OnGetAsync(string returnUrl = null)
         {
 
@@ -175,7 +175,7 @@ namespace Praecepta.UI.Areas.Identity.Pages.Account
         }
 
 
-        [Authorize(Roles = "Gestor, Abogado")]
+        [Authorize(Roles = "Abogado")]
         public async Task<IActionResult> OnPostAsync(string returnUrl = null)
         {
             returnUrl ??= Url.Content("~/");

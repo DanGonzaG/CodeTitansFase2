@@ -1131,26 +1131,32 @@ button:focus {
 
 .contact-btn--primario {
   background-color: #0070BB;
+  text-align: center;
 }
 
 .contact-btn--secundario {
   background-color: #B2BEB5;
+  text-align: center;
 }
 
 .contact-btn--revision {
   background-color: #ED9121;
+  text-align: center;
 }
 
 .contact-btn--tercero {
   background-color: #848482;
+  text-align: center;
 }
 
 .contact-btn--navegacion {
   background-color: #848482;
+  text-align: center;
 }
 
 .contact-btn--eliminacion {
   background-color: #FF0000;
+  text-align: center;
 }
 
 .list-unstyled {
@@ -3273,4 +3279,17 @@ footer .copyright-area .copyright-right {
 .buy-now-btn:hover {
   color: #ffffff;
   background-color: #94be5d;
+}
+
+#crearCitaModal .select2-container--default .select2-selection--single {
+  background-color: #fff;
+  color: #000;
+  border: 1px solid #ced4da;
+  border-radius: 4px;
+  height: 38px;
+}
+
+#crearCitaModal .select2-container--default .select2-selection--single .select2-selection__rendered {
+  line-height: 38px;
+  color: #000;
 }
