@@ -19,6 +19,7 @@ using Preacepta.LN.HistorialDocumentos.Crear;
 using Preacepta.LN.HistorialDocumentos.Eliminar;
 using Preacepta.LN.HistorialDocumentos.Listar;
 using Preacepta.Modelos.AbstraccionesFrond;
+using Preacepta.LN.BitacoraEventos.Crear;
 
 namespace Preacepta.UI.Controllers
 {
@@ -39,6 +40,7 @@ namespace Preacepta.UI.Controllers
         private readonly IELiminarHistorialLN _eLiminarHistorialLN;
         private readonly IBuscarCrDireccion1LN _buscarDistrito;
         private readonly IListarCrDireccion1LN _listarDistrito;
+        private readonly ICrearEventosLN _bitacoraLN;
 
 
         public DocsContratoPrestacionServiciosController(IConverter converter,
@@ -55,7 +57,8 @@ namespace Preacepta.UI.Controllers
             IBuscarHistorialLN buscarHistorialLN,
             IELiminarHistorialLN eLiminarHistorialLN,
             IBuscarCrDireccion1LN buscarDistrito,
-            IListarCrDireccion1LN listarDistrito)
+            IListarCrDireccion1LN listarDistrito,
+            ICrearEventosLN bitacora)
         {
             _converter = converter;
             _context = context;
@@ -72,6 +75,7 @@ namespace Preacepta.UI.Controllers
             _eLiminarHistorialLN = eLiminarHistorialLN;
             _buscarDistrito = buscarDistrito;
             _listarDistrito = listarDistrito;
+            _bitacoraLN = bitacora;
         }
 
         // GET: ContratoPrestacionServicios
@@ -124,6 +128,15 @@ namespace Preacepta.UI.Controllers
                 await _crear.Crear(tDocsContratoPrestacionServicio);
                 var Registros = await _listar.listar();
                 var idDocumento = Registros.LastOrDefault();
+
+                var usuario = User.Identity?.Name ?? "Desconocido";
+                var tituloCorto = tDocsContratoPrestacionServicio.RazonSocialEmpresa.Length > 50
+                    ? tDocsContratoPrestacionServicio.RazonSocialEmpresa.Substring(0, 47) + "..."
+                    : tDocsContratoPrestacionServicio.RazonSocialEmpresa;
+                var accion = $"Se creó Contrato Prestación de Servicios '{tituloCorto}' con ID {idDocumento.IdDocumento}";
+                await _bitacoraLN.RegistrarBitacoraAsync(usuario, "T_DocsContratoPrestacionServicios", accion, idDocumento.IdDocumento);
+
+
                 HistorialDocumentoDTO historialDocumentoDTO = new HistorialDocumentoDTO
                 {
                     Cliente = tDocsContratoPrestacionServicio.CedulaCliente,
@@ -185,6 +198,13 @@ namespace Preacepta.UI.Controllers
                 try
                 {
                     await _editar.Editar(tDocsContratoPrestacionServicio);
+
+                    var usuario = User.Identity?.Name ?? "Desconocido";
+                    var tituloCorto = tDocsContratoPrestacionServicio.RazonSocialEmpresa.Length > 50
+                        ? tDocsContratoPrestacionServicio.RazonSocialEmpresa.Substring(0, 47) + "..."
+                        : tDocsContratoPrestacionServicio.RazonSocialEmpresa;
+                    var accion = $"Se editó Contrato Prestación de Servicios '{tituloCorto}' con ID {tDocsContratoPrestacionServicio.IdDocumento}";
+                    await _bitacoraLN.RegistrarBitacoraAsync(usuario, "T_DocsContratoPrestacionServicios", accion, tDocsContratoPrestacionServicio.IdDocumento);
                 }
                 catch (DbUpdateConcurrencyException)
                 {
@@ -285,6 +305,15 @@ namespace Preacepta.UI.Controllers
                 await _crear.Crear(tDocsContratoPrestacionServicio);
                 var Registros = await _listar.listar();
                 var idDocumento = Registros.LastOrDefault();
+
+                var usuario = User.Identity?.Name ?? "Desconocido";
+                var tituloCorto = tDocsContratoPrestacionServicio.RazonSocialEmpresa.Length > 50
+                    ? tDocsContratoPrestacionServicio.RazonSocialEmpresa.Substring(0, 47) + "..."
+                    : tDocsContratoPrestacionServicio.RazonSocialEmpresa;
+                var accion = $"Se creó Contrato Prestación de Servicios '{tituloCorto}' con ID {idDocumento.IdDocumento}";
+                await _bitacoraLN.RegistrarBitacoraAsync(usuario, "T_DocsContratoPrestacionServicios", accion, idDocumento.IdDocumento);
+
+
                 HistorialDocumentoDTO historialDocumentoDTO = new HistorialDocumentoDTO
                 {
                     Cliente = tDocsContratoPrestacionServicio.CedulaCliente,

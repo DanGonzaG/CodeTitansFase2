@@ -17,6 +17,7 @@ using Preacepta.LN.HistorialDocumentos.Crear;
 using Preacepta.LN.HistorialDocumentos.Eliminar;
 using Preacepta.LN.HistorialDocumentos.Listar;
 using Preacepta.Modelos.AbstraccionesFrond;
+using Preacepta.LN.BitacoraEventos.Crear;
 
 namespace Preacepta.UI.Controllers
 {
@@ -36,6 +37,7 @@ namespace Preacepta.UI.Controllers
         private readonly IListarHistorialLN _listarHistorialLN;
         private readonly IBuscarHistorialLN _buscarHistorialLN;
         private readonly IELiminarHistorialLN _eLiminarHistorialLN;
+        private readonly ICrearEventosLN _bitacoraLN;
 
         public DocsAutorizacionRevisionExpedientesController(IConverter converter,
             Contexto context,
@@ -49,7 +51,8 @@ namespace Preacepta.UI.Controllers
             ICrearHistorialLN crearHistorialLN,
             IListarHistorialLN listarHistorialLN,
             IBuscarHistorialLN buscarHistorialLN,
-            IELiminarHistorialLN eLiminarHistorialLN)
+            IELiminarHistorialLN eLiminarHistorialLN,
+            ICrearEventosLN bitacora)
         {
             _converter = converter;
             _context = context;
@@ -64,6 +67,7 @@ namespace Preacepta.UI.Controllers
             _listarHistorialLN = listarHistorialLN;
             _buscarHistorialLN = buscarHistorialLN;
             _eLiminarHistorialLN = eLiminarHistorialLN;
+            _bitacoraLN = bitacora;
         }
 
         /********************************************************/
@@ -280,6 +284,13 @@ namespace Preacepta.UI.Controllers
                 await _crear.Crear(tDocsAutorizacionRevisionExpediente);
                 var Registros = await _listar.listar();
                 var idDocumento = Registros.LastOrDefault();
+
+                // Registrar en bitácora
+                var usuario = User.Identity?.Name ?? "Desconocido";
+                var accion = $"Se creó autorización de revisión de expediente Doc.no.{idDocumento.IdDocumento} para el imputado {tDocsAutorizacionRevisionExpediente.CedulaImputado}";
+                await _bitacoraLN.RegistrarBitacoraAsync(usuario, "T_DocsAutorizacionRevisionExpediente", accion, idDocumento.IdDocumento);
+
+
                 HistorialDocumentoDTO historialDocumentoDTO = new HistorialDocumentoDTO
                 {
                     Cliente = tDocsAutorizacionRevisionExpediente.CedulaImputado,
@@ -291,6 +302,9 @@ namespace Preacepta.UI.Controllers
 
                 };
                 await _crearHistorialLN.Crear(historialDocumentoDTO);
+
+
+
                 return RedirectToAction("DocsHistorial", "THistorialDocumento1");
             }
             ViewBag.ClienteCedula = cliente.Cedula;

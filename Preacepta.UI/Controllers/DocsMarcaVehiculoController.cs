@@ -13,6 +13,7 @@ using Preacepta.LN.DocsMarcaVehiculo.Eliminar;
 using Preacepta.LN.DocsMarcaVehiculo.Listar;
 using Preacepta.Modelos.AbstraccionesBD;
 using Preacepta.Modelos.AbstraccionesFrond;
+using Preacepta.LN.BitacoraEventos.Crear;
 
 namespace Preacepta.UI.Controllers
 {
@@ -24,13 +25,15 @@ namespace Preacepta.UI.Controllers
         private readonly IEditarDocsMarcaVehiculoLN _editar;
         private readonly IEliminarDocsMarcaVehiculoLN _eliminar;
         private readonly IListarDocsMarcaVehiculoLN _listar;
+        private readonly ICrearEventosLN _bitacoraLN;
 
         public DocsMarcaVehiculoController(Contexto context,
             IBuscarDocsMarcaVehiculoLN buscar,
             ICrearDocsMarcaVehiculoLN crear,
             IEditarDocsMarcaVehiculoLN editar,
             IEliminarDocsMarcaVehiculoLN eliminar,
-            IListarDocsMarcaVehiculoLN listar)
+            IListarDocsMarcaVehiculoLN listar,
+            ICrearEventosLN bitacora)
         {
             _context = context;
             _buscar = buscar;
@@ -38,6 +41,7 @@ namespace Preacepta.UI.Controllers
             _editar = editar;
             _eliminar = eliminar;
             _listar = listar;
+            _bitacoraLN = bitacora;
         }
 
         // GET: DocsMarcaVehiculo
@@ -79,6 +83,15 @@ namespace Preacepta.UI.Controllers
             if (ModelState.IsValid)
             {
                 await _crear.Crear(tDocsMarcaVehiculo);
+
+                var usuario = User.Identity?.Name ?? "Desconocido";
+                var tituloCorto = tDocsMarcaVehiculo.Nombre.Length > 50
+                    ? tDocsMarcaVehiculo.Nombre.Substring(0, 47) + "..."
+                    : tDocsMarcaVehiculo.Nombre;
+                var accion = $"Se creó Marca de Vehículo '{tituloCorto}' con ID {tDocsMarcaVehiculo.Id}";
+                await _bitacoraLN.RegistrarBitacoraAsync(usuario, "T_DocsMarcaVehiculo", accion, tDocsMarcaVehiculo.Id);
+
+
                 return RedirectToAction(nameof(Index));
             }
             return View(tDocsMarcaVehiculo);
@@ -117,6 +130,14 @@ namespace Preacepta.UI.Controllers
                 try
                 {
                     await _editar.Editar(tDocsMarcaVehiculo);
+
+                    var usuario = User.Identity?.Name ?? "Desconocido";
+                    var tituloCorto = tDocsMarcaVehiculo.Nombre.Length > 50
+                        ? tDocsMarcaVehiculo.Nombre.Substring(0, 47) + "..."
+                        : tDocsMarcaVehiculo.Nombre;
+                    var accion = $"Se editó Marca de Vehículo '{tituloCorto}' con ID {id}";
+                    await _bitacoraLN.RegistrarBitacoraAsync(usuario, "T_DocsMarcaVehiculo", accion, id);
+
                 }
                 catch (DbUpdateConcurrencyException)
                 {

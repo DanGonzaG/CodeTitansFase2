@@ -23,6 +23,7 @@ using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using Preacepta.LN.BitacoraEventos.Crear;
 
 namespace Preacepta.UI.Controllers
 {
@@ -54,6 +55,8 @@ namespace Preacepta.UI.Controllers
         private readonly IListarCrDireccion1LN _listarDirecciones;
         private readonly IBuscarCrDireccion1LN _buscarDistrito;
 
+        private readonly ICrearEventosLN _bitacoraLN;
+
         public DocsOpcionCompraventaVehiculoesController(
             IConverter converter,
             Contexto context,
@@ -69,7 +72,8 @@ namespace Preacepta.UI.Controllers
             IListarDocsMarcaVehiculoLN listarMarcas,
             IListarTipoVehiculoLN listarTipos,
             IListarCrDireccion1LN listarDirecciones,
-            IBuscarCrDireccion1LN buscarDistrito
+            IBuscarCrDireccion1LN buscarDistrito,
+            ICrearEventosLN bitacora
         )
         {
             _converter = converter;
@@ -93,6 +97,7 @@ namespace Preacepta.UI.Controllers
             _listarDirecciones = listarDirecciones;
 
             _buscarDistrito = buscarDistrito;
+            _bitacoraLN = bitacora;
         }
 
         // ================= CRUD base =================
@@ -170,6 +175,16 @@ namespace Preacepta.UI.Controllers
                     Titulo = $"Doc.no.{ultimo.IdDocumento} Compraventa Vehículo"
                 };
                 await _crearHistorial.Crear(historial);
+
+                var usuario = User.Identity?.Name ?? "Desconocido";
+                var tituloCorto = $"{dto.MarcaVehiculo} {dto.ModeloVehiculo} {dto.PlacaVehiculo}";
+                if (tituloCorto.Length > 50)
+                    tituloCorto = tituloCorto.Substring(0, 47) + "...";
+
+                var accion = $"Se creó documento '{tituloCorto}' con ID {ultimo.IdDocumento}";
+                await _bitacoraLN.RegistrarBitacoraAsync(usuario, "T_DocsOpcionCompraventaVehiculo", accion, ultimo.IdDocumento);
+
+
             }
 
             return RedirectToAction(nameof(Index));
@@ -219,6 +234,14 @@ namespace Preacepta.UI.Controllers
             }
 
             await _editar.editar(dto);
+
+            var usuario = User.Identity?.Name ?? "Desconocido";
+            var tituloCorto = $"{dto.MarcaVehiculo} {dto.ModeloVehiculo} {dto.PlacaVehiculo}";
+            if (tituloCorto.Length > 50)
+                tituloCorto = tituloCorto.Substring(0, 47) + "...";
+            var accion = $"Se editó Opción Compraventa Vehículo '{tituloCorto}' con ID {id}";
+            await _bitacoraLN.RegistrarBitacoraAsync(usuario, "T_DocsOpcionCompraventaVehiculo", accion, id);
+
             return RedirectToAction(nameof(Index));
         }
 
@@ -349,7 +372,16 @@ namespace Preacepta.UI.Controllers
                     Titulo = $"Doc.no.{ultimo.IdDocumento} Compraventa Vehículo"
                 };
                 await _crearHistorial.Crear(historial);
-            }
+
+                var usuario = User.Identity?.Name ?? "Desconocido";
+                var tituloCorto = $"{dto.MarcaVehiculo} {dto.ModeloVehiculo} {dto.PlacaVehiculo}";
+                if (tituloCorto.Length > 50)
+                    tituloCorto = tituloCorto.Substring(0, 47) + "...";
+
+                var accion = $"Se creó documento '{tituloCorto}' con ID {ultimo.IdDocumento}";
+                await _bitacoraLN.RegistrarBitacoraAsync(usuario, "T_DocsOpcionCompraventaVehiculo", accion, ultimo.IdDocumento);
+            
+        }
 
             return RedirectToAction("DocsHistorial", "THistorialDocumento1");
         }
