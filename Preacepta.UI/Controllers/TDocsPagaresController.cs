@@ -18,6 +18,7 @@ using Preacepta.LN.HistorialDocumentos.Listar;
 using Preacepta.Modelos.AbstraccionesFrond;
 using System;
 using System.Globalization;
+using Preacepta.LN.BitacoraEventos.Crear;
 
 namespace Preacepta.UI.Controllers
 {
@@ -45,6 +46,8 @@ namespace Preacepta.UI.Controllers
         private readonly IListarCrDireccion1LN _listarDirecciones;
         private readonly IBuscarCrDireccion1LN _buscarDistrito;
 
+        private readonly ICrearEventosLN _bitacoraLN;
+
         public TDocsPagaresController(
             IConverter converter,
             IBuscarPagareLN buscar,
@@ -58,7 +61,8 @@ namespace Preacepta.UI.Controllers
             IBuscarHistorialLN buscarHistorialLN,
             IELiminarHistorialLN eliminarHistorialLN,
             IListarCrDireccion1LN listarDirecciones,
-            IBuscarCrDireccion1LN buscarDistrito
+            IBuscarCrDireccion1LN buscarDistrito,
+            ICrearEventosLN bitacora
         )
         {
             _converter = converter;
@@ -79,6 +83,7 @@ namespace Preacepta.UI.Controllers
             _listarDirecciones = listarDirecciones;
 
             _buscarDistrito = buscarDistrito;
+            _bitacoraLN = bitacora;
         }
 
         /********************************************************/
@@ -146,7 +151,13 @@ namespace Preacepta.UI.Controllers
                     IdDocumento = ultimo.IdDocumento,
                     Titulo = $"Doc.no.{ultimo.IdDocumento} Pagaré"
                 };
+
                 await _crearHistorialLN.Crear(hist);
+
+                var usuario = User.Identity?.Name ?? "Desconocido";
+                var tituloCorto = $"Pagaré {dto.CedulaDeudor}";
+                var accion = $"Se creó documento '{tituloCorto}' con ID {ultimo.IdDocumento}";
+                await _bitacoraLN.RegistrarBitacoraAsync(usuario, "T_DocsPagare", accion, ultimo.IdDocumento);
             }
 
             return RedirectToAction(nameof(Index));
@@ -180,6 +191,13 @@ namespace Preacepta.UI.Controllers
             if (!ModelState.IsValid) return View(dto);
 
             await _editar.editar(dto);
+
+            var usuario = User.Identity?.Name ?? "Desconocido";
+            var tituloCorto = $"Pagaré {dto.CedulaDeudor}";
+            var accion = $"Se editó documento '{tituloCorto}' con ID {dto.IdDocumento}";
+            await _bitacoraLN.RegistrarBitacoraAsync(usuario, "T_DocsPagare", accion, dto.IdDocumento);
+
+
             return RedirectToAction(nameof(Index));
         }
         #endregion
@@ -298,7 +316,13 @@ namespace Preacepta.UI.Controllers
                     Titulo = $"Doc.no.{ultimo.IdDocumento} Pagaré"
                 };
                 await _crearHistorialLN.Crear(historial);
-            }
+
+                var usuario = User.Identity?.Name ?? "Desconocido";
+                var tituloCorto = $"Pagaré {dto.CedulaDeudor}";
+                var accion = $"Se creó documento '{tituloCorto}' con ID {ultimo.IdDocumento}";
+                await _bitacoraLN.RegistrarBitacoraAsync(usuario, "T_DocsPagare", accion, ultimo.IdDocumento);
+            
+        }
 
             return RedirectToAction("DocsHistorial", "THistorialDocumento1");
         }

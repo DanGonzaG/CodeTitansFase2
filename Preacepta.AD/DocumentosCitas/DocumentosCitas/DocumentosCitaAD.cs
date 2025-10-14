@@ -85,5 +85,29 @@ namespace Preacepta.AD.DocumentosCitas.DocumentosCitas
 
             return true;
         }
+
+        public async Task RegistrarBitacoraAsync(TBitacoraEventos evento)
+        {
+            _contexto.TBitacoraEventos.Add(evento);
+            await _contexto.SaveChangesAsync();
+        }
+
+
+        public async Task InsertarAsync(TDocumentosCita documento)
+        {
+            _contexto.TDocumentosCita.Add(documento);
+            await _contexto.SaveChangesAsync();
+        }
+
+        public async Task ActualizarBatchAsync(List<TDocumentosCita> documentos)
+        {
+            if (documentos == null || !documentos.Any())
+                return;
+
+            _contexto.TDocumentosCita.UpdateRange(documentos);
+            await _contexto.SaveChangesAsync();
+        }
+       
+
     }
 }

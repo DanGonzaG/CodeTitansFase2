@@ -1,0 +1,17 @@
+﻿using Preacepta.Modelos.AbstraccionesBD;
+using Preacepta.Modelos.AbstraccionesFrond;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Preacepta.LN.BitacoraEventos.Crear
+{
+    public interface ICrearEventosLN
+    {
+        Task<int> CrearEvento(TBitacoraEventos evento);
+        Task RegistrarBitacoraAsync(string usuario, string tabla, string accion, int idRegistro, string? stackError = null);
+
+    }
+}

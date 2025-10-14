@@ -19,6 +19,7 @@ using Preacepta.LN.GePersona.BuscarXid;
 using Preacepta.LN.GePersona.ObtenerDatos;
 using Preacepta.LN.GeAbogado.BuscarXid;
 using Preacepta.LN.Videollamada;
+using Preacepta.LN.BitacoraEventos.Crear;
 
 namespace Praecepta.UI.Controllers
 {
@@ -36,6 +37,7 @@ namespace Praecepta.UI.Controllers
         private readonly IObtenerDatosLN _obtenerDatosLN;
         private readonly IBuscarAbogadoLN _buscarAbogadoLN;
         private readonly UserManager<IdentityUser> _userManager;
+        private readonly ICrearEventosLN _bitacoraLN;
 
 
         public CitasController(
@@ -49,7 +51,8 @@ namespace Praecepta.UI.Controllers
             IBuscarXidGePersonaLN buscarXidGePersonaLN,
             IObtenerDatosLN obtenerDatosLN,
             IBuscarAbogadoLN buscarAbogadoLN,
-            UserManager<IdentityUser> userManager)
+            UserManager<IdentityUser> userManager,
+            ICrearEventosLN bitacoraLN)
         {
             _userManager = userManager;
             _listarCitasLN = listarCitasLN;
@@ -62,6 +65,7 @@ namespace Praecepta.UI.Controllers
             _buscarXidGePersonaLN = buscarXidGePersonaLN;
             _obtenerDatosLN = obtenerDatosLN;
             _buscarAbogadoLN = buscarAbogadoLN;
+            _bitacoraLN = bitacoraLN;
         }
 
         //GET: Citas/Create
@@ -162,7 +166,12 @@ namespace Praecepta.UI.Controllers
                         errors = new List<string> { "No se pudo crear la cita. Verifique los datos." }
                     });
                 }
-               
+
+                var usuario = User.Identity?.Name ?? "Desconocido";
+                var accion = $"Se creó la cita {idCita} para el cliente {citaDTO.IdCliente}";
+                await _bitacoraLN.RegistrarBitacoraAsync(usuario, "T_Citas", accion, idCita);
+
+
                 // Enviar correo al cliente
                 var cliente = await _buscarXidGePersonaLN.buscar(citaDTO.IdCliente.Value);
                 var abogadoPersona = await _buscarXidGePersonaLN.buscar(citaDTO.Anfitrion);
@@ -443,6 +452,11 @@ namespace Praecepta.UI.Controllers
                     if (estadoAnterior != 1 && cita.Estado == 1)
                     {
                         await EnviarCorreoAlTerminarCita(cita);
+
+                        var usuario = User.Identity?.Name ?? "Desconocido";
+                        var accion = $"Se modificó la cita {cita.IdCita}";
+                        await _bitacoraLN.RegistrarBitacoraAsync(usuario, "T_Citas", accion, cita.IdCita);
+
                     }
                 }
                 if (Request.Headers["X-Requested-With"] == "XMLHttpRequest")
@@ -695,8 +709,6 @@ namespace Praecepta.UI.Controllers
             return Ok(new { success = true, message = "Cita marcada como terminada y correo enviado." });
         }
 
-
-
         public class CambiarEstadoRequest
         {
             public int IdCita { get; set; }
@@ -790,31 +802,30 @@ namespace Praecepta.UI.Controllers
         }
 
         [HttpPost]
-public async Task<IActionResult> CambiarEstadoEnviarCorreo([FromBody] dynamic payload)
-{
-    try
-    {
-        int idCita = (int)payload.idCita;
-        int nuevoEstado = (int)payload.nuevoEstado;
+        public async Task<IActionResult> CambiarEstadoEnviarCorreo([FromBody] dynamic payload)
+        {
+             try
+                {
+                  int idCita = (int)payload.idCita;
+                  int nuevoEstado = (int)payload.nuevoEstado;
 
-       
-        var cita = await _listarCitasLN.ObtenerPorId(idCita);
-        if (cita == null)
-            return Json(new { success = false, message = "Cita no encontrada" });
+                  var cita = await _listarCitasLN.ObtenerPorId(idCita);
+                    if (cita == null)
+                    return Json(new { success = false, message = "Cita no encontrada" });
 
-        cita.Estado = nuevoEstado;
-        await _editarCitasLN.editar(cita);
+                    cita.Estado = nuevoEstado;
+                    await _editarCitasLN.editar(cita);
 
-        if (nuevoEstado == 1) 
-            await EnviarCorreoAlTerminarCita(cita);
+                    if (nuevoEstado == 1) 
+                        await EnviarCorreoAlTerminarCita(cita);
 
-        return Json(new { success = true });
-    }
-    catch (Exception ex)
-    {
-        return Json(new { success = false, message = ex.Message });
-    }
-}
+                    return Json(new { success = true });
+                    }
+                catch (Exception ex)
+                {
+                    return Json(new { success = false, message = ex.Message });
+             }
+        }
 
 
     }

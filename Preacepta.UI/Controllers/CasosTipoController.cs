@@ -8,6 +8,8 @@ using Preacepta.LN.CasosTipo.Editar;
 using Preacepta.LN.CasosTipo.Eliminar;
 using Preacepta.LN.CasosTipo.Listar;
 using Preacepta.Modelos.AbstraccionesFrond;
+using Preacepta.LN.BitacoraEventos.Crear;
+using Preacepta.Modelos.AbstraccionesBD;
 
 namespace Preacepta.UI.Controllers
 {
@@ -20,13 +22,15 @@ namespace Preacepta.UI.Controllers
         private readonly IEditarCasosTiposLN _editar;
         private readonly IEliminarCasosTipoLN _eliminar;
         private readonly IListarCasosTipoLN _listar;
+        private readonly ICrearEventosLN _bitacoraLN;
 
         public CasosTipoController(Contexto context,
             IBuscarCasosTiposLN buscar,
             ICrearCasosTiposLN crear,
             IEditarCasosTiposLN editar,
             IEliminarCasosTipoLN eliminar,
-            IListarCasosTipoLN listar)
+            IListarCasosTipoLN listar,
+            ICrearEventosLN bitacoraLN)
         {
             _context = context;
             _buscar = buscar;
@@ -34,6 +38,7 @@ namespace Preacepta.UI.Controllers
             _editar = editar;
             _eliminar = eliminar;
             _listar = listar;
+            _bitacoraLN = bitacoraLN;
         }
 
         /********************************************************************************************************************************************************************/
@@ -84,6 +89,15 @@ namespace Preacepta.UI.Controllers
             if (ModelState.IsValid)
             {
                 await _crear.Crear(tCasosTipo);
+
+                var usuario = User.Identity?.Name ?? "Desconocido";
+                var tituloCorto = tCasosTipo.Nombre.Length > 50
+                    ? tCasosTipo.Nombre.Substring(0, 47) + "..."
+                    : tCasosTipo.Nombre;
+                var accion = $"Se creó '{tituloCorto}' del caso {tCasosTipo.IdTipoCaso}";
+                await _bitacoraLN.RegistrarBitacoraAsync(usuario, "T_CasosEvidencia", accion, tCasosTipo.IdTipoCaso);
+
+
                 return RedirectToAction(nameof(Index));
             }
             return View(tCasosTipo);
@@ -124,6 +138,14 @@ namespace Preacepta.UI.Controllers
                 try
                 {
                     await _editar.Editar(tCasosTipo);
+
+                    var usuario = User.Identity?.Name ?? "Desconocido";
+                    var titulo = tCasosTipo.Nombre.Length > 50
+                        ? tCasosTipo.Nombre.Substring(0, 47) + "..."
+                        : tCasosTipo.Nombre;
+                    var accion = $"Se editó '{titulo}' del caso {tCasosTipo.IdTipoCaso}";
+                    await _bitacoraLN.RegistrarBitacoraAsync(usuario, "T_CasosEvidencia", accion, tCasosTipo.IdTipoCaso);
+
                 }
                 catch (DbUpdateConcurrencyException)
                 {

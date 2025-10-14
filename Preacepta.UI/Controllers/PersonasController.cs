@@ -9,6 +9,7 @@ using Preacepta.LN.GePersona.Editar;
 using Preacepta.LN.GePersona.Eliminar;
 using Preacepta.LN.GePersona.Listar;
 using Preacepta.Modelos.AbstraccionesFrond;
+using Preacepta.LN.BitacoraEventos.Crear;
 
 namespace Preacepta.UI.Controllers
 {
@@ -22,14 +23,15 @@ namespace Preacepta.UI.Controllers
         private readonly IEditarGePersonaLN _editarPersona;
         private readonly IEliminarPersonaLN _eliminarPersona;
         private readonly IListarCrDireccion1LN _listarDireccion;
-
+        private readonly ICrearEventosLN _bitacoraLN;
 
         public PersonasController(IListarGePersonaLN listarGePersonaLN,
             IBuscarXidGePersonaLN buscarXidGePersonaLN,
             ICrearGePersonaLN crearGePersonaLN,
             IEditarGePersonaLN editarGePersonaLN,
             IEliminarPersonaLN eliminarPersonaLN,
-            IListarCrDireccion1LN listarDireccion)
+            IListarCrDireccion1LN listarDireccion,
+            ICrearEventosLN bitacora)
         {
             _listarPersona = listarGePersonaLN;
             _buscarPersona = buscarXidGePersonaLN;
@@ -37,6 +39,7 @@ namespace Preacepta.UI.Controllers
             _editarPersona = editarGePersonaLN;
             _eliminarPersona = eliminarPersonaLN;
             _listarDireccion = listarDireccion;
+            _bitacoraLN = bitacora;
         }
 
 
@@ -81,6 +84,25 @@ namespace Preacepta.UI.Controllers
                 var existe = await _buscarPersona.buscar(tGePersona.Cedula);
                 if (existe != null)//valida si hay un cedula igual registrada
                 {
+
+                    var correo = await _buscarPersona.buscarXcorreo(tGePersona.Email);
+                    if (correo == null)//valida si hay un correo igual registrado
+                    {
+                        await _crearPesona.crear(tGePersona);//llamado de los LN y AD para crear la persona
+
+                        // Registrar evento en la bitácora
+                        var usuario = User.Identity?.Name ?? "Desconocido";
+                        var nombreCompleto = $"{tGePersona.Nombre} {tGePersona.Apellido1} {tGePersona.Apellido2}".Trim();
+                        var descripcion = $"Se creó una nueva persona: {nombreCompleto} (Cédula: {tGePersona.Cedula}, Email: {tGePersona.Email})";
+
+                        await _bitacoraLN.RegistrarBitacoraAsync(usuario, "Creación de persona", descripcion, tGePersona.Cedula);
+
+
+                        TempData["PersonaCreada"] = "Se ha creado un nuevo usuario en el sistema";
+                        return RedirectToAction("UsuarioAutenticado", "Home", new { correo = User.Identity.Name });
+                    }
+                    else
+
                     ViewData["Direccion1"] = new SelectList(_listarDireccion.listarDistritos().Result, "IdDistrito", "NombreDistrito", tGePersona.Direccion1);
 
                     ViewBag.EstadoCivil = new List<SelectListItem>
@@ -302,6 +324,14 @@ namespace Preacepta.UI.Controllers
                 /*_context.Add(tGePersona);
                 await _context.SaveChangesAsync();*/
                 await _crearPesona.crear(tGePersona);
+
+                // Registrar evento en la bitácora
+                var usuario = User.Identity?.Name ?? "Desconocido";
+                var nombreCompleto = $"{tGePersona.Nombre} {tGePersona.Apellido1} {tGePersona.Apellido2}".Trim();
+                var descripcion = $"Se creó una nueva persona: {nombreCompleto} (Cédula: {tGePersona.Cedula}, Email: {tGePersona.Email})";
+
+                await _bitacoraLN.RegistrarBitacoraAsync(usuario, "Creación de persona", descripcion, tGePersona.Cedula);
+
                 return RedirectToAction(nameof(Index));
             }
             ViewData["Direccion1"] = new SelectList(_listarDireccion.listarDistritos().Result, "IdDistrito", "NombreDistrito", tGePersona.Direccion1);
@@ -371,6 +401,14 @@ namespace Preacepta.UI.Controllers
                 try
                 {
                     await _editarPersona.editar(tGePersona);
+
+                    // Registrar evento en bitácora
+                    var usuario = User.Identity?.Name ?? "Desconocido";
+                    var nombreCompleto = $"{tGePersona.Nombre} {tGePersona.Apellido1} {tGePersona.Apellido2}".Trim();
+                    var descripcion = $"El usuario {usuario} actualizó los datos de la persona {nombreCompleto} (Cédula: {tGePersona.Cedula}).";
+
+                    await _bitacoraLN.RegistrarBitacoraAsync(usuario, "Edición de persona", descripcion, tGePersona.Cedula);
+
                 }
                 catch (DbUpdateConcurrencyException)
                 {
