@@ -93,3 +93,23 @@
 }
     </tbody>
 </table>
+
+@if (TempData["ErrorElimanacion"] != null)
+
+
+
+{
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            Swal.fire({
+                title: 'Sistema de usuarios',
+                text: '@TempData["ErrorElimanacion"]',
+                icon: 'error',
+                confirmButtonText: 'Continuar',
+                customClass: {
+                    confirmButton: 'contact-btn--secundario' // Clase CSS personalizada
+                }
+            });
+        });
+    </script>
+}

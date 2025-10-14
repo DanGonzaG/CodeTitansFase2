@@ -15,9 +15,11 @@ using Preacepta.LN.CasosEtapa.Editar;
 using Preacepta.LN.CasosEtapa.Eliminar;
 using Preacepta.LN.CasosEtapa.Listar;
 using Preacepta.LN.GeAbogado.BuscarXid;
+using Preacepta.LN.GePersona.BuscarXid;
 using Preacepta.Modelos.AbstraccionesBD;
 using Preacepta.Modelos.AbstraccionesFrond;
 using System.Runtime.InteropServices;
+using System.Security.Claims;
 
 namespace Preacepta.UI.Controllers
 {
@@ -37,6 +39,9 @@ namespace Preacepta.UI.Controllers
 
         private readonly ICrearEventosLN _bitacoraLN;
 
+        private readonly IBuscarXidGePersonaLN _buscarAbogadoLN;
+
+
         public CasosEtapaController(IBuscarCasosEtapasLN buscar,
             ICrearCasosEtapasLN crear,
             IEditarCasosEtapasLN editar,
@@ -47,7 +52,9 @@ namespace Preacepta.UI.Controllers
             IEditarCasosLN editarCaso,
             ICrearEventosLN bitacora,
 
-            IConverter converter)
+            IConverter converter,
+
+            IBuscarXidGePersonaLN buscarAbogadoLN)
         {
             _buscar = buscar;
             _crear = crear;
@@ -60,7 +67,12 @@ namespace Preacepta.UI.Controllers
 
             _converter = converter;
 
+
             _bitacoraLN = bitacora;
+
+            _buscarAbogadoLN = buscarAbogadoLN;
+
+
         }
 
 
@@ -70,14 +82,34 @@ namespace Preacepta.UI.Controllers
         /********************************************************************************************************************************************************************/
 
 
+
         #region Listado de etapas filtrado por caso
+        
         [Authorize(Roles = "Gestor, Abogado, Cliente")]
         public async Task<IActionResult> EtapasPL(int id)
         {
-            //var contexto = _context.TCasosEtapas.Include(t => t.IdCasoNavigation);
-            //return View(await _listar.listarXcaso(id));
 
+            var userId = User.Identity.Name;
+
+            var idAbogado = await _buscarAbogadoLN.buscarXcorreo(userId);
             var Caso = await _buscarCaso.buscar(id);
+
+            if (User.IsInRole("Abogado")) 
+            {
+                if (Caso.IdAbogado != idAbogado.Cedula)
+                {
+                    return Forbid();
+                }
+
+            } else if (User.IsInRole("Cliente"))
+            {
+                if (Caso.IdCliente != idAbogado.Cedula)
+                {
+                    return Forbid();
+                }
+
+            }
+
 
             var EtapaCaso = await _listar.listarXcaso(id);
 

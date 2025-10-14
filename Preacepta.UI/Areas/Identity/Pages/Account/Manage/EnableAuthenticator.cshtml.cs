@@ -5,6 +5,7 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Preacepta.UI.Services;
 using System.ComponentModel.DataAnnotations;
 using System.Globalization;
 using System.Text;
@@ -17,18 +18,25 @@ namespace Praecepta.UI.Areas.Identity.Pages.Account.Manage
         private readonly UserManager<IdentityUser> _userManager;
         private readonly ILogger<EnableAuthenticatorModel> _logger;
         private readonly UrlEncoder _urlEncoder;
+        private readonly IQrCodeService _qrCodeService;
+
 
         private const string AuthenticatorUriFormat = "otpauth://totp/{0}:{1}?secret={2}&issuer={0}&digits=6";
 
         public EnableAuthenticatorModel(
             UserManager<IdentityUser> userManager,
             ILogger<EnableAuthenticatorModel> logger,
-            UrlEncoder urlEncoder)
+            UrlEncoder urlEncoder,
+            IQrCodeService qrCodeService)
         {
             _userManager = userManager;
             _logger = logger;
             _urlEncoder = urlEncoder;
+            _qrCodeService = qrCodeService;
         }
+
+        public string QrCodeImage { get; set; }
+
 
         /// <summary>
         ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
@@ -138,7 +146,7 @@ namespace Praecepta.UI.Areas.Identity.Pages.Account.Manage
             }
         }
 
-        private async Task LoadSharedKeyAndQrCodeUriAsync(IdentityUser user)
+        /*private async Task LoadSharedKeyAndQrCodeUriAsync(IdentityUser user)
         {
             // Load the authenticator key & QR code URI to display on the form
             var unformattedKey = await _userManager.GetAuthenticatorKeyAsync(user);
@@ -152,6 +160,23 @@ namespace Praecepta.UI.Areas.Identity.Pages.Account.Manage
 
             var email = await _userManager.GetEmailAsync(user);
             AuthenticatorUri = GenerateQrCodeUri(email, unformattedKey);
+        }*/
+
+        private async Task LoadSharedKeyAndQrCodeUriAsync(IdentityUser user)
+        {
+            var unformattedKey = await _userManager.GetAuthenticatorKeyAsync(user);
+            if (string.IsNullOrEmpty(unformattedKey))
+            {
+                await _userManager.ResetAuthenticatorKeyAsync(user);
+                unformattedKey = await _userManager.GetAuthenticatorKeyAsync(user);
+            }
+
+            SharedKey = FormatKey(unformattedKey);
+
+            var email = await _userManager.GetEmailAsync(user);
+            AuthenticatorUri = GenerateQrCodeUri(email, unformattedKey);
+
+            QrCodeImage = _qrCodeService.GenerarQr(AuthenticatorUri);
         }
 
         private string FormatKey(string unformattedKey)

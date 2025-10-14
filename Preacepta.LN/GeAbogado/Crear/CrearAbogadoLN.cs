@@ -60,11 +60,11 @@ namespace Preacepta.LN.GeAbogado.Crear
             try
             {
                 //Creacion de usuario en tabal user
-                var user = CreateUser();
-                await _userStore.SetUserNameAsync(user, crear.personaDTO.Email, CancellationToken.None);
-                await _emailStore.SetEmailAsync(user, crear.personaDTO.Email, CancellationToken.None);
-                var result = await _userManager.CreateAsync(user, crear.personaDTO.Password);
-                await _userManager.AddToRoleAsync(user, "Abogado");
+                //var user = CreateUser();
+                //await _userStore.SetUserNameAsync(user, crear.personaDTO.Email, CancellationToken.None);
+                //await _emailStore.SetEmailAsync(user, crear.personaDTO.Email, CancellationToken.None);
+                //var result = await _userManager.CreateAsync(user, crear.personaDTO.Password);
+                //await _userManager.AddToRoleAsync(user, "Abogado");
 
                 //Creacion de persona en tabal TGePersona
                 await _crearGePersonaLN.crear(_obtenerDatosPersonaLN.ObtenerDeFrontCrear(crear.personaDTO));

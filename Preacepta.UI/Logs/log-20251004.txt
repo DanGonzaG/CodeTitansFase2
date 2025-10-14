@@ -1,0 +1,184 @@
+2025-10-04 13:34:45.792 -06:00 [INF] Executed DbCommand (44ms) [Parameters=[@__normalizedName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[ConcurrencyStamp], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[NormalizedName] = @__normalizedName_0
+2025-10-04 13:34:45.866 -06:00 [INF] Executed DbCommand (3ms) [Parameters=[@__normalizedName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[ConcurrencyStamp], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[NormalizedName] = @__normalizedName_0
+2025-10-04 13:34:45.869 -06:00 [INF] Executed DbCommand (1ms) [Parameters=[@__normalizedName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[ConcurrencyStamp], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[NormalizedName] = @__normalizedName_0
+2025-10-04 13:34:45.913 -06:00 [INF] Executed DbCommand (1ms) [Parameters=[@__normalizedName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[ConcurrencyStamp], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[NormalizedName] = @__normalizedName_0
+2025-10-04 13:34:45.929 -06:00 [INF] Executed DbCommand (5ms) [Parameters=[@__normalizedEmail_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(2) [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[NormalizedEmail] = @__normalizedEmail_0
+2025-10-04 13:34:46.538 -06:00 [INF] Now listening on: https://localhost:7065
+2025-10-04 13:34:46.538 -06:00 [INF] Now listening on: http://localhost:5282
+2025-10-04 13:34:46.584 -06:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-10-04 13:34:46.584 -06:00 [INF] Hosting environment: Development
+2025-10-04 13:34:46.584 -06:00 [INF] Content root path: C:\Preacepta\Preacepta.UI
+2025-10-04 13:34:48.681 -06:00 [INF] Request starting HTTP/2 GET https://localhost:7065/ - null null
+2025-10-04 13:34:48.805 -06:00 [INF] Executing endpoint 'Praecepta.UI.Controllers.HomeController.Index (Preacepta.UI)'
+2025-10-04 13:34:48.818 -06:00 [INF] Route matched with {action = "Index", controller = "Home", area = "", page = ""}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Index() on controller Praecepta.UI.Controllers.HomeController (Preacepta.UI).
+2025-10-04 13:34:48.839 -06:00 [INF] Executing ViewResult, running view Index.
+2025-10-04 13:34:48.931 -06:00 [INF] Request starting HTTP/2 GET https://localhost:7065/lyso/css/meanmenu.css - null null
+2025-10-04 13:34:48.931 -06:00 [INF] Request starting HTTP/2 GET https://localhost:7065/lyso/css/icofont.min.css - null null
+2025-10-04 13:34:48.931 -06:00 [INF] Request starting HTTP/2 GET https://localhost:7065/lyso/css/bootstrap.min.css - null null
+2025-10-04 13:34:48.931 -06:00 [INF] Request starting HTTP/2 GET https://localhost:7065/lyso/css/magnific-popup.min.css - null null
+2025-10-04 13:34:48.931 -06:00 [INF] Request starting HTTP/2 GET https://localhost:7065/lyso/css/nice-select.min.css - null null
+2025-10-04 13:34:48.936 -06:00 [INF] Request starting HTTP/2 GET https://localhost:7065/lyso/fonts/flaticon.css - null null
+2025-10-04 13:34:48.940 -06:00 [INF] Executed ViewResult - view Index executed in 94.3391ms.
+2025-10-04 13:34:48.941 -06:00 [INF] Request starting HTTP/2 GET https://localhost:7065/lyso/css/owl.carousel.min.css - null null
+2025-10-04 13:34:48.945 -06:00 [INF] Request starting HTTP/2 GET https://localhost:7065/lyso/css/owl.theme.default.min.css - null null
+2025-10-04 13:34:48.950 -06:00 [INF] The file /lyso/css/meanmenu.css was not modified
+2025-10-04 13:34:48.950 -06:00 [INF] The file /lyso/css/owl.theme.default.min.css was not modified
+2025-10-04 13:34:48.950 -06:00 [INF] The file /lyso/fonts/flaticon.css was not modified
+2025-10-04 13:34:48.950 -06:00 [INF] Request starting HTTP/2 GET https://localhost:7065/lyso/css/animate.min.css - null null
+2025-10-04 13:34:48.950 -06:00 [INF] The file /lyso/css/magnific-popup.min.css was not modified
+2025-10-04 13:34:48.950 -06:00 [INF] The file /lyso/css/owl.carousel.min.css was not modified
+2025-10-04 13:34:48.952 -06:00 [INF] The file /lyso/css/animate.min.css was not modified
+2025-10-04 13:34:48.952 -06:00 [INF] The file /lyso/css/icofont.min.css was not modified
+2025-10-04 13:34:48.952 -06:00 [INF] The file /lyso/css/bootstrap.min.css was not modified
+2025-10-04 13:34:48.952 -06:00 [INF] The file /lyso/css/nice-select.min.css was not modified
+2025-10-04 13:34:48.953 -06:00 [INF] Request starting HTTP/2 GET https://localhost:7065/lyso/css/odometer.min.css - null null
+2025-10-04 13:34:48.953 -06:00 [INF] The file /lyso/css/odometer.min.css was not modified
+2025-10-04 13:34:48.954 -06:00 [INF] Request starting HTTP/2 GET https://localhost:7065/lyso/css/responsive.css - null null
+2025-10-04 13:34:48.954 -06:00 [INF] The file /lyso/css/responsive.css was not modified
+2025-10-04 13:34:48.958 -06:00 [INF] Request finished HTTP/2 GET https://localhost:7065/lyso/css/owl.carousel.min.css - 304 null text/css 13.8228ms
+2025-10-04 13:34:48.958 -06:00 [INF] Request finished HTTP/2 GET https://localhost:7065/lyso/css/responsive.css - 304 null text/css 1.032ms
+2025-10-04 13:34:48.958 -06:00 [INF] Request finished HTTP/2 GET https://localhost:7065/lyso/css/nice-select.min.css - 304 null text/css 23.0667ms
+2025-10-04 13:34:48.958 -06:00 [INF] Request finished HTTP/2 GET https://localhost:7065/lyso/css/icofont.min.css - 304 null text/css 23.9307ms
+2025-10-04 13:34:48.958 -06:00 [INF] Request finished HTTP/2 GET https://localhost:7065/lyso/css/magnific-popup.min.css - 304 null text/css 22.9827ms
+2025-10-04 13:34:48.958 -06:00 [INF] Request finished HTTP/2 GET https://localhost:7065/lyso/css/meanmenu.css - 304 null text/css 23.996ms
+2025-10-04 13:34:48.958 -06:00 [INF] Request finished HTTP/2 GET https://localhost:7065/lyso/css/odometer.min.css - 304 null text/css 2.0853ms
+2025-10-04 13:34:48.958 -06:00 [INF] Request finished HTTP/2 GET https://localhost:7065/lyso/fonts/flaticon.css - 304 null text/css 18.261ms
+2025-10-04 13:34:48.958 -06:00 [INF] Request starting HTTP/2 GET https://localhost:7065/lyso/img/PraeceptaLogoCortado.png - null null
+2025-10-04 13:34:48.958 -06:00 [INF] Request finished HTTP/2 GET https://localhost:7065/lyso/css/owl.theme.default.min.css - 304 null text/css 9.7525ms
+2025-10-04 13:34:48.958 -06:00 [INF] Request finished HTTP/2 GET https://localhost:7065/lyso/css/bootstrap.min.css - 304 null text/css 24.0229ms
+2025-10-04 13:34:48.958 -06:00 [INF] Request finished HTTP/2 GET https://localhost:7065/lyso/css/animate.min.css - 304 null text/css 5.3069ms
+2025-10-04 13:34:48.958 -06:00 [INF] Request starting HTTP/2 GET https://localhost:7065/lyso/css/theme-dark.css - null null
+2025-10-04 13:34:48.959 -06:00 [INF] The file /lyso/img/PraeceptaLogoCortado.png was not modified
+2025-10-04 13:34:48.959 -06:00 [INF] The file /lyso/css/theme-dark.css was not modified
+2025-10-04 13:34:48.959 -06:00 [INF] Request finished HTTP/2 GET https://localhost:7065/lyso/css/theme-dark.css - 304 null text/css 0.9967ms
+2025-10-04 13:34:48.959 -06:00 [INF] Request finished HTTP/2 GET https://localhost:7065/lyso/img/PraeceptaLogoCortado.png - 304 null image/png 0.9747ms
+2025-10-04 13:34:48.959 -06:00 [INF] Executed action Praecepta.UI.Controllers.HomeController.Index (Preacepta.UI) in 140.9589ms
+2025-10-04 13:34:48.963 -06:00 [INF] Executed endpoint 'Praecepta.UI.Controllers.HomeController.Index (Preacepta.UI)'
+2025-10-04 13:34:48.965 -06:00 [INF] Request starting HTTP/2 GET https://localhost:7065/lyso/img/home-one/nara3.png - null null
+2025-10-04 13:34:48.965 -06:00 [INF] Request starting HTTP/2 GET https://localhost:7065/_framework/aspnetcore-browser-refresh.js - null null
+2025-10-04 13:34:48.965 -06:00 [INF] Request starting HTTP/2 GET https://localhost:7065/lyso/img/home-one/team/nara.jpeg - null null
+2025-10-04 13:34:48.965 -06:00 [INF] Request starting HTTP/2 GET https://localhost:7065/lyso/js/form-validator.min.js - null null
+2025-10-04 13:34:48.965 -06:00 [INF] Request starting HTTP/2 GET https://localhost:7065/lyso/js/jquery.meanmenu.js - null null
+2025-10-04 13:34:48.965 -06:00 [INF] Request starting HTTP/2 GET https://localhost:7065/lyso/js/jquery.min.js - null null
+2025-10-04 13:34:48.965 -06:00 [INF] Request starting HTTP/2 GET https://localhost:7065/lyso/js/jquery.ajaxchimp.min.js - null null
+2025-10-04 13:34:48.966 -06:00 [INF] The file /lyso/img/home-one/nara3.png was not modified
+2025-10-04 13:34:48.966 -06:00 [INF] The file /lyso/js/jquery.min.js was not modified
+2025-10-04 13:34:48.966 -06:00 [INF] The file /lyso/js/jquery.meanmenu.js was not modified
+2025-10-04 13:34:48.966 -06:00 [INF] Request starting HTTP/2 GET https://localhost:7065/lyso/js/owl.carousel.min.js - null null
+2025-10-04 13:34:48.966 -06:00 [INF] Request finished HTTP/2 GET https://localhost:7065/lyso/js/jquery.min.js - 304 null text/javascript 0.6821ms
+2025-10-04 13:34:48.966 -06:00 [INF] The file /lyso/js/jquery.ajaxchimp.min.js was not modified
+2025-10-04 13:34:48.966 -06:00 [INF] Request finished HTTP/2 GET https://localhost:7065/lyso/js/jquery.meanmenu.js - 304 null text/javascript 0.702ms
+2025-10-04 13:34:48.966 -06:00 [INF] The file /lyso/js/form-validator.min.js was not modified
+2025-10-04 13:34:48.966 -06:00 [INF] Request finished HTTP/2 GET https://localhost:7065/lyso/js/jquery.ajaxchimp.min.js - 304 null text/javascript 0.7826ms
+2025-10-04 13:34:48.966 -06:00 [INF] Request starting HTTP/2 GET https://localhost:7065/lyso/js/custom.js - null null
+2025-10-04 13:34:48.965 -06:00 [INF] Request starting HTTP/2 GET https://localhost:7065/lyso/img/home-one/team/guille.jpeg - null null
+2025-10-04 13:34:48.967 -06:00 [INF] Request starting HTTP/2 GET https://localhost:7065/lyso/js/wow.min.js - null null
+2025-10-04 13:34:48.966 -06:00 [INF] The file /lyso/js/owl.carousel.min.js was not modified
+2025-10-04 13:34:48.966 -06:00 [INF] Request starting HTTP/2 GET https://localhost:7065/lyso/js/jquery.magnific-popup.min.js - null null
+2025-10-04 13:34:48.966 -06:00 [INF] The file /lyso/img/home-one/team/nara.jpeg was not modified
+2025-10-04 13:34:48.965 -06:00 [INF] Request starting HTTP/2 GET https://localhost:7065/lyso/js/jquery.nice-select.min.js - null null
+2025-10-04 13:34:48.966 -06:00 [INF] Request starting HTTP/2 GET https://localhost:7065/lyso/js/odometer.min.js - null null
+2025-10-04 13:34:48.965 -06:00 [INF] Request starting HTTP/2 GET https://localhost:7065/lyso/img/home-one/team/ema.jpeg - null null
+2025-10-04 13:34:48.967 -06:00 [INF] The file /lyso/js/jquery.magnific-popup.min.js was not modified
+2025-10-04 13:34:48.966 -06:00 [INF] Request finished HTTP/2 GET https://localhost:7065/lyso/img/home-one/nara3.png - 304 null image/png 0.8161ms
+2025-10-04 13:34:48.967 -06:00 [INF] The file /lyso/img/home-one/team/ema.jpeg was not modified
+2025-10-04 13:34:48.967 -06:00 [INF] The file /lyso/js/wow.min.js was not modified
+2025-10-04 13:34:48.967 -06:00 [INF] The file /lyso/js/custom.js was not modified
+2025-10-04 13:34:48.967 -06:00 [INF] Request finished HTTP/2 GET https://localhost:7065/lyso/js/form-validator.min.js - 304 null text/javascript 0.9231ms
+2025-10-04 13:34:48.969 -06:00 [INF] Request finished HTTP/2 GET https://localhost:7065/lyso/js/wow.min.js - 304 null text/javascript 2.5905ms
+2025-10-04 13:34:48.969 -06:00 [INF] Request finished HTTP/2 GET https://localhost:7065/lyso/js/custom.js - 304 null text/javascript 3.1571ms
+2025-10-04 13:34:48.967 -06:00 [INF] The file /lyso/js/jquery.nice-select.min.js was not modified
+2025-10-04 13:34:48.967 -06:00 [INF] The file /lyso/js/odometer.min.js was not modified
+2025-10-04 13:34:48.967 -06:00 [INF] Request finished HTTP/2 GET https://localhost:7065/lyso/img/home-one/team/ema.jpeg - 304 null image/jpeg 2.0862ms
+2025-10-04 13:34:48.969 -06:00 [INF] Request starting HTTP/2 GET https://localhost:7065/_vs/browserLink - null null
+2025-10-04 13:34:48.967 -06:00 [INF] Request starting HTTP/2 GET https://localhost:7065/lyso/js/jquery.appear.min.js - null null
+2025-10-04 13:34:48.965 -06:00 [INF] Request starting HTTP/2 GET https://localhost:7065/lyso/js/bootstrap.bundle.min.js - null null
+2025-10-04 13:34:48.969 -06:00 [INF] Request finished HTTP/2 GET https://localhost:7065/lyso/js/jquery.magnific-popup.min.js - 304 null text/javascript 2.7453ms
+2025-10-04 13:34:48.967 -06:00 [INF] Request finished HTTP/2 GET https://localhost:7065/lyso/img/home-one/team/nara.jpeg - 304 null image/jpeg 1.7357ms
+2025-10-04 13:34:48.967 -06:00 [INF] The file /lyso/img/home-one/team/guille.jpeg was not modified
+2025-10-04 13:34:48.969 -06:00 [INF] Request finished HTTP/2 GET https://localhost:7065/lyso/js/owl.carousel.min.js - 304 null text/javascript 2.8555ms
+2025-10-04 13:34:48.970 -06:00 [INF] Request finished HTTP/2 GET https://localhost:7065/lyso/img/home-one/team/guille.jpeg - 304 null image/jpeg 4.6754ms
+2025-10-04 13:34:48.969 -06:00 [INF] Request finished HTTP/2 GET https://localhost:7065/lyso/js/jquery.nice-select.min.js - 304 null text/javascript 4.277ms
+2025-10-04 13:34:48.969 -06:00 [INF] Request finished HTTP/2 GET https://localhost:7065/lyso/js/odometer.min.js - 304 null text/javascript 3.6802ms
+2025-10-04 13:34:48.970 -06:00 [INF] The file /lyso/js/jquery.appear.min.js was not modified
+2025-10-04 13:34:48.970 -06:00 [INF] The file /lyso/js/bootstrap.bundle.min.js was not modified
+2025-10-04 13:34:48.971 -06:00 [INF] Request finished HTTP/2 GET https://localhost:7065/lyso/js/jquery.appear.min.js - 304 null text/javascript 4.0088ms
+2025-10-04 13:34:48.971 -06:00 [INF] Request finished HTTP/2 GET https://localhost:7065/lyso/js/bootstrap.bundle.min.js - 304 null text/javascript 6.1011ms
+2025-10-04 13:34:48.972 -06:00 [INF] Request finished HTTP/2 GET https://localhost:7065/ - 200 null text/html; charset=utf-8 302.4343ms
+2025-10-04 13:34:48.974 -06:00 [INF] Request finished HTTP/2 GET https://localhost:7065/_framework/aspnetcore-browser-refresh.js - 200 13760 application/javascript; charset=utf-8 9.1088ms
+2025-10-04 13:34:48.981 -06:00 [INF] Request starting HTTP/2 GET https://localhost:7065/lyso/img/home-one/footer.jpg - null null
+2025-10-04 13:34:48.982 -06:00 [INF] The file /lyso/img/home-one/footer.jpg was not modified
+2025-10-04 13:34:48.982 -06:00 [INF] Request finished HTTP/2 GET https://localhost:7065/lyso/img/home-one/footer.jpg - 304 null image/jpeg 0.9234ms
+2025-10-04 13:34:49.012 -06:00 [INF] Request starting HTTP/2 GET https://localhost:7065/lyso/fonts/Flaticon.woff2 - null null
+2025-10-04 13:34:49.012 -06:00 [INF] Request starting HTTP/2 GET https://localhost:7065/lyso/fonts/icofont.woff2 - null null
+2025-10-04 13:34:49.013 -06:00 [INF] The file /lyso/fonts/Flaticon.woff2 was not modified
+2025-10-04 13:34:49.013 -06:00 [INF] The file /lyso/fonts/icofont.woff2 was not modified
+2025-10-04 13:34:49.013 -06:00 [INF] Request finished HTTP/2 GET https://localhost:7065/lyso/fonts/Flaticon.woff2 - 304 null font/woff2 1.2589ms
+2025-10-04 13:34:49.013 -06:00 [INF] Request finished HTTP/2 GET https://localhost:7065/lyso/fonts/icofont.woff2 - 304 null font/woff2 1.1219ms
+2025-10-04 13:34:49.029 -06:00 [INF] Request finished HTTP/2 GET https://localhost:7065/_vs/browserLink - 200 null text/javascript; charset=UTF-8 59.2784ms
+2025-10-04 13:34:49.072 -06:00 [INF] Request starting HTTP/2 GET https://localhost:7065/lyso/img/sunny.png - null null
+2025-10-04 13:34:49.072 -06:00 [INF] The file /lyso/img/sunny.png was not modified
+2025-10-04 13:34:49.072 -06:00 [INF] Request finished HTTP/2 GET https://localhost:7065/lyso/img/sunny.png - 304 null image/png 0.948ms
+2025-10-04 13:34:53.887 -06:00 [INF] Request starting HTTP/2 GET https://localhost:7065/Home/Attorneys - null null
+2025-10-04 13:34:53.895 -06:00 [INF] Executing endpoint 'Praecepta.UI.Controllers.HomeController.Attorneys (Preacepta.UI)'
+2025-10-04 13:34:53.897 -06:00 [INF] Route matched with {action = "Attorneys", controller = "Home", area = "", page = ""}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Attorneys() on controller Praecepta.UI.Controllers.HomeController (Preacepta.UI).
+2025-10-04 13:34:53.904 -06:00 [INF] Executing ViewResult, running view Attorneys.
+2025-10-04 13:34:53.912 -06:00 [INF] Executed ViewResult - view Attorneys executed in 8.06ms.
+2025-10-04 13:34:53.913 -06:00 [INF] Executed action Praecepta.UI.Controllers.HomeController.Attorneys (Preacepta.UI) in 15.8384ms
+2025-10-04 13:34:53.913 -06:00 [INF] Executed endpoint 'Praecepta.UI.Controllers.HomeController.Attorneys (Preacepta.UI)'
+2025-10-04 13:34:53.913 -06:00 [INF] Request finished HTTP/2 GET https://localhost:7065/Home/Attorneys - 200 null text/html; charset=utf-8 26.4642ms
+2025-10-04 13:34:53.918 -06:00 [INF] Request starting HTTP/2 GET https://localhost:7065/_vs/browserLink - null null
+2025-10-04 13:34:53.918 -06:00 [INF] Request starting HTTP/2 GET https://localhost:7065/_framework/aspnetcore-browser-refresh.js - null null
+2025-10-04 13:34:53.919 -06:00 [INF] Request finished HTTP/2 GET https://localhost:7065/_framework/aspnetcore-browser-refresh.js - 200 13760 application/javascript; charset=utf-8 1.5826ms
+2025-10-04 13:34:53.930 -06:00 [INF] Request starting HTTP/2 GET https://localhost:7065/lyso/img/about/1-1.jpg - null null
+2025-10-04 13:34:53.931 -06:00 [INF] The file /lyso/img/about/1-1.jpg was not modified
+2025-10-04 13:34:53.931 -06:00 [INF] Request finished HTTP/2 GET https://localhost:7065/lyso/img/about/1-1.jpg - 304 null image/jpeg 1.3971ms
+2025-10-04 13:34:53.931 -06:00 [INF] Request finished HTTP/2 GET https://localhost:7065/_vs/browserLink - 200 null text/javascript; charset=UTF-8 13.6823ms
+2025-10-04 13:35:29.033 -06:00 [INF] Request starting HTTP/2 GET https://localhost:7065/Home/About - null null
+2025-10-04 13:35:29.041 -06:00 [INF] Executing endpoint 'Praecepta.UI.Controllers.HomeController.About (Preacepta.UI)'
+2025-10-04 13:35:29.042 -06:00 [INF] Route matched with {action = "About", controller = "Home", area = "", page = ""}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult About() on controller Praecepta.UI.Controllers.HomeController (Preacepta.UI).
+2025-10-04 13:35:29.049 -06:00 [INF] Executing ViewResult, running view About.
+2025-10-04 13:35:29.059 -06:00 [INF] Executed ViewResult - view About executed in 11.683ms.
+2025-10-04 13:35:29.060 -06:00 [INF] Executed action Praecepta.UI.Controllers.HomeController.About (Preacepta.UI) in 17.3258ms
+2025-10-04 13:35:29.060 -06:00 [INF] Executed endpoint 'Praecepta.UI.Controllers.HomeController.About (Preacepta.UI)'
+2025-10-04 13:35:29.061 -06:00 [INF] Request finished HTTP/2 GET https://localhost:7065/Home/About - 200 null text/html; charset=utf-8 28.3537ms
+2025-10-04 13:35:29.084 -06:00 [INF] Request starting HTTP/2 GET https://localhost:7065/_framework/aspnetcore-browser-refresh.js - null null
+2025-10-04 13:35:29.084 -06:00 [INF] Request starting HTTP/2 GET https://localhost:7065/_vs/browserLink - null null
+2025-10-04 13:35:29.085 -06:00 [INF] Request finished HTTP/2 GET https://localhost:7065/_framework/aspnetcore-browser-refresh.js - 200 13760 application/javascript; charset=utf-8 1.3386ms
+2025-10-04 13:35:29.096 -06:00 [INF] Request finished HTTP/2 GET https://localhost:7065/_vs/browserLink - 200 null text/javascript; charset=UTF-8 11.8084ms
+2025-10-04 13:36:17.196 -06:00 [INF] Request starting HTTP/2 GET https://localhost:7065/Home/Contact - null null
+2025-10-04 13:36:17.202 -06:00 [INF] Executing endpoint 'Praecepta.UI.Controllers.HomeController.Contact (Preacepta.UI)'
+2025-10-04 13:36:17.203 -06:00 [INF] Route matched with {action = "Contact", controller = "Home", area = "", page = ""}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Contact() on controller Praecepta.UI.Controllers.HomeController (Preacepta.UI).
+2025-10-04 13:36:17.205 -06:00 [INF] Executing ViewResult, running view Contact.
+2025-10-04 13:36:17.215 -06:00 [INF] Executed ViewResult - view Contact executed in 11.2221ms.
+2025-10-04 13:36:17.216 -06:00 [INF] Executed action Praecepta.UI.Controllers.HomeController.Contact (Preacepta.UI) in 12.4543ms
+2025-10-04 13:36:17.216 -06:00 [INF] Executed endpoint 'Praecepta.UI.Controllers.HomeController.Contact (Preacepta.UI)'
+2025-10-04 13:36:17.216 -06:00 [INF] Request finished HTTP/2 GET https://localhost:7065/Home/Contact - 200 null text/html; charset=utf-8 20.8655ms
+2025-10-04 13:36:17.219 -06:00 [INF] Request starting HTTP/2 GET https://localhost:7065/_framework/aspnetcore-browser-refresh.js - null null
+2025-10-04 13:36:17.219 -06:00 [INF] Request starting HTTP/2 GET https://localhost:7065/_vs/browserLink - null null
+2025-10-04 13:36:17.219 -06:00 [INF] Request starting HTTP/2 GET https://localhost:7065/lyso/css/daniel.css - null null
+2025-10-04 13:36:17.220 -06:00 [INF] Request finished HTTP/2 GET https://localhost:7065/_framework/aspnetcore-browser-refresh.js - 200 13760 application/javascript; charset=utf-8 1.2738ms
+2025-10-04 13:36:17.220 -06:00 [INF] The file /lyso/css/daniel.css was not modified
+2025-10-04 13:36:17.220 -06:00 [INF] Request finished HTTP/2 GET https://localhost:7065/lyso/css/daniel.css - 304 null text/css 1.1102ms
+2025-10-04 13:36:17.230 -06:00 [INF] Request finished HTTP/2 GET https://localhost:7065/_vs/browserLink - 200 null text/javascript; charset=UTF-8 11.3348ms
+2025-10-04 13:36:17.239 -06:00 [INF] Request starting HTTP/2 GET https://localhost:7065/lyso/img/home-one/location-bg.jpg - null null
+2025-10-04 13:36:17.239 -06:00 [INF] Request starting HTTP/2 GET https://localhost:7065/lyso/img/contact-bg.png - null null
+2025-10-04 13:36:17.239 -06:00 [INF] The file /lyso/img/home-one/location-bg.jpg was not modified
+2025-10-04 13:36:17.239 -06:00 [INF] The file /lyso/img/contact-bg.png was not modified
+2025-10-04 13:36:17.239 -06:00 [INF] Request finished HTTP/2 GET https://localhost:7065/lyso/img/home-one/location-bg.jpg - 304 null image/jpeg 0.7223ms
+2025-10-04 13:36:17.239 -06:00 [INF] Request finished HTTP/2 GET https://localhost:7065/lyso/img/contact-bg.png - 304 null image/png 0.7457ms
