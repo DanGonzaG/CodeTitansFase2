@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "Ico+ipf4DjY=",
+  "dgSpecHash": "nJU7JETOkhE=",
   "success": true,
   "projectFilePath": "C:\\Preacepta\\Preacepta.UI\\Preacepta.UI.csproj",
   "expectedPackageFiles": [
@@ -129,6 +129,7 @@
     "C:\\Users\\DanGG\\.nuget\\packages\\microsoft.visualstudio.web.codegeneration.utils\\8.0.7\\microsoft.visualstudio.web.codegeneration.utils.8.0.7.nupkg.sha512",
     "C:\\Users\\DanGG\\.nuget\\packages\\microsoft.visualstudio.web.codegenerators.mvc\\8.0.7\\microsoft.visualstudio.web.codegenerators.mvc.8.0.7.nupkg.sha512",
     "C:\\Users\\DanGG\\.nuget\\packages\\microsoft.win32.primitives\\4.0.1\\microsoft.win32.primitives.4.0.1.nupkg.sha512",
+    "C:\\Users\\DanGG\\.nuget\\packages\\microsoft.win32.systemevents\\6.0.0\\microsoft.win32.systemevents.6.0.0.nupkg.sha512",
     "C:\\Users\\DanGG\\.nuget\\packages\\mimekit\\4.13.0\\mimekit.4.13.0.nupkg.sha512",
     "C:\\Users\\DanGG\\.nuget\\packages\\mono.texttemplating\\2.3.1\\mono.texttemplating.2.3.1.nupkg.sha512",
     "C:\\Users\\DanGG\\.nuget\\packages\\netstandard.library\\1.6.0\\netstandard.library.1.6.0.nupkg.sha512",
@@ -142,6 +143,7 @@
     "C:\\Users\\DanGG\\.nuget\\packages\\nuget.projectmodel\\6.11.0\\nuget.projectmodel.6.11.0.nupkg.sha512",
     "C:\\Users\\DanGG\\.nuget\\packages\\nuget.protocol\\6.11.0\\nuget.protocol.6.11.0.nupkg.sha512",
     "C:\\Users\\DanGG\\.nuget\\packages\\nuget.versioning\\6.11.0\\nuget.versioning.6.11.0.nupkg.sha512",
+    "C:\\Users\\DanGG\\.nuget\\packages\\qrcoder\\1.7.0\\qrcoder.1.7.0.nupkg.sha512",
     "C:\\Users\\DanGG\\.nuget\\packages\\runtime.native.system\\4.0.0\\runtime.native.system.4.0.0.nupkg.sha512",
     "C:\\Users\\DanGG\\.nuget\\packages\\runtime.native.system.io.compression\\4.1.0\\runtime.native.system.io.compression.4.1.0.nupkg.sha512",
     "C:\\Users\\DanGG\\.nuget\\packages\\runtime.native.system.net.http\\4.0.1\\runtime.native.system.net.http.4.0.1.nupkg.sha512",
@@ -176,6 +178,7 @@
     "C:\\Users\\DanGG\\.nuget\\packages\\system.diagnostics.eventlog\\8.0.1\\system.diagnostics.eventlog.8.0.1.nupkg.sha512",
     "C:\\Users\\DanGG\\.nuget\\packages\\system.diagnostics.tools\\4.0.1\\system.diagnostics.tools.4.0.1.nupkg.sha512",
     "C:\\Users\\DanGG\\.nuget\\packages\\system.diagnostics.tracing\\4.3.0\\system.diagnostics.tracing.4.3.0.nupkg.sha512",
+    "C:\\Users\\DanGG\\.nuget\\packages\\system.drawing.common\\6.0.0\\system.drawing.common.6.0.0.nupkg.sha512",
     "C:\\Users\\DanGG\\.nuget\\packages\\system.formats.asn1\\8.0.2\\system.formats.asn1.8.0.2.nupkg.sha512",
     "C:\\Users\\DanGG\\.nuget\\packages\\system.globalization\\4.3.0\\system.globalization.4.3.0.nupkg.sha512",
     "C:\\Users\\DanGG\\.nuget\\packages\\system.globalization.calendars\\4.0.1\\system.globalization.calendars.4.0.1.nupkg.sha512",

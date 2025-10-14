@@ -1376,31 +1376,37 @@ button {
 .contact-btn--primario {
     @extend .contact-btn;
     @include variacionBtnColores($botonPrimario); //Crear, descargar, modificar
+    text-align:center
 }
 
 .contact-btn--secundario {
     @extend .contact-btn;
     @include variacionBtnColores($botonSecundario); //filtrar, buscar, previsualizar
+    text-align: center
 }
 
 .contact-btn--revision {
     @extend .contact-btn;
     @include variacionBtnColores($botonRevision); //revisar, detalles,
+    text-align: center
 }
 
 .contact-btn--tercero {
     @extend .contact-btn;
     @include variacionBtnColores($botonTerciario); //Cancelar
+    text-align: center
 }
 
 .contact-btn--navegacion {
     @extend .contact-btn;
-    @include variacionBtnColores($botonNavegacion);//Retrocesos, volver
+    @include variacionBtnColores($botonNavegacion); //Retrocesos, volver
+    text-align: center
 }
 
 .contact-btn--eliminacion {
     @extend .contact-btn;
     @include variacionBtnColores($botonEliminacion); //Eliminar
+    text-align: center
 }
 
 

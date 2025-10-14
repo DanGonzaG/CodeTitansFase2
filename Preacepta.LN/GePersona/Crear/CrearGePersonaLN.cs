@@ -31,11 +31,11 @@ namespace Preacepta.LN.GePersona.Crear
 
         public async Task<int> crear(GePersonaDTO gePersonaDTO)
         {
-            var user = CreateUser();
-            await _userStore.SetUserNameAsync(user, gePersonaDTO.Email, CancellationToken.None);
-            await _emailStore.SetEmailAsync(user, gePersonaDTO.Email, CancellationToken.None);
-            var result = await _userManager.CreateAsync(user, gePersonaDTO.Password);
-            await _userManager.AddToRoleAsync(user, "Cliente");
+            //var user = CreateUser();
+            //await _userStore.SetUserNameAsync(user, gePersonaDTO.Email, CancellationToken.None);
+            //await _emailStore.SetEmailAsync(user, gePersonaDTO.Email, CancellationToken.None);
+            //var result = await _userManager.CreateAsync(user, gePersonaDTO.Password);
+            //await _userManager.AddToRoleAsync(user, "Cliente");
             int bandera = await _crearGePersonaAD.crear(_obtenerDatosLN.ObtenerDeFrontCrear(gePersonaDTO));
             return bandera;
         }

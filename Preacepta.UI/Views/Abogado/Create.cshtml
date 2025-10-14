@@ -17,11 +17,19 @@
                 <label asp-for="geAbogadoDTO.Carnet" class="control-label"></label>
                 <input asp-for="geAbogadoDTO.Carnet" class="form-control" />
                 <span asp-validation-for="geAbogadoDTO.Carnet" class="text-danger"></span>
+                @if (TempData["ErrorCarnet"] != null)
+                {
+                    <span class="text-danger">@TempData["ErrorCarnet"]</span>
+                }
             </div>            
             <div class="form-group">
                 <label asp-for="personaDTO.Cedula" class="control-label"></label>
                 <input asp-for="personaDTO.Cedula" class="form-control" />
                 <span asp-validation-for="personaDTO.Cedula" class="text-danger"></span>
+                @if (TempData["ErrorCedula"] != null)
+                {
+                    <span class="text-danger">@TempData["ErrorCedula"]</span>
+                }
             </div>
             <div class="form-group">
                 <label asp-for="geAbogadoDTO.IdTipoAbogado" class="control-label"></label>
@@ -100,6 +108,10 @@
                 <label asp-for="personaDTO.Telefono1" class="control-label"></label>
                 <input asp-for="personaDTO.Telefono1" class="form-control" />
                 <span asp-validation-for="personaDTO.Telefono1" class="text-danger"></span>
+                @if (TempData["ErrorTelefono1"] != null)
+                {
+                    <span class="text-danger">@TempData["ErrorTelefono1"]</span>
+                }
             </div>
             <div class="form-group">
                 <label asp-for="personaDTO.Telefono2" class="control-label"></label>
@@ -110,6 +122,10 @@
                 <label asp-for="personaDTO.Email" class="control-label"></label>
                 <input asp-for="personaDTO.Email" class="form-control" autocomplete="username" aria-required="true" placeholder="name@example.com" />
                 <span asp-validation-for="personaDTO.Email" class="text-danger"></span>
+                @if (TempData["ErrorEmail"] != null)
+                {
+                    <span class="text-danger">@TempData["ErrorEmail"]</span>
+                }
             </div>
 
             <div class="form-group">

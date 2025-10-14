@@ -7,5 +7,9 @@ namespace Preacepta.AD.GePersona.BuscarXid
         Task<TGePersona?> buscar(int id);
 
         Task<TGePersona?> buscarXcorreo(string correo);
+
+        Task<TGePersona?> buscarXtelefono1(string telefono);
+
+        Task<TGePersona?> buscarXtelefono2(string telefono);
     }
 }

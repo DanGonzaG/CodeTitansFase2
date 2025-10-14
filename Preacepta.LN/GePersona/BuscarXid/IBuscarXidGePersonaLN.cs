@@ -6,5 +6,7 @@ namespace Preacepta.LN.GePersona.BuscarXid
     {
         Task<GePersonaDTO?> buscar(int id);
         Task<GePersonaDTO?> buscarXcorreo(string correo);
+        Task<GePersonaDTO?> buscarXtelefono1(string telefono);
+        Task<GePersonaDTO?> buscarXtelefono2(string telefono);
     }
 }
