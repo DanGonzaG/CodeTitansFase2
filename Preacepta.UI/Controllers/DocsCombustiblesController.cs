@@ -19,7 +19,7 @@ namespace Preacepta.UI.Controllers
 {
     public class DocsCombustiblesController : Controller
     {
-        private readonly Contexto _context;
+        
         private readonly IBuscarDocsCombustibleLN _buscar;
         private readonly ICrearDocsCombustibleLN _crear;
         private readonly IEditarDocsCombustibleLN _editar;
@@ -27,7 +27,7 @@ namespace Preacepta.UI.Controllers
         private readonly IListarDocsCombustibleLN _listar;
         private readonly ICrearEventosLN _bitacoraLN;
 
-        public DocsCombustiblesController(Contexto context,
+        public DocsCombustiblesController(
             IBuscarDocsCombustibleLN buscar,
             ICrearDocsCombustibleLN crear,
             IEditarDocsCombustibleLN editar,
@@ -35,7 +35,7 @@ namespace Preacepta.UI.Controllers
             IListarDocsCombustibleLN listar,
             ICrearEventosLN bitacora)
         {
-            _context = context;
+           
             _buscar = buscar;
             _crear = crear;
             _editar = editar;

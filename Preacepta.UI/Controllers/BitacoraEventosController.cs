@@ -15,25 +15,31 @@ namespace Preacepta.UI.Controllers
             _obtenerDatosEventosLN = obtenerDatosLN;
         }
 
-        //GET: /BitacoraEventos
-        public async Task<IActionResult> Index( string usuario, string tabla)
+        // GET: /BitacoraEventos
+        public async Task<IActionResult> Index(string usuario, string tabla, DateTime? fechaInicio, DateTime? fechaFin)
         {
             List<BitacoraEventosDTO> eventos;
+
             if (!string.IsNullOrWhiteSpace(usuario))
             {
                 eventos = await _obtenerDatosEventosLN.ListarPorUsuario(usuario);
             }
-            else if (!string.IsNullOrWhiteSpace(tabla))
+            else if (fechaInicio.HasValue && fechaFin.HasValue)
             {
-                eventos = await _obtenerDatosEventosLN.ObtenerEventosPorTabla(tabla);
-        } else {
+                // Ajustar fechaFin para incluir todo el día
+                var fechaFinAjustada = fechaFin.Value.Date.AddDays(1).AddTicks(-1);
+                eventos = await _obtenerDatosEventosLN.ListarPorRangoFecha(fechaInicio.Value, fechaFinAjustada);
+            }
+            else
+            {
                 eventos = await _obtenerDatosEventosLN.ListarTodos();
             }
+
             ViewData["Usuario"] = usuario;
-            ViewData["Tabla"] = tabla;
+            ViewData["FechaInicio"] = fechaInicio?.ToString("yyyy-MM-dd");
+            ViewData["FechaFin"] = fechaFin?.ToString("yyyy-MM-dd");
 
             return View(eventos);
-
         }
 
 

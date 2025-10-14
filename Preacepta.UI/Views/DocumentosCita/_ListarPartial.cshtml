@@ -30,7 +30,8 @@
                             </span>
                             @if (doc.Descargar)
                             {
-                                <a href="@doc.RutaArchivo" download>Descargar</a>
+                                <a href="@Url.Action("Descargar", "DocumentosCita", new { id = doc.Id })" download>Descargar</a>
+
                             }
                             <span class="fecha text-muted">(subido el @doc.FechaSubida.ToShortDateString())</span>
                         </div>

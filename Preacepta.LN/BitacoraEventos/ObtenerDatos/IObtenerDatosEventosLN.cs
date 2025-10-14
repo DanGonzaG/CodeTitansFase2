@@ -14,6 +14,7 @@ namespace Preacepta.LN.BitacoraEventos.ObtenerDatos
         Task<List<BitacoraEventosDTO>> ListarPorUsuario(string usuario);
         Task<BitacoraEventosDTO?> ObtenerXid(int id_evento);
 
+        Task<List<BitacoraEventosDTO>> ListarPorRangoFecha(DateTime fechaInicio, DateTime fechaFin);
 
 
     }

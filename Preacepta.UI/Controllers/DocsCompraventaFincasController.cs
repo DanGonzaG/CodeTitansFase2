@@ -25,7 +25,7 @@ namespace Preacepta.UI.Controllers
 {
     public class DocsCompraventaFincasController : Controller
     {
-        private readonly Contexto _context;
+       
         private readonly IConverter _converter;
         private readonly IBuscarDocsCompraventaFincaLN _buscar;
         private readonly ICrearDocsCompraventaFincaLN _crear;
@@ -43,7 +43,7 @@ namespace Preacepta.UI.Controllers
         private readonly ICrearEventosLN _bitacoraLN;
 
         public DocsCompraventaFincasController(IConverter converter,
-            Contexto context,
+          
             IBuscarDocsCompraventaFincaLN buscar,
             ICrearDocsCompraventaFincaLN crear,
             IEditarDocsCompraventaFincaLN editar,
@@ -60,7 +60,7 @@ namespace Preacepta.UI.Controllers
             ICrearEventosLN bitacora)
         {
             _converter = converter;
-            _context = context;
+           
             _buscar = buscar;
             _crear = crear;
             _editar = editar;

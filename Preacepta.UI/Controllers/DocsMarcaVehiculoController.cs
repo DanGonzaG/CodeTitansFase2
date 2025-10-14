@@ -19,7 +19,6 @@ namespace Preacepta.UI.Controllers
 {
     public class DocsMarcaVehiculoController : Controller
     {
-        private readonly Contexto _context;
         private readonly IBuscarDocsMarcaVehiculoLN _buscar;
         private readonly ICrearDocsMarcaVehiculoLN _crear;
         private readonly IEditarDocsMarcaVehiculoLN _editar;
@@ -27,7 +26,7 @@ namespace Preacepta.UI.Controllers
         private readonly IListarDocsMarcaVehiculoLN _listar;
         private readonly ICrearEventosLN _bitacoraLN;
 
-        public DocsMarcaVehiculoController(Contexto context,
+        public DocsMarcaVehiculoController(
             IBuscarDocsMarcaVehiculoLN buscar,
             ICrearDocsMarcaVehiculoLN crear,
             IEditarDocsMarcaVehiculoLN editar,
@@ -35,7 +34,6 @@ namespace Preacepta.UI.Controllers
             IListarDocsMarcaVehiculoLN listar,
             ICrearEventosLN bitacora)
         {
-            _context = context;
             _buscar = buscar;
             _crear = crear;
             _editar = editar;

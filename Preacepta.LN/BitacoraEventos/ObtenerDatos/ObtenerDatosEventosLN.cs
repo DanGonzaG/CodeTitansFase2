@@ -55,6 +55,10 @@ namespace Preacepta.LN.BitacoraEventos.ObtenerDatos
                
             };
         }
+        public Task<List<BitacoraEventosDTO>> ListarPorRangoFecha(DateTime fechaInicio, DateTime fechaFin)
+        {
+            return _listarEventosAD.ListarPorRangoFecha(fechaInicio, fechaFin);
+        }
 
     }
 }

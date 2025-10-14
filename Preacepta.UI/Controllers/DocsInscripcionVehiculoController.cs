@@ -31,7 +31,6 @@ namespace Preacepta.UI.Controllers
     public class DocsInscripcionVehiculoController : Controller
     {
         private readonly IConverter _converter;
-        private readonly Contexto _context;
         private readonly IBuscarDocsInscripcionVehiculoLN _buscar;
         private readonly ICrearDocsInscripcionVehiculoLN _crear;
         private readonly IEditarDocsInscripcionVehiculoLN _editar;
@@ -52,7 +51,6 @@ namespace Preacepta.UI.Controllers
         private readonly ICrearEventosLN _bitacoraLN;
 
         public DocsInscripcionVehiculoController(IConverter converter,
-            Contexto context,
             IBuscarDocsInscripcionVehiculoLN buscar,
             ICrearDocsInscripcionVehiculoLN crear,
             IEditarDocsInscripcionVehiculoLN editar,
@@ -73,7 +71,6 @@ namespace Preacepta.UI.Controllers
             ICrearEventosLN bitacora)
         {
             _converter = converter;
-            _context = context;
             _buscar = buscar;
             _crear = crear;
             _editar = editar;

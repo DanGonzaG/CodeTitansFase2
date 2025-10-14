@@ -11,5 +11,7 @@ namespace Preacepta.AD.BitacoraEventos.Listar
     {
         Task<List<BitacoraEventosDTO>> ListarTodos();
         Task<List<BitacoraEventosDTO>> ListarPorUsuario(string usuario);
+        Task<List<BitacoraEventosDTO>> ListarPorRangoFecha(DateTime fechaInicio, DateTime fechaFin);
+
     }
 }

@@ -24,7 +24,7 @@ namespace Preacepta.UI.Controllers
     public class DocsAutorizacionRevisionExpedientesController : Controller
     {
         private readonly IConverter _converter;
-        private readonly Contexto _context;
+        
         private readonly IBuscarDocsAutorizacionRevisionExpedienteLN _buscar;
         private readonly ICrearDocsAutorizacionRevisionExpedienteLN _crear;
         private readonly IEditarDocsAutorizacionRevisionExpedienteLN _editar;
@@ -40,7 +40,7 @@ namespace Preacepta.UI.Controllers
         private readonly ICrearEventosLN _bitacoraLN;
 
         public DocsAutorizacionRevisionExpedientesController(IConverter converter,
-            Contexto context,
+            
             IBuscarDocsAutorizacionRevisionExpedienteLN buscar,
             ICrearDocsAutorizacionRevisionExpedienteLN crear,
             IEditarDocsAutorizacionRevisionExpedienteLN editar,
@@ -55,7 +55,7 @@ namespace Preacepta.UI.Controllers
             ICrearEventosLN bitacora)
         {
             _converter = converter;
-            _context = context;
+           
             _buscar = buscar;
             _crear = crear;
             _editar = editar;

@@ -15,7 +15,7 @@ using Preacepta.LN.GePersona.BuscarXid;
 using Preacepta.LN.GePersona.Listar;
 using Preacepta.Modelos.AbstraccionesBD;
 using Preacepta.Modelos.AbstraccionesFrond;
-
+using Preacepta.LN.BitacoraEventos.Crear;
 
 namespace Preacepta.UI.Controllers
 {
@@ -38,6 +38,7 @@ namespace Preacepta.UI.Controllers
         private readonly IListarAbogadoTipoLN _listarAbogadoTipo;
         //Listar los distritos
         private readonly IListarCrDireccion1LN _listarDireccion;
+        private readonly ICrearEventosLN _bitacoraLN;
 
 
         public AbogadoController(
@@ -55,7 +56,8 @@ namespace Preacepta.UI.Controllers
             //Listar los tipos de aboagos
             IListarAbogadoTipoLN listarAbogadoTipo,
             //Listar los distritos
-            IListarCrDireccion1LN listarDireccion
+            IListarCrDireccion1LN listarDireccion,
+            ICrearEventosLN bitacora
             )
         {
             //crud Gestion General Abodados
@@ -73,6 +75,7 @@ namespace Preacepta.UI.Controllers
             _buscarPersona = buscarPersona;
             //Listar los distritos
             _listarDireccion = listarDireccion;
+            _bitacoraLN = bitacora;
         }
 
         /********************************************************************************************************************************************************************/
@@ -161,6 +164,14 @@ namespace Preacepta.UI.Controllers
             if (ModelState.IsValid)
             {
                 await _crear.Crear(tGeAbogado);
+
+                // Registro en bitácora
+                var usuario = User.Identity?.Name ?? "Desconocido";
+                var nombreCompleto = $"{tGeAbogado.personaDTO.Nombre} {tGeAbogado.personaDTO.Apellido1} {tGeAbogado.personaDTO.Apellido2}".Trim();
+                var accion = $"Se creó un nuevo abogado '{nombreCompleto}' con cédula {tGeAbogado.personaDTO.Cedula}.";
+                await _bitacoraLN.RegistrarBitacoraAsync(usuario, "GeAbogado", accion, tGeAbogado.personaDTO.Cedula);
+
+
                 return RedirectToAction(nameof(Index));
             }
 
@@ -268,6 +279,12 @@ namespace Preacepta.UI.Controllers
                 try
                 {
                     await _editar.Editar(tGeAbogado);
+
+                    // Registrar bitácora
+                    var usuario = User.Identity?.Name ?? "Desconocido";
+                    var accion = $"Se editó la información del abogado con cédula {tGeAbogado.Cedula}.";
+                    await _bitacoraLN.RegistrarBitacoraAsync(usuario, "GeAbogado", accion, tGeAbogado.Cedula);
+
                 }
                 catch (DbUpdateConcurrencyException)
                 {
@@ -413,6 +430,14 @@ namespace Preacepta.UI.Controllers
                         if (carnet == null)
                         {                            
                             await _crear.Crear(tGeAbogado);//llamado de los LN y AD para crear la persona
+
+                            // 🔹 Registro en bitácora
+                            var usuario = User.Identity?.Name ?? "Desconocido";
+                            var nombreCompleto = $"{tGeAbogado.personaDTO.Nombre} {tGeAbogado.personaDTO.Apellido1} {tGeAbogado.personaDTO.Apellido2}".Trim();
+                            var accion = $"Se registró un nuevo abogado '{nombreCompleto}' con cédula {tGeAbogado.personaDTO.Cedula} y carnet {tGeAbogado.geAbogadoDTO.Carnet}.";
+                            await _bitacoraLN.RegistrarBitacoraAsync(usuario, "GeAbogado", accion, tGeAbogado.personaDTO.Cedula);
+
+
                             TempData["PersonaCreada"] = "Se ha creado un nuevo usuario en el sistema";
                             return RedirectToAction("UsuarioAutenticado", "Home", new { correo = User.Identity.Name });
                         }

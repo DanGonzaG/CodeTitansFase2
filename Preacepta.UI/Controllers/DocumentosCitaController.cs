@@ -109,7 +109,7 @@ namespace Preacepta.Web.Controllers
         }
 
         [HttpGet]
-        [Authorize(Roles = "Abogado,Gestor")]
+        [Authorize(Roles = "Abogado,Cliente")]
         public async Task<IActionResult> Descargar(int id)
         {
             var documento = await _documentosLN.ObtenerPorIdAsync(id);
@@ -123,21 +123,28 @@ namespace Preacepta.Web.Controllers
             if (!System.IO.File.Exists(rutaFisica))
                 return NotFound("El archivo no existe o la ruta es incorrecta.");
 
-            var bytes = await System.IO.File.ReadAllBytesAsync(rutaFisica);
-            var nombreArchivo = documento.NombreArchivo ?? "documento.pdf";
-
             var usuario = User.Identity?.Name ?? "Desconocido";
-            var nombreCorto = ObtenerNombreCorto(nombreArchivo);
+            var nombreCorto = ObtenerNombreCorto(documento.NombreArchivo ?? "documento.pdf");
             var accion = $"Descargó el documento '{nombreCorto}'";
 
-            await _bitacoraLN.RegistrarBitacoraAsync(usuario, "T_DocumentosCita", accion, documento.Id);
-
+            try
+            {
+             
+                await _bitacoraLN.RegistrarBitacoraAsync(usuario, "T_DocumentosCita", accion, documento.Id);
+            }
+            catch (Exception ex)
+            {
+              
+                Console.WriteLine($"Error al registrar bitácora: {ex.Message}");
+            }
 
             Response.Headers.Add("Cache-Control", "no-store, no-cache, must-revalidate, proxy-revalidate");
             Response.Headers.Add("Pragma", "no-cache");
             Response.Headers.Add("Expires", "0");
 
-            return File(bytes, "application/octet-stream", nombreArchivo);
+            
+            var stream = new FileStream(rutaFisica, FileMode.Open, FileAccess.Read);
+            return File(stream, "application/octet-stream", documento.NombreArchivo);
         }
 
         [Authorize(Roles = "Abogado,Gestor")]

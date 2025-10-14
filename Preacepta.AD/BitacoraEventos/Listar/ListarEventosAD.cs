@@ -48,5 +48,22 @@ namespace Preacepta.AD.BitacoraEventos.Listar
                 }).ToListAsync ();
 
         }
+
+        public async Task<List<BitacoraEventosDTO>> ListarPorRangoFecha(DateTime fechaInicio, DateTime fechaFin)
+        {
+            return await _contexto.TBitacoraEventos
+                .Where(e => e.Fecha_Hora >= fechaInicio && e.Fecha_Hora <= fechaFin)
+                .Select(e => new BitacoraEventosDTO
+                {
+                    Id_evento = e.Id_evento,
+                    Usuario = e.Usuario,
+                    Fecha_Hora = e.Fecha_Hora,
+                    Id_registro_afectado = e.Id_registro_afectado,
+                    Tabla_Afectada = e.Tabla_Afectada,
+                    Accion = e.Accion,
+                    Stack_error = e.Stack_error
+                })
+                .ToListAsync();
+        }
     }
 }
