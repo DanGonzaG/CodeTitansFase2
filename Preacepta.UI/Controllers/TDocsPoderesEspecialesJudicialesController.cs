@@ -17,6 +17,7 @@ using Preacepta.LN.HistorialDocumentos.Eliminar;
 using Preacepta.LN.HistorialDocumentos.Listar;
 using Preacepta.Modelos.AbstraccionesFrond;
 using System.Globalization;
+using Preacepta.LN.BitacoraEventos.Crear;
 
 namespace Preacepta.UI.Controllers
 {
@@ -44,6 +45,8 @@ namespace Preacepta.UI.Controllers
         // Carnet (abogado)
         private readonly IBuscarAbogadoLN _buscarAbogado;
 
+        private readonly ICrearEventosLN _bitacoraLN;
+
         public TDocsPoderesEspecialesJudicialesController(
             IBuscarPoderJudLN buscar,
             ICrearPoderJudLN crear,
@@ -57,7 +60,8 @@ namespace Preacepta.UI.Controllers
             IListarHistorialLN listarHistorial,
             IBuscarAbogadoLN buscarAbogado,
             IEditarHistorialLN editarHistorial,
-            IELiminarHistorialLN eliminarHistorial)
+            IELiminarHistorialLN eliminarHistorial,
+            ICrearEventosLN bitacora)
         {
             _converter = converter;
 
@@ -77,6 +81,7 @@ namespace Preacepta.UI.Controllers
 
             _editarHistorial = editarHistorial;
             _eliminarHistorial = eliminarHistorial;
+            _bitacoraLN = bitacora;
         }
 
         // ================= CRUD base =================
@@ -131,6 +136,12 @@ namespace Preacepta.UI.Controllers
                     Titulo = $"Doc.no.{nuevoIdDoc} Poder especial judicial"
                 };
                 await _crearHistorial.Crear(historial);
+
+                var usuario = User.Identity?.Name ?? "Desconocido";
+                var accion = $"Se creó el documento 'Poder especial judicial' con ID {dto.IdDoc}";
+                await _bitacoraLN.RegistrarBitacoraAsync(usuario, "T_DocsPoderesEspecialesJudiciales", accion, dto.IdDoc);
+
+
             }
 
             return RedirectToAction(nameof(Index));
@@ -160,6 +171,11 @@ namespace Preacepta.UI.Controllers
                 : dto.Fecha;
 
             await _editar.editar(dto);
+
+            var usuario = User.Identity?.Name ?? "Desconocido";
+            var tituloCorto = $"Poder especial judicial {dto.NumCausa}";
+            var accion = $"Se editó documento '{tituloCorto}' con ID {dto.IdDoc}";
+            await _bitacoraLN.RegistrarBitacoraAsync(usuario, "T_DocsPoderesEspecialesJudiciales", accion, dto.IdDoc);
 
             try
             {
@@ -277,6 +293,12 @@ namespace Preacepta.UI.Controllers
                     Titulo = $"Doc.no.{nuevoIdDoc} Poder especial judicial"
                 };
                 await _crearHistorial.Crear(historial);
+
+                var usuario = User.Identity?.Name ?? "Desconocido";
+                var accion = $"Se creó documento 'Poder especial judicial' con ID {dto.IdDoc}";
+                await _bitacoraLN.RegistrarBitacoraAsync(usuario, "T_DocsPoderesEspecialesJudiciales", accion, dto.IdDoc);
+
+
             }
 
             return RedirectToAction("DocsHistorial", "THistorialDocumento1");

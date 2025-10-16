@@ -101,5 +101,39 @@ namespace Preacepta.LN.DocumentosCita
             return await _documentosAD.DeshabilitarAsync(id);
         }
 
+        
+        public async Task<TDocumentosCita> SubirDocumentoAsync(int idCita, string nombreArchivo, string rutaArchivo)
+        {
+            var documento = new TDocumentosCita
+            {
+                IdCita = idCita,
+                NombreArchivo = nombreArchivo,
+                RutaArchivo = rutaArchivo,
+                FechaSubida = DateTime.Now,
+                Descargar = false
+            };
+
+             _documentosAD.Insertar(documento);
+            return documento;
+        }
+
+        public async Task ActualizarBatchAsync(List<DocumentosCitaDTO> documentos)
+        {
+            var entidades = new List<TDocumentosCita>();
+
+            foreach (var dto in documentos)
+            {
+                var doc = await _documentosAD.ObtenerPorIdAsync(dto.Id);
+                if (doc != null)
+                {
+                    doc.Descargar = dto.Descargar;
+                    doc.Activo = dto.Activo;
+                    entidades.Add(doc);
+                }
+            }
+
+            await _documentosAD.ActualizarBatchAsync(entidades);
+        }
+
     }
 }

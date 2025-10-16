@@ -16,5 +16,9 @@ namespace Preacepta.AD.DocumentosCitas.DocumentosCitas
         Task ActualizarDescargarAsync(int idDocumento, bool permitirDescarga);
        
         Task<bool> DeshabilitarAsync(int id);
+
+        Task RegistrarBitacoraAsync(TBitacoraEventos evento);
+
+        Task ActualizarBatchAsync(List<TDocumentosCita> documentos);
     }
 }

@@ -15,6 +15,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Preacepta.LN.BitacoraEventos.Crear;
 
 namespace Preacepta.UI.Controllers
 {
@@ -27,6 +28,7 @@ namespace Preacepta.UI.Controllers
         private readonly IEditarTipoVehiculoLN _editar;
         private readonly IEliminarTipoVehiculoLN _eliminar;
         private readonly IListarTipoVehiculoLN _listar;
+        private readonly ICrearEventosLN _bitacoraLN;
 
         public TDocsTipoVehiculoesController(IBuscarTipoVehiculoLN buscar,
             ICrearTipoVehiculoLN crear,
@@ -34,7 +36,8 @@ namespace Preacepta.UI.Controllers
             IEliminarTipoVehiculoLN eliminar,
             IListarTipoVehiculoLN listar,
             IConverter converter,
-            Contexto context)
+            Contexto context,
+            ICrearEventosLN bitacora)
         {
             _converter = converter;
             _context = context;
@@ -43,6 +46,7 @@ namespace Preacepta.UI.Controllers
             _editar = editar;
             _eliminar = eliminar;
             _listar = listar;
+            _bitacoraLN = bitacora;
         }
 
         // GET: TDocsTipoVehiculoes
@@ -84,6 +88,15 @@ namespace Preacepta.UI.Controllers
             if (ModelState.IsValid)
             {
                 await _crear.crear(tDocsTipoVehiculo);
+
+                var usuario = User.Identity?.Name ?? "Desconocido";
+                var tituloCorto = tDocsTipoVehiculo.Nombre.Length > 50
+                    ? tDocsTipoVehiculo.Nombre.Substring(0, 47) + "..."
+                    : tDocsTipoVehiculo.Nombre;
+                var accion = $"Se creó tipo de vehículo '{tituloCorto}' con ID {tDocsTipoVehiculo.Id}";
+                await _bitacoraLN.RegistrarBitacoraAsync(usuario, "T_DocsTipoVehiculo", accion, tDocsTipoVehiculo.Id);
+
+
                 return RedirectToAction(nameof(Index));
             }
             return View(tDocsTipoVehiculo);
@@ -122,6 +135,14 @@ namespace Preacepta.UI.Controllers
                 try
                 {
                     await _editar.editar(tDocsTipoVehiculo);
+
+                    var usuario = User.Identity?.Name ?? "Desconocido";
+                    var tituloCorto = tDocsTipoVehiculo.Nombre.Length > 50
+                        ? tDocsTipoVehiculo.Nombre.Substring(0, 47) + "..."
+                        : tDocsTipoVehiculo.Nombre;
+                    var accion = $"Se editó tipo de vehículo '{tituloCorto}' con ID {tDocsTipoVehiculo.Id}";
+                    await _bitacoraLN.RegistrarBitacoraAsync(usuario, "T_DocsTipoVehiculo", accion, tDocsTipoVehiculo.Id);
+
                 }
                 catch (DbUpdateConcurrencyException)
                 {
@@ -174,6 +195,15 @@ namespace Preacepta.UI.Controllers
             if (ModelState.IsValid)
             {
                 await _crear.crear(tDocsTipoVehiculo);
+
+                var usuario = User.Identity?.Name ?? "Desconocido";
+                var tituloCorto = tDocsTipoVehiculo.Nombre.Length > 50
+                    ? tDocsTipoVehiculo.Nombre.Substring(0, 47) + "..."
+                    : tDocsTipoVehiculo.Nombre;
+                var accion = $"Se creó tipo de vehículo '{tituloCorto}' con ID {tDocsTipoVehiculo.Id}";
+                await _bitacoraLN.RegistrarBitacoraAsync(usuario, "T_DocsTipoVehiculo", accion, tDocsTipoVehiculo.Id);
+
+
                 return RedirectToAction(nameof(Index));
             }
             return View(tDocsTipoVehiculo);

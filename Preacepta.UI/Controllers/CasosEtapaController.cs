@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Preacepta.AD;
+using Preacepta.LN.BitacoraEventos.Crear;
 using Preacepta.LN.Casos.BuscarXid;
 using Preacepta.LN.Casos.Editar;
 using Preacepta.LN.Casos.Listar;
@@ -36,7 +37,10 @@ namespace Preacepta.UI.Controllers
         
         private readonly IConverter _converter;
 
+        private readonly ICrearEventosLN _bitacoraLN;
+
         private readonly IBuscarXidGePersonaLN _buscarAbogadoLN;
+
 
         public CasosEtapaController(IBuscarCasosEtapasLN buscar,
             ICrearCasosEtapasLN crear,
@@ -46,6 +50,7 @@ namespace Preacepta.UI.Controllers
             IBuscarCasosLN buscarCaso,
             IListarCasosLN listarCasos,
             IEditarCasosLN editarCaso,
+            ICrearEventosLN bitacora,
 
             IConverter converter,
 
@@ -62,7 +67,11 @@ namespace Preacepta.UI.Controllers
 
             _converter = converter;
 
+
+            _bitacoraLN = bitacora;
+
             _buscarAbogadoLN = buscarAbogadoLN;
+
 
         }
 
@@ -170,6 +179,15 @@ namespace Preacepta.UI.Controllers
             if (ModelState.IsValid)
             {
                 await _crear.Crear(tCasosEtapa);
+
+                var usuario = User.Identity?.Name ?? "Desconocido";
+                var nombreCorto = tCasosEtapa.Nombre.Length > 50
+                    ? tCasosEtapa.Nombre.Substring(0, 47) + "..."
+                    : tCasosEtapa.Nombre;
+                var accion = $"Se agregó la etapa '{nombreCorto}' al caso {IdCaso}";
+                await _bitacoraLN.RegistrarBitacoraAsync(usuario, "T_CasosEtapa", accion, IdCaso);
+
+
                 TempData["EtapaCreada"] = "Se ha agregado la nueva etapa su caso legal";
                 if (tCasosEtapa.Activo == true) //Valida si la etapa que se va a crear tiene la opcion de Cerrar caso activada
                 {
@@ -257,6 +275,15 @@ namespace Preacepta.UI.Controllers
                 try
                 {
                     await _editar.Editar(tCasosEtapa);
+
+                    var usuario = User.Identity?.Name ?? "Desconocido";
+                    var nombreCorto = tCasosEtapa.Nombre.Length > 50
+                        ? tCasosEtapa.Nombre.Substring(0, 47) + "..."
+                        : tCasosEtapa.Nombre;
+                    var accion = $"Se modificó la etapa '{nombreCorto}' del caso {tCasosEtapa.IdCaso}";
+                    await _bitacoraLN.RegistrarBitacoraAsync(usuario, "T_CasosEtapa", accion, tCasosEtapa.IdCaso);
+
+
                     TempData["MensajeModificacion"] = "La etapa ha sido modificada";
                 }
                 catch (DbUpdateConcurrencyException)
@@ -363,6 +390,15 @@ namespace Preacepta.UI.Controllers
 
             var pdf = _converter.Convert(doc);
 
+            // --- REGISTRAR EN BITÁCORA ---
+            var usuario = User.Identity?.Name ?? "Desconocido";
+            var nombreCorto = etapaEncontrada.Nombre.Length > 50
+                ? etapaEncontrada.Nombre.Substring(0, 47) + "..."
+                : etapaEncontrada.Nombre;
+            var accion = $"Se descargó la etapa '{nombreCorto}' del caso {etapaEncontrada.IdCaso}";
+            await _bitacoraLN.RegistrarBitacoraAsync(usuario, "T_CasosEtapa", accion, etapaEncontrada.IdCaso);
+            // --- FIN BITÁCORA ---
+
             return File(pdf, "application/pdf");
         }
 
@@ -438,6 +474,15 @@ namespace Preacepta.UI.Controllers
             if (ModelState.IsValid)
             {
                 await _crear.Crear(tCasosEtapa);
+
+                var usuario = User.Identity?.Name ?? "Desconocido";
+                var nombreCorto = tCasosEtapa.Nombre.Length > 50
+                    ? tCasosEtapa.Nombre.Substring(0, 47) + "..."
+                    : tCasosEtapa.Nombre;
+                var accion = $"Se creó la etapa '{nombreCorto}' del caso {tCasosEtapa.IdCaso}";
+                await _bitacoraLN.RegistrarBitacoraAsync(usuario, "T_CasosEtapa", accion, tCasosEtapa.IdCaso);
+
+
                 return RedirectToAction(nameof(Index));
             }
             ViewData["IdCaso"] = new SelectList(_listarCasos.listar().Result, "IdCaso", "Nombre", tCasosEtapa.IdCaso);
@@ -481,6 +526,14 @@ namespace Preacepta.UI.Controllers
                 try
                 {
                     await _editar.Editar(tCasosEtapa);
+
+                    var usuario = User.Identity?.Name ?? "Desconocido";
+                    var nombreCorto = tCasosEtapa.Nombre.Length > 50
+                        ? tCasosEtapa.Nombre.Substring(0, 47) + "..."
+                        : tCasosEtapa.Nombre;
+                    var accion = $"Se modificó la etapa '{nombreCorto}' del caso {tCasosEtapa.IdCaso}";
+                    await _bitacoraLN.RegistrarBitacoraAsync(usuario, "T_CasosEtapa", accion, tCasosEtapa.IdCaso);
+               
                 }
                 catch (DbUpdateConcurrencyException)
                 {

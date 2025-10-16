@@ -1,0 +1,17 @@
+﻿using Preacepta.Modelos.AbstraccionesFrond;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Preacepta.AD.BitacoraEventos.Listar
+{
+    public interface IListarEventosAD
+    {
+        Task<List<BitacoraEventosDTO>> ListarTodos();
+        Task<List<BitacoraEventosDTO>> ListarPorUsuario(string usuario);
+        Task<List<BitacoraEventosDTO>> ListarPorRangoFecha(DateTime fechaInicio, DateTime fechaFin);
+
+    }
+}

@@ -19,12 +19,13 @@ using Preacepta.LN.HistorialDocumentos.Crear;
 using Preacepta.LN.HistorialDocumentos.Eliminar;
 using Preacepta.LN.HistorialDocumentos.Listar;
 using Preacepta.Modelos.AbstraccionesFrond;
+using Preacepta.LN.BitacoraEventos.Crear;
 
 namespace Preacepta.UI.Controllers
 {
     public class DocsCompraventaFincasController : Controller
     {
-        private readonly Contexto _context;
+       
         private readonly IConverter _converter;
         private readonly IBuscarDocsCompraventaFincaLN _buscar;
         private readonly ICrearDocsCompraventaFincaLN _crear;
@@ -39,9 +40,10 @@ namespace Preacepta.UI.Controllers
         private readonly IELiminarHistorialLN _eLiminarHistorialLN;
         private readonly IBuscarCrDireccion1LN _buscarDistrito;
         private readonly IListarCrDireccion1LN _listarDistrito;
+        private readonly ICrearEventosLN _bitacoraLN;
 
         public DocsCompraventaFincasController(IConverter converter,
-            Contexto context,
+          
             IBuscarDocsCompraventaFincaLN buscar,
             ICrearDocsCompraventaFincaLN crear,
             IEditarDocsCompraventaFincaLN editar,
@@ -54,10 +56,11 @@ namespace Preacepta.UI.Controllers
             IBuscarHistorialLN buscarHistorialLN,
             IELiminarHistorialLN eLiminarHistorialLN,
             IBuscarCrDireccion1LN buscarDistrito,
-            IListarCrDireccion1LN listarDistrito)
+            IListarCrDireccion1LN listarDistrito,
+            ICrearEventosLN bitacora)
         {
             _converter = converter;
-            _context = context;
+           
             _buscar = buscar;
             _crear = crear;
             _editar = editar;
@@ -71,6 +74,7 @@ namespace Preacepta.UI.Controllers
             _eLiminarHistorialLN = eLiminarHistorialLN;
             _buscarDistrito = buscarDistrito;
             _listarDistrito = listarDistrito;
+            _bitacoraLN = bitacora;
         }
 
         // GET: DocsCompraventaFincas
@@ -125,6 +129,15 @@ namespace Preacepta.UI.Controllers
                 await _crear.Crear(tDocsCompraventaFinca);
                 var Registros = await _listar.listar();
                 var idDocumento = Registros.LastOrDefault();
+
+                var usuario = User.Identity?.Name ?? "Desconocido";
+                var tituloCorto = tDocsCompraventaFinca.NumeroEscritura.Length > 50
+                    ? tDocsCompraventaFinca.NumeroEscritura.Substring(0, 47) + "..."
+                    : tDocsCompraventaFinca.NumeroEscritura;
+                var accion = $"Se creó documento CompraVenta Fincas '{tituloCorto}' con ID {idDocumento.IdDocumento}";
+                await _bitacoraLN.RegistrarBitacoraAsync(usuario, "T_DocsCompraventaFinca", accion, idDocumento.IdDocumento);
+
+
                 HistorialDocumentoDTO historialDocumentoDTO = new HistorialDocumentoDTO
                 {
                     Cliente = tDocsCompraventaFinca.CedulaComprador,
@@ -190,6 +203,13 @@ namespace Preacepta.UI.Controllers
                 try
                 {
                     await _editar.Editar(tDocsCompraventaFinca);
+                    // Registrar en bitácora
+                    var usuario = User.Identity?.Name ?? "Desconocido";
+                    var tituloCorto = tDocsCompraventaFinca.NumeroEscritura.Length > 50
+                        ? tDocsCompraventaFinca.NumeroEscritura.Substring(0, 47) + "..."
+                        : tDocsCompraventaFinca.NumeroEscritura;
+                    var accion = $"Se editó documento CompraVenta Fincas '{tituloCorto}' con ID {tDocsCompraventaFinca.IdDocumento}";
+                    await _bitacoraLN.RegistrarBitacoraAsync(usuario, "T_DocsCompraventaFinca", accion, tDocsCompraventaFinca.IdDocumento);
                 }
                 catch (DbUpdateConcurrencyException)
                 {
@@ -295,6 +315,15 @@ namespace Preacepta.UI.Controllers
                 await _crear.Crear(tDocsCompraventaFinca);
                 var Registros = await _listar.listar();
                 var idDocumento = Registros.LastOrDefault();
+
+                var usuario = User.Identity?.Name ?? "Desconocido";
+                var tituloCorto = tDocsCompraventaFinca.NumeroEscritura.Length > 50
+                    ? tDocsCompraventaFinca.NumeroEscritura.Substring(0, 47) + "..."
+                    : tDocsCompraventaFinca.NumeroEscritura;
+                var accion = $"Se creó documento CompraVenta Fincas '{tituloCorto}' con ID {idDocumento.IdDocumento}";
+                await _bitacoraLN.RegistrarBitacoraAsync(usuario, "T_DocsCompraventaFinca", accion, idDocumento.IdDocumento);
+
+
                 HistorialDocumentoDTO historialDocumentoDTO = new HistorialDocumentoDTO
                 {
                     Cliente = tDocsCompraventaFinca.CedulaComprador,

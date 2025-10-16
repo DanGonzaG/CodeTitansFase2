@@ -24,7 +24,8 @@
                         @if (doc.Descargar)
                         {
                             <span class="text-success">Descarga Autorizada</span>
-                            <a href="@doc.RutaArchivo" download>Descargar</a>
+                            <a href="@Url.Action("Descargar", "DocumentosCita", new { id = doc.Id })" download>Descargar</a>
+
                         }
                         else
                         {
