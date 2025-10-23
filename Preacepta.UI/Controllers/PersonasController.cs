@@ -84,26 +84,7 @@ namespace Preacepta.UI.Controllers
                 var existe = await _buscarPersona.buscar(tGePersona.Cedula);
                 if (existe != null)//valida si hay un cedula igual registrada
                 {
-
-                    var correo = await _buscarPersona.buscarXcorreo(tGePersona.Email);
-                    if (correo == null)//valida si hay un correo igual registrado
-                    {
-                        await _crearPesona.crear(tGePersona);//llamado de los LN y AD para crear la persona
-
-                        // Registrar evento en la bitácora
-                        var usuario = User.Identity?.Name ?? "Desconocido";
-                        var nombreCompleto = $"{tGePersona.Nombre} {tGePersona.Apellido1} {tGePersona.Apellido2}".Trim();
-                        var descripcion = $"Se creó una nueva persona: {nombreCompleto} (Cédula: {tGePersona.Cedula}, Email: {tGePersona.Email})";
-
-                        await _bitacoraLN.RegistrarBitacoraAsync(usuario, "Creación de persona", descripcion, tGePersona.Cedula);
-
-
-                        TempData["PersonaCreada"] = "Se ha creado un nuevo usuario en el sistema";
-                        return RedirectToAction("UsuarioAutenticado", "Home", new { correo = User.Identity.Name });
-                    }
-                    else
-
-                    ViewData["Direccion1"] = new SelectList(_listarDireccion.listarDistritos().Result, "IdDistrito", "NombreDistrito", tGePersona.Direccion1);
+                    //ViewData["Direccion1"] = new SelectList(_listarDireccion.listarDistritos().Result, "IdDistrito", "NombreDistrito", tGePersona.Direccion1);
 
                     ViewBag.EstadoCivil = new List<SelectListItem>
                     {
@@ -112,12 +93,13 @@ namespace Preacepta.UI.Controllers
                         new SelectListItem { Text = "Divorciado", Value = "Divorciado" },
                         new SelectListItem { Text = "Viudo", Value = "Viudo" }
                     };
+
                     ViewBag.Genero = new List<SelectListItem>
-                        {
-                            new SelectListItem { Text = "Femenino", Value = "Femenino" },
-                            new SelectListItem { Text = "Masculino", Value = "Masculino" },
-                        };
-                    TempData["ErrorCedula"] = "Cedula ya registrada en el sistema";
+                    {
+                        new SelectListItem { Text = "Femenino", Value = "Femenino" },
+                        new SelectListItem { Text = "Masculino", Value = "Masculino" }
+                    };
+                    ViewBag.TempData["ErrorCedula"] = "Cedula ya registrada en el sistema";
                     return View(tGePersona);
                 }
                 #endregion

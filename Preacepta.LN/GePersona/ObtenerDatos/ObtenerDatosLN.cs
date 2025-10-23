@@ -26,7 +26,8 @@ namespace Preacepta.LN.GePersona.ObtenerDatos
                 Activo = gePersona.Activo,
                 Telefono1 = gePersona.Telefono1,
                 Telefono2 = gePersona.Telefono2,
-                Genero = gePersona.Genero
+                Genero = gePersona.Genero,
+                ExpirationPassword = gePersona.ExpirationPassword.ToString("dd/MM/yyyy")
             };
         }
 
@@ -52,7 +53,8 @@ namespace Preacepta.LN.GePersona.ObtenerDatos
                 Activo = true,
                 Telefono1 = gePersona.Telefono1,
                 Telefono2 = gePersona.Telefono2,
-                Genero = gePersona.Genero
+                Genero = gePersona.Genero,
+                ExpirationPassword = DateTime.Parse(gePersona.ExpirationPassword)
             };
         }
 
@@ -72,11 +74,12 @@ namespace Preacepta.LN.GePersona.ObtenerDatos
                 Direccion1Navigation = gePersona.Direccion1Navigation,
                 Direccion2 = gePersona.Direccion2,
                 Email = gePersona.Email,
-                FechaRegistro = DateTime.Now,
+                //FechaRegistro = DateTime.Now,
                 Activo = gePersona.Activo,
                 Telefono1 = gePersona.Telefono1,
                 Telefono2 = gePersona.Telefono2,
-                Genero = gePersona.Genero
+                Genero = gePersona.Genero,
+                ExpirationPassword = DateTime.Parse(gePersona.ExpirationPassword)
             };
         }        
     }

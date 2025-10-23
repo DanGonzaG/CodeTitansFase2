@@ -83,7 +83,7 @@ public partial class Contexto : DbContext
     //string Server = "Data Source=ANDY;Initial Catalog=PreaceptaBD;Integrated Security=True;Connect Timeout=30;Encrypt=False;Trust Server Certificate=True"; // Conexion Andy
     //string Server = "Data Source=DESKTOP-BREQ0TF\\SQLEXPRESS;Initial Catalog=PreaceptaBD;Integrated Security=True;Trust Server Certificate=True"; //Conexion Alonso
 
-    string Server = "Data Source=DESKTOP-L8MJ1I5\\SQLEXPRESS03;Initial Catalog=PreaceptaBD;User ID=db_connect;Password=1357;Connect Timeout=30;Encrypt=False;Trust Server Certificate=True";
+    //string Server = "Data Source=DESKTOP-L8MJ1I5\\SQLEXPRESS03;Initial Catalog=PreaceptaBD;User ID=db_connect;Password=1357;Connect Timeout=30;Encrypt=False;Trust Server Certificate=True";
     //string Server = "Data Source=DESKTOP-SN6P8CV;Initial Catalog=PreaceptaBD;Integrated Security=True;Connect Timeout=30;Encrypt=False;Trust Server Certificate=True";//Andy
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)

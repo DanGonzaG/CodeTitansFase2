@@ -54,6 +54,8 @@ public partial class TGePersona
     [StringLength(10)]
     public string Genero { get; set; } = null!;
 
+    public DateTime ExpirationPassword {  get; set; }
+
     [ForeignKey("Direccion1")]
     [InverseProperty("TGePersonas")]
     public virtual TCrDistrito Direccion1Navigation { get; set; } = null!;

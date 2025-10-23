@@ -60,6 +60,9 @@ namespace Preacepta.Modelos.AbstraccionesFrond
         [Required(ErrorMessage = "Seleccione un género")]
         public string Genero { get; set; } = null!;
 
+        public string ExpirationPassword { get; set; }
+
+        [Required]
         [DisplayName("Vecino de")]
         public virtual TCrDistrito? Direccion1Navigation { get; set; } = null!;
 
@@ -102,7 +105,7 @@ namespace Preacepta.Modelos.AbstraccionesFrond
 
 
         [Required(ErrorMessage = "Debe ingresar un contraseña")]
-        [StringLength(100, ErrorMessage = "El {0} debe tener al menos {2} y como máximo {1} caracteres de longitud.", MinimumLength = 6)]
+        [StringLength(18, ErrorMessage = "El {0} debe tener al menos {2} y como máximo {1} caracteres de longitud.", MinimumLength = 12)]
         [RegularExpression (@"^(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).+$",ErrorMessage ="La contraseña debe de tener al menos un numero, una mayuscula y un símbolo")] 
 
         [DataType(DataType.Password)]
