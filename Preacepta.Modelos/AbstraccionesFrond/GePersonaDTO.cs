@@ -60,7 +60,7 @@ namespace Preacepta.Modelos.AbstraccionesFrond
         [Required(ErrorMessage = "Seleccione un género")]
         public string Genero { get; set; } = null!;
 
-        public string ExpirationPassword { get; set; }
+        public string? ExpirationPassword { get; set; }
 
         [Required]
         [DisplayName("Vecino de")]

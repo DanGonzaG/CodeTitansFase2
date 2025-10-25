@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Preacepta.LN.GePersona.BuscarXid;
 using Preacepta.LN.GePersona.Editar;
+using Preacepta.Modelos.AbstraccionesFrond;
 using System.ComponentModel.DataAnnotations;
 using System.Diagnostics.CodeAnalysis;
 using System.Security.Claims;
@@ -23,7 +24,7 @@ namespace Praecepta.UI.Areas.Identity.Pages.Account
         private readonly IEditarGePersonaLN _editarPersona;
 
         public LoginModel(UserManager<IdentityUser> userManager,
-            SignInManager<IdentityUser> signInManager, 
+            SignInManager<IdentityUser> signInManager,
             ILogger<LoginModel> logger,
             IBuscarXidGePersonaLN buscarPersona,
             IEditarGePersonaLN editarPersona)
@@ -36,7 +37,7 @@ namespace Praecepta.UI.Areas.Identity.Pages.Account
         }
 
 
-        
+
         /// <summary>
         ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
         ///     directly from your code. This API may change or be removed in future releases.
@@ -73,7 +74,7 @@ namespace Praecepta.UI.Areas.Identity.Pages.Account
             ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
             ///     directly from your code. This API may change or be removed in future releases.
             /// </summary>
-            [Required (ErrorMessage = "El campo Correo electrónico es obligatorio.")]
+            [Required(ErrorMessage = "El campo Correo electrónico es obligatorio.")]
             [EmailAddress]
             public string Email { get; set; }
 
@@ -81,7 +82,7 @@ namespace Praecepta.UI.Areas.Identity.Pages.Account
             ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
             ///     directly from your code. This API may change or be removed in future releases.
             /// </summary>
-            [Required (ErrorMessage = "El campo Contraseña es obligatorio.")]
+            [Required(ErrorMessage = "El campo Contraseña es obligatorio.")]
             [DataType(DataType.Password)]
             public string Password { get; set; }
 
@@ -92,6 +93,17 @@ namespace Praecepta.UI.Areas.Identity.Pages.Account
             //[Display(Name = "Remember me?")]
             [Display(Name = "Recordar")]
             public bool RememberMe { get; set; }
+        }
+
+        private async Task <bool> ExpirationPass(GePersonaDTO persona) 
+        {
+            bool bandera;
+            DateTime fechaContra = DateTime.Parse(persona.ExpirationPassword);
+            if (fechaContra < DateTime.UtcNow)
+            {
+                return true;
+            }
+            return false;
         }
 
         public async Task OnGetAsync(string returnUrl = null)
@@ -124,6 +136,16 @@ namespace Praecepta.UI.Areas.Identity.Pages.Account
                 return Page();
             }
 
+            var persona = await _buscarPersona.buscarXcorreo(Input.Email);
+            bool validarPassword = await ExpirationPass(persona);
+            /* (persona == null)
+            {
+                ModelState.AddModelError(string.Empty, $"Usuario no se encuentra registrado");
+                return Page();
+            }*/
+
+
+
             int contadorIntentos = await _userManager.GetAccessFailedCountAsync(usuario);
             contadorIntentos++;
             int intentosRestantes = 3 - contadorIntentos;
@@ -141,7 +163,7 @@ namespace Praecepta.UI.Areas.Identity.Pages.Account
 
                 if (result.Succeeded)
                 {
-                    // 🔄 Obtener ClaimsPrincipal actualizado
+                    //Obtener ClaimsPrincipal actualizado
                     var principal = await _signInManager.CreateUserPrincipalAsync(usuario);
                     var roles = principal.Claims
                         .Where(c => c.Type == ClaimTypes.Role)
@@ -150,9 +172,17 @@ namespace Praecepta.UI.Areas.Identity.Pages.Account
 
                     _logger.LogInformation("Roles asignados al usuario tras login: {Roles}", string.Join(", ", roles));
 
+
+                    if (validarPassword == true)
+                    {
+                        ModelState.AddModelError(string.Empty, "Su contraseña ha expirado, favor crear un nueva");
+                        TempData["ExpirationPassword"] = "Su contraseña ha expirado, favor crear un nueva";
+                        return RedirectToPage("./ExpirationPassword");
+                    }
+
                     if (!roles.Contains("Gestor"))
                     {
-                        var persona = await _buscarPersona.buscarXcorreo(Input.Email);
+                        //var persona = await _buscarPersona.buscarXcorreo(Input.Email);
                         if (!persona.Activo)
                         {
                             await _signInManager.SignOutAsync();
@@ -166,8 +196,8 @@ namespace Praecepta.UI.Areas.Identity.Pages.Account
                     if (roles.Any(r => r == "Gestor" || r == "Cliente" || r == "Abogado"))
                     {
 
-                       _logger.LogInformation("Usuario conectado con rol válido.");
-                       foreach (var claim in principal.Claims)
+                        _logger.LogInformation("Usuario conectado con rol válido.");
+                        foreach (var claim in principal.Claims)
                         {
                             _logger.LogInformation("DanielClaim: {Type} = {Value}", claim.Type, claim.Value);
                         }
@@ -180,18 +210,20 @@ namespace Praecepta.UI.Areas.Identity.Pages.Account
                             if (decodedReturnUrl.Contains("correo=", StringComparison.OrdinalIgnoreCase))
                             {
                                 return LocalRedirect(returnUrl);
+                            }
+                            else
+                            {
+                                return RedirectToAction("UsuarioAutenticado", "Home", new { correo = Input.Email });
+                            }
                         }
-                        else
-                        {
-                            return RedirectToAction("UsuarioAutenticado", "Home", new { correo = Input.Email });
-                        }
-                    }
                     }
                 }
-               
+
+             
+
                 if (result.RequiresTwoFactor)
-                {
-                    return RedirectToPage("./LoginWith2fa", new { ReturnUrl = returnUrl, RememberMe = Input.RememberMe });
+                {                    
+                    return RedirectToPage("./LoginWith2fa", new { ReturnUrl = returnUrl, RememberMe = Input.RememberMe, ValidarPassword = validarPassword });
                 }
 
                 if (result.IsLockedOut)
@@ -199,7 +231,7 @@ namespace Praecepta.UI.Areas.Identity.Pages.Account
                     _logger.LogWarning("Cuenta de usuario bloqueada.");
                     TempData["Lockout"] = "Su cuenta está bloqueada por múltiples intentos, favor comuníquese con el despacho";
                     return Page();
-                }
+                }                
 
                 if (intentosRestantes == 1)
                 {

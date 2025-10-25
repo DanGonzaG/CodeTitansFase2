@@ -34,10 +34,23 @@ namespace Preacepta.LN.GePersona.Editar
                 return 0;
 
             }
+        }
 
+        public async Task<int> ActualizarFechaPassword(GePersonaDTO gePersonaDTO)
+        {
+            
+            try
+            {
+                int bandera = await _editarGePersonaAD.editar(_obtenerDatosLN.ObtenerDeFrontFechaExpirada(gePersonaDTO));
+                return bandera;
 
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error en EditarGepersonaLN: {ex.Message}");
+                return 0;
 
-
+            }
         }
     }
 }

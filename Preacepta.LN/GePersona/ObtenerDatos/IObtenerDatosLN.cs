@@ -7,7 +7,7 @@ namespace Preacepta.LN.GePersona.ObtenerDatos
     {
         GePersonaDTO ObtenerDeDB(TGePersona gePersona);
         TGePersona ObtenerDeFrontCrear(GePersonaDTO gePersona);
-
         TGePersona ObtenerDeFrontEditar(GePersonaDTO gePersona);
+        TGePersona ObtenerDeFrontFechaExpirada(GePersonaDTO gePersona);
     }
 }
