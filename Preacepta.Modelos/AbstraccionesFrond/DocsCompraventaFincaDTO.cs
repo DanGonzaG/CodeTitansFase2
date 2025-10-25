@@ -12,7 +12,7 @@ namespace Preacepta.Modelos.AbstraccionesFrond
 
         [DisplayName("Número de Escritura")]
         [Required(ErrorMessage = "Debe ingresar el número de escritura")]
-        [StringLength(50)]
+        [MaxLength(50, ErrorMessage = "El nombre no debe exceder los 50 caracteres")]
         public string NumeroEscritura { get; set; } = null!;
 
         [DisplayName("Cédula del Abogado")]
@@ -33,17 +33,17 @@ namespace Preacepta.Modelos.AbstraccionesFrond
 
         [DisplayName("Partido de la Finca")]
         [Required(ErrorMessage = "Debe ingresar el partido de la finca")]
-        [StringLength(50)]
+        [MaxLength(50, ErrorMessage = "El nombre no debe exceder los 50 caracteres")]
         public string PartidoFinca { get; set; } = null!;
 
         [DisplayName("Matrícula de la Finca")]
         [Required(ErrorMessage = "Debe ingresar la matrícula de la finca")]
-        [StringLength(50)]
+        [MaxLength(50, ErrorMessage = "El nombre no debe exceder los 50 caracteres")]
         public string MatriculaFinca { get; set; } = null!;
 
         [DisplayName("Naturaleza de la Finca")]
         [Required(ErrorMessage = "Debe especificar la naturaleza de la finca")]
-        [StringLength(100)]
+        [MaxLength(100, ErrorMessage = "El nombre no debe exceder los 100 caracteres")]
         public string NaturalezaFinca { get; set; } = null!;
 
         [DisplayName("Distrito de la Finca")]
@@ -58,11 +58,14 @@ namespace Preacepta.Modelos.AbstraccionesFrond
         [DisplayName("Área de la Finca (m²)")]
         public decimal AreaFincaM2 { get; set; }
 
+        [Required(ErrorMessage = "Este campo es requerido")]
         [DisplayName("Plano Catastrado")]
-        [StringLength(100)]
+        [MaxLength(100, ErrorMessage = "El nombre no debe exceder los 100 caracteres")]
         public string PlanoCatastrado { get; set; } = null!;
 
+        [Required(ErrorMessage = "Este campo es requerido")]
         [DisplayName("Colinda al Norte")]
+
         public string ColindaNorte { get; set; } = null!;
 
         [DisplayName("Colinda al Sur")]

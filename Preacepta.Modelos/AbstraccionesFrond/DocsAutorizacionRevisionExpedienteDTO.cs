@@ -11,25 +11,28 @@ namespace Preacepta.Modelos.AbstraccionesFrond
 
         [DisplayName("Expediente")]
         [Required(ErrorMessage = "El campo 'Expediente' es obligatorio")]
-        [StringLength(50)]
+        [MaxLength(50, ErrorMessage = "Solo puede ingresar 50 caracteres")]
         public string Expediente { get; set; } = null!;
 
         [DisplayName("Delito")]
         [Required(ErrorMessage = "Debe especificar el delito")]
-        [StringLength(100)]
+        [MaxLength(100, ErrorMessage = "Solo puede ingresar 100 caracteres")]
         public string Delito { get; set; } = null!;
 
+        [Required(ErrorMessage = "Debe de elegir un imputado")]
         [DisplayName("Cédula del imputado")]
         public int CedulaImputado { get; set; }
 
         [DisplayName("Ofendido")]
         [Required(ErrorMessage = "Debe especificar el nombre del ofendido")]
-        [StringLength(150)]
+        [MaxLength(150, ErrorMessage = "Solo puede ingresar 150 caracteres")]
         public string Ofendido { get; set; } = null!;
 
+        [Required(ErrorMessage = "Debe de seleccionar un abogado")]
         [DisplayName("Cédula del abogado")]
         public int CedulaAbogado { get; set; }
 
+        [Required(ErrorMessage = "Debe de seleccionar un abogado")]
         [DisplayName("Cédula del asistente")]
         public int CedulaAsistente { get; set; }
 

@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Preacepta.AD")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+f9f53dac2989402848db299d8125b31c6b17f7c1")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+b92b4d90d19615ed657dd024471e03c5a25eacfe")]
 [assembly: System.Reflection.AssemblyProductAttribute("Preacepta.AD")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Preacepta.AD")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
