@@ -30,42 +30,42 @@ namespace Preacepta.Modelos.AbstraccionesFrond
         [DisplayName("Cedula del comprador")]
         public int CedulaComprador { get; set; }
 
-        [DisplayName("Placa del vehiculo")]
+        [DisplayName("Placa del vehículo")]
         [MaxLength(20, ErrorMessage = "Capacidad de la placa excedida")]
-        [Required(ErrorMessage = "Debe ingresar un placa para el vehiculo")]
+        [Required(ErrorMessage = "Debe ingresar un placa para el vehículo")]
         public string PlacaVehiculo { get; set; } = null!;
 
-        [DisplayName("Marca del vehiculo")]
-        [Required(ErrorMessage = "Debe de seleccionar una marca para el vehiculo")]
+        [DisplayName("Marca del vehículo")]
+        [Required(ErrorMessage = "Debe de seleccionar una marca para el vehículo")]
         public int MarcaVehiculo { get; set; }
 
-        [DisplayName("Tipo de vehiculo")]
-        [Required(ErrorMessage = "Debe de seleccionar un tipo de vehiculo")]
+        [DisplayName("Tipo de vehículo")]
+        [Required(ErrorMessage = "Debe de seleccionar un tipo de vehículo")]
         public int TipoVehiculo { get; set; }
 
-        [DisplayName("Modelo del vehiculo")]
+        [DisplayName("Modelo del vehículo")]
         [MaxLength(100, ErrorMessage = "Capacidad excedida")]
-        [Required(ErrorMessage = "Debe de escribir el modelo del vehiculo")]
+        [Required(ErrorMessage = "Debe de escribir el modelo del vehículo")]
         public string ModeloVehiculo { get; set; } = null!;
 
         [MaxLength(100, ErrorMessage = "Capacidad excedida")]
-        [Required(ErrorMessage = "Debe de ingresar el tipo de carroceria del vehiculo")]
+        [Required(ErrorMessage = "Debe de ingresar el tipo de carroceria del vehículo")]
         public string Carroceria { get; set; } = null!;
 
         [MaxLength(100, ErrorMessage = "Debe ingresar una categoria")]
-        [Required(ErrorMessage = "Debe de ingresar la categoria del vehiculo")]
+        [Required(ErrorMessage = "Debe de ingresar la categoria del vehículo")]
         public string Categoria { get; set; } = null!;
 
         [MaxLength(100, ErrorMessage = "Capacidad excedida")]
-        [Required(ErrorMessage = "Debe de ingresar el chasis del vehiculo")]
+        [Required(ErrorMessage = "Debe de ingresar el chasis del vehículo")]
         public string Chasis { get; set; } = null!;
 
         [MaxLength(100, ErrorMessage = "Capacidad excedida")]
-        [Required(ErrorMessage = "Debe de ingresar la serie del vehiculo")]
+        [Required(ErrorMessage = "Debe de ingresar la serie del vehículo")]
         public string Serie { get; set; } = null!;
 
         [MaxLength(100, ErrorMessage = "Capacidad excedida")]
-        [Required(ErrorMessage = "Debe de ingresar el vin del vehiculo")]
+        [Required(ErrorMessage = "Debe de ingresar el vin del vehículo")]
         public string Vin { get; set; } = null!;
 
         [DisplayName("Marca del motor")]
@@ -78,26 +78,26 @@ namespace Preacepta.Modelos.AbstraccionesFrond
         public string NumeroMotor { get; set; } = null!;
 
         [MaxLength(50, ErrorMessage = "Capacidad excedida")]
-        [Required(ErrorMessage = "Debe de ingresar el color del vehiculo")]
+        [Required(ErrorMessage = "Debe de ingresar el color del vehículo")]
         public string Color { get; set; } = null!;
 
         [Required(ErrorMessage = "Debe de seleccionar el tipo de combustible")]
         public int Combustible { get; set; }
 
         [DisplayName("Año")]
-        [Required(ErrorMessage = "Debe de ingresar el año del vehiculo")]
+        [Required(ErrorMessage = "Debe de ingresar el año del vehículo")]
         [Range(1887, int.MaxValue, ErrorMessage = "El año debe ser mayor a 1886.")]
         public int Anio { get; set; }
 
         [MaxLength(50, ErrorMessage = "Capacidad excedida")]
-        [Required(ErrorMessage = "Debe de ingresar la capacidad del vehiculo")]
+        [Required(ErrorMessage = "Debe de ingresar la capacidad del vehículo")]
         public string Capacidad { get; set; } = null!;
 
         [MaxLength(50, ErrorMessage = "Capacidad excedida")]
-        [Required(ErrorMessage = "Debe de ingresar el cilindraje del vehiculo")]
+        [Required(ErrorMessage = "Debe de ingresar el cilindraje del vehículo")]
         public string Cilindraje { get; set; } = null!;
 
-        [Required(ErrorMessage = "Debe de ingresar el precio del vehiculo")]
+        [Required(ErrorMessage = "Debe de ingresar el precio del vehículo")]
         public decimal Precio { get; set; }
 
         [DisplayName("Precio Moneda")]
@@ -150,28 +150,28 @@ namespace Preacepta.Modelos.AbstraccionesFrond
         [DisplayName("Fecha de la Firma")]
         public string? FechaFirma { get; set; }
 
-        [DisplayName("Cedula del Abogado en navegacion")]
+        [DisplayName("Cedula del Abogado")]
         public virtual TGeAbogado? CedulaAbogadoNavigation { get; set; } = null!;
 
-        [DisplayName("Cedula del Comprador en navegacion")]
+        [DisplayName("Cedula del Comprador")]
         public virtual TGePersona? CedulaCompradorNavigation { get; set; } = null!;
 
-        [DisplayName("Cedula del Propietario en navegacion")]
+        [DisplayName("Cedula del Propietario")]
         public virtual TGePersona? CedulaPropietarioNavigation { get; set; } = null!;
 
-        [DisplayName("Combustible en navegacion")]
+        [DisplayName("Combustible")]
         public virtual TDocsCombustible? CombustibleNavigation { get; set; } = null!;
 
-        [DisplayName("Lugar de Firma en navegacion")]
+        [DisplayName("Lugar de Firma")]
         public virtual TCrDistrito? LugarFirmaNavigation { get; set; } = null!;
 
-        [DisplayName("Marca del Motor en navegacion")]
+        [DisplayName("Marca del Motor")]
         public virtual TDocsMarcaVehiculo? MarcaMotorNavigation { get; set; } = null!;
 
-        [DisplayName("Marca del vehiculo en navegacion")]
+        [DisplayName("Marca del vehículo")]
         public virtual TDocsMarcaVehiculo? MarcaVehiculoNavigation { get; set; } = null!;
 
-        [DisplayName("Tipo del Vehiculo en navegacion")]
+        [DisplayName("Tipo del Vehiculo")]
         public virtual TDocsTipoVehiculo? TipoVehiculoNavigation { get; set; } = null!;
     }
 }

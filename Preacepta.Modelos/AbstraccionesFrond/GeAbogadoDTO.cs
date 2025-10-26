@@ -18,7 +18,9 @@ namespace Preacepta.Modelos.AbstraccionesFrond
         public int IdTipoAbogado { get; set; }
 
         [DisplayName("Cedula Jurídica")]
+        [Required(ErrorMessage = "Debe de seleccionar una cédula jurídica")]
         public int CJuridica { get; set; }
+
         [DisplayName("Despacho")]
         public virtual TGeNegocio? CJuridicaNavigation { get; set; } = null!;
         [DisplayName("Funcionario")]

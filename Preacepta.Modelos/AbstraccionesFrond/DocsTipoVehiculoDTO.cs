@@ -16,6 +16,7 @@ namespace Preacepta.Modelos.AbstraccionesFrond
         public int Id { get; set; }
 
         [MaxLength(50, ErrorMessage = "Capacidad de Nombre excedida")]
+        [Required(ErrorMessage = "Dato requerido")]
         public string Nombre { get; set; } = null!;
 
         public virtual ICollection<TDocsInscripcionVehiculo> TDocsInscripcionVehiculos { get; set; } = new List<TDocsInscripcionVehiculo>();

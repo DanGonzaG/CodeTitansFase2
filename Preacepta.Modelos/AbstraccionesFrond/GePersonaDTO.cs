@@ -11,9 +11,12 @@ namespace Preacepta.Modelos.AbstraccionesFrond
         public int Cedula { get; set; }
 
         [Required(ErrorMessage = "Ingrese el nombre de la persona")]
+        [MaxLength(50, ErrorMessage = "El nombre no debe exceder los 50 caracteres")]
+        [DisplayName("Nombre")]
         public string Nombre { get; set; } = null!;
 
         [Required(ErrorMessage = "Ingrese el primer apellido de la persona")]
+        [MaxLength(50, ErrorMessage = "El nombre no debe exceder los 50 caracteres")]
         [DisplayName("Primer apellido")]
         public string Apellido1 { get; set; } = null!;
 
@@ -22,6 +25,7 @@ namespace Preacepta.Modelos.AbstraccionesFrond
         public string Apellido2 { get; set; } = null!;
 
         [Required(ErrorMessage = "Ingrese la fecha de nacimiento de la persona")]
+        [MaxLength(50, ErrorMessage = "El nombre no debe exceder los 50 caracteres")]
         [DisplayName("Fecha de nacimiento")]
         public string FechaNacimiento { get; set; }
 
@@ -29,10 +33,12 @@ namespace Preacepta.Modelos.AbstraccionesFrond
         public int Edad { get; set; }
 
         [Required(ErrorMessage = "Seleccione el estado civil de la persona")]
+        [MaxLength(50, ErrorMessage = "El nombre no debe exceder los 50 caracteres")]
         [DisplayName("Estado Civil")]
         public string EstadoCivil { get; set; } = null!;
 
         [Required(ErrorMessage = "Ingrese la ocupación de la persona")]
+        [MaxLength(50, ErrorMessage = "El nombre no debe exceder los 50 caracteres")]
         [DisplayName("Ocupación")]
         public string Oficio { get; set; } = null!;
 
@@ -41,14 +47,17 @@ namespace Preacepta.Modelos.AbstraccionesFrond
         public int Direccion1 { get; set; }
 
         [Required(ErrorMessage = "Ingrese la dirección exacta")]
+        [MaxLength(500, ErrorMessage = "El nombre no debe exceder los 500 caracteres")]
         [DisplayName("Dirección exacta")]
         public string Direccion2 { get; set; } = null!;
 
         [Required(ErrorMessage = "Ingrese un primer contacto")]
+        [MaxLength(50, ErrorMessage = "El nombre no debe exceder los 50 caracteres")]
         [DisplayName("Celular")]
         public string Telefono1 { get; set; } = null!;
 
         [Required(ErrorMessage = "Ingrese un segundo contacto")]
+        [MaxLength(50, ErrorMessage = "El nombre no debe exceder los 50 caracteres")]
         [DisplayName("Otro Contacto")]
         public string? Telefono2 { get; set; }
 

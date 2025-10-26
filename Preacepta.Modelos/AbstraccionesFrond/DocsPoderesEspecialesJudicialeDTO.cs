@@ -25,10 +25,12 @@ namespace Preacepta.Modelos.AbstraccionesFrond
 
         [Display(Name = "Texto del Documento")]
         [Required(ErrorMessage = "Debe de ingresar la informacion del poder judicial.")]
+        [MaxLength(5000, ErrorMessage = "El nombre no debe exceder los 5000 caracteres")]
         public string Texto { get; set; } = null!;
 
         [Display(Name = "Numero de Causa")]
         [Required(ErrorMessage = "Debe de ingresar el numero de causa.")]
+        [MaxLength(100, ErrorMessage = "El nombre no debe exceder los 100 caracteres")]
         public string NumCausa { get; set; }
 
         [Display(Name = "Navegación Abogado")]
