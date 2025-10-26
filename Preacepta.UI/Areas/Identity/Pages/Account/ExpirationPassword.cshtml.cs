@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Praecepta.UI.Areas.Identity.Pages.Account.Manage;
 using Preacepta.LN.GePersona.BuscarXid;
 using Preacepta.LN.GePersona.Editar;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
 namespace Preacepta.UI.Areas.Identity.Pages.Account
@@ -83,6 +84,10 @@ namespace Preacepta.UI.Areas.Identity.Pages.Account
             [Display(Name = "Confirmación de nueva contraseña")]
             [Compare("NewPassword", ErrorMessage = "La nueva contraseña y la contraseña de confirmación no coinciden.")]
             public string ConfirmPassword { get; set; }
+
+            [DisplayName ("Tiempo de expiración")]
+            [Required(ErrorMessage = "Debe de seleccionar un periodo de tiempo")]
+            public int periodo { get; set; }
         }
 
         public async Task<IActionResult> OnGetAsync()
