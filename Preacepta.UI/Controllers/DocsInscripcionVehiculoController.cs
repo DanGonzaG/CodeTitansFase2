@@ -23,13 +23,14 @@ using Preacepta.LN.HistorialDocumentos.Crear;
 using Preacepta.LN.HistorialDocumentos.Eliminar;
 using Preacepta.LN.HistorialDocumentos.Listar;
 using Preacepta.Modelos.AbstraccionesFrond;
+using Preacepta.LN.BitacoraEventos.Crear;
+using Preacepta.Modelos.AbstraccionesBD;
 
 namespace Preacepta.UI.Controllers
 {
     public class DocsInscripcionVehiculoController : Controller
     {
         private readonly IConverter _converter;
-        private readonly Contexto _context;
         private readonly IBuscarDocsInscripcionVehiculoLN _buscar;
         private readonly ICrearDocsInscripcionVehiculoLN _crear;
         private readonly IEditarDocsInscripcionVehiculoLN _editar;
@@ -47,9 +48,9 @@ namespace Preacepta.UI.Controllers
         private readonly IListarTipoVehiculoLN _listarTipoVehiculo;
         private readonly IBuscarDocsMarcaVehiculoLN _buscarMarcaVehiculo;
         private readonly IListarDocsMarcaVehiculoLN _listarMarcaVehiculo;
+        private readonly ICrearEventosLN _bitacoraLN;
 
         public DocsInscripcionVehiculoController(IConverter converter,
-            Contexto context,
             IBuscarDocsInscripcionVehiculoLN buscar,
             ICrearDocsInscripcionVehiculoLN crear,
             IEditarDocsInscripcionVehiculoLN editar,
@@ -66,10 +67,10 @@ namespace Preacepta.UI.Controllers
             IBuscarTipoVehiculoLN buscarTipoVehiculo,
             IListarTipoVehiculoLN listarTipoVehiculo,
             IBuscarDocsMarcaVehiculoLN buscarMarcaVehiculo,
-            IListarDocsMarcaVehiculoLN listarMarcaVehiculo)
+            IListarDocsMarcaVehiculoLN listarMarcaVehiculo,
+            ICrearEventosLN bitacora)
         {
             _converter = converter;
-            _context = context;
             _buscar = buscar;
             _crear = crear;
             _editar = editar;
@@ -87,6 +88,7 @@ namespace Preacepta.UI.Controllers
             _listarTipoVehiculo = listarTipoVehiculo;
             _buscarMarcaVehiculo = buscarMarcaVehiculo;
             _listarMarcaVehiculo = listarMarcaVehiculo;
+            _bitacoraLN = bitacora;
         }
 
         // GET: TDocsInscripcionVehiculo
@@ -139,6 +141,9 @@ namespace Preacepta.UI.Controllers
                 await _crear.Crear(tDocsInscripcionVehiculo);
                 var Registros = await _listar.listar();
                 var idDocumento = Registros.LastOrDefault();
+
+               
+
                 HistorialDocumentoDTO historialDocumentoDTO = new HistorialDocumentoDTO
                 {
                     Cliente = tDocsInscripcionVehiculo.CedulaCliente,
@@ -150,6 +155,12 @@ namespace Preacepta.UI.Controllers
 
                 };
                 await _crearHistorialLN.Crear(historialDocumentoDTO);
+
+                var usuario = User.Identity?.Name ?? "Desconocido";
+                var tituloCorto = $"Inscripción {tDocsInscripcionVehiculo.MarcaVehiculo} {tDocsInscripcionVehiculo.ModeloVehiculo}";
+                var accion = $"Se creó documento '{tituloCorto}' con ID {idDocumento.IdDocumento}";
+                await _bitacoraLN.RegistrarBitacoraAsync(usuario, "T_DocsInscripcionVehiculo", accion, idDocumento.IdDocumento);
+
                 return RedirectToAction(nameof(Index));
             }
             ViewData["CedulaAbogado"] = new SelectList(_listarPersonas.listar().Result, "Cedula", "Cedula", tDocsInscripcionVehiculo.CedulaAbogado);
@@ -200,6 +211,11 @@ namespace Preacepta.UI.Controllers
                 try
                 {
                     await _editar.Editar(tDocsInscripcionVehiculo);
+                    var usuario = User.Identity?.Name ?? "Desconocido";
+                    var tituloCorto = $"Inscripción {tDocsInscripcionVehiculo.MarcaVehiculo} {tDocsInscripcionVehiculo.ModeloVehiculo}";
+                    var accion = $"Se editó documento '{tituloCorto}' con ID {id}";
+                    await _bitacoraLN.RegistrarBitacoraAsync(usuario, "T_DocsInscripcionVehiculo", accion, id);
+
                 }
                 catch (DbUpdateConcurrencyException)
                 {
@@ -307,6 +323,13 @@ namespace Preacepta.UI.Controllers
                 await _crear.Crear(tDocsInscripcionVehiculo);
                 var Registros = await _listar.listar();
                 var idDocumento = Registros.LastOrDefault();
+
+                var usuario = User.Identity?.Name ?? "Desconocido";
+                var tituloCorto = $"Inscripción {tDocsInscripcionVehiculo.MarcaVehiculo} {tDocsInscripcionVehiculo.ModeloVehiculo}";
+                var accion = $"Se creó documento '{tituloCorto}' con ID {idDocumento.IdDocumento}";
+                await _bitacoraLN.RegistrarBitacoraAsync(usuario, "T_DocsInscripcionVehiculo", accion, idDocumento.IdDocumento);
+
+
                 HistorialDocumentoDTO historialDocumentoDTO = new HistorialDocumentoDTO
                 {
                     Cliente = tDocsInscripcionVehiculo.CedulaCliente,

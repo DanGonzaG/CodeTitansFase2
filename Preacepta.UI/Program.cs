@@ -32,6 +32,9 @@ using Preacepta.AD.Citas.Crear;
 using Preacepta.AD.Citas.Editar;
 using Preacepta.AD.Citas.Eliminar;
 using Preacepta.AD.Citas.Listar;
+using Preacepta.AD.BitacoraEventos.BuscarXid;
+using Preacepta.AD.BitacoraEventos.Crear;
+using Preacepta.AD.BitacoraEventos.Listar;
 using Preacepta.AD.CitasTipo.BuscarXid;
 using Preacepta.AD.CitasTipo.Crear;
 using Preacepta.AD.CitasTipo.Editar;
@@ -153,6 +156,10 @@ using Preacepta.LN.Citas.Editar;
 using Preacepta.LN.Citas.Eliminar;
 using Preacepta.LN.Citas.Listar;
 using Preacepta.LN.Citas.ObtenerDatos;
+using Preacepta.LN.BitacoraEventos.BuscarXid;
+using Preacepta.LN.BitacoraEventos.Crear;
+using Preacepta.LN.BitacoraEventos.Listar;
+using Preacepta.LN.BitacoraEventos.ObtenerDatos;
 using Preacepta.LN.CitasTipo.BuscarXid;
 using Preacepta.LN.CitasTipo.Crear;
 using Preacepta.LN.CitasTipo.Editar;
@@ -299,13 +306,23 @@ Console.WriteLine($"Cadena de conexi�n utilizada: {connectionString}"); //mues
 
 
 #region Base de Datos
+//Servicio de conexion con tabla de servicio de autenticación
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlServer(connectionString));
 
-builder.Services.AddDatabaseDeveloperPageExceptionFilter();
+//Servicio de contenexion con Base de datos PreaceptaBD
+builder.Services.AddDbContext<Contexto>(options =>
+    options.UseSqlServer(connectionString));
 
-builder.Services.AddDefaultIdentity<IdentityUser>(
-    options => options.SignIn.RequireConfirmedAccount = false)
+builder.Services.AddDatabaseDeveloperPageExceptionFilter();
+#endregion
+
+#region Servicio de Autenticación
+builder.Services.AddDefaultIdentity<IdentityUser>(options =>
+{
+    options.SignIn.RequireConfirmedAccount = true;
+    options.Tokens.AuthenticatorTokenProvider = TokenOptions.DefaultAuthenticatorProvider;
+})
     .AddRoles<IdentityRole>() //activa el servicio de roles
     .AddEntityFrameworkStores<ApplicationDbContext>();
 
@@ -320,9 +337,7 @@ builder.Services.Configure<IdentityOptions>(options =>
 
 builder.Services.AddControllersWithViews();
 
-//Servicio de contenexion con Base de datos PreaceptaBD
-builder.Services.AddDbContext<Contexto>(options =>
-    options.UseSqlServer(connectionString));
+
 #endregion
 
 #region Inyeccion de modulos
@@ -470,6 +485,14 @@ builder.Services.AddScoped<IEditarCitasLN, EditarCitasLN>();
 builder.Services.AddScoped<IEliminarCitasLN, EliminarCitasLN>();
 builder.Services.AddScoped<IListarCitasLN, ListarCitasLN>();
 builder.Services.AddScoped<IObtenerDatosCitasLN, ObtenerDatosCitasLN>();
+/*Ínseccion de servicios Bitacora de Eventos*/
+builder.Services.AddScoped<IBuscarEventosAD, BuscarEventosAD>();
+builder.Services.AddScoped<ICrearEventosAD, CrearEventosAD>();
+builder.Services.AddScoped<IListarEventosAD, ListarEventosAD>();
+builder.Services.AddScoped<IBuscarEventosLN, BuscarEventosLN>();
+builder.Services.AddScoped<IListarEventosLN, ListarEventosLN>();
+builder.Services.AddScoped<ICrearEventosLN, CrearEventosLN>();
+builder.Services.AddScoped<IObtenerDatosEventosLN, ObtenerDatosEventosLN>();
 /*Inseccion de servicios modulo de Documentos Citas*/
 builder.Services.AddScoped<IDocumentosCitaAD, DocumentosCitaAD>();
 builder.Services.AddScoped<IDocumentosCitaLN, DocumentosCitaLN>();
@@ -631,6 +654,9 @@ builder.Services.AddSingleton<IConverter>(new SynchronizedConverter(new PdfTools
 builder.Services.AddTransient<IValidacionesResetPassword, ValidacionesResetPassword>();
 //Inyecta clase para validar los roles
 builder.Services.AddScoped<IUserClaimsPrincipalFactory<IdentityUser>, CustomClaimsPrincipalFactory>();
+//Inyeccion de dependencias para servicio de codigo QR
+builder.Services.AddScoped<IQrCodeService, QrCodeService>();
+
 #endregion
 
 #region Servicio de correo electronico

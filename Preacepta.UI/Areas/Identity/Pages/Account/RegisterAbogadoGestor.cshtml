@@ -1,0 +1,161 @@
+﻿@page
+@model RegisterAbogadoGestorModel
+@{
+    ViewData["Title"] = "Register";
+    Layout = "_LayoutGestor";
+}
+
+<h1>Registrar un nuevo Abogado</h1>
+
+<h4>Modulo de Abogado</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form id="registerForm" asp-route-returnUrl="@Model.ReturnUrl" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger" role="alert"></div>
+            <div class="form-group">
+                <label asp-for="geAbogado.geAbogadoDTO.Carnet" class="control-label"></label>
+                <input asp-for="geAbogado.geAbogadoDTO.Carnet" class="form-control" />
+                <span asp-validation-for="geAbogado.geAbogadoDTO.Carnet" class="text-danger"></span>
+                @if (TempData["ErrorCarnet"] != null)
+                {
+                    <span class="text-danger">@TempData["ErrorCarnet"]</span>
+                }
+            </div>
+            <div class="form-group">
+                <label asp-for="geAbogado.personaDTO.Cedula" class="control-label"></label>
+                <input asp-for="geAbogado.personaDTO.Cedula" class="form-control" />
+                <span asp-validation-for="geAbogado.personaDTO.Cedula" class="text-danger"></span>
+                @if (TempData["ErrorCedula"] != null)
+                {
+                    <span class="text-danger">@TempData["ErrorCedula"]</span>
+                }
+            </div>
+            <div class="form-group">
+                <label asp-for="geAbogado.geAbogadoDTO.IdTipoAbogado" class="control-label"></label>
+                <select asp-for="geAbogado.geAbogadoDTO.IdTipoAbogado" class="form-control" asp-items="Model.TipoAbogado"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="geAbogado.geAbogadoDTO.CJuridica" class="control-label"></label>
+                <select asp-for="geAbogado.geAbogadoDTO.CJuridica" class="form-control" asp-items="Model.Negocio"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="geAbogado.personaDTO.Nombre" class="control-label"></label>
+                <input asp-for="geAbogado.personaDTO.Nombre" class="form-control" />
+                <span asp-validation-for="geAbogado.personaDTO.Nombre" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="geAbogado.personaDTO.Apellido1" class="control-label"></label>
+                <input asp-for="geAbogado.personaDTO.Apellido1" class="form-control" />
+                <span asp-validation-for="geAbogado.personaDTO.Apellido1" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="geAbogado.personaDTO.Apellido2" class="control-label"></label>
+                <input asp-for="geAbogado.personaDTO.Apellido2" class="form-control" />
+                <span asp-validation-for="geAbogado.personaDTO.Apellido2" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="geAbogado.personaDTO.Genero" class="control-label"></label>
+                <select asp-for="geAbogado.personaDTO.Genero" class="form-control" asp-items="Model.Genero"></select>
+                <span asp-validation-for="geAbogado.personaDTO.Genero" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="geAbogado.personaDTO.FechaNacimiento" class="control-label"></label>
+                <input type="date" asp-for="geAbogado.personaDTO.FechaNacimiento" class="form-control" />
+                <span asp-validation-for="geAbogado.personaDTO.FechaNacimiento" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="geAbogado.personaDTO.Edad" class="control-label"></label>
+                <input asp-for="geAbogado.personaDTO.Edad" class="form-control" />
+                <span asp-validation-for="geAbogado.personaDTO.Edad" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="geAbogado.personaDTO.EstadoCivil" class="control-label"></label>
+                <select asp-for="geAbogado.personaDTO.EstadoCivil" asp-items="Model.EstadoCivil" class="form-control"></select>
+                <span asp-validation-for="geAbogado.personaDTO.EstadoCivil" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="geAbogado.personaDTO.Oficio" class="control-label"></label>
+                <input asp-for="geAbogado.personaDTO.Oficio" class="form-control" />
+                <span asp-validation-for="geAbogado.personaDTO.Oficio" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label for="provincia">Provincia:</label>
+                <select class="selectDaniel" id="provincia" name="provincia">
+                    <option value="">Seleccione una provincia</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="canton">Cantón:</label>
+                <select class="selectDaniel" id="canton" name="canton" disabled>
+                    <option value="">Seleccione un cantón</option>
+                </select>
+                <input id="inputCanton" asp-for="geAbogado.personaDTO.Direccion1" class="form-control" readonly />
+            </div>
+            <div class="form-group">
+                <label for="distrito">Distrito:</label>
+                <select class="selectDaniel" id="distrito" name="geAbogado.personaDTO.Direccion1" asp-for="geAbogado.personaDTO.Direccion1" disabled>
+                    <option value="">Seleccione un distrito</option>
+                </select>
+                <input id="inputDistrito" asp-for="geAbogado.personaDTO.Direccion1" class="form-control" readonly />
+            </div>
+            <div class="form-group">
+                <label asp-for="geAbogado.personaDTO.Direccion2" class="control-label"></label>
+                <input asp-for="geAbogado.personaDTO.Direccion2" class="form-control" />
+                <span asp-validation-for="geAbogado.personaDTO.Direccion2" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="geAbogado.personaDTO.Telefono1" class="control-label"></label>
+                <input asp-for="geAbogado.personaDTO.Telefono1" class="form-control" />
+                <span asp-validation-for="geAbogado.personaDTO.Telefono1" class="text-danger"></span>
+                @if (TempData["ErrorTelefono1"] != null)
+                {
+                    <span class="text-danger">@TempData["ErrorTelefono1"]</span>
+                }
+            </div>
+            <div class="form-group">
+                <label asp-for="geAbogado.personaDTO.Telefono2" class="control-label"></label>
+                <input asp-for="geAbogado.personaDTO.Telefono2" class="form-control" />
+                <span asp-validation-for="geAbogado.personaDTO.Telefono2" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="geAbogado.personaDTO.Email" class="control-label"></label>
+                <input asp-for="geAbogado.personaDTO.Email" class="form-control" autocomplete="username" aria-required="true" placeholder="name@example.com" />
+                <span asp-validation-for="geAbogado.personaDTO.Email" class="text-danger"></span>
+                @if (TempData["ErrorEmail"] != null)
+                {
+                    <span class="text-danger">@TempData["ErrorEmail"]</span>
+                }
+            </div>
+
+            <div class="form-group">
+                <label asp-for="geAbogado.personaDTO.Password" class="control-label"></label>
+                <input asp-for="geAbogado.personaDTO.Password" class="form-control" autocomplete="new-password" aria-required="true" placeholder="password" />
+                <span asp-validation-for="geAbogado.personaDTO.Password" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="geAbogado.personaDTO.ConfirmPassword" class="control-label"></label>
+                <input asp-for="geAbogado.personaDTO.ConfirmPassword" class="form-control" autocomplete="new-password" aria-required="true" placeholder="password" />
+                <span asp-validation-for="geAbogado.personaDTO.ConfirmPassword" class="text-danger"></span>
+            </div>
+
+            <br />
+
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" style=" width: 115px; height: 40px;" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index" class="btn btn-info" style="width: 115px; height: 40px; text-align: center; line-height: 26px;">Regresar</a>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
+<script src="~/lyso/js/FiltroProvinicaCantonDistritoGestor.js"></script>

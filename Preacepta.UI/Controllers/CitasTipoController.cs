@@ -6,6 +6,7 @@ using Preacepta.LN.CitasTipo.Eliminar;
 using Preacepta.Modelos.AbstraccionesFrond;
 using Preacepta.Modelos.AbstraccionesBD;
 using Microsoft.AspNetCore.Authorization;
+using Preacepta.LN.BitacoraEventos.Crear;
 
 namespace Preacepta.UI.Controllers
 {
@@ -16,17 +17,20 @@ namespace Preacepta.UI.Controllers
         private readonly ICrearCitasTipoLN _crearLN;
         private readonly IEditarCitasTipoLN _editarLN;
         private readonly IEliminarCitasTipoLN _eliminarLN;
+        private readonly ICrearEventosLN _bitacoraLN;
 
         public CitasTipoController(
             IListarCitasTipoLN listarLN,
             ICrearCitasTipoLN crearLN,
             IEditarCitasTipoLN editarLN,
-            IEliminarCitasTipoLN eliminarLN)
+            IEliminarCitasTipoLN eliminarLN,
+            ICrearEventosLN bitacoraLN)
         {
             _listarLN = listarLN;
             _crearLN = crearLN;
             _editarLN = editarLN;
             _eliminarLN = eliminarLN;
+            _bitacoraLN = bitacoraLN;
         }
 
         // Listar
@@ -61,7 +65,13 @@ namespace Preacepta.UI.Controllers
         {
             if (ModelState.IsValid)
             {
-                await _crearLN.Crear(dto);
+                var nuevoId = await _crearLN.Crear(dto);
+
+                var usuario = User.Identity?.Name ?? "Desconocido";
+                var accion = $"Se creó el tipo de cita '{dto.Nombre}' con ID {nuevoId}";
+                await _bitacoraLN.RegistrarBitacoraAsync(usuario, "T_CitasTipo", accion, nuevoId);
+
+
                 return RedirectToAction(nameof(Index));
             }
             return View(dto);
@@ -87,7 +97,14 @@ namespace Preacepta.UI.Controllers
             if (ModelState.IsValid)
             {
                 var resultado = await _editarLN.editar(dto);
-                if (resultado > 0) return RedirectToAction(nameof(Index));
+                if (resultado > 0)
+                {
+                    var usuario = User.Identity?.Name ?? "Desconocido";
+                    var accion = $"Se editó el tipo de cita '{dto.Nombre}' con ID {dto.Id}";
+                    await _bitacoraLN.RegistrarBitacoraAsync(usuario, "T_CitasTipo", accion, dto.Id);
+                    
+                    return RedirectToAction(nameof(Index));
+                }
                 ModelState.AddModelError("", "Error al actualizar");
             }
             return View(dto);

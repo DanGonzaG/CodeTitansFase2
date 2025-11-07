@@ -43,14 +43,17 @@ namespace Preacepta.LN.GePersona.Eliminar
                     Console.WriteLine("userManager no encuatra el usuario");
                     return 0;
                 }
-                var resultado = await _userManager.DeleteAsync(user);
-                int bandera = await _eliminarPersonaAD.eliminar(id);
-                if (resultado.Succeeded && bandera == 1) 
-                {
-                    Console.WriteLine("Usuario eliminado de TGePesona y AspNetUsers");
-                    return bandera;
-                }
                 
+                int bandera = await _eliminarPersonaAD.eliminar(id);
+                if (bandera == 1) 
+                {
+                    var resultado = await _userManager.DeleteAsync(user);
+                    if (resultado.Succeeded)
+                    {
+                        Console.WriteLine("Usuario eliminado de TGePesona y AspNetUsers");
+                        return bandera;
+                    }
+                }                
                 return 0;
             }
             catch (Exception ex)

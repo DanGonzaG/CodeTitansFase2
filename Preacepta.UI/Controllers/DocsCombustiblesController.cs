@@ -13,31 +13,35 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Preacepta.LN.BitacoraEventos.Crear;
 
 namespace Preacepta.UI.Controllers
 {
     public class DocsCombustiblesController : Controller
     {
-        private readonly Contexto _context;
+        
         private readonly IBuscarDocsCombustibleLN _buscar;
         private readonly ICrearDocsCombustibleLN _crear;
         private readonly IEditarDocsCombustibleLN _editar;
         private readonly IEliminarDocsCombustibleLN _eliminar;
         private readonly IListarDocsCombustibleLN _listar;
+        private readonly ICrearEventosLN _bitacoraLN;
 
-        public DocsCombustiblesController(Contexto context,
+        public DocsCombustiblesController(
             IBuscarDocsCombustibleLN buscar,
             ICrearDocsCombustibleLN crear,
             IEditarDocsCombustibleLN editar,
             IEliminarDocsCombustibleLN eliminar,
-            IListarDocsCombustibleLN listar)
+            IListarDocsCombustibleLN listar,
+            ICrearEventosLN bitacora)
         {
-            _context = context;
+           
             _buscar = buscar;
             _crear = crear;
             _editar = editar;
             _eliminar = eliminar;
             _listar = listar;
+            _bitacoraLN = bitacora;
         }
 
         // GET: DocsCombustibles
@@ -78,7 +82,16 @@ namespace Preacepta.UI.Controllers
         {
             if (ModelState.IsValid)
             {
-                await _crear.Crear(tDocsCombustible);
+                var nuevoId = await _crear.Crear(tDocsCombustible);
+
+                // Registrar en bitácora
+                var usuario = User.Identity?.Name ?? "Desconocido";
+                var nombreCorto = tDocsCombustible.Nombre.Length > 50
+                    ? tDocsCombustible.Nombre.Substring(0, 47) + "..."
+                    : tDocsCombustible.Nombre;
+                var accion = $"Se creó documento combustible '{nombreCorto}' con ID {nuevoId}";
+                await _bitacoraLN.RegistrarBitacoraAsync(usuario, "T_DocsCombustible", accion, nuevoId);
+
                 return RedirectToAction(nameof(Index));
             }
             return View(tDocsCombustible);
@@ -117,6 +130,14 @@ namespace Preacepta.UI.Controllers
                 try
                 {
                     await _editar.Editar(tDocsCombustible);
+
+                    // Registrar en bitácora
+                    var usuario = User.Identity?.Name ?? "Desconocido";
+                    var nombreCorto = tDocsCombustible.Nombre.Length > 50
+                        ? tDocsCombustible.Nombre.Substring(0, 47) + "..."
+                        : tDocsCombustible.Nombre;
+                    var accion = $"Se editó documento combustible '{nombreCorto}' con ID {tDocsCombustible.Id}";
+                    await _bitacoraLN.RegistrarBitacoraAsync(usuario, "T_DocsCombustible", accion, tDocsCombustible.Id);
                 }
                 catch (DbUpdateConcurrencyException)
                 {

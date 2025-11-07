@@ -62,8 +62,8 @@ namespace Preacepta.AD.DocumentosCitas.DocumentosCitas
             documento.Descargar = permitirDescarga;
             await _contexto.SaveChangesAsync();  // Guarda los cambios en la base de datos
         }
-        
-        public async Task<bool> EliminarAsync(TDocumentosCita documento)
+
+        /*public async Task<bool> EliminarAsync(TDocumentosCita documento)
         {
             if (documento == null) return false;
 
@@ -72,6 +72,42 @@ namespace Preacepta.AD.DocumentosCitas.DocumentosCitas
             await _contexto.SaveChangesAsync();
 
             return true;
+        }*/
+
+        public async Task<bool> DeshabilitarAsync(int id)
+        {
+            var documento = await _contexto.TDocumentosCita.FindAsync(id);
+            if (documento == null) return false;
+
+            documento.Activo = false;
+            _contexto.TDocumentosCita.Update(documento);
+            await _contexto.SaveChangesAsync();
+
+            return true;
         }
+
+        public async Task RegistrarBitacoraAsync(TBitacoraEventos evento)
+        {
+            _contexto.TBitacoraEventos.Add(evento);
+            await _contexto.SaveChangesAsync();
+        }
+
+
+        public async Task InsertarAsync(TDocumentosCita documento)
+        {
+            _contexto.TDocumentosCita.Add(documento);
+            await _contexto.SaveChangesAsync();
+        }
+
+        public async Task ActualizarBatchAsync(List<TDocumentosCita> documentos)
+        {
+            if (documentos == null || !documentos.Any())
+                return;
+
+            _contexto.TDocumentosCita.UpdateRange(documentos);
+            await _contexto.SaveChangesAsync();
+        }
+       
+
     }
 }

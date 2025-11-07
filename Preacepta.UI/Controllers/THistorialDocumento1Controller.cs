@@ -36,7 +36,6 @@ namespace Preacepta.UI.Controllers
 {
     public class THistorialDocumento1Controller : Controller
     {
-        private readonly Contexto _context;
         private readonly IConverter _converter;
 
         //Historial
@@ -82,8 +81,8 @@ namespace Preacepta.UI.Controllers
         private readonly IBuscarCrDireccion1LN _buscarDireccion;
         private readonly IListarCrDireccion1LN _listarDireccion;
 
-        public THistorialDocumento1Controller(Contexto context,
-            IConverter converter,
+        public THistorialDocumento1Controller(
+         IConverter converter,
          IListarHistorialLN listarHistorial,
          IBuscarHistorialLN buscarHistorial,
          ICrearHistorialLN crearHistorial,
@@ -129,7 +128,6 @@ namespace Preacepta.UI.Controllers
          )
 
         {
-            _context = context;
             _converter = converter;
             _listarHistorial = listarHistorial;
             _buscarHistorial = buscarHistorial;
@@ -1353,20 +1351,21 @@ namespace Preacepta.UI.Controllers
 
 
         [Authorize(Roles = "Gestor")]
-        public async Task<IActionResult> Edit(int? id)
+        public async Task<IActionResult> Edit(int id)
         {
             if (id == null)
             {
                 return NotFound();
             }
 
-            var tHistorialDocumento = await _context.THistorialDocumentos.FindAsync(id);
+            var tHistorialDocumento = await _buscarHistorial.Buscar(id);
+
             if (tHistorialDocumento == null)
             {
                 return NotFound();
             }
-            ViewData["Abogado"] = new SelectList(_context.TGeAbogados, "Cedula", "Cedula", tHistorialDocumento.Abogado);
-            ViewData["Cliente"] = new SelectList(_context.TGePersonas, "Cedula", "Apellido1", tHistorialDocumento.Cliente);
+            ViewData["Abogado"] = new SelectList(_listarGePersona.listar().Result, "Cedula", "Cedula", tHistorialDocumento.Abogado);
+            ViewData["Cliente"] = new SelectList(_listarGePersona.listar().Result, "Cedula", "Apellido1", tHistorialDocumento.Cliente);
             return View(tHistorialDocumento);
         }
 

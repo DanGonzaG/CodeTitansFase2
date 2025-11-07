@@ -28,15 +28,22 @@ namespace Preacepta.LN.Citas.ObtenerDatos
                 IdTipoCita = baseDatos.IdTipoCita,
                 LinkVideo = baseDatos.LinkVideo,
                 Anfitrion = baseDatos.Anfitrion,
-                Terminada = baseDatos.Terminada,
+                Estado = baseDatos.Estado,
                 NombreTipoCita = baseDatos.IdTipoCitaNavigation?.Nombre,
                 NombreAnfitrion = $"{baseDatos.AnfitrionNavigation?.CedulaNavigation?.Nombre} {baseDatos.AnfitrionNavigation?.CedulaNavigation?.Apellido1} {baseDatos.AnfitrionNavigation?.CedulaNavigation?.Apellido2}",
 
                
                 NombresClientes = baseDatos.TCitasClientes?
     .Select(tc => $"{tc.IdClienteNavigation.Nombre} {tc.IdClienteNavigation.Apellido1} {tc.IdClienteNavigation.Apellido2}")
-    .ToList() ?? new List<string>()
+    .ToList() ?? new List<string>(),
 
+            TCitasClientes = baseDatos.TCitasClientes?.Select(tc => new TCitasCliente
+            {
+                IdCiCliente = tc.IdCiCliente,
+                IdCita = tc.IdCita,
+                IdCliente = tc.IdCliente,
+                IdClienteNavigation = tc.IdClienteNavigation
+            }).ToList() ?? new List<TCitasCliente>()
             };
         }
 
@@ -50,7 +57,7 @@ namespace Preacepta.LN.Citas.ObtenerDatos
                 IdTipoCita = Formulario.IdTipoCita,
                 LinkVideo = Formulario.LinkVideo,
                 Anfitrion = Formulario.Anfitrion,
-                Terminada = Formulario.Terminada,
+                Estado = Formulario.Estado,
             };
         }
 
@@ -110,25 +117,27 @@ namespace Preacepta.LN.Citas.ObtenerDatos
                 NombreArchivo = d.NombreArchivo,
                 RutaArchivo = d.RutaArchivo,
                 FechaSubida = d.FechaSubida,
-                Descargar = d.Descargar
+                Descargar = d.Descargar,
+                Activo = d.Activo,
             }).ToList();
 
             return dto;
         }
 
-        public async Task<CitasDTO?> TerminarCitaYObtenerDatosAsync(int idCita)
+        public async Task<TCita?> CambiarEstadoYObtenerDatosAsync(int idCita, int nuevoEstado)
         {
             var cita = await _contexto.TCitas
-                .Include(c => c.AnfitrionNavigation).ThenInclude(a => a.CedulaNavigation)
-                .Include(c => c.TCitasClientes).ThenInclude(tc => tc.IdClienteNavigation)
+                .Include(c => c.TCitasClientes)
+                .ThenInclude(tc => tc.IdClienteNavigation)
                 .FirstOrDefaultAsync(c => c.IdCita == idCita);
 
             if (cita == null) return null;
 
-            cita.Terminada = true;
+            cita.Estado = nuevoEstado;
             await _contexto.SaveChangesAsync();
 
-            return ObtenerDeDB(cita);
+            return cita;
         }
+
     }
 }

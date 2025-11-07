@@ -30,19 +30,28 @@
                             </span>
                             @if (doc.Descargar)
                             {
-                                <a href="@doc.RutaArchivo" download>Descargar</a>
+                                <a href="@Url.Action("Descargar", "DocumentosCita", new { id = doc.Id })" download>Descargar</a>
+
                             }
                             <span class="fecha text-muted">(subido el @doc.FechaSubida.ToShortDateString())</span>
                         </div>
 
-                        <button class="contact-btn--eliminacion btnEliminarDoc">Eliminar</button>
-                   
+                       
+                        <div class="switch-container">
+                            <label class="switch">
+                                <input type="checkbox" class="chk-activo"
+                                       data-id="@doc.Id" @(doc.Activo ? "checked" : "") />
+                                <span class="slider-activo"></span>
+                            </label>
+                            <span class="estado-activo text-muted">@((doc.Activo) ? "Habilitado" : "Deshabilitado")</span>
+                        </div>
+
                     </li>
                 }
             </ul>
 
             <button id="btnActualizarTodos" type="button" style="margin-top:1rem;" class="contact-btn--primario">
-                Actualizar permisos
+                Actualizar
             </button>
         }
         else
@@ -53,11 +62,14 @@
         <hr />
 
         <h5>Subir nuevo documento</h5>
-        <form id="formSubirDocumento" method="post" enctype="multipart/form-data"
-              action="/DocumentosCita/Subir?idCita=@ViewBag.IdCita">
+        <form id="formSubirDocumento"
+              enctype="multipart/form-data"
+              data-id-cita="@ViewBag.IdCita">
             <input type="file" id="archivo" name="archivo" accept=".pdf,.docx,.jpg,.png">
             <div style="margin-top: 1.5rem; text-align: center;">
-                <button type="submit" class="contact-btn--primario">Subir Documento</button>
+                <button type="button" id="btnSubir" class="contact-btn--primario">
+                    Subir Documento
+                </button>
             </div>
         </form>
         <div style="margin-top:1rem; text-align:center;">
