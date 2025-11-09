@@ -9,6 +9,7 @@ using Preacepta.LN.CasosEvidencia.Editar;
 using Preacepta.LN.CasosEvidencia.Eliminar;
 using Preacepta.LN.CasosEvidencia.Listar;
 using Preacepta.Modelos.AbstraccionesFrond;
+using Preacepta.LN.BitacoraEventos.Crear;
 
 namespace Preacepta.UI.Controllers
 {
@@ -21,13 +22,15 @@ namespace Preacepta.UI.Controllers
         private readonly IEditarCasosEvidenciaLN _editar;
         private readonly IEliminarCasosEvidenciaLN _eliminar;
         private readonly IListarCasosEvidenciaLN _listar;
+        private readonly ICrearEventosLN _bitacoraLN;
 
         public CasosEvidenciaController(Contexto context,
             IBuscarCasosEvidenciaLN buscar,
             ICrearCasosEvidenciaLN crear,
             IEditarCasosEvidenciaLN editar,
             IEliminarCasosEvidenciaLN eliminar,
-            IListarCasosEvidenciaLN listar)
+            IListarCasosEvidenciaLN listar,
+             ICrearEventosLN bitacora)
         {
             _context = context;
             _buscar = buscar;
@@ -35,6 +38,7 @@ namespace Preacepta.UI.Controllers
             _editar = editar;
             _eliminar = eliminar;
             _listar = listar;
+            _bitacoraLN = bitacora;
         }
 
         // GET: CasosEvidencia
@@ -78,6 +82,14 @@ namespace Preacepta.UI.Controllers
             if (ModelState.IsValid)
             {
                 await _crear.Crear(tCasosEvidencia);
+                var usuario = User.Identity?.Name ?? "Desconocido";
+                var tituloCorto = tCasosEvidencia.Titulo.Length > 50
+                    ? tCasosEvidencia.Titulo.Substring(0, 47) + "..."
+                    : tCasosEvidencia.Titulo;
+                var accion = $"Se creó evidencia '{tituloCorto}' del caso {tCasosEvidencia.IdCaso}";
+                await _bitacoraLN.RegistrarBitacoraAsync(usuario, "T_CasosEvidencia", accion, tCasosEvidencia.IdCaso);
+
+
                 return RedirectToAction(nameof(Index));
             }
             ViewData["IdCaso"] = new SelectList(_context.TCasosEtapas, "IdEtapaPl", "Descripcion", tCasosEvidencia.IdCaso);
@@ -120,6 +132,15 @@ namespace Preacepta.UI.Controllers
                 try
                 {
                     await _editar.Editar(tCasosEvidencia);
+
+                    var usuario = User.Identity?.Name ?? "Desconocido";
+                    var titulo = tCasosEvidencia.Titulo.Length > 50
+                        ? tCasosEvidencia.Titulo.Substring(0, 47) + "..."
+                        : tCasosEvidencia.Titulo;
+                    var accion = $"Se editó evidencia '{titulo}' del caso {tCasosEvidencia.IdCaso}";
+                    await _bitacoraLN.RegistrarBitacoraAsync(usuario, "T_CasosEvidencia", accion, tCasosEvidencia.IdCaso);
+                
+
                 }
                 catch (DbUpdateConcurrencyException)
                 {

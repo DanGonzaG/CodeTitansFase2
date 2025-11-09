@@ -17,6 +17,7 @@ using Preacepta.LN.CasosTipo.Listar;
 using Preacepta.LN.GeAbogado.Listar;
 using Preacepta.LN.GePersona.BuscarXid;
 using Preacepta.LN.GePersona.Listar;
+using Preacepta.LN.BitacoraEventos.Crear;
 using Preacepta.Modelos.AbstraccionesFrond;
 using Preacepta.UI.Services;
 using System.Security.Claims;
@@ -44,6 +45,8 @@ namespace Preacepta.UI.Controllers
 
         private readonly IServicioEmail _emailSender;
 
+        private readonly ICrearEventosLN _bitacoraLN;
+
         public CasoController(
             IBuscarCasosLN buscar,
             ICrearCasosLN crear,
@@ -60,7 +63,7 @@ namespace Preacepta.UI.Controllers
 
             IServicioEmail emailSender,
 
-
+            ICrearEventosLN bitacora,
 
 
             IConverter converter)
@@ -76,6 +79,7 @@ namespace Preacepta.UI.Controllers
             _listarCasosEtapas = listarCasosEtapas;
             _converter = converter;
             _emailSender = emailSender;
+            _bitacoraLN = bitacora;
         }
 
         /********************************************************************************************************************************************************************/
@@ -141,7 +145,7 @@ namespace Preacepta.UI.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize(Roles = "Gestor")]
-        public async Task<IActionResult> Create([Bind("IdCaso,Nombre,Fecha,IdTipoCaso,Descripcion,IdAbogado,IdCliente,Activo")] CasoDTO tCaso)
+        public async Task<IActionResult> Create([Bind("IdCaso,Nombre,Fecha,IdTipoCaso,Descripcion,IdAbogado,IdCliente,Activo,Pruebas")] CasoDTO tCaso)
         {
             if (ModelState.IsValid)
             {
@@ -210,7 +214,7 @@ namespace Preacepta.UI.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize(Roles = "Gestor")]
-        public async Task<IActionResult> Edit(int id, [Bind("IdCaso,Nombre,Fecha,IdTipoCaso,Descripcion,IdAbogado,IdCliente,Activo")] CasoDTO tCaso)
+        public async Task<IActionResult> Edit(int id, [Bind("IdCaso,Nombre,Fecha,IdTipoCaso,Descripcion,IdAbogado,IdCliente,Activo,Pruebas")] CasoDTO tCaso)
         {
             if (id != tCaso.IdCaso)
             {
@@ -331,11 +335,17 @@ namespace Preacepta.UI.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize(Roles = "Gestor, Abogado")]
-        public async Task<IActionResult> FormularioCaso([Bind("Nombre,IdTipoCaso,Descripcion,IdAbogado,IdCliente")] CasoDTO tCaso)
+        public async Task<IActionResult> FormularioCaso([Bind("Nombre,IdTipoCaso,Descripcion,IdAbogado,IdCliente,Pruebas")] CasoDTO tCaso)
         {
             if (ModelState.IsValid)
             {
-                await _crear.Crear(tCaso);
+                var nuevoId = await _crear.Crear(tCaso);
+
+                var usuario = User.Identity?.Name ?? "Desconocido";
+                var accion = $"Creó el caso '{tCaso.Nombre}' para el cliente con cédula {tCaso.IdCliente}";
+                await _bitacoraLN.RegistrarBitacoraAsync(usuario, "T_Casos", accion, nuevoId);
+
+
                 return RedirectToAction("CasosListado");
             }
 
@@ -484,6 +494,11 @@ namespace Preacepta.UI.Controllers
             };
 
             var pdf = _converter.Convert(doc);
+
+            var usuario = User.Identity?.Name ?? "Desconocido";
+            var accion = $"Descargó el caso completo '{casoEncontrado.Nombre}' (ID: {IdCaso})";
+            await _bitacoraLN.RegistrarBitacoraAsync(usuario, "T_Casos", accion, IdCaso);
+
 
             return File(pdf, "application/pdf");
         }

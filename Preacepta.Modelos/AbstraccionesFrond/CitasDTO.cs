@@ -17,7 +17,7 @@ namespace Preacepta.Modelos.AbstraccionesFrond
         public int? IdTipoCita { get; set; }
         public int Anfitrion { get; set; }
         public string? LinkVideo { get; set; }
-        public bool Terminada { get; set; }
+        public int Estado { get; set; }
         public virtual TGeAbogado? AnfitrionNavigation { get; set; } = null!;
 
 

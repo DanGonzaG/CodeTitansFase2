@@ -30,6 +30,9 @@ namespace Preacepta.Modelos.AbstraccionesFrond
 
         public bool Activo { get; set; }
 
+        [Required(ErrorMessage ="Debe agregar pruebas")]
+        public string Pruebas { get; set; }
+
 
         [DisplayName("Abogado")]
         public virtual TGeAbogado? IdAbogadoNavigation { get; set; } = null!;

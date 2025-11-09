@@ -56,8 +56,46 @@ namespace Preacepta.LN.GePersona.BuscarXid
                 Console.WriteLine($"Error en BuscarXidGePersonaLN: {ex.Message}");
                 return null;
             }
+        }
 
+        public async Task<GePersonaDTO?> buscarXtelefono1(string telefono)
+        {
+            try
+            {
+                TGePersona? gePersona = await _buscarXidGePersonaAD.buscarXtelefono1(telefono);
+                if (gePersona == null)
+                {
+                    Console.WriteLine("No se encontró la persona.");
+                    return null;
+                }
+                GePersonaDTO gePersonaDTO = _obtenerDatosLN.ObtenerDeDB(gePersona);
+                return gePersonaDTO;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error en BuscarXidGePersonaLN: {ex.Message}");
+                return null;
+            }
+        }
 
+        public async Task<GePersonaDTO?> buscarXtelefono2(string telefono)
+        {
+            try
+            {
+                TGePersona? gePersona = await _buscarXidGePersonaAD.buscarXtelefono2(telefono);
+                if (gePersona == null)
+                {
+                    Console.WriteLine("No se encontró la persona.");
+                    return null;
+                }
+                GePersonaDTO gePersonaDTO = _obtenerDatosLN.ObtenerDeDB(gePersona);
+                return gePersonaDTO;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error en BuscarXidGePersonaLN: {ex.Message}");
+                return null;
+            }
         }
     }
 }

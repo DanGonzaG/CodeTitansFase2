@@ -24,6 +24,7 @@ public partial class Contexto : DbContext
     public virtual DbSet<TCasosTipo> TCasosTipos { get; set; }
 
     public virtual DbSet<TCita> TCitas { get; set; }
+    public virtual DbSet<TBitacoraEventos> TBitacoraEventos { get; set; }
 
     public virtual DbSet<TDocumentosCita> TDocumentosCita { get; set; }
 
@@ -74,13 +75,15 @@ public partial class Contexto : DbContext
 
     //Conexión para base de datos en ambiente de pruebas en Azure MV-precepta-test
     //string Server = "Data Source=mv-preacepta-te\\INSTANCIAPREACEP;Initial Catalog=PreaceptaBDtest;User ID=PreaceptaRootBD;Password=Preacepta_Testing;Connect Timeout=30;Encrypt=True;Trust Server Certificate=True;Application Intent=ReadWrite;Multi Subnet Failover=False";
-    
+
+
+    //string Server = "\"Data Source=LAPTOP-P5NFQFM6;Initial Catalog=PreaceptaBD;Integrated Security=True;Connect Timeout=30;Encrypt=True;Trust Server Certificate=True;Application Intent=ReadWrite;Multi Subnet Failover=False";
     string Server = "Data Source=DANLAPTOPASUS\\DEVELOPERSERVER;Initial Catalog=PreaceptaBD;Integrated Security=True;Connect Timeout=30;Encrypt=False;Trust Server Certificate=True;Application Intent=ReadWrite;Multi Subnet Failover=False"; //Conexion Daniel
 
     //string Server = "Data Source=ANDY;Initial Catalog=PreaceptaBD;Integrated Security=True;Connect Timeout=30;Encrypt=False;Trust Server Certificate=True"; // Conexion Andy
     //string Server = "Data Source=DESKTOP-BREQ0TF\\SQLEXPRESS;Initial Catalog=PreaceptaBD;Integrated Security=True;Trust Server Certificate=True"; //Conexion Alonso
 
-    //string Server = "Data Source=DESKTOP-L8MJ1I5\\SQLEXPRESS03;Initial Catalog=PreaceptaBD;User ID=db_connect;Password=1357;Connect Timeout=30;Encrypt=False;Trust Server Certificate=True";
+    string Server = "Data Source=DESKTOP-L8MJ1I5\\SQLEXPRESS03;Initial Catalog=PreaceptaBD;User ID=db_connect;Password=1357;Connect Timeout=30;Encrypt=False;Trust Server Certificate=True";
     //string Server = "Data Source=DESKTOP-SN6P8CV;Initial Catalog=PreaceptaBD;Integrated Security=True;Connect Timeout=30;Encrypt=False;Trust Server Certificate=True";//Andy
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -146,6 +149,36 @@ public partial class Contexto : DbContext
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_T_Citas_T_CitasTipos");
         });
+
+        modelBuilder.Entity<TBitacoraEventos>(entity =>
+        {
+            entity.HasKey(e => e.Id_evento); 
+
+            entity.Property(e => e.Id_evento)
+                .ValueGeneratedOnAdd();  
+
+            entity.Property(e => e.Usuario)
+                .IsRequired()
+                .HasMaxLength(100);
+
+            entity.Property(e => e.Tabla_Afectada)
+                .IsRequired()
+                .HasMaxLength(100);
+
+            entity.Property(e => e.Accion)
+                .IsRequired()
+                .HasMaxLength(50);
+
+            entity.Property(e => e.Stack_error)
+                .HasColumnType("nvarchar(max)")
+                .IsRequired(false); 
+
+            entity.Property(e => e.Fecha_Hora)
+                .HasDefaultValueSql("GETDATE()")
+                .IsRequired();
+        });
+
+
 
         modelBuilder.Entity<TDocumentosCita>(entity =>
         {

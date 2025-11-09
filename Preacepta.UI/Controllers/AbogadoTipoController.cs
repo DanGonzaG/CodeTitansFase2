@@ -7,6 +7,7 @@ using Preacepta.LN.GeAbogadoTipo.Editar;
 using Preacepta.LN.GeAbogadoTipo.Eliminar;
 using Preacepta.LN.GeAbogadoTipo.Listar;
 using Preacepta.Modelos.AbstraccionesFrond;
+using Preacepta.LN.BitacoraEventos.Crear;
 
 namespace Preacepta.UI.Controllers
 {
@@ -18,19 +19,22 @@ namespace Preacepta.UI.Controllers
         private readonly IEditarAbogadoTipoLN _editar;
         private readonly IEliminarAbogadoTipoLN _eliminar;
         private readonly IListarAbogadoTipoLN _listar;
+        private readonly ICrearEventosLN _bitacoraLN;
 
 
         public AbogadoTipoController(IBuscarAbogadoTipoLN buscar,
             ICrearAbogadoTipoLN crear,
             IEditarAbogadoTipoLN editar,
             IEliminarAbogadoTipoLN eliminar,
-            IListarAbogadoTipoLN listar)
+            IListarAbogadoTipoLN listar,
+            ICrearEventosLN bitacora)
         {
             _buscar = buscar;
             _crear = crear;
             _editar = editar;
             _eliminar = eliminar;
             _listar = listar;
+            _bitacoraLN = bitacora;
         }
 
 
@@ -82,6 +86,12 @@ namespace Preacepta.UI.Controllers
             if (ModelState.IsValid)
             {
                 await _crear.crear(tGeAbogadoTipo);
+
+                var usuario = User.Identity?.Name ?? "Desconocido";
+                var accion = $"Se creó el tipo de abogado '{tGeAbogadoTipo.Nombre}'.";
+                await _bitacoraLN.RegistrarBitacoraAsync(usuario, "GeAbogadoTipo", accion, tGeAbogadoTipo.IdTipoAbogado);
+
+
                 return RedirectToAction(nameof(Index));
             }
             return View(tGeAbogadoTipo);
@@ -122,6 +132,10 @@ namespace Preacepta.UI.Controllers
                 try
                 {
                     await _editar.editar(tGeAbogadoTipo);
+                    var usuario = User.Identity?.Name ?? "Desconocido";
+                    var accion = $"Se editó el tipo de abogado '{tGeAbogadoTipo.Nombre}' (ID: {tGeAbogadoTipo.IdTipoAbogado}).";
+                    await _bitacoraLN.RegistrarBitacoraAsync(usuario, "GeAbogadoTipo", accion, tGeAbogadoTipo.IdTipoAbogado);
+
                 }
                 catch (DbUpdateConcurrencyException)
                 {

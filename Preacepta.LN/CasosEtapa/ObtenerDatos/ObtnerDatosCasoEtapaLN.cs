@@ -15,7 +15,8 @@ namespace Preacepta.LN.CasosEtapa.ObtenerDatos
                 Descripcion = datos.Descripcion,
                 IdCaso = datos.IdCaso,
                 IdCasoNavigation = datos.IdCasoNavigation,
-                Activo = datos.Activo
+                Activo = datos.Activo,
+                Pruebas = datos.Pruebas
             };
         }
 
@@ -31,7 +32,8 @@ namespace Preacepta.LN.CasosEtapa.ObtenerDatos
                 Descripcion = datos.Descripcion,
                 IdCaso = datos.IdCaso,
                 IdCasoNavigation = datos.IdCasoNavigation,
-                Activo = true
+                Activo = true,
+                Pruebas = datos.Pruebas
             };
         }
 
@@ -45,7 +47,8 @@ namespace Preacepta.LN.CasosEtapa.ObtenerDatos
                 Descripcion = datos.Descripcion,
                 IdCaso = datos.IdCaso,
                 IdCasoNavigation = datos.IdCasoNavigation,
-                Activo = datos.Activo
+                Activo = true,
+                Pruebas = datos.Pruebas
             };
         }
     }

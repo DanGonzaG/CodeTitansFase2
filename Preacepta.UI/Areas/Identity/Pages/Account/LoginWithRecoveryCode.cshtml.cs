@@ -50,7 +50,7 @@ namespace Praecepta.UI.Areas.Identity.Pages.Account
             [BindProperty]
             [Required]
             [DataType(DataType.Text)]
-            [Display(Name = "Recovery Code")]
+            [Display(Name = "Código de recuperación")]
             public string RecoveryCode { get; set; }
         }
 
@@ -89,18 +89,18 @@ namespace Praecepta.UI.Areas.Identity.Pages.Account
 
             if (result.Succeeded)
             {
-                _logger.LogInformation("User with ID '{UserId}' logged in with a recovery code.", user.Id);
+                _logger.LogInformation("El usuario con ID '{UserId}' inició sesión con un código de recuperación.", user.Id);
                 return LocalRedirect(returnUrl ?? Url.Content("~/"));
             }
             if (result.IsLockedOut)
             {
-                _logger.LogWarning("User account locked out.");
+                _logger.LogWarning("Cuenta de usuario bloqueada.");
                 return RedirectToPage("./Lockout");
             }
             else
             {
-                _logger.LogWarning("Invalid recovery code entered for user with ID '{UserId}' ", user.Id);
-                ModelState.AddModelError(string.Empty, "Invalid recovery code entered.");
+                _logger.LogWarning("Código de recuperación no válido ingresado para el usuario con ID '{UserId}' ", user.Id);
+                ModelState.AddModelError(string.Empty, "Código de recuperación no válido ingresado.");
                 return Page();
             }
         }

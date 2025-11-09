@@ -31,6 +31,8 @@ public partial class TCaso
 
     public bool Activo { get; set; }
 
+    public string Pruebas { get; set; }
+
     [ForeignKey("IdAbogado")]
     [InverseProperty("TCasos")]
     public virtual TGeAbogado IdAbogadoNavigation { get; set; } = null!;

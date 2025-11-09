@@ -76,7 +76,7 @@ namespace Preacepta.AD.Citas.BuscarXid
                 IdTipoCita = cita.IdTipoCita,
                 Anfitrion = cita.Anfitrion,
                 LinkVideo = cita.LinkVideo,
-                Terminada = cita.Terminada,
+                Estado = cita.Estado,
                 NombresClientes = cita.TCitasClientes
                     .Select(cc => cc.IdClienteNavigation.Nombre + " " +
                                   cc.IdClienteNavigation.Apellido1 + " " +
@@ -106,19 +106,21 @@ namespace Preacepta.AD.Citas.BuscarXid
             return citas;
         }
 
-        public async Task<TCita?> TerminarCitaYObtenerDatosAsync(int idCita)
+        public async Task<TCita?> CambiarEstadoYObtenerDatosAsync(int idCita, int nuevoEstado)
         {
             var cita = await _contexto.TCitas
                 .Include(c => c.TCitasClientes)
+                .ThenInclude(tc => tc.IdClienteNavigation)
                 .FirstOrDefaultAsync(c => c.IdCita == idCita);
 
             if (cita == null) return null;
 
-            cita.Terminada = true;
+            cita.Estado = nuevoEstado;
             await _contexto.SaveChangesAsync();
 
             return cita;
         }
+
     }
 }
 

@@ -134,18 +134,38 @@
                         <br />
                         <br />
                         <br />
-                        <br />                       
-                        <div class="col-md-12 col-lg-12 centro">
+                        <br />
+                        <div class="col-sm-6 col-lg-6 centro">
                             <div class="form-group">
-                                <label asp-for="Descripcion" class="control-label"></label>
+                                <label asp-for="Pruebas" class="control-label"></label>
                             </div>
                         </div>
-                        <div class="col-md-12 col-lg-12">
+                        <div class="col-sm-6 col-lg-6">
                             <div class="form-group">
-                                <textarea name="Descripcion" id="Descripcion" cols="30" rows="8" asp-for="Descripcion" placeholder="Descripción" class="form-control"></textarea>
-                                <span asp-validation-for="Descripcion" class="text-danger"></span>
+                                <input name="Pruebas" id="Pruebas" asp-for="Pruebas" class="form-control" placeholder="Agregue la prueba del caso" />
+                                <span asp-validation-for="Pruebas" class="text-danger"></span>
                             </div>
                         </div>
+
+
+                        <br />
+                        <br />
+                        <br />
+                        <br />
+                        <div>
+                            <div class="col-md-12 col-lg-12">
+                                <div class="form-group" style="padding-top:25px">
+                                    <label asp-for="Descripcion" class="control-label"></label>
+                                </div>
+                            </div>
+                            <div class="col-md-12 col-lg-12">
+                                <div class="form-group">
+                                    <textarea name="Descripcion" id="Descripcion" cols="30" rows="8" asp-for="Descripcion" placeholder="Descripción" class="form-control"></textarea>
+                                    <span asp-validation-for="Descripcion" class="text-danger"></span>
+                                </div>
+                            </div>
+                        </div>
+                        
 
                         <div class="col-md-12 col-lg-12">
 

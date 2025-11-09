@@ -1,4 +1,5 @@
 ﻿
+using Preacepta.AD;
 using Preacepta.AD.Citas.BuscarXid;
 using Preacepta.LN.Citas.ObtenerDatos;
 using Preacepta.Modelos.AbstraccionesBD;
@@ -74,12 +75,13 @@ namespace Preacepta.LN.Citas.BuscarXid
             return citas.Select(c => _obtenerDatosLN.ObtenerDeDB(c)).ToList();
         }
 
-        public async Task<CitasDTO?> TerminarCitaYObtenerDatos(int idCita)
+        public async Task<CitasDTO?> CambiarEstadoYObtenerDatosAsync(int idCita, int nuevoEstado)
         {
-            var cita = await _buscar.TerminarCitaYObtenerDatosAsync(idCita);
+            var cita = await _buscar.CambiarEstadoYObtenerDatosAsync(idCita, nuevoEstado);
             if (cita == null) return null;
             return _obtenerDatosLN.ObtenerDeDB(cita);
         }
+
         public async Task<CitasDTO?> ObtenerCitaConDocumentosAsync(int idCita)
         {
             return await _obtenerDatosLN.ObtenerCitaConDocumentosAsync(idCita);

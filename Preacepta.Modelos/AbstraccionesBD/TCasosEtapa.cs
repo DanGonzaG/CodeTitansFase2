@@ -23,6 +23,8 @@ public partial class TCasosEtapa
 
     public bool Activo { get; set; }
 
+    public string Pruebas { get; set; }
+
     [ForeignKey("IdCaso")]
     [InverseProperty("TCasosEtapas")]
     public virtual TCaso IdCasoNavigation { get; set; } = null!;
