@@ -18,6 +18,7 @@ using Preacepta.LN.GePersona.BuscarXid;
 using Preacepta.LN.GePersona.Crear;
 using Preacepta.Modelos.AbstraccionesBD;
 using Preacepta.Modelos.AbstraccionesFrond;
+using Preacepta.UI.Extensions;
 using Preacepta.UI.Services;
 using System.ComponentModel.DataAnnotations;
 using System.Text;
@@ -31,7 +32,7 @@ namespace Praecepta.UI.Areas.Identity.Pages.Account
         private readonly UserManager<IdentityUser> _userManager;
         private readonly IUserStore<IdentityUser> _userStore;
         private readonly IUserEmailStore<IdentityUser> _emailStore;
-        private readonly ILogger<RegisterModel> _logger;
+        private readonly ILogger<RegisterAbogadoGestorModel> _logger;
         private readonly IServicioEmail _emailSender;
 
         private readonly ICrearGePersonaLN _crearPersonaLN;
@@ -51,7 +52,7 @@ namespace Praecepta.UI.Areas.Identity.Pages.Account
             UserManager<IdentityUser> userManager,
             IUserStore<IdentityUser> userStore,
             SignInManager<IdentityUser> signInManager,
-            ILogger<RegisterModel> logger,
+            ILogger<RegisterAbogadoGestorModel> logger,
             IServicioEmail emailSender,
 
             IBuscarXidGePersonaLN buscarXidGePersonaLN,
@@ -133,7 +134,7 @@ namespace Praecepta.UI.Areas.Identity.Pages.Account
         public List<SelectListItem> Genero { get; set; }
         public List<SelectListItem> Negocio { get; set; }
         public List<SelectListItem> TipoAbogado { get; set; }
-
+        public List<SelectListItem> TipoIdentificacion { get; set; }
 
 
         [Authorize(Roles = "Gestor")]
@@ -170,6 +171,13 @@ namespace Praecepta.UI.Areas.Identity.Pages.Account
                     Value = n.IdTipoAbogado.ToString(),
                     Text = $"{n.Nombre}"
                 }).ToList();
+            TipoIdentificacion = new List<SelectListItem>
+            {
+                new SelectListItem { Text = "Cédula física", Value = "Cedula" },
+                new SelectListItem { Text = "DIMEX", Value = "DIMEX" },
+                new SelectListItem { Text = "Pasaporte", Value = "Pasaporte" },
+                new SelectListItem { Text = "Sin documento de identificación", Value = "SinDocumento" },
+            };
         }
 
 
@@ -180,10 +188,11 @@ namespace Praecepta.UI.Areas.Identity.Pages.Account
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
             if (ModelState.IsValid)
             {
+                
                 #region creación de persona
 
                 #region Validacion de cédula
-                var existe = await _buscarPersona.buscar(geAbogado.personaDTO.Cedula);
+                var existe = await _buscarPersona.buscarXnumCedula(geAbogado.personaDTO.NumCedula);
                 if (existe != null)//valida si hay un cedula igual registrada
                 {
                     //ViewData["Direccion1"] = new SelectList(_listarDireccion.listarDistritos().Result, "IdDistrito", "NombreDistrito", tGePersona.Direccion1);
@@ -215,6 +224,13 @@ namespace Praecepta.UI.Areas.Identity.Pages.Account
                             Value = n.IdTipoAbogado.ToString(),
                             Text = $"{n.Nombre}"
                         }).ToList();
+                    TipoIdentificacion = new List<SelectListItem>
+                    {
+                        new SelectListItem { Text = "Cédula física", Value = "Cedula" },
+                        new SelectListItem { Text = "DIMEX", Value = "DIMEX" },
+                        new SelectListItem { Text = "Pasaporte", Value = "Pasaporte" },
+                        new SelectListItem { Text = "Sin documento de identificación", Value = "SinDocumento" },
+                    };
                     TempData["ErrorCedula"] = "Cedula ya registrada en el sistema";
                     return Page();
                 }
@@ -253,6 +269,13 @@ namespace Praecepta.UI.Areas.Identity.Pages.Account
                             Value = n.IdTipoAbogado.ToString(),
                             Text = $"{n.Nombre}"
                         }).ToList();
+                    TipoIdentificacion = new List<SelectListItem>
+                    {
+                        new SelectListItem { Text = "Cédula física", Value = "Cedula" },
+                        new SelectListItem { Text = "DIMEX", Value = "DIMEX" },
+                        new SelectListItem { Text = "Pasaporte", Value = "Pasaporte" },
+                        new SelectListItem { Text = "Sin documento de identificación", Value = "SinDocumento" },
+                    };
                     TempData["ErrorCarnet"] = "El carnet ya se encuentra registrado en el sistema";
                     return Page();
                 }
@@ -291,7 +314,13 @@ namespace Praecepta.UI.Areas.Identity.Pages.Account
                             Value = n.IdTipoAbogado.ToString(),
                             Text = $"{n.Nombre}"
                         }).ToList();
-
+                    TipoIdentificacion = new List<SelectListItem>
+                    {
+                        new SelectListItem { Text = "Cédula física", Value = "Cedula" },
+                        new SelectListItem { Text = "DIMEX", Value = "DIMEX" },
+                        new SelectListItem { Text = "Pasaporte", Value = "Pasaporte" },
+                        new SelectListItem { Text = "Sin documento de identificación", Value = "SinDocumento" },
+                    };
                     TempData["ErrorEmail"] = "Correo Electronico ya registrado en el sistema";
                     return Page();
                 }
@@ -331,13 +360,20 @@ namespace Praecepta.UI.Areas.Identity.Pages.Account
                             Value = n.IdTipoAbogado.ToString(),
                             Text = $"{n.Nombre}"
                         }).ToList();
-
+                    TipoIdentificacion = new List<SelectListItem>
+                    {
+                        new SelectListItem { Text = "Cédula física", Value = "Cedula" },
+                        new SelectListItem { Text = "DIMEX", Value = "DIMEX" },
+                        new SelectListItem { Text = "Pasaporte", Value = "Pasaporte" },
+                        new SelectListItem { Text = "Sin documento de identificación", Value = "SinDocumento" },
+                    };
                     TempData["ErrorTelefono1"] = $"El telefono {geAbogado.personaDTO.Telefono1} ya esta registrado";
                     return Page();
 
-                }                
+                }
                 #endregion
 
+                geAbogado.personaDTO.NumCedula = geAbogado.personaDTO.NumCedula.LimpiarCedula();
                 int bandera =  await _crearAbogado.Crear(geAbogado);//llamado de los LN y AD para crear la persona               
                 #endregion
                 
@@ -419,7 +455,13 @@ namespace Praecepta.UI.Areas.Identity.Pages.Account
                     Value = n.IdTipoAbogado.ToString(),
                     Text = $"{n.Nombre}"
                 }).ToList();
-
+            TipoIdentificacion = new List<SelectListItem>
+                    {
+                        new SelectListItem { Text = "Cédula física", Value = "Cedula" },
+                        new SelectListItem { Text = "DIMEX", Value = "DIMEX" },
+                        new SelectListItem { Text = "Pasaporte", Value = "Pasaporte" },
+                        new SelectListItem { Text = "Sin documento de identificación", Value = "SinDocumento" },
+                    };
             TempData["ErrorTelefono1"] = $"El telefono {geAbogado.personaDTO.Telefono1} ya esta registrado";
 
             // If we got this far, something failed, redisplay form

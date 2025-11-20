@@ -256,7 +256,13 @@ namespace Preacepta.UI.Controllers
                     Text = $"{n.Cedula} - {n.Nombre}"
                 })
                 .ToList();
-
+            ViewBag.TipoIdentificacion = new List<SelectListItem>
+                    {
+                        new SelectListItem { Text = "Cédula física", Value = "Cedula" },
+                        new SelectListItem { Text = "DIMEX", Value = "DIMEX" },
+                        new SelectListItem { Text = "Pasaporte", Value = "Pasaporte" },
+                        new SelectListItem { Text = "Sin documento de identificación", Value = "SinDocumento" },
+                    };
             ViewData["IdTipoAbogado"] = new SelectList(_listarAbogadoTipo.listar().Result, "IdTipoAbogado", "Nombre");
             return View(tGeAbogado);
         }
@@ -324,6 +330,14 @@ namespace Preacepta.UI.Controllers
                     Text = $"{n.Cedula} - {n.Nombre}"
                 })
                 .ToList();
+
+            ViewBag.TipoIdentificacion = new List<SelectListItem>
+                    {
+                        new SelectListItem { Text = "Cédula física", Value = "Cedula" },
+                        new SelectListItem { Text = "DIMEX", Value = "DIMEX" },
+                        new SelectListItem { Text = "Pasaporte", Value = "Pasaporte" },
+                        new SelectListItem { Text = "Sin documento de identificación", Value = "SinDocumento" },
+                    };
 
             ViewData["IdTipoAbogado"] = new SelectList(_listarAbogadoTipo.listar().Result, "IdTipoAbogado", "Nombre");
             return View(tGeAbogado);
@@ -475,6 +489,13 @@ namespace Preacepta.UI.Controllers
                                 .ToList();
 
                             ViewData["IdTipoAbogado"] = new SelectList(_listarAbogadoTipo.listar().Result, "IdTipoAbogado", "Nombre");
+                            ViewBag.TipoIdentificacion = new List<SelectListItem>
+                    {
+                        new SelectListItem { Text = "Cédula física", Value = "Cedula" },
+                        new SelectListItem { Text = "DIMEX", Value = "DIMEX" },
+                        new SelectListItem { Text = "Pasaporte", Value = "Pasaporte" },
+                        new SelectListItem { Text = "Sin documento de identificación", Value = "SinDocumento" },
+                    };
                             TempData["ErrorCarnet"] = "El carnet ya se encuentra registrado en el sistema";
                             return View(tGeAbogado);
                             #endregion
@@ -516,7 +537,13 @@ namespace Preacepta.UI.Controllers
                             .ToList();
 
                         ViewData["IdTipoAbogado"] = new SelectList(_listarAbogadoTipo.listar().Result, "IdTipoAbogado", "Nombre");
-
+                        ViewBag.TipoIdentificacion = new List<SelectListItem>
+                    {
+                        new SelectListItem { Text = "Cédula física", Value = "Cedula" },
+                        new SelectListItem { Text = "DIMEX", Value = "DIMEX" },
+                        new SelectListItem { Text = "Pasaporte", Value = "Pasaporte" },
+                        new SelectListItem { Text = "Sin documento de identificación", Value = "SinDocumento" },
+                    };
                         TempData["ErrorEmail"] = "Correo Electronico ya registrado en el sistema";
                         return View(tGeAbogado);
                         #endregion
@@ -560,7 +587,13 @@ namespace Preacepta.UI.Controllers
 
 
                     ViewData["IdTipoAbogado"] = new SelectList(_listarAbogadoTipo.listar().Result, "IdTipoAbogado", "Nombre");
-
+                    ViewBag.TipoIdentificacion = new List<SelectListItem>
+                    {
+                        new SelectListItem { Text = "Cédula física", Value = "Cedula" },
+                        new SelectListItem { Text = "DIMEX", Value = "DIMEX" },
+                        new SelectListItem { Text = "Pasaporte", Value = "Pasaporte" },
+                        new SelectListItem { Text = "Sin documento de identificación", Value = "SinDocumento" },
+                    };
                     TempData["ErrorCedula"] = "Cedula ya registrada en el sistema";
                     return View(tGeAbogado);
                     #endregion
@@ -598,7 +631,13 @@ namespace Preacepta.UI.Controllers
                     Text = $"{n.Cedula} - {n.Nombre}"
                 })
                 .ToList();
-
+            ViewBag.TipoIdentificacion = new List<SelectListItem>
+                    {
+                        new SelectListItem { Text = "Cédula física", Value = "Cedula" },
+                        new SelectListItem { Text = "DIMEX", Value = "DIMEX" },
+                        new SelectListItem { Text = "Pasaporte", Value = "Pasaporte" },
+                        new SelectListItem { Text = "Sin documento de identificación", Value = "SinDocumento" },
+                    };
             ViewData["IdTipoAbogado"] = new SelectList(_listarAbogadoTipo.listar().Result, "IdTipoAbogado", "Nombre");
             return View(tGeAbogado);
             #endregion

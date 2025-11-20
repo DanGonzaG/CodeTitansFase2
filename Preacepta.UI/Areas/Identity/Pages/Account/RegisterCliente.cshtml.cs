@@ -14,6 +14,7 @@ using Preacepta.LN.GePersona.BuscarXid;
 using Preacepta.LN.GePersona.Crear;
 using Preacepta.Modelos.AbstraccionesBD;
 using Preacepta.Modelos.AbstraccionesFrond;
+using Preacepta.UI.Extensions;
 using Preacepta.UI.Services;
 using System.ComponentModel.DataAnnotations;
 using System.Text;
@@ -21,13 +22,13 @@ using System.Text.Encodings.Web;
 
 namespace Praecepta.UI.Areas.Identity.Pages.Account
 {
-    public class RegisterModel : PageModel
+    public class RegisterClienteModel : PageModel
     {
         private readonly SignInManager<IdentityUser> _signInManager;
         private readonly UserManager<IdentityUser> _userManager;
         private readonly IUserStore<IdentityUser> _userStore;
         private readonly IUserEmailStore<IdentityUser> _emailStore;
-        private readonly ILogger<RegisterModel> _logger;
+        private readonly ILogger<RegisterClienteModel> _logger;
         private readonly IServicioEmail _emailSender;
 
         private readonly ICrearGePersonaLN _crearPersonaLN;
@@ -35,11 +36,11 @@ namespace Praecepta.UI.Areas.Identity.Pages.Account
 
 
 
-        public RegisterModel(
+        public RegisterClienteModel(
             UserManager<IdentityUser> userManager,
             IUserStore<IdentityUser> userStore,
             SignInManager<IdentityUser> signInManager,
-            ILogger<RegisterModel> logger,
+            ILogger<RegisterClienteModel> logger,
             IServicioEmail emailSender,
 
             IBuscarXidGePersonaLN buscarXidGePersonaLN,
@@ -107,10 +108,11 @@ namespace Praecepta.UI.Areas.Identity.Pages.Account
         }*/
         public List<SelectListItem> EstadoCivil { get; set; }
         public List<SelectListItem> Genero { get; set; }
+        public List<SelectListItem> TipoIdentificacion { get; set; }
 
 
 
-        [Authorize(Roles = "Gestor, Abogado")]
+        [Authorize(Roles = "Abogado")]
         public async Task OnGetAsync(string returnUrl = null)
         {
 
@@ -129,11 +131,18 @@ namespace Praecepta.UI.Areas.Identity.Pages.Account
             {
                 new SelectListItem { Text = "Femenino", Value = "Femenino" },
                 new SelectListItem { Text = "Masculino", Value = "Masculino" }
-            };            
+            };
+            TipoIdentificacion = new List<SelectListItem>
+            {
+                new SelectListItem { Text = "Cédula física", Value = "Cedula" },
+                new SelectListItem { Text = "DIMEX", Value = "DIMEX" },
+                new SelectListItem { Text = "Pasaporte", Value = "Pasaporte" },
+                new SelectListItem { Text = "Sin documento de identificación", Value = "SinDocumento" },
+            };
         }
 
 
-        [Authorize(Roles = "Gestor, Abogado")]
+        [Authorize(Roles = "Abogado")]
         public async Task<IActionResult> OnPostAsync(string returnUrl = null)
         {
             returnUrl ??= Url.Content("~/");
@@ -143,7 +152,7 @@ namespace Praecepta.UI.Areas.Identity.Pages.Account
                 #region creación de persona
 
                 #region Validacion de cédula
-                var existe = await _buscarPersona.buscar(tGePersona.Cedula);
+                var existe = await _buscarPersona.buscarXnumCedula(tGePersona.NumCedula);
                 if (existe != null)//valida si hay un cedula igual registrada
                 {
                     //ViewData["Direccion1"] = new SelectList(_listarDireccion.listarDistritos().Result, "IdDistrito", "NombreDistrito", tGePersona.Direccion1);
@@ -160,6 +169,13 @@ namespace Praecepta.UI.Areas.Identity.Pages.Account
                     {
                         new SelectListItem { Text = "Femenino", Value = "Femenino" },
                         new SelectListItem { Text = "Masculino", Value = "Masculino" }
+                    };
+                    TipoIdentificacion = new List<SelectListItem>
+                    {
+                        new SelectListItem { Text = "Cédula física", Value = "Cedula" },
+                        new SelectListItem { Text = "DIMEX", Value = "DIMEX" },
+                        new SelectListItem { Text = "Pasaporte", Value = "Pasaporte" },
+                        new SelectListItem { Text = "Sin documento de identificación", Value = "SinDocumento" },
                     };
                     TempData["ErrorCedula"] = "Cedula ya registrada en el sistema";
                     return Page();
@@ -185,6 +201,13 @@ namespace Praecepta.UI.Areas.Identity.Pages.Account
                             new SelectListItem { Text = "Femenino", Value = "Femenino" },
                             new SelectListItem { Text = "Masculino", Value = "Masculino" },
                         };
+                    TipoIdentificacion = new List<SelectListItem>
+                    {
+                        new SelectListItem { Text = "Cédula física", Value = "Cedula" },
+                        new SelectListItem { Text = "DIMEX", Value = "DIMEX" },
+                        new SelectListItem { Text = "Pasaporte", Value = "Pasaporte" },
+                        new SelectListItem { Text = "Sin documento de identificación", Value = "SinDocumento" },
+                    };
 
                     TempData["ErrorEmail"] = "Correo Electronico ya registrado en el sistema";
                     return Page();
@@ -211,13 +234,24 @@ namespace Praecepta.UI.Areas.Identity.Pages.Account
                             new SelectListItem { Text = "Femenino", Value = "Femenino" },
                             new SelectListItem { Text = "Masculino", Value = "Masculino" },
                         };
+                    TipoIdentificacion = new List<SelectListItem>
+                    {
+                        new SelectListItem { Text = "Cédula física", Value = "Cedula" },
+                        new SelectListItem { Text = "DIMEX", Value = "DIMEX" },
+                        new SelectListItem { Text = "Pasaporte", Value = "Pasaporte" },
+                        new SelectListItem { Text = "Sin documento de identificación", Value = "SinDocumento" },
+                    };
 
                     TempData["ErrorTelefono1"] = $"El telefono {tGePersona.Telefono1} ya esta registrado";
                     return Page();
 
-                }                
+                }
                 #endregion
-
+                /*if (tGePersona.NumCedula.Equals("Sin documento de identificación")) 
+                {
+                    tGePersona.NumCedula = Guid.NewGuid().ToString();
+                }*/
+                tGePersona.NumCedula = tGePersona.NumCedula.LimpiarCedula();
                 int bandera =  await _crearPersonaLN.crear(tGePersona);//llamado de los LN y AD para crear la persona               
                 #endregion
                 
@@ -272,7 +306,26 @@ namespace Praecepta.UI.Areas.Identity.Pages.Account
                 }
                 #endregion
             }
+            EstadoCivil = new List<SelectListItem>
+                    {
+                        new SelectListItem { Text = "Soltero", Value = "Soltero" },
+                        new SelectListItem { Text = "Casado", Value = "Casado" },
+                        new SelectListItem { Text = "Divorciado", Value = "Divorciado" },
+                        new SelectListItem { Text = "Viudo", Value = "Viudo" }
+                    };
 
+            Genero = new List<SelectListItem>
+                    {
+                        new SelectListItem { Text = "Femenino", Value = "Femenino" },
+                        new SelectListItem { Text = "Masculino", Value = "Masculino" }
+                    };
+            TipoIdentificacion = new List<SelectListItem>
+                    {
+                        new SelectListItem { Text = "Cédula física", Value = "Cedula" },
+                        new SelectListItem { Text = "DIMEX", Value = "DIMEX" },
+                        new SelectListItem { Text = "Pasaporte", Value = "Pasaporte" },
+                        new SelectListItem { Text = "Sin documento de identificación", Value = "SinDocumento" },
+                    };
             // If we got this far, something failed, redisplay form
             return Page();
         }

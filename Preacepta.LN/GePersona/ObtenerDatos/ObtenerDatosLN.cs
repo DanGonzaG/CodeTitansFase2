@@ -27,7 +27,9 @@ namespace Preacepta.LN.GePersona.ObtenerDatos
                 Telefono1 = gePersona.Telefono1,
                 Telefono2 = gePersona.Telefono2,
                 Genero = gePersona.Genero,
-                ExpirationPassword = gePersona.ExpirationPassword.ToString("dd/MM/yyyy")
+                ExpirationPassword = gePersona.ExpirationPassword.ToString("dd/MM/yyyy"),
+                TipoIdentificacion = gePersona.TipoIdentificacion,
+                NumCedula = gePersona.NumCedula
             };
         }
 
@@ -37,7 +39,7 @@ namespace Preacepta.LN.GePersona.ObtenerDatos
         {
             return new TGePersona
             {
-                Cedula = gePersona.Cedula,
+                //Cedula = gePersona.Cedula,
                 Nombre = gePersona.Nombre,
                 Apellido1 = gePersona.Apellido1,
                 Apellido2 = gePersona.Apellido2,
@@ -54,7 +56,9 @@ namespace Preacepta.LN.GePersona.ObtenerDatos
                 Telefono1 = gePersona.Telefono1,
                 Telefono2 = gePersona.Telefono2,
                 Genero = gePersona.Genero,
-                ExpirationPassword = DateTime.UtcNow.AddDays(90)
+                ExpirationPassword = DateTime.UtcNow.AddDays(90),
+                TipoIdentificacion = gePersona.TipoIdentificacion,
+                NumCedula = gePersona.NumCedula                
             };
         }
 
@@ -79,11 +83,13 @@ namespace Preacepta.LN.GePersona.ObtenerDatos
                 Telefono1 = gePersona.Telefono1,
                 Telefono2 = gePersona.Telefono2,
                 Genero = gePersona.Genero,
-                ExpirationPassword = DateTime.Parse(gePersona.ExpirationPassword)
+                ExpirationPassword = DateTime.Parse(gePersona.ExpirationPassword),
+                TipoIdentificacion = gePersona.TipoIdentificacion,
+                NumCedula = gePersona.NumCedula
             };
         }
 
-        public TGePersona ObtenerDeFrontFechaExpirada(GePersonaDTO gePersona)
+        public TGePersona ObtenerDeFrontFechaExpirada(GePersonaDTO gePersona, int periodo)
         {
             return new TGePersona
             {
@@ -104,7 +110,9 @@ namespace Preacepta.LN.GePersona.ObtenerDatos
                 Telefono1 = gePersona.Telefono1,
                 Telefono2 = gePersona.Telefono2,
                 Genero = gePersona.Genero,                
-                ExpirationPassword = DateTime.UtcNow.AddDays(90)
+                ExpirationPassword = DateTime.UtcNow.AddDays(periodo),
+                TipoIdentificacion = gePersona.TipoIdentificacion,
+                NumCedula = gePersona.NumCedula
             };
         }
     }

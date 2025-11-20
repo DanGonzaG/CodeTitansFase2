@@ -26,12 +26,19 @@
             </div>
         </div>
         @if(!User.IsInRole("Gestor"))
-        {
+        {           
             <div class="form-floating mb-3">
                 <div class="form-group">
-                    <label asp-for="Cedula" class="control-label"></label>
-                    <input asp-for="Cedula" class="form-control" readonly />
-                    <span asp-validation-for="Cedula" class="text-danger"></span>
+                    <label asp-for="TipoIdentificacion" class="control-label"></label>                    
+                    <input asp-for="TipoIdentificacion" class="form-control" readonly />
+                    <span asp-validation-for="TipoIdentificacion" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-floating mb-3">
+                <div class="form-group">
+                    <label asp-for="NumCedula" class="control-label"></label>
+                    <input asp-for="NumCedula" class="form-control" readonly />
+                    <span asp-validation-for="NumCedula" class="text-danger"></span>
                 </div>
             </div>
             <div class="form-floating mb-3">

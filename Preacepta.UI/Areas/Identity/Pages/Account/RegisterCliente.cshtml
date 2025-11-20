@@ -1,5 +1,5 @@
 ﻿@page
-@model RegisterModel
+@model RegisterClienteModel
 @{
     ViewData["Title"] = "Register";
     Layout = "_LayoutLysoIdentiy";
@@ -42,10 +42,7 @@
 
 
     <div class="contact-form contact-form-two contact-form-three">
-        <div class="container">
-            <!--<div class="col-md-12 col-lg-12 encabezadoForm">
-                <img src="~/lyso/img/iconoPersona.png" width="200px"/>
-            </div>-->
+        <div class="container">            
             <div class="contact-wrap">
                 <form id="registerForm" asp-route-returnUrl="@Model.ReturnUrl" method="post">
                     <<div asp-validation-summary="ModelOnly" class="text-danger" role="alert"></div>
@@ -54,17 +51,31 @@
                         <div class="seccion-titulo">Información del personal</div>
                         <div class="col-sm-6 col-lg-6 centro">
                             <div class="form-group">
-                                <label asp-for="tGePersona.Cedula" class="control-label"></label>
+                                <label asp-for="tGePersona.TipoIdentificacion" class="control-label"></label>
                             </div>
                         </div>
                         <div class="col-sm-6 col-lg-6">
                             <div class="form-group">
-                                <input type="number" asp-for="tGePersona.Cedula" class="form-control" />
-                                <span asp-validation-for="tGePersona.Cedula" class="text-danger"></span>
+                                <select asp-for="tGePersona.TipoIdentificacion" class="form-control" asp-items="Model.TipoIdentificacion" id="TipoIdentificacion"></select>
+                                <span asp-validation-for="tGePersona.TipoIdentificacion" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <br />
+                        <br />
+                        <br />
+                        <br />
+                        <div class="col-sm-6 col-lg-6 centro">
+                            <div class="form-group">                                
+                                <label asp-for="tGePersona.NumCedula" class="control-label"></label>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-lg-6">
+                            <div class="form-group">                                
+                                <input id="NumCedula" type="text" asp-for="tGePersona.NumCedula" class="form-control" />
+                                <span asp-validation-for="tGePersona.NumCedula" class="text-danger"></span>
                                 @if (TempData["ErrorCedula"] != null)
-
                                 {
-                                        <span class="text-danger">@TempData["ErrorCedula"]</span>
+                                    <span class="text-danger">@TempData["ErrorCedula"]</span>
                                 }
                             </div>
                         </div>
@@ -221,6 +232,10 @@
                             <div class="form-group">
                                 <input asp-for="tGePersona.Telefono1" class="form-control" />
                                 <span asp-validation-for="tGePersona.Telefono1" class="text-danger"></span>
+                                @if (TempData["ErrorTelefono1"] != null)
+                                {
+                                    <span class="text-danger">@TempData["ErrorTelefono1"]</span>
+                                }
                             </div>
                         </div>
                         <div class="col-sm-6 col-lg-6 centro">
@@ -245,7 +260,6 @@
                                 <input asp-for="tGePersona.Email" class="form-control" autocomplete="username" aria-required="true" placeholder="nombre@ejemplo.com" />
                                 <span asp-validation-for="tGePersona.Email" class="text-danger"></span>
                                 @if (TempData["ErrorEmail"] != null)
-
                                 {
                                         <span class="text-danger">@TempData["ErrorEmail"]</span>
                                 }
@@ -365,3 +379,4 @@
 
 <script src="~/lyso/js/calculoedad.js"></script>
 <script src="~/lyso/js/filtroprovinicacantondistrito.js"></script>
+<script src="~/lyso/js/tipoidentificacion.js"></script>

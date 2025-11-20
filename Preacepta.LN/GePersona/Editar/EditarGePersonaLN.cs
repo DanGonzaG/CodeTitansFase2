@@ -36,12 +36,12 @@ namespace Preacepta.LN.GePersona.Editar
             }
         }
 
-        public async Task<int> ActualizarFechaPassword(GePersonaDTO gePersonaDTO)
+        public async Task<int> ActualizarFechaPassword(GePersonaDTO gePersonaDTO, int perido)
         {
             
             try
             {
-                int bandera = await _editarGePersonaAD.editar(_obtenerDatosLN.ObtenerDeFrontFechaExpirada(gePersonaDTO));
+                int bandera = await _editarGePersonaAD.editar(_obtenerDatosLN.ObtenerDeFrontFechaExpirada(gePersonaDTO, perido));
                 return bandera;
 
             }

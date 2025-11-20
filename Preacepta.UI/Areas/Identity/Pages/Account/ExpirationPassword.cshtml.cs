@@ -133,7 +133,7 @@ namespace Preacepta.UI.Areas.Identity.Pages.Account
             var changePasswordResult = await _userManager.ChangePasswordAsync(user, Input.OldPassword, Input.NewPassword);
             if (changePasswordResult.Succeeded)
             {
-                int resultado = await _editarGePersonaLN.ActualizarFechaPassword(persona);
+                int resultado = await _editarGePersonaLN.ActualizarFechaPassword(persona, Input.periodo);
                 if (resultado == 1) 
                 {
                     ModelState.AddModelError(string.Empty, "Su contraseña ha expirado, favor crear un nueva");

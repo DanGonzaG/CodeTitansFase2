@@ -56,6 +56,14 @@ public partial class TGePersona
 
     public DateTime ExpirationPassword {  get; set; }
 
+    [Column("Tipo_Identificacion")]
+    [StringLength(100)]
+    public string TipoIdentificacion { get; set; }
+
+    [Column("Num_Cedula")]
+    [StringLength(100)]
+    public string NumCedula { get; set; }
+
     [ForeignKey("Direccion1")]
     [InverseProperty("TGePersonas")]
     public virtual TCrDistrito Direccion1Navigation { get; set; } = null!;

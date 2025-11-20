@@ -10,6 +10,7 @@ using Preacepta.LN.GePersona.BuscarXid;
 using Preacepta.LN.GePersona.Editar;
 using Preacepta.Modelos.AbstraccionesFrond;
 using System.ComponentModel.DataAnnotations;
+using System.Data;
 using System.Diagnostics.CodeAnalysis;
 using System.Security.Claims;
 
@@ -129,6 +130,7 @@ namespace Praecepta.UI.Areas.Identity.Pages.Account
         public async Task<IActionResult> OnPostAsync(string returnUrl = null)
         {
             _logger.LogInformation("Email recibido: {Email}", Input.Email);
+            bool validarPassword = false;
             var usuario = await _userManager.FindByEmailAsync(Input.Email);
             if (usuario == null)
             {
@@ -136,8 +138,19 @@ namespace Praecepta.UI.Areas.Identity.Pages.Account
                 return Page();
             }
 
+            var principal = await _signInManager.CreateUserPrincipalAsync(usuario);
+            var roles = principal.Claims
+                        .Where(c => c.Type == ClaimTypes.Role)
+                        .Select(c => c.Value)
+                        .ToList();
+            
+
             var persona = await _buscarPersona.buscarXcorreo(Input.Email);
-            bool validarPassword = await ExpirationPass(persona);
+            if (!roles.Contains("Gestor")) 
+            {
+                validarPassword = await ExpirationPass(persona);
+            }
+                
             /* (persona == null)
             {
                 ModelState.AddModelError(string.Empty, $"Usuario no se encuentra registrado");
@@ -164,11 +177,11 @@ namespace Praecepta.UI.Areas.Identity.Pages.Account
                 if (result.Succeeded)
                 {
                     //Obtener ClaimsPrincipal actualizado
-                    var principal = await _signInManager.CreateUserPrincipalAsync(usuario);
-                    var roles = principal.Claims
+                    //var principal = await _signInManager.CreateUserPrincipalAsync(usuario);
+                    /*var roles = principal.Claims
                         .Where(c => c.Type == ClaimTypes.Role)
                         .Select(c => c.Value)
-                        .ToList();
+                        .ToList();*/
 
                     _logger.LogInformation("Roles asignados al usuario tras login: {Roles}", string.Join(", ", roles));
 

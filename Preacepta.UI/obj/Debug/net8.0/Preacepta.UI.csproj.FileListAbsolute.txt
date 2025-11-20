@@ -619,7 +619,3 @@ C:\Preacepta\Preacepta.UI\obj\Debug\net8.0\refint\Preacepta.UI.dll
 C:\Preacepta\Preacepta.UI\obj\Debug\net8.0\Preacepta.UI.pdb
 C:\Preacepta\Preacepta.UI\obj\Debug\net8.0\Preacepta.UI.genruntimeconfig.cache
 C:\Preacepta\Preacepta.UI\obj\Debug\net8.0\ref\Preacepta.UI.dll
-C:\Preacepta\Preacepta.UI\bin\Debug\net8.0\Preacepta.UI.staticwebassets.endpoints.json
-C:\Preacepta\Preacepta.UI\obj\Debug\net8.0\staticwebassets.build.endpoints.json
-C:\Preacepta\Preacepta.UI\obj\Debug\net8.0\staticwebassets\msbuild.Preacepta.UI.Microsoft.AspNetCore.StaticWebAssetEndpoints.props
-C:\Preacepta\Preacepta.UI\obj\Debug\net8.0\staticwebassets.upToDateCheck.txt

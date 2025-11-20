@@ -2,7 +2,7 @@
   "Files": [
     {
       "Id": "C:\\Preacepta\\Preacepta.UI\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\Preacepta.UI.bundle.scp.css",
-      "PackagePath": "staticwebassets\\Preacepta.UI.3j73zzsmuz.bundle.scp.css"
+      "PackagePath": "staticwebassets\\Preacepta.UI.bundle.scp.css"
     },
     {
       "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\Calendario\\CalendarDaniel.css",
@@ -1105,6 +1105,14 @@
       "PackagePath": "staticwebassets\\lyso\\js\\SweetAlertUsuarioGestor.js"
     },
     {
+      "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lyso\\js\\TipoIdentificacion.js",
+      "PackagePath": "staticwebassets\\lyso\\js\\TipoIdentificacion.js"
+    },
+    {
+      "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lyso\\js\\TipoIdentificacionGestor.js",
+      "PackagePath": "staticwebassets\\lyso\\js\\TipoIdentificacionGestor.js"
+    },
+    {
       "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lyso\\js\\bootstrap.bundle.min.js",
       "PackagePath": "staticwebassets\\lyso\\js\\bootstrap.bundle.min.js"
     },
@@ -1187,10 +1195,6 @@
     {
       "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lyso\\js\\wow.min.js",
       "PackagePath": "staticwebassets\\lyso\\js\\wow.min.js"
-    },
-    {
-      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.Preacepta.UI.Microsoft.AspNetCore.StaticWebAssetEndpoints.props",
-      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssetEndpoints.props"
     },
     {
       "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.Preacepta.UI.Microsoft.AspNetCore.StaticWebAssets.props",

@@ -38,6 +38,45 @@ namespace Preacepta.LN.GePersona.BuscarXid
 
         }
 
+        public async Task<GePersonaDTO?> buscarXnumCedula(string id)
+        {
+            try
+            {
+                TGePersona? gePersona = await _buscarXidGePersonaAD.buscarXnumCedula(id);
+                if (gePersona == null)
+                {
+                    Console.WriteLine("No se encontró la persona.");
+                    return null;
+                }
+                GePersonaDTO gePersonaDTO = _obtenerDatosLN.ObtenerDeDB(gePersona);
+                return gePersonaDTO;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error en BuscarXidGePersonaLN: {ex.Message}");
+                return null;
+            }
+        }
+
+        public async Task<bool?> buscarXnumCedulaBOOLEAN(string id)
+        {
+            try
+            {
+                bool? gePersona = await _buscarXidGePersonaAD.buscarXnumCedulaBOOLEAN(id);
+                if (gePersona == false)
+                {
+                    Console.WriteLine("No se encontró la persona.");
+                    return false;
+                }                
+                return true;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error en metodo buscarXnumCedulaBOOLEAN de clase BuscarXidGePersonaLN: {ex.Message}");
+                return null;
+            }
+        }
+
         public async Task<GePersonaDTO?> buscarXcorreo(string correo)
         {
             try

@@ -5,6 +5,9 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Preacepta.LN.GePersona.BuscarXid;
+using Preacepta.LN.GePersona.Editar;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
 namespace Praecepta.UI.Areas.Identity.Pages.Account.Manage
@@ -14,15 +17,23 @@ namespace Praecepta.UI.Areas.Identity.Pages.Account.Manage
         private readonly UserManager<IdentityUser> _userManager;
         private readonly SignInManager<IdentityUser> _signInManager;
         private readonly ILogger<ChangePasswordModel> _logger;
+        private readonly IEditarGePersonaLN _editarGePersonaLN;
+        private readonly IBuscarXidGePersonaLN _buscarPersona;
 
         public ChangePasswordModel(
+            IEditarGePersonaLN editarGePersonaLN,
+            IBuscarXidGePersonaLN buscarPersona,
             UserManager<IdentityUser> userManager,
             SignInManager<IdentityUser> signInManager,
-            ILogger<ChangePasswordModel> logger)
+            ILogger<ChangePasswordModel> logger
+            )
         {
+            _editarGePersonaLN = editarGePersonaLN;
+            _buscarPersona = buscarPersona;
             _userManager = userManager;
             _signInManager = signInManager;
             _logger = logger;
+            
         }
 
         /// <summary>
@@ -73,6 +84,10 @@ namespace Praecepta.UI.Areas.Identity.Pages.Account.Manage
             [Display(Name = "Confirmación de nueva contraseña")]
             [Compare("NewPassword", ErrorMessage = "La nueva contraseña y la contraseña de confirmación no coinciden.")]
             public string ConfirmPassword { get; set; }
+
+            [DisplayName("Tiempo de expiración")]
+            [Required(ErrorMessage = "Debe de seleccionar un periodo de tiempo")]
+            public int periodo { get; set; }
         }
 
         public async Task<IActionResult> OnGetAsync()
@@ -104,7 +119,7 @@ namespace Praecepta.UI.Areas.Identity.Pages.Account.Manage
             {
                 return NotFound($"No se puede cargar el usuario con ID '{_userManager.GetUserId(User)}'.");
             }
-
+            var persona = await _buscarPersona.buscarXcorreo(User.Identity.Name);
             var ComparacionDePass = await _userManager.CheckPasswordAsync(user, Input.NewPassword);
             if (ComparacionDePass)
             {
@@ -136,8 +151,8 @@ namespace Praecepta.UI.Areas.Identity.Pages.Account.Manage
                 return Page();
             }
 
-            
 
+            int resultado = await _editarGePersonaLN.ActualizarFechaPassword(persona, Input.periodo);
             await _signInManager.RefreshSignInAsync(user);
             _logger.LogInformation("El usuario cambió su contraseña exitosamente.");
             StatusMessage = "Su contraseña ha sido cambiada";

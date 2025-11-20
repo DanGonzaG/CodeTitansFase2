@@ -1,0 +1,1121 @@
+2025-11-20 00:26:40.630 -06:00 [INF] Executed DbCommand (37ms) [Parameters=[@__normalizedName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[ConcurrencyStamp], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[NormalizedName] = @__normalizedName_0
+2025-11-20 00:26:40.751 -06:00 [INF] Executed DbCommand (2ms) [Parameters=[@__normalizedName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[ConcurrencyStamp], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[NormalizedName] = @__normalizedName_0
+2025-11-20 00:26:40.755 -06:00 [INF] Executed DbCommand (1ms) [Parameters=[@__normalizedName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[ConcurrencyStamp], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[NormalizedName] = @__normalizedName_0
+2025-11-20 00:26:40.814 -06:00 [INF] Executed DbCommand (1ms) [Parameters=[@__normalizedName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[ConcurrencyStamp], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[NormalizedName] = @__normalizedName_0
+2025-11-20 00:26:40.821 -06:00 [INF] Executed DbCommand (1ms) [Parameters=[@__normalizedEmail_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(2) [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[NormalizedEmail] = @__normalizedEmail_0
+2025-11-20 00:26:41.432 -06:00 [INF] Now listening on: https://localhost:7065
+2025-11-20 00:26:41.433 -06:00 [INF] Now listening on: http://localhost:5282
+2025-11-20 00:26:41.493 -06:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-11-20 00:26:41.494 -06:00 [INF] Hosting environment: Development
+2025-11-20 00:26:41.494 -06:00 [INF] Content root path: C:\Preacepta\Preacepta.UI
+2025-11-20 00:26:42.377 -06:00 [INF] Request starting HTTP/2 GET https://localhost:7065/ - null null
+2025-11-20 00:26:42.508 -06:00 [INF] Executing endpoint 'Praecepta.UI.Controllers.HomeController.Index (Preacepta.UI)'
+2025-11-20 00:26:42.531 -06:00 [INF] Route matched with {action = "Index", controller = "Home", area = "", page = ""}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Index() on controller Praecepta.UI.Controllers.HomeController (Preacepta.UI).
+2025-11-20 00:26:42.558 -06:00 [INF] Executing ViewResult, running view Index.
+2025-11-20 00:26:42.664 -06:00 [INF] Executed ViewResult - view Index executed in 104.0806ms.
+2025-11-20 00:26:42.667 -06:00 [INF] Executed action Praecepta.UI.Controllers.HomeController.Index (Preacepta.UI) in 136.1183ms
+2025-11-20 00:26:42.668 -06:00 [INF] Executed endpoint 'Praecepta.UI.Controllers.HomeController.Index (Preacepta.UI)'
+2025-11-20 00:26:42.675 -06:00 [INF] Request finished HTTP/2 GET https://localhost:7065/ - 200 null text/html; charset=utf-8 306.245ms
+2025-11-20 00:26:42.748 -06:00 [INF] Request starting HTTP/2 GET https://localhost:7065/_vs/browserLink - null null
+2025-11-20 00:26:42.748 -06:00 [INF] Request starting HTTP/2 GET https://localhost:7065/_framework/aspnetcore-browser-refresh.js - null null
+2025-11-20 00:26:42.753 -06:00 [INF] Request finished HTTP/2 GET https://localhost:7065/_framework/aspnetcore-browser-refresh.js - 200 13760 application/javascript; charset=utf-8 5.4918ms
+2025-11-20 00:26:42.784 -06:00 [INF] Request finished HTTP/2 GET https://localhost:7065/_vs/browserLink - 200 null text/javascript; charset=UTF-8 36.0941ms
+2025-11-20 00:26:55.468 -06:00 [INF] Request starting HTTP/2 GET https://localhost:7065/Identity/Account/Login - null null
+2025-11-20 00:26:55.476 -06:00 [INF] Executing endpoint '/Account/Login'
+2025-11-20 00:26:55.487 -06:00 [INF] Route matched with {page = "/Account/Login", area = "Identity", action = "", controller = ""}. Executing page /Account/Login
+2025-11-20 00:26:55.509 -06:00 [INF] Executing handler method Praecepta.UI.Areas.Identity.Pages.Account.LoginModel.OnGetAsync - ModelState is "Valid"
+2025-11-20 00:26:55.514 -06:00 [INF] AuthenticationScheme: Identity.External signed out.
+2025-11-20 00:26:55.516 -06:00 [INF] Executed handler method OnGetAsync, returned result .
+2025-11-20 00:26:55.519 -06:00 [INF] Executing an implicit handler method - ModelState is "Valid"
+2025-11-20 00:26:55.519 -06:00 [INF] Executed an implicit handler method, returned result Microsoft.AspNetCore.Mvc.RazorPages.PageResult.
+2025-11-20 00:26:55.590 -06:00 [INF] Executed page /Account/Login in 102.9749ms
+2025-11-20 00:26:55.590 -06:00 [INF] Executed endpoint '/Account/Login'
+2025-11-20 00:26:55.591 -06:00 [INF] Request finished HTTP/2 GET https://localhost:7065/Identity/Account/Login - 200 null text/html; charset=utf-8 123.0832ms
+2025-11-20 00:26:55.606 -06:00 [INF] Request starting HTTP/2 GET https://localhost:7065/_framework/aspnetcore-browser-refresh.js - null null
+2025-11-20 00:26:55.608 -06:00 [INF] Request finished HTTP/2 GET https://localhost:7065/_framework/aspnetcore-browser-refresh.js - 200 13760 application/javascript; charset=utf-8 1.5451ms
+2025-11-20 00:26:55.612 -06:00 [INF] Request starting HTTP/2 GET https://localhost:7065/_vs/browserLink - null null
+2025-11-20 00:26:55.626 -06:00 [INF] Request finished HTTP/2 GET https://localhost:7065/_vs/browserLink - 200 null text/javascript; charset=UTF-8 14.5195ms
+2025-11-20 00:27:11.050 -06:00 [INF] Request starting HTTP/2 POST https://localhost:7065/Identity/Account/Login - application/x-www-form-urlencoded 283
+2025-11-20 00:27:11.061 -06:00 [INF] Executing endpoint '/Account/Login'
+2025-11-20 00:27:11.062 -06:00 [INF] Route matched with {page = "/Account/Login", area = "Identity", action = "", controller = ""}. Executing page /Account/Login
+2025-11-20 00:27:11.084 -06:00 [INF] Executing handler method Praecepta.UI.Areas.Identity.Pages.Account.LoginModel.OnPostAsync - ModelState is "Valid"
+2025-11-20 00:27:11.087 -06:00 [INF] Email recibido: gestor@preacepta.com
+2025-11-20 00:27:11.098 -06:00 [INF] Executed DbCommand (1ms) [Parameters=[@__normalizedEmail_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(2) [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[NormalizedEmail] = @__normalizedEmail_0
+2025-11-20 00:27:11.129 -06:00 [INF] Executed DbCommand (3ms) [Parameters=[@__user_Id_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a].[Id], [a].[ClaimType], [a].[ClaimValue], [a].[UserId]
+FROM [AspNetUserClaims] AS [a]
+WHERE [a].[UserId] = @__user_Id_0
+2025-11-20 00:27:11.146 -06:00 [INF] Executed DbCommand (3ms) [Parameters=[@__userId_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a0].[Name]
+FROM [AspNetUserRoles] AS [a]
+INNER JOIN [AspNetRoles] AS [a0] ON [a].[RoleId] = [a0].[Id]
+WHERE [a].[UserId] = @__userId_0
+2025-11-20 00:27:11.147 -06:00 [INF] Generando claims de roles para el usuario d8a2c663-534e-4eb0-81b0-6f643763d3d1: Gestor
+2025-11-20 00:27:11.515 -06:00 [INF] Executed DbCommand (6ms) [Parameters=[@__correo_0='?' (Size = 100)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [t].[Cedula], [t].[Activo], [t].[Apellido1], [t].[Apellido2], [t].[Direccion1], [t].[Direccion2], [t].[Edad], [t].[Email], [t].[EstadoCivil], [t].[ExpirationPassword], [t].[FechaNacimiento], [t].[FechaRegistro], [t].[Genero], [t].[Nombre], [t].[Num_Cedula], [t].[Oficio], [t].[Telefono1], [t].[Telefono2], [t].[Tipo_Identificacion], [t0].[idDistrito], [t0].[idCaton], [t0].[nombreDistrito], [t1].[idCanton], [t1].[idProvincia], [t1].[NombreCanton], [t2].[IdProvincia], [t2].[NombreProvincia]
+FROM [T_GePersonas] AS [t]
+INNER JOIN [T_CrDistritos] AS [t0] ON [t].[Direccion1] = [t0].[idDistrito]
+INNER JOIN [T_CrCantones] AS [t1] ON [t0].[idCaton] = [t1].[idCanton]
+INNER JOIN [T_CrProvincias] AS [t2] ON [t1].[idProvincia] = [t2].[IdProvincia]
+WHERE [t].[Email] = @__correo_0
+2025-11-20 00:27:11.522 -06:00 [INF] Executed DbCommand (1ms) [Parameters=[@__normalizedUserName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[NormalizedUserName] = @__normalizedUserName_0
+2025-11-20 00:27:11.603 -06:00 [INF] Executed DbCommand (2ms) [Parameters=[@__user_Id_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a].[Id], [a].[ClaimType], [a].[ClaimValue], [a].[UserId]
+FROM [AspNetUserClaims] AS [a]
+WHERE [a].[UserId] = @__user_Id_0
+2025-11-20 00:27:11.605 -06:00 [INF] Executed DbCommand (1ms) [Parameters=[@__userId_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a0].[Name]
+FROM [AspNetUserRoles] AS [a]
+INNER JOIN [AspNetRoles] AS [a0] ON [a].[RoleId] = [a0].[Id]
+WHERE [a].[UserId] = @__userId_0
+2025-11-20 00:27:11.605 -06:00 [INF] Generando claims de roles para el usuario d8a2c663-534e-4eb0-81b0-6f643763d3d1: Gestor
+2025-11-20 00:27:11.609 -06:00 [INF] AuthenticationScheme: Identity.Application signed in.
+2025-11-20 00:27:11.609 -06:00 [INF] Roles asignados al usuario tras login: Gestor
+2025-11-20 00:27:11.610 -06:00 [INF] Usuario conectado con rol válido.
+2025-11-20 00:27:11.610 -06:00 [INF] DanielClaim: http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier = d8a2c663-534e-4eb0-81b0-6f643763d3d1
+2025-11-20 00:27:11.610 -06:00 [INF] DanielClaim: http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name = gestor@preacepta.com
+2025-11-20 00:27:11.610 -06:00 [INF] DanielClaim: http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress = gestor@preacepta.com
+2025-11-20 00:27:11.610 -06:00 [INF] DanielClaim: AspNet.Identity.SecurityStamp = XOXO2BDEMCIYU6PLAELLUG5OVNIDML6L
+2025-11-20 00:27:11.610 -06:00 [INF] DanielClaim: http://schemas.microsoft.com/ws/2008/06/identity/claims/role = Gestor
+2025-11-20 00:27:11.611 -06:00 [INF] Executed handler method OnPostAsync, returned result Microsoft.AspNetCore.Mvc.RedirectToActionResult.
+2025-11-20 00:27:11.612 -06:00 [INF] Executing RedirectResult, redirecting to /Home/UsuarioAutenticado?correo=gestor@preacepta.com.
+2025-11-20 00:27:11.612 -06:00 [INF] Executed page /Account/Login in 549.8125ms
+2025-11-20 00:27:11.612 -06:00 [INF] Executed endpoint '/Account/Login'
+2025-11-20 00:27:11.613 -06:00 [INF] Request finished HTTP/2 POST https://localhost:7065/Identity/Account/Login - 302 0 null 563.478ms
+2025-11-20 00:27:11.614 -06:00 [INF] Request starting HTTP/2 GET https://localhost:7065/Home/UsuarioAutenticado?correo=gestor@preacepta.com - null null
+2025-11-20 00:27:11.624 -06:00 [INF] Executing endpoint 'Praecepta.UI.Controllers.HomeController.UsuarioAutenticado (Preacepta.UI)'
+2025-11-20 00:27:11.628 -06:00 [INF] Route matched with {action = "UsuarioAutenticado", controller = "Home", area = "", page = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] UsuarioAutenticado(System.String, System.String) on controller Praecepta.UI.Controllers.HomeController (Preacepta.UI).
+2025-11-20 00:27:11.635 -06:00 [INF] Executing ViewResult, running view UsuarioGestor.
+2025-11-20 00:27:11.678 -06:00 [INF] Executed ViewResult - view UsuarioGestor executed in 43.5356ms.
+2025-11-20 00:27:11.679 -06:00 [INF] Executed action Praecepta.UI.Controllers.HomeController.UsuarioAutenticado (Preacepta.UI) in 50.048ms
+2025-11-20 00:27:11.679 -06:00 [INF] Executed endpoint 'Praecepta.UI.Controllers.HomeController.UsuarioAutenticado (Preacepta.UI)'
+2025-11-20 00:27:11.679 -06:00 [INF] Request finished HTTP/2 GET https://localhost:7065/Home/UsuarioAutenticado?correo=gestor@preacepta.com - 200 null text/html; charset=utf-8 64.9519ms
+2025-11-20 00:27:11.687 -06:00 [INF] Request starting HTTP/2 GET https://localhost:7065/lyso/js/sweetalertusuariogestor.js - null null
+2025-11-20 00:27:11.688 -06:00 [INF] Request starting HTTP/2 GET https://localhost:7065/_framework/aspnetcore-browser-refresh.js - null null
+2025-11-20 00:27:11.689 -06:00 [INF] Request starting HTTP/2 GET https://localhost:7065/_vs/browserLink - null null
+2025-11-20 00:27:11.689 -06:00 [INF] Request finished HTTP/2 GET https://localhost:7065/_framework/aspnetcore-browser-refresh.js - 200 13760 application/javascript; charset=utf-8 1.2814ms
+2025-11-20 00:27:11.697 -06:00 [INF] The file /lyso/js/sweetalertusuariogestor.js was not modified
+2025-11-20 00:27:11.698 -06:00 [INF] Request finished HTTP/2 GET https://localhost:7065/lyso/js/sweetalertusuariogestor.js - 304 null text/javascript 11.5582ms
+2025-11-20 00:27:11.711 -06:00 [INF] Request finished HTTP/2 GET https://localhost:7065/_vs/browserLink - 200 null text/javascript; charset=UTF-8 22.7869ms
+2025-11-20 00:27:11.782 -06:00 [INF] Request starting HTTP/1.1 GET https://localhost:7065/lib/bootstrap/dist/js/bootstrap.bundle.min.js.map - null null
+2025-11-20 00:27:11.812 -06:00 [INF] Sending file. Request path: '/lib/bootstrap/dist/js/bootstrap.bundle.min.js.map'. Physical path: 'C:\Preacepta\Preacepta.UI\wwwroot\lib\bootstrap\dist\js\bootstrap.bundle.min.js.map'
+2025-11-20 00:27:11.813 -06:00 [INF] Request finished HTTP/1.1 GET https://localhost:7065/lib/bootstrap/dist/js/bootstrap.bundle.min.js.map - 200 327261 text/plain 31.0807ms
+2025-11-20 00:27:13.824 -06:00 [INF] Request starting HTTP/2 GET https://localhost:7065/Personas - null null
+2025-11-20 00:27:13.828 -06:00 [INF] Executing endpoint 'Preacepta.UI.Controllers.PersonasController.Index (Preacepta.UI)'
+2025-11-20 00:27:13.832 -06:00 [INF] Route matched with {action = "Index", controller = "Personas", area = "", page = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Index() on controller Preacepta.UI.Controllers.PersonasController (Preacepta.UI).
+2025-11-20 00:27:13.866 -06:00 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [t].[Cedula], [t].[Nombre], [t].[Apellido1], [t].[Apellido2], [t].[FechaNacimiento], [t].[Edad], [t].[EstadoCivil], [t].[Oficio], [t].[Direccion1], [t0].[idDistrito], [t0].[idCaton], [t0].[nombreDistrito], [t1].[idCanton], [t1].[idProvincia], [t1].[NombreCanton], [t].[Direccion2], [t].[Email], [t].[FechaRegistro], [t].[Activo], [t].[Telefono1], [t].[Telefono2], [t].[Genero], [t].[ExpirationPassword], [t].[Tipo_Identificacion], [t].[Num_Cedula]
+FROM [T_GePersonas] AS [t]
+INNER JOIN [T_CrDistritos] AS [t0] ON [t].[Direccion1] = [t0].[idDistrito]
+INNER JOIN [T_CrCantones] AS [t1] ON [t0].[idCaton] = [t1].[idCanton]
+2025-11-20 00:27:13.900 -06:00 [INF] Executing ViewResult, running view Index.
+2025-11-20 00:27:13.931 -06:00 [INF] Executed ViewResult - view Index executed in 32.4056ms.
+2025-11-20 00:27:13.932 -06:00 [INF] Executed action Preacepta.UI.Controllers.PersonasController.Index (Preacepta.UI) in 99.9743ms
+2025-11-20 00:27:13.932 -06:00 [INF] Executed endpoint 'Preacepta.UI.Controllers.PersonasController.Index (Preacepta.UI)'
+2025-11-20 00:27:13.932 -06:00 [INF] Request finished HTTP/2 GET https://localhost:7065/Personas - 200 null text/html; charset=utf-8 108.2614ms
+2025-11-20 00:27:13.938 -06:00 [INF] Request starting HTTP/2 GET https://localhost:7065/_framework/aspnetcore-browser-refresh.js - null null
+2025-11-20 00:27:13.938 -06:00 [INF] Request starting HTTP/2 GET https://localhost:7065/_vs/browserLink - null null
+2025-11-20 00:27:13.939 -06:00 [INF] Request finished HTTP/2 GET https://localhost:7065/_framework/aspnetcore-browser-refresh.js - 200 13760 application/javascript; charset=utf-8 1.2792ms
+2025-11-20 00:27:13.950 -06:00 [INF] Request finished HTTP/2 GET https://localhost:7065/_vs/browserLink - 200 null text/javascript; charset=UTF-8 11.792ms
+2025-11-20 00:27:15.579 -06:00 [INF] Request starting HTTP/2 GET https://localhost:7065/Personas/Edit/11 - null null
+2025-11-20 00:27:15.583 -06:00 [INF] Executing endpoint 'Preacepta.UI.Controllers.PersonasController.Edit (Preacepta.UI)'
+2025-11-20 00:27:15.587 -06:00 [INF] Route matched with {action = "Edit", controller = "Personas", area = "", page = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Edit(Int32) on controller Preacepta.UI.Controllers.PersonasController (Preacepta.UI).
+2025-11-20 00:27:17.293 -06:00 [INF] Executed DbCommand (4ms) [Parameters=[@__id_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [t].[Cedula], [t].[Activo], [t].[Apellido1], [t].[Apellido2], [t].[Direccion1], [t].[Direccion2], [t].[Edad], [t].[Email], [t].[EstadoCivil], [t].[ExpirationPassword], [t].[FechaNacimiento], [t].[FechaRegistro], [t].[Genero], [t].[Nombre], [t].[Num_Cedula], [t].[Oficio], [t].[Telefono1], [t].[Telefono2], [t].[Tipo_Identificacion], [t0].[idDistrito], [t0].[idCaton], [t0].[nombreDistrito], [t1].[idCanton], [t1].[idProvincia], [t1].[NombreCanton]
+FROM [T_GePersonas] AS [t]
+INNER JOIN [T_CrDistritos] AS [t0] ON [t].[Direccion1] = [t0].[idDistrito]
+INNER JOIN [T_CrCantones] AS [t1] ON [t0].[idCaton] = [t1].[idCanton]
+WHERE [t].[Cedula] = @__id_0
+2025-11-20 00:27:17.331 -06:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [t].[idDistrito] AS [IdDistrito], [t].[idCaton] AS [IdCaton], [t0].[idCanton], [t0].[idProvincia], [t0].[NombreCanton], [t].[nombreDistrito] AS [NombreDistrito]
+FROM [T_CrDistritos] AS [t]
+INNER JOIN [T_CrCantones] AS [t0] ON [t].[idCaton] = [t0].[idCanton]
+2025-11-20 00:27:17.359 -06:00 [INF] Executing ViewResult, running view Edit.
+2025-11-20 00:27:17.418 -06:00 [INF] Executed ViewResult - view Edit executed in 59.3981ms.
+2025-11-20 00:27:17.418 -06:00 [INF] Executed action Preacepta.UI.Controllers.PersonasController.Edit (Preacepta.UI) in 1830.9163ms
+2025-11-20 00:27:17.418 -06:00 [INF] Executed endpoint 'Preacepta.UI.Controllers.PersonasController.Edit (Preacepta.UI)'
+2025-11-20 00:27:17.418 -06:00 [INF] Request finished HTTP/2 GET https://localhost:7065/Personas/Edit/11 - 200 null text/html; charset=utf-8 1838.8506ms
+2025-11-20 00:27:17.424 -06:00 [INF] Request starting HTTP/2 GET https://localhost:7065/_framework/aspnetcore-browser-refresh.js - null null
+2025-11-20 00:27:17.424 -06:00 [INF] Request starting HTTP/2 GET https://localhost:7065/lyso/js/tipoidentificaciongestor.js - null null
+2025-11-20 00:27:17.424 -06:00 [INF] The file /lyso/js/tipoidentificaciongestor.js was not modified
+2025-11-20 00:27:17.425 -06:00 [INF] Request finished HTTP/2 GET https://localhost:7065/_framework/aspnetcore-browser-refresh.js - 200 13760 application/javascript; charset=utf-8 0.6527ms
+2025-11-20 00:27:17.425 -06:00 [INF] Request finished HTTP/2 GET https://localhost:7065/lyso/js/tipoidentificaciongestor.js - 304 null text/javascript 0.8315ms
+2025-11-20 00:27:17.426 -06:00 [INF] Request starting HTTP/2 GET https://localhost:7065/_vs/browserLink - null null
+2025-11-20 00:27:17.439 -06:00 [INF] Request finished HTTP/2 GET https://localhost:7065/_vs/browserLink - 200 null text/javascript; charset=UTF-8 13.1444ms
+2025-11-20 00:27:17.463 -06:00 [INF] Request starting HTTP/2 GET https://localhost:7065/Ubicacion/Provincias - null null
+2025-11-20 00:27:17.464 -06:00 [INF] Executing endpoint 'Preacepta.UI.Controllers.UbicacionController.ObtenerProvincias (Preacepta.UI)'
+2025-11-20 00:27:17.467 -06:00 [INF] Route matched with {action = "ObtenerProvincias", controller = "Ubicacion", area = "", page = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] ObtenerProvincias() on controller Preacepta.UI.Controllers.UbicacionController (Preacepta.UI).
+2025-11-20 00:27:17.476 -06:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [t].[IdProvincia], [t].[NombreProvincia]
+FROM [T_CrProvincias] AS [t]
+2025-11-20 00:27:17.483 -06:00 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[Preacepta.Modelos.AbstraccionesFrond.CrProvinciaDTO, Preacepta.Modelos, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-11-20 00:27:17.529 -06:00 [INF] Executed action Preacepta.UI.Controllers.UbicacionController.ObtenerProvincias (Preacepta.UI) in 61.7414ms
+2025-11-20 00:27:17.529 -06:00 [INF] Executed endpoint 'Preacepta.UI.Controllers.UbicacionController.ObtenerProvincias (Preacepta.UI)'
+2025-11-20 00:27:17.529 -06:00 [INF] Request finished HTTP/2 GET https://localhost:7065/Ubicacion/Provincias - 200 null application/json; charset=utf-8 65.8844ms
+2025-11-20 00:28:08.395 -06:00 [INF] Request starting HTTP/2 POST https://localhost:7065/Personas/Edit/11 - application/x-www-form-urlencoded 790
+2025-11-20 00:28:08.404 -06:00 [INF] Executing endpoint 'Preacepta.UI.Controllers.PersonasController.Edit (Preacepta.UI)'
+2025-11-20 00:28:08.441 -06:00 [INF] Route matched with {action = "Edit", controller = "Personas", area = "", page = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Edit(Int32, Preacepta.Modelos.AbstraccionesFrond.GePersonaDTO, System.String) on controller Preacepta.UI.Controllers.PersonasController (Preacepta.UI).
+2025-11-20 00:28:30.765 -06:00 [INF] Executed DbCommand (5ms) [Parameters=[@__id_0='?' (Size = 100)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [t].[Cedula], [t].[Activo], [t].[Apellido1], [t].[Apellido2], [t].[Direccion1], [t].[Direccion2], [t].[Edad], [t].[Email], [t].[EstadoCivil], [t].[ExpirationPassword], [t].[FechaNacimiento], [t].[FechaRegistro], [t].[Genero], [t].[Nombre], [t].[Num_Cedula], [t].[Oficio], [t].[Telefono1], [t].[Telefono2], [t].[Tipo_Identificacion], [t0].[idDistrito], [t0].[idCaton], [t0].[nombreDistrito], [t1].[idCanton], [t1].[idProvincia], [t1].[NombreCanton]
+FROM [T_GePersonas] AS [t]
+INNER JOIN [T_CrDistritos] AS [t0] ON [t].[Direccion1] = [t0].[idDistrito]
+INNER JOIN [T_CrCantones] AS [t1] ON [t0].[idCaton] = [t1].[idCanton]
+WHERE [t].[Num_Cedula] = @__id_0
+2025-11-20 00:30:34.763 -06:00 [INF] Executed DbCommand (49ms) [Parameters=[@__normalizedName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[ConcurrencyStamp], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[NormalizedName] = @__normalizedName_0
+2025-11-20 00:30:34.865 -06:00 [INF] Executed DbCommand (2ms) [Parameters=[@__normalizedName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[ConcurrencyStamp], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[NormalizedName] = @__normalizedName_0
+2025-11-20 00:30:34.866 -06:00 [INF] Executed DbCommand (1ms) [Parameters=[@__normalizedName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[ConcurrencyStamp], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[NormalizedName] = @__normalizedName_0
+2025-11-20 00:30:34.906 -06:00 [INF] Executed DbCommand (1ms) [Parameters=[@__normalizedName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[ConcurrencyStamp], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[NormalizedName] = @__normalizedName_0
+2025-11-20 00:30:34.914 -06:00 [INF] Executed DbCommand (1ms) [Parameters=[@__normalizedEmail_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(2) [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[NormalizedEmail] = @__normalizedEmail_0
+2025-11-20 00:30:35.358 -06:00 [INF] Now listening on: https://localhost:7065
+2025-11-20 00:30:35.358 -06:00 [INF] Now listening on: http://localhost:5282
+2025-11-20 00:30:35.415 -06:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-11-20 00:30:35.415 -06:00 [INF] Hosting environment: Development
+2025-11-20 00:30:35.415 -06:00 [INF] Content root path: C:\Preacepta\Preacepta.UI
+2025-11-20 00:30:36.068 -06:00 [INF] Request starting HTTP/2 GET https://localhost:7065/ - null null
+2025-11-20 00:30:36.247 -06:00 [INF] Executing endpoint 'Praecepta.UI.Controllers.HomeController.Index (Preacepta.UI)'
+2025-11-20 00:30:36.270 -06:00 [INF] Route matched with {action = "Index", controller = "Home", area = "", page = ""}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Index() on controller Praecepta.UI.Controllers.HomeController (Preacepta.UI).
+2025-11-20 00:30:36.302 -06:00 [INF] Executing ViewResult, running view Index.
+2025-11-20 00:30:36.418 -06:00 [INF] Executed ViewResult - view Index executed in 117.5676ms.
+2025-11-20 00:30:36.421 -06:00 [INF] Executed action Praecepta.UI.Controllers.HomeController.Index (Preacepta.UI) in 149.8267ms
+2025-11-20 00:30:36.421 -06:00 [INF] Executed endpoint 'Praecepta.UI.Controllers.HomeController.Index (Preacepta.UI)'
+2025-11-20 00:30:36.426 -06:00 [INF] Request finished HTTP/2 GET https://localhost:7065/ - 200 null text/html; charset=utf-8 364.1188ms
+2025-11-20 00:30:36.510 -06:00 [INF] Request starting HTTP/2 GET https://localhost:7065/_framework/aspnetcore-browser-refresh.js - null null
+2025-11-20 00:30:36.510 -06:00 [INF] Request starting HTTP/2 GET https://localhost:7065/_vs/browserLink - null null
+2025-11-20 00:30:36.515 -06:00 [INF] Request finished HTTP/2 GET https://localhost:7065/_framework/aspnetcore-browser-refresh.js - 200 13760 application/javascript; charset=utf-8 5.3856ms
+2025-11-20 00:30:36.544 -06:00 [INF] Request finished HTTP/2 GET https://localhost:7065/_vs/browserLink - 200 null text/javascript; charset=UTF-8 34.7761ms
+2025-11-20 00:30:38.163 -06:00 [INF] Request starting HTTP/2 GET https://localhost:7065/Identity/Account/Login - null null
+2025-11-20 00:30:38.171 -06:00 [INF] Executing endpoint '/Account/Login'
+2025-11-20 00:30:38.181 -06:00 [INF] Route matched with {page = "/Account/Login", area = "Identity", action = "", controller = ""}. Executing page /Account/Login
+2025-11-20 00:30:38.204 -06:00 [INF] Executing handler method Praecepta.UI.Areas.Identity.Pages.Account.LoginModel.OnGetAsync - ModelState is "Valid"
+2025-11-20 00:30:38.208 -06:00 [INF] AuthenticationScheme: Identity.External signed out.
+2025-11-20 00:30:38.209 -06:00 [INF] Executed handler method OnGetAsync, returned result .
+2025-11-20 00:30:38.211 -06:00 [INF] Executing an implicit handler method - ModelState is "Valid"
+2025-11-20 00:30:38.211 -06:00 [INF] Executed an implicit handler method, returned result Microsoft.AspNetCore.Mvc.RazorPages.PageResult.
+2025-11-20 00:30:38.272 -06:00 [INF] Executed page /Account/Login in 90.7086ms
+2025-11-20 00:30:38.272 -06:00 [INF] Executed endpoint '/Account/Login'
+2025-11-20 00:30:38.272 -06:00 [INF] Request finished HTTP/2 GET https://localhost:7065/Identity/Account/Login - 200 null text/html; charset=utf-8 109.7049ms
+2025-11-20 00:30:38.280 -06:00 [INF] Request starting HTTP/2 GET https://localhost:7065/_framework/aspnetcore-browser-refresh.js - null null
+2025-11-20 00:30:38.281 -06:00 [INF] Request finished HTTP/2 GET https://localhost:7065/_framework/aspnetcore-browser-refresh.js - 200 13760 application/javascript; charset=utf-8 1.0721ms
+2025-11-20 00:30:38.283 -06:00 [INF] Request starting HTTP/2 GET https://localhost:7065/_vs/browserLink - null null
+2025-11-20 00:30:38.299 -06:00 [INF] Request finished HTTP/2 GET https://localhost:7065/_vs/browserLink - 200 null text/javascript; charset=UTF-8 15.3003ms
+2025-11-20 00:30:45.168 -06:00 [INF] Request starting HTTP/2 POST https://localhost:7065/Identity/Account/Login - application/x-www-form-urlencoded 283
+2025-11-20 00:30:45.180 -06:00 [INF] Executing endpoint '/Account/Login'
+2025-11-20 00:30:45.181 -06:00 [INF] Route matched with {page = "/Account/Login", area = "Identity", action = "", controller = ""}. Executing page /Account/Login
+2025-11-20 00:30:45.196 -06:00 [INF] Executing handler method Praecepta.UI.Areas.Identity.Pages.Account.LoginModel.OnPostAsync - ModelState is "Valid"
+2025-11-20 00:30:45.198 -06:00 [INF] Email recibido: gestor@preacepta.com
+2025-11-20 00:30:45.208 -06:00 [INF] Executed DbCommand (1ms) [Parameters=[@__normalizedEmail_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(2) [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[NormalizedEmail] = @__normalizedEmail_0
+2025-11-20 00:30:45.244 -06:00 [INF] Executed DbCommand (3ms) [Parameters=[@__user_Id_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a].[Id], [a].[ClaimType], [a].[ClaimValue], [a].[UserId]
+FROM [AspNetUserClaims] AS [a]
+WHERE [a].[UserId] = @__user_Id_0
+2025-11-20 00:30:45.268 -06:00 [INF] Executed DbCommand (4ms) [Parameters=[@__userId_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a0].[Name]
+FROM [AspNetUserRoles] AS [a]
+INNER JOIN [AspNetRoles] AS [a0] ON [a].[RoleId] = [a0].[Id]
+WHERE [a].[UserId] = @__userId_0
+2025-11-20 00:30:45.269 -06:00 [INF] Generando claims de roles para el usuario d8a2c663-534e-4eb0-81b0-6f643763d3d1: Gestor
+2025-11-20 00:30:45.634 -06:00 [INF] Executed DbCommand (7ms) [Parameters=[@__correo_0='?' (Size = 100)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [t].[Cedula], [t].[Activo], [t].[Apellido1], [t].[Apellido2], [t].[Direccion1], [t].[Direccion2], [t].[Edad], [t].[Email], [t].[EstadoCivil], [t].[ExpirationPassword], [t].[FechaNacimiento], [t].[FechaRegistro], [t].[Genero], [t].[Nombre], [t].[Num_Cedula], [t].[Oficio], [t].[Telefono1], [t].[Telefono2], [t].[Tipo_Identificacion], [t0].[idDistrito], [t0].[idCaton], [t0].[nombreDistrito], [t1].[idCanton], [t1].[idProvincia], [t1].[NombreCanton], [t2].[IdProvincia], [t2].[NombreProvincia]
+FROM [T_GePersonas] AS [t]
+INNER JOIN [T_CrDistritos] AS [t0] ON [t].[Direccion1] = [t0].[idDistrito]
+INNER JOIN [T_CrCantones] AS [t1] ON [t0].[idCaton] = [t1].[idCanton]
+INNER JOIN [T_CrProvincias] AS [t2] ON [t1].[idProvincia] = [t2].[IdProvincia]
+WHERE [t].[Email] = @__correo_0
+2025-11-20 00:30:45.641 -06:00 [INF] Executed DbCommand (1ms) [Parameters=[@__normalizedUserName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[NormalizedUserName] = @__normalizedUserName_0
+2025-11-20 00:30:45.714 -06:00 [INF] Executed DbCommand (1ms) [Parameters=[@__user_Id_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a].[Id], [a].[ClaimType], [a].[ClaimValue], [a].[UserId]
+FROM [AspNetUserClaims] AS [a]
+WHERE [a].[UserId] = @__user_Id_0
+2025-11-20 00:30:45.716 -06:00 [INF] Executed DbCommand (1ms) [Parameters=[@__userId_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a0].[Name]
+FROM [AspNetUserRoles] AS [a]
+INNER JOIN [AspNetRoles] AS [a0] ON [a].[RoleId] = [a0].[Id]
+WHERE [a].[UserId] = @__userId_0
+2025-11-20 00:30:45.716 -06:00 [INF] Generando claims de roles para el usuario d8a2c663-534e-4eb0-81b0-6f643763d3d1: Gestor
+2025-11-20 00:30:45.718 -06:00 [INF] AuthenticationScheme: Identity.Application signed in.
+2025-11-20 00:30:45.719 -06:00 [INF] Roles asignados al usuario tras login: Gestor
+2025-11-20 00:30:45.719 -06:00 [INF] Usuario conectado con rol válido.
+2025-11-20 00:30:45.719 -06:00 [INF] DanielClaim: http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier = d8a2c663-534e-4eb0-81b0-6f643763d3d1
+2025-11-20 00:30:45.719 -06:00 [INF] DanielClaim: http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name = gestor@preacepta.com
+2025-11-20 00:30:45.719 -06:00 [INF] DanielClaim: http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress = gestor@preacepta.com
+2025-11-20 00:30:45.719 -06:00 [INF] DanielClaim: AspNet.Identity.SecurityStamp = XOXO2BDEMCIYU6PLAELLUG5OVNIDML6L
+2025-11-20 00:30:45.719 -06:00 [INF] DanielClaim: http://schemas.microsoft.com/ws/2008/06/identity/claims/role = Gestor
+2025-11-20 00:30:45.720 -06:00 [INF] Executed handler method OnPostAsync, returned result Microsoft.AspNetCore.Mvc.RedirectToActionResult.
+2025-11-20 00:30:45.721 -06:00 [INF] Executing RedirectResult, redirecting to /Home/UsuarioAutenticado?correo=gestor@preacepta.com.
+2025-11-20 00:30:45.722 -06:00 [INF] Executed page /Account/Login in 540.8849ms
+2025-11-20 00:30:45.722 -06:00 [INF] Executed endpoint '/Account/Login'
+2025-11-20 00:30:45.724 -06:00 [INF] Request finished HTTP/2 POST https://localhost:7065/Identity/Account/Login - 302 0 null 555.9269ms
+2025-11-20 00:30:45.724 -06:00 [INF] Request starting HTTP/2 GET https://localhost:7065/Home/UsuarioAutenticado?correo=gestor@preacepta.com - null null
+2025-11-20 00:30:45.731 -06:00 [INF] Executing endpoint 'Praecepta.UI.Controllers.HomeController.UsuarioAutenticado (Preacepta.UI)'
+2025-11-20 00:30:45.735 -06:00 [INF] Route matched with {action = "UsuarioAutenticado", controller = "Home", area = "", page = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] UsuarioAutenticado(System.String, System.String) on controller Praecepta.UI.Controllers.HomeController (Preacepta.UI).
+2025-11-20 00:30:45.740 -06:00 [INF] Executing ViewResult, running view UsuarioGestor.
+2025-11-20 00:30:45.787 -06:00 [INF] Executed ViewResult - view UsuarioGestor executed in 47.7864ms.
+2025-11-20 00:30:45.788 -06:00 [INF] Executed action Praecepta.UI.Controllers.HomeController.UsuarioAutenticado (Preacepta.UI) in 52.6589ms
+2025-11-20 00:30:45.788 -06:00 [INF] Executed endpoint 'Praecepta.UI.Controllers.HomeController.UsuarioAutenticado (Preacepta.UI)'
+2025-11-20 00:30:45.788 -06:00 [INF] Request finished HTTP/2 GET https://localhost:7065/Home/UsuarioAutenticado?correo=gestor@preacepta.com - 200 null text/html; charset=utf-8 63.6838ms
+2025-11-20 00:30:45.800 -06:00 [INF] Request starting HTTP/2 GET https://localhost:7065/_vs/browserLink - null null
+2025-11-20 00:30:45.800 -06:00 [INF] Request starting HTTP/2 GET https://localhost:7065/_framework/aspnetcore-browser-refresh.js - null null
+2025-11-20 00:30:45.800 -06:00 [INF] Request finished HTTP/2 GET https://localhost:7065/_framework/aspnetcore-browser-refresh.js - 200 13760 application/javascript; charset=utf-8 1.2364ms
+2025-11-20 00:30:45.814 -06:00 [INF] Request finished HTTP/2 GET https://localhost:7065/_vs/browserLink - 200 null text/javascript; charset=UTF-8 14.3841ms
+2025-11-20 00:30:45.877 -06:00 [INF] Request starting HTTP/1.1 GET https://localhost:7065/lib/bootstrap/dist/js/bootstrap.bundle.min.js.map - null null
+2025-11-20 00:30:45.890 -06:00 [INF] Sending file. Request path: '/lib/bootstrap/dist/js/bootstrap.bundle.min.js.map'. Physical path: 'C:\Preacepta\Preacepta.UI\wwwroot\lib\bootstrap\dist\js\bootstrap.bundle.min.js.map'
+2025-11-20 00:30:45.890 -06:00 [INF] Request finished HTTP/1.1 GET https://localhost:7065/lib/bootstrap/dist/js/bootstrap.bundle.min.js.map - 200 327261 text/plain 13.1891ms
+2025-11-20 00:30:48.766 -06:00 [INF] Request starting HTTP/2 GET https://localhost:7065/Personas - null null
+2025-11-20 00:30:48.770 -06:00 [INF] Executing endpoint 'Preacepta.UI.Controllers.PersonasController.Index (Preacepta.UI)'
+2025-11-20 00:30:48.772 -06:00 [INF] Route matched with {action = "Index", controller = "Personas", area = "", page = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Index() on controller Preacepta.UI.Controllers.PersonasController (Preacepta.UI).
+2025-11-20 00:30:48.808 -06:00 [INF] Executed DbCommand (6ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [t].[Cedula], [t].[Nombre], [t].[Apellido1], [t].[Apellido2], [t].[FechaNacimiento], [t].[Edad], [t].[EstadoCivil], [t].[Oficio], [t].[Direccion1], [t0].[idDistrito], [t0].[idCaton], [t0].[nombreDistrito], [t1].[idCanton], [t1].[idProvincia], [t1].[NombreCanton], [t].[Direccion2], [t].[Email], [t].[FechaRegistro], [t].[Activo], [t].[Telefono1], [t].[Telefono2], [t].[Genero], [t].[ExpirationPassword], [t].[Tipo_Identificacion], [t].[Num_Cedula]
+FROM [T_GePersonas] AS [t]
+INNER JOIN [T_CrDistritos] AS [t0] ON [t].[Direccion1] = [t0].[idDistrito]
+INNER JOIN [T_CrCantones] AS [t1] ON [t0].[idCaton] = [t1].[idCanton]
+2025-11-20 00:30:48.844 -06:00 [INF] Executing ViewResult, running view Index.
+2025-11-20 00:30:48.866 -06:00 [INF] Executed ViewResult - view Index executed in 23.2358ms.
+2025-11-20 00:30:48.867 -06:00 [INF] Executed action Preacepta.UI.Controllers.PersonasController.Index (Preacepta.UI) in 94.9372ms
+2025-11-20 00:30:48.867 -06:00 [INF] Executed endpoint 'Preacepta.UI.Controllers.PersonasController.Index (Preacepta.UI)'
+2025-11-20 00:30:48.867 -06:00 [INF] Request finished HTTP/2 GET https://localhost:7065/Personas - 200 null text/html; charset=utf-8 101.1114ms
+2025-11-20 00:30:48.874 -06:00 [INF] Request starting HTTP/2 GET https://localhost:7065/_framework/aspnetcore-browser-refresh.js - null null
+2025-11-20 00:30:48.874 -06:00 [INF] Request starting HTTP/2 GET https://localhost:7065/_vs/browserLink - null null
+2025-11-20 00:30:48.875 -06:00 [INF] Request finished HTTP/2 GET https://localhost:7065/_framework/aspnetcore-browser-refresh.js - 200 13760 application/javascript; charset=utf-8 1.0452ms
+2025-11-20 00:30:48.888 -06:00 [INF] Request finished HTTP/2 GET https://localhost:7065/_vs/browserLink - 200 null text/javascript; charset=UTF-8 14.0775ms
+2025-11-20 00:30:50.276 -06:00 [INF] Request starting HTTP/2 GET https://localhost:7065/Personas/Edit/11 - null null
+2025-11-20 00:30:50.281 -06:00 [INF] Executing endpoint 'Preacepta.UI.Controllers.PersonasController.Edit (Preacepta.UI)'
+2025-11-20 00:30:50.284 -06:00 [INF] Route matched with {action = "Edit", controller = "Personas", area = "", page = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Edit(Int32) on controller Preacepta.UI.Controllers.PersonasController (Preacepta.UI).
+2025-11-20 00:30:52.090 -06:00 [INF] Executed DbCommand (4ms) [Parameters=[@__id_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [t].[Cedula], [t].[Activo], [t].[Apellido1], [t].[Apellido2], [t].[Direccion1], [t].[Direccion2], [t].[Edad], [t].[Email], [t].[EstadoCivil], [t].[ExpirationPassword], [t].[FechaNacimiento], [t].[FechaRegistro], [t].[Genero], [t].[Nombre], [t].[Num_Cedula], [t].[Oficio], [t].[Telefono1], [t].[Telefono2], [t].[Tipo_Identificacion], [t0].[idDistrito], [t0].[idCaton], [t0].[nombreDistrito], [t1].[idCanton], [t1].[idProvincia], [t1].[NombreCanton]
+FROM [T_GePersonas] AS [t]
+INNER JOIN [T_CrDistritos] AS [t0] ON [t].[Direccion1] = [t0].[idDistrito]
+INNER JOIN [T_CrCantones] AS [t1] ON [t0].[idCaton] = [t1].[idCanton]
+WHERE [t].[Cedula] = @__id_0
+2025-11-20 00:30:52.147 -06:00 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [t].[idDistrito] AS [IdDistrito], [t].[idCaton] AS [IdCaton], [t0].[idCanton], [t0].[idProvincia], [t0].[NombreCanton], [t].[nombreDistrito] AS [NombreDistrito]
+FROM [T_CrDistritos] AS [t]
+INNER JOIN [T_CrCantones] AS [t0] ON [t].[idCaton] = [t0].[idCanton]
+2025-11-20 00:30:52.175 -06:00 [INF] Executing ViewResult, running view Edit.
+2025-11-20 00:30:52.240 -06:00 [INF] Executed ViewResult - view Edit executed in 64.8206ms.
+2025-11-20 00:30:52.240 -06:00 [INF] Executed action Preacepta.UI.Controllers.PersonasController.Edit (Preacepta.UI) in 1955.0644ms
+2025-11-20 00:30:52.240 -06:00 [INF] Executed endpoint 'Preacepta.UI.Controllers.PersonasController.Edit (Preacepta.UI)'
+2025-11-20 00:30:52.240 -06:00 [INF] Request finished HTTP/2 GET https://localhost:7065/Personas/Edit/11 - 200 null text/html; charset=utf-8 1963.8749ms
+2025-11-20 00:30:52.252 -06:00 [INF] Request starting HTTP/2 GET https://localhost:7065/_framework/aspnetcore-browser-refresh.js - null null
+2025-11-20 00:30:52.253 -06:00 [INF] Request finished HTTP/2 GET https://localhost:7065/_framework/aspnetcore-browser-refresh.js - 200 13760 application/javascript; charset=utf-8 0.9917ms
+2025-11-20 00:30:52.255 -06:00 [INF] Request starting HTTP/2 GET https://localhost:7065/_vs/browserLink - null null
+2025-11-20 00:30:52.263 -06:00 [INF] Request finished HTTP/2 GET https://localhost:7065/_vs/browserLink - 200 null text/javascript; charset=UTF-8 8.9662ms
+2025-11-20 00:30:52.288 -06:00 [INF] Request starting HTTP/2 GET https://localhost:7065/Ubicacion/Provincias - null null
+2025-11-20 00:30:52.289 -06:00 [INF] Executing endpoint 'Preacepta.UI.Controllers.UbicacionController.ObtenerProvincias (Preacepta.UI)'
+2025-11-20 00:30:52.291 -06:00 [INF] Route matched with {action = "ObtenerProvincias", controller = "Ubicacion", area = "", page = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] ObtenerProvincias() on controller Preacepta.UI.Controllers.UbicacionController (Preacepta.UI).
+2025-11-20 00:30:52.303 -06:00 [INF] Executed DbCommand (4ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [t].[IdProvincia], [t].[NombreProvincia]
+FROM [T_CrProvincias] AS [t]
+2025-11-20 00:30:52.308 -06:00 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[Preacepta.Modelos.AbstraccionesFrond.CrProvinciaDTO, Preacepta.Modelos, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-11-20 00:30:52.349 -06:00 [INF] Executed action Preacepta.UI.Controllers.UbicacionController.ObtenerProvincias (Preacepta.UI) in 57.6155ms
+2025-11-20 00:30:52.349 -06:00 [INF] Executed endpoint 'Preacepta.UI.Controllers.UbicacionController.ObtenerProvincias (Preacepta.UI)'
+2025-11-20 00:30:52.349 -06:00 [INF] Request finished HTTP/2 GET https://localhost:7065/Ubicacion/Provincias - 200 null application/json; charset=utf-8 61.8921ms
+2025-11-20 00:31:20.952 -06:00 [INF] Request starting HTTP/2 POST https://localhost:7065/Personas/Edit/11 - application/x-www-form-urlencoded 790
+2025-11-20 00:31:20.962 -06:00 [INF] Executing endpoint 'Preacepta.UI.Controllers.PersonasController.Edit (Preacepta.UI)'
+2025-11-20 00:31:20.992 -06:00 [INF] Route matched with {action = "Edit", controller = "Personas", area = "", page = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Edit(Int32, Preacepta.Modelos.AbstraccionesFrond.GePersonaDTO, System.String) on controller Preacepta.UI.Controllers.PersonasController (Preacepta.UI).
+2025-11-20 00:31:32.516 -06:00 [INF] Executed DbCommand (7ms) [Parameters=[@__id_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [t].[Cedula], [t].[Activo], [t].[Apellido1], [t].[Apellido2], [t].[Direccion1], [t].[Direccion2], [t].[Edad], [t].[Email], [t].[EstadoCivil], [t].[ExpirationPassword], [t].[FechaNacimiento], [t].[FechaRegistro], [t].[Genero], [t].[Nombre], [t].[Num_Cedula], [t].[Oficio], [t].[Telefono1], [t].[Telefono2], [t].[Tipo_Identificacion], [t0].[idDistrito], [t0].[idCaton], [t0].[nombreDistrito], [t1].[idCanton], [t1].[idProvincia], [t1].[NombreCanton]
+FROM [T_GePersonas] AS [t]
+INNER JOIN [T_CrDistritos] AS [t0] ON [t].[Direccion1] = [t0].[idDistrito]
+INNER JOIN [T_CrCantones] AS [t1] ON [t0].[idCaton] = [t1].[idCanton]
+WHERE [t].[Cedula] = @__id_0
+2025-11-20 00:35:28.910 -06:00 [INF] Executing ViewResult, running view Edit.
+2025-11-20 00:35:28.957 -06:00 [INF] Executed ViewResult - view Edit executed in 47.9898ms.
+2025-11-20 00:35:28.957 -06:00 [INF] Executed action Preacepta.UI.Controllers.PersonasController.Edit (Preacepta.UI) in 247964.937ms
+2025-11-20 00:35:28.957 -06:00 [INF] Executed endpoint 'Preacepta.UI.Controllers.PersonasController.Edit (Preacepta.UI)'
+2025-11-20 00:35:28.957 -06:00 [INF] Request finished HTTP/2 POST https://localhost:7065/Personas/Edit/11 - 200 null text/html; charset=utf-8 248004.8075ms
+2025-11-20 00:35:28.966 -06:00 [INF] Request starting HTTP/2 GET https://localhost:7065/_vs/browserLink - null null
+2025-11-20 00:35:28.966 -06:00 [INF] Request starting HTTP/2 GET https://localhost:7065/_framework/aspnetcore-browser-refresh.js - null null
+2025-11-20 00:35:28.967 -06:00 [INF] Request finished HTTP/2 GET https://localhost:7065/_framework/aspnetcore-browser-refresh.js - 200 13760 application/javascript; charset=utf-8 1.1605ms
+2025-11-20 00:35:28.979 -06:00 [INF] Request finished HTTP/2 GET https://localhost:7065/_vs/browserLink - 200 null text/javascript; charset=UTF-8 13.6805ms
+2025-11-20 00:35:28.992 -06:00 [INF] Request starting HTTP/2 GET https://localhost:7065/Ubicacion/Provincias - null null
+2025-11-20 00:35:28.993 -06:00 [INF] Executing endpoint 'Preacepta.UI.Controllers.UbicacionController.ObtenerProvincias (Preacepta.UI)'
+2025-11-20 00:35:28.993 -06:00 [INF] Route matched with {action = "ObtenerProvincias", controller = "Ubicacion", area = "", page = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] ObtenerProvincias() on controller Preacepta.UI.Controllers.UbicacionController (Preacepta.UI).
+2025-11-20 00:35:28.997 -06:00 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [t].[IdProvincia], [t].[NombreProvincia]
+FROM [T_CrProvincias] AS [t]
+2025-11-20 00:35:28.998 -06:00 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[Preacepta.Modelos.AbstraccionesFrond.CrProvinciaDTO, Preacepta.Modelos, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-11-20 00:35:28.998 -06:00 [INF] Executed action Preacepta.UI.Controllers.UbicacionController.ObtenerProvincias (Preacepta.UI) in 5.4543ms
+2025-11-20 00:35:28.998 -06:00 [INF] Executed endpoint 'Preacepta.UI.Controllers.UbicacionController.ObtenerProvincias (Preacepta.UI)'
+2025-11-20 00:35:28.998 -06:00 [INF] Request finished HTTP/2 GET https://localhost:7065/Ubicacion/Provincias - 200 null application/json; charset=utf-8 6.9958ms
+2025-11-20 11:35:13.236 -06:00 [INF] Executed DbCommand (31ms) [Parameters=[@__normalizedName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[ConcurrencyStamp], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[NormalizedName] = @__normalizedName_0
+2025-11-20 11:35:13.287 -06:00 [INF] Executed DbCommand (2ms) [Parameters=[@__normalizedName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[ConcurrencyStamp], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[NormalizedName] = @__normalizedName_0
+2025-11-20 11:35:13.288 -06:00 [INF] Executed DbCommand (0ms) [Parameters=[@__normalizedName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[ConcurrencyStamp], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[NormalizedName] = @__normalizedName_0
+2025-11-20 11:35:13.321 -06:00 [INF] Executed DbCommand (1ms) [Parameters=[@__normalizedName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[ConcurrencyStamp], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[NormalizedName] = @__normalizedName_0
+2025-11-20 11:35:13.327 -06:00 [INF] Executed DbCommand (1ms) [Parameters=[@__normalizedEmail_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(2) [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[NormalizedEmail] = @__normalizedEmail_0
+2025-11-20 11:35:13.803 -06:00 [INF] Now listening on: https://localhost:7065
+2025-11-20 11:35:13.804 -06:00 [INF] Now listening on: http://localhost:5282
+2025-11-20 11:35:13.838 -06:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-11-20 11:35:13.838 -06:00 [INF] Hosting environment: Development
+2025-11-20 11:35:13.838 -06:00 [INF] Content root path: C:\Preacepta\Preacepta.UI
+2025-11-20 11:35:15.128 -06:00 [INF] Request starting HTTP/2 GET https://localhost:7065/ - null null
+2025-11-20 11:35:15.287 -06:00 [INF] Executing endpoint 'Praecepta.UI.Controllers.HomeController.Index (Preacepta.UI)'
+2025-11-20 11:35:15.305 -06:00 [INF] Route matched with {action = "Index", controller = "Home", area = "", page = ""}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Index() on controller Praecepta.UI.Controllers.HomeController (Preacepta.UI).
+2025-11-20 11:35:15.330 -06:00 [INF] Executing ViewResult, running view Index.
+2025-11-20 11:35:15.413 -06:00 [INF] Executed ViewResult - view Index executed in 83.2063ms.
+2025-11-20 11:35:15.415 -06:00 [INF] Executed action Praecepta.UI.Controllers.HomeController.Index (Preacepta.UI) in 109.9961ms
+2025-11-20 11:35:15.416 -06:00 [INF] Executed endpoint 'Praecepta.UI.Controllers.HomeController.Index (Preacepta.UI)'
+2025-11-20 11:35:15.421 -06:00 [INF] Request finished HTTP/2 GET https://localhost:7065/ - 200 null text/html; charset=utf-8 298.1935ms
+2025-11-20 11:35:15.460 -06:00 [INF] Request starting HTTP/2 GET https://localhost:7065/_framework/aspnetcore-browser-refresh.js - null null
+2025-11-20 11:35:15.460 -06:00 [INF] Request starting HTTP/2 GET https://localhost:7065/_vs/browserLink - null null
+2025-11-20 11:35:15.465 -06:00 [INF] Request finished HTTP/2 GET https://localhost:7065/_framework/aspnetcore-browser-refresh.js - 200 13760 application/javascript; charset=utf-8 4.8443ms
+2025-11-20 11:35:15.501 -06:00 [INF] Request finished HTTP/2 GET https://localhost:7065/_vs/browserLink - 200 null text/javascript; charset=UTF-8 40.9547ms
+2025-11-20 11:35:16.643 -06:00 [INF] Request starting HTTP/2 GET https://localhost:7065/Identity/Account/Login - null null
+2025-11-20 11:35:16.649 -06:00 [INF] Executing endpoint '/Account/Login'
+2025-11-20 11:35:16.658 -06:00 [INF] Route matched with {page = "/Account/Login", area = "Identity", action = "", controller = ""}. Executing page /Account/Login
+2025-11-20 11:35:16.669 -06:00 [INF] Executing handler method Praecepta.UI.Areas.Identity.Pages.Account.LoginModel.OnGetAsync - ModelState is "Valid"
+2025-11-20 11:35:16.671 -06:00 [INF] AuthenticationScheme: Identity.External signed out.
+2025-11-20 11:35:16.672 -06:00 [INF] Executed handler method OnGetAsync, returned result .
+2025-11-20 11:35:16.673 -06:00 [INF] Executing an implicit handler method - ModelState is "Valid"
+2025-11-20 11:35:16.673 -06:00 [INF] Executed an implicit handler method, returned result Microsoft.AspNetCore.Mvc.RazorPages.PageResult.
+2025-11-20 11:35:16.721 -06:00 [INF] Executed page /Account/Login in 63.6939ms
+2025-11-20 11:35:16.722 -06:00 [INF] Executed endpoint '/Account/Login'
+2025-11-20 11:35:16.722 -06:00 [INF] Request finished HTTP/2 GET https://localhost:7065/Identity/Account/Login - 200 null text/html; charset=utf-8 78.6443ms
+2025-11-20 11:35:16.730 -06:00 [INF] Request starting HTTP/2 GET https://localhost:7065/_framework/aspnetcore-browser-refresh.js - null null
+2025-11-20 11:35:16.731 -06:00 [INF] Request finished HTTP/2 GET https://localhost:7065/_framework/aspnetcore-browser-refresh.js - 200 13760 application/javascript; charset=utf-8 1.2059ms
+2025-11-20 11:35:16.733 -06:00 [INF] Request starting HTTP/2 GET https://localhost:7065/_vs/browserLink - null null
+2025-11-20 11:35:16.746 -06:00 [INF] Request finished HTTP/2 GET https://localhost:7065/_vs/browserLink - 200 null text/javascript; charset=UTF-8 12.8946ms
+2025-11-20 11:35:24.153 -06:00 [INF] Request starting HTTP/2 POST https://localhost:7065/Identity/Account/Login - application/x-www-form-urlencoded 283
+2025-11-20 11:35:24.161 -06:00 [INF] Executing endpoint '/Account/Login'
+2025-11-20 11:35:24.161 -06:00 [INF] Route matched with {page = "/Account/Login", area = "Identity", action = "", controller = ""}. Executing page /Account/Login
+2025-11-20 11:35:24.172 -06:00 [INF] Executing handler method Praecepta.UI.Areas.Identity.Pages.Account.LoginModel.OnPostAsync - ModelState is "Valid"
+2025-11-20 11:35:24.174 -06:00 [INF] Email recibido: gestor@preacepta.com
+2025-11-20 11:35:24.181 -06:00 [INF] Executed DbCommand (1ms) [Parameters=[@__normalizedEmail_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(2) [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[NormalizedEmail] = @__normalizedEmail_0
+2025-11-20 11:35:24.205 -06:00 [INF] Executed DbCommand (2ms) [Parameters=[@__user_Id_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a].[Id], [a].[ClaimType], [a].[ClaimValue], [a].[UserId]
+FROM [AspNetUserClaims] AS [a]
+WHERE [a].[UserId] = @__user_Id_0
+2025-11-20 11:35:24.219 -06:00 [INF] Executed DbCommand (3ms) [Parameters=[@__userId_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a0].[Name]
+FROM [AspNetUserRoles] AS [a]
+INNER JOIN [AspNetRoles] AS [a0] ON [a].[RoleId] = [a0].[Id]
+WHERE [a].[UserId] = @__userId_0
+2025-11-20 11:35:24.220 -06:00 [INF] Generando claims de roles para el usuario d8a2c663-534e-4eb0-81b0-6f643763d3d1: Gestor
+2025-11-20 11:35:24.464 -06:00 [INF] Executed DbCommand (10ms) [Parameters=[@__correo_0='?' (Size = 100)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [t].[Cedula], [t].[Activo], [t].[Apellido1], [t].[Apellido2], [t].[Direccion1], [t].[Direccion2], [t].[Edad], [t].[Email], [t].[EstadoCivil], [t].[ExpirationPassword], [t].[FechaNacimiento], [t].[FechaRegistro], [t].[Genero], [t].[Nombre], [t].[Num_Cedula], [t].[Oficio], [t].[Telefono1], [t].[Telefono2], [t].[Tipo_Identificacion], [t0].[idDistrito], [t0].[idCaton], [t0].[nombreDistrito], [t1].[idCanton], [t1].[idProvincia], [t1].[NombreCanton], [t2].[IdProvincia], [t2].[NombreProvincia]
+FROM [T_GePersonas] AS [t]
+INNER JOIN [T_CrDistritos] AS [t0] ON [t].[Direccion1] = [t0].[idDistrito]
+INNER JOIN [T_CrCantones] AS [t1] ON [t0].[idCaton] = [t1].[idCanton]
+INNER JOIN [T_CrProvincias] AS [t2] ON [t1].[idProvincia] = [t2].[IdProvincia]
+WHERE [t].[Email] = @__correo_0
+2025-11-20 11:35:24.470 -06:00 [INF] Executed DbCommand (1ms) [Parameters=[@__normalizedUserName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[NormalizedUserName] = @__normalizedUserName_0
+2025-11-20 11:35:24.521 -06:00 [INF] Executed DbCommand (1ms) [Parameters=[@__user_Id_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a].[Id], [a].[ClaimType], [a].[ClaimValue], [a].[UserId]
+FROM [AspNetUserClaims] AS [a]
+WHERE [a].[UserId] = @__user_Id_0
+2025-11-20 11:35:24.522 -06:00 [INF] Executed DbCommand (1ms) [Parameters=[@__userId_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a0].[Name]
+FROM [AspNetUserRoles] AS [a]
+INNER JOIN [AspNetRoles] AS [a0] ON [a].[RoleId] = [a0].[Id]
+WHERE [a].[UserId] = @__userId_0
+2025-11-20 11:35:24.523 -06:00 [INF] Generando claims de roles para el usuario d8a2c663-534e-4eb0-81b0-6f643763d3d1: Gestor
+2025-11-20 11:35:24.525 -06:00 [INF] AuthenticationScheme: Identity.Application signed in.
+2025-11-20 11:35:24.525 -06:00 [INF] Roles asignados al usuario tras login: Gestor
+2025-11-20 11:35:24.525 -06:00 [INF] Usuario conectado con rol válido.
+2025-11-20 11:35:24.526 -06:00 [INF] DanielClaim: http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier = d8a2c663-534e-4eb0-81b0-6f643763d3d1
+2025-11-20 11:35:24.526 -06:00 [INF] DanielClaim: http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name = gestor@preacepta.com
+2025-11-20 11:35:24.526 -06:00 [INF] DanielClaim: http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress = gestor@preacepta.com
+2025-11-20 11:35:24.526 -06:00 [INF] DanielClaim: AspNet.Identity.SecurityStamp = XOXO2BDEMCIYU6PLAELLUG5OVNIDML6L
+2025-11-20 11:35:24.526 -06:00 [INF] DanielClaim: http://schemas.microsoft.com/ws/2008/06/identity/claims/role = Gestor
+2025-11-20 11:35:24.526 -06:00 [INF] Executed handler method OnPostAsync, returned result Microsoft.AspNetCore.Mvc.RedirectToActionResult.
+2025-11-20 11:35:24.527 -06:00 [INF] Executing RedirectResult, redirecting to /Home/UsuarioAutenticado?correo=gestor@preacepta.com.
+2025-11-20 11:35:24.528 -06:00 [INF] Executed page /Account/Login in 366.1567ms
+2025-11-20 11:35:24.528 -06:00 [INF] Executed endpoint '/Account/Login'
+2025-11-20 11:35:24.529 -06:00 [INF] Request finished HTTP/2 POST https://localhost:7065/Identity/Account/Login - 302 0 null 376.124ms
+2025-11-20 11:35:24.530 -06:00 [INF] Request starting HTTP/2 GET https://localhost:7065/Home/UsuarioAutenticado?correo=gestor@preacepta.com - null null
+2025-11-20 11:35:24.535 -06:00 [INF] Executing endpoint 'Praecepta.UI.Controllers.HomeController.UsuarioAutenticado (Preacepta.UI)'
+2025-11-20 11:35:24.538 -06:00 [INF] Route matched with {action = "UsuarioAutenticado", controller = "Home", area = "", page = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] UsuarioAutenticado(System.String, System.String) on controller Praecepta.UI.Controllers.HomeController (Preacepta.UI).
+2025-11-20 11:35:24.542 -06:00 [INF] Executing ViewResult, running view UsuarioGestor.
+2025-11-20 11:35:24.618 -06:00 [INF] Executed ViewResult - view UsuarioGestor executed in 76.5259ms.
+2025-11-20 11:35:24.619 -06:00 [INF] Executed action Praecepta.UI.Controllers.HomeController.UsuarioAutenticado (Preacepta.UI) in 81.017ms
+2025-11-20 11:35:24.619 -06:00 [INF] Executed endpoint 'Praecepta.UI.Controllers.HomeController.UsuarioAutenticado (Preacepta.UI)'
+2025-11-20 11:35:24.619 -06:00 [INF] Request finished HTTP/2 GET https://localhost:7065/Home/UsuarioAutenticado?correo=gestor@preacepta.com - 200 null text/html; charset=utf-8 89.4162ms
+2025-11-20 11:35:24.628 -06:00 [INF] Request starting HTTP/2 GET https://localhost:7065/_framework/aspnetcore-browser-refresh.js - null null
+2025-11-20 11:35:24.628 -06:00 [INF] Request starting HTTP/2 GET https://localhost:7065/Preacepta.UI.styles.css?v=IQivLoIAMn6r8XXwYBNpO_K93x3i52kj9ZBjBlLttPQ - null null
+2025-11-20 11:35:24.628 -06:00 [INF] Request starting HTTP/2 GET https://localhost:7065/lyso/js/sweetalertusuariogestor.js - null null
+2025-11-20 11:35:24.629 -06:00 [INF] Request finished HTTP/2 GET https://localhost:7065/_framework/aspnetcore-browser-refresh.js - 200 13760 application/javascript; charset=utf-8 1.2489ms
+2025-11-20 11:35:24.630 -06:00 [INF] Request starting HTTP/2 GET https://localhost:7065/_vs/browserLink - null null
+2025-11-20 11:35:24.641 -06:00 [INF] The file /lyso/js/sweetalertusuariogestor.js was not modified
+2025-11-20 11:35:24.641 -06:00 [INF] The file /Preacepta.UI.styles.css was not modified
+2025-11-20 11:35:24.642 -06:00 [INF] Request finished HTTP/2 GET https://localhost:7065/_vs/browserLink - 200 null text/javascript; charset=UTF-8 12.8031ms
+2025-11-20 11:35:24.643 -06:00 [INF] Request finished HTTP/2 GET https://localhost:7065/Preacepta.UI.styles.css?v=IQivLoIAMn6r8XXwYBNpO_K93x3i52kj9ZBjBlLttPQ - 304 null text/css 15.0617ms
+2025-11-20 11:35:24.643 -06:00 [INF] Request finished HTTP/2 GET https://localhost:7065/lyso/js/sweetalertusuariogestor.js - 304 null text/javascript 14.9087ms
+2025-11-20 11:35:24.698 -06:00 [INF] Request starting HTTP/1.1 GET https://localhost:7065/lib/bootstrap/dist/js/bootstrap.bundle.min.js.map - null null
+2025-11-20 11:35:24.717 -06:00 [INF] Sending file. Request path: '/lib/bootstrap/dist/js/bootstrap.bundle.min.js.map'. Physical path: 'C:\Preacepta\Preacepta.UI\wwwroot\lib\bootstrap\dist\js\bootstrap.bundle.min.js.map'
+2025-11-20 11:35:24.717 -06:00 [INF] Request finished HTTP/1.1 GET https://localhost:7065/lib/bootstrap/dist/js/bootstrap.bundle.min.js.map - 200 327261 text/plain 19.1853ms
+2025-11-20 11:35:26.890 -06:00 [INF] Request starting HTTP/2 GET https://localhost:7065/Personas - null null
+2025-11-20 11:35:26.894 -06:00 [INF] Executing endpoint 'Preacepta.UI.Controllers.PersonasController.Index (Preacepta.UI)'
+2025-11-20 11:35:26.897 -06:00 [INF] Route matched with {action = "Index", controller = "Personas", area = "", page = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Index() on controller Preacepta.UI.Controllers.PersonasController (Preacepta.UI).
+2025-11-20 11:35:26.919 -06:00 [INF] Executed DbCommand (4ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [t].[Cedula], [t].[Nombre], [t].[Apellido1], [t].[Apellido2], [t].[FechaNacimiento], [t].[Edad], [t].[EstadoCivil], [t].[Oficio], [t].[Direccion1], [t0].[idDistrito], [t0].[idCaton], [t0].[nombreDistrito], [t1].[idCanton], [t1].[idProvincia], [t1].[NombreCanton], [t].[Direccion2], [t].[Email], [t].[FechaRegistro], [t].[Activo], [t].[Telefono1], [t].[Telefono2], [t].[Genero], [t].[ExpirationPassword], [t].[Tipo_Identificacion], [t].[Num_Cedula]
+FROM [T_GePersonas] AS [t]
+INNER JOIN [T_CrDistritos] AS [t0] ON [t].[Direccion1] = [t0].[idDistrito]
+INNER JOIN [T_CrCantones] AS [t1] ON [t0].[idCaton] = [t1].[idCanton]
+2025-11-20 11:35:26.946 -06:00 [INF] Executing ViewResult, running view Index.
+2025-11-20 11:35:26.963 -06:00 [INF] Executed ViewResult - view Index executed in 17.3912ms.
+2025-11-20 11:35:26.963 -06:00 [INF] Executed action Preacepta.UI.Controllers.PersonasController.Index (Preacepta.UI) in 65.8588ms
+2025-11-20 11:35:26.963 -06:00 [INF] Executed endpoint 'Preacepta.UI.Controllers.PersonasController.Index (Preacepta.UI)'
+2025-11-20 11:35:26.963 -06:00 [INF] Request finished HTTP/2 GET https://localhost:7065/Personas - 200 null text/html; charset=utf-8 73.4682ms
+2025-11-20 11:35:26.970 -06:00 [INF] Request starting HTTP/2 GET https://localhost:7065/_vs/browserLink - null null
+2025-11-20 11:35:26.970 -06:00 [INF] Request starting HTTP/2 GET https://localhost:7065/_framework/aspnetcore-browser-refresh.js - null null
+2025-11-20 11:35:26.971 -06:00 [INF] Request finished HTTP/2 GET https://localhost:7065/_framework/aspnetcore-browser-refresh.js - 200 13760 application/javascript; charset=utf-8 0.641ms
+2025-11-20 11:35:26.978 -06:00 [INF] Request finished HTTP/2 GET https://localhost:7065/_vs/browserLink - 200 null text/javascript; charset=UTF-8 8.3559ms
+2025-11-20 11:35:55.135 -06:00 [INF] Request starting HTTP/2 GET https://localhost:7065/Personas/Edit/11 - null null
+2025-11-20 11:35:55.146 -06:00 [INF] Executing endpoint 'Preacepta.UI.Controllers.PersonasController.Edit (Preacepta.UI)'
+2025-11-20 11:35:55.149 -06:00 [INF] Route matched with {action = "Edit", controller = "Personas", area = "", page = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Edit(Int32) on controller Preacepta.UI.Controllers.PersonasController (Preacepta.UI).
+2025-11-20 11:35:56.961 -06:00 [INF] Executed DbCommand (4ms) [Parameters=[@__id_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [t].[Cedula], [t].[Activo], [t].[Apellido1], [t].[Apellido2], [t].[Direccion1], [t].[Direccion2], [t].[Edad], [t].[Email], [t].[EstadoCivil], [t].[ExpirationPassword], [t].[FechaNacimiento], [t].[FechaRegistro], [t].[Genero], [t].[Nombre], [t].[Num_Cedula], [t].[Oficio], [t].[Telefono1], [t].[Telefono2], [t].[Tipo_Identificacion], [t0].[idDistrito], [t0].[idCaton], [t0].[nombreDistrito], [t1].[idCanton], [t1].[idProvincia], [t1].[NombreCanton]
+FROM [T_GePersonas] AS [t]
+INNER JOIN [T_CrDistritos] AS [t0] ON [t].[Direccion1] = [t0].[idDistrito]
+INNER JOIN [T_CrCantones] AS [t1] ON [t0].[idCaton] = [t1].[idCanton]
+WHERE [t].[Cedula] = @__id_0
+2025-11-20 11:35:56.993 -06:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [t].[idDistrito] AS [IdDistrito], [t].[idCaton] AS [IdCaton], [t0].[idCanton], [t0].[idProvincia], [t0].[NombreCanton], [t].[nombreDistrito] AS [NombreDistrito]
+FROM [T_CrDistritos] AS [t]
+INNER JOIN [T_CrCantones] AS [t0] ON [t].[idCaton] = [t0].[idCanton]
+2025-11-20 11:35:57.029 -06:00 [INF] Executing ViewResult, running view Edit.
+2025-11-20 11:35:57.093 -06:00 [INF] Executed ViewResult - view Edit executed in 64.1638ms.
+2025-11-20 11:35:57.095 -06:00 [INF] Executed action Preacepta.UI.Controllers.PersonasController.Edit (Preacepta.UI) in 1945.1669ms
+2025-11-20 11:35:57.095 -06:00 [INF] Executed endpoint 'Preacepta.UI.Controllers.PersonasController.Edit (Preacepta.UI)'
+2025-11-20 11:35:57.095 -06:00 [INF] Request finished HTTP/2 GET https://localhost:7065/Personas/Edit/11 - 200 null text/html; charset=utf-8 1959.9019ms
+2025-11-20 11:35:57.099 -06:00 [INF] Request starting HTTP/2 GET https://localhost:7065/lyso/js/tipoidentificaciongestor.js - null null
+2025-11-20 11:35:57.099 -06:00 [INF] Request starting HTTP/2 GET https://localhost:7065/_framework/aspnetcore-browser-refresh.js - null null
+2025-11-20 11:35:57.100 -06:00 [INF] The file /lyso/js/tipoidentificaciongestor.js was not modified
+2025-11-20 11:35:57.100 -06:00 [INF] Request finished HTTP/2 GET https://localhost:7065/_framework/aspnetcore-browser-refresh.js - 200 13760 application/javascript; charset=utf-8 0.9993ms
+2025-11-20 11:35:57.100 -06:00 [INF] Request finished HTTP/2 GET https://localhost:7065/lyso/js/tipoidentificaciongestor.js - 304 null text/javascript 0.8557ms
+2025-11-20 11:35:57.101 -06:00 [INF] Request starting HTTP/2 GET https://localhost:7065/_vs/browserLink - null null
+2025-11-20 11:35:57.110 -06:00 [INF] Request finished HTTP/2 GET https://localhost:7065/_vs/browserLink - 200 null text/javascript; charset=UTF-8 8.8636ms
+2025-11-20 11:35:57.137 -06:00 [INF] Request starting HTTP/2 GET https://localhost:7065/Ubicacion/Provincias - null null
+2025-11-20 11:35:57.138 -06:00 [INF] Executing endpoint 'Preacepta.UI.Controllers.UbicacionController.ObtenerProvincias (Preacepta.UI)'
+2025-11-20 11:35:57.141 -06:00 [INF] Route matched with {action = "ObtenerProvincias", controller = "Ubicacion", area = "", page = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] ObtenerProvincias() on controller Preacepta.UI.Controllers.UbicacionController (Preacepta.UI).
+2025-11-20 11:35:57.151 -06:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [t].[IdProvincia], [t].[NombreProvincia]
+FROM [T_CrProvincias] AS [t]
+2025-11-20 11:35:57.156 -06:00 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[Preacepta.Modelos.AbstraccionesFrond.CrProvinciaDTO, Preacepta.Modelos, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-11-20 11:35:57.203 -06:00 [INF] Executed action Preacepta.UI.Controllers.UbicacionController.ObtenerProvincias (Preacepta.UI) in 61.6902ms
+2025-11-20 11:35:57.203 -06:00 [INF] Executed endpoint 'Preacepta.UI.Controllers.UbicacionController.ObtenerProvincias (Preacepta.UI)'
+2025-11-20 11:35:57.203 -06:00 [INF] Request finished HTTP/2 GET https://localhost:7065/Ubicacion/Provincias - 200 null application/json; charset=utf-8 65.9185ms
+2025-11-20 11:36:41.359 -06:00 [INF] Request starting HTTP/2 GET https://localhost:7065/.well-known/appspecific/com.chrome.devtools.json - null null
+2025-11-20 11:36:41.365 -06:00 [INF] Request finished HTTP/2 GET https://localhost:7065/.well-known/appspecific/com.chrome.devtools.json - 404 0 null 5.8432ms
+2025-11-20 11:36:41.366 -06:00 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: GET https://localhost:7065/.well-known/appspecific/com.chrome.devtools.json, Response status code: 404
+2025-11-20 11:41:06.026 -06:00 [INF] Executed DbCommand (32ms) [Parameters=[@__normalizedName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[ConcurrencyStamp], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[NormalizedName] = @__normalizedName_0
+2025-11-20 11:41:06.093 -06:00 [INF] Executed DbCommand (2ms) [Parameters=[@__normalizedName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[ConcurrencyStamp], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[NormalizedName] = @__normalizedName_0
+2025-11-20 11:41:06.095 -06:00 [INF] Executed DbCommand (1ms) [Parameters=[@__normalizedName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[ConcurrencyStamp], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[NormalizedName] = @__normalizedName_0
+2025-11-20 11:41:06.132 -06:00 [INF] Executed DbCommand (1ms) [Parameters=[@__normalizedName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[ConcurrencyStamp], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[NormalizedName] = @__normalizedName_0
+2025-11-20 11:41:06.138 -06:00 [INF] Executed DbCommand (1ms) [Parameters=[@__normalizedEmail_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(2) [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[NormalizedEmail] = @__normalizedEmail_0
+2025-11-20 11:41:06.626 -06:00 [INF] Now listening on: https://localhost:7065
+2025-11-20 11:41:06.626 -06:00 [INF] Now listening on: http://localhost:5282
+2025-11-20 11:41:06.671 -06:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-11-20 11:41:06.671 -06:00 [INF] Hosting environment: Development
+2025-11-20 11:41:06.671 -06:00 [INF] Content root path: C:\Preacepta\Preacepta.UI
+2025-11-20 11:41:07.504 -06:00 [INF] Request starting HTTP/2 GET https://localhost:7065/ - null null
+2025-11-20 11:41:07.627 -06:00 [INF] Executing endpoint 'Praecepta.UI.Controllers.HomeController.Index (Preacepta.UI)'
+2025-11-20 11:41:07.644 -06:00 [INF] Route matched with {action = "Index", controller = "Home", area = "", page = ""}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Index() on controller Praecepta.UI.Controllers.HomeController (Preacepta.UI).
+2025-11-20 11:41:07.669 -06:00 [INF] Executing ViewResult, running view Index.
+2025-11-20 11:41:07.785 -06:00 [INF] Executed ViewResult - view Index executed in 119.1701ms.
+2025-11-20 11:41:07.788 -06:00 [INF] Executed action Praecepta.UI.Controllers.HomeController.Index (Preacepta.UI) in 143.9304ms
+2025-11-20 11:41:07.789 -06:00 [INF] Executed endpoint 'Praecepta.UI.Controllers.HomeController.Index (Preacepta.UI)'
+2025-11-20 11:41:07.793 -06:00 [INF] Request finished HTTP/2 GET https://localhost:7065/ - 200 null text/html; charset=utf-8 297.2377ms
+2025-11-20 11:41:07.832 -06:00 [INF] Request starting HTTP/2 GET https://localhost:7065/_vs/browserLink - null null
+2025-11-20 11:41:07.832 -06:00 [INF] Request starting HTTP/2 GET https://localhost:7065/_framework/aspnetcore-browser-refresh.js - null null
+2025-11-20 11:41:07.836 -06:00 [INF] Request finished HTTP/2 GET https://localhost:7065/_framework/aspnetcore-browser-refresh.js - 200 13760 application/javascript; charset=utf-8 4.6794ms
+2025-11-20 11:41:07.871 -06:00 [INF] Request finished HTTP/2 GET https://localhost:7065/_vs/browserLink - 200 null text/javascript; charset=UTF-8 39.476ms
+2025-11-20 11:41:09.354 -06:00 [INF] Request starting HTTP/2 GET https://localhost:7065/Identity/Account/Login - null null
+2025-11-20 11:41:09.363 -06:00 [INF] Executing endpoint '/Account/Login'
+2025-11-20 11:41:09.373 -06:00 [INF] Route matched with {page = "/Account/Login", area = "Identity", action = "", controller = ""}. Executing page /Account/Login
+2025-11-20 11:41:09.389 -06:00 [INF] Executing handler method Praecepta.UI.Areas.Identity.Pages.Account.LoginModel.OnGetAsync - ModelState is "Valid"
+2025-11-20 11:41:09.393 -06:00 [INF] AuthenticationScheme: Identity.External signed out.
+2025-11-20 11:41:09.394 -06:00 [INF] Executed handler method OnGetAsync, returned result .
+2025-11-20 11:41:09.396 -06:00 [INF] Executing an implicit handler method - ModelState is "Valid"
+2025-11-20 11:41:09.396 -06:00 [INF] Executed an implicit handler method, returned result Microsoft.AspNetCore.Mvc.RazorPages.PageResult.
+2025-11-20 11:41:09.446 -06:00 [INF] Executed page /Account/Login in 72.935ms
+2025-11-20 11:41:09.446 -06:00 [INF] Executed endpoint '/Account/Login'
+2025-11-20 11:41:09.446 -06:00 [INF] Request finished HTTP/2 GET https://localhost:7065/Identity/Account/Login - 200 null text/html; charset=utf-8 93.0876ms
+2025-11-20 11:41:09.454 -06:00 [INF] Request starting HTTP/2 GET https://localhost:7065/_framework/aspnetcore-browser-refresh.js - null null
+2025-11-20 11:41:09.455 -06:00 [INF] Request finished HTTP/2 GET https://localhost:7065/_framework/aspnetcore-browser-refresh.js - 200 13760 application/javascript; charset=utf-8 1.1841ms
+2025-11-20 11:41:09.458 -06:00 [INF] Request starting HTTP/2 GET https://localhost:7065/_vs/browserLink - null null
+2025-11-20 11:41:09.478 -06:00 [INF] Request finished HTTP/2 GET https://localhost:7065/_vs/browserLink - 200 null text/javascript; charset=UTF-8 20.1466ms
+2025-11-20 11:41:19.050 -06:00 [INF] Request starting HTTP/2 POST https://localhost:7065/Identity/Account/Login - application/x-www-form-urlencoded 305
+2025-11-20 11:41:19.061 -06:00 [INF] Executing endpoint '/Account/Login'
+2025-11-20 11:41:19.062 -06:00 [INF] Route matched with {page = "/Account/Login", area = "Identity", action = "", controller = ""}. Executing page /Account/Login
+2025-11-20 11:41:19.087 -06:00 [INF] Executing handler method Praecepta.UI.Areas.Identity.Pages.Account.LoginModel.OnPostAsync - ModelState is "Valid"
+2025-11-20 11:41:19.091 -06:00 [INF] Email recibido: gestor@preacepta.com
+2025-11-20 11:41:19.104 -06:00 [INF] Executed DbCommand (1ms) [Parameters=[@__normalizedEmail_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(2) [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[NormalizedEmail] = @__normalizedEmail_0
+2025-11-20 11:41:19.139 -06:00 [INF] Executed DbCommand (3ms) [Parameters=[@__user_Id_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a].[Id], [a].[ClaimType], [a].[ClaimValue], [a].[UserId]
+FROM [AspNetUserClaims] AS [a]
+WHERE [a].[UserId] = @__user_Id_0
+2025-11-20 11:41:19.159 -06:00 [INF] Executed DbCommand (3ms) [Parameters=[@__userId_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a0].[Name]
+FROM [AspNetUserRoles] AS [a]
+INNER JOIN [AspNetRoles] AS [a0] ON [a].[RoleId] = [a0].[Id]
+WHERE [a].[UserId] = @__userId_0
+2025-11-20 11:41:19.160 -06:00 [INF] Generando claims de roles para el usuario d8a2c663-534e-4eb0-81b0-6f643763d3d1: Gestor
+2025-11-20 11:41:19.497 -06:00 [INF] Executed DbCommand (6ms) [Parameters=[@__correo_0='?' (Size = 100)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [t].[Cedula], [t].[Activo], [t].[Apellido1], [t].[Apellido2], [t].[Direccion1], [t].[Direccion2], [t].[Edad], [t].[Email], [t].[EstadoCivil], [t].[ExpirationPassword], [t].[FechaNacimiento], [t].[FechaRegistro], [t].[Genero], [t].[Nombre], [t].[Num_Cedula], [t].[Oficio], [t].[Telefono1], [t].[Telefono2], [t].[Tipo_Identificacion], [t0].[idDistrito], [t0].[idCaton], [t0].[nombreDistrito], [t1].[idCanton], [t1].[idProvincia], [t1].[NombreCanton], [t2].[IdProvincia], [t2].[NombreProvincia]
+FROM [T_GePersonas] AS [t]
+INNER JOIN [T_CrDistritos] AS [t0] ON [t].[Direccion1] = [t0].[idDistrito]
+INNER JOIN [T_CrCantones] AS [t1] ON [t0].[idCaton] = [t1].[idCanton]
+INNER JOIN [T_CrProvincias] AS [t2] ON [t1].[idProvincia] = [t2].[IdProvincia]
+WHERE [t].[Email] = @__correo_0
+2025-11-20 11:41:19.505 -06:00 [INF] Executed DbCommand (2ms) [Parameters=[@__normalizedUserName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[NormalizedUserName] = @__normalizedUserName_0
+2025-11-20 11:41:19.568 -06:00 [INF] Executed DbCommand (1ms) [Parameters=[@__user_Id_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a].[Id], [a].[ClaimType], [a].[ClaimValue], [a].[UserId]
+FROM [AspNetUserClaims] AS [a]
+WHERE [a].[UserId] = @__user_Id_0
+2025-11-20 11:41:19.570 -06:00 [INF] Executed DbCommand (1ms) [Parameters=[@__userId_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a0].[Name]
+FROM [AspNetUserRoles] AS [a]
+INNER JOIN [AspNetRoles] AS [a0] ON [a].[RoleId] = [a0].[Id]
+WHERE [a].[UserId] = @__userId_0
+2025-11-20 11:41:19.570 -06:00 [INF] Generando claims de roles para el usuario d8a2c663-534e-4eb0-81b0-6f643763d3d1: Gestor
+2025-11-20 11:41:19.572 -06:00 [INF] AuthenticationScheme: Identity.Application signed in.
+2025-11-20 11:41:19.573 -06:00 [INF] Roles asignados al usuario tras login: Gestor
+2025-11-20 11:41:19.573 -06:00 [INF] Usuario conectado con rol válido.
+2025-11-20 11:41:19.573 -06:00 [INF] DanielClaim: http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier = d8a2c663-534e-4eb0-81b0-6f643763d3d1
+2025-11-20 11:41:19.573 -06:00 [INF] DanielClaim: http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name = gestor@preacepta.com
+2025-11-20 11:41:19.573 -06:00 [INF] DanielClaim: http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress = gestor@preacepta.com
+2025-11-20 11:41:19.573 -06:00 [INF] DanielClaim: AspNet.Identity.SecurityStamp = XOXO2BDEMCIYU6PLAELLUG5OVNIDML6L
+2025-11-20 11:41:19.573 -06:00 [INF] DanielClaim: http://schemas.microsoft.com/ws/2008/06/identity/claims/role = Gestor
+2025-11-20 11:41:19.575 -06:00 [INF] Executed handler method OnPostAsync, returned result Microsoft.AspNetCore.Mvc.RedirectToActionResult.
+2025-11-20 11:41:19.577 -06:00 [INF] Executing RedirectResult, redirecting to /Home/UsuarioAutenticado?correo=gestor@preacepta.com.
+2025-11-20 11:41:19.577 -06:00 [INF] Executed page /Account/Login in 514.6544ms
+2025-11-20 11:41:19.577 -06:00 [INF] Executed endpoint '/Account/Login'
+2025-11-20 11:41:19.578 -06:00 [INF] Request finished HTTP/2 POST https://localhost:7065/Identity/Account/Login - 302 0 null 527.9803ms
+2025-11-20 11:41:19.579 -06:00 [INF] Request starting HTTP/2 GET https://localhost:7065/Home/UsuarioAutenticado?correo=gestor@preacepta.com - null null
+2025-11-20 11:41:19.586 -06:00 [INF] Executing endpoint 'Praecepta.UI.Controllers.HomeController.UsuarioAutenticado (Preacepta.UI)'
+2025-11-20 11:41:19.590 -06:00 [INF] Route matched with {action = "UsuarioAutenticado", controller = "Home", area = "", page = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] UsuarioAutenticado(System.String, System.String) on controller Praecepta.UI.Controllers.HomeController (Preacepta.UI).
+2025-11-20 11:41:19.596 -06:00 [INF] Executing ViewResult, running view UsuarioGestor.
+2025-11-20 11:41:19.626 -06:00 [INF] Executed ViewResult - view UsuarioGestor executed in 29.9823ms.
+2025-11-20 11:41:19.626 -06:00 [INF] Executed action Praecepta.UI.Controllers.HomeController.UsuarioAutenticado (Preacepta.UI) in 36.1245ms
+2025-11-20 11:41:19.626 -06:00 [INF] Executed endpoint 'Praecepta.UI.Controllers.HomeController.UsuarioAutenticado (Preacepta.UI)'
+2025-11-20 11:41:19.626 -06:00 [INF] Request finished HTTP/2 GET https://localhost:7065/Home/UsuarioAutenticado?correo=gestor@preacepta.com - 200 null text/html; charset=utf-8 47.205ms
+2025-11-20 11:41:19.637 -06:00 [INF] Request starting HTTP/2 GET https://localhost:7065/_framework/aspnetcore-browser-refresh.js - null null
+2025-11-20 11:41:19.637 -06:00 [INF] Request starting HTTP/2 GET https://localhost:7065/_vs/browserLink - null null
+2025-11-20 11:41:19.638 -06:00 [INF] Request finished HTTP/2 GET https://localhost:7065/_framework/aspnetcore-browser-refresh.js - 200 13760 application/javascript; charset=utf-8 1.1424ms
+2025-11-20 11:41:19.647 -06:00 [INF] Request finished HTTP/2 GET https://localhost:7065/_vs/browserLink - 200 null text/javascript; charset=UTF-8 9.94ms
+2025-11-20 11:41:19.687 -06:00 [INF] Request starting HTTP/1.1 GET https://localhost:7065/lib/bootstrap/dist/js/bootstrap.bundle.min.js.map - null null
+2025-11-20 11:41:19.698 -06:00 [INF] Sending file. Request path: '/lib/bootstrap/dist/js/bootstrap.bundle.min.js.map'. Physical path: 'C:\Preacepta\Preacepta.UI\wwwroot\lib\bootstrap\dist\js\bootstrap.bundle.min.js.map'
+2025-11-20 11:41:19.698 -06:00 [INF] Request finished HTTP/1.1 GET https://localhost:7065/lib/bootstrap/dist/js/bootstrap.bundle.min.js.map - 200 327261 text/plain 11.6659ms
+2025-11-20 11:41:21.401 -06:00 [INF] Request starting HTTP/2 GET https://localhost:7065/Personas - null null
+2025-11-20 11:41:21.406 -06:00 [INF] Executing endpoint 'Preacepta.UI.Controllers.PersonasController.Index (Preacepta.UI)'
+2025-11-20 11:41:21.411 -06:00 [INF] Route matched with {action = "Index", controller = "Personas", area = "", page = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Index() on controller Preacepta.UI.Controllers.PersonasController (Preacepta.UI).
+2025-11-20 11:41:21.438 -06:00 [INF] Executed DbCommand (4ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [t].[Cedula], [t].[Nombre], [t].[Apellido1], [t].[Apellido2], [t].[FechaNacimiento], [t].[Edad], [t].[EstadoCivil], [t].[Oficio], [t].[Direccion1], [t0].[idDistrito], [t0].[idCaton], [t0].[nombreDistrito], [t1].[idCanton], [t1].[idProvincia], [t1].[NombreCanton], [t].[Direccion2], [t].[Email], [t].[FechaRegistro], [t].[Activo], [t].[Telefono1], [t].[Telefono2], [t].[Genero], [t].[ExpirationPassword], [t].[Tipo_Identificacion], [t].[Num_Cedula]
+FROM [T_GePersonas] AS [t]
+INNER JOIN [T_CrDistritos] AS [t0] ON [t].[Direccion1] = [t0].[idDistrito]
+INNER JOIN [T_CrCantones] AS [t1] ON [t0].[idCaton] = [t1].[idCanton]
+2025-11-20 11:41:21.494 -06:00 [INF] Executing ViewResult, running view Index.
+2025-11-20 11:41:21.511 -06:00 [INF] Executed ViewResult - view Index executed in 16.6981ms.
+2025-11-20 11:41:21.511 -06:00 [INF] Executed action Preacepta.UI.Controllers.PersonasController.Index (Preacepta.UI) in 100.0252ms
+2025-11-20 11:41:21.511 -06:00 [INF] Executed endpoint 'Preacepta.UI.Controllers.PersonasController.Index (Preacepta.UI)'
+2025-11-20 11:41:21.511 -06:00 [INF] Request finished HTTP/2 GET https://localhost:7065/Personas - 200 null text/html; charset=utf-8 109.9408ms
+2025-11-20 11:41:21.519 -06:00 [INF] Request starting HTTP/2 GET https://localhost:7065/_framework/aspnetcore-browser-refresh.js - null null
+2025-11-20 11:41:21.519 -06:00 [INF] Request starting HTTP/2 GET https://localhost:7065/_vs/browserLink - null null
+2025-11-20 11:41:21.520 -06:00 [INF] Request finished HTTP/2 GET https://localhost:7065/_framework/aspnetcore-browser-refresh.js - 200 13760 application/javascript; charset=utf-8 0.8778ms
+2025-11-20 11:41:21.530 -06:00 [INF] Request finished HTTP/2 GET https://localhost:7065/_vs/browserLink - 200 null text/javascript; charset=UTF-8 11.7322ms
+2025-11-20 11:41:23.370 -06:00 [INF] Request starting HTTP/2 GET https://localhost:7065/Personas/Edit/11 - null null
+2025-11-20 11:41:23.375 -06:00 [INF] Executing endpoint 'Preacepta.UI.Controllers.PersonasController.Edit (Preacepta.UI)'
+2025-11-20 11:41:23.379 -06:00 [INF] Route matched with {action = "Edit", controller = "Personas", area = "", page = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Edit(Int32) on controller Preacepta.UI.Controllers.PersonasController (Preacepta.UI).
+2025-11-20 11:41:25.770 -06:00 [INF] Executed DbCommand (5ms) [Parameters=[@__id_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [t].[Cedula], [t].[Activo], [t].[Apellido1], [t].[Apellido2], [t].[Direccion1], [t].[Direccion2], [t].[Edad], [t].[Email], [t].[EstadoCivil], [t].[ExpirationPassword], [t].[FechaNacimiento], [t].[FechaRegistro], [t].[Genero], [t].[Nombre], [t].[Num_Cedula], [t].[Oficio], [t].[Telefono1], [t].[Telefono2], [t].[Tipo_Identificacion], [t0].[idDistrito], [t0].[idCaton], [t0].[nombreDistrito], [t1].[idCanton], [t1].[idProvincia], [t1].[NombreCanton]
+FROM [T_GePersonas] AS [t]
+INNER JOIN [T_CrDistritos] AS [t0] ON [t].[Direccion1] = [t0].[idDistrito]
+INNER JOIN [T_CrCantones] AS [t1] ON [t0].[idCaton] = [t1].[idCanton]
+WHERE [t].[Cedula] = @__id_0
+2025-11-20 11:41:25.824 -06:00 [INF] Executing ViewResult, running view Edit.
+2025-11-20 11:41:25.880 -06:00 [INF] Executed ViewResult - view Edit executed in 56.7491ms.
+2025-11-20 11:41:25.881 -06:00 [INF] Executed action Preacepta.UI.Controllers.PersonasController.Edit (Preacepta.UI) in 2501.3756ms
+2025-11-20 11:41:25.881 -06:00 [INF] Executed endpoint 'Preacepta.UI.Controllers.PersonasController.Edit (Preacepta.UI)'
+2025-11-20 11:41:25.881 -06:00 [INF] Request finished HTTP/2 GET https://localhost:7065/Personas/Edit/11 - 200 null text/html; charset=utf-8 2510.6355ms
+2025-11-20 11:41:25.890 -06:00 [INF] Request starting HTTP/2 GET https://localhost:7065/_framework/aspnetcore-browser-refresh.js - null null
+2025-11-20 11:41:25.891 -06:00 [INF] Request finished HTTP/2 GET https://localhost:7065/_framework/aspnetcore-browser-refresh.js - 200 13760 application/javascript; charset=utf-8 1.0064ms
+2025-11-20 11:41:25.892 -06:00 [INF] Request starting HTTP/2 GET https://localhost:7065/_vs/browserLink - null null
+2025-11-20 11:41:25.901 -06:00 [INF] Request finished HTTP/2 GET https://localhost:7065/_vs/browserLink - 200 null text/javascript; charset=UTF-8 8.6703ms
+2025-11-20 11:41:25.944 -06:00 [INF] Request starting HTTP/2 GET https://localhost:7065/Ubicacion/Provincias - null null
+2025-11-20 11:41:25.945 -06:00 [INF] Executing endpoint 'Preacepta.UI.Controllers.UbicacionController.ObtenerProvincias (Preacepta.UI)'
+2025-11-20 11:41:25.948 -06:00 [INF] Route matched with {action = "ObtenerProvincias", controller = "Ubicacion", area = "", page = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] ObtenerProvincias() on controller Preacepta.UI.Controllers.UbicacionController (Preacepta.UI).
+2025-11-20 11:41:25.957 -06:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [t].[IdProvincia], [t].[NombreProvincia]
+FROM [T_CrProvincias] AS [t]
+2025-11-20 11:41:25.963 -06:00 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[Preacepta.Modelos.AbstraccionesFrond.CrProvinciaDTO, Preacepta.Modelos, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-11-20 11:41:26.008 -06:00 [INF] Executed action Preacepta.UI.Controllers.UbicacionController.ObtenerProvincias (Preacepta.UI) in 59.4624ms
+2025-11-20 11:41:26.008 -06:00 [INF] Executed endpoint 'Preacepta.UI.Controllers.UbicacionController.ObtenerProvincias (Preacepta.UI)'
+2025-11-20 11:41:26.008 -06:00 [INF] Request finished HTTP/2 GET https://localhost:7065/Ubicacion/Provincias - 200 null application/json; charset=utf-8 64.1251ms
+2025-11-20 11:41:57.671 -06:00 [INF] Request starting HTTP/2 POST https://localhost:7065/Personas/Edit/11 - application/x-www-form-urlencoded 789
+2025-11-20 11:41:57.678 -06:00 [INF] Executing endpoint 'Preacepta.UI.Controllers.PersonasController.Edit (Preacepta.UI)'
+2025-11-20 11:41:57.713 -06:00 [INF] Route matched with {action = "Edit", controller = "Personas", area = "", page = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Edit(Int32, Preacepta.Modelos.AbstraccionesFrond.GePersonaDTO, System.String) on controller Preacepta.UI.Controllers.PersonasController (Preacepta.UI).
+2025-11-20 11:42:22.575 -06:00 [INF] Executed DbCommand (6ms) [Parameters=[@__id_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [t].[Cedula], [t].[Activo], [t].[Apellido1], [t].[Apellido2], [t].[Direccion1], [t].[Direccion2], [t].[Edad], [t].[Email], [t].[EstadoCivil], [t].[ExpirationPassword], [t].[FechaNacimiento], [t].[FechaRegistro], [t].[Genero], [t].[Nombre], [t].[Num_Cedula], [t].[Oficio], [t].[Telefono1], [t].[Telefono2], [t].[Tipo_Identificacion], [t0].[idDistrito], [t0].[idCaton], [t0].[nombreDistrito], [t1].[idCanton], [t1].[idProvincia], [t1].[NombreCanton]
+FROM [T_GePersonas] AS [t]
+INNER JOIN [T_CrDistritos] AS [t0] ON [t].[Direccion1] = [t0].[idDistrito]
+INNER JOIN [T_CrCantones] AS [t1] ON [t0].[idCaton] = [t1].[idCanton]
+WHERE [t].[Cedula] = @__id_0
+2025-11-20 11:43:26.941 -06:00 [INF] Executed DbCommand (35ms) [Parameters=[@__normalizedName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[ConcurrencyStamp], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[NormalizedName] = @__normalizedName_0
+2025-11-20 11:43:27.012 -06:00 [INF] Executed DbCommand (4ms) [Parameters=[@__normalizedName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[ConcurrencyStamp], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[NormalizedName] = @__normalizedName_0
+2025-11-20 11:43:27.013 -06:00 [INF] Executed DbCommand (1ms) [Parameters=[@__normalizedName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[ConcurrencyStamp], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[NormalizedName] = @__normalizedName_0
+2025-11-20 11:43:27.053 -06:00 [INF] Executed DbCommand (1ms) [Parameters=[@__normalizedName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[ConcurrencyStamp], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[NormalizedName] = @__normalizedName_0
+2025-11-20 11:43:27.060 -06:00 [INF] Executed DbCommand (1ms) [Parameters=[@__normalizedEmail_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(2) [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[NormalizedEmail] = @__normalizedEmail_0
+2025-11-20 11:43:27.567 -06:00 [INF] Now listening on: https://localhost:7065
+2025-11-20 11:43:27.567 -06:00 [INF] Now listening on: http://localhost:5282
+2025-11-20 11:43:27.635 -06:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-11-20 11:43:27.636 -06:00 [INF] Hosting environment: Development
+2025-11-20 11:43:27.636 -06:00 [INF] Content root path: C:\Preacepta\Preacepta.UI
+2025-11-20 11:43:28.383 -06:00 [INF] Request starting HTTP/2 GET https://localhost:7065/ - null null
+2025-11-20 11:43:28.509 -06:00 [INF] Executing endpoint 'Praecepta.UI.Controllers.HomeController.Index (Preacepta.UI)'
+2025-11-20 11:43:28.528 -06:00 [INF] Route matched with {action = "Index", controller = "Home", area = "", page = ""}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Index() on controller Praecepta.UI.Controllers.HomeController (Preacepta.UI).
+2025-11-20 11:43:28.550 -06:00 [INF] Executing ViewResult, running view Index.
+2025-11-20 11:43:28.662 -06:00 [INF] Executed ViewResult - view Index executed in 112.7401ms.
+2025-11-20 11:43:28.665 -06:00 [INF] Executed action Praecepta.UI.Controllers.HomeController.Index (Preacepta.UI) in 136.913ms
+2025-11-20 11:43:28.666 -06:00 [INF] Executed endpoint 'Praecepta.UI.Controllers.HomeController.Index (Preacepta.UI)'
+2025-11-20 11:43:28.670 -06:00 [INF] Request finished HTTP/2 GET https://localhost:7065/ - 200 null text/html; charset=utf-8 295.2921ms
+2025-11-20 11:43:28.752 -06:00 [INF] Request starting HTTP/2 GET https://localhost:7065/_vs/browserLink - null null
+2025-11-20 11:43:28.752 -06:00 [INF] Request starting HTTP/2 GET https://localhost:7065/_framework/aspnetcore-browser-refresh.js - null null
+2025-11-20 11:43:28.758 -06:00 [INF] Request finished HTTP/2 GET https://localhost:7065/_framework/aspnetcore-browser-refresh.js - 200 13760 application/javascript; charset=utf-8 5.2391ms
+2025-11-20 11:43:28.789 -06:00 [INF] Request finished HTTP/2 GET https://localhost:7065/_vs/browserLink - 200 null text/javascript; charset=UTF-8 36.9398ms
+2025-11-20 11:43:45.552 -06:00 [INF] Request starting HTTP/2 GET https://localhost:7065/Home/UsuarioAutenticado?correo=gestor@preacepta.com - null null
+2025-11-20 11:43:45.567 -06:00 [INF] Executing endpoint 'Praecepta.UI.Controllers.HomeController.UsuarioAutenticado (Preacepta.UI)'
+2025-11-20 11:43:45.575 -06:00 [INF] Route matched with {action = "UsuarioAutenticado", controller = "Home", area = "", page = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] UsuarioAutenticado(System.String, System.String) on controller Praecepta.UI.Controllers.HomeController (Preacepta.UI).
+2025-11-20 11:43:45.594 -06:00 [INF] Executing ViewResult, running view UsuarioGestor.
+2025-11-20 11:43:45.632 -06:00 [INF] Executed ViewResult - view UsuarioGestor executed in 38.8702ms.
+2025-11-20 11:43:45.633 -06:00 [INF] Executed action Praecepta.UI.Controllers.HomeController.UsuarioAutenticado (Preacepta.UI) in 57.1188ms
+2025-11-20 11:43:45.633 -06:00 [INF] Executed endpoint 'Praecepta.UI.Controllers.HomeController.UsuarioAutenticado (Preacepta.UI)'
+2025-11-20 11:43:45.633 -06:00 [INF] Request finished HTTP/2 GET https://localhost:7065/Home/UsuarioAutenticado?correo=gestor@preacepta.com - 200 null text/html; charset=utf-8 80.7396ms
+2025-11-20 11:43:45.642 -06:00 [INF] Request starting HTTP/2 GET https://localhost:7065/_framework/aspnetcore-browser-refresh.js - null null
+2025-11-20 11:43:45.643 -06:00 [INF] Request starting HTTP/2 GET https://localhost:7065/_vs/browserLink - null null
+2025-11-20 11:43:45.643 -06:00 [INF] Request finished HTTP/2 GET https://localhost:7065/_framework/aspnetcore-browser-refresh.js - 200 13760 application/javascript; charset=utf-8 1.3958ms
+2025-11-20 11:43:45.659 -06:00 [INF] Request finished HTTP/2 GET https://localhost:7065/_vs/browserLink - 200 null text/javascript; charset=UTF-8 16.8152ms
+2025-11-20 11:43:45.696 -06:00 [INF] Request starting HTTP/1.1 GET https://localhost:7065/lib/bootstrap/dist/js/bootstrap.bundle.min.js.map - null null
+2025-11-20 11:43:45.711 -06:00 [INF] Sending file. Request path: '/lib/bootstrap/dist/js/bootstrap.bundle.min.js.map'. Physical path: 'C:\Preacepta\Preacepta.UI\wwwroot\lib\bootstrap\dist\js\bootstrap.bundle.min.js.map'
+2025-11-20 11:43:45.711 -06:00 [INF] Request finished HTTP/1.1 GET https://localhost:7065/lib/bootstrap/dist/js/bootstrap.bundle.min.js.map - 200 327261 text/plain 15.1868ms
+2025-11-20 11:43:47.606 -06:00 [INF] Request starting HTTP/2 GET https://localhost:7065/Personas - null null
+2025-11-20 11:43:47.620 -06:00 [INF] Executing endpoint 'Preacepta.UI.Controllers.PersonasController.Index (Preacepta.UI)'
+2025-11-20 11:43:47.623 -06:00 [INF] Route matched with {action = "Index", controller = "Personas", area = "", page = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Index() on controller Preacepta.UI.Controllers.PersonasController (Preacepta.UI).
+2025-11-20 11:43:48.078 -06:00 [INF] Executed DbCommand (5ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [t].[Cedula], [t].[Nombre], [t].[Apellido1], [t].[Apellido2], [t].[FechaNacimiento], [t].[Edad], [t].[EstadoCivil], [t].[Oficio], [t].[Direccion1], [t0].[idDistrito], [t0].[idCaton], [t0].[nombreDistrito], [t1].[idCanton], [t1].[idProvincia], [t1].[NombreCanton], [t].[Direccion2], [t].[Email], [t].[FechaRegistro], [t].[Activo], [t].[Telefono1], [t].[Telefono2], [t].[Genero], [t].[ExpirationPassword], [t].[Tipo_Identificacion], [t].[Num_Cedula]
+FROM [T_GePersonas] AS [t]
+INNER JOIN [T_CrDistritos] AS [t0] ON [t].[Direccion1] = [t0].[idDistrito]
+INNER JOIN [T_CrCantones] AS [t1] ON [t0].[idCaton] = [t1].[idCanton]
+2025-11-20 11:43:48.122 -06:00 [INF] Executing ViewResult, running view Index.
+2025-11-20 11:43:48.142 -06:00 [INF] Executed ViewResult - view Index executed in 20.0061ms.
+2025-11-20 11:43:48.142 -06:00 [INF] Executed action Preacepta.UI.Controllers.PersonasController.Index (Preacepta.UI) in 518.6999ms
+2025-11-20 11:43:48.142 -06:00 [INF] Executed endpoint 'Preacepta.UI.Controllers.PersonasController.Index (Preacepta.UI)'
+2025-11-20 11:43:48.144 -06:00 [INF] Request finished HTTP/2 GET https://localhost:7065/Personas - 200 null text/html; charset=utf-8 538.2817ms
+2025-11-20 11:43:48.148 -06:00 [INF] Request starting HTTP/2 GET https://localhost:7065/_vs/browserLink - null null
+2025-11-20 11:43:48.148 -06:00 [INF] Request starting HTTP/2 GET https://localhost:7065/_framework/aspnetcore-browser-refresh.js - null null
+2025-11-20 11:43:48.149 -06:00 [INF] Request finished HTTP/2 GET https://localhost:7065/_framework/aspnetcore-browser-refresh.js - 200 13760 application/javascript; charset=utf-8 1.037ms
+2025-11-20 11:43:48.157 -06:00 [INF] Request finished HTTP/2 GET https://localhost:7065/_vs/browserLink - 200 null text/javascript; charset=UTF-8 9.4126ms
+2025-11-20 11:43:49.831 -06:00 [INF] Request starting HTTP/2 GET https://localhost:7065/Personas/Edit/11 - null null
+2025-11-20 11:43:49.835 -06:00 [INF] Executing endpoint 'Preacepta.UI.Controllers.PersonasController.Edit (Preacepta.UI)'
+2025-11-20 11:43:49.840 -06:00 [INF] Route matched with {action = "Edit", controller = "Personas", area = "", page = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Edit(Int32) on controller Preacepta.UI.Controllers.PersonasController (Preacepta.UI).
+2025-11-20 11:43:52.036 -06:00 [INF] Executed DbCommand (6ms) [Parameters=[@__id_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [t].[Cedula], [t].[Activo], [t].[Apellido1], [t].[Apellido2], [t].[Direccion1], [t].[Direccion2], [t].[Edad], [t].[Email], [t].[EstadoCivil], [t].[ExpirationPassword], [t].[FechaNacimiento], [t].[FechaRegistro], [t].[Genero], [t].[Nombre], [t].[Num_Cedula], [t].[Oficio], [t].[Telefono1], [t].[Telefono2], [t].[Tipo_Identificacion], [t0].[idDistrito], [t0].[idCaton], [t0].[nombreDistrito], [t1].[idCanton], [t1].[idProvincia], [t1].[NombreCanton]
+FROM [T_GePersonas] AS [t]
+INNER JOIN [T_CrDistritos] AS [t0] ON [t].[Direccion1] = [t0].[idDistrito]
+INNER JOIN [T_CrCantones] AS [t1] ON [t0].[idCaton] = [t1].[idCanton]
+WHERE [t].[Cedula] = @__id_0
+2025-11-20 11:43:52.108 -06:00 [INF] Executing ViewResult, running view Edit.
+2025-11-20 11:43:52.196 -06:00 [INF] Executed ViewResult - view Edit executed in 88.3879ms.
+2025-11-20 11:43:52.196 -06:00 [INF] Executed action Preacepta.UI.Controllers.PersonasController.Edit (Preacepta.UI) in 2356.2877ms
+2025-11-20 11:43:52.196 -06:00 [INF] Executed endpoint 'Preacepta.UI.Controllers.PersonasController.Edit (Preacepta.UI)'
+2025-11-20 11:43:52.196 -06:00 [INF] Request finished HTTP/2 GET https://localhost:7065/Personas/Edit/11 - 200 null text/html; charset=utf-8 2365.3001ms
+2025-11-20 11:43:52.207 -06:00 [INF] Request starting HTTP/2 GET https://localhost:7065/_framework/aspnetcore-browser-refresh.js - null null
+2025-11-20 11:43:52.208 -06:00 [INF] Request finished HTTP/2 GET https://localhost:7065/_framework/aspnetcore-browser-refresh.js - 200 13760 application/javascript; charset=utf-8 1.2504ms
+2025-11-20 11:43:52.210 -06:00 [INF] Request starting HTTP/2 GET https://localhost:7065/_vs/browserLink - null null
+2025-11-20 11:43:52.222 -06:00 [INF] Request finished HTTP/2 GET https://localhost:7065/_vs/browserLink - 200 null text/javascript; charset=UTF-8 12.4325ms
+2025-11-20 11:43:52.256 -06:00 [INF] Request starting HTTP/2 GET https://localhost:7065/Ubicacion/Provincias - null null
+2025-11-20 11:43:52.257 -06:00 [INF] Executing endpoint 'Preacepta.UI.Controllers.UbicacionController.ObtenerProvincias (Preacepta.UI)'
+2025-11-20 11:43:52.260 -06:00 [INF] Route matched with {action = "ObtenerProvincias", controller = "Ubicacion", area = "", page = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] ObtenerProvincias() on controller Preacepta.UI.Controllers.UbicacionController (Preacepta.UI).
+2025-11-20 11:43:52.270 -06:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [t].[IdProvincia], [t].[NombreProvincia]
+FROM [T_CrProvincias] AS [t]
+2025-11-20 11:43:52.275 -06:00 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[Preacepta.Modelos.AbstraccionesFrond.CrProvinciaDTO, Preacepta.Modelos, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-11-20 11:43:52.326 -06:00 [INF] Executed action Preacepta.UI.Controllers.UbicacionController.ObtenerProvincias (Preacepta.UI) in 66.4607ms
+2025-11-20 11:43:52.326 -06:00 [INF] Executed endpoint 'Preacepta.UI.Controllers.UbicacionController.ObtenerProvincias (Preacepta.UI)'
+2025-11-20 11:43:52.327 -06:00 [INF] Request finished HTTP/2 GET https://localhost:7065/Ubicacion/Provincias - 200 null application/json; charset=utf-8 71.4404ms
+2025-11-20 11:44:10.783 -06:00 [INF] Request starting HTTP/2 POST https://localhost:7065/Personas/Edit/11 - application/x-www-form-urlencoded 789
+2025-11-20 11:44:10.786 -06:00 [INF] Executing endpoint 'Preacepta.UI.Controllers.PersonasController.Edit (Preacepta.UI)'
+2025-11-20 11:44:10.824 -06:00 [INF] Route matched with {action = "Edit", controller = "Personas", area = "", page = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Edit(Int32, Preacepta.Modelos.AbstraccionesFrond.GePersonaDTO, System.String) on controller Preacepta.UI.Controllers.PersonasController (Preacepta.UI).
+2025-11-20 11:44:30.610 -06:00 [INF] Executed DbCommand (4ms) [Parameters=[@__id_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [t].[Cedula], [t].[Activo], [t].[Apellido1], [t].[Apellido2], [t].[Direccion1], [t].[Direccion2], [t].[Edad], [t].[Email], [t].[EstadoCivil], [t].[ExpirationPassword], [t].[FechaNacimiento], [t].[FechaRegistro], [t].[Genero], [t].[Nombre], [t].[Num_Cedula], [t].[Oficio], [t].[Telefono1], [t].[Telefono2], [t].[Tipo_Identificacion], [t0].[idDistrito], [t0].[idCaton], [t0].[nombreDistrito], [t1].[idCanton], [t1].[idProvincia], [t1].[NombreCanton]
+FROM [T_GePersonas] AS [t]
+INNER JOIN [T_CrDistritos] AS [t0] ON [t].[Direccion1] = [t0].[idDistrito]
+INNER JOIN [T_CrCantones] AS [t1] ON [t0].[idCaton] = [t1].[idCanton]
+WHERE [t].[Cedula] = @__id_0
+2025-11-20 11:45:28.549 -06:00 [INF] Executed DbCommand (29ms) [Parameters=[@__normalizedName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[ConcurrencyStamp], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[NormalizedName] = @__normalizedName_0
+2025-11-20 11:45:28.613 -06:00 [INF] Executed DbCommand (2ms) [Parameters=[@__normalizedName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[ConcurrencyStamp], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[NormalizedName] = @__normalizedName_0
+2025-11-20 11:45:28.614 -06:00 [INF] Executed DbCommand (1ms) [Parameters=[@__normalizedName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[ConcurrencyStamp], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[NormalizedName] = @__normalizedName_0
+2025-11-20 11:45:28.671 -06:00 [INF] Executed DbCommand (1ms) [Parameters=[@__normalizedName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[ConcurrencyStamp], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[NormalizedName] = @__normalizedName_0
+2025-11-20 11:45:28.678 -06:00 [INF] Executed DbCommand (1ms) [Parameters=[@__normalizedEmail_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(2) [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[NormalizedEmail] = @__normalizedEmail_0
+2025-11-20 11:45:29.121 -06:00 [INF] Now listening on: https://localhost:7065
+2025-11-20 11:45:29.121 -06:00 [INF] Now listening on: http://localhost:5282
+2025-11-20 11:45:29.181 -06:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-11-20 11:45:29.181 -06:00 [INF] Hosting environment: Development
+2025-11-20 11:45:29.181 -06:00 [INF] Content root path: C:\Preacepta\Preacepta.UI
+2025-11-20 11:45:29.840 -06:00 [INF] Request starting HTTP/2 GET https://localhost:7065/ - null null
+2025-11-20 11:45:29.969 -06:00 [INF] Executing endpoint 'Praecepta.UI.Controllers.HomeController.Index (Preacepta.UI)'
+2025-11-20 11:45:29.988 -06:00 [INF] Route matched with {action = "Index", controller = "Home", area = "", page = ""}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Index() on controller Praecepta.UI.Controllers.HomeController (Preacepta.UI).
+2025-11-20 11:45:30.009 -06:00 [INF] Executing ViewResult, running view Index.
+2025-11-20 11:45:30.129 -06:00 [INF] Executed ViewResult - view Index executed in 123.1651ms.
+2025-11-20 11:45:30.132 -06:00 [INF] Executed action Praecepta.UI.Controllers.HomeController.Index (Preacepta.UI) in 143.3185ms
+2025-11-20 11:45:30.133 -06:00 [INF] Executed endpoint 'Praecepta.UI.Controllers.HomeController.Index (Preacepta.UI)'
+2025-11-20 11:45:30.137 -06:00 [INF] Request finished HTTP/2 GET https://localhost:7065/ - 200 null text/html; charset=utf-8 305.9996ms
+2025-11-20 11:45:30.225 -06:00 [INF] Request starting HTTP/2 GET https://localhost:7065/_vs/browserLink - null null
+2025-11-20 11:45:30.225 -06:00 [INF] Request starting HTTP/2 GET https://localhost:7065/_framework/aspnetcore-browser-refresh.js - null null
+2025-11-20 11:45:30.229 -06:00 [INF] Request finished HTTP/2 GET https://localhost:7065/_framework/aspnetcore-browser-refresh.js - 200 13760 application/javascript; charset=utf-8 5.0423ms
+2025-11-20 11:45:30.262 -06:00 [INF] Request finished HTTP/2 GET https://localhost:7065/_vs/browserLink - 200 null text/javascript; charset=UTF-8 37.5846ms
+2025-11-20 11:45:31.600 -06:00 [INF] Request starting HTTP/2 GET https://localhost:7065/Home/UsuarioAutenticado?correo=gestor@preacepta.com - null null
+2025-11-20 11:45:31.614 -06:00 [INF] Executing endpoint 'Praecepta.UI.Controllers.HomeController.UsuarioAutenticado (Preacepta.UI)'
+2025-11-20 11:45:31.621 -06:00 [INF] Route matched with {action = "UsuarioAutenticado", controller = "Home", area = "", page = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] UsuarioAutenticado(System.String, System.String) on controller Praecepta.UI.Controllers.HomeController (Preacepta.UI).
+2025-11-20 11:45:31.638 -06:00 [INF] Executing ViewResult, running view UsuarioGestor.
+2025-11-20 11:45:31.688 -06:00 [INF] Executed ViewResult - view UsuarioGestor executed in 50.4499ms.
+2025-11-20 11:45:31.688 -06:00 [INF] Executed action Praecepta.UI.Controllers.HomeController.UsuarioAutenticado (Preacepta.UI) in 67.1388ms
+2025-11-20 11:45:31.688 -06:00 [INF] Executed endpoint 'Praecepta.UI.Controllers.HomeController.UsuarioAutenticado (Preacepta.UI)'
+2025-11-20 11:45:31.689 -06:00 [INF] Request finished HTTP/2 GET https://localhost:7065/Home/UsuarioAutenticado?correo=gestor@preacepta.com - 200 null text/html; charset=utf-8 88.2839ms
+2025-11-20 11:45:31.699 -06:00 [INF] Request starting HTTP/2 GET https://localhost:7065/_framework/aspnetcore-browser-refresh.js - null null
+2025-11-20 11:45:31.699 -06:00 [INF] Request starting HTTP/2 GET https://localhost:7065/_vs/browserLink - null null
+2025-11-20 11:45:31.700 -06:00 [INF] Request finished HTTP/2 GET https://localhost:7065/_framework/aspnetcore-browser-refresh.js - 200 13760 application/javascript; charset=utf-8 1.4277ms
+2025-11-20 11:45:31.718 -06:00 [INF] Request finished HTTP/2 GET https://localhost:7065/_vs/browserLink - 200 null text/javascript; charset=UTF-8 19.7591ms
+2025-11-20 11:45:31.757 -06:00 [INF] Request starting HTTP/1.1 GET https://localhost:7065/lib/bootstrap/dist/js/bootstrap.bundle.min.js.map - null null
+2025-11-20 11:45:31.770 -06:00 [INF] Sending file. Request path: '/lib/bootstrap/dist/js/bootstrap.bundle.min.js.map'. Physical path: 'C:\Preacepta\Preacepta.UI\wwwroot\lib\bootstrap\dist\js\bootstrap.bundle.min.js.map'
+2025-11-20 11:45:31.770 -06:00 [INF] Request finished HTTP/1.1 GET https://localhost:7065/lib/bootstrap/dist/js/bootstrap.bundle.min.js.map - 200 327261 text/plain 13.2859ms
+2025-11-20 11:45:33.793 -06:00 [INF] Request starting HTTP/2 GET https://localhost:7065/Personas - null null
+2025-11-20 11:45:33.808 -06:00 [INF] Executing endpoint 'Preacepta.UI.Controllers.PersonasController.Index (Preacepta.UI)'
+2025-11-20 11:45:33.812 -06:00 [INF] Route matched with {action = "Index", controller = "Personas", area = "", page = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Index() on controller Preacepta.UI.Controllers.PersonasController (Preacepta.UI).
+2025-11-20 11:45:34.335 -06:00 [INF] Executed DbCommand (4ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [t].[Cedula], [t].[Nombre], [t].[Apellido1], [t].[Apellido2], [t].[FechaNacimiento], [t].[Edad], [t].[EstadoCivil], [t].[Oficio], [t].[Direccion1], [t0].[idDistrito], [t0].[idCaton], [t0].[nombreDistrito], [t1].[idCanton], [t1].[idProvincia], [t1].[NombreCanton], [t].[Direccion2], [t].[Email], [t].[FechaRegistro], [t].[Activo], [t].[Telefono1], [t].[Telefono2], [t].[Genero], [t].[ExpirationPassword], [t].[Tipo_Identificacion], [t].[Num_Cedula]
+FROM [T_GePersonas] AS [t]
+INNER JOIN [T_CrDistritos] AS [t0] ON [t].[Direccion1] = [t0].[idDistrito]
+INNER JOIN [T_CrCantones] AS [t1] ON [t0].[idCaton] = [t1].[idCanton]
+2025-11-20 11:45:34.390 -06:00 [INF] Executing ViewResult, running view Index.
+2025-11-20 11:45:34.415 -06:00 [INF] Executed ViewResult - view Index executed in 25.8479ms.
+2025-11-20 11:45:34.415 -06:00 [INF] Executed action Preacepta.UI.Controllers.PersonasController.Index (Preacepta.UI) in 603.1679ms
+2025-11-20 11:45:34.415 -06:00 [INF] Executed endpoint 'Preacepta.UI.Controllers.PersonasController.Index (Preacepta.UI)'
+2025-11-20 11:45:34.417 -06:00 [INF] Request finished HTTP/2 GET https://localhost:7065/Personas - 200 null text/html; charset=utf-8 624.5481ms
+2025-11-20 11:45:34.423 -06:00 [INF] Request starting HTTP/2 GET https://localhost:7065/_vs/browserLink - null null
+2025-11-20 11:45:34.423 -06:00 [INF] Request starting HTTP/2 GET https://localhost:7065/_framework/aspnetcore-browser-refresh.js - null null
+2025-11-20 11:45:34.424 -06:00 [INF] Request finished HTTP/2 GET https://localhost:7065/_framework/aspnetcore-browser-refresh.js - 200 13760 application/javascript; charset=utf-8 0.9533ms
+2025-11-20 11:45:34.433 -06:00 [INF] Request finished HTTP/2 GET https://localhost:7065/_vs/browserLink - 200 null text/javascript; charset=UTF-8 9.614ms
+2025-11-20 11:45:35.802 -06:00 [INF] Request starting HTTP/2 GET https://localhost:7065/Personas/Edit/11 - null null
+2025-11-20 11:45:35.807 -06:00 [INF] Executing endpoint 'Preacepta.UI.Controllers.PersonasController.Edit (Preacepta.UI)'
+2025-11-20 11:45:35.812 -06:00 [INF] Route matched with {action = "Edit", controller = "Personas", area = "", page = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Edit(Int32) on controller Preacepta.UI.Controllers.PersonasController (Preacepta.UI).
+2025-11-20 11:45:37.561 -06:00 [INF] Executed DbCommand (3ms) [Parameters=[@__id_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [t].[Cedula], [t].[Activo], [t].[Apellido1], [t].[Apellido2], [t].[Direccion1], [t].[Direccion2], [t].[Edad], [t].[Email], [t].[EstadoCivil], [t].[ExpirationPassword], [t].[FechaNacimiento], [t].[FechaRegistro], [t].[Genero], [t].[Nombre], [t].[Num_Cedula], [t].[Oficio], [t].[Telefono1], [t].[Telefono2], [t].[Tipo_Identificacion], [t0].[idDistrito], [t0].[idCaton], [t0].[nombreDistrito], [t1].[idCanton], [t1].[idProvincia], [t1].[NombreCanton]
+FROM [T_GePersonas] AS [t]
+INNER JOIN [T_CrDistritos] AS [t0] ON [t].[Direccion1] = [t0].[idDistrito]
+INNER JOIN [T_CrCantones] AS [t1] ON [t0].[idCaton] = [t1].[idCanton]
+WHERE [t].[Cedula] = @__id_0
+2025-11-20 11:45:37.625 -06:00 [INF] Executing ViewResult, running view Edit.
+2025-11-20 11:45:37.700 -06:00 [INF] Executed ViewResult - view Edit executed in 75.4911ms.
+2025-11-20 11:45:37.700 -06:00 [INF] Executed action Preacepta.UI.Controllers.PersonasController.Edit (Preacepta.UI) in 1888.0182ms
+2025-11-20 11:45:37.700 -06:00 [INF] Executed endpoint 'Preacepta.UI.Controllers.PersonasController.Edit (Preacepta.UI)'
+2025-11-20 11:45:37.701 -06:00 [INF] Request finished HTTP/2 GET https://localhost:7065/Personas/Edit/11 - 200 null text/html; charset=utf-8 1898.9204ms
+2025-11-20 11:45:37.710 -06:00 [INF] Request starting HTTP/2 GET https://localhost:7065/_framework/aspnetcore-browser-refresh.js - null null
+2025-11-20 11:45:37.711 -06:00 [INF] Request finished HTTP/2 GET https://localhost:7065/_framework/aspnetcore-browser-refresh.js - 200 13760 application/javascript; charset=utf-8 1.0016ms
+2025-11-20 11:45:37.711 -06:00 [INF] Request starting HTTP/2 GET https://localhost:7065/_vs/browserLink - null null
+2025-11-20 11:45:37.720 -06:00 [INF] Request finished HTTP/2 GET https://localhost:7065/_vs/browserLink - 200 null text/javascript; charset=UTF-8 8.5138ms
+2025-11-20 11:45:37.767 -06:00 [INF] Request starting HTTP/2 GET https://localhost:7065/Ubicacion/Provincias - null null
+2025-11-20 11:45:37.768 -06:00 [INF] Executing endpoint 'Preacepta.UI.Controllers.UbicacionController.ObtenerProvincias (Preacepta.UI)'
+2025-11-20 11:45:37.771 -06:00 [INF] Route matched with {action = "ObtenerProvincias", controller = "Ubicacion", area = "", page = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] ObtenerProvincias() on controller Preacepta.UI.Controllers.UbicacionController (Preacepta.UI).
+2025-11-20 11:45:37.781 -06:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [t].[IdProvincia], [t].[NombreProvincia]
+FROM [T_CrProvincias] AS [t]
+2025-11-20 11:45:37.785 -06:00 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[Preacepta.Modelos.AbstraccionesFrond.CrProvinciaDTO, Preacepta.Modelos, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-11-20 11:45:37.828 -06:00 [INF] Executed action Preacepta.UI.Controllers.UbicacionController.ObtenerProvincias (Preacepta.UI) in 57.0159ms
+2025-11-20 11:45:37.828 -06:00 [INF] Executed endpoint 'Preacepta.UI.Controllers.UbicacionController.ObtenerProvincias (Preacepta.UI)'
+2025-11-20 11:45:37.828 -06:00 [INF] Request finished HTTP/2 GET https://localhost:7065/Ubicacion/Provincias - 200 null application/json; charset=utf-8 61.1745ms
+2025-11-20 11:45:58.230 -06:00 [INF] Request starting HTTP/2 POST https://localhost:7065/Personas/Edit/11 - application/x-www-form-urlencoded 789
+2025-11-20 11:45:58.238 -06:00 [INF] Executing endpoint 'Preacepta.UI.Controllers.PersonasController.Edit (Preacepta.UI)'
+2025-11-20 11:45:58.266 -06:00 [INF] Route matched with {action = "Edit", controller = "Personas", area = "", page = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Edit(Int32, Preacepta.Modelos.AbstraccionesFrond.GePersonaDTO, System.String) on controller Preacepta.UI.Controllers.PersonasController (Preacepta.UI).
+2025-11-20 11:46:03.305 -06:00 [INF] Executed DbCommand (5ms) [Parameters=[@__id_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [t].[Cedula], [t].[Activo], [t].[Apellido1], [t].[Apellido2], [t].[Direccion1], [t].[Direccion2], [t].[Edad], [t].[Email], [t].[EstadoCivil], [t].[ExpirationPassword], [t].[FechaNacimiento], [t].[FechaRegistro], [t].[Genero], [t].[Nombre], [t].[Num_Cedula], [t].[Oficio], [t].[Telefono1], [t].[Telefono2], [t].[Tipo_Identificacion], [t0].[idDistrito], [t0].[idCaton], [t0].[nombreDistrito], [t1].[idCanton], [t1].[idProvincia], [t1].[NombreCanton]
+FROM [T_GePersonas] AS [t]
+INNER JOIN [T_CrDistritos] AS [t0] ON [t].[Direccion1] = [t0].[idDistrito]
+INNER JOIN [T_CrCantones] AS [t1] ON [t0].[idCaton] = [t1].[idCanton]
+WHERE [t].[Cedula] = @__id_0
+2025-11-20 11:46:23.055 -06:00 [INF] Executed DbCommand (11ms) [Parameters=[@__id_0='?' (Size = 100)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [t].[Cedula], [t].[Activo], [t].[Apellido1], [t].[Apellido2], [t].[Direccion1], [t].[Direccion2], [t].[Edad], [t].[Email], [t].[EstadoCivil], [t].[ExpirationPassword], [t].[FechaNacimiento], [t].[FechaRegistro], [t].[Genero], [t].[Nombre], [t].[Num_Cedula], [t].[Oficio], [t].[Telefono1], [t].[Telefono2], [t].[Tipo_Identificacion]
+FROM [T_GePersonas] AS [t]
+WHERE [t].[Num_Cedula] = @__id_0
+2025-11-20 11:46:55.622 -06:00 [INF] Executing ViewResult, running view Edit.
+2025-11-20 11:46:55.645 -06:00 [INF] Executed ViewResult - view Edit executed in 46.6135ms.
+2025-11-20 11:46:55.670 -06:00 [INF] Executed action Preacepta.UI.Controllers.PersonasController.Edit (Preacepta.UI) in 57403.8419ms
+2025-11-20 11:46:55.671 -06:00 [INF] Executed endpoint 'Preacepta.UI.Controllers.PersonasController.Edit (Preacepta.UI)'
+2025-11-20 11:46:55.677 -06:00 [INF] Request finished HTTP/2 POST https://localhost:7065/Personas/Edit/11 - 200 null text/html; charset=utf-8 57446.4531ms
+2025-11-20 11:46:55.683 -06:00 [INF] Request starting HTTP/2 GET https://localhost:7065/_framework/aspnetcore-browser-refresh.js - null null
+2025-11-20 11:46:55.683 -06:00 [INF] Request starting HTTP/2 GET https://localhost:7065/_vs/browserLink - null null
+2025-11-20 11:46:55.686 -06:00 [INF] Request finished HTTP/2 GET https://localhost:7065/_framework/aspnetcore-browser-refresh.js - 200 13760 application/javascript; charset=utf-8 2.2014ms
+2025-11-20 11:46:55.692 -06:00 [INF] Request starting HTTP/2 GET https://localhost:7065/Ubicacion/Provincias - null null
+2025-11-20 11:46:55.697 -06:00 [INF] Executing endpoint 'Preacepta.UI.Controllers.UbicacionController.ObtenerProvincias (Preacepta.UI)'
+2025-11-20 11:46:55.697 -06:00 [INF] Route matched with {action = "ObtenerProvincias", controller = "Ubicacion", area = "", page = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] ObtenerProvincias() on controller Preacepta.UI.Controllers.UbicacionController (Preacepta.UI).
+2025-11-20 11:46:55.700 -06:00 [INF] Request finished HTTP/2 GET https://localhost:7065/_vs/browserLink - 200 null text/javascript; charset=UTF-8 17.3634ms
+2025-11-20 11:46:55.703 -06:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [t].[IdProvincia], [t].[NombreProvincia]
+FROM [T_CrProvincias] AS [t]
+2025-11-20 11:46:57.448 -06:00 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[Preacepta.Modelos.AbstraccionesFrond.CrProvinciaDTO, Preacepta.Modelos, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-11-20 11:46:57.449 -06:00 [INF] Executed action Preacepta.UI.Controllers.UbicacionController.ObtenerProvincias (Preacepta.UI) in 1751.2554ms
+2025-11-20 11:46:57.449 -06:00 [INF] Executed endpoint 'Preacepta.UI.Controllers.UbicacionController.ObtenerProvincias (Preacepta.UI)'
+2025-11-20 11:46:57.449 -06:00 [INF] Request finished HTTP/2 GET https://localhost:7065/Ubicacion/Provincias - 200 null application/json; charset=utf-8 1757.0521ms
+2025-11-20 11:47:05.215 -06:00 [INF] Request starting HTTP/2 GET https://localhost:7065/Personas/Edit/11 - null null
+2025-11-20 11:47:05.217 -06:00 [INF] Executing endpoint 'Preacepta.UI.Controllers.PersonasController.Edit (Preacepta.UI)'
+2025-11-20 11:47:05.217 -06:00 [INF] Route matched with {action = "Edit", controller = "Personas", area = "", page = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Edit(Int32) on controller Preacepta.UI.Controllers.PersonasController (Preacepta.UI).
+2025-11-20 11:47:07.378 -06:00 [INF] Executed DbCommand (5ms) [Parameters=[@__id_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [t].[Cedula], [t].[Activo], [t].[Apellido1], [t].[Apellido2], [t].[Direccion1], [t].[Direccion2], [t].[Edad], [t].[Email], [t].[EstadoCivil], [t].[ExpirationPassword], [t].[FechaNacimiento], [t].[FechaRegistro], [t].[Genero], [t].[Nombre], [t].[Num_Cedula], [t].[Oficio], [t].[Telefono1], [t].[Telefono2], [t].[Tipo_Identificacion], [t0].[idDistrito], [t0].[idCaton], [t0].[nombreDistrito], [t1].[idCanton], [t1].[idProvincia], [t1].[NombreCanton]
+FROM [T_GePersonas] AS [t]
+INNER JOIN [T_CrDistritos] AS [t0] ON [t].[Direccion1] = [t0].[idDistrito]
+INNER JOIN [T_CrCantones] AS [t1] ON [t0].[idCaton] = [t1].[idCanton]
+WHERE [t].[Cedula] = @__id_0
+2025-11-20 11:47:07.379 -06:00 [INF] Executing ViewResult, running view Edit.
+2025-11-20 11:47:07.383 -06:00 [INF] Executed ViewResult - view Edit executed in 4.5788ms.
+2025-11-20 11:47:07.383 -06:00 [INF] Executed action Preacepta.UI.Controllers.PersonasController.Edit (Preacepta.UI) in 2166.0853ms
+2025-11-20 11:47:07.383 -06:00 [INF] Executed endpoint 'Preacepta.UI.Controllers.PersonasController.Edit (Preacepta.UI)'
+2025-11-20 11:47:07.383 -06:00 [INF] Request finished HTTP/2 GET https://localhost:7065/Personas/Edit/11 - 200 null text/html; charset=utf-8 2168.5052ms
+2025-11-20 11:47:07.394 -06:00 [INF] Request starting HTTP/2 GET https://localhost:7065/_framework/aspnetcore-browser-refresh.js - null null
+2025-11-20 11:47:07.395 -06:00 [INF] Request finished HTTP/2 GET https://localhost:7065/_framework/aspnetcore-browser-refresh.js - 200 13760 application/javascript; charset=utf-8 1.2849ms
+2025-11-20 11:47:12.466 -06:00 [INF] Request starting HTTP/2 GET https://localhost:7065/_framework/aspnetcore-browser-refresh.js - null null
+2025-11-20 11:47:12.467 -06:00 [INF] Request finished HTTP/2 GET https://localhost:7065/_framework/aspnetcore-browser-refresh.js - 200 13760 application/javascript; charset=utf-8 1.0066ms
+2025-11-20 11:52:44.848 -06:00 [INF] Executed DbCommand (33ms) [Parameters=[@__normalizedName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[ConcurrencyStamp], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[NormalizedName] = @__normalizedName_0
+2025-11-20 11:52:44.913 -06:00 [INF] Executed DbCommand (2ms) [Parameters=[@__normalizedName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[ConcurrencyStamp], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[NormalizedName] = @__normalizedName_0
+2025-11-20 11:52:44.914 -06:00 [INF] Executed DbCommand (1ms) [Parameters=[@__normalizedName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[ConcurrencyStamp], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[NormalizedName] = @__normalizedName_0
+2025-11-20 11:52:44.955 -06:00 [INF] Executed DbCommand (1ms) [Parameters=[@__normalizedName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[ConcurrencyStamp], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[NormalizedName] = @__normalizedName_0
+2025-11-20 11:52:44.963 -06:00 [INF] Executed DbCommand (1ms) [Parameters=[@__normalizedEmail_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(2) [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[NormalizedEmail] = @__normalizedEmail_0
+2025-11-20 11:52:45.527 -06:00 [INF] Now listening on: https://localhost:7065
+2025-11-20 11:52:45.527 -06:00 [INF] Now listening on: http://localhost:5282
+2025-11-20 11:52:45.586 -06:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-11-20 11:52:45.586 -06:00 [INF] Hosting environment: Development
+2025-11-20 11:52:45.586 -06:00 [INF] Content root path: C:\Preacepta\Preacepta.UI
+2025-11-20 11:52:46.296 -06:00 [INF] Request starting HTTP/2 GET https://localhost:7065/ - null null
+2025-11-20 11:52:46.438 -06:00 [INF] Executing endpoint 'Praecepta.UI.Controllers.HomeController.Index (Preacepta.UI)'
+2025-11-20 11:52:46.461 -06:00 [INF] Route matched with {action = "Index", controller = "Home", area = "", page = ""}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Index() on controller Praecepta.UI.Controllers.HomeController (Preacepta.UI).
+2025-11-20 11:52:46.485 -06:00 [INF] Executing ViewResult, running view Index.
+2025-11-20 11:52:46.613 -06:00 [INF] Executed ViewResult - view Index executed in 130.8238ms.
+2025-11-20 11:52:46.617 -06:00 [INF] Executed action Praecepta.UI.Controllers.HomeController.Index (Preacepta.UI) in 155.1253ms
+2025-11-20 11:52:46.617 -06:00 [INF] Executed endpoint 'Praecepta.UI.Controllers.HomeController.Index (Preacepta.UI)'
+2025-11-20 11:52:46.621 -06:00 [INF] Request finished HTTP/2 GET https://localhost:7065/ - 200 null text/html; charset=utf-8 332.773ms
+2025-11-20 11:52:46.661 -06:00 [INF] Request starting HTTP/2 GET https://localhost:7065/_vs/browserLink - null null
+2025-11-20 11:52:46.661 -06:00 [INF] Request starting HTTP/2 GET https://localhost:7065/_framework/aspnetcore-browser-refresh.js - null null
+2025-11-20 11:52:46.665 -06:00 [INF] Request finished HTTP/2 GET https://localhost:7065/_framework/aspnetcore-browser-refresh.js - 200 13760 application/javascript; charset=utf-8 4.5691ms
+2025-11-20 11:52:46.695 -06:00 [INF] Request finished HTTP/2 GET https://localhost:7065/_vs/browserLink - 200 null text/javascript; charset=UTF-8 33.8887ms
+2025-11-20 11:52:49.291 -06:00 [INF] Request starting HTTP/2 GET https://localhost:7065/Home/UsuarioAutenticado?correo=gestor@preacepta.com - null null
+2025-11-20 11:52:49.305 -06:00 [INF] Executing endpoint 'Praecepta.UI.Controllers.HomeController.UsuarioAutenticado (Preacepta.UI)'
+2025-11-20 11:52:49.313 -06:00 [INF] Route matched with {action = "UsuarioAutenticado", controller = "Home", area = "", page = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] UsuarioAutenticado(System.String, System.String) on controller Praecepta.UI.Controllers.HomeController (Preacepta.UI).
+2025-11-20 11:52:49.333 -06:00 [INF] Executing ViewResult, running view UsuarioGestor.
+2025-11-20 11:52:49.376 -06:00 [INF] Executed ViewResult - view UsuarioGestor executed in 43.6393ms.
+2025-11-20 11:52:49.377 -06:00 [INF] Executed action Praecepta.UI.Controllers.HomeController.UsuarioAutenticado (Preacepta.UI) in 63.8939ms
+2025-11-20 11:52:49.377 -06:00 [INF] Executed endpoint 'Praecepta.UI.Controllers.HomeController.UsuarioAutenticado (Preacepta.UI)'
+2025-11-20 11:52:49.377 -06:00 [INF] Request finished HTTP/2 GET https://localhost:7065/Home/UsuarioAutenticado?correo=gestor@preacepta.com - 200 null text/html; charset=utf-8 85.3869ms
+2025-11-20 11:52:49.387 -06:00 [INF] Request starting HTTP/2 GET https://localhost:7065/_vs/browserLink - null null
+2025-11-20 11:52:49.387 -06:00 [INF] Request starting HTTP/2 GET https://localhost:7065/_framework/aspnetcore-browser-refresh.js - null null
+2025-11-20 11:52:49.388 -06:00 [INF] Request finished HTTP/2 GET https://localhost:7065/_framework/aspnetcore-browser-refresh.js - 200 13760 application/javascript; charset=utf-8 1.5957ms
+2025-11-20 11:52:49.408 -06:00 [INF] Request finished HTTP/2 GET https://localhost:7065/_vs/browserLink - 200 null text/javascript; charset=UTF-8 21.3524ms
+2025-11-20 11:52:49.455 -06:00 [INF] Request starting HTTP/1.1 GET https://localhost:7065/lib/bootstrap/dist/js/bootstrap.bundle.min.js.map - null null
+2025-11-20 11:52:49.468 -06:00 [INF] Sending file. Request path: '/lib/bootstrap/dist/js/bootstrap.bundle.min.js.map'. Physical path: 'C:\Preacepta\Preacepta.UI\wwwroot\lib\bootstrap\dist\js\bootstrap.bundle.min.js.map'
+2025-11-20 11:52:49.468 -06:00 [INF] Request finished HTTP/1.1 GET https://localhost:7065/lib/bootstrap/dist/js/bootstrap.bundle.min.js.map - 200 327261 text/plain 13.6421ms
+2025-11-20 11:52:55.090 -06:00 [INF] Request starting HTTP/2 GET https://localhost:7065/Personas - null null
+2025-11-20 11:52:55.104 -06:00 [INF] Executing endpoint 'Preacepta.UI.Controllers.PersonasController.Index (Preacepta.UI)'
+2025-11-20 11:52:55.107 -06:00 [INF] Route matched with {action = "Index", controller = "Personas", area = "", page = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Index() on controller Preacepta.UI.Controllers.PersonasController (Preacepta.UI).
+2025-11-20 11:52:55.531 -06:00 [INF] Executed DbCommand (4ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [t].[Cedula], [t].[Nombre], [t].[Apellido1], [t].[Apellido2], [t].[FechaNacimiento], [t].[Edad], [t].[EstadoCivil], [t].[Oficio], [t].[Direccion1], [t0].[idDistrito], [t0].[idCaton], [t0].[nombreDistrito], [t1].[idCanton], [t1].[idProvincia], [t1].[NombreCanton], [t].[Direccion2], [t].[Email], [t].[FechaRegistro], [t].[Activo], [t].[Telefono1], [t].[Telefono2], [t].[Genero], [t].[ExpirationPassword], [t].[Tipo_Identificacion], [t].[Num_Cedula]
+FROM [T_GePersonas] AS [t]
+INNER JOIN [T_CrDistritos] AS [t0] ON [t].[Direccion1] = [t0].[idDistrito]
+INNER JOIN [T_CrCantones] AS [t1] ON [t0].[idCaton] = [t1].[idCanton]
+2025-11-20 11:52:55.566 -06:00 [INF] Executing ViewResult, running view Index.
+2025-11-20 11:52:55.588 -06:00 [INF] Executed ViewResult - view Index executed in 22.2555ms.
+2025-11-20 11:52:55.589 -06:00 [INF] Executed action Preacepta.UI.Controllers.PersonasController.Index (Preacepta.UI) in 481.8379ms
+2025-11-20 11:52:55.589 -06:00 [INF] Executed endpoint 'Preacepta.UI.Controllers.PersonasController.Index (Preacepta.UI)'
+2025-11-20 11:52:55.591 -06:00 [INF] Request finished HTTP/2 GET https://localhost:7065/Personas - 200 null text/html; charset=utf-8 500.7306ms
+2025-11-20 11:52:55.595 -06:00 [INF] Request starting HTTP/2 GET https://localhost:7065/_framework/aspnetcore-browser-refresh.js - null null
+2025-11-20 11:52:55.595 -06:00 [INF] Request starting HTTP/2 GET https://localhost:7065/_vs/browserLink - null null
+2025-11-20 11:52:55.597 -06:00 [INF] Request finished HTTP/2 GET https://localhost:7065/_framework/aspnetcore-browser-refresh.js - 200 13760 application/javascript; charset=utf-8 1.5499ms
+2025-11-20 11:52:55.609 -06:00 [INF] Request finished HTTP/2 GET https://localhost:7065/_vs/browserLink - 200 null text/javascript; charset=UTF-8 13.2938ms
+2025-11-20 11:53:10.585 -06:00 [INF] Request starting HTTP/2 GET https://localhost:7065/Personas/Edit/11 - null null
+2025-11-20 11:53:10.589 -06:00 [INF] Executing endpoint 'Preacepta.UI.Controllers.PersonasController.Edit (Preacepta.UI)'
+2025-11-20 11:53:10.592 -06:00 [INF] Route matched with {action = "Edit", controller = "Personas", area = "", page = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Edit(Int32) on controller Preacepta.UI.Controllers.PersonasController (Preacepta.UI).
+2025-11-20 11:53:12.110 -06:00 [INF] Executed DbCommand (5ms) [Parameters=[@__id_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [t].[Cedula], [t].[Activo], [t].[Apellido1], [t].[Apellido2], [t].[Direccion1], [t].[Direccion2], [t].[Edad], [t].[Email], [t].[EstadoCivil], [t].[ExpirationPassword], [t].[FechaNacimiento], [t].[FechaRegistro], [t].[Genero], [t].[Nombre], [t].[Num_Cedula], [t].[Oficio], [t].[Telefono1], [t].[Telefono2], [t].[Tipo_Identificacion], [t0].[idDistrito], [t0].[idCaton], [t0].[nombreDistrito], [t1].[idCanton], [t1].[idProvincia], [t1].[NombreCanton]
+FROM [T_GePersonas] AS [t]
+INNER JOIN [T_CrDistritos] AS [t0] ON [t].[Direccion1] = [t0].[idDistrito]
+INNER JOIN [T_CrCantones] AS [t1] ON [t0].[idCaton] = [t1].[idCanton]
+WHERE [t].[Cedula] = @__id_0
+2025-11-20 11:53:12.167 -06:00 [INF] Executing ViewResult, running view Edit.
+2025-11-20 11:53:12.246 -06:00 [INF] Executed ViewResult - view Edit executed in 79.5052ms.
+2025-11-20 11:53:12.246 -06:00 [INF] Executed action Preacepta.UI.Controllers.PersonasController.Edit (Preacepta.UI) in 1653.6976ms
+2025-11-20 11:53:12.246 -06:00 [INF] Executed endpoint 'Preacepta.UI.Controllers.PersonasController.Edit (Preacepta.UI)'
+2025-11-20 11:53:12.246 -06:00 [INF] Request finished HTTP/2 GET https://localhost:7065/Personas/Edit/11 - 200 null text/html; charset=utf-8 1661.1299ms
+2025-11-20 11:53:12.257 -06:00 [INF] Request starting HTTP/2 GET https://localhost:7065/_framework/aspnetcore-browser-refresh.js - null null
+2025-11-20 11:53:12.258 -06:00 [INF] Request finished HTTP/2 GET https://localhost:7065/_framework/aspnetcore-browser-refresh.js - 200 13760 application/javascript; charset=utf-8 1.1499ms
+2025-11-20 11:53:12.259 -06:00 [INF] Request starting HTTP/2 GET https://localhost:7065/_vs/browserLink - null null
+2025-11-20 11:53:12.270 -06:00 [INF] Request finished HTTP/2 GET https://localhost:7065/_vs/browserLink - 200 null text/javascript; charset=UTF-8 11.164ms
+2025-11-20 11:53:12.303 -06:00 [INF] Request starting HTTP/2 GET https://localhost:7065/Ubicacion/Provincias - null null
+2025-11-20 11:53:12.304 -06:00 [INF] Executing endpoint 'Preacepta.UI.Controllers.UbicacionController.ObtenerProvincias (Preacepta.UI)'
+2025-11-20 11:53:12.306 -06:00 [INF] Route matched with {action = "ObtenerProvincias", controller = "Ubicacion", area = "", page = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] ObtenerProvincias() on controller Preacepta.UI.Controllers.UbicacionController (Preacepta.UI).
+2025-11-20 11:53:12.316 -06:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [t].[IdProvincia], [t].[NombreProvincia]
+FROM [T_CrProvincias] AS [t]
+2025-11-20 11:53:12.321 -06:00 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[Preacepta.Modelos.AbstraccionesFrond.CrProvinciaDTO, Preacepta.Modelos, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-11-20 11:53:12.381 -06:00 [INF] Executed action Preacepta.UI.Controllers.UbicacionController.ObtenerProvincias (Preacepta.UI) in 74.3664ms
+2025-11-20 11:53:12.381 -06:00 [INF] Executed endpoint 'Preacepta.UI.Controllers.UbicacionController.ObtenerProvincias (Preacepta.UI)'
+2025-11-20 11:53:12.381 -06:00 [INF] Request finished HTTP/2 GET https://localhost:7065/Ubicacion/Provincias - 200 null application/json; charset=utf-8 78.6392ms
+2025-11-20 11:53:29.427 -06:00 [INF] Request starting HTTP/2 POST https://localhost:7065/Personas/Edit/11 - application/x-www-form-urlencoded 811
+2025-11-20 11:53:29.430 -06:00 [INF] Executing endpoint 'Preacepta.UI.Controllers.PersonasController.Edit (Preacepta.UI)'
+2025-11-20 11:53:29.472 -06:00 [INF] Route matched with {action = "Edit", controller = "Personas", area = "", page = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Edit(Int32, Preacepta.Modelos.AbstraccionesFrond.GePersonaDTO, System.String) on controller Preacepta.UI.Controllers.PersonasController (Preacepta.UI).
+2025-11-20 11:53:34.495 -06:00 [INF] Executed DbCommand (1ms) [Parameters=[@__id_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [t].[Cedula], [t].[Activo], [t].[Apellido1], [t].[Apellido2], [t].[Direccion1], [t].[Direccion2], [t].[Edad], [t].[Email], [t].[EstadoCivil], [t].[ExpirationPassword], [t].[FechaNacimiento], [t].[FechaRegistro], [t].[Genero], [t].[Nombre], [t].[Num_Cedula], [t].[Oficio], [t].[Telefono1], [t].[Telefono2], [t].[Tipo_Identificacion], [t0].[idDistrito], [t0].[idCaton], [t0].[nombreDistrito], [t1].[idCanton], [t1].[idProvincia], [t1].[NombreCanton]
+FROM [T_GePersonas] AS [t]
+INNER JOIN [T_CrDistritos] AS [t0] ON [t].[Direccion1] = [t0].[idDistrito]
+INNER JOIN [T_CrCantones] AS [t1] ON [t0].[idCaton] = [t1].[idCanton]
+WHERE [t].[Cedula] = @__id_0
+2025-11-20 11:54:05.716 -06:00 [INF] Executed DbCommand (11ms) [Parameters=[@__correo_0='?' (Size = 100)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [t].[Cedula], [t].[Activo], [t].[Apellido1], [t].[Apellido2], [t].[Direccion1], [t].[Direccion2], [t].[Edad], [t].[Email], [t].[EstadoCivil], [t].[ExpirationPassword], [t].[FechaNacimiento], [t].[FechaRegistro], [t].[Genero], [t].[Nombre], [t].[Num_Cedula], [t].[Oficio], [t].[Telefono1], [t].[Telefono2], [t].[Tipo_Identificacion], [t0].[idDistrito], [t0].[idCaton], [t0].[nombreDistrito], [t1].[idCanton], [t1].[idProvincia], [t1].[NombreCanton], [t2].[IdProvincia], [t2].[NombreProvincia]
+FROM [T_GePersonas] AS [t]
+INNER JOIN [T_CrDistritos] AS [t0] ON [t].[Direccion1] = [t0].[idDistrito]
+INNER JOIN [T_CrCantones] AS [t1] ON [t0].[idCaton] = [t1].[idCanton]
+INNER JOIN [T_CrProvincias] AS [t2] ON [t1].[idProvincia] = [t2].[IdProvincia]
+WHERE [t].[Email] = @__correo_0
+2025-11-20 11:54:34.638 -06:00 [INF] Executing ViewResult, running view Edit.
+2025-11-20 11:54:34.665 -06:00 [INF] Executed ViewResult - view Edit executed in 56.1491ms.
+2025-11-20 11:54:34.665 -06:00 [INF] Executed action Preacepta.UI.Controllers.PersonasController.Edit (Preacepta.UI) in 65192.4607ms
+2025-11-20 11:54:34.665 -06:00 [INF] Executed endpoint 'Preacepta.UI.Controllers.PersonasController.Edit (Preacepta.UI)'
+2025-11-20 11:54:34.673 -06:00 [INF] Request finished HTTP/2 POST https://localhost:7065/Personas/Edit/11 - 200 null text/html; charset=utf-8 65246.611ms
+2025-11-20 11:54:34.697 -06:00 [INF] Request starting HTTP/2 GET https://localhost:7065/_framework/aspnetcore-browser-refresh.js - null null
+2025-11-20 11:54:34.704 -06:00 [INF] Request starting HTTP/2 GET https://localhost:7065/_vs/browserLink - null null
+2025-11-20 11:54:34.704 -06:00 [INF] Request finished HTTP/2 GET https://localhost:7065/_framework/aspnetcore-browser-refresh.js - 200 13760 application/javascript; charset=utf-8 6.7886ms
+2025-11-20 11:54:34.715 -06:00 [INF] Request starting HTTP/2 GET https://localhost:7065/Ubicacion/Provincias - null null
+2025-11-20 11:54:34.736 -06:00 [INF] Executing endpoint 'Preacepta.UI.Controllers.UbicacionController.ObtenerProvincias (Preacepta.UI)'
+2025-11-20 11:54:34.737 -06:00 [INF] Route matched with {action = "ObtenerProvincias", controller = "Ubicacion", area = "", page = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] ObtenerProvincias() on controller Preacepta.UI.Controllers.UbicacionController (Preacepta.UI).
+2025-11-20 11:54:34.742 -06:00 [INF] Request finished HTTP/2 GET https://localhost:7065/_vs/browserLink - 200 null text/javascript; charset=UTF-8 38.3953ms
+2025-11-20 11:54:34.745 -06:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [t].[IdProvincia], [t].[NombreProvincia]
+FROM [T_CrProvincias] AS [t]
+2025-11-20 11:54:36.138 -06:00 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[Preacepta.Modelos.AbstraccionesFrond.CrProvinciaDTO, Preacepta.Modelos, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-11-20 11:54:36.139 -06:00 [INF] Executed action Preacepta.UI.Controllers.UbicacionController.ObtenerProvincias (Preacepta.UI) in 1401.8852ms
+2025-11-20 11:54:36.139 -06:00 [INF] Executed endpoint 'Preacepta.UI.Controllers.UbicacionController.ObtenerProvincias (Preacepta.UI)'
+2025-11-20 11:54:36.139 -06:00 [INF] Request finished HTTP/2 GET https://localhost:7065/Ubicacion/Provincias - 200 null application/json; charset=utf-8 1424.2178ms

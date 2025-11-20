@@ -450,7 +450,7 @@ public partial class Contexto : DbContext
         {
             entity.HasKey(e => e.Cedula).HasName("PK_T_Pesonas");
 
-            entity.Property(e => e.Cedula).ValueGeneratedNever();
+            //entity.Property(e => e.Cedula).ValueGeneratedNever();
 
             entity.HasOne(d => d.Direccion1Navigation).WithMany(p => p.TGePersonas)
                 .OnDelete(DeleteBehavior.ClientSetNull)
