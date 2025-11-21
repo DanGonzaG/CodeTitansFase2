@@ -14,9 +14,11 @@ using Preacepta.LN.DocsMarcaVehiculo.Listar;
 using Preacepta.Modelos.AbstraccionesBD;
 using Preacepta.Modelos.AbstraccionesFrond;
 using Preacepta.LN.BitacoraEventos.Crear;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Preacepta.UI.Controllers
 {
+    [Authorize(Roles = "Gestor")]
     public class DocsMarcaVehiculoController : Controller
     {
         private readonly IBuscarDocsMarcaVehiculoLN _buscar;

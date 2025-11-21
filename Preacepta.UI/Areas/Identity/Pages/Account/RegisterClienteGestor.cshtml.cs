@@ -284,7 +284,7 @@ namespace Praecepta.UI.Areas.Identity.Pages.Account
                 await _userStore.SetUserNameAsync(user, personaDTO.Email, CancellationToken.None);
                 await _emailStore.SetEmailAsync(user, personaDTO.Email, CancellationToken.None);
                 var result = await _userManager.CreateAsync(user, personaDTO.Password);
-                await _userManager.AddToRoleAsync(user, "Abogado");
+                await _userManager.AddToRoleAsync(user, "Cliente");
 
                 if (result.Succeeded)
                 {

@@ -78,7 +78,7 @@ namespace Preacepta.LN.GePersona.ObtenerDatos
                 Direccion1Navigation = gePersona.Direccion1Navigation,
                 Direccion2 = gePersona.Direccion2,
                 Email = gePersona.Email,
-                //FechaRegistro = DateTime.Now,
+                FechaRegistro = DateTime.Parse(gePersona.FechaRegistro),
                 Activo = gePersona.Activo,
                 Telefono1 = gePersona.Telefono1,
                 Telefono2 = gePersona.Telefono2,

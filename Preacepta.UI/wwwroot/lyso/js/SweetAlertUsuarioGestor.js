@@ -15,7 +15,8 @@
                     .then(datos => {
                         if (datos.bandera) {
                             //window.location.href = '/Personas/Details?id=' + result.value;
-                            window.location.href = '/Personas/Details?id=' + datos.bandera;
+                            window.location.href = '/Personas/DetailsNumCedula?id=' + result.value;
+                            //window.location.href = '/Personas/Details?id=' + datos.bandera;
                         }
                         else {
                             Swal.fire('Sistema de busqueda', 'La cédula ingresada no esta registrada.', 'error')

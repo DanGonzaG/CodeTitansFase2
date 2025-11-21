@@ -115,9 +115,9 @@
             </div>
             <div class="form-group">
                 <label asp-for="FechaRegistro" class="control-label"></label>
-                <input asp-for="FechaRegistro" type="date" class="form-control" />
+                <input asp-for="FechaRegistro" class="form-control" readonly />
                 <span asp-validation-for="FechaRegistro" class="text-danger"></span>
-            </div>        
+            </div>
             <div class="form-group">
                 <label asp-for="Email" class="control-label"></label>
                 <input asp-for="Email" class="form-control" />
@@ -128,6 +128,11 @@
                 }
             </div>
             <div class="form-group">
+                <label asp-for="ExpirationPassword" class="control-label"></label>
+                <input asp-for="ExpirationPassword" class="form-control" readonly/>
+                <span asp-validation-for="ExpirationPassword" class="text-danger"></span>
+            </div>
+            <!--<div class="form-group">
                 <label asp-for="Password" class="control-label"></label>
                 <input asp-for="Password" class="form-control" />
                 <span asp-validation-for="Password" class="text-danger"></span>
@@ -136,7 +141,7 @@
                 <label asp-for="ConfirmPassword" class="control-label"></label>
                 <input asp-for="ConfirmPassword" class="form-control" />
                 <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
-            </div>
+            </div>-->
             <div class="form-group form-check">
                 <label class="form-check-label">
                     <input class="form-check-input" asp-for="Activo" /> @Html.DisplayNameFor(model => model.Activo)

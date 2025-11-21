@@ -14,9 +14,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Preacepta.LN.BitacoraEventos.Crear;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Preacepta.UI.Controllers
 {
+    [Authorize(Roles = "Gestor")]
     public class DocsCombustiblesController : Controller
     {
         

@@ -44,17 +44,17 @@
                             </div>
                         </div>
                         <div class="col-sm-6 col-lg-6">
-                            <div class="form-group">
-                                <input asp-for="IdCliente"
+                            <div class="form-group">                               
+                                <input class="form-control LetraNegra text-center" value="@ViewBag.ClienteCedula" readonly />
+                                <!--<input asp-for="IdCliente"
                                        id="idIdCliente"
                                        type="text"
                                        inputmode="numeric"
                                        pattern="\d*"
                                        class="form-control LetraNegra"
                                        value="@(Model?.IdCliente > 0 ? Model.IdCliente : (int)(ViewBag.ClienteCedula ?? 0))"
-                                       readonly />
+                                       readonly />-->
                                 <span asp-validation-for="IdCliente" class="text-danger"></span>
-
                                 <input type="hidden"
                                        asp-for="IdAbogado"
                                        id="idIdAbogado"

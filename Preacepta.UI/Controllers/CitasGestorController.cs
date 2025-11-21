@@ -12,7 +12,7 @@ using Preacepta.Modelos.AbstraccionesFrond;
 using System.Linq;
 using System.Threading.Tasks;
 
-[Authorize(Roles = "Gestor")]
+
 public class CitasGestorController : Controller
 {
     private readonly IListarCitasLN _listarCitasLN;
