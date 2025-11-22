@@ -22,6 +22,7 @@ namespace Preacepta.Modelos.AbstraccionesFrond
 
         [Required(ErrorMessage = "Debe agregar una descripción")]
         [DisplayName("Descripción del caso")]
+        [MaxLength(800, ErrorMessage = "El valor máximo es de 800 letras")]
         public string descripcionCaso { get; set; }
 
         [Required(ErrorMessage = "Debe aceptar los términos y condiciones")]

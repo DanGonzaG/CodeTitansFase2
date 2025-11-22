@@ -25,12 +25,14 @@ namespace Preacepta.Modelos.AbstraccionesFrond
         public int? Abogado { get; set; }
 
         [Required, DisplayName("Tipo de documento")]
+        [MaxLength(100, ErrorMessage = "El nombre no debe exceder los 100 caracteres")]
         public string TipoDocumento { get; set; } = null!;
 
         [DisplayName("Id del documento")]
         public int IdDocumento { get; set; }
 
         [Required, DisplayName("Título")]
+        [MaxLength(200, ErrorMessage = "El nombre no debe exceder los 200 caracteres")]
         public string Titulo { get; set; } = null!;
 
         public TGePersona? ClienteNavigation { get; set; }

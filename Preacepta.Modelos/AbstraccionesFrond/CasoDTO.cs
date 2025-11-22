@@ -10,8 +10,10 @@ namespace Preacepta.Modelos.AbstraccionesFrond
         public int IdCaso { get; set; }
 
         [Required(ErrorMessage = "El nombre del caso es un dato requerido")]
+        [MaxLength (100, ErrorMessage = "El valor máximo es de 100 letras")]
         [DisplayName("Nombre del Caso")]
         public string Nombre { get; set; }
+
 
         public string? Fecha { get; set; }
 
@@ -19,6 +21,7 @@ namespace Preacepta.Modelos.AbstraccionesFrond
         public int IdTipoCaso { get; set; }
 
         [Required(ErrorMessage = "Debe de agregar una descripción del caso")]
+        [MaxLength(5000, ErrorMessage = "El valor máximo es de 5000 letras")]
         public string Descripcion { get; set; } = null!;
 
         [Required(ErrorMessage = "Seleccione un funcionario")]
@@ -31,6 +34,7 @@ namespace Preacepta.Modelos.AbstraccionesFrond
         public bool Activo { get; set; }
 
         [Required(ErrorMessage ="Debe agregar pruebas")]
+        [MaxLength(500, ErrorMessage = "El valor máximo es de 500 letras")]
         public string Pruebas { get; set; }
 
 

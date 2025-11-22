@@ -37,7 +37,7 @@
                             <h2>Bienvenido a PreaceptaApp</h2>
                             <h2>Sr. @Model.personaDTO.Nombre @Model.personaDTO.Apellido1</h2>
                         }
-                        <p>Idenficación: @Model.personaDTO.Cedula</p>
+                        <p>Idenficación: @Model.personaDTO.NumCedula</p>
                     </div>
                 </div>
             </div>
@@ -114,11 +114,6 @@
                                             {
                                                 <p>No cuenta con casos recientes</p>
                                             }
-
-                                            
-
-
-                                            <a asp-controller="Home" asp-action="CaseStudyDetails">Read More</a>
                                             <img class="practice-shape-one" src="~/lyso/img/home-one/7.png" alt="Shape">
                                             <img class="practice-shape-two" src="~/lyso/img/home-one/8.png" alt="Shape">
                                         </div>
@@ -166,6 +161,23 @@
                 confirmButtonText: 'Continuar',
                 customClass: {
                     confirmButton: 'contact-btn--primario' // Clase CSS personalizada
+                }
+            });
+        });
+    </script>
+}
+
+@if (TempData["UpdatePassword"] != null)
+{
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            Swal.fire({
+                title: 'Sistema de usuarios',
+                text: '@TempData["UpdatePassword"]',
+                icon: 'success',
+                confirmButtonText: 'Continuar',
+                customClass: {
+                    confirmButton: 'contact-btn--secundario' // Clase CSS personalizada
                 }
             });
         });

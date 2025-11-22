@@ -10,6 +10,7 @@ namespace Preacepta.Modelos.AbstraccionesFrond
         public int IdTipoAbogado { get; set; }
 
         [Required(ErrorMessage = "Debe de agregar nombre de la nueva especialdad del abogado")]
+        [MaxLength(50, ErrorMessage = "El nombre no debe exceder los 50 caracteres")]
         public string Nombre { get; set; } = null!;
 
         public virtual ICollection<TGeAbogado> TGeAbogados { get; set; } = new List<TGeAbogado>();

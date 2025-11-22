@@ -13,14 +13,14 @@
 <h1>Personas</h1>
 
 <p>
-    <a asp-action="Create" class="btn btn-primary">Agregar Persona</a>
+    <a class="contact-btn menuDanielBtns" asp-area="Identity" asp-page="/Account/RegisterClienteGestor">Nueva Persona</a>
 </p>
 
 <table class="table">
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Cedula)
+                @Html.DisplayNameFor(model => model.NumCedula)
             </th>
             <th>
                 Nombre completo
@@ -54,7 +54,7 @@
 @foreach (var item in Model) {
         <tr>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Cedula)
+                    @Html.DisplayFor(modelItem => item.NumCedula)
                 </td>
             <td>
                     @Html.DisplayFor(modelItem => item.Nombre) @Html.DisplayFor(modelItem => item.Apellido1) @Html.DisplayFor(modelItem => item.Apellido2)
@@ -95,15 +95,29 @@
 </table>
 
 @if (TempData["ErrorElimanacion"] != null)
-
-
-
 {
     <script>
         document.addEventListener("DOMContentLoaded", function () {
             Swal.fire({
                 title: 'Sistema de usuarios',
                 text: '@TempData["ErrorElimanacion"]',
+                icon: 'error',
+                confirmButtonText: 'Continuar',
+                customClass: {
+                    confirmButton: 'contact-btn--secundario' // Clase CSS personalizada
+                }
+            });
+        });
+    </script>
+}
+
+@if (TempData["UsuarioModificado"] != null)
+{
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            Swal.fire({
+                title: 'Sistema de usuarios',
+                text: '@TempData["UsuarioModificado"]',
                 icon: 'error',
                 confirmButtonText: 'Continuar',
                 customClass: {

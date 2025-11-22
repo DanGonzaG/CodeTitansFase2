@@ -12,7 +12,7 @@ namespace Preacepta.Modelos.AbstraccionesFrond
 
         [DisplayName("Número de Escritura")]
         [Required(ErrorMessage = "Debe ingresar el número de escritura")]
-        [StringLength(50)]
+        [MaxLength(50, ErrorMessage = "El nombre no debe exceder los 50 caracteres")]
         public string NumeroEscritura { get; set; } = null!;
 
         [DisplayName("Cédula del Abogado")]
@@ -33,19 +33,20 @@ namespace Preacepta.Modelos.AbstraccionesFrond
 
         [DisplayName("Partido de la Finca")]
         [Required(ErrorMessage = "Debe ingresar el partido de la finca")]
-        [StringLength(50)]
+        [MaxLength(50, ErrorMessage = "El nombre no debe exceder los 50 caracteres")]
         public string PartidoFinca { get; set; } = null!;
 
         [DisplayName("Matrícula de la Finca")]
         [Required(ErrorMessage = "Debe ingresar la matrícula de la finca")]
-        [StringLength(50)]
+        [MaxLength(50, ErrorMessage = "El nombre no debe exceder los 50 caracteres")]
         public string MatriculaFinca { get; set; } = null!;
 
         [DisplayName("Naturaleza de la Finca")]
         [Required(ErrorMessage = "Debe especificar la naturaleza de la finca")]
-        [StringLength(100)]
+        [MaxLength(100, ErrorMessage = "El nombre no debe exceder los 100 caracteres")]
         public string NaturalezaFinca { get; set; } = null!;
 
+        [Required(ErrorMessage = "Este campo es requerido")]
         [DisplayName("Distrito de la Finca")]
         public int DistritoFinca { get; set; }
 
@@ -55,42 +56,59 @@ namespace Preacepta.Modelos.AbstraccionesFrond
         [DisplayName("Provincia de la Finca")]
         public int ProvinciaFinca { get; set; }
 
+        [Required(ErrorMessage = "Este campo es requerido")]
         [DisplayName("Área de la Finca (m²)")]
         public decimal AreaFincaM2 { get; set; }
 
+        [Required(ErrorMessage = "Este campo es requerido")]
         [DisplayName("Plano Catastrado")]
-        [StringLength(100)]
+        [MaxLength(100, ErrorMessage = "El nombre no debe exceder los 100 caracteres")]
         public string PlanoCatastrado { get; set; } = null!;
 
+        [Required(ErrorMessage = "Este campo es requerido")]
         [DisplayName("Colinda al Norte")]
+        [MaxLength(100, ErrorMessage = "El nombre no debe exceder los 100 caracteres")]
         public string ColindaNorte { get; set; } = null!;
 
+        [Required(ErrorMessage = "Este campo es requerido")]
         [DisplayName("Colinda al Sur")]
+        [MaxLength(100, ErrorMessage = "El nombre no debe exceder los 100 caracteres")]
         public string ColindaSur { get; set; } = null!;
 
+        [Required(ErrorMessage = "Este campo es requerido")]
         [DisplayName("Colinda al Este")]
+        [MaxLength(100, ErrorMessage = "El nombre no debe exceder los 100 caracteres")]
         public string ColindaEste { get; set; } = null!;
 
+        [Required(ErrorMessage = "Este campo es requerido")]
         [DisplayName("Colinda al Oeste")]
+        [MaxLength(100, ErrorMessage = "El nombre no debe exceder los 100 caracteres")]
         public string ColindaOeste { get; set; } = null!;
 
+        [Required(ErrorMessage = "Este campo es requerido")]
         [DisplayName("Forma de Pago")]
-        [StringLength(100)]
+        [MaxLength(100, ErrorMessage = "El nombre no debe exceder los 100 caracteres")]
         public string FormaPago { get; set; } = null!;
 
+        [Required(ErrorMessage = "Este campo es requerido")]
         [DisplayName("Medio de Pago")]
-        [StringLength(100)]
+        [MaxLength(100, ErrorMessage = "El nombre no debe exceder los 100 caracteres")]
         public string MedioPago { get; set; } = null!;
 
+        [Required(ErrorMessage = "Este campo es requerido")]
         [DisplayName("Origen de Fondos")]
+        [MaxLength(100, ErrorMessage = "El nombre no debe exceder los 100 caracteres")]
         public string OrigenFondos { get; set; } = null!;
 
+        [Required(ErrorMessage = "Este campo es requerido")]
         [DisplayName("Lugar de Firma")]
         public int LugarFirma { get; set; }
 
+        [Required(ErrorMessage = "Este campo es requerido")]
         [DisplayName("Hora de Firma")]
         public TimeOnly HoraFirma { get; set; }
 
+        [Required(ErrorMessage = "Este campo es requerido")]
         [DisplayName("Fecha de Firma")]
         [DataType(DataType.Date)]
         public DateOnly FechaFirma { get; set; }

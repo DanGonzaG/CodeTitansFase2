@@ -95,13 +95,13 @@ namespace Preacepta.Modelos.AbstraccionesFrond
         [Required(ErrorMessage = "Debe de ingresar la ubicacion de la sociedad.")]
         public string? UbicacionSociedad { get; set; }
 
-        [Display(Name = "Cedula del deudor en Navigation")]
+        [Display(Name = "Cedula del deudor")]
         public virtual TGePersona? CedulaDeudorNavigation { get; set; }
 
-        [Display(Name = "Cedula del Fiador en Navigation")]
+        [Display(Name = "Cedula del Fiador")]
         public virtual TGePersona? CedulaFiadorNavigation { get; set; }
 
-        [Display(Name = "Lugar de pago en Navigation")]
+        [Display(Name = "Lugar de pago")]
         public virtual TCrDistrito? LugarPagoNavigation { get; set; }
 
         public virtual TGeAbogado? CedulaAbogadoNavigation { get; set; }

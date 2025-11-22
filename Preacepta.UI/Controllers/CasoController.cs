@@ -312,7 +312,25 @@ namespace Preacepta.UI.Controllers
         // GET: Caso/FormularioCaso
         [HttpGet]
         [Authorize(Roles = "Gestor, Abogado")]
-        public async Task<IActionResult> FormularioCaso(int id)
+        public async Task<IActionResult> FormularioCaso(string id)//se cambia de int a string
+        {
+
+            var cliente = await _buscarPersona.buscarXnumCedula(id);
+            var abogado = await _buscarPersona.buscarXcorreo(User.Identity.Name);
+
+            ViewBag.ClienteCedula = cliente.Cedula;
+            ViewBag.ClienteNumCedula = cliente.NumCedula;//se agrega
+            ViewBag.ClienteNombre = cliente.Nombre;
+            ViewBag.ClienteApellido1 = cliente.Apellido1;
+            ViewBag.ClienteApellido2 = cliente.Apellido2;
+            ViewBag.AbogadoCedula = abogado.Cedula;
+            ViewBag.AbogadoNumCedula = abogado.NumCedula;//se agrega
+
+
+            ViewData["IdTipoCaso"] = new SelectList(_listarCasosTipoLN.listar().Result, "IdTipoCaso", "Nombre");
+            return View();
+        }
+        /*public async Task<IActionResult> FormularioCaso(int id)
         {
 
             var cliente = await _buscarPersona.buscar(id);
@@ -327,7 +345,7 @@ namespace Preacepta.UI.Controllers
 
             ViewData["IdTipoCaso"] = new SelectList(_listarCasosTipoLN.listar().Result, "IdTipoCaso", "Nombre");
             return View();
-        }
+        }*/
 
         // POST: Caso/FormularioCaso
         // To protect from overposting attacks, enable the specific properties you want to bind to.
@@ -353,9 +371,12 @@ namespace Preacepta.UI.Controllers
             var abogado = await _buscarPersona.buscar(tCaso.IdAbogado);
 
             ViewBag.ClienteCedula = cliente.Cedula;
+            ViewBag.ClienteNumCedula = cliente.NumCedula;//se agrega
             ViewBag.ClienteNombre = cliente.Nombre;
             ViewBag.ClienteApellido1 = cliente.Apellido1;
             ViewBag.ClienteApellido2 = cliente.Apellido2;
+            ViewBag.AbogadoCedula = abogado.Cedula;
+            ViewBag.AbogadoNumCedula = abogado.NumCedula;//se agrega
 
             ViewData["IdTipoCaso"] = new SelectList(_listarCasosTipoLN.listar().Result, "IdTipoCaso", "Nombre");
             return View(tCaso);
@@ -446,7 +467,8 @@ namespace Preacepta.UI.Controllers
                 .Replace("{{NombreCliente}}", casoEncontrado.IdClienteNavigation.Nombre)
                 .Replace("{{Apellido1Cliente}}", casoEncontrado.IdClienteNavigation.Apellido1)
                 .Replace("{{Apellido2Cliente}}", casoEncontrado.IdClienteNavigation.Apellido2)
-                .Replace("{{IdCliente}}", casoEncontrado.IdClienteNavigation.Cedula.ToString())
+                //.Replace("{{IdCliente}}", casoEncontrado.IdClienteNavigation.Cedula.ToString())
+                .Replace("{{IdCliente}}", casoEncontrado.IdClienteNavigation.NumCedula) //se agrega
                 .Replace("{{NombreAbogado}}", casoEncontrado.IdAbogadoNavigation.CedulaNavigation.Nombre)
                 .Replace("{{Apellido1Abogado}}", casoEncontrado.IdAbogadoNavigation.CedulaNavigation.Apellido1)
                 .Replace("{{Apellido2Abogado}}", casoEncontrado.IdAbogadoNavigation.CedulaNavigation.Apellido2)
@@ -530,7 +552,8 @@ namespace Preacepta.UI.Controllers
             var model = new ContactoModel
             {
                 name = $"{persona.Nombre} {persona.Apellido1} {persona.Apellido2}",
-                cedula =  persona.Cedula.ToString(),
+                //cedula =  persona.Cedula.ToString(),
+                cedula = persona.NumCedula,
                 email = persona.Email,
                 phone_number = persona.Telefono1
             };

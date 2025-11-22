@@ -1,4 +1,5 @@
-﻿// Licensed to the .NET Foundation under one or more agreements.
+﻿
+// Licensed to the .NET Foundation under one or more agreements.
 // The .NET Foundation licenses this file to you under the MIT license.
 #nullable disable
 
@@ -7,8 +8,11 @@ using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.WebUtilities;
+using Microsoft.DotNet.Scaffolding.Shared.Messaging;
 using Preacepta.LN.GePersona.BuscarXid;
 using Preacepta.LN.GePersona.Editar;
+using Preacepta.Modelos.AbstraccionesBD;
+using Preacepta.UI.Services;
 using System.ComponentModel.DataAnnotations;
 using System.Text;
 using System.Text.Encodings.Web;
@@ -18,17 +22,19 @@ namespace Praecepta.UI.Areas.Identity.Pages.Account.Manage
     public class EmailModel : PageModel
     {
         private readonly UserManager<IdentityUser> _userManager;
-        private readonly SignInManager<IdentityUser> _signInManager;
-        private readonly IEmailSender _emailSender;
+        private readonly SignInManager<IdentityUser> _signInManager;        
         private readonly IBuscarXidGePersonaLN _buscarPersona;
         private readonly IEditarGePersonaLN _editarPersona;
+        private readonly IServicioEmail _emailSender;
+        private readonly ILogger<EmailModel> _logger;
 
         public EmailModel(
             UserManager<IdentityUser> userManager,
             SignInManager<IdentityUser> signInManager,
-            IEmailSender emailSender,
             IBuscarXidGePersonaLN buscarPersona,
-            IEditarGePersonaLN editarPersona
+            IEditarGePersonaLN editarPersona,
+            IServicioEmail emailSender,
+             ILogger<EmailModel> logger
             )
         {
             _userManager = userManager;
@@ -36,6 +42,9 @@ namespace Praecepta.UI.Areas.Identity.Pages.Account.Manage
             _emailSender = emailSender;
             _buscarPersona = buscarPersona;
             _editarPersona = editarPersona;
+            _logger = logger;
+            _logger.LogInformation("EmailSender inyectado: {Type}", _emailSender.GetType().FullName);
+
         }
 
         /// <summary>
@@ -106,56 +115,9 @@ namespace Praecepta.UI.Areas.Identity.Pages.Account.Manage
             await LoadAsync(user);
             return Page();
         }
-
-
-        /*Este metedo es funcional y cambia la tabla personas y las tabla de identity, pero solicita confirmacion por correo electrónico lo
-         cual puede ser usando posteriormente*/
-        /*public async Task<IActionResult> OnPostChangeEmailAsync()
-        {
-            var user = await _userManager.GetUserAsync(User);
-            if (user == null)
-            {
-                return NotFound($"Unable to load user with ID '{_userManager.GetUserId(User)}'.");
-            }
-
-            if (!ModelState.IsValid)
-            {
-                await LoadAsync(user);
-                return Page();
-            }
-
-            var email = await _userManager.GetEmailAsync(user);
-            if (Input.NewEmail != email)
-            {
-                //actualiza la tabla persona
-                var persona = await _buscarPersona.buscarXcorreo(user.UserName);
-                persona.Email = Input.NewEmail;
-                await _editarPersona.editar(persona);
-
-                //actualiza datos de identity
-                var userId = await _userManager.GetUserIdAsync(user);
-                var code = await _userManager.GenerateChangeEmailTokenAsync(user, Input.NewEmail);
-                code = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(code));
-                var callbackUrl = Url.Page(
-                    "/Account/ConfirmEmailChange",
-                    pageHandler: null,
-                    values: new { area = "Identity", userId = userId, email = Input.NewEmail, code = code },
-                    protocol: Request.Scheme);
-                await _emailSender.SendEmailAsync(
-                    Input.NewEmail,
-                    "Confirm your email",
-                    $"Please confirm your account by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.");
-
-                StatusMessage = "Confirmation link to change email sent. Please check your email.";
-                return RedirectToPage();
-            }
-
-            StatusMessage = "Your email is unchanged.";
-            return RedirectToPage();
-        }*/
-
-        /*el mismo metodo que modfica a la persona y el identity del usuario pero de manera directa si usar correo de confirmacion*/
-        public async Task<IActionResult> OnPostChangeEmailAsync()
+        
+        
+        public async Task<IActionResult> OnPostChangeEmailAsync(string returnUrl = null)
         {
             var user = await _userManager.GetUserAsync(User);
             if (user == null)
@@ -173,9 +135,11 @@ namespace Praecepta.UI.Areas.Identity.Pages.Account.Manage
             if (existente != null && existente.Id != user.Id)
             {
                 ModelState.AddModelError(string.Empty, "Ya existe una cuenta con ese correo electrónico.");
+                TempData["ErrorCorreoExistente"] = $"El correo ya se encuentra registrado";
                 await LoadAsync(user);
                 return Page();
             }
+
 
             var email = await _userManager.GetEmailAsync(user);
             if (Input.NewEmail != email)
@@ -183,7 +147,7 @@ namespace Praecepta.UI.Areas.Identity.Pages.Account.Manage
                 //actualiza la tabla persona
                 var persona = await _buscarPersona.buscarXcorreo(user.UserName);
                 persona.Email = Input.NewEmail;
-                await _editarPersona.editar(persona);
+                int cont = await _editarPersona.editar(persona);
 
                 //actualiza datos de identity
                 // Actualiza datos del usuario en Identity
@@ -193,26 +157,50 @@ namespace Praecepta.UI.Areas.Identity.Pages.Account.Manage
                 // Si usás el correo como UserName, actualizalo también
                 user.UserName = Input.NewEmail;
                 user.NormalizedUserName = Input.NewEmail.ToUpperInvariant();
+                user.EmailConfirmed = false;
 
                 var result = await _userManager.UpdateAsync(user);
-                if (!result.Succeeded)
+                if (result.Succeeded)
+                {
+                    var userId = await _userManager.GetUserIdAsync(user);                    
+                    var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
+                    code = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(code));
+                    var callbackUrl = Url.Page(
+                             "/Account/ConfirmEmail",
+                             pageHandler: null,
+                             values: new { area = "Identity", userId = userId, code = code, returnUrl = returnUrl },
+                             protocol: Request.Scheme);
+                    try 
+                    {
+                        _logger.LogWarning("→ Entrando a SendEmailAsync con destino: {Email}", user.Email);
+                        await _emailSender.SendEmailAsync(await _userManager.GetEmailAsync(user), "Confirma tu correo electrónico",
+                            $"Por favor, confirme su cuenta mediante <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>haciendo clic aquí</a>.");
+                        _logger.LogWarning("← Salida de SendEmailAsync sin excepción");
+
+                        Console.WriteLine($"URL de confirmación: {callbackUrl}");
+                    }
+                    catch (Exception ex) 
+                    {
+                        Console.WriteLine($"error, {ex.Message}");
+                    }
+                   
+                    StatusMessage = "Se ha enviado un correo electrónico de verificación. Por favor, revise su correo electrónico.";
+                    TempData["CorreoModificado"] = $"Su correo fue modificado";
+                    await _signInManager.RefreshSignInAsync(user);
+                    return Page();                   
+                }
+                else 
                 {
                     foreach (var error in result.Errors)
                     {
                         ModelState.AddModelError(string.Empty, error.Description);
                     }
-
-                    await LoadAsync(user);
                     return Page();
+
                 }
-
-                StatusMessage = "El correo fue actualizado correctamente.";
-                return RedirectToPage();
-
             }
             StatusMessage = "El correo no ha cambiado.";
             return RedirectToPage();
-
         }
 
         public async Task<IActionResult> OnPostSendVerificationEmailAsync()
@@ -243,7 +231,7 @@ namespace Praecepta.UI.Areas.Identity.Pages.Account.Manage
                 "Confirm your email",
                 $"Please confirm your account by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.");
 
-            StatusMessage = "Verification email sent. Please check your email.";
+            StatusMessage = "Se ha enviado un correo electrónico de verificación. Por favor, revise su correo electrónico.";
             return RedirectToPage();
         }
     }
