@@ -70,7 +70,7 @@
                         <div class="col-sm-6 col-lg-6">
                             <div class="form-group">
                                 <!--<input asp-for="CedulaVendedor" class="form-control" value="@ViewBag.VendedorCedula" asp-items="ViewBag.CedulaVendedor" id="idCedulaVendedor"></input>-->
-                                <input type="text" class="form-control" value="@ViewBag.VendedorNombre @ViewBag.VendedorApellido1 @ViewBag.VendedorApellido2 @ViewBag.Dash @ViewBag.VendedorCedula" readonly  />
+                                <input type="text" class="form-control" value="@ViewBag.VendedorNombre @ViewBag.VendedorApellido1 @ViewBag.VendedorApellido2 @ViewBag.Dash @ViewBag.VendedorNumCedula" readonly />
                                 <input type="hidden" asp-for="CedulaVendedor" class="form-control" value="@ViewBag.VendedorCedula" id="idCedulaVendedor" lang="es" spellcheck="true" readonly />
                                 <span asp-validation-for="CedulaVendedor" class="text-danger"></span>
                             </div>
@@ -85,7 +85,7 @@
                         </div>
                         <div class="col-sm-6 col-lg-6">
                             <div class="form-group">
-                                <input type="text" class="form-control" value="@ViewBag.CompradorNombre @ViewBag.CompradorApellido1 @ViewBag.CompradorApellido2 @ViewBag.Dash @ViewBag.CompradorCedula" readonly  />
+                                <input type="text" class="form-control" value="@ViewBag.CompradorNombre @ViewBag.CompradorApellido1 @ViewBag.CompradorApellido2 @ViewBag.Dash @ViewBag.CompradorNumCedula" readonly />
                                 <input type="hidden" asp-for="CedulaComprador" class="form-control" value="@ViewBag.CompradorCedula" id="idCedulaComprador" lang="es" spellcheck="true" readonly />
                                 <!--<input asp-for="CedulaComprador" class="form-control" value="@ViewBag." id="idCedulaVendedor" lang="es" spellcheck="true" readonly />-->
                                 <span asp-validation-for="CedulaComprador" class="text-danger"></span>
