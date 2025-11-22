@@ -11,7 +11,7 @@ namespace Preacepta.Modelos.AbstraccionesFrond
 
         [DisplayName("Razón Social de la Empresa")]
         [Required(ErrorMessage = "Debe ingresar la razón social de la empresa")]
-        [StringLength(255)]
+        [MaxLength(255, ErrorMessage = "El nombre no debe exceder los 255 caracteres")]
         public string RazonSocialEmpresa { get; set; } = null!;
 
         [DisplayName("Provincia")]
@@ -19,7 +19,7 @@ namespace Preacepta.Modelos.AbstraccionesFrond
 
         [DisplayName("Cédula Jurídica de la Empresa")]
         [Required(ErrorMessage = "Debe ingresar la cédula jurídica")]
-        [StringLength(20)]
+        [MaxLength(20, ErrorMessage = "El nombre no debe exceder los 20 caracteres")]
         public string CedulaJuridicaEmpresa { get; set; } = null!;
 
         [DisplayName("Cédula del Abogado")]
@@ -30,7 +30,7 @@ namespace Preacepta.Modelos.AbstraccionesFrond
 
         [DisplayName("Tipo de Servicios")]
         [Required(ErrorMessage = "Debe especificar el tipo de servicios")]
-        [StringLength(255)]
+        [MaxLength(255, ErrorMessage = "El nombre no debe exceder los 255 caracteres")]
         public string TipoServicios { get; set; } = null!;
 
         [DisplayName("Fecha de Inicio")]
@@ -47,6 +47,7 @@ namespace Preacepta.Modelos.AbstraccionesFrond
 
         [DisplayName("Información Confidencial")]
         [Required(ErrorMessage = "Debe agregar la información confidencial")]
+        [MaxLength(255, ErrorMessage = "El nombre no debe exceder los 255 caracteres")]
         public string InformacionConfidencial { get; set; } = null!;
 
         [DisplayName("Ciudad de Firma")]

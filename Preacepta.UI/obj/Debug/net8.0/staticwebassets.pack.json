@@ -1105,6 +1105,14 @@
       "PackagePath": "staticwebassets\\lyso\\js\\SweetAlertUsuarioGestor.js"
     },
     {
+      "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lyso\\js\\TipoIdentificacion.js",
+      "PackagePath": "staticwebassets\\lyso\\js\\TipoIdentificacion.js"
+    },
+    {
+      "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lyso\\js\\TipoIdentificacionGestor.js",
+      "PackagePath": "staticwebassets\\lyso\\js\\TipoIdentificacionGestor.js"
+    },
+    {
       "Id": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lyso\\js\\bootstrap.bundle.min.js",
       "PackagePath": "staticwebassets\\lyso\\js\\bootstrap.bundle.min.js"
     },

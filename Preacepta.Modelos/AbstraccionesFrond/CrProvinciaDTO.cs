@@ -12,6 +12,7 @@ namespace Preacepta.Modelos.AbstraccionesFrond
 
         [Required(ErrorMessage = "Debe ingresar el nombre de la provincia")]
         [DisplayName("Nombre")]
+        [MaxLength(100, ErrorMessage = "Solo puede ingresar 100 caracteres")]
         public string? NombreProvincia { get; set; }
 
 

@@ -83,7 +83,7 @@ namespace Preacepta.UI.Controllers
         [Authorize(Roles = "Gestor")]
         public IActionResult Create()
         {
-            ViewData["IdCliente"] = new SelectList(_listarGePersona.listar().Result, "Cedula", "Apellido1");
+            //ViewData["IdCliente"] = new SelectList(_listarGePersona.listar().Result, "Cedula", "Apellido1");
             return View();
         }
 
@@ -100,7 +100,7 @@ namespace Preacepta.UI.Controllers
                       await _crear.crear(tTestimonio);
                       return RedirectToAction(nameof(Index));
                   }
-            ViewData["IdCliente"] = new SelectList(_listarGePersona.listar().Result, "Cedula", "Apellido1");
+            //ViewData["IdCliente"] = new SelectList(_listarGePersona.listar().Result, "Cedula", "Apellido1");
             return View(tTestimonio);;
         }
 

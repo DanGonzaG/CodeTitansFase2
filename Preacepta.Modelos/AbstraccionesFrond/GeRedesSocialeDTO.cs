@@ -15,6 +15,7 @@ namespace Preacepta.Modelos.AbstraccionesFrond
 
         [Required(ErrorMessage = "Debe de agregar un link de acceso a las redes sociales")]
         [DisplayName("Link")]
+        [MaxLength(5000, ErrorMessage = "El nombre no debe exceder los 5000 caracteres")]
         public string LinkRedSocila { get; set; } = null!;
 
         public virtual TGeAbogado? CedulaNavigation { get; set; } = null!;
