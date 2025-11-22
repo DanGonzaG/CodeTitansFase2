@@ -332,6 +332,7 @@ builder.Services.Configure<IdentityOptions>(options =>
     options.Lockout.MaxFailedAccessAttempts = 3;
     options.Lockout.AllowedForNewUsers = true;
     options.ClaimsIdentity.RoleClaimType = ClaimTypes.Role;
+    options.Password.RequiredLength = 12;
 
 });
 

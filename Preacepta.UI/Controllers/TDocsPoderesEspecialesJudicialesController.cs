@@ -232,16 +232,17 @@ namespace Preacepta.UI.Controllers
 
         [HttpGet]
         [Authorize(Roles = "Gestor, Abogado")]
-        public async Task<IActionResult> CreateDocsPoderesEspecialesJudiciales(int id)
-        {
-            var cliente = await _buscarPersona.buscar(id);
+        public async Task<IActionResult> CreateDocsPoderesEspecialesJudiciales(string id)
+        {            
+            var cliente = await _buscarPersona.buscarXnumCedula(id);
             var abogado = await _buscarPersona.buscarXcorreo(User.Identity.Name);
-
-            ViewBag.ClienteCedula = cliente?.Cedula ?? 0;
+            
+            ViewBag.ClienteCedula = cliente?.NumCedula ?? "";
             ViewBag.ClienteNombre = cliente?.Nombre ?? "";
             ViewBag.ClienteApellido1 = cliente?.Apellido1 ?? "";
             ViewBag.ClienteApellido2 = cliente?.Apellido2 ?? "";
-            ViewBag.AbogadoCedula = abogado?.Cedula ?? 0;
+            ViewBag.AbogadoCedula = abogado.NumCedula ?? "";
+
 
             var model = new DocsPoderesEspecialesJudicialeDTO
             {
@@ -259,6 +260,7 @@ namespace Preacepta.UI.Controllers
         public async Task<IActionResult> CreateDocsPoderesEspecialesJudiciales(DocsPoderesEspecialesJudicialeDTO dto)
         {
             dto.Fecha ??= DateTime.Now.ToString("yyyy-MM-dd");
+            
 
             if (!ModelState.IsValid)
             {
@@ -291,6 +293,7 @@ namespace Preacepta.UI.Controllers
                     Abogado = dto.IdAbogado,
                     IdDocumento = nuevoIdDoc,
                     Titulo = $"Doc.no.{nuevoIdDoc} Poder especial judicial"
+                    
                 };
                 await _crearHistorial.Crear(historial);
 

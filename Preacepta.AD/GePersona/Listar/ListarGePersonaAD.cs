@@ -38,7 +38,11 @@ namespace Preacepta.AD.GePersona.Listar
                         Activo = persona.Activo,
                         Telefono1 = persona.Telefono1,
                         Telefono2 = persona.Telefono2,
-                        Genero = persona.Genero
+                        Genero = persona.Genero,
+                        ExpirationPassword = persona.ExpirationPassword.ToString("dd/MM/yyyy"),
+                        TipoIdentificacion = persona.TipoIdentificacion,
+                        NumCedula = persona.NumCedula
+                        
                     }).ToListAsync();
             }
             catch (Exception ex)

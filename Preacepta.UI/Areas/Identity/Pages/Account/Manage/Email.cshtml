@@ -7,6 +7,7 @@
 
 <h2>@ViewData["Title"]</h2>
 <p class="LetraNegra" style="text-align:center">Realice cambios en su cuenta de correo electrónico para ingreso al sistema PreaceptaApp y para notificaciónes o comunición con el despacho</p>
+<p class="LetraNegra" style="text-align:center">Al cambiar el correo electrónico, el sistema cerrará su sesión actual y podra igresar al sistema hasta haber hecho confirmación por correo electrónico</p>
 <partial name="_StatusMessage" for="StatusMessage" />
 <div class="row">
 
@@ -44,4 +45,39 @@
 
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />
+}
+
+@if (TempData["ErrorCorreoExistente"] != null)
+{
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            Swal.fire({
+                title: 'Sistema de usuarios',
+                text: '@TempData["ErrorCorreoExistente"]',
+                icon: 'warning',
+                confirmButtonText: 'Continuar',
+                customClass: {
+                    confirmButton: 'contact-btn--secundario' // Clase CSS personalizada
+                }
+            });
+        });
+    </script>
+}
+
+@if (TempData["CorreoModificado"] != null)
+
+{
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            Swal.fire({
+                title: 'Sistema de usuarios',
+                text: '@TempData["CorreoModificado"]',
+                icon: 'success',
+                confirmButtonText: 'Continuar',
+                customClass: {
+                    confirmButton: 'contact-btn--secundario' // Clase CSS personalizada
+                }
+            });
+        });
+    </script>
 }

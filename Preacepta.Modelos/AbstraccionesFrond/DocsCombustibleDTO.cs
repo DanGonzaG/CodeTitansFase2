@@ -10,7 +10,8 @@ namespace Preacepta.Modelos.AbstraccionesFrond
         [DisplayName("ID")]
         public int Id { get; set; }
 
-        [StringLength(50, ErrorMessage = "El nombre no debe exceder los 50 caracteres")]
+        [Required(ErrorMessage = "Debe de colocar el nombre de combustible")]
+        [MaxLength(50, ErrorMessage = "El nombre no debe exceder los 50 caracteres")]
         [DisplayName("Nombre del combustible")]
         public string? Nombre { get; set; }
 

@@ -18,9 +18,11 @@ namespace Preacepta.Modelos.AbstraccionesFrond
         [Required(ErrorMessage = "Debe indicar la cédula del abogado")]
         public int CedulaAbogado { get; set; }
 
+        [Required(ErrorMessage = "Este campo es requerido")]
         [DisplayName("Marca del Vehículo")]
         public int MarcaVehiculo { get; set; }
 
+        [Required(ErrorMessage = "Este campo es requerido")]
         [DisplayName("Estilo del Vehículo")]
         public int EstiloVehiculo { get; set; }
 
@@ -29,7 +31,7 @@ namespace Preacepta.Modelos.AbstraccionesFrond
 
         [DisplayName("Categoría")]
         [Required(ErrorMessage = "Debe ingresar la categoría")]
-        [StringLength(100)]
+        [MaxLength(100, ErrorMessage = "El nombre no debe exceder los 100 caracteres")]
         public string Categoria { get; set; } = null!;
 
         [DisplayName("Marca del Motor")]
@@ -39,50 +41,59 @@ namespace Preacepta.Modelos.AbstraccionesFrond
 
         [DisplayName("Número de Motor")]
         [Required(ErrorMessage = "Debe ingresar el número de motor")]
-        [StringLength(100)]
+        [MaxLength(100, ErrorMessage = "El nombre no debe exceder los 100 caracteres")]
         public string NumeroMotor { get; set; } = null!;
 
         [DisplayName("Número de Serie del Chasis")]
         [Required(ErrorMessage = "Debe ingresar el número de serie del chasis")]
-        [StringLength(100)]
+        [MaxLength(100, ErrorMessage = "El nombre no debe exceder los 100 caracteres")]
         public string NumeroSerieChasis { get; set; } = null!;
 
         [DisplayName("VIN")]
         [Required(ErrorMessage = "Debe ingresar el VIN")]
-        [StringLength(100)]
+        [MaxLength(100, ErrorMessage = "El nombre no debe exceder los 100 caracteres")]
         public string Vin { get; set; } = null!;
 
+        [Required(ErrorMessage = "Este campo es requerido")]
         [DisplayName("Año")]
         public int Anio { get; set; }
 
         [DisplayName("Carrocería")]
         [Required(ErrorMessage = "Debe ingresar la carrocería")]
-        [StringLength(100)]
+        [MaxLength(100, ErrorMessage = "El nombre no debe exceder los 100 caracteres")]
         public string Carroceria { get; set; } = null!;
 
+        [Required(ErrorMessage = "Este campo es requerido")]
         [DisplayName("Peso Neto (kg)")]
         public decimal PesoNeto { get; set; }
 
+        [Required(ErrorMessage = "Este campo es requerido")]
         [DisplayName("Peso Bruto (kg)")]
         public decimal PesoBruto { get; set; }
 
+        [Required(ErrorMessage = "Este campo es requerido")]
         [DisplayName("Potencia (HP)")]
         public decimal Potencia { get; set; }
 
+        [Required(ErrorMessage = "Este campo es requerido")]
         [DisplayName("Color")]
-        [StringLength(50)]
+        [MaxLength(50, ErrorMessage = "El nombre no debe exceder los 50 caracteres")]
         public string Color { get; set; } = null!;
 
+        [Required(ErrorMessage = "Este campo es requerido")]
         [DisplayName("Capacidad")]
         public int Capacidad { get; set; }
 
+        [Required(ErrorMessage = "Este campo es requerido")]
         [DisplayName("Combustible")]
-        [StringLength(50)]
+        [MaxLength(50, ErrorMessage = "El nombre no debe exceder los 50 caracteres")]
         public string Combustible { get; set; } = null!;
 
+        [Required(ErrorMessage = "Este campo es requerido")]
         [DisplayName("Cilindraje")]
-        [StringLength(50)]
+        [MaxLength(50, ErrorMessage = "El nombre no debe exceder los 50 caracteres")]
         public string Cilindraje { get; set; } = null!;
+
 
         [DisplayName("Lugar de Firma")]
         public int LugarFirma { get; set; }

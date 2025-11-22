@@ -12,7 +12,7 @@ namespace Preacepta.Modelos.AbstraccionesFrond
 
         [DisplayName("Nombre de la Marca")]
         [Required(ErrorMessage = "Debe ingresar el nombre de la marca")]
-        [StringLength(50)]
+        [MaxLength(50, ErrorMessage = "El nombre no debe exceder los 50 caracteres")]
         public string Nombre { get; set; } = null!;
 
         [DisplayName("Inscripciones de Vehículo")]

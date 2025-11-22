@@ -32,6 +32,9 @@ namespace Praecepta.UI.Areas.Identity.Pages.Account
         [BindProperty]
         public InputModel Input { get; set; }
 
+        [BindProperty(SupportsGet = true)]
+        public bool? ValidarPassword { get; set; }
+
         /// <summary>
         ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
         ///     directly from your code. This API may change or be removed in future releases.
@@ -68,7 +71,7 @@ namespace Praecepta.UI.Areas.Identity.Pages.Account
             public bool RememberMachine { get; set; }
         }
 
-        public async Task<IActionResult> OnGetAsync(bool rememberMe, string returnUrl = null)
+        public async Task<IActionResult> OnGetAsync(bool rememberMe, string returnUrl = null, bool? validarPassword = null)
         {
             // Ensure the user has gone through the username & password screen first
             var user = await _signInManager.GetTwoFactorAuthenticationUserAsync();
@@ -80,11 +83,12 @@ namespace Praecepta.UI.Areas.Identity.Pages.Account
 
             ReturnUrl = returnUrl;
             RememberMe = rememberMe;
+            ValidarPassword = validarPassword;
 
             return Page();
         }
 
-        public async Task<IActionResult> OnPostAsync(bool rememberMe, string returnUrl = null)
+        public async Task<IActionResult> OnPostAsync(bool rememberMe, string returnUrl = null, bool? validarPassword = null)
         {
             if (!ModelState.IsValid)
             {
@@ -107,6 +111,13 @@ namespace Praecepta.UI.Areas.Identity.Pages.Account
 
             if (result.Succeeded)
             {
+                if (ValidarPassword == true)
+                {
+                    ModelState.AddModelError(string.Empty, "Su contraseña ha expirado, favor crear un nueva");
+                    TempData["ExpirationPassword"] = "Su contraseña ha expirado, favor crear un nueva";
+                    return RedirectToPage("./ExpirationPassword");
+                }
+
                 _logger.LogInformation("El usuario con ID '{UserId}' inició sesión con 2fa.", user.Id);
                 return LocalRedirect(returnUrl);
             }

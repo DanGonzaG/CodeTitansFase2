@@ -50,8 +50,8 @@ namespace Praecepta.UI.Areas.Identity.Pages.Account
             ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
             ///     directly from your code. This API may change or be removed in future releases.
             /// </summary>
-            [Required(ErrorMessage = "La contraseña y la contraseña de confirmación no coinciden.")]
-            [StringLength(100, ErrorMessage = "El {0} debe tener al menos {2} y como máximo {1} caracteres de longitud.", MinimumLength = 6)]
+            [Required(ErrorMessage = "Debe ingresar un contraseña.")]
+            [StringLength(18, ErrorMessage = "El {0} debe tener al menos {2} y como máximo {1} caracteres de longitud.", MinimumLength = 12)]
             [RegularExpression(@"^(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).+$", ErrorMessage = "La contraseña debe de tener al menos un numero, una mayuscula y un símbolo")]
             [DataType(DataType.Password)]
             [DisplayName("Contraseña")]
