@@ -94,8 +94,7 @@
               "RelativeToolTip": "Preacepta.UI\\Controllers\\CitasGestorController.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-21T02:15:35.466Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-11-21T02:15:35.466Z"
             },
             {
               "$type": "Document",
@@ -105,7 +104,7 @@
               "RelativeDocumentMoniker": "Preacepta.UI\\Controllers\\CasoController.cs",
               "ToolTip": "C:\\Preacepta\\Preacepta.UI\\Controllers\\CasoController.cs",
               "RelativeToolTip": "Preacepta.UI\\Controllers\\CasoController.cs",
-              "ViewState": "AgIAAEEBAAAAAAAAAAAiwEABAAAhAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAEABAAAhAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-11-21T00:20:20.925Z",
               "EditorCaption": ""
@@ -120,8 +119,7 @@
               "RelativeToolTip": "Preacepta.UI\\Controllers\\THistorialDocumento1Controller.cs",
               "ViewState": "AgIAAMAAAAAAAAAAAAAAACUBAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-21T02:21:59.326Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-11-21T02:21:59.326Z"
             },
             {
               "$type": "Document",
@@ -133,8 +131,7 @@
               "RelativeToolTip": "Preacepta.UI\\Views\\Caso\\FormularioCaso.cshtml",
               "ViewState": "AgIAACQAAAAAAAAAAAAAAEAAAAB/AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-11-21T02:49:00.222Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-11-21T02:49:00.222Z"
             },
             {
               "$type": "Document",
@@ -146,8 +143,7 @@
               "RelativeToolTip": "Preacepta.UI\\wwwroot\\lyso\\js\\SweetAlertUsuarioGestor.js",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABoAAAAHAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
-              "WhenOpened": "2025-11-21T03:30:10.496Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-11-21T03:30:10.496Z"
             },
             {
               "$type": "Document",
@@ -159,8 +155,7 @@
               "RelativeToolTip": "Preacepta.UI\\Controllers\\CitasTipoController.cs",
               "ViewState": "AgIAAGAAAAAAAAAAAAAYwAwAAAAEAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-21T02:15:49.456Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-11-21T02:15:49.456Z"
             },
             {
               "$type": "Document",
@@ -172,8 +167,7 @@
               "RelativeToolTip": "Preacepta.UI\\Controllers\\TTestimoniosController.cs",
               "ViewState": "AgIAAHwBAAAAAAAAAAAiwCAAAAAzAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-21T02:18:01.897Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-11-21T02:18:01.897Z"
             },
             {
               "$type": "Document",
@@ -185,8 +179,7 @@
               "RelativeToolTip": "Preacepta.UI\\Controllers\\DocsCombustiblesController.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABQAAAAhAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-21T02:12:58Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-11-21T02:12:58Z"
             },
             {
               "$type": "Document",
@@ -198,8 +191,7 @@
               "RelativeToolTip": "Preacepta.UI\\Controllers\\DocsMarcaVehiculoController.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABQAAAAhAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-21T02:11:27.198Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-11-21T02:11:27.198Z"
             },
             {
               "$type": "Document",
@@ -211,8 +203,7 @@
               "RelativeToolTip": "Preacepta.UI\\Controllers\\AbogadoController.cs",
               "ViewState": "AgIAAEkAAAAAAAAAAAAowAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-21T00:20:20.915Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-11-21T00:20:20.915Z"
             },
             {
               "$type": "Document",
@@ -224,8 +215,7 @@
               "RelativeToolTip": "Preacepta.UI\\Controllers\\CitasController.cs",
               "ViewState": "AgIAAKUAAAAAAAAAAAAIwAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-21T00:20:20.915Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-11-21T00:20:20.915Z"
             }
           ]
         },
@@ -247,8 +237,7 @@
               "RelativeToolTip": "Preacepta.UI\\Controllers\\TDocsPoderesEspecialesJudicialesController.cs",
               "ViewState": "AgIAAOQAAAAAAAAAAAAjwCYBAABLAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-21T02:31:12.811Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-11-21T02:31:12.811Z"
             },
             {
               "$type": "Document",
@@ -260,8 +249,7 @@
               "RelativeToolTip": "Preacepta.UI\\Views\\TDocsPoderesEspecialesJudiciales\\CreateDocsPoderesEspecialesJudiciales.cshtml",
               "ViewState": "AgIAAB4AAAAAAAAAAAAAADgAAABgAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-11-21T02:46:07.405Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-11-21T02:46:07.405Z"
             },
             {
               "$type": "Document",
@@ -271,7 +259,7 @@
               "RelativeDocumentMoniker": "Preacepta.UI\\Controllers\\PersonasController.cs",
               "ToolTip": "C:\\Preacepta\\Preacepta.UI\\Controllers\\PersonasController.cs",
               "RelativeToolTip": "Preacepta.UI\\Controllers\\PersonasController.cs",
-              "ViewState": "AgIAANgBAAAAAAAAAAApwP4BAAAIAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAP4BAAAIAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-11-21T01:53:53.529Z",
               "EditorCaption": ""
