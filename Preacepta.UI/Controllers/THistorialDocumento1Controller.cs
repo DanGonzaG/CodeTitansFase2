@@ -325,11 +325,13 @@ namespace Preacepta.UI.Controllers
             var fiador = await _buscarPersona.buscar(resultadoPagare.CedulaFiador);
             var abogado = await _buscarPersona.buscarXcorreo(User.Identity.Name);
 
+            ViewBag.DeudorNumCedula = deudor?.NumCedula;
             ViewBag.DeudorCedula = deudor?.Cedula ?? 0;
             ViewBag.DeudorNombre = deudor?.Nombre ?? "";
             ViewBag.DeudorApellido1 = deudor?.Apellido1 ?? "";
             ViewBag.DeudorApellido2 = deudor?.Apellido2 ?? "";
 
+            ViewBag.FiadorNumCedula = fiador?.NumCedula;
             ViewBag.FiadorCedula = fiador?.Cedula ?? 0;
             ViewBag.FiadorNombre = fiador?.Nombre ?? "";
             ViewBag.FiadorApellido1 = fiador?.Apellido1 ?? "";
@@ -342,16 +344,7 @@ namespace Preacepta.UI.Controllers
             var distritos = await _listarDireccion.listarDistritos();
             ViewBag.UbicacionFirma = new SelectList(distritos, "IdDistrito", "NombreDistrito");
 
-            var model = new DocsPagareDTO
-            {
-                CedulaDeudor = deudor?.Cedula ?? 0,
-                CedulaFiador = fiador?.Cedula ?? 0,
-                CedulaAbogado = abogado?.Cedula ?? 0,
-                FechaFirma = DateTime.Today.ToString("yyyy-MM-dd"),
-                HoraFirma = DateTime.Now.ToString("HH:mm")
-            };
-
-            return View("CreateDocsPGDesdeHitorial", model);
+            return View();
         }
 
         // Compraventa vehiculo
@@ -363,12 +356,14 @@ namespace Preacepta.UI.Controllers
             var comprador = await _buscarPersona.buscar(resultadoCVvehiculo.CedulaComprador);
             var abogado = await _buscarPersona.buscarXcorreo(User.Identity.Name);
 
+            ViewBag.ClienteNumCedula = comprador?.NumCedula;
             ViewBag.ClienteCedula = comprador?.Cedula ?? 0;
             ViewBag.ClienteNombre = comprador?.Nombre ?? "";
             ViewBag.ClienteApellido1 = comprador?.Apellido1 ?? "";
             ViewBag.ClienteApellido2 = comprador?.Apellido2 ?? "";
             ViewBag.AbogadoCedula = abogado?.Cedula ?? 0;
 
+            ViewBag.PropietarioNumCedula = propietario?.NumCedula;
             ViewBag.PropietarioCedula = propietario?.Cedula ?? 0;
             ViewBag.PropietarioNombre = propietario?.Nombre ?? "";
             ViewBag.PropietarioApellido1 = propietario?.Apellido1 ?? "";
@@ -386,17 +381,9 @@ namespace Preacepta.UI.Controllers
             ViewData["TipoVehiculo"] = new SelectList(tipos, "Id", "Nombre");
             ViewData["Combustible"] = new SelectList(combs, "Id", "Nombre");
 
-            var model = new DocsOpcionCompraventaVehiculoDTO
-            {
-                CedulaPropietario = propietario?.Cedula ?? 0,
-                CedulaComprador = comprador?.Cedula ?? 0,
-                CedulaAbogado = abogado?.Cedula ?? 0,
-                FechaInicio = DateTime.Today.ToString("yyyy-MM-dd"),
-                FechaFirma = DateTime.Today.ToString("yyyy-MM-dd"),
-                HoraFirma = DateTime.Now.ToString("HH:mm")
-            };
+            
 
-            return View("CreateDocsOCVDesdeHistorial", model);
+            return View();
         }
 
         [HttpGet]
@@ -406,20 +393,21 @@ namespace Preacepta.UI.Controllers
             var cliente = await _buscarPersona.buscar(resultadoPoderesesjudiciales.IdCliente);
             var abogado = await _buscarPersona.buscarXcorreo(User.Identity.Name);
 
+            ViewBag.ClienteNumCedula = cliente?.NumCedula;
             ViewBag.ClienteCedula = cliente?.Cedula ?? 0;
             ViewBag.ClienteNombre = cliente?.Nombre ?? "";
             ViewBag.ClienteApellido1 = cliente?.Apellido1 ?? "";
             ViewBag.ClienteApellido2 = cliente?.Apellido2 ?? "";
             ViewBag.AbogadoCedula = abogado?.Cedula ?? 0;
 
-            var model = new DocsPoderesEspecialesJudicialeDTO
+            /*var model = new DocsPoderesEspecialesJudicialeDTO
             {
                 Fecha = DateTime.Today.ToString("yyyy-MM-dd"),
-                IdCliente = cliente?.Cedula ?? 0,
+                IdCliente = cliente.NumCedula,
                 IdAbogado = abogado?.Cedula ?? 0
-            };
+            };*/
 
-            return View("CreateDocsPoderesJudDesdeHistorial", model);
+            return View();
         }
 
         [HttpGet]
@@ -544,19 +532,21 @@ namespace Preacepta.UI.Controllers
             switch (tipoDoc)
             {
                 case "Atorización RE.":
-                    var resultadoAutorizacionRevisionE = await _buscarDocsAutorizacionRevision
-                                                            .buscar(resultadoHistorial.IdDocumento);
+                    //var resultadoAutorizacionRevisionE = await _buscarDocsAutorizacionRevision
+                    //.buscar(resultadoHistorial.IdDocumento);
 
-                    if (resultadoAutorizacionRevisionE == null)
+                    var resultado = await _buscarDocsAutorizacionRevision.buscar(resultadoHistorial.IdDocumento);
+
+                    if (resultado == null)
                     {
                         return NotFound();
                     }
 
-                    var resultado = await _buscarDocsAutorizacionRevision.buscar(resultadoHistorial.IdDocumento);
+                    
 
                     string expediente = resultado.Expediente;
                     string delito = resultado.Delito;
-                    string cedulaImputado = resultado.CedulaImputado.ToString();
+                    string cedulaImputado = resultado.CedulaImputadoNavigation.NumCedula;
                     string ofendido = resultado.Ofendido;
                     string cedulaAbogado = resultado.CedulaAbogado.ToString();
                     string cedulaAsistente = resultado.CedulaAsistente.ToString();
@@ -870,19 +860,18 @@ namespace Preacepta.UI.Controllers
                     return File(pdf4, "application/pdf");
 
                 case "Pagaré":
-                    var resultadoPagare = await _buscarPagare.buscar(resultadoHistorial.IdDocumento);
+                    var resultado5 = await _buscarPagare.buscar(resultadoHistorial.IdDocumento);
 
-                    if (resultadoPagare == null)
+                    if (resultado5 == null)
                     {
                         return NotFound();
                     }
 
-                    var resultado5 = await _buscarPagare.buscar(resultadoHistorial.IdDocumento);
-
+                    
 
                     string idDocumento = resultado5.IdDocumento.ToString();
                     string montoNumerico = resultado5.MontoNumerico.ToString();
-                    string cedulaDeudor = resultado5.CedulaDeudor.ToString();
+                    string cedulaDeudor = resultado5.CedulaDeudorNavigation.NumCedula;
                     string sociedadDeudor = resultado5.SociedadDeudor.ToString();
                     string cedulaJuridicaSociedad = resultado5.CedulaJuridicaSociedad;
                     string acreedorNombre = resultado5.AcreedorNombre;
@@ -895,7 +884,7 @@ namespace Preacepta.UI.Controllers
                     string interesTasaActual = resultado5.InteresTasaActual.ToString();
                     string interesBase = resultado5.InteresBase;
                     string lugarPago = resultado5.LugarPago.ToString();
-                    string cedulaFiador = resultado5.CedulaFiador.ToString();
+                    string cedulaFiador = resultado5.CedulaFiadorNavigation.NumCedula;
                     string ubicacionFirma = resultado5.UbicacionFirma.ToString();
                     string TipoSociedad = resultado5.TipoSociedad;
                     string UbicacionSociedad = resultado5.UbicacionSociedad;
@@ -911,8 +900,8 @@ namespace Preacepta.UI.Controllers
                     _ = int.TryParse(cedulaDeudor, out var cedDeudorInt);
                     _ = int.TryParse(cedulaFiador, out var cedFiadorInt);
 
-                    var deudor = cedDeudorInt > 0 ? await _buscarPersona.buscar(cedDeudorInt) : null;
-                    var fiador = cedFiadorInt > 0 ? await _buscarPersona.buscar(cedFiadorInt) : null;
+                    var deudor = await _buscarPersona.buscarXnumCedula(cedulaDeudor);
+                    var fiador = await _buscarPersona.buscarXnumCedula(cedulaFiador);
 
                     var deudorNombre = deudor != null
                         ? $"{deudor.Nombre} {deudor.Apellido1} {(deudor.Apellido2 ?? "")}".Trim()
@@ -932,10 +921,10 @@ namespace Preacepta.UI.Controllers
                             : (TimeSpan.TryParse(horaFirmaNuevo, out var ts) ? ahora.Date.Add(ts).ToString("HH:mm") : horaFirmaNuevo))
                         : ahora.ToString("HH:mm");
 
-                    string lugarPagoMostrar = resultadoPagare.LugarPago.ToString() ?? "";
+                    string lugarPagoMostrar = resultado5.LugarPago.ToString() ?? "";
                     var lugarPagos = await _buscarDireccion.buscarDistrito(int.Parse(lugarPagoMostrar));
 
-                    string UbicacionFirmaMostrar = resultadoPagare.UbicacionFirma.ToString() ?? "";
+                    string UbicacionFirmaMostrar = resultado5.UbicacionFirma.ToString() ?? "";
                     var UbicacionFirma = await _buscarDireccion.buscarDistrito(int.Parse(UbicacionFirmaMostrar));
 
                     var abogadopagare = await _buscarPersona.buscarXcorreo(User.Identity?.Name ?? "");
@@ -1003,6 +992,7 @@ namespace Preacepta.UI.Controllers
                 case "Compra y venta de vehículos":
                     {
                         var resultadoCV = await _buscarcompraventaV.buscar(resultadoHistorial.IdDocumento);
+                        
                         if (resultadoCV == null) return NotFound();
 
                         var templatePathCV = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "lyso", "DocsMachotes", "OpcionCompraVentaVehiculos.html");
@@ -1052,13 +1042,13 @@ namespace Preacepta.UI.Controllers
                         var comp = cedComp > 0 ? await _buscarPersona.buscar(cedComp) : null;
 
                         string nombreNotario = ab != null ? $"{ab.Nombre} {ab.Apellido1} {(ab.Apellido2 ?? "")}".Trim() : cedulaAbogadoStr;
-                        string cedulaNotario = ab?.Cedula.ToString() ?? cedulaAbogadoStr;
+                        string cedulaNotario = ab?.NumCedula.ToString() ?? cedulaAbogadoStr;
 
                         string nombreVendedor = prop != null ? $"{prop.Nombre} {prop.Apellido1} {(prop.Apellido2 ?? "")}".Trim() : cedulaPropStr;
-                        cedulaVendedor = prop?.Cedula.ToString() ?? cedulaPropStr;
+                        cedulaVendedor = prop?.NumCedula.ToString() ?? cedulaPropStr;
 
                         string nombreComprador = comp != null ? $"{comp.Nombre} {comp.Apellido1} {(comp.Apellido2 ?? "")}".Trim() : cedulaCompStr;
-                        cedulaComprador = comp?.Cedula.ToString() ?? cedulaCompStr;
+                        cedulaComprador = comp?.NumCedula.ToString() ?? cedulaCompStr;
 
                         _ = int.TryParse(idMarcaVehStr, out var idMarcaVeh);
                         _ = int.TryParse(idTipoVehStr, out var idTipoVeh);
@@ -1233,8 +1223,8 @@ namespace Preacepta.UI.Controllers
                             ? $"{personaCliente.Nombre} {personaCliente.Apellido1} {(personaCliente.Apellido2 ?? "")}".Trim()
                             : idCliente;
 
-                        string cedulaAbogadoStr = personaAbogado?.Cedula.ToString() ?? idAbogado;
-                        string cedulaClienteStr = personaCliente?.Cedula.ToString() ?? idCliente;
+                        string cedulaAbogadoStr = personaAbogado?.NumCedula.ToString() ?? idAbogado;
+                        string cedulaClienteStr = personaCliente?.NumCedula.ToString() ?? idCliente;
 
                         var abogadoDetalle = (cedAbogado > 0) ? await _buscarAbogado.buscar(cedAbogado) : null;
                         string carnetProfesional = abogadoDetalle?.Carnet.ToString() ?? "";

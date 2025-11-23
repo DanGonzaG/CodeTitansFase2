@@ -52,16 +52,19 @@
                         </div>
                         <div class="col-sm-6 col-lg-6">
                             <div class="form-group">
-                                <input asp-for="CedulaDeudor"
-                                       id="idCedulaDeudor"
+                                <input type="hidden" asp-for="CedulaDeudor" class="form-control" value="@ViewBag.DeudorCedula" readonly />
+                                <input id="idCedulaDeudor"
                                        type="text"
                                        inputmode="numeric"
                                        pattern="\d*"
-                                       value="@ViewBag.DeudorCedula"
+                                       value="@ViewBag.DeudorNumCedula"
                                        class="form-control LetraNegra"
+                                       lang="es"
+                                       spellcheck="true"
                                        readonly />
                                 <span asp-validation-for="CedulaDeudor" class="text-danger"></span>
                                 <input type="hidden" name="CedulaAbogado" value="@ViewBag.AbogadoCedula" />
+                                <input type="hidden" id="idAbogado" />
                             </div>
                         </div>
 
@@ -303,7 +306,9 @@
                             <div class="form-group">
                                 <input asp-for="CedulaFiador"
                                        id="idCedulaFiador"
-                                       value="@ViewBag.FiadorCedula"
+                                       type="text"
+                                       pattern="\d*"
+                                       value="@ViewBag.FiadorNumCedula"
                                        class="form-control LetraNegra"
                                        readonly />
                                 <span asp-validation-for="CedulaFiador" class="text-danger"></span>
