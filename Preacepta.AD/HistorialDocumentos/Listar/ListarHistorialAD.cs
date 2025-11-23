@@ -50,6 +50,7 @@ namespace Preacepta.AD.HistorialDocumentos.Listar
             try
             {
                 var datos = await BaseQuery()
+                    .Include(c => c.ClienteNavigation)
                     .OrderByDescending(h => h.Fecha)
                     .ToListAsync();
 

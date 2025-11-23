@@ -49,6 +49,20 @@
                     <h2>Formulario para compraventa de vehículo</h2>
 
                     <div class="row justify-content-center">
+                        <div class="seccion-titulo">Información Legal</div>
+
+                        <!-- Número Escritura -->
+                        <div class="col-sm-6 col-lg-6 centro">
+                            <div class="form-group">
+                                <label asp-for="NumeroEscritura" class="control-label"></label>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-lg-6">
+                            <div class="form-group">
+                                <input asp-for="NumeroEscritura" class="form-control" id="idNumeroEscritura" />
+                                <span asp-validation-for="NumeroEscritura" class="text-danger"></span>
+                            </div>
+                        </div>
 
                         <div class="seccion-titulo">Propietario</div>
 
@@ -60,11 +74,11 @@
                         </div>
                         <div class="col-sm-6 col-lg-6">
                             <div class="form-group">
-                                <input asp-for="CedulaPropietario"
-                                       id="idCedulaPropietario"
+                                <input type="hidden" asp-for="CedulaPropietario" class="form-control" value="@ViewBag.PropietarioCedula" id="idCedulaPropietario" lang="es" spellcheck="true" readonly />
+                                <input id="idCedulaPropietario"
                                        type="text"
-                                       inputmode="numeric" pattern="\d*"
-                                       value="@ViewBag.PropietarioCedula"
+                                       pattern="\d*"
+                                       value="@ViewBag.PropietarioNumCedula"
                                        class="form-control LetraNegra"
                                        readonly />
                                 <span asp-validation-for="CedulaPropietario" class="text-danger"></span>
@@ -116,11 +130,11 @@
                         </div>
                         <div class="col-sm-6 col-lg-6">
                             <div class="form-group">
-                                <input asp-for="CedulaComprador"
-                                       id="idCedulaComprador"
+                                <input type="hidden" asp-for="CedulaComprador" class="form-control" value="@ViewBag.ClienteCedula" id="idCedulaComprador" lang="es" spellcheck="true" readonly />
+                                <input id="idCedulaComprador"
                                        type="text"
-                                       inputmode="numeric" pattern="\d*"
-                                       value="@ViewBag.ClienteCedula"
+                                       pattern="\d*"
+                                       value="@ViewBag.ClienteNumCedula"
                                        class="form-control LetraNegra"
                                        readonly />
                                 <span asp-validation-for="CedulaComprador" class="text-danger"></span>

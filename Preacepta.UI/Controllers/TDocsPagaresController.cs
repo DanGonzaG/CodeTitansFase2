@@ -237,18 +237,20 @@ namespace Preacepta.UI.Controllers
         #region Crear Documento – Abogado
         [HttpGet]
         [Authorize(Roles = "Gestor, Abogado")]
-        public async Task<IActionResult> CreateDocsPagares(int CedulaDeudor, int CedulaFiador)
+        public async Task<IActionResult> CreateDocsPagares(string CedulaDeudor, string CedulaFiador)
         {
-            var deudor  = await _buscarPersona.buscar(CedulaDeudor);
-            var fiador  = await _buscarPersona.buscar(CedulaFiador);
+            var deudor  = await _buscarPersona.buscarXnumCedula(CedulaDeudor);
+            var fiador  = await _buscarPersona.buscarXnumCedula(CedulaFiador);
             var abogado = await _buscarPersona.buscarXcorreo(User.Identity.Name);
 
-            ViewBag.DeudorCedula = deudor?.Cedula ?? 0;
+            ViewBag.DeudorNumCedula = deudor.NumCedula;
+            ViewBag.DeudorCedula = deudor.Cedula;
             ViewBag.DeudorNombre = deudor?.Nombre ?? "";
             ViewBag.DeudorApellido1 = deudor?.Apellido1 ?? "";
             ViewBag.DeudorApellido2 = deudor?.Apellido2 ?? "";
 
-            ViewBag.FiadorCedula = fiador?.Cedula ?? 0;
+            ViewBag.FiadorNumCedula = fiador.NumCedula;
+            ViewBag.FiadorCedula = fiador.Cedula;
             ViewBag.FiadorNombre = fiador?.Nombre ?? "";
             ViewBag.FiadorApellido1 = fiador?.Apellido1 ?? "";
             ViewBag.FiadorApellido2 = fiador?.Apellido2 ?? "";
@@ -276,17 +278,22 @@ namespace Preacepta.UI.Controllers
         [ValidateAntiForgeryToken]
         [Authorize(Roles = "Gestor, Abogado")]
         public async Task<IActionResult> CreateDocsPagares(DocsPagareDTO dto)
-        {
+        {            
+            var deudor = await _buscarPersona.buscar(dto.CedulaDeudor);
+            var fiador = await _buscarPersona.buscarXnumCedula(dto.CedulaFiador.ToString());
+            var abogado = await _buscarPersona.buscarXcorreo(User.Identity.Name);
+
             dto.FechaFirma ??= DateTime.Now.ToString("yyyy-MM-dd");
             dto.FechaVencimiento ??= DateTime.Now.ToString("yyyy-MM-dd");
 
+            dto.CedulaFiador = fiador.Cedula;
             if (!ModelState.IsValid)
             {
-                var deudor = await _buscarPersona.buscar(dto.CedulaDeudor);
-                var fiador = await _buscarPersona.buscar(dto.CedulaFiador);
-                var abogado = await _buscarPersona.buscarXcorreo(User.Identity.Name);
+                
+                dto.CedulaDeudor = deudor?.Cedula ?? 0;
+                dto.CedulaFiador = fiador?.Cedula ?? 0;
 
-                ViewBag.DeudorCedula = deudor?.Cedula ?? 0;
+                ViewBag.DeudorCedula = deudor?.NumCedula;
                 ViewBag.DeudorNombre = deudor?.Nombre ?? "";
                 ViewBag.DeudorApellido1 = deudor?.Apellido1 ?? "";
                 ViewBag.DeudorApellido2 = deudor?.Apellido2 ?? "";
@@ -364,8 +371,8 @@ namespace Preacepta.UI.Controllers
             _ = int.TryParse(cedulaDeudor, out var cedDeudorInt);
             _ = int.TryParse(cedulaFiador, out var cedFiadorInt);
 
-            var deudor = cedDeudorInt > 0 ? await _buscarPersona.buscar(cedDeudorInt) : null;
-            var fiador = cedFiadorInt > 0 ? await _buscarPersona.buscar(cedFiadorInt) : null;
+            var deudor = await _buscarPersona.buscarXnumCedula(cedulaDeudor);
+            var fiador = await _buscarPersona.buscarXnumCedula(cedulaFiador);
 
             var deudorNombre = deudor != null
                 ? $"{deudor.Nombre} {deudor.Apellido1} {(deudor.Apellido2 ?? "")}".Trim()
@@ -394,19 +401,22 @@ namespace Preacepta.UI.Controllers
             var abogado = await _buscarPersona.buscarXcorreo(User.Identity?.Name ?? "");
             var cedulaAbogado = (abogado?.Cedula ?? 0).ToString();
 
+            string cedulaDeudorStr = deudor?.NumCedula.ToString() ?? cedulaDeudor;
+            string cedulaFiadorStr = fiador?.NumCedula.ToString() ?? cedulaFiador;
+
             htmlTemplate = htmlTemplate
                 .Replace("{{LOGO}}", logoBase64)
                 .Replace("{{ID_DOCUMENTO}}", idDocumento ?? "")
                 .Replace("{{MONTO_NUMERICO}}", montoNumerico ?? "")
                 .Replace("{{MONTO_LETRAS}}", montoNumerico ?? "")
                 .Replace("{{NOMBRE_DEUDOR}}", deudorNombre)
-                .Replace("{{CEDULA_DEUDOR}}", cedulaDeudor ?? "")
+                .Replace("{{CEDULA_DEUDOR}}", cedulaDeudorStr ?? "")
                 .Replace("{{CEDULA_DEUDOR_LETRAS}}", cedulaDeudor ?? "")
                 .Replace("{{ESTADO_CIVIL_DEUDOR}}", deudor?.EstadoCivil ?? "")
                 .Replace("{{DOMICILIO_DEUDOR}}", deudor?.Direccion2 ?? "")
                 .Replace("{{Oficio}}", deudor?.Oficio ?? "")
                 .Replace("{{NOMBRE_FIADOR}}", fiadorNombre)
-                .Replace("{{CEDULA_FIADOR}}", cedulaFiador ?? "")
+                .Replace("{{CEDULA_FIADOR}}", cedulaFiadorStr ?? "")
                 .Replace("{{SOCIEDAD_DEUDOR}}", sociedadDeudor ?? "")
                 .Replace("{{SOCIEDAD_TIPO}}", TipoSociedad ?? "")
                 .Replace("{{CEDULA_JURIDICA_SOCIEDAD}}", cedulaJuridicaSociedad ?? "")
