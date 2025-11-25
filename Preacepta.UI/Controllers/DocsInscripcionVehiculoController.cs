@@ -271,18 +271,19 @@ namespace Preacepta.UI.Controllers
         // GET: TDocsInscripcionVehiculo/Create
         [HttpGet]
         [Authorize(Roles = "Abogado")]
-        public async Task<IActionResult> CreateDocsInscripcionVehiculo(int id)
+        public async Task<IActionResult> CreateDocsInscripcionVehiculo(string id)
         {
-            var cliente = await _buscarPersona.buscar(id);
+            var cliente = await _buscarPersona.buscarXnumCedula(id);
             var abogado = await _buscarPersona.buscarXcorreo(User.Identity.Name);
 
+            ViewBag.ClienteNumCedula = cliente.NumCedula;
             ViewBag.ClienteCedula = cliente.Cedula;
             ViewBag.ClienteNombre = cliente.Nombre;
             ViewBag.ClienteApellido1 = cliente.Apellido1;
             ViewBag.ClienteApellido2 = cliente.Apellido2;
             ViewBag.Dash = " - ";
 
-            ViewBag.AbogadoCedula = abogado.Cedula;
+            ViewBag.AbogadoCedula = abogado.NumCedula;
             ViewBag.AbogadoNombre = abogado.Nombre;
             ViewBag.AbogadoApellido1 = abogado.Apellido1;
             ViewBag.AbogadoApellido2 = abogado.Apellido2;
@@ -318,6 +319,7 @@ namespace Preacepta.UI.Controllers
         {
             var cliente = await _buscarPersona.buscar(tDocsInscripcionVehiculo.CedulaCliente);
             var abogado = await _buscarPersona.buscarXcorreo(User.Identity.Name);
+            tDocsInscripcionVehiculo.CedulaAbogado = abogado.Cedula;
             if (ModelState.IsValid)
             {
                 await _crear.Crear(tDocsInscripcionVehiculo);
@@ -343,6 +345,7 @@ namespace Preacepta.UI.Controllers
                 await _crearHistorialLN.Crear(historialDocumentoDTO);
                 return RedirectToAction("DocsHistorial", "THistorialDocumento1");
             }
+            ViewBag.ClienteNumCedula = cliente.Cedula;
             ViewBag.ClienteCedula = cliente.Cedula;
             ViewBag.ClienteNombre = cliente.Nombre;
             ViewBag.ClienteApellido1 = cliente.Apellido1;
@@ -361,7 +364,7 @@ namespace Preacepta.UI.Controllers
         [Authorize(Roles = "Abogado")]
         public async Task<IActionResult> PrevisualizarPDFInscripcionVehiculo(
                 string nombreCliente,
-                string cedulaCliente,
+                int cedulaCliente,
                 string estadoCivilCliente,
                 string profesionCliente,
                 string direccionCliente,
@@ -385,19 +388,19 @@ namespace Preacepta.UI.Controllers
                 string lugarFirma,
                 string fechaFirma,
                 string nombreNotario,
-                string cedulaAbogado
+                int cedulaAbogado
             )
         {
             var templatePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "lyso", "DocsMachotes", "InscripcionDeVehiculoMachote.html");
             var htmlTemplate = System.IO.File.ReadAllText(templatePath);
             
-            var cliente = await _buscarPersona.buscar(int.Parse(cedulaCliente));
+            var cliente = await _buscarPersona.buscar(cedulaCliente);
             var abogado = await _buscarPersona.buscarXcorreo(User.Identity.Name);
             var dist = await _buscarDistrito.buscarDistrito(int.Parse(lugarFirma));
 
             htmlTemplate = htmlTemplate
                 .Replace("{{NOMBRE_CLIENTE}}", cliente.Nombre + " " + cliente.Apellido1 + " " + cliente.Apellido2)
-                .Replace("{{CEDULA_CLIENTE}}", cedulaCliente)
+                .Replace("{{CEDULA_CLIENTE}}", cliente.NumCedula)
                 .Replace("{{ESTADO_CIVIL_CLIENTE}}", cliente.EstadoCivil)
                 .Replace("{{PROFESION_CLIENTE}}", cliente.Oficio)
                 .Replace("{{DIRECCION_CLIENTE}}", cliente.Direccion2)
@@ -421,7 +424,7 @@ namespace Preacepta.UI.Controllers
                 .Replace("{{LUGAR_FIRMA}}", dist.NombreDistrito)
                 .Replace("{{FECHA_FIRMA}}", fechaFirma)
                 .Replace("{{NOMBRE_NOTARIO}}", abogado.Nombre + " " + abogado.Apellido1 + " " + abogado.Apellido2)
-                .Replace("{{CEDULA_ABOGADO}}", cedulaAbogado);
+                .Replace("{{CEDULA_ABOGADO}}", abogado.NumCedula);
 
             var doc = new HtmlToPdfDocument()
             {

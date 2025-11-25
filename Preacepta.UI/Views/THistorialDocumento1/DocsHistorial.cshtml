@@ -93,47 +93,54 @@
             <tbody>
                 @foreach (var item in Model)
                 {
-                    <tr>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Fecha)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.TipoDocumento)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.IdDocumento)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Titulo)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.ClienteNavigation.NumCedula)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.AbogadoNavigation.CedulaNavigation.NumCedula)
-                        </td>
-                        <td>
-                            <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                            <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                            <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
 
+                    foreach (var item in Model)
 
+                    {
+<tr class="filtrosHistorial" 
+    fecha="@(DateTime.TryParse(item.Fecha, out var f) ? f.ToString("yyyy-MM-dd") : item.Fecha)" 
+    nombreTipoDocumento="@item.TipoDocumento">
+
+<td>
+
+                                @(DateTime.TryParse(item.Fecha, out var t)
+
+                                                        ? t.ToString("dd/MM/yyyy", CultureInfo.InvariantCulture)
+
+                                                        : item.Fecha)
+</td>
+<td>@item.Titulo</td>
+<td>@item.TipoDocumento</td>
+ 
+                            <td>@MostrarNombre(item.Cliente)</td>
+<td>@MostrarNombre(item.Abogado)</td>
+ 
+                            <td>
                             <a class="cmn-btn"
-                               asp-controller="THistorialDocumento1"
-                               asp-action="PrevisualizarDesdeHistorial"
-                               asp-route-id="@item.Id"
-                               target="_blank">
-                                <i class="fa-solid fa-eye"></i>
-                            </a>
 
-                            <a class="cmn-btn"
-                               asp-controller="THistorialDocumento1"
-                               asp-action="EditarDesdeHistorial"
-                               asp-route-id="@item.Id">
-                                <i class="fa-solid fa-pen"></i>
-                            </a>
-                        </td>
-                    </tr>
+                                   asp-controller="THistorialDocumento1"
+
+                                   asp-action="PrevisualizarDesdeHistorial"
+
+                                   asp-route-id="@item.Id"
+
+                                   target="_blank">
+                            <i class="fa-solid fa-eye"></i></a>
+ 
+                                <a class="cmn-btn"
+
+                                   asp-controller="THistorialDocumento1"
+
+                                   asp-action="EditarDesdeHistorial"
+
+                                   asp-route-id="@item.Id">
+<i class="fa-solid fa-pen"></i>
+</a>
+</td>
+</tr>
+
+                    }
+
                 }
             </tbody>
         </table>

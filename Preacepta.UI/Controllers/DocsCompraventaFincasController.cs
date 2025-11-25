@@ -366,8 +366,8 @@ namespace Preacepta.UI.Controllers
         public async Task<IActionResult> PrevisualizarPDFCompraventaFinca(
     string numeroEscritura,
     string cedulaAbogado,
-    string cedulaVendedor,
-    string cedulaComprador,
+    int cedulaVendedor,
+    int cedulaComprador,
     string montoVenta,
     string partidoFinca,
     string matriculaFinca,
@@ -391,8 +391,8 @@ namespace Preacepta.UI.Controllers
             var templatePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "lyso", "DocsMachotes", "CompraVentaFincasMachote.html");
             var htmlTemplate = System.IO.File.ReadAllText(templatePath);       
 
-            var vendedor = await _buscarPersona.buscarXnumCedula(cedulaVendedor);//---> se cambia
-            var comprador = await _buscarPersona.buscarXnumCedula(cedulaComprador);//---> se cambia
+            var vendedor = await _buscarPersona.buscar(cedulaVendedor);//---> se cambia
+            var comprador = await _buscarPersona.buscar(cedulaComprador);//---> se cambia
             var abogado = await _buscarPersona.buscarXcorreo(User.Identity.Name);
             var prov = await _buscarDistrito.buscarProvincia(int.Parse(provinciaFinca));
             var cant = await _buscarDistrito.buscarCanton(int.Parse(cantonFinca));
@@ -404,12 +404,12 @@ namespace Preacepta.UI.Controllers
     .Replace("{{NOMBRE_NOTARIO}}", abogado.Nombre + " " + abogado.Apellido1 + " " + abogado.Apellido2)
     .Replace("{{DIRECCION_NOTARIO}}", abogado.Direccion2)
     .Replace("{{NOMBRE_VENDEDOR}}", vendedor.Nombre + " " + vendedor.Apellido1 + " " + vendedor.Apellido2)
-    .Replace("{{CEDULA_VENDEDOR}}", cedulaVendedor)
+    .Replace("{{CEDULA_VENDEDOR}}", vendedor.NumCedula)
     .Replace("{{ESTADO_CIVIL_VENDEDOR}}", vendedor.EstadoCivil)
     .Replace("{{PROFESION_VENDEDOR}}", vendedor.Oficio)
     .Replace("{{DIRECCION_VENDEDOR}}", vendedor.Direccion1Navigation.IdCatonNavigation.NombreCanton + ", " + vendedor.Direccion1Navigation.NombreDistrito)
     .Replace("{{NOMBRE_COMPRADOR}}", comprador.Nombre + " " + comprador.Apellido1 + " " + comprador.Apellido2)
-    .Replace("{{CEDULA_COMPRADOR}}", cedulaComprador)
+    .Replace("{{CEDULA_COMPRADOR}}", comprador.NumCedula)
     .Replace("{{ESTADO_CIVIL_COMPRADOR}}", comprador.EstadoCivil)
     .Replace("{{PROFESION_COMPRADOR}}", comprador.Oficio)
     .Replace("{{DIRECCION_COMPRADOR}}", comprador.Direccion1Navigation.IdCatonNavigation.NombreCanton + ", " + comprador.Direccion1Navigation.NombreDistrito)
