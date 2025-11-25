@@ -1,6 +1,27 @@
 ﻿@model IEnumerable<Preacepta.Modelos.AbstraccionesFrond.HistorialDocumentoDTO>
+@using System.Globalization
 
+@{
 
+    var nombres = ViewBag.NombresPersonas as IDictionary<int, string>
+
+                  ?? new Dictionary<int, string>();
+
+    string MostrarNombre(int? cedula)
+
+    {
+
+        if (!cedula.HasValue || cedula.Value <= 0) return "";
+
+        return nombres.TryGetValue(cedula.Value, out var nom)
+
+            ? nom
+
+            : cedula.Value.ToString();
+
+    }
+
+}
 
 
 <head>
@@ -19,7 +40,7 @@
                     <li><i class="icofont-simple-right"></i></li>
                     <li><a asp-controller="Home" asp-action="UsuarioAutenticado" asp-route-correo="@User.Identity.Name">PreaceptaApp</a></li>
                     <li><i class="icofont-simple-right"></i></li>
-                    <li>Historial documentos</li>
+                    <li>Historial</li>
                 </ul>
             </div>
         </div>
@@ -66,80 +87,72 @@
 
 <div class="formulario contact-form contact-form-two contact-form-three LetraNegra">
     <div class="container">
-        <table class="table">
+        <table class="table LetraNegra">
             <thead>
                 <tr>
-                    <th>
-                        @Html.DisplayNameFor(model => model.Fecha)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.TipoDocumento)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.IdDocumento)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.Titulo)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.ClienteNavigation)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.AbogadoNavigation)
-                    </th>
-                    <th></th>
+                    <th>Fecha</th>
+                    <th>Título</th>
+                    <th>Tipo de Documento</th>
+                    <th>Cliente</th>
+                    <th>Abogado</th>
+                    <th>Acciones</th>
                 </tr>
             </thead>
             <tbody>
-                @foreach (var item in Model)
+
+                @if (Model == null || !Model.Any())
+
+                {
+                    <tr>
+                        <td colspan="5" class="text-center">No hay documentos para los filtros seleccionados.</td>
+                    </tr>
+
+                }
+
+                else
+
                 {
 
                     foreach (var item in Model)
 
                     {
-<tr class="filtrosHistorial" 
-    fecha="@(DateTime.TryParse(item.Fecha, out var f) ? f.ToString("yyyy-MM-dd") : item.Fecha)" 
-    nombreTipoDocumento="@item.TipoDocumento">
+                        <tr class="filtrosHistorial"
+                            fecha="@(DateTime.TryParse(item.Fecha, out var f) ? f.ToString("yyyy-MM-dd") : item.Fecha)"
+                            nombreTipoDocumento="@item.TipoDocumento">
 
-<td>
+                            <td>
 
                                 @(DateTime.TryParse(item.Fecha, out var t)
 
                                                         ? t.ToString("dd/MM/yyyy", CultureInfo.InvariantCulture)
 
                                                         : item.Fecha)
-</td>
-<td>@item.Titulo</td>
-<td>@item.TipoDocumento</td>
- 
+                    </td>
+                    <td>@item.Titulo</td>
+                    <td>@item.TipoDocumento</td>
+
                             <td>@MostrarNombre(item.Cliente)</td>
-<td>@MostrarNombre(item.Abogado)</td>
- 
+                            <td>@MostrarNombre(item.Abogado)</td>
+
                             <td>
-                            <a class="cmn-btn"
-
-                                   asp-controller="THistorialDocumento1"
-
-                                   asp-action="PrevisualizarDesdeHistorial"
-
-                                   asp-route-id="@item.Id"
-
-                                   target="_blank">
-                            <i class="fa-solid fa-eye"></i></a>
- 
                                 <a class="cmn-btn"
-
                                    asp-controller="THistorialDocumento1"
+                                   asp-action="PrevisualizarDesdeHistorial"
+                                   asp-route-id="@item.Id"
+                                   target="_blank">
+                                    <i class="fa-solid fa-eye"></i>
+                                </a>
 
+                                <a class="cmn-btn"
+                                   asp-controller="THistorialDocumento1"
                                    asp-action="EditarDesdeHistorial"
-
                                    asp-route-id="@item.Id">
-<i class="fa-solid fa-pen"></i>
-</a>
-</td>
-</tr>
+                                    <i class="fa-solid fa-pen"></i>
+                                </a>
+                            </td>
+                        </tr>
 
-                    }
+                                }
 
                 }
             </tbody>
