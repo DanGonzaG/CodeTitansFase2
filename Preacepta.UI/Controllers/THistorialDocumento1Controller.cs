@@ -296,17 +296,20 @@ namespace Preacepta.UI.Controllers
             var asistente = await _buscarPersona.buscar(resultadoAutorizacioRevisionE.CedulaAsistente);
             var abogado = await _buscarPersona.buscarXcorreo(User.Identity.Name);
 
+            ViewBag.ClienteNumCedula = cliente.NumCedula;
             ViewBag.ClienteCedula = cliente.Cedula;
             ViewBag.ClienteNombre = cliente.Nombre;
             ViewBag.ClienteApellido1 = cliente.Apellido1;
             ViewBag.ClienteApellido2 = cliente.Apellido2;
             ViewBag.Dash = " - ";
 
+            ViewBag.AbogadoNumCedula = abogado.NumCedula;
             ViewBag.AbogadoCedula = abogado.Cedula;
             ViewBag.AbogadoNombre = abogado.Nombre;
             ViewBag.AbogadoApellido1 = abogado.Apellido1;
             ViewBag.AbogadoApellido2 = abogado.Apellido2;
 
+            ViewBag.CedulaNumAsistente = asistente.NumCedula;
             ViewBag.CedulaAsistente = asistente.Cedula;
             ViewBag.NombreAsistente = asistente.Nombre;
             ViewBag.Apellido1Cliente = asistente.Apellido1;
@@ -431,17 +434,20 @@ namespace Preacepta.UI.Controllers
             var vendedor = await _buscarPersona.buscar(resultadoFincas.CedulaVendedor);
             var abogado = await _buscarPersona.buscarXcorreo(User.Identity.Name);
 
+            ViewBag.CompradorNumCedula = comprador.NumCedula;
             ViewBag.CompradorCedula = comprador.Cedula;
             ViewBag.CompradorNombre = comprador.Nombre;
             ViewBag.CompradorApellido1 = comprador.Apellido1;
             ViewBag.CompradorApellido2 = comprador.Apellido2;
             ViewBag.Dash = " - ";
 
+            ViewBag.VendedorNumCedula = vendedor.NumCedula;
             ViewBag.VendedorCedula = vendedor.Cedula;
             ViewBag.VendedorNombre = vendedor.Nombre;
             ViewBag.VendedorApellido1 = vendedor.Apellido1;
             ViewBag.VendedorApellido2 = vendedor.Apellido2;
 
+            ViewBag.AbogadoNumCedula = abogado.NumCedula;
             ViewBag.AbogadoCedula = abogado.Cedula;
             ViewBag.AbogadoNombre = abogado.Nombre;
             ViewBag.AbogadoApellido1 = abogado.Apellido1;
@@ -462,12 +468,14 @@ namespace Preacepta.UI.Controllers
             var cliente = await _buscarPersona.buscar(resultadoPrestacionServicios.CedulaCliente);
             var abogado = await _buscarPersona.buscarXcorreo(User.Identity.Name);
 
+            ViewBag.ClienteNumCedula = cliente.NumCedula;
             ViewBag.ClienteCedula = cliente.Cedula;
             ViewBag.ClienteNombre = cliente.Nombre;
             ViewBag.ClienteApellido1 = cliente.Apellido1;
             ViewBag.ClienteApellido2 = cliente.Apellido2;
             ViewBag.Dash = " - ";
 
+            ViewBag.AbogadoNumCedula = abogado.NumCedula;
             ViewBag.AbogadoCedula = abogado.Cedula;
             ViewBag.AbogadoNombre = abogado.Nombre;
             ViewBag.AbogadoApellido1 = abogado.Apellido1;
@@ -495,12 +503,14 @@ namespace Preacepta.UI.Controllers
             var cliente = await _buscarPersona.buscar(resultadoDocsInscVehiculo.CedulaCliente);
             var abogado = await _buscarPersona.buscarXcorreo(User.Identity.Name);
 
+            ViewBag.ClienteNumCedula = cliente.NumCedula;
             ViewBag.ClienteCedula = cliente.Cedula;
             ViewBag.ClienteNombre = cliente.Nombre;
             ViewBag.ClienteApellido1 = cliente.Apellido1;
             ViewBag.ClienteApellido2 = cliente.Apellido2;
             ViewBag.Dash = " - ";
 
+            ViewBag.AbogadoNumCedula = abogado.NumCedula;
             ViewBag.AbogadoCedula = abogado.Cedula;
             ViewBag.AbogadoNombre = abogado.Nombre;
             ViewBag.AbogadoApellido1 = abogado.Apellido1;
@@ -544,22 +554,19 @@ namespace Preacepta.UI.Controllers
             switch (tipoDoc)
             {
                 case "Atorización RE.":
-                    var resultadoAutorizacionRevisionE = await _buscarDocsAutorizacionRevision
-                                                            .buscar(resultadoHistorial.IdDocumento);
+                    var resultado = await _buscarDocsAutorizacionRevision.buscar(resultadoHistorial.IdDocumento);
 
-                    if (resultadoAutorizacionRevisionE == null)
+                    if (resultado == null)
                     {
                         return NotFound();
                     }
 
-                    var resultado = await _buscarDocsAutorizacionRevision.buscar(resultadoHistorial.IdDocumento);
-
                     string expediente = resultado.Expediente;
                     string delito = resultado.Delito;
-                    string cedulaImputado = resultado.CedulaImputado.ToString();
+                    string cedulaImputado = resultado.CedulaImputadoNavigation.NumCedula;
                     string ofendido = resultado.Ofendido;
                     string cedulaAbogado = resultado.CedulaAbogado.ToString();
-                    string cedulaAsistente = resultado.CedulaAsistente.ToString();
+                    string cedulaAsistente = resultado.CedulaAsistenteNavigation.NumCedula;
 
                     var templatePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "lyso", "DocsMachotes", "AutorizacionExpedienteMachote.html");
                     var htmlTemplate = System.IO.File.ReadAllText(templatePath);
@@ -594,20 +601,17 @@ namespace Preacepta.UI.Controllers
                     return File(pdf, "application/pdf");
 
                 case "CompraVenta Fincas.":
-                    var resultadoFincas = await _buscarDocsCompraVentaFinca
-                                                            .buscar(resultadoHistorial.IdDocumento);
+                    var resultado2 = await _buscarDocsCompraVentaFinca.buscar(resultadoHistorial.IdDocumento);
 
-                    if (resultadoFincas == null)
+                    if (resultado2 == null)
                     {
                         return NotFound();
                     }
 
-                    var resultado2 = await _buscarDocsCompraVentaFinca.buscar(resultadoHistorial.IdDocumento);
-
                     string numeroEscritura = resultado2.NumeroEscritura;
                     cedulaAbogado = resultado2.CedulaAbogado.ToString();
-                    string cedulaVendedor = resultado2.CedulaVendedor.ToString();
-                    string cedulaComprador = resultado2.CedulaComprador.ToString();
+                    string cedulaVendedor = resultado2.CedulaVendedorNavigation.NumCedula;
+                    string cedulaComprador = resultado2.CedulaCompradorNavigation.NumCedula;
                     string montoVenta = resultado2.MontoVenta.ToString();
                     string partidoFinca = resultado2.PartidoFinca;
                     string matriculaFinca = resultado2.MatriculaFinca;
@@ -631,8 +635,8 @@ namespace Preacepta.UI.Controllers
                     var templatePath2 = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "lyso", "DocsMachotes", "CompraVentaFincasMachote.html");
                     var htmlTemplate2 = System.IO.File.ReadAllText(templatePath2);
 
-                    var vendedor = await _buscarPersona.buscar(int.Parse(cedulaVendedor));
-                    var comprador = await _buscarPersona.buscar(int.Parse(cedulaComprador));
+                    var vendedor = await _buscarPersona.buscarXnumCedula(cedulaVendedor);
+                    var comprador = await _buscarPersona.buscarXnumCedula(cedulaComprador);
                     var abogado = await _buscarPersona.buscarXcorreo(User.Identity.Name);
                     var prov = await _buscarDireccion.buscarProvincia(int.Parse(provinciaFinca));
                     var cant = await _buscarDireccion.buscarCanton(int.Parse(cantonFinca));
@@ -645,12 +649,12 @@ namespace Preacepta.UI.Controllers
                         .Replace("{{NOMBRE_NOTARIO}}", abogado.Nombre + " " + abogado.Apellido1 + " " + abogado.Apellido2)
                         .Replace("{{DIRECCION_NOTARIO}}", abogado.Direccion2)
                         .Replace("{{NOMBRE_VENDEDOR}}", vendedor.Nombre + " " + vendedor.Apellido1 + " " + vendedor.Apellido2)
-                        .Replace("{{CEDULA_VENDEDOR}}", cedulaVendedor)
+                        .Replace("{{CEDULA_VENDEDOR}}", vendedor.NumCedula)
                         .Replace("{{ESTADO_CIVIL_VENDEDOR}}", vendedor.EstadoCivil)
                         .Replace("{{PROFESION_VENDEDOR}}", vendedor.Oficio)
                         .Replace("{{DIRECCION_VENDEDOR}}", vendedor.Direccion1Navigation.IdCatonNavigation.NombreCanton + ", " + vendedor.Direccion1Navigation.NombreDistrito)
                         .Replace("{{NOMBRE_COMPRADOR}}", comprador.Nombre + " " + comprador.Apellido1 + " " + comprador.Apellido2)
-                        .Replace("{{CEDULA_COMPRADOR}}", cedulaComprador)
+                        .Replace("{{CEDULA_COMPRADOR}}", comprador.NumCedula)
                         .Replace("{{ESTADO_CIVIL_COMPRADOR}}", comprador.EstadoCivil)
                         .Replace("{{PROFESION_COMPRADOR}}", comprador.Oficio)
                         .Replace("{{DIRECCION_COMPRADOR}}", comprador.Direccion1Navigation.IdCatonNavigation.NombreCanton + ", " + comprador.Direccion1Navigation.NombreDistrito)
@@ -695,21 +699,18 @@ namespace Preacepta.UI.Controllers
                     return File(pdf2, "application/pdf");
 
                 case "Contrato Prestación Servicios":
-                    var resultadoPrestacion = await _buscarDocsContratoPrestacionServicios
-                                                            .buscar(resultadoHistorial.IdDocumento);
+                    var resultado3 = await _buscarDocsContratoPrestacionServicios.buscar(resultadoHistorial.IdDocumento);
 
-                    if (resultadoPrestacion == null)
+                    if (resultado3 == null)
                     {
                         return NotFound();
                     }
-
-                    var resultado3 = await _buscarDocsContratoPrestacionServicios.buscar(resultadoHistorial.IdDocumento);
 
                     string razonSocialEmpresa = resultado3.RazonSocialEmpresa;
                     string provincia = resultado3.Provincia.ToString();
                     string cedulaJuridicaEmpresa = resultado3.CedulaJuridicaEmpresa;
                     cedulaAbogado = resultado3.CedulaAbogado.ToString();
-                    string cedulaCliente = resultado3.CedulaCliente.ToString();
+                    string cedulaCliente = resultado3.CedulaClienteNavigation.NumCedula;
                     string tipoServicios = resultado3.TipoServicios;
                     string fechaInicio = resultado3.FechaInicio.ToString();
                     string fechaFinal = resultado3.FechaFinal.ToString();
@@ -722,7 +723,7 @@ namespace Preacepta.UI.Controllers
                     var templatePath3 = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "lyso", "DocsMachotes", "PrestacionServiciosMachote.html");
                     var htmlTemplate3 = System.IO.File.ReadAllText(templatePath3);
 
-                    var cliente = await _buscarPersona.buscar(int.Parse(cedulaCliente));
+                    var cliente = await _buscarPersona.buscarXnumCedula(cedulaCliente);
                     abogado = await _buscarPersona.buscarXcorreo(User.Identity.Name);
                     var prov1 = await _buscarDireccion.buscarProvincia(int.Parse(provincia));
                     var dist1 = await _buscarDireccion.buscarDistrito(int.Parse(ciudadFirma));
@@ -737,12 +738,12 @@ namespace Preacepta.UI.Controllers
                         .Replace("{{ESTADO_CIVIL_ABOGADO}}", abogado.EstadoCivil)
                         .Replace("{{OCUPACION_ABOGADO}}", abogado.Oficio)
                         .Replace("{{DOMICILIO_ABOGADO}}", abogado.Direccion2)
-                        .Replace("{{CEDULA_ABOGADO}}", cedulaAbogado)
+                        .Replace("{{CEDULA_ABOGADO}}", abogado.NumCedula)
                         .Replace("{{NOMBRE_CLIENTE}}", cliente.Nombre + " " + cliente.Apellido1 + " " + cliente.Apellido2)
                         .Replace("{{ESTADO_CIVIL_CLIENTE}}", cliente.EstadoCivil)
                         .Replace("{{OCUPACION_CLIENTE}}", cliente.Oficio)
                         .Replace("{{DOMICILIO_CLIENTE}}", cliente.Direccion1Navigation.IdCatonNavigation.NombreCanton + ", " + cliente.Direccion1Navigation.NombreDistrito)
-                        .Replace("{{CEDULA_CLIENTE}}", cedulaCliente)
+                        .Replace("{{CEDULA_CLIENTE}}", cliente.NumCedula)
                         .Replace("{{TIPO_SERVICIOS}}", tipoServicios)
                         .Replace("{{FECHA_INICIO}}", fechaInicio)
                         .Replace("{{FECHA_FINAL}}", fechaFinal)
@@ -775,18 +776,15 @@ namespace Preacepta.UI.Controllers
                     return File(pdf3, "application/pdf");
 
                 case "Inscripción de vehiculo":
-                    var resultadoInscVehiculo = await _buscarDocsInscVehiculo
-                                                            .buscar(resultadoHistorial.IdDocumento);
-
-                    if (resultadoInscVehiculo == null)
-                    {
-                        return NotFound();
-                    }
-
                     var resultado4 = await _buscarDocsInscVehiculo.buscar(resultadoHistorial.IdDocumento);
 
+                    if (resultado4 == null)
+                    {
+                        return NotFound();
+                    }    
+
                     string nombreCliente = resultado4.CedulaClienteNavigation.Nombre;
-                    cedulaCliente = resultado4.CedulaCliente.ToString();
+                    cedulaCliente = resultado4.CedulaClienteNavigation.NumCedula;
                     string estadoCivilCliente = resultado4.CedulaClienteNavigation.Cedula.ToString();
                     string profesionCliente = resultado4.CedulaClienteNavigation.Oficio;
                     string direccionCliente = resultado4.CedulaClienteNavigation.Direccion2;
@@ -815,7 +813,7 @@ namespace Preacepta.UI.Controllers
                     var templatePath4 = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "lyso", "DocsMachotes", "InscripcionDeVehiculoMachote.html");
                     var htmlTemplate4 = System.IO.File.ReadAllText(templatePath4);
 
-                    cliente = await _buscarPersona.buscar(int.Parse(cedulaCliente));
+                    cliente = await _buscarPersona.buscarXnumCedula(cedulaCliente);
                     abogado = await _buscarPersona.buscarXcorreo(User.Identity.Name);
                     var dist2 = await _buscarDireccion.buscarDistrito(int.Parse(lugarFirma));
 
@@ -823,7 +821,7 @@ namespace Preacepta.UI.Controllers
                     // Reemplazar marcadores con los datos del formulario
                     htmlTemplate4 = htmlTemplate4
                         .Replace("{{NOMBRE_CLIENTE}}", cliente.Nombre + " " + cliente.Apellido1 + " " + cliente.Apellido2)
-                        .Replace("{{CEDULA_CLIENTE}}", cedulaCliente)
+                        .Replace("{{CEDULA_CLIENTE}}", cliente.NumCedula)
                         .Replace("{{ESTADO_CIVIL_CLIENTE}}", cliente.EstadoCivil)
                         .Replace("{{PROFESION_CLIENTE}}", cliente.Oficio)
                         .Replace("{{DIRECCION_CLIENTE}}", cliente.Direccion2)
@@ -847,7 +845,7 @@ namespace Preacepta.UI.Controllers
                         .Replace("{{LUGAR_FIRMA}}", dist2.NombreDistrito)
                         .Replace("{{FECHA_FIRMA}}", fechaFirma)
                         .Replace("{{NOMBRE_NOTARIO}}", abogado.Nombre + " " + abogado.Apellido1 + " " + abogado.Apellido2)
-                        .Replace("{{CEDULA_ABOGADO}}", cedulaAbogado);
+                        .Replace("{{CEDULA_ABOGADO}}", abogado.NumCedula);
 
                     var doc4 = new HtmlToPdfDocument()
                     {
