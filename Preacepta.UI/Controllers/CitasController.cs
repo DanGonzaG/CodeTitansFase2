@@ -122,8 +122,6 @@ namespace Praecepta.UI.Controllers
             return PartialView("~/Views/Citas/_CreatePartial.cshtml", citaDTO);
         }
 
-
-        // POST: Citas/Create
         [Authorize(Roles = "Abogado,Gestor")]
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -167,13 +165,32 @@ namespace Praecepta.UI.Controllers
                     });
                 }
 
+                var cliente = await _buscarXidGePersonaLN.buscar(citaDTO.IdCliente.Value);
+
+                if (cliente != null)
+                {
+                    var usuarioCliente = await _userManager.FindByEmailAsync(cliente.Email);
+
+                    if (usuarioCliente != null)
+                    {
+                        using (var ctx = new Contexto())
+                        {
+                            var detalle = ctx.TCitasClientes.FirstOrDefault(x => x.IdCita == idCita);
+                            if (detalle != null)
+                            {
+                                detalle.UsuarioId = usuarioCliente.Id;
+                                ctx.SaveChanges();
+                            }
+                        }
+                    }
+                }
+
+                // Bitácora
                 var usuario = User.Identity?.Name ?? "Desconocido";
                 var accion = $"Se creó la cita {idCita} para el cliente {citaDTO.IdCliente}";
                 await _bitacoraLN.RegistrarBitacoraAsync(usuario, "T_Citas", accion, idCita);
 
-
-                // Enviar correo al cliente
-                var cliente = await _buscarXidGePersonaLN.buscar(citaDTO.IdCliente.Value);
+                // Enviar correo
                 var abogadoPersona = await _buscarXidGePersonaLN.buscar(citaDTO.Anfitrion);
 
                 if (cliente != null && !string.IsNullOrWhiteSpace(cliente.Email) && abogadoPersona != null)
@@ -446,7 +463,7 @@ namespace Praecepta.UI.Controllers
                 if (ModelState.IsValid)
                 {
                     var estadoAnterior = citaOriginal.Estado;
-                    await _editarCitasLN.editar(cita); // Guardar cambios
+                    await _editarCitasLN.editar(cita); 
 
                     // Enviar correo si cambió a "Terminada"
                     if (estadoAnterior != 1 && cita.Estado == 1)

@@ -89,12 +89,14 @@
                             <li style="word-break: break-word; overflow-wrap: anywhere; margin-bottom: 0.5rem;">
                                 @if (doc.Descargar)
                                 {
-                                    <a href="@Url.Action("Descargar", "DocumentosCita", new { id = doc.Id })"
-                                       target="_blank"
-                                       style="display:inline-block; max-width:100%;">
+                                    <button type="button"
+                                            class="btn btn-link p-0 text-primary"
+                                            style="word-break: break-word; overflow-wrap: anywhere; max-width:100%;"
+                                            onclick="procesoCompletoDescifrado(@doc.Id)">
                                         @doc.NombreArchivo
-                                    </a>
+                                    </button>
                                 }
+
                                 else
                                 {
                                     <span style="display:inline-block; max-width:100%;">@doc.NombreArchivo</span>

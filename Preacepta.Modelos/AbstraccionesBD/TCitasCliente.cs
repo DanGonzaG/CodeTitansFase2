@@ -17,6 +17,10 @@ public partial class TCitasCliente
     [Column("Id_Cliente")]
     public int IdCliente { get; set; }
 
+    [Column("UsuarioId")]
+    [StringLength(450)]
+    public string? UsuarioId { get; set; }
+
     [ForeignKey("IdCita")]
     [InverseProperty("TCitasClientes")]
     public virtual TCita IdCitaNavigation { get; set; } = null!;
@@ -24,4 +28,5 @@ public partial class TCitasCliente
     [ForeignKey("IdCliente")]
     [InverseProperty("TCitasClientes")]
     public virtual TGePersona IdClienteNavigation { get; set; } = null!;
+
 }

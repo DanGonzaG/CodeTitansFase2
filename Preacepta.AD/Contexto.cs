@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using Preacepta.Modelos.AbstraccionesBD;
 using Preacepta.Modelos.AbstraccionesFrond;
 
@@ -72,13 +73,19 @@ public partial class Contexto : DbContext
 
     public virtual DbSet<THistorialDocumento> THistorialDocumentos { get; set; }
 
+    public virtual DbSet<TDocumentoKey> TDocumentoKey { get; set; }
+
+    public virtual DbSet<TClavePublica> TClavePublica { get; set; }
+
+    public DbSet<IdentityUser> Users { get; set; }
+
 
     //Conexión para base de datos en ambiente de pruebas en Azure MV-precepta-test
     //string Server = "Data Source=mv-preacepta-te\\INSTANCIAPREACEP;Initial Catalog=PreaceptaBDtest;User ID=PreaceptaRootBD;Password=Preacepta_Testing;Connect Timeout=30;Encrypt=True;Trust Server Certificate=True;Application Intent=ReadWrite;Multi Subnet Failover=False";
 
 
     //string Server = "\"Data Source=LAPTOP-P5NFQFM6;Initial Catalog=PreaceptaBD;Integrated Security=True;Connect Timeout=30;Encrypt=True;Trust Server Certificate=True;Application Intent=ReadWrite;Multi Subnet Failover=False";
-    string Server = "Data Source=DANLAPTOPASUS\\DEVELOPERSERVER;Initial Catalog=PreaceptaBD;Integrated Security=True;Connect Timeout=30;Encrypt=False;Trust Server Certificate=True;Application Intent=ReadWrite;Multi Subnet Failover=False"; //Conexion Daniel
+    //string Server = "Data Source=DANLAPTOPASUS\\DEVELOPERSERVER;Initial Catalog=PreaceptaBD;Integrated Security=True;Connect Timeout=30;Encrypt=False;Trust Server Certificate=True;Application Intent=ReadWrite;Multi Subnet Failover=False"; //Conexion Daniel
 
     //string Server = "Data Source=ANDY;Initial Catalog=PreaceptaBD;Integrated Security=True;Connect Timeout=30;Encrypt=False;Trust Server Certificate=True"; // Conexion Andy
     //string Server = "Data Source=DESKTOP-BREQ0TF\\SQLEXPRESS;Initial Catalog=PreaceptaBD;Integrated Security=True;Trust Server Certificate=True"; //Conexion Alonso

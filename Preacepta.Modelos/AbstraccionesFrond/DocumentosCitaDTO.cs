@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Http;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -30,5 +31,11 @@ namespace Preacepta.Modelos.AbstraccionesFrond
 
         [Required(ErrorMessage = "Dato requerido")]
         public bool Activo { get; set; }
+
+        public string OwnerId { get; set; }
+        public string? IV { get; set; }
+        public string? Algoritmo { get; set; }
+        public string? ContentType { get; set; }
+        public byte[] ArchivoCifrado { get; set; }
     }
 }
