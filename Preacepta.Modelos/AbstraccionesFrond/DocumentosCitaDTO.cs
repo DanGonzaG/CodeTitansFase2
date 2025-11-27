@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Http;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,5 +16,11 @@ namespace Preacepta.Modelos.AbstraccionesFrond
         public DateTime FechaSubida { get; set; }
         public bool Descargar { get; set; }
         public bool Activo { get; set; }
+
+        public string OwnerId { get; set; }
+        public string? IV { get; set; }
+        public string? Algoritmo { get; set; }
+        public string? ContentType { get; set; }
+        public byte[] ArchivoCifrado { get; set; }
     }
 }

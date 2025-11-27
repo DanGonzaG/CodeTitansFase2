@@ -9,6 +9,11 @@ using System.IO;
 using System.Threading.Tasks;
 using System.Collections.Generic;
 using System.Linq;
+using Preacepta.AD.DocumentosCitas.DocumentosCitas;
+using Microsoft.AspNetCore.Identity;
+using Preacepta.UI.Data;
+using System;
+
 
 namespace Preacepta.Web.Controllers
 {
@@ -16,14 +21,16 @@ namespace Preacepta.Web.Controllers
     {
         private readonly IDocumentosCitaLN _documentosLN;
         private readonly ICrearEventosLN _bitacoraLN;
+        private readonly UserManager<IdentityUser> _userManager;
 
-        public DocumentosCitaController(IDocumentosCitaLN documentosLN, ICrearEventosLN bitacoraLN)
+
+        public DocumentosCitaController(UserManager<IdentityUser> userManager,IDocumentosCitaLN documentosLN, ICrearEventosLN bitacoraLN)
         {
             _documentosLN = documentosLN;
             _bitacoraLN = bitacoraLN;
+            _userManager = userManager;
         }
 
-        // Método para obtener nombre corto de archivo (máx 50 caracteres)
         private string ObtenerNombreCorto(string nombreArchivo, int maxLength = 50)
         {
             if (string.IsNullOrEmpty(nombreArchivo)) return string.Empty;
@@ -33,49 +40,253 @@ namespace Preacepta.Web.Controllers
 
             return nombreArchivo;
         }
-
+        [HttpGet]
         [Authorize(Roles = "Abogado,Gestor")]
-        public IActionResult Listar(int idCita)
+        public async Task<IActionResult> Listar(
+     int idCita,
+     [FromServices] IDocumentosCitaLN documentosLN
+ )
         {
-            var documentos = _documentosLN.ObtenerPorCita(idCita);
+            var documentos = documentosLN.ObtenerPorCita(idCita);
+
+            var usuarioId = User.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier)?.Value;
+            if (string.IsNullOrEmpty(usuarioId))
+                return Unauthorized();
+
+            var clavePublica = await documentosLN.ObtenerClavePublicaUsuario(usuarioId);
+
             ViewBag.IdCita = idCita;
+            ViewBag.UsuarioId = usuarioId;
+            ViewBag.PublicKeyPem = clavePublica?.PublicKeyPem ?? ""; 
+
             return PartialView("_ListarPartial", documentos);
         }
 
-        [HttpPost]
+        [HttpPost("SubirCifrado")]
         [Authorize(Roles = "Abogado,Gestor")]
-        public async Task<IActionResult> Subir(int idCita, IFormFile archivo)
+        public async Task<IActionResult> SubirDocumentoCifrado(
+            [FromForm] SubirDocumentoCifradoRequest request,
+            [FromServices] IDocumentosCitaAD documentosCitaAD)
         {
-            if (archivo == null || archivo.Length == 0)
-                return Json(new { success = false, message = "Debes seleccionar un archivo." });
-
             try
             {
-                var carpeta = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "uploads", "citas", idCita.ToString());
-                if (!Directory.Exists(carpeta))
-                    Directory.CreateDirectory(carpeta);
+                bool existe = await documentosCitaAD.ExisteCitaAsync(request.IdCita);
+                if (!existe)
+                    return Json(new { success = false, message = $"No existe la cita con Id {request.IdCita}" });
 
-                var nombreArchivo = Path.GetFileName(archivo.FileName);
-                var rutaArchivo = Path.Combine(carpeta, nombreArchivo);
+                if (request.ArchivoCifrado == null || request.ArchivoCifrado.Length == 0)
+                    return Json(new { success = false, message = "Archivo no recibido." });
 
-                using (var stream = new FileStream(rutaArchivo, FileMode.Create))
-                    await archivo.CopyToAsync(stream);
+                var nombreArchivo = string.IsNullOrWhiteSpace(request.NombreArchivo)
+                    ? request.ArchivoCifrado.FileName
+                    : request.NombreArchivo;
 
-                await _documentosLN.SubirDocumentoAsync(idCita, nombreArchivo, $"/uploads/citas/{idCita}/{nombreArchivo}");
+                if (string.IsNullOrWhiteSpace(nombreArchivo))
+                    return Json(new { success = false, message = "Nombre de archivo inválido." });
 
-                var usuario = User.Identity?.Name ?? "Desconocido";
-                var nombreCorto = ObtenerNombreCorto(nombreArchivo);
-                var accion = $"Se adjuntó el documento '{nombreCorto}' a la cita {idCita}";
-                await _bitacoraLN.RegistrarBitacoraAsync(usuario, "T_DocumentosCita", accion, idCita);
+                using var ms = new MemoryStream();
+                await request.ArchivoCifrado.CopyToAsync(ms);
 
-                return Json(new { success = true, message = "Documento subido correctamente." });
+                var documento = new TDocumentosCita
+                {
+                    IdCita = request.IdCita,
+                    NombreArchivo = nombreArchivo,
+                    RutaArchivo = $"/uploads/citas/{request.IdCita}/{nombreArchivo}",
+                    FechaSubida = DateTime.Now,
+                    Activo = true,
+                    Descargar = true,
+                    OwnerId = request.OwnerId,
+                    IV = request.IV,
+                    Algoritmo = request.Algoritmo ?? "AES-GCM-256",
+                    ContentType = request.ContentType,
+                    ArchivoCifrado = ms.ToArray()
+                };
+
+                await documentosCitaAD.InsertarDocumentoCifradoAsync(documento);
+
+                await documentosCitaAD.GuardarEncryptedKeyAsync(new TDocumentoKey
+                {
+                    DocumentoId = documento.Id,
+                    UsuarioId = request.OwnerId,
+                    EncryptedKeyBase64 = request.EncryptedKeyBase64,
+                    IV = request.IV,
+                    Activo = true,
+                    FechaCreacion = DateTime.Now
+                });
+
+                var usuarios = await documentosCitaAD.ObtenerUsuariosDeCitaAsync(request.IdCita, _userManager);
+
+                foreach (var u in usuarios.Where(u => u != request.OwnerId))
+                {
+                    await documentosCitaAD.GuardarEncryptedKeyAsync(new TDocumentoKey
+                    {
+                        DocumentoId = documento.Id,
+                        UsuarioId = u,
+                        EncryptedKeyBase64 = request.EncryptedKeyBase64,
+                        IV = request.IV,
+                        Activo = true,
+                        FechaCreacion = DateTime.Now
+                    });
+                }
+
+                return Json(new
+                {
+                    success = true,
+                    message = "Documento cifrado subido correctamente.",
+                    DocumentoId = documento.Id
+                });
             }
             catch (Exception ex)
             {
-                var mensaje = ex.InnerException != null ? ex.InnerException.Message : ex.Message;
-                return Json(new { success = false, message = $"Hubo un error al subir el archivo: {mensaje}" });
+                var msg = ex.InnerException?.Message ?? ex.Message;
+                return Json(new { success = false, message = $"Error al subir archivo: {msg}" });
             }
         }
+
+        [HttpPost]
+        public async Task<IActionResult> GuardarClavePublicaAutomatica([FromBody] PublicKeyDTO dto)
+        {
+            if (string.IsNullOrWhiteSpace(dto.PublicKeyBase64))
+                return BadRequest("Clave pública vacía");
+
+            var userId = User.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier)?.Value;
+            if (string.IsNullOrEmpty(userId))
+                return Unauthorized();
+
+            // Usar la capa LÓGICA, no acceso a datos directo
+            _documentosLN.GuardarClavePublicaUsuario(userId, dto.PublicKeyBase64);
+
+            return Ok(new { success = true });
+        }
+
+        public class PublicKeyDTO
+        {
+            public string PublicKeyBase64 { get; set; }
+        }
+
+
+
+        public class PublicKeyRequest
+        {
+            public string publicKeyBase64 { get; set; }
+        }
+
+
+        [HttpGet]
+        public IActionResult TieneClavePublica()
+        {
+            var usuarioId = User.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier)?.Value;
+            if (string.IsNullOrEmpty(usuarioId))
+                return Unauthorized();
+
+            bool existe = _documentosLN.ExisteClavePublica(usuarioId);
+            return Ok(new { existe });
+        }
+
+
+
+        [HttpGet("DescargarCifrado/{id}")]
+        [Authorize(Roles = "Abogado,Cliente")]
+        public async Task<IActionResult> DescargarCifrado(
+     int id,
+     [FromServices] IDocumentosCitaAD documentosCitaAD,
+     [FromServices] IDocumentosCitaLN documentosLN) 
+        {
+            var usuarioId = User.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier)?.Value;
+            if (string.IsNullOrEmpty(usuarioId))
+                return Unauthorized();
+
+            // Obtener documento
+            var documento = await _documentosLN.ObtenerPorIdAsync(id);
+            if (documento == null)
+                return NotFound("Documento no encontrado.");
+
+            if (!documento.Descargar)
+                return Forbid("No tienes permiso para descargar este documento.");
+
+            // Obtener clave AES cifrada asociada al usuario
+            var keyData = await documentosLN.ObtenerKeyDocumentoUsuario(id, usuarioId);
+
+            if (keyData == null)
+                return NotFound("No se encontró la clave cifrada del documento para este usuario.");
+            //  VALIDAR QUE EXISTEN DATOS DE CIFRADO 
+            if (string.IsNullOrEmpty(documento.IV))
+                return BadRequest(new { mensaje = "El documento no tiene IV guardado (dañado o forma antigua)." });
+
+            if (string.IsNullOrEmpty(keyData.EncryptedKeyBase64))
+                return BadRequest(new { mensaje = "No existe clave cifrada asociada al usuario para este documento." });
+            if (string.IsNullOrWhiteSpace(documento.IV))
+                return BadRequest(new { mensaje = "El documento no tiene IV guardado (dañado o forma antigua)." });
+
+            // Leer archivo físico
+            /*var rutaFisica = Path.Combine(
+                Directory.GetCurrentDirectory(),
+                "wwwroot",
+                documento.RutaArchivo.TrimStart('/')
+            );
+
+            if (!System.IO.File.Exists(rutaFisica))
+                return NotFound("El archivo físico no existe.");
+
+            var fileBytes = documento.ArchivoCifrado;*/
+            var fileBytes = documento.ArchivoCifrado;
+
+            if (fileBytes == null || fileBytes.Length == 0)
+                return BadRequest("El documento no tiene datos cifrados (posiblemente fue subido antes del cambio).");
+
+            try
+            {
+                var accion = $"Descarga E2EE del archivo '{documento.NombreArchivo}'";
+                await _bitacoraLN.RegistrarBitacoraAsync(usuarioId, "T_DocumentosCita", accion, documento.Id);
+            }
+            catch { }
+
+            // Devolver datos necesarios al cliente para descifrar
+            return Json(new
+            {
+                DocumentoId = documento.Id,
+                NombreArchivo = documento.NombreArchivo,
+                ContentType = documento.ContentType ?? "application/octet-stream",
+                IV = documento.IV,
+                EncryptedKeyBase64 = keyData.EncryptedKeyBase64,
+                archivoBase64 = Convert.ToBase64String(documento.ArchivoCifrado),
+            });
+        }
+
+        /* [HttpPost]
+         [Authorize(Roles = "Abogado,Gestor")]
+         public async Task<IActionResult> Subir(int idCita, IFormFile archivo)
+         {
+             if (archivo == null || archivo.Length == 0)
+                 return Json(new { success = false, message = "Debes seleccionar un archivo." });
+
+             try
+             {
+                 var carpeta = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "uploads", "citas", idCita.ToString());
+                 if (!Directory.Exists(carpeta))
+                     Directory.CreateDirectory(carpeta);
+
+                 var nombreArchivo = Path.GetFileName(archivo.FileName);
+                 var rutaArchivo = Path.Combine(carpeta, nombreArchivo);
+
+                 using (var stream = new FileStream(rutaArchivo, FileMode.Create))
+                     await archivo.CopyToAsync(stream);
+
+                 await _documentosLN.SubirDocumentoAsync(idCita, nombreArchivo, $"/uploads/citas/{idCita}/{nombreArchivo}");
+
+                 var usuario = User.Identity?.Name ?? "Desconocido";
+                 var nombreCorto = ObtenerNombreCorto(nombreArchivo);
+                 var accion = $"Se adjuntó el documento '{nombreCorto}' a la cita {idCita}";
+                 await _bitacoraLN.RegistrarBitacoraAsync(usuario, "T_DocumentosCita", accion, idCita);
+
+                 return Json(new { success = true, message = "Documento subido correctamente." });
+             }
+             catch (Exception ex)
+             {
+                 var mensaje = ex.InnerException != null ? ex.InnerException.Message : ex.Message;
+                 return Json(new { success = false, message = $"Hubo un error al subir el archivo: {mensaje}" });
+             }
+         }*/
 
         [HttpPost]
         [Authorize(Roles = "Abogado,Gestor")]
@@ -212,46 +423,57 @@ namespace Preacepta.Web.Controllers
         [HttpPost]
         public async Task<IActionResult> ActualizarPermisosBatch([FromBody] List<DocumentosCitaDTO> documentos)
         {
-            if (documentos == null || !documentos.Any())
-                return BadRequest("Sin datos para actualizar.");
-
-            var usuario = User.Identity?.Name ?? "Desconocido";
-
-            foreach (var dto in documentos)
+            try
             {
-                var doc = await _documentosLN.ObtenerPorIdAsync(dto.Id);
-                if (doc == null) continue;
+                if (documentos == null || !documentos.Any())
+                    return Json(new { success = false, message = "Lista vacía." });
 
-                bool cambioDescarga = doc.Descargar != dto.Descargar;
-                bool cambioActivo = doc.Activo != dto.Activo;
+                var usuario = User.Identity?.Name ?? "Desconocido";
 
-                doc.Descargar = dto.Descargar;
-                doc.Activo = dto.Activo;
-
-                var nombreCorto = ObtenerNombreCorto(doc.NombreArchivo);
-
-                if (cambioDescarga)
+                foreach (var dto in documentos)
                 {
-                    var accion = dto.Descargar
-                        ? $"Otorgó permiso de descarga al documento '{nombreCorto}'"
-                        : $"Revocó permiso de descarga al documento '{nombreCorto}'";
+                    var doc = await _documentosLN.ObtenerPorIdAsync(dto.Id);
+                    if (doc == null) continue;
 
-                    await _bitacoraLN.RegistrarBitacoraAsync(usuario, "T_DocumentosCita", accion, doc.Id);
+                    bool cambioDescarga = doc.Descargar != dto.Descargar;
+                    bool cambioActivo = doc.Activo != dto.Activo;
+
+                    doc.Descargar = dto.Descargar;
+                    doc.Activo = dto.Activo;
+
+                    var nombreCorto = ObtenerNombreCorto(doc.NombreArchivo);
+
+                    if (cambioDescarga)
+                    {
+                        var accion = dto.Descargar
+                            ? $"Otorgó permiso de descarga al documento '{nombreCorto}'"
+                            : $"Revocó permiso de descarga al documento '{nombreCorto}'";
+
+                        await _bitacoraLN.RegistrarBitacoraAsync(usuario, "T_DocumentosCita", accion, doc.Id);
+                    }
+
+                    if (cambioActivo)
+                    {
+                        var accion = dto.Activo
+                            ? $"Documento '{nombreCorto}' habilitado"
+                            : $"Documento '{nombreCorto}' deshabilitado";
+
+                        await _bitacoraLN.RegistrarBitacoraAsync(usuario, "T_DocumentosCita", accion, doc.Id);
+                    }
                 }
 
-                if (cambioActivo)
-                {
-                    var accion = dto.Activo
-                        ? $"Documento '{nombreCorto}' habilitado"
-                        : $"Documento '{nombreCorto}' deshabilitado";
+                await _documentosLN.ActualizarBatchAsync(documentos);
 
-                    await _bitacoraLN.RegistrarBitacoraAsync(usuario, "T_DocumentosCita", accion, doc.Id);
-                }
+                return Json(new { success = true });
+
             }
-
-            await _documentosLN.ActualizarBatchAsync(documentos);
-
-            return Json(new { success = true, redirectUrl = "/Citas/Calendar" });
+            catch (Exception ex)
+            {
+             
+                return Json(new { success = false, error = ex.Message, detalle = ex.StackTrace });
+            }
         }
+
+
     }
 }

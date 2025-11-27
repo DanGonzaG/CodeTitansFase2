@@ -7,6 +7,7 @@ using Preacepta.Modelos.AbstraccionesFrond;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -18,6 +19,7 @@ namespace Preacepta.LN.DocumentosCita
 
         public DocumentosCitaLN(IDocumentosCitaAD documentosAD)
         {
+
             _documentosAD = documentosAD;
         }
 
@@ -91,7 +93,13 @@ namespace Preacepta.LN.DocumentosCita
                 NombreArchivo = entidad.NombreArchivo,
                 RutaArchivo = entidad.RutaArchivo,
                 FechaSubida = entidad.FechaSubida,
-                Descargar = entidad.Descargar
+                Descargar = entidad.Descargar,
+                Activo = entidad.Activo,
+                Algoritmo = entidad.Algoritmo,
+                ContentType = entidad.ContentType,
+                IV = entidad.IV,
+                OwnerId = entidad.OwnerId,
+                ArchivoCifrado = entidad.ArchivoCifrado,
             };
         }
        
@@ -135,5 +143,73 @@ namespace Preacepta.LN.DocumentosCita
             await _documentosAD.ActualizarBatchAsync(entidades);
         }
 
+        public async Task<TClavePublica> ObtenerClavePublicaUsuario(string usuarioId)
+        {
+            return await _documentosAD.ObtenerClavePublicaUsuario(usuarioId);
+        }
+
+        public async Task<TClavePublica> GenerarClavePublicaUsuario(string usuarioId)
+        {
+            using var rsa = RSA.Create(2048);
+
+            string publicKeyPEM = ExportarClavePublicaPEM(rsa);
+
+            var clave = new TClavePublica
+            {
+                UsuarioId = usuarioId,
+                PublicKeyPem = publicKeyPEM,
+                Activo = true,
+                FechaCreacion = DateTime.UtcNow
+            };
+
+            await _documentosAD.GuardarClavePublica(clave);
+
+            return clave;
+        }
+
+
+        private string ExportarClavePublicaPEM(RSA rsa)
+    {
+        byte[] spki = rsa.ExportSubjectPublicKeyInfo();
+
+        string base64 = Convert.ToBase64String(spki);
+
+        var sb = new StringBuilder();
+        sb.AppendLine("-----BEGIN PUBLIC KEY-----");
+
+        const int LINE_LENGTH = 64;
+        for (int i = 0; i < base64.Length; i += LINE_LENGTH)
+            sb.AppendLine(base64.Substring(i, Math.Min(LINE_LENGTH, base64.Length - i)));
+
+        sb.AppendLine("-----END PUBLIC KEY-----");
+
+        return sb.ToString();
+    }
+
+        public async Task<TDocumentoKey> ObtenerKeyDocumentoUsuario(int documentoId, string usuarioId)
+{
+    return _documentosAD.ObtenerEncryptedKeyPorDocumento(documentoId, usuarioId);
+}
+
+        public async Task GuardarClavePublicaUsuario(string usuarioId, string publicKeyBase64)
+        {
+            var entidad = new TClavePublica
+            {
+                UsuarioId = usuarioId,
+                PublicKeyPem = publicKeyBase64,
+                Activo = true,
+                FechaCreacion = DateTime.UtcNow
+            };
+
+            await _documentosAD.GuardarClavePublica(entidad);
+        }
+
+        public bool ExisteClavePublica(string usuarioId)
+        {
+            return _documentosAD.ExisteClavePublica(usuarioId);
+        }
+
+
     }
 }
+
