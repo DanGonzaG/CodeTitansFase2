@@ -619,3 +619,10 @@ C:\Preacepta\Preacepta.UI\obj\Debug\net8.0\refint\Preacepta.UI.dll
 C:\Preacepta\Preacepta.UI\obj\Debug\net8.0\Preacepta.UI.pdb
 C:\Preacepta\Preacepta.UI\obj\Debug\net8.0\Preacepta.UI.genruntimeconfig.cache
 C:\Preacepta\Preacepta.UI\obj\Debug\net8.0\ref\Preacepta.UI.dll
+C:\CodeTitansFase2-develop\Preacepta.UI\obj\Debug\net8.0\Preacepta.UI.sourcelink.json
+C:\CodeTitansFase2-develop\Preacepta.UI\bin\Debug\net8.0\Microsoft.Win32.SystemEvents.dll
+C:\CodeTitansFase2-develop\Preacepta.UI\bin\Debug\net8.0\QRCoder.dll
+C:\CodeTitansFase2-develop\Preacepta.UI\bin\Debug\net8.0\System.Drawing.Common.dll
+C:\CodeTitansFase2-develop\Preacepta.UI\bin\Debug\net8.0\runtimes\win\lib\net6.0\Microsoft.Win32.SystemEvents.dll
+C:\CodeTitansFase2-develop\Preacepta.UI\bin\Debug\net8.0\runtimes\unix\lib\net6.0\System.Drawing.Common.dll
+C:\CodeTitansFase2-develop\Preacepta.UI\bin\Debug\net8.0\runtimes\win\lib\net6.0\System.Drawing.Common.dll

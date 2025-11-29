@@ -61,8 +61,9 @@
                         </div>
                         <div class="col-sm-6 col-lg-6">
                             <div class="form-group">                               
-                                <input name="IdCliente" id="IdCliente" asp-for="IdCliente" value="@ViewBag.ClienteCedula" class="form-control" />
+                                <input id="IdCliente" value="@ViewBag.ClienteNumCedula" class="form-control" readonly />
                                 <input type="hidden" asp-for="IdAbogado" value="@ViewBag.AbogadoCedula" class="form-control" />
+                                <input type="hidden" asp-for="IdCliente" value="@ViewBag.ClienteCedula" class="form-control" />
                                 <span asp-validation-for="IdClienteNavigation.Cedula" class="text-danger"></span>
                             </div>
                         </div>

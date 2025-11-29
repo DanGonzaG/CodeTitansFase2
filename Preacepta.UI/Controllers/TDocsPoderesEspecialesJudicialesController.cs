@@ -232,16 +232,19 @@ namespace Preacepta.UI.Controllers
 
         [HttpGet]
         [Authorize(Roles = "Gestor, Abogado")]
-        public async Task<IActionResult> CreateDocsPoderesEspecialesJudiciales(int id)
-        {
-            var cliente = await _buscarPersona.buscar(id);
+        public async Task<IActionResult> CreateDocsPoderesEspecialesJudiciales(string id)
+        {            
+            var cliente = await _buscarPersona.buscarXnumCedula(id);
             var abogado = await _buscarPersona.buscarXcorreo(User.Identity.Name);
-
-            ViewBag.ClienteCedula = cliente?.Cedula ?? 0;
+            
+            ViewBag.ClienteCedula = cliente.Cedula ;
+            ViewBag.ClienteNumCedula = cliente.NumCedula;
             ViewBag.ClienteNombre = cliente?.Nombre ?? "";
             ViewBag.ClienteApellido1 = cliente?.Apellido1 ?? "";
             ViewBag.ClienteApellido2 = cliente?.Apellido2 ?? "";
-            ViewBag.AbogadoCedula = abogado?.Cedula ?? 0;
+            ViewBag.AbogadoCedula = abogado.Cedula;
+            ViewBag.AbogadoNumCedula = abogado.NumCedula;
+
 
             var model = new DocsPoderesEspecialesJudicialeDTO
             {
@@ -264,8 +267,10 @@ namespace Preacepta.UI.Controllers
             {
                 var c = await _buscarPersona.buscar(dto.IdCliente);
                 var a = await _buscarPersona.buscar(dto.IdAbogado);
+                dto.IdCliente = c?.Cedula ?? 0;
 
-                ViewBag.ClienteCedula = c?.Cedula ?? 0;
+                ViewBag.ClienteCedula = c?.NumCedula ?? "";
+
                 ViewBag.ClienteNombre = c?.Nombre ?? "";
                 ViewBag.ClienteApellido1 = c?.Apellido1 ?? "";
                 ViewBag.ClienteApellido2 = c?.Apellido2 ?? "";
@@ -291,6 +296,7 @@ namespace Preacepta.UI.Controllers
                     Abogado = dto.IdAbogado,
                     IdDocumento = nuevoIdDoc,
                     Titulo = $"Doc.no.{nuevoIdDoc} Poder especial judicial"
+                    
                 };
                 await _crearHistorial.Crear(historial);
 
@@ -343,8 +349,8 @@ namespace Preacepta.UI.Controllers
                 ? $"{personaCliente.Nombre} {personaCliente.Apellido1} {(personaCliente.Apellido2 ?? "")}".Trim()
                 : idCliente;
 
-            string cedulaAbogadoStr = personaAbogado?.Cedula.ToString() ?? idAbogado;
-            string cedulaClienteStr = personaCliente?.Cedula.ToString() ?? idCliente;
+            string cedulaAbogadoStr = personaAbogado?.NumCedula.ToString() ?? idAbogado;
+            string cedulaClienteStr = personaCliente?.NumCedula.ToString() ?? idCliente;
 
             var abogadoDetalle = (cedAbogado > 0) ? await _buscarAbogado.buscar(cedAbogado) : null;
             string carnetProfesional = abogadoDetalle?.Carnet.ToString() ?? "";

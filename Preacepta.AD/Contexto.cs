@@ -85,12 +85,12 @@ public partial class Contexto : DbContext
 
 
     //string Server = "\"Data Source=LAPTOP-P5NFQFM6;Initial Catalog=PreaceptaBD;Integrated Security=True;Connect Timeout=30;Encrypt=True;Trust Server Certificate=True;Application Intent=ReadWrite;Multi Subnet Failover=False";
-    //string Server = "Data Source=DANLAPTOPASUS\\DEVELOPERSERVER;Initial Catalog=PreaceptaBD;Integrated Security=True;Connect Timeout=30;Encrypt=False;Trust Server Certificate=True;Application Intent=ReadWrite;Multi Subnet Failover=False"; //Conexion Daniel
+    string Server = "Data Source=DANLAPTOPASUS\\DEVELOPERSERVER;Initial Catalog=PreaceptaBD;Integrated Security=True;Connect Timeout=30;Encrypt=False;Trust Server Certificate=True;Application Intent=ReadWrite;Multi Subnet Failover=False"; //Conexion Daniel
 
     //string Server = "Data Source=ANDY;Initial Catalog=PreaceptaBD;Integrated Security=True;Connect Timeout=30;Encrypt=False;Trust Server Certificate=True"; // Conexion Andy
     //string Server = "Data Source=DESKTOP-BREQ0TF\\SQLEXPRESS;Initial Catalog=PreaceptaBD;Integrated Security=True;Trust Server Certificate=True"; //Conexion Alonso
 
-    string Server = "Data Source=DESKTOP-L8MJ1I5\\SQLEXPRESS03;Initial Catalog=PreaceptaBD;User ID=db_connect;Password=1357;Connect Timeout=30;Encrypt=False;Trust Server Certificate=True";
+    //string Server = "Data Source=DESKTOP-L8MJ1I5\\SQLEXPRESS03;Initial Catalog=PreaceptaBD;User ID=db_connect;Password=1357;Connect Timeout=30;Encrypt=False;Trust Server Certificate=True";
     //string Server = "Data Source=DESKTOP-SN6P8CV;Initial Catalog=PreaceptaBD;Integrated Security=True;Connect Timeout=30;Encrypt=False;Trust Server Certificate=True";//Andy
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -457,7 +457,7 @@ public partial class Contexto : DbContext
         {
             entity.HasKey(e => e.Cedula).HasName("PK_T_Pesonas");
 
-            entity.Property(e => e.Cedula).ValueGeneratedNever();
+            //entity.Property(e => e.Cedula).ValueGeneratedNever();
 
             entity.HasOne(d => d.Direccion1Navigation).WithMany(p => p.TGePersonas)
                 .OnDelete(DeleteBehavior.ClientSetNull)

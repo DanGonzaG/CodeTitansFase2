@@ -13,10 +13,12 @@ namespace Preacepta.Modelos.AbstraccionesFrond
 
         [Required(ErrorMessage = "Debe de agregar un titulo a la etapa del proceso legal")]
         [DisplayName("Nombre de Etapa")]
+        [MaxLength(100, ErrorMessage = "El valor máximo es de 100 letras")]
         public string Nombre { get; set; } = null!;
 
         [Required(ErrorMessage = "Debe de agregar una descripción de la etapa del proceso legal")]
         [DisplayName("Descripción")]
+        [MaxLength(5000, ErrorMessage = "El valor máximo es de 5000 letras")]
         public string Descripcion { get; set; } = null!;
 
         [DisplayName("Id Caso")]
@@ -26,6 +28,7 @@ namespace Preacepta.Modelos.AbstraccionesFrond
         public bool Activo { get; set; }
 
         [Required(ErrorMessage = "Debe agregar pruebas")]
+        [MaxLength(500, ErrorMessage = "El valor máximo es de 500 letras")]
         public string Pruebas { get; set; }
 
         [DisplayName("Nombre Caso")]

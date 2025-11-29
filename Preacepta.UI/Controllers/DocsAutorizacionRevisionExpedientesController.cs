@@ -244,24 +244,26 @@ namespace Preacepta.UI.Controllers
         #region Crear Documento Abogado
         [HttpGet]
         [Authorize(Roles = "Abogado")]
-        public async Task<IActionResult> CreateDocsAutorizacionRevisionExpedientes(int cedulaImputado, int cedulaAsistente)
+        public async Task<IActionResult> CreateDocsAutorizacionRevisionExpedientes(string cedulaImputado, string cedulaAsistente)
         {
-            var cliente = await _buscarPersona.buscar(cedulaImputado);
-            var asistente = await _buscarPersona.buscar(cedulaAsistente);
+            var cliente = await _buscarPersona.buscarXnumCedula(cedulaImputado);
+            var asistente = await _buscarPersona.buscarXnumCedula(cedulaAsistente);
             
             var abogado = await _buscarPersona.buscarXcorreo(User.Identity.Name);
 
+            ViewBag.ClienteNumCedula = cliente.NumCedula;
             ViewBag.ClienteCedula = cliente.Cedula;
             ViewBag.ClienteNombre = cliente.Nombre;
             ViewBag.ClienteApellido1 = cliente.Apellido1;
             ViewBag.ClienteApellido2 = cliente.Apellido2;
             ViewBag.Dash = " - ";
 
-            ViewBag.AbogadoCedula = abogado.Cedula;
+            ViewBag.AbogadoCedula = abogado.NumCedula;
             ViewBag.AbogadoNombre = abogado.Nombre;
             ViewBag.AbogadoApellido1 = abogado.Apellido1;
             ViewBag.AbogadoApellido2 = abogado.Apellido2;
 
+            ViewBag.AsistenteNumCedula = asistente.NumCedula;
             ViewBag.CedulaAsistente = asistente.Cedula;
             ViewBag.NombreAsistente = asistente.Nombre;
             ViewBag.Apellido1Asistente = asistente.Apellido1;
@@ -279,6 +281,7 @@ namespace Preacepta.UI.Controllers
             var cliente = await _buscarPersona.buscar(tDocsAutorizacionRevisionExpediente.CedulaImputado);
             var asistente = await _buscarPersona.buscar(tDocsAutorizacionRevisionExpediente.CedulaAsistente);
             var abogado = await _buscarPersona.buscarXcorreo(User.Identity.Name);
+            tDocsAutorizacionRevisionExpediente.CedulaAbogado = abogado.Cedula;
             if (ModelState.IsValid)
             {
                 await _crear.Crear(tDocsAutorizacionRevisionExpediente);
@@ -307,17 +310,19 @@ namespace Preacepta.UI.Controllers
 
                 return RedirectToAction("DocsHistorial", "THistorialDocumento1");
             }
+            ViewBag.ClienteNumCedula = cliente.NumCedula;
             ViewBag.ClienteCedula = cliente.Cedula;
             ViewBag.ClienteNombre = cliente.Nombre;
             ViewBag.ClienteApellido1 = cliente.Apellido1;
             ViewBag.ClienteApellido2 = cliente.Apellido2;
             ViewBag.Dash = " - ";
 
-            ViewBag.AbogadoCedula = abogado.Cedula;
+            ViewBag.AbogadoCedula = abogado.NumCedula;
             ViewBag.AbogadoNombre = abogado.Nombre;
             ViewBag.AbogadoApellido1 = abogado.Apellido1;
             ViewBag.AbogadoApellido2 = abogado.Apellido2;
 
+            ViewBag.AsistenteNumCedula = asistente.NumCedula;
             ViewBag.CedulaAsistente = asistente.Cedula;
             ViewBag.NombreAsistente = asistente.Nombre;
             ViewBag.Apellido1Cliente = asistente.Apellido1;
@@ -330,18 +335,22 @@ namespace Preacepta.UI.Controllers
         #region Previzualizar PDF Abogado
         [HttpGet]
         [Authorize(Roles = "Abogado")]
-        public IActionResult PrevisualizarPDF(string expediente, string delito, string cedulaImputado, string ofendido, string cedulaAbogado, string cedulaAsistente)
+        public async Task<IActionResult> PrevisualizarPDF(string expediente, string delito, int cedulaImputado, string ofendido, int cedulaAbogado, int cedulaAsistente)
         {
             var templatePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "lyso", "DocsMachotes", "AutorizacionExpedienteMachote.html");
             var htmlTemplate = System.IO.File.ReadAllText(templatePath);
 
+            var imputado = await _buscarPersona.buscar(cedulaImputado);
+            var asistente = await _buscarPersona.buscar(cedulaAsistente);
+            var abogado = await _buscarPersona.buscarXcorreo(User.Identity.Name);
+
             htmlTemplate = htmlTemplate
                 .Replace("{{EXPEDIENTE}}", expediente)
                 .Replace("{{DELITO}}", delito)
-                .Replace("{{CEDULA_IMPUTADO}}", cedulaImputado)
+                .Replace("{{CEDULA_IMPUTADO}}", imputado.NumCedula)
                 .Replace("{{OFENDIDO}}", ofendido)
-                .Replace("{{CEDULA_ABOGADO}}", cedulaAbogado)
-                .Replace("{{CEDULA_ASISTENTE}}", cedulaAsistente);
+                .Replace("{{CEDULA_ABOGADO}}", abogado.NumCedula)
+                .Replace("{{CEDULA_ASISTENTE}}", asistente.NumCedula);
 
             var doc = new HtmlToPdfDocument()
             {

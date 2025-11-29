@@ -49,13 +49,26 @@
                         <div class="seccion-titulo">Información del personal</div>
                         <div class="col-sm-6 col-lg-6 centro">
                             <div class="form-group">
-                                <label asp-for="Cedula" class="control-label"></label>
+                                <label asp-for="TipoIdentificacion" class="control-label"></label>
                             </div>
                         </div>
                         <div class="col-sm-6 col-lg-6">
                             <div class="form-group">
-                                <input type="number" asp-for="Cedula" class="form-control" />
-                                <span asp-validation-for="Cedula" class="text-danger"></span>
+                                <select asp-for="TipoIdentificacion" class="form-control" asp-items="ViewBag.TipoIdentificacion" id="TipoIdentificacion"></select>
+                                <span asp-validation-for="TipoIdentificacion" class="text-danger"></span>                               
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-lg-6 centro">
+                            <div class="form-group">
+                                <!--<label asp-for="Cedula" class="control-label"></label>-->
+                                <label asp-for="NumCedula" class="control-label"></label>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-lg-6">
+                            <div class="form-group">
+                                <!--<input type="number" asp-for="Cedula" class="form-control" />-->
+                                <input id="NumCedula" type="text" asp-for="NumCedula" class="form-control" />
+                                <span asp-validation-for="NumCedula" class="text-danger"></span>
                                 @if (TempData["ErrorCedula"] != null)
                                 {
                                     <span class="text-danger">@TempData["ErrorCedula"]</span>
@@ -286,11 +299,12 @@
     @{
         await Html.RenderPartialAsync("_ValidationScriptsPartial");
     }
-}
 
+    
+}
 <script src="~/lyso/js/calculoedad.js"></script>
 <script src="~/lyso/js/filtroprovinicacantondistrito.js"></script>
-
+<script src="~/lyso/js/tipoidentificacion.js"></script>
 
 
 

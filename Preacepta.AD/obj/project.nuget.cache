@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "HBxfjLHG/20=",
+  "dgSpecHash": "oFl1yPr/XCI=",
   "success": true,
-  "projectFilePath": "C:\\Preacepta\\Preacepta.AD\\Preacepta.AD.csproj",
+  "projectFilePath": "C:\\CodeTitansFase2-develop\\Preacepta.AD\\Preacepta.AD.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\DanGG\\.nuget\\packages\\azure.core\\1.44.1\\azure.core.1.44.1.nupkg.sha512",
     "C:\\Users\\DanGG\\.nuget\\packages\\azure.identity\\1.13.2\\azure.identity.1.13.2.nupkg.sha512",

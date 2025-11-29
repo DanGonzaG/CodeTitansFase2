@@ -53,17 +53,59 @@ namespace Praecepta.UI.Areas.Identity.Pages.Account.Manage
 
         public List<SelectListItem> GeneroLista { get; set; }
 
+        public List<SelectListItem> TipoIdentificacionLista { get; set; }
+
         //Modelo parcial de persona      
-        
+
 
         public int Cedula { get; set; }
+
+        [Required(ErrorMessage = "Debe de seleccionar el tipo de Identificación")]
+        [MaxLength(100, ErrorMessage = "El tipo de identificación no debe exceder los 100 caracteres")]
+        [DisplayName("Tipo de identificación")]
+        public string TipoIdentificacion { get; set; } = null!;
+
+
+        [Required(ErrorMessage = "Debe de ingresar un número de Identificación")]
+        [MaxLength(100, ErrorMessage = "El tipo de identificación no debe exceder los 100 caracteres")]
+        [DisplayName("No. Idenficación")]
+        public string NumCedula { get; set; } = null!;
+
+        [Required(ErrorMessage = "Ingrese el nombre de la persona")]
+        [MaxLength(50, ErrorMessage = "El nombre no debe exceder los 50 caracteres")]
+        [DisplayName("Nombre")]
         public string Nombre { get; set; } = null!;
-        public string Apellido1 { get; set; } = null!;       
+
+        [Required(ErrorMessage = "Ingrese el primer apellido de la persona")]
+        [MaxLength(50, ErrorMessage = "El apellido no debe exceder los 50 caracteres")]
+        [DisplayName("Primer apellido")]
+        public string Apellido1 { get; set; } = null!;
+
+        [Required(ErrorMessage = "Ingrese el segundo apellido de la persona")]
+        [MaxLength(50, ErrorMessage = "El segundo no debe exceder los 50 caracteres")]
+        [DisplayName("Segundo Apellido")]
         public string Apellido2 { get; set; } = null!;
+
+        [Required(ErrorMessage = "Ingrese la fecha de nacimiento de la persona")]
+        [MaxLength(50, ErrorMessage = "La fecha no debe exceder los 50 caracteres")]
+        [DisplayName("Fecha de nacimiento")]
         public string FechaNacimiento { get; set; }
-        public int Edad { get; set; }      
-        public string EstadoCivil { get; set; } = null!;       
+
+        [Required(ErrorMessage = "Debe ingresar una edad")]
+        public int Edad { get; set; }
+
+        [Required(ErrorMessage = "Seleccione el estado civil de la persona")]
+        [MaxLength(50, ErrorMessage = "El estado civil no debe exceder los 50 caracteres")]
+        [DisplayName("Estado Civil")]
+        public string EstadoCivil { get; set; } = null!;
+
+        [Required(ErrorMessage = "Ingrese la ocupación de la persona")]
+        [MaxLength(50, ErrorMessage = "La ocupación no debe exceder los 50 caracteres")]
+        [DisplayName("Ocupación")]
         public string Oficio { get; set; } = null!;
+
+        [Required(ErrorMessage = "Seleccione un género")]
+        [MaxLength(10, ErrorMessage = "El género no debe exceder los 10 caracteres")]
         public string Genero { get; set; } = null!;
 
 
@@ -106,32 +148,51 @@ namespace Praecepta.UI.Areas.Identity.Pages.Account.Manage
             public int Cedula { get; set; }
 
             [Required(ErrorMessage = "Ingrese el nombre de la persona")]
+            [MaxLength(50, ErrorMessage = "El nombre no debe exceder los 50 caracteres")]
+            [DisplayName("Nombre")]
             public string Nombre { get; set; } = null!;
 
             [Required(ErrorMessage = "Ingrese el primer apellido de la persona")]
+            [MaxLength(50, ErrorMessage = "El apellido no debe exceder los 50 caracteres")]
             [DisplayName("Primer apellido")]
             public string Apellido1 { get; set; } = null!;
 
             [Required(ErrorMessage = "Ingrese el segundo apellido de la persona")]
+            [MaxLength(50, ErrorMessage = "El segundo no debe exceder los 50 caracteres")]
             [DisplayName("Segundo Apellido")]
             public string Apellido2 { get; set; } = null!;
 
             [Required(ErrorMessage = "Ingrese la fecha de nacimiento de la persona")]
+            [MaxLength(50, ErrorMessage = "La fecha no debe exceder los 50 caracteres")]
             [DisplayName("Fecha de nacimiento")]
             public string FechaNacimiento { get; set; }
 
+            [Required(ErrorMessage = "Debe ingresar una edad")]
             public int Edad { get; set; }
 
             [Required(ErrorMessage = "Seleccione el estado civil de la persona")]
+            [MaxLength(50, ErrorMessage = "El estado civil no debe exceder los 50 caracteres")]
             [DisplayName("Estado Civil")]
             public string EstadoCivil { get; set; } = null!;
 
             [Required(ErrorMessage = "Ingrese la ocupación de la persona")]
+            [MaxLength(50, ErrorMessage = "La ocupación no debe exceder los 50 caracteres")]
             [DisplayName("Ocupación")]
             public string Oficio { get; set; } = null!;
 
             [Required(ErrorMessage = "Seleccione un género")]
+            [MaxLength(10, ErrorMessage = "El género no debe exceder los 10 caracteres")]
             public string Genero { get; set; } = null!;
+
+            [Required(ErrorMessage = "Debe de seleccionar el tipo de Identificación")]
+            [MaxLength(100, ErrorMessage = "El tipo de identificación no debe exceder los 100 caracteres")]
+            [DisplayName("Tipo de identificación")]
+            public string TipoIdentificacion { get; set; }
+
+            [Required(ErrorMessage = "Debe de ingresar un número de Identificación")]
+            [MaxLength(100, ErrorMessage = "El tipo de identificación no debe exceder los 100 caracteres")]
+            [DisplayName("No. Idenficación")]
+            public string NumCedula { get; set; }
         }
 
         private async Task LoadAsync(IdentityUser user)
@@ -154,6 +215,8 @@ namespace Praecepta.UI.Areas.Identity.Pages.Account.Manage
                 EstadoCivil = persona.EstadoCivil;
                 Oficio = persona.Oficio;
                 Genero = persona.Genero;
+                TipoIdentificacion = persona.TipoIdentificacion;
+                NumCedula = persona.NumCedula;
 
 
 
@@ -184,6 +247,14 @@ namespace Praecepta.UI.Areas.Identity.Pages.Account.Manage
                 {
                     new SelectListItem { Text = "Femenino", Value = "Femenino" },
                     new SelectListItem { Text = "Masculino", Value = "Masculino" }
+                };
+
+                TipoIdentificacionLista = new List<SelectListItem>
+                {
+                    new SelectListItem { Text = "Cédula física", Value = "Cedula" },
+                    new SelectListItem { Text = "DIMEX", Value = "DIMEX" },
+                    new SelectListItem { Text = "Pasaporte", Value = "Pasaporte" },
+                    new SelectListItem { Text = "Sin documento de identificación", Value = "SinDocumento" }
                 };
             }
 
@@ -241,7 +312,9 @@ namespace Praecepta.UI.Areas.Identity.Pages.Account.Manage
             gePersonaDTO.FechaRegistro = datosNoCambiados.FechaRegistro;
             gePersonaDTO.Activo = datosNoCambiados.Activo;
             gePersonaDTO.Telefono1 = datosNoCambiados.Telefono1;
-            gePersonaDTO.Telefono2 = datosNoCambiados.Telefono2;   
+            gePersonaDTO.Telefono2 = datosNoCambiados.Telefono2;
+            gePersonaDTO.TipoIdentificacion = datosNoCambiados.TipoIdentificacion;
+            gePersonaDTO.NumCedula = datosNoCambiados.NumCedula;
 
 
             var user = await _userManager.GetUserAsync(User);

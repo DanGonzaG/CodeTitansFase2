@@ -258,18 +258,19 @@ namespace Preacepta.UI.Controllers
         // GET: ContratoPrestacionServicios/Create
         [HttpGet]
         [Authorize(Roles = "Abogado")]
-        public async Task<IActionResult> CreateDocsContratoPrestacionServicios(int id)
+        public async Task<IActionResult> CreateDocsContratoPrestacionServicios(string id)
         {
-            var cliente = await _buscarPersona.buscar(id);
+            var cliente = await _buscarPersona.buscarXnumCedula(id);
             var abogado = await _buscarPersona.buscarXcorreo(User.Identity.Name);
 
+            ViewBag.ClienteNumCedula = cliente.NumCedula;
             ViewBag.ClienteCedula = cliente.Cedula;
             ViewBag.ClienteNombre = cliente.Nombre;
             ViewBag.ClienteApellido1 = cliente.Apellido1;
             ViewBag.ClienteApellido2 = cliente.Apellido2;
             ViewBag.Dash = " - ";
 
-            ViewBag.AbogadoCedula = abogado.Cedula;
+            ViewBag.AbogadoCedula = abogado.NumCedula;
             ViewBag.AbogadoNombre = abogado.Nombre;
             ViewBag.AbogadoApellido1 = abogado.Apellido1;
             ViewBag.AbogadoApellido2 = abogado.Apellido2;
@@ -299,6 +300,7 @@ namespace Preacepta.UI.Controllers
         {
             var cliente = await _buscarPersona.buscar(tDocsContratoPrestacionServicio.CedulaCliente);
             var abogado = await _buscarPersona.buscarXcorreo(User.Identity.Name);
+            tDocsContratoPrestacionServicio.CedulaAbogado = abogado.Cedula;
 
             if (ModelState.IsValid)
             {
@@ -327,17 +329,18 @@ namespace Preacepta.UI.Controllers
                 await _crearHistorialLN.Crear(historialDocumentoDTO);
                 return RedirectToAction("DocsHistorial", "THistorialDocumento1");
             }
+            ViewBag.ClienteNumCedula = cliente.NumCedula;
             ViewBag.ClienteCedula = cliente.Cedula;
             ViewBag.ClienteNombre = cliente.Nombre;
             ViewBag.ClienteApellido1 = cliente.Apellido1;
             ViewBag.ClienteApellido2 = cliente.Apellido2;
             ViewBag.Dash = " - ";
 
-            ViewBag.AbogadoCedula = abogado.Cedula;
+            ViewBag.AbogadoCedula = abogado.NumCedula;
             ViewBag.AbogadoNombre = abogado.Nombre;
             ViewBag.AbogadoApellido1 = abogado.Apellido1;
             ViewBag.AbogadoApellido2 = abogado.Apellido2;
-            
+
             return View(tDocsContratoPrestacionServicio);
         }
 
@@ -347,8 +350,8 @@ namespace Preacepta.UI.Controllers
                 string razonSocialEmpresa,
                 string provincia,
                 string cedulaJuridicaEmpresa,
-                string cedulaAbogado,
-                string cedulaCliente,
+                int cedulaAbogado,
+                int cedulaCliente,
                 string tipoServicios,
                 string fechaInicio,
                 string fechaFinal,
@@ -361,7 +364,7 @@ namespace Preacepta.UI.Controllers
             var templatePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "lyso", "DocsMachotes", "PrestacionServiciosMachote.html");
             var htmlTemplate = System.IO.File.ReadAllText(templatePath);
 
-            var cliente = await _buscarPersona.buscar(int.Parse(cedulaCliente));
+            var cliente = await _buscarPersona.buscar(cedulaCliente);
             var abogado = await _buscarPersona.buscarXcorreo(User.Identity.Name);
             var prov = await _buscarDistrito.buscarProvincia(int.Parse(provincia));
             var dist = await _buscarDistrito.buscarDistrito(int.Parse(ciudadFirma));
@@ -375,12 +378,12 @@ namespace Preacepta.UI.Controllers
                 .Replace("{{ESTADO_CIVIL_ABOGADO}}", abogado.EstadoCivil)
                 .Replace("{{OCUPACION_ABOGADO}}", abogado.Oficio)
                 .Replace("{{DOMICILIO_ABOGADO}}", abogado.Direccion2)
-                .Replace("{{CEDULA_ABOGADO}}", cedulaAbogado)
+                .Replace("{{CEDULA_ABOGADO}}", abogado.NumCedula)
                 .Replace("{{NOMBRE_CLIENTE}}", cliente.Nombre + " " + cliente.Apellido1 + " " + cliente.Apellido2)
                 .Replace("{{ESTADO_CIVIL_CLIENTE}}", cliente.EstadoCivil)
                 .Replace("{{OCUPACION_CLIENTE}}", cliente.Oficio)
                 .Replace("{{DOMICILIO_CLIENTE}}", cliente.Direccion1Navigation.IdCatonNavigation.NombreCanton + ", " + cliente.Direccion1Navigation.NombreDistrito)
-                .Replace("{{CEDULA_CLIENTE}}", cedulaCliente)
+                .Replace("{{CEDULA_CLIENTE}}", cliente.NumCedula)
                 .Replace("{{TIPO_SERVICIOS}}", tipoServicios)
                 .Replace("{{FECHA_INICIO}}", fechaInicio)
                 .Replace("{{FECHA_FINAL}}", fechaFinal)

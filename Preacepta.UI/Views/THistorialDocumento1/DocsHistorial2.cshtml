@@ -1,0 +1,167 @@
+﻿@model IEnumerable<Preacepta.Modelos.AbstraccionesFrond.HistorialDocumentoDTO>
+@using System.Globalization
+
+@{
+
+    var nombres = ViewBag.NombresPersonas as IDictionary<int, string>
+
+                  ?? new Dictionary<int, string>();
+
+    string MostrarNombre(int? cedula)
+
+    {
+
+        if (!cedula.HasValue || cedula.Value <= 0) return "";
+
+        return nombres.TryGetValue(cedula.Value, out var nom)
+
+            ? nom
+
+            : cedula.Value.ToString();
+
+    }
+
+}
+
+
+<head>
+    <link href="~/lyso/css/Andy.css" rel="stylesheet" />
+    <link href="~/lyso/css/Daniel.css" rel="stylesheet" />
+</head>
+
+<!-- Page Title -->
+<div class="page-title-area page-title-area-two title-img-one">
+    <div class="d-table">
+        <div class="d-table-cell">
+            <div class="page-title-text">
+                <h2>Historial de documentos legales</h2>
+                <ul>
+                    <li><a asp-controller="Home" asp-action="Index">Inicio</a></li>
+                    <li><i class="icofont-simple-right"></i></li>
+                    <li><a asp-controller="Home" asp-action="UsuarioAutenticado" asp-route-correo="@User.Identity.Name">PreaceptaApp</a></li>
+                    <li><i class="icofont-simple-right"></i></li>
+                    <li>Historial</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<br />
+<br />
+<br />
+
+<div class="contact-form contact-form-two contact-form-three">
+    <div class="container">
+        <div class="contact-wrap">
+            <h2 class="text-center">Filtrar el listado de documentos</h2>
+
+            <div class="row justify-content-center">
+                <!-- Fecha -->
+                <div class="col-sm-4 col-md-3 filtro-campo">
+                    <div class="form-group">
+                        <label for="fecha">Fecha</label>
+                        <input id="inputFechaHistorial" type="date" name="fecha" class="form-control" value="@(ViewContext.HttpContext.Request.Query["fecha"])" />
+                    </div>
+                </div>
+
+                <!-- Tipo de documento -->
+                <div class="col-sm-4 col-md-4 filtro-campo">
+                    <div class="form-group">
+                        <label for="tipo">Tipo de documento</label>
+                        <select id="selectTipoDocumento" name="tipo" class="form-control" asp-items="ViewBag.TipoDocumento">
+                            <option value="">-- Todos los tipos --</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row mt-3">
+                <div class="col text-center">
+                    <button id="botonBuscarHistorial" class="boton-buscar">Buscar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="formulario contact-form contact-form-two contact-form-three LetraNegra">
+    <div class="container">
+        <table class="table LetraNegra">
+            <thead>
+                <tr>
+                    <th>Fecha</th>
+                    <th>Título</th>
+                    <th>Tipo de Documento</th>
+                    <th>Cliente</th>
+                    <th>Abogado</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+
+                @if (Model == null || !Model.Any())
+
+                {
+                    <tr>
+                        <td colspan="5" class="text-center">No hay documentos para los filtros seleccionados.</td>
+                    </tr>
+
+                }
+
+                else
+
+                {
+
+                    foreach (var item in Model)
+
+                    {
+                        <tr class="filtrosHistorial"
+                            fecha="@(DateTime.TryParse(item.Fecha, out var f) ? f.ToString("yyyy-MM-dd") : item.Fecha)"
+                            nombreTipoDocumento="@item.TipoDocumento">
+
+                            <td>
+
+                                @(DateTime.TryParse(item.Fecha, out var t)
+
+                                                        ? t.ToString("dd/MM/yyyy", CultureInfo.InvariantCulture)
+
+                                                        : item.Fecha)
+                    </td>
+                    <td>@item.Titulo</td>
+                    <td>@item.TipoDocumento</td>
+
+                            <td>@MostrarNombre(item.Cliente)</td>
+                            <td>@MostrarNombre(item.Abogado)</td>
+
+                            <td>
+                                <a class="cmn-btn"
+                                   asp-controller="THistorialDocumento1"
+                                   asp-action="PrevisualizarDesdeHistorial"
+                                   asp-route-id="@item.Id"
+                                   target="_blank">
+                                    <i class="fa-solid fa-eye"></i>
+                                </a>
+
+                                <a class="cmn-btn"
+                                   asp-controller="THistorialDocumento1"
+                                   asp-action="EditarDesdeHistorial"
+                                   asp-route-id="@item.Id">
+                                    <i class="fa-solid fa-pen"></i>
+                                </a>
+                            </td>
+                        </tr>
+
+                                }
+
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
+<script src="~/lyso/js/configuraciontablas.js"></script>
+<script src="~/lyso/js/fltradoHistorialDocs.js"></script>
+

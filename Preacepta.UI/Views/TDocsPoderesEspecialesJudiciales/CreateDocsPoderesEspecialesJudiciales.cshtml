@@ -45,20 +45,13 @@
                         </div>
                         <div class="col-sm-6 col-lg-6">
                             <div class="form-group">
-                                <input asp-for="IdCliente"
-                                       id="idIdCliente"
-                                       type="text"
-                                       inputmode="numeric"
-                                       pattern="\d*"
-                                       class="form-control LetraNegra"
-                                       value="@(Model?.IdCliente > 0 ? Model.IdCliente : (int)(ViewBag.ClienteCedula ?? 0))"
-                                       readonly />
-                                <span asp-validation-for="IdCliente" class="text-danger"></span>
-
+                                <input type="text" class="form-control" value="@ViewBag.ClienteNumCedula" readonly />
+                                <input type="hidden" asp-for="IdCliente" class="form-control" value="@ViewBag.ClienteCedula" id="idIdCliente" lang="es" spellcheck="true" readonly />
                                 <input type="hidden"
                                        asp-for="IdAbogado"
                                        id="idIdAbogado"
-                                       value="@(Model?.IdAbogado > 0 ? Model.IdAbogado : (int)(ViewBag.AbogadoCedula ?? 0))" />
+                                       value="@ViewBag.AbogadoCedula" />
+                                <span asp-validation-for="IdCliente" class="text-danger"></span>
                             </div>
                         </div>
 

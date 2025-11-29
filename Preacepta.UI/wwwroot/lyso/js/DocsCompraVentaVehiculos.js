@@ -61,44 +61,45 @@ document.getElementById('btnPrevisualizar').addEventListener('click', () => {
     const timestamp = new Date().getTime();
 
     const url =
-        /DocsOpcionCompraventaVehiculoes/PrevisualizarPDF? +
-        idDocumento=0& +
-        numeroEscritura=${encodeURIComponent(NumeroEscritura)}& +
-        cedulaAbogado=${encodeURIComponent(CedulaAbogado)}& +
-        cedulaPropietario=${encodeURIComponent(CedulaPropietario)}& +
-        cedulaComprador=${encodeURIComponent(CedulaComprador)}& +
+        `/DocsOpcionCompraventaVehiculoes/PrevisualizarPDF?` +
+        `idDocumento=0\&` +
+        `numeroEscritura=${encodeURIComponent(NumeroEscritura)}&` +
+        `cedulaAbogado=${encodeURIComponent(CedulaAbogado)}&` +
+        `cedulaPropietario=${encodeURIComponent(CedulaPropietario)}&` +
+        `cedulaComprador=${encodeURIComponent(CedulaComprador)}&` +
 
-        placaVehiculo=${encodeURIComponent(PlacaVehiculo)}& +
-        marcaVehiculo=${encodeURIComponent(MarcaVehiculo)}& +
-        tipoVehiculo=${encodeURIComponent(TipoVehiculo)}& +
-        modeloVehiculo=${encodeURIComponent(ModeloVehiculo)}& +
-        carroceria=${encodeURIComponent(Carroceria)}& +
-        categoria=${encodeURIComponent(Categoria)}& +
-        chasis=${encodeURIComponent(Chasis)}& +
-        serie=${encodeURIComponent(Serie)}& +
-        vin=${encodeURIComponent(Vin)}& +
-        marcaMotor=${encodeURIComponent(MarcaMotor)}& +
-        numeroMotor=${encodeURIComponent(NumeroMotor)}& +
-        color=${encodeURIComponent(Color)}& +
-        combustible=${encodeURIComponent(Combustible)}& +
-        anio=${encodeURIComponent(Anio)}& +
-        capacidad=${encodeURIComponent(Capacidad)}& +
-        cilindraje=${encodeURIComponent(Cilindraje)}& +
+        `placaVehiculo=${encodeURIComponent(PlacaVehiculo)}&` +
+        `marcaVehiculo=${encodeURIComponent(MarcaVehiculo)}&` +
+        `tipoVehiculo=${encodeURIComponent(TipoVehiculo)}&` +
+        `modeloVehiculo=${encodeURIComponent(ModeloVehiculo)}&` +
+        `carroceria=${encodeURIComponent(Carroceria)}&` +
+        `categoria=${encodeURIComponent(Categoria)}&` +
+        `chasis=${encodeURIComponent(Chasis)}&` +
+        `serie=${encodeURIComponent(Serie)}&` +
+        `vin=${encodeURIComponent(Vin)}&` +
+        `marcaMotor=${encodeURIComponent(MarcaMotor)}&` +
+        `numeroMotor=${encodeURIComponent(NumeroMotor)}&` +
+        `color=${encodeURIComponent(Color)}&` +
+        `combustible=${encodeURIComponent(Combustible)}&` +
+        `anio=${encodeURIComponent(Anio)}&` +
+        `capacidad=${encodeURIComponent(Capacidad)}&` +
+        `cilindraje=${encodeURIComponent(Cilindraje)}&` +
 
-        precio=${encodeURIComponent(Precio)}& +
-        monedaPrecio=${encodeURIComponent(MonedaPrecio)}& +
-        plazoOpcionAnios=${encodeURIComponent(PlazoOpcionAnios)}& +
-        fechaInicio=${encodeURIComponent(FechaInicio)}& +
+        `precio=${encodeURIComponent(Precio)}&` +
+        `monedaPrecio=${encodeURIComponent(MonedaPrecio)}&` +
+        `plazoOpcionAnios=${encodeURIComponent(PlazoOpcionAnios)}&` +
+        `fechaInicio=${encodeURIComponent(FechaInicio)}&` +
 
-        montoSenal=${encodeURIComponent(MontoSenal)}& +
-        monedaSenal=${encodeURIComponent(MonedaSenal)}& +
-        montoADevolver=${encodeURIComponent(MontoADevolver)}& +
-        montoAPerder=${encodeURIComponent(MontoAPerder)}& +
-        monedaMontoPerdido=${encodeURIComponent(MonedaMontoPerdido)}& +
-        gastosTraspasoPagadosPor=${encodeURIComponent(GastosTraspasoPagadosPor)}& +
+        `montoSenal=${encodeURIComponent(MontoSenal)}&` +
+        `monedaSenal=${encodeURIComponent(MonedaSenal)}&` +
+        `montoADevolver=${encodeURIComponent(MontoADevolver)}&` +
+        `montoAPerder=${encodeURIComponent(MontoAPerder)}&` +
+        `monedaMontoPerdido=${encodeURIComponent(MonedaMontoPerdido)}&` +
+        `gastosTraspasoPagadosPor=${encodeURIComponent(GastosTraspasoPagadosPor)}&` +
 
-        LugarFirma=${encodeURIComponent(LugarFirma)}& +
-        t=${timestamp};
+        `LugarFirma=${encodeURIComponent(LugarFirma)}&` +
+        `t=${timestamp}`;
 
     window.open(url, '_blank');
+
 });

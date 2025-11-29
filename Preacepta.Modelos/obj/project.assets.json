@@ -801,11 +801,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Preacepta\\Preacepta.Modelos\\Preacepta.Modelos.csproj",
+      "projectUniqueName": "C:\\CodeTitansFase2-develop\\Preacepta.Modelos\\Preacepta.Modelos.csproj",
       "projectName": "Preacepta.Modelos",
-      "projectPath": "C:\\Preacepta\\Preacepta.Modelos\\Preacepta.Modelos.csproj",
+      "projectPath": "C:\\CodeTitansFase2-develop\\Preacepta.Modelos\\Preacepta.Modelos.csproj",
       "packagesPath": "C:\\Users\\DanGG\\.nuget\\packages\\",
-      "outputPath": "C:\\Preacepta\\Preacepta.Modelos\\obj\\",
+      "outputPath": "C:\\CodeTitansFase2-develop\\Preacepta.Modelos\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\DanGG\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -861,7 +861,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.414/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.416/PortableRuntimeIdentifierGraph.json"
       }
     }
   }

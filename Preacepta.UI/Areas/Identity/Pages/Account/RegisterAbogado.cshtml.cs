@@ -18,8 +18,10 @@ using Preacepta.LN.GePersona.BuscarXid;
 using Preacepta.LN.GePersona.Crear;
 using Preacepta.Modelos.AbstraccionesBD;
 using Preacepta.Modelos.AbstraccionesFrond;
+using Preacepta.UI.Extensions;
 using Preacepta.UI.Services;
 using System.ComponentModel.DataAnnotations;
+using System.Reflection;
 using System.Text;
 using System.Text.Encodings.Web;
 
@@ -31,7 +33,7 @@ namespace Praecepta.UI.Areas.Identity.Pages.Account
         private readonly UserManager<IdentityUser> _userManager;
         private readonly IUserStore<IdentityUser> _userStore;
         private readonly IUserEmailStore<IdentityUser> _emailStore;
-        private readonly ILogger<RegisterModel> _logger;
+        private readonly ILogger<RegisterAbogadoModel> _logger;
         private readonly IServicioEmail _emailSender;
 
         private readonly ICrearGePersonaLN _crearPersonaLN;
@@ -51,7 +53,7 @@ namespace Praecepta.UI.Areas.Identity.Pages.Account
             UserManager<IdentityUser> userManager,
             IUserStore<IdentityUser> userStore,
             SignInManager<IdentityUser> signInManager,
-            ILogger<RegisterModel> logger,
+            ILogger<RegisterAbogadoModel> logger,
             IServicioEmail emailSender,
 
             IBuscarXidGePersonaLN buscarXidGePersonaLN,
@@ -85,11 +87,14 @@ namespace Praecepta.UI.Areas.Identity.Pages.Account
         /*[BindProperty]
         public InputModel Input { get; set; }*/
 
-        [BindProperty]
-        public GePersonaDTO tGePersona { get; set; }
+        //[BindProperty]
+        //public GePersonaDTO tGePersona { get; set; }
+
+        //[BindProperty]
+        //public GeAbogadoDTO geAbogado { get; set; }
 
         [BindProperty]
-        public GeAbogadoDTO geAbogado { get; set; }
+        public PersonaUnionAbogado geAbogado { get; set; }
 
         /// <summary>
         ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
@@ -107,34 +112,12 @@ namespace Praecepta.UI.Areas.Identity.Pages.Account
         ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
         ///     directly from your code. This API may change or be removed in future releases.
         /// </summary>
-        /*public class InputModel
-        {
-           
-            [Required(ErrorMessage = "El correo es un dato requerido")]
-            [EmailAddress(ErrorMessage = "Correo no válido debe de tener @")]
-            [Display(Name = "Correo electrónico")]
-            public string Email { get; set; }
-
-
-            [Required(ErrorMessage = "Debe ingresar un contraseña")]
-            [StringLength(100, ErrorMessage = "El {0} debe tener al menos {2} y como máximo {1} caracteres de longitud.", MinimumLength = 6)]
-            [RegularExpression(@"^(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).+$", ErrorMessage = "La contraseña debe de tener al menos un numero, una mayuscula y un símbolo")]
-
-            [DataType(DataType.Password)]
-            [Display(Name = "Contraseña")]
-            public string Password { get; set; }
-
-
-            [DataType(DataType.Password)]
-            [Display(Name = "Confirmación de contraseña")]
-            [Compare("Password", ErrorMessage = "La contraseña y la contraseña de confirmación no coinciden.")]
-            public string? ConfirmPassword { get; set; }
-
-        }*/
+       
         public List<SelectListItem> EstadoCivil { get; set; }
         public List<SelectListItem> Genero { get; set; }
         public List<SelectListItem> Negocio { get; set; }
         public List<SelectListItem> TipoAbogado { get; set; }
+        public List<SelectListItem> TipoIdentificacion { get; set; }
 
 
 
@@ -143,35 +126,13 @@ namespace Praecepta.UI.Areas.Identity.Pages.Account
         {
 
             ReturnUrl = returnUrl;
-            ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
+            ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();         
 
-            EstadoCivil = new List<SelectListItem>
-            {
-                new SelectListItem { Text = "Soltero", Value = "Soltero" },
-                new SelectListItem { Text = "Casado", Value = "Casado" },
-                new SelectListItem { Text = "Divorciado", Value = "Divorciado" },
-                new SelectListItem { Text = "Viudo", Value = "Viudo" }
-            };
-
-            Genero = new List<SelectListItem>
-            {
-                new SelectListItem { Text = "Femenino", Value = "Femenino" },
-                new SelectListItem { Text = "Masculino", Value = "Masculino" }
-            };
-
-            Negocio = (await _listarNegocio.listar())
-                .Select(n => new SelectListItem
-                {
-                    Value = n.CJuridica.ToString(),
-                    Text = $"{n.Nombre} - {n.CJuridica}"
-                }).ToList();
-
-            TipoAbogado = (await _listarAbogadoTipo.listar())
-                .Select(n => new SelectListItem
-                {
-                    Value = n.IdTipoAbogado.ToString(),
-                    Text = $"{n.Nombre}"
-                }).ToList();
+            EstadoCivil = SelectListPersonas.EstadoCivil;
+            Genero = SelectListPersonas.Genero;
+            TipoIdentificacion = SelectListPersonas.TipoIdentificacion;
+            Negocio = await SelectListPersonas.Negocios(_listarNegocio);
+            TipoAbogado = await SelectListPersonas.TipoAbogado(_listarAbogadoTipo);
         }
 
 
@@ -185,168 +146,73 @@ namespace Praecepta.UI.Areas.Identity.Pages.Account
                 #region creación de persona
 
                 #region Validacion de cédula
-                var existe = await _buscarPersona.buscar(tGePersona.Cedula);
+                var existe = await _buscarPersona.buscarXnumCedula(geAbogado.personaDTO.NumCedula);
                 if (existe != null)//valida si hay un cedula igual registrada
                 {
-                    //ViewData["Direccion1"] = new SelectList(_listarDireccion.listarDistritos().Result, "IdDistrito", "NombreDistrito", tGePersona.Direccion1);
-
-                    EstadoCivil = new List<SelectListItem>
-                    {
-                        new SelectListItem { Text = "Soltero", Value = "Soltero" },
-                        new SelectListItem { Text = "Casado", Value = "Casado" },
-                        new SelectListItem { Text = "Divorciado", Value = "Divorciado" },
-                        new SelectListItem { Text = "Viudo", Value = "Viudo" }
-                    };
-
-                    Genero = new List<SelectListItem>
-                    {
-                        new SelectListItem { Text = "Femenino", Value = "Femenino" },
-                        new SelectListItem { Text = "Masculino", Value = "Masculino" }
-                    };
-
-                    Negocio = (await _listarNegocio.listar())
-                        .Select(n => new SelectListItem
-                        {
-                            Value = n.CJuridica.ToString(),
-                            Text = $"{n.Nombre} - {n.CJuridica}"
-                        }).ToList();
-
-                    TipoAbogado = (await _listarAbogadoTipo.listar())
-                        .Select(n => new SelectListItem
-                        {
-                            Value = n.IdTipoAbogado.ToString(),
-                            Text = $"{n.Nombre}"
-                        }).ToList();
+                    EstadoCivil = SelectListPersonas.EstadoCivil;
+                    Genero = SelectListPersonas.Genero;
+                    TipoIdentificacion = SelectListPersonas.TipoIdentificacion;
+                    Negocio = await SelectListPersonas.Negocios(_listarNegocio);
+                    TipoAbogado = await SelectListPersonas.TipoAbogado(_listarAbogadoTipo);
                     TempData["ErrorCedula"] = "Cedula ya registrada en el sistema";
                     return Page();
                 }
                 #endregion
 
                 #region Validacion de carnet
-                var carnet = await _buscarAbogado.buscarXcarnet(geAbogado.Carnet);
+                var carnet = await _buscarAbogado.buscarXcarnet(geAbogado.geAbogadoDTO.Carnet);
                 if (carnet != null)//valida si hay un cedula igual registrada
                 {
-                    //ViewData["Direccion1"] = new SelectList(_listarDireccion.listarDistritos().Result, "IdDistrito", "NombreDistrito", tGePersona.Direccion1);
-
-                    EstadoCivil = new List<SelectListItem>
-                    {
-                        new SelectListItem { Text = "Soltero", Value = "Soltero" },
-                        new SelectListItem { Text = "Casado", Value = "Casado" },
-                        new SelectListItem { Text = "Divorciado", Value = "Divorciado" },
-                        new SelectListItem { Text = "Viudo", Value = "Viudo" }
-                    };
-
-                    Genero = new List<SelectListItem>
-                    {
-                        new SelectListItem { Text = "Femenino", Value = "Femenino" },
-                        new SelectListItem { Text = "Masculino", Value = "Masculino" }
-                    };
-
-                    Negocio = (await _listarNegocio.listar())
-                        .Select(n => new SelectListItem
-                        {
-                            Value = n.CJuridica.ToString(),
-                            Text = $"{n.Nombre} - {n.CJuridica}"
-                        }).ToList();
-
-                    TipoAbogado = (await _listarAbogadoTipo.listar())
-                        .Select(n => new SelectListItem
-                        {
-                            Value = n.IdTipoAbogado.ToString(),
-                            Text = $"{n.Nombre}"
-                        }).ToList();
+                    EstadoCivil = SelectListPersonas.EstadoCivil;
+                    Genero = SelectListPersonas.Genero;
+                    TipoIdentificacion = SelectListPersonas.TipoIdentificacion;
+                    Negocio = await SelectListPersonas.Negocios(_listarNegocio);
+                    TipoAbogado = await SelectListPersonas.TipoAbogado(_listarAbogadoTipo);
                     TempData["ErrorCarnet"] = "El carnet ya se encuentra registrado en el sistema";
                     return Page();
                 }
                 #endregion
 
                 #region Validacion de correo
-                var correo = await _buscarPersona.buscarXcorreo(tGePersona.Email);
+                var correo = await _buscarPersona.buscarXcorreo(geAbogado.personaDTO.Email);
                 if (correo != null)//valida si hay un correo igual registrado
                 {
-                    //ViewData["Direccion1"] = new SelectList(_listarDireccion.listarDistritos().Result, "IdDistrito", "NombreDistrito", tGePersona.Direccion1);
-
-                    EstadoCivil = new List<SelectListItem>
-                    {
-                        new SelectListItem { Text = "Soltero", Value = "Soltero" },
-                        new SelectListItem { Text = "Casado", Value = "Casado" },
-                        new SelectListItem { Text = "Divorciado", Value = "Divorciado" },
-                        new SelectListItem { Text = "Viudo", Value = "Viudo" }
-                    };
-
-                    Genero = new List<SelectListItem>
-                    {
-                        new SelectListItem { Text = "Femenino", Value = "Femenino" },
-                        new SelectListItem { Text = "Masculino", Value = "Masculino" }
-                    };
-
-                    Negocio = (await _listarNegocio.listar())
-                        .Select(n => new SelectListItem
-                        {
-                            Value = n.CJuridica.ToString(),
-                            Text = $"{n.Nombre} - {n.CJuridica}"
-                        }).ToList();
-
-                    TipoAbogado = (await _listarAbogadoTipo.listar())
-                        .Select(n => new SelectListItem
-                        {
-                            Value = n.IdTipoAbogado.ToString(),
-                            Text = $"{n.Nombre}"
-                        }).ToList();
-
+                    EstadoCivil = SelectListPersonas.EstadoCivil;
+                    Genero = SelectListPersonas.Genero;
+                    TipoIdentificacion = SelectListPersonas.TipoIdentificacion;
+                    Negocio = await SelectListPersonas.Negocios(_listarNegocio);
+                    TipoAbogado = await SelectListPersonas.TipoAbogado(_listarAbogadoTipo);
                     TempData["ErrorEmail"] = "Correo Electronico ya registrado en el sistema";
                     return Page();
                 }
                 #endregion
 
                 #region Validacion de teléfonos
-                var telefono1 = await _buscarPersona.buscarXtelefono1(tGePersona.Telefono1);
+                var telefono1 = await _buscarPersona.buscarXtelefono1(geAbogado.personaDTO.Telefono1);
                 
                 if (telefono1 != null)
                 {
-                    //ViewData["Direccion1"] = new SelectList(_listarDireccion.listarDistritos().Result, "IdDistrito", "NombreDistrito", tGePersona.Direccion1);
-
-                    EstadoCivil = new List<SelectListItem>
-                    {
-                        new SelectListItem { Text = "Soltero", Value = "Soltero" },
-                        new SelectListItem { Text = "Casado", Value = "Casado" },
-                        new SelectListItem { Text = "Divorciado", Value = "Divorciado" },
-                        new SelectListItem { Text = "Viudo", Value = "Viudo" }
-                    };
-
-                    Genero = new List<SelectListItem>
-                    {
-                        new SelectListItem { Text = "Femenino", Value = "Femenino" },
-                        new SelectListItem { Text = "Masculino", Value = "Masculino" }
-                    };
-
-                    Negocio = (await _listarNegocio.listar())
-                        .Select(n => new SelectListItem
-                        {
-                            Value = n.CJuridica.ToString(),
-                            Text = $"{n.Nombre} - {n.CJuridica}"
-                        }).ToList();
-
-                    TipoAbogado = (await _listarAbogadoTipo.listar())
-                        .Select(n => new SelectListItem
-                        {
-                            Value = n.IdTipoAbogado.ToString(),
-                            Text = $"{n.Nombre}"
-                        }).ToList();
-
-                    TempData["ErrorTelefono1"] = $"El telefono {tGePersona.Telefono1} ya esta registrado";
+                    EstadoCivil = SelectListPersonas.EstadoCivil;
+                    Genero = SelectListPersonas.Genero;
+                    TipoIdentificacion = SelectListPersonas.TipoIdentificacion;
+                    Negocio = await SelectListPersonas.Negocios(_listarNegocio);
+                    TipoAbogado = await SelectListPersonas.TipoAbogado(_listarAbogadoTipo);
+                    TempData["ErrorTelefono1"] = $"El telefono {geAbogado.personaDTO.Telefono1} ya esta registrado";
                     return Page();
 
-                }                
+                }
+                #endregion
+                geAbogado.personaDTO.NumCedula = geAbogado.personaDTO.NumCedula.LimpiarCedula();
+                //int bandera =  await _crearPersonaLN.crear(geAbogado.personaDTO);//llamado de los LN y AD para crear la persona
+                int bandera = await _crearAbogado.Crear(geAbogado);
                 #endregion
 
-                int bandera =  await _crearPersonaLN.crear(tGePersona);//llamado de los LN y AD para crear la persona               
-                #endregion
-                
                 if (bandera < 0)
                 {
                     return BadRequest();
                 }
+
+                
 
                 #region Registro de Persona en Servicio de Autenticacion
                 var user = CreateUser();
@@ -354,10 +220,10 @@ namespace Praecepta.UI.Areas.Identity.Pages.Account
                 
                 
 
-                await _userStore.SetUserNameAsync(user, tGePersona.Email, CancellationToken.None);
-                await _emailStore.SetEmailAsync(user, tGePersona.Email, CancellationToken.None);
-                var result = await _userManager.CreateAsync(user, tGePersona.Password);
-                await _userManager.AddToRoleAsync(user, "Cliente");
+                await _userStore.SetUserNameAsync(user, geAbogado.personaDTO.Email, CancellationToken.None);
+                await _emailStore.SetEmailAsync(user, geAbogado.personaDTO.Email, CancellationToken.None);
+                var result = await _userManager.CreateAsync(user, geAbogado.personaDTO.Password);
+                await _userManager.AddToRoleAsync(user, "Abogado");
 
                 if (result.Succeeded)
                 {
@@ -373,7 +239,7 @@ namespace Praecepta.UI.Areas.Identity.Pages.Account
                         values: new { area = "Identity", userId = userId, code = code, returnUrl = returnUrl },
                         protocol: Request.Scheme);
 
-                    await _emailSender.SendEmailAsync(tGePersona.Email, "Confirma tu correo electrónico",
+                    await _emailSender.SendEmailAsync(geAbogado.personaDTO.Email, "Confirma tu correo electrónico",
                         $"Por favor, confirme su cuenta mediante <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>haciendo clic aquí</a>.");
 
                     if (_userManager.Options.SignIn.RequireConfirmedAccount)
@@ -394,8 +260,11 @@ namespace Praecepta.UI.Areas.Identity.Pages.Account
                 }
                 #endregion
             }
-
-            // If we got this far, something failed, redisplay form
+            EstadoCivil = SelectListPersonas.EstadoCivil;
+            Genero = SelectListPersonas.Genero;
+            TipoIdentificacion = SelectListPersonas.TipoIdentificacion;
+            Negocio = await SelectListPersonas.Negocios(_listarNegocio);
+            TipoAbogado = await SelectListPersonas.TipoAbogado(_listarAbogadoTipo);
             return Page();
         }
 

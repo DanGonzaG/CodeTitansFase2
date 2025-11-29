@@ -6883,11 +6883,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Preacepta\\Preacepta.LN\\Preacepta.LN.csproj",
+      "projectUniqueName": "C:\\CodeTitansFase2-develop\\Preacepta.LN\\Preacepta.LN.csproj",
       "projectName": "Preacepta.LN",
-      "projectPath": "C:\\Preacepta\\Preacepta.LN\\Preacepta.LN.csproj",
+      "projectPath": "C:\\CodeTitansFase2-develop\\Preacepta.LN\\Preacepta.LN.csproj",
       "packagesPath": "C:\\Users\\DanGG\\.nuget\\packages\\",
-      "outputPath": "C:\\Preacepta\\Preacepta.LN\\obj\\",
+      "outputPath": "C:\\CodeTitansFase2-develop\\Preacepta.LN\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\DanGG\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -6905,8 +6905,8 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "projectReferences": {
-            "C:\\Preacepta\\Preacepta.AD\\Preacepta.AD.csproj": {
-              "projectPath": "C:\\Preacepta\\Preacepta.AD\\Preacepta.AD.csproj"
+            "C:\\CodeTitansFase2-develop\\Preacepta.AD\\Preacepta.AD.csproj": {
+              "projectPath": "C:\\CodeTitansFase2-develop\\Preacepta.AD\\Preacepta.AD.csproj"
             }
           }
         }
@@ -6951,7 +6951,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.414/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.416/PortableRuntimeIdentifierGraph.json"
       }
     }
   }

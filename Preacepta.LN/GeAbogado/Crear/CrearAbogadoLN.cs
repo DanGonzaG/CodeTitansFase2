@@ -2,6 +2,7 @@
 using Preacepta.AD.GeAbogado.Crear;
 using Preacepta.AD.GePersona.Crear;
 using Preacepta.LN.GeAbogado.ObtenerDatos;
+using Preacepta.LN.GePersona.BuscarXid;
 using Preacepta.LN.GePersona.ObtenerDatos;
 using Preacepta.Modelos.AbstraccionesFrond;
 
@@ -12,46 +13,37 @@ namespace Preacepta.LN.GeAbogado.Crear
         //Personas
         private readonly ICrearGePersonaAD _crearGePersonaLN;
         private readonly IObtenerDatosLN _obtenerDatosPersonaLN;
+        private readonly IBuscarXidGePersonaLN _buscarXidGePersonaLN;
 
         //Abogados
         private readonly ICrearAbogadoAD _crearGeAbogado;
         private readonly IObtenerDatosAbogadoLN _obtenerDatosLN;
 
-        //Identity
-        private readonly UserManager<IdentityUser> _userManager;
-        private readonly IUserStore<IdentityUser> _userStore;
-        private readonly IUserEmailStore<IdentityUser> _emailStore;
-
         public CrearAbogadoLN(
             //inyeccion Personas
             ICrearGePersonaAD crearGePersonaLN,
             IObtenerDatosLN obtenerDatosPersonaLN,
+            IBuscarXidGePersonaLN buscarXidGePersonaLN,
 
             //inyeccion Abogados
             ICrearAbogadoAD crearGeAbogado,
-            IObtenerDatosAbogadoLN obtenerDatosLN,
-
-            //inyeccion Identity
-            UserManager<IdentityUser> userManager,
-            IUserStore<IdentityUser> userStore)
+            IObtenerDatosAbogadoLN obtenerDatosLN)                      
         {
             //Personas
             _crearGeAbogado = crearGeAbogado;
             _obtenerDatosLN = obtenerDatosLN;
+            _buscarXidGePersonaLN = buscarXidGePersonaLN;
 
             //Abogados
             _crearGePersonaLN = crearGePersonaLN;
-            _obtenerDatosPersonaLN = obtenerDatosPersonaLN;
 
-            //Identity
-            _userManager = userManager;
-            _userStore = userStore;
-            _emailStore = GetEmailStore();
+            _obtenerDatosPersonaLN = obtenerDatosPersonaLN;
         }
 
         public async Task<int> Crear(PersonaUnionAbogado crear)
         {
-            crear.geAbogadoDTO.Cedula = crear.personaDTO.Cedula;
+            
+            //crear.geAbogadoDTO.Cedula = crear.personaDTO.Cedula;
             if (crear == null)
             {
                 Console.WriteLine("Error: Objeto nulo.");
@@ -59,18 +51,19 @@ namespace Preacepta.LN.GeAbogado.Crear
             }
             try
             {
-                //Creacion de usuario en tabal user
-                //var user = CreateUser();
-                //await _userStore.SetUserNameAsync(user, crear.personaDTO.Email, CancellationToken.None);
-                //await _emailStore.SetEmailAsync(user, crear.personaDTO.Email, CancellationToken.None);
-                //var result = await _userManager.CreateAsync(user, crear.personaDTO.Password);
-                //await _userManager.AddToRoleAsync(user, "Abogado");
+                int bandera;                
+                bandera = await _crearGePersonaLN.crear(_obtenerDatosPersonaLN.ObtenerDeFrontCrear(crear.personaDTO));
+                if (bandera == 0) 
+                {
+                    Console.WriteLine("Crear persona LN fallo");
+                    return 0;
 
-                //Creacion de persona en tabal TGePersona
-                await _crearGePersonaLN.crear(_obtenerDatosPersonaLN.ObtenerDeFrontCrear(crear.personaDTO));
+                }
+                GePersonaDTO personaDTO = await _buscarXidGePersonaLN.buscarXnumCedula(crear.personaDTO.NumCedula);
+                crear.geAbogadoDTO.Cedula = personaDTO.Cedula;
 
-                //Creacion de persona en tabal TGeAbogado
-                int bandera = await _crearGeAbogado.crear(_obtenerDatosLN.ObtenerDeFront(crear.geAbogadoDTO));
+                //Creacion de la persona en la tabla TGeAbogado
+                bandera = await _crearGeAbogado.crear(_obtenerDatosLN.ObtenerDeFront(crear.geAbogadoDTO));
                 if (bandera == null)
                 {
                     Console.WriteLine("Conversion de GeAbogadoDTO fallido");
@@ -83,29 +76,6 @@ namespace Preacepta.LN.GeAbogado.Crear
                 Console.WriteLine($"Error en CrearAbogadoLN{ex.Message}");
                 return -1;
             }
-        }
-
-        private IUserEmailStore<IdentityUser> GetEmailStore()
-        {
-            if (!_userManager.SupportsUserEmail)
-            {
-                throw new NotSupportedException("The default UI requires a user store with email support.");
-            }
-            return (IUserEmailStore<IdentityUser>)_userStore;
-        }
-
-        private IdentityUser CreateUser()
-        {
-            try
-            {
-                return Activator.CreateInstance<IdentityUser>();
-            }
-            catch
-            {
-                throw new InvalidOperationException($"Can't create an instance of '{nameof(IdentityUser)}'. " +
-                    $"Ensure that '{nameof(IdentityUser)}' is not an abstract class and has a parameterless constructor, or alternatively " +
-                    $"override the register page in /Areas/Identity/Pages/Account/Register.cshtml");
-            }
-        }
+        }        
     }
 }

@@ -15,7 +15,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Preacepta.Modelos")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+0ea247ea670da70285e5dc3c711b567384a45806")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+ef00426522d4e16bede461dc985d193b5c1d4886")]
 [assembly: System.Reflection.AssemblyProductAttribute("Preacepta.Modelos")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Preacepta.Modelos")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

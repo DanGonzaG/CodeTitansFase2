@@ -10,7 +10,7 @@ using Preacepta.LN.BitacoraEventos.Crear;
 
 namespace Preacepta.UI.Controllers
 {
-    [Authorize(Roles = "Gestor")]
+    
     public class CitasTipoController : Controller
     {
         private readonly IListarCitasTipoLN _listarLN;

@@ -267,25 +267,27 @@ namespace Preacepta.UI.Controllers
         // GET: DocsCompraventaFincas/Create
         [HttpGet]
         [Authorize(Roles = "Abogado")]
-        public async Task<IActionResult> CreateDocsCompraventaFincas(int cedulaComprador, int cedulaVendedor)
+        public async Task<IActionResult> CreateDocsCompraventaFincas(string cedulaComprador, string cedulaVendedor)//---> se cambia a string
         {
 
-            var comprador = await _buscarPersona.buscar(cedulaComprador);
-            var vendedor = await _buscarPersona.buscar(cedulaVendedor);
+            var comprador = await _buscarPersona.buscarXnumCedula(cedulaComprador);//---> se cambia numCedula
+            var vendedor = await _buscarPersona.buscarXnumCedula(cedulaVendedor);//---> se cambia
             var abogado = await _buscarPersona.buscarXcorreo(User.Identity.Name);
 
+            ViewBag.CompradorNumCedula = comprador.NumCedula;//---> se agrega
             ViewBag.CompradorCedula = comprador.Cedula;
             ViewBag.CompradorNombre = comprador.Nombre;
             ViewBag.CompradorApellido1 = comprador.Apellido1;
             ViewBag.CompradorApellido2 = comprador.Apellido2;
             ViewBag.Dash = " - ";
 
+            ViewBag.VendedorNumCedula = vendedor.NumCedula;//---> se agrega
             ViewBag.VendedorCedula = vendedor.Cedula;
             ViewBag.VendedorNombre = vendedor.Nombre;
             ViewBag.VendedorApellido1 = vendedor.Apellido1;
             ViewBag.VendedorApellido2 = vendedor.Apellido2;
 
-            ViewBag.AbogadoCedula = abogado.Cedula;
+            ViewBag.AbogadoCedula = abogado.NumCedula;
             ViewBag.AbogadoNombre = abogado.Nombre;
             ViewBag.AbogadoApellido1 = abogado.Apellido1;
             ViewBag.AbogadoApellido2 = abogado.Apellido2;
@@ -310,6 +312,7 @@ namespace Preacepta.UI.Controllers
             var comprador = await _buscarPersona.buscar(tDocsCompraventaFinca.CedulaComprador);
             var vendedor = await _buscarPersona.buscar(tDocsCompraventaFinca.CedulaVendedor);
             var abogado = await _buscarPersona.buscarXcorreo(User.Identity.Name);
+            tDocsCompraventaFinca.CedulaAbogado = abogado.Cedula;//---> se agrega
             if (ModelState.IsValid)
             {
                 await _crear.Crear(tDocsCompraventaFinca);
@@ -337,18 +340,20 @@ namespace Preacepta.UI.Controllers
                 await _crearHistorialLN.Crear(historialDocumentoDTO);
                 return RedirectToAction("DocsHistorial", "THistorialDocumento1");
             }
+            ViewBag.CompradorNumCedula = comprador.NumCedula;//---> se agrega
             ViewBag.CompradorCedula = comprador.Cedula;
             ViewBag.CompradorNombre = comprador.Nombre;
             ViewBag.CompradorApellido1 = comprador.Apellido1;
             ViewBag.CompradorApellido2 = comprador.Apellido2;
             ViewBag.Dash = " - ";
 
+            ViewBag.VendedorNumCedula = vendedor.NumCedula;//---> se agrega
             ViewBag.VendedorCedula = vendedor.Cedula;
             ViewBag.VendedorNombre = vendedor.Nombre;
             ViewBag.VendedorApellido1 = vendedor.Apellido1;
             ViewBag.VendedorApellido2 = vendedor.Apellido2;
 
-            ViewBag.AbogadoCedula = abogado.Cedula;
+            ViewBag.AbogadoCedula = abogado.NumCedula;
             ViewBag.AbogadoNombre = abogado.Nombre;
             ViewBag.AbogadoApellido1 = abogado.Apellido1;
             ViewBag.AbogadoApellido2 = abogado.Apellido2;
@@ -361,8 +366,8 @@ namespace Preacepta.UI.Controllers
         public async Task<IActionResult> PrevisualizarPDFCompraventaFinca(
     string numeroEscritura,
     string cedulaAbogado,
-    string cedulaVendedor,
-    string cedulaComprador,
+    int cedulaVendedor,
+    int cedulaComprador,
     string montoVenta,
     string partidoFinca,
     string matriculaFinca,
@@ -386,8 +391,8 @@ namespace Preacepta.UI.Controllers
             var templatePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "lyso", "DocsMachotes", "CompraVentaFincasMachote.html");
             var htmlTemplate = System.IO.File.ReadAllText(templatePath);       
 
-            var vendedor = await _buscarPersona.buscar(int.Parse(cedulaVendedor));
-            var comprador = await _buscarPersona.buscar(int.Parse(cedulaComprador));
+            var vendedor = await _buscarPersona.buscar(cedulaVendedor);//---> se cambia
+            var comprador = await _buscarPersona.buscar(cedulaComprador);//---> se cambia
             var abogado = await _buscarPersona.buscarXcorreo(User.Identity.Name);
             var prov = await _buscarDistrito.buscarProvincia(int.Parse(provinciaFinca));
             var cant = await _buscarDistrito.buscarCanton(int.Parse(cantonFinca));
@@ -399,12 +404,12 @@ namespace Preacepta.UI.Controllers
     .Replace("{{NOMBRE_NOTARIO}}", abogado.Nombre + " " + abogado.Apellido1 + " " + abogado.Apellido2)
     .Replace("{{DIRECCION_NOTARIO}}", abogado.Direccion2)
     .Replace("{{NOMBRE_VENDEDOR}}", vendedor.Nombre + " " + vendedor.Apellido1 + " " + vendedor.Apellido2)
-    .Replace("{{CEDULA_VENDEDOR}}", cedulaVendedor)
+    .Replace("{{CEDULA_VENDEDOR}}", vendedor.NumCedula)
     .Replace("{{ESTADO_CIVIL_VENDEDOR}}", vendedor.EstadoCivil)
     .Replace("{{PROFESION_VENDEDOR}}", vendedor.Oficio)
     .Replace("{{DIRECCION_VENDEDOR}}", vendedor.Direccion1Navigation.IdCatonNavigation.NombreCanton + ", " + vendedor.Direccion1Navigation.NombreDistrito)
     .Replace("{{NOMBRE_COMPRADOR}}", comprador.Nombre + " " + comprador.Apellido1 + " " + comprador.Apellido2)
-    .Replace("{{CEDULA_COMPRADOR}}", cedulaComprador)
+    .Replace("{{CEDULA_COMPRADOR}}", comprador.NumCedula)
     .Replace("{{ESTADO_CIVIL_COMPRADOR}}", comprador.EstadoCivil)
     .Replace("{{PROFESION_COMPRADOR}}", comprador.Oficio)
     .Replace("{{DIRECCION_COMPRADOR}}", comprador.Direccion1Navigation.IdCatonNavigation.NombreCanton + ", " + comprador.Direccion1Navigation.NombreDistrito)
