@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Preacepta.Modelos.AbstraccionesBD
 {
-    [Table("T_DocumentoKeys")]
+    [Table("T_DocumentoKey")]
     public class TDocumentoKey
     {
         public int Id { get; set; }
