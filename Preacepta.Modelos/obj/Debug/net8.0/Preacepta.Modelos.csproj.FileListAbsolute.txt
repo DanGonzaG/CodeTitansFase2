@@ -23,3 +23,4 @@ C:\Preacepta\Preacepta.Modelos\obj\Debug\net8.0\Preacepta.Modelos.dll
 C:\Preacepta\Preacepta.Modelos\obj\Debug\net8.0\refint\Preacepta.Modelos.dll
 C:\Preacepta\Preacepta.Modelos\obj\Debug\net8.0\Preacepta.Modelos.pdb
 C:\Preacepta\Preacepta.Modelos\obj\Debug\net8.0\ref\Preacepta.Modelos.dll
+C:\CodeTitansFase2-develop\Preacepta.Modelos\obj\Debug\net8.0\Preacepta.Modelos.sourcelink.json

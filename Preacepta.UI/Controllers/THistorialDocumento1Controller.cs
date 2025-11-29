@@ -541,12 +541,7 @@ namespace Preacepta.UI.Controllers
 
             switch (tipoDoc)
             {
-                case "Atorización RE.":
-
-                    var resultado = await _buscarDocsAutorizacionRevision.buscar(resultadoHistorial.IdDocumento);
-
-                    //var resultadoAutorizacionRevisionE = await _buscarDocsAutorizacionRevision
-                    //.buscar(resultadoHistorial.IdDocumento);
+                case "Atorización RE.":                   
 
                     var resultado = await _buscarDocsAutorizacionRevision.buscar(resultadoHistorial.IdDocumento);
 

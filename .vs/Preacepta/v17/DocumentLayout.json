@@ -1,16 +1,7 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Preacepta\\",
-  "Documents": [
-    {
-      "AbsoluteMoniker": "D:0:0:{ABCA304E-D92E-43A2-A507-A94A7ADD2ADD}|Preacepta.AD\\Preacepta.AD.csproj|c:\\preacepta\\preacepta.ad\\basedatosscripts\\preaceptabbsolocreates2.sql||{CC5D8DF0-88F4-4BB2-9DBB-B48CEE65C30A}",
-      "RelativeMoniker": "D:0:0:{ABCA304E-D92E-43A2-A507-A94A7ADD2ADD}|Preacepta.AD\\Preacepta.AD.csproj|solutionrelative:preacepta.ad\\basedatosscripts\\preaceptabbsolocreates2.sql||{CC5D8DF0-88F4-4BB2-9DBB-B48CEE65C30A}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{ABCA304E-D92E-43A2-A507-A94A7ADD2ADD}|Preacepta.AD\\Preacepta.AD.csproj|c:\\preacepta\\preacepta.ad\\basedatosscripts\\preaceptabbsolocreates2.sql||{CC5D8DF0-88F4-4BB2-9DBB-B48CEE65C30A}|CodeFrame",
-      "RelativeMoniker": "D:0:0:{ABCA304E-D92E-43A2-A507-A94A7ADD2ADD}|Preacepta.AD\\Preacepta.AD.csproj|solutionrelative:preacepta.ad\\basedatosscripts\\preaceptabbsolocreates2.sql||{CC5D8DF0-88F4-4BB2-9DBB-B48CEE65C30A}|CodeFrame"
-    }
-  ],
+  "WorkspaceRootPath": "C:\\CodeTitansFase2-develop\\",
+  "Documents": [],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
@@ -18,20 +9,8 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": -1,
           "Children": [
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "PreaceptaBbSOLOCreates2.sql ",
-              "DocumentMoniker": "C:\\Preacepta\\Preacepta.AD\\BaseDatosScripts\\PreaceptaBbSOLOCreates2.sql",
-              "RelativeDocumentMoniker": "Preacepta.AD\\BaseDatosScripts\\PreaceptaBbSOLOCreates2.sql",
-              "ToolTip": "C:\\Preacepta\\Preacepta.AD\\BaseDatosScripts\\PreaceptaBbSOLOCreates2.sql",
-              "RelativeToolTip": "Preacepta.AD\\BaseDatosScripts\\PreaceptaBbSOLOCreates2.sql",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000826|",
-              "WhenOpened": "2025-11-29T18:43:34.893Z",
-              "EditorCaption": ""
-            },
             {
               "$type": "Bookmark",
               "Name": "ST:129:0:{75188d03-9892-4ae2-abf1-207126247ce5}"
