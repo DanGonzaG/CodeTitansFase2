@@ -680,7 +680,8 @@ GO
 ALTER TABLE [dbo].[T_Citas] CHECK CONSTRAINT [FK_T_Citas_T_GeAbogados]
 GO
 
-/****** Object:  Table [dbo].[T_CitasClientes]    Script Date: 03-Oct-25 6:32:00 PM ******/
+
+/****** Object:  Table [dbo].[T_CitasClientes]    Script Date: 29/11/2025 16:11:10 ******/
 SET ANSI_NULLS ON
 GO
 
@@ -691,6 +692,7 @@ CREATE TABLE [dbo].[T_CitasClientes](
 	[Id_CiCliente] [int] IDENTITY(1,1) NOT NULL,
 	[Id_Cita] [int] NOT NULL,
 	[Id_Cliente] [int] NOT NULL,
+	[UsuarioId] [nvarchar](450) NULL,
  CONSTRAINT [PK_T_CitasClientes] PRIMARY KEY CLUSTERED 
 (
 	[Id_CiCliente] ASC
@@ -711,6 +713,9 @@ GO
 
 ALTER TABLE [dbo].[T_CitasClientes] CHECK CONSTRAINT [FK_T_CitasClientes_T_GePersonas]
 GO
+
+
+
 
 /****** Object:  Table [dbo].[T_DocumentosCita]    Script Date: 29-Nov-25 12:51:30 PM ******/
 SET ANSI_NULLS ON
