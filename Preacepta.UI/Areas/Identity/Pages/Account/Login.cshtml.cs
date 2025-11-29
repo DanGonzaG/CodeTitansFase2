@@ -244,13 +244,22 @@ namespace Praecepta.UI.Areas.Identity.Pages.Account
                     _logger.LogWarning("Cuenta de usuario bloqueada.");
                     TempData["Lockout"] = "Su cuenta está bloqueada por múltiples intentos, favor comuníquese con el despacho";
                     return Page();
-                }                
+                }
+
+                if (result.IsNotAllowed) 
+                {
+                    _logger.LogWarning("Correo de usuario no verificado.");
+                    TempData["IsNotAllowed"] = "Su cuenta a uno no ha sido verificada, favor revise su correo.";
+                    return Page();
+                }
 
                 if (intentosRestantes == 1)
                 {
                     ModelState.AddModelError(string.Empty, $"Correo o contraseña son inválidos. Cuenta con {intentosRestantes} intento más");
                     return Page();
                 }
+
+              
 
                 ModelState.AddModelError(string.Empty, $"Correo o contraseña son inválidos. Cuenta con {intentosRestantes} intentos más");
                 return Page();

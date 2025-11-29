@@ -130,7 +130,31 @@ namespace Preacepta.UI.Controllers
         [Authorize(Roles = "Gestor, Abogado, Cliente")]
         public async Task<IActionResult> EtapasPLHistorial(int id)
         {
+
+            var userId = User.Identity.Name;
+
+            var idAbogado = await _buscarAbogadoLN.buscarXcorreo(userId);
             var Caso = await _buscarCaso.buscar(id);
+
+            if (User.IsInRole("Abogado"))
+            {
+                if (Caso.IdAbogado != idAbogado.Cedula)
+                {
+                    return Forbid();
+                }
+
+            }
+            else if (User.IsInRole("Cliente"))
+            {
+                if (Caso.IdCliente != idAbogado.Cedula)
+                {
+                    return Forbid();
+                }
+
+            }
+
+
+            //var Caso = await _buscarCaso.buscar(id);
 
             var EtapaCaso = await _listar.listarXcaso(id);
 
@@ -152,13 +176,32 @@ namespace Preacepta.UI.Controllers
         [Authorize(Roles = "Gestor, Abogado")]
         public async Task<IActionResult> FormularioEtapaPL(int IdCaso)
         {
-            var caso = await _buscarCaso.buscar(IdCaso);            
-            ViewBag.IdCaso = caso.IdCaso;
-            ViewBag.NombreCaso = caso.Nombre;
 
-            //ViewData["IdCaso"] = new SelectList(_context.TCasos, "IdCaso", "Nombre");
-            //ViewData["IdCaso"] = new SelectList(_buscarCaso.buscar(IdCaso).Result, "IdCaso", "Nombre");
-            //ViewData["IdCaso"] = IdCaso;
+            var userId = User.Identity.Name;
+
+            var idAbogado = await _buscarAbogadoLN.buscarXcorreo(userId);
+            var Caso = await _buscarCaso.buscar(IdCaso);
+
+            if (User.IsInRole("Abogado"))
+            {
+                if (Caso.IdAbogado != idAbogado.Cedula)
+                {
+                    return Forbid();
+                }
+
+            }
+            else if (User.IsInRole("Cliente"))
+            {
+                if (Caso.IdCliente != idAbogado.Cedula)
+                {
+                    return Forbid();
+                }
+
+            }
+
+                     
+            ViewBag.IdCaso = Caso.IdCaso;
+            ViewBag.NombreCaso = Caso.Nombre;
             return View();
         }
 
@@ -170,10 +213,31 @@ namespace Preacepta.UI.Controllers
         [Authorize(Roles = "Gestor, Abogado")]
         public async Task<IActionResult> FormularioEtapaPL([Bind("IdEtapaPl,Fecha,Nombre,Descripcion,IdCaso,Activo,Pruebas")] CasosEtapaDTO tCasosEtapa, int IdCaso)
         {
+            var userId = User.Identity.Name;
+
+            var idAbogado = await _buscarAbogadoLN.buscarXcorreo(userId);
+            
             var caso = await _buscarCaso.buscar(IdCaso);
             if(caso == null) 
             {
                 return NotFound();
+            }          
+
+            if (User.IsInRole("Abogado"))
+            {
+                if (caso.IdAbogado != idAbogado.Cedula)
+                {
+                    return Forbid();
+                }
+
+            }
+            else if (User.IsInRole("Cliente"))
+            {
+                if (caso.IdCliente != idAbogado.Cedula)
+                {
+                    return Forbid();
+                }
+
             }
 
             if (ModelState.IsValid)

@@ -121,3 +121,20 @@
     </script>
 }
 
+@if (TempData["IsNotAllowed"] != null)
+{
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            Swal.fire({
+                title: 'Sistema de autenticación',
+                text: '@TempData["IsNotAllowed"]',
+                icon: 'warning',
+                confirmButtonText: 'Continuar',
+                customClass: {
+                    confirmButton: 'contact-btn--primario' // Clase CSS personalizada
+                }
+            });
+        });
+    </script>
+}
+

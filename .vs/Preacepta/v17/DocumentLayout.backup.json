@@ -3,68 +3,40 @@
   "WorkspaceRootPath": "C:\\Preacepta\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{18AD59F4-3C32-4F5A-9C07-4B4448F18661}|Preacepta.UI\\Preacepta.UI.csproj|c:\\preacepta\\preacepta.ui\\controllers\\docscompraventafincascontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{18AD59F4-3C32-4F5A-9C07-4B4448F18661}|Preacepta.UI\\Preacepta.UI.csproj|solutionrelative:preacepta.ui\\controllers\\docscompraventafincascontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{18AD59F4-3C32-4F5A-9C07-4B4448F18661}|Preacepta.UI\\Preacepta.UI.csproj|c:\\preacepta\\preacepta.ui\\views\\docscompraventafincas\\createdocscompraventafincas.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{18AD59F4-3C32-4F5A-9C07-4B4448F18661}|Preacepta.UI\\Preacepta.UI.csproj|solutionrelative:preacepta.ui\\views\\docscompraventafincas\\createdocscompraventafincas.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{18AD59F4-3C32-4F5A-9C07-4B4448F18661}|Preacepta.UI\\Preacepta.UI.csproj|c:\\preacepta\\preacepta.ui\\controllers\\citasgestorcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{18AD59F4-3C32-4F5A-9C07-4B4448F18661}|Preacepta.UI\\Preacepta.UI.csproj|solutionrelative:preacepta.ui\\controllers\\citasgestorcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{18AD59F4-3C32-4F5A-9C07-4B4448F18661}|Preacepta.UI\\Preacepta.UI.csproj|c:\\preacepta\\preacepta.ui\\controllers\\personascontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{18AD59F4-3C32-4F5A-9C07-4B4448F18661}|Preacepta.UI\\Preacepta.UI.csproj|solutionrelative:preacepta.ui\\controllers\\personascontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{18AD59F4-3C32-4F5A-9C07-4B4448F18661}|Preacepta.UI\\Preacepta.UI.csproj|c:\\preacepta\\preacepta.ui\\views\\tdocspoderesespecialesjudiciales\\createdocspoderesespecialesjudiciales.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{18AD59F4-3C32-4F5A-9C07-4B4448F18661}|Preacepta.UI\\Preacepta.UI.csproj|solutionrelative:preacepta.ui\\views\\tdocspoderesespecialesjudiciales\\createdocspoderesespecialesjudiciales.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{18AD59F4-3C32-4F5A-9C07-4B4448F18661}|Preacepta.UI\\Preacepta.UI.csproj|c:\\preacepta\\preacepta.ui\\controllers\\tdocspoderesespecialesjudicialescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{18AD59F4-3C32-4F5A-9C07-4B4448F18661}|Preacepta.UI\\Preacepta.UI.csproj|solutionrelative:preacepta.ui\\controllers\\tdocspoderesespecialesjudicialescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{18AD59F4-3C32-4F5A-9C07-4B4448F18661}|Preacepta.UI\\Preacepta.UI.csproj|c:\\preacepta\\preacepta.ui\\controllers\\casosetapacontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{18AD59F4-3C32-4F5A-9C07-4B4448F18661}|Preacepta.UI\\Preacepta.UI.csproj|solutionrelative:preacepta.ui\\controllers\\casosetapacontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{18AD59F4-3C32-4F5A-9C07-4B4448F18661}|Preacepta.UI\\Preacepta.UI.csproj|c:\\preacepta\\preacepta.ui\\controllers\\casocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{18AD59F4-3C32-4F5A-9C07-4B4448F18661}|Preacepta.UI\\Preacepta.UI.csproj|solutionrelative:preacepta.ui\\controllers\\casocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{18AD59F4-3C32-4F5A-9C07-4B4448F18661}|Preacepta.UI\\Preacepta.UI.csproj|c:\\preacepta\\preacepta.ui\\views\\caso\\formulariocaso.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{18AD59F4-3C32-4F5A-9C07-4B4448F18661}|Preacepta.UI\\Preacepta.UI.csproj|solutionrelative:preacepta.ui\\views\\caso\\formulariocaso.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{18AD59F4-3C32-4F5A-9C07-4B4448F18661}|Preacepta.UI\\Preacepta.UI.csproj|c:\\preacepta\\preacepta.ui\\authorization\\handlers\\casohandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{18AD59F4-3C32-4F5A-9C07-4B4448F18661}|Preacepta.UI\\Preacepta.UI.csproj|solutionrelative:preacepta.ui\\authorization\\handlers\\casohandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{18AD59F4-3C32-4F5A-9C07-4B4448F18661}|Preacepta.UI\\Preacepta.UI.csproj|c:\\preacepta\\preacepta.ui\\wwwroot\\lyso\\js\\sweetalertusuariogestor.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
-      "RelativeMoniker": "D:0:0:{18AD59F4-3C32-4F5A-9C07-4B4448F18661}|Preacepta.UI\\Preacepta.UI.csproj|solutionrelative:preacepta.ui\\wwwroot\\lyso\\js\\sweetalertusuariogestor.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+      "AbsoluteMoniker": "D:0:0:{C43578C2-846A-42B8-A3DF-59F9E1CAFB9F}|Preacepta.LN\\Preacepta.LN.csproj|c:\\preacepta\\preacepta.ln\\casos\\crear\\crearcasosln.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C43578C2-846A-42B8-A3DF-59F9E1CAFB9F}|Preacepta.LN\\Preacepta.LN.csproj|solutionrelative:preacepta.ln\\casos\\crear\\crearcasosln.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{18AD59F4-3C32-4F5A-9C07-4B4448F18661}|Preacepta.UI\\Preacepta.UI.csproj|c:\\preacepta\\preacepta.ui\\controllers\\thistorialdocumento1controller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{18AD59F4-3C32-4F5A-9C07-4B4448F18661}|Preacepta.UI\\Preacepta.UI.csproj|solutionrelative:preacepta.ui\\controllers\\thistorialdocumento1controller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{18AD59F4-3C32-4F5A-9C07-4B4448F18661}|Preacepta.UI\\Preacepta.UI.csproj|c:\\preacepta\\preacepta.ui\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{18AD59F4-3C32-4F5A-9C07-4B4448F18661}|Preacepta.UI\\Preacepta.UI.csproj|solutionrelative:preacepta.ui\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{18AD59F4-3C32-4F5A-9C07-4B4448F18661}|Preacepta.UI\\Preacepta.UI.csproj|c:\\preacepta\\preacepta.ui\\controllers\\ttestimonioscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{18AD59F4-3C32-4F5A-9C07-4B4448F18661}|Preacepta.UI\\Preacepta.UI.csproj|solutionrelative:preacepta.ui\\controllers\\ttestimonioscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{18AD59F4-3C32-4F5A-9C07-4B4448F18661}|Preacepta.UI\\Preacepta.UI.csproj|c:\\preacepta\\preacepta.ui\\areas\\identity\\pages\\account\\login.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{18AD59F4-3C32-4F5A-9C07-4B4448F18661}|Preacepta.UI\\Preacepta.UI.csproj|solutionrelative:preacepta.ui\\areas\\identity\\pages\\account\\login.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{18AD59F4-3C32-4F5A-9C07-4B4448F18661}|Preacepta.UI\\Preacepta.UI.csproj|c:\\preacepta\\preacepta.ui\\controllers\\abogadocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{18AD59F4-3C32-4F5A-9C07-4B4448F18661}|Preacepta.UI\\Preacepta.UI.csproj|solutionrelative:preacepta.ui\\controllers\\abogadocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{18AD59F4-3C32-4F5A-9C07-4B4448F18661}|Preacepta.UI\\Preacepta.UI.csproj|c:\\preacepta\\preacepta.ui\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{18AD59F4-3C32-4F5A-9C07-4B4448F18661}|Preacepta.UI\\Preacepta.UI.csproj|solutionrelative:preacepta.ui\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{18AD59F4-3C32-4F5A-9C07-4B4448F18661}|Preacepta.UI\\Preacepta.UI.csproj|c:\\preacepta\\preacepta.ui\\controllers\\citascontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{18AD59F4-3C32-4F5A-9C07-4B4448F18661}|Preacepta.UI\\Preacepta.UI.csproj|solutionrelative:preacepta.ui\\controllers\\citascontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{18AD59F4-3C32-4F5A-9C07-4B4448F18661}|Preacepta.UI\\Preacepta.UI.csproj|c:\\preacepta\\preacepta.ui\\controllers\\citastipocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{18AD59F4-3C32-4F5A-9C07-4B4448F18661}|Preacepta.UI\\Preacepta.UI.csproj|solutionrelative:preacepta.ui\\controllers\\citastipocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{18AD59F4-3C32-4F5A-9C07-4B4448F18661}|Preacepta.UI\\Preacepta.UI.csproj|c:\\preacepta\\preacepta.ui\\controllers\\docscombustiblescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{18AD59F4-3C32-4F5A-9C07-4B4448F18661}|Preacepta.UI\\Preacepta.UI.csproj|solutionrelative:preacepta.ui\\controllers\\docscombustiblescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{18AD59F4-3C32-4F5A-9C07-4B4448F18661}|Preacepta.UI\\Preacepta.UI.csproj|c:\\preacepta\\preacepta.ui\\controllers\\docsmarcavehiculocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{18AD59F4-3C32-4F5A-9C07-4B4448F18661}|Preacepta.UI\\Preacepta.UI.csproj|solutionrelative:preacepta.ui\\controllers\\docsmarcavehiculocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{18AD59F4-3C32-4F5A-9C07-4B4448F18661}|Preacepta.UI\\Preacepta.UI.csproj|c:\\preacepta\\preacepta.ui\\authorization\\requirements\\casorequisito.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{18AD59F4-3C32-4F5A-9C07-4B4448F18661}|Preacepta.UI\\Preacepta.UI.csproj|solutionrelative:preacepta.ui\\authorization\\requirements\\casorequisito.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -74,8 +46,21 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 4,
+          "SelectedChildIndex": 5,
           "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "CasosEtapaController.cs",
+              "DocumentMoniker": "C:\\Preacepta\\Preacepta.UI\\Controllers\\CasosEtapaController.cs",
+              "RelativeDocumentMoniker": "Preacepta.UI\\Controllers\\CasosEtapaController.cs",
+              "ToolTip": "C:\\Preacepta\\Preacepta.UI\\Controllers\\CasosEtapaController.cs",
+              "RelativeToolTip": "Preacepta.UI\\Controllers\\CasosEtapaController.cs",
+              "ViewState": "AgIAABQBAAAAAAAAAAAUwN8AAAANAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-29T00:00:15.84Z",
+              "EditorCaption": ""
+            },
             {
               "$type": "Bookmark",
               "Name": "ST:129:0:{75188d03-9892-4ae2-abf1-207126247ce5}"
@@ -94,215 +79,112 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "CitasGestorController.cs",
-              "DocumentMoniker": "C:\\Preacepta\\Preacepta.UI\\Controllers\\CitasGestorController.cs",
-              "RelativeDocumentMoniker": "Preacepta.UI\\Controllers\\CitasGestorController.cs",
-              "ToolTip": "C:\\Preacepta\\Preacepta.UI\\Controllers\\CitasGestorController.cs",
-              "RelativeToolTip": "Preacepta.UI\\Controllers\\CitasGestorController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-21T02:15:35.466Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "CasoController.cs",
-              "DocumentMoniker": "C:\\Preacepta\\Preacepta.UI\\Controllers\\CasoController.cs",
-              "RelativeDocumentMoniker": "Preacepta.UI\\Controllers\\CasoController.cs",
-              "ToolTip": "C:\\Preacepta\\Preacepta.UI\\Controllers\\CasoController.cs",
-              "RelativeToolTip": "Preacepta.UI\\Controllers\\CasoController.cs",
-              "ViewState": "AgIAAAwAAAAAAAAAAAAAAEABAAAhAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-21T00:20:20.925Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 9,
-              "Title": "THistorialDocumento1Controller.cs",
-              "DocumentMoniker": "C:\\Preacepta\\Preacepta.UI\\Controllers\\THistorialDocumento1Controller.cs",
-              "RelativeDocumentMoniker": "Preacepta.UI\\Controllers\\THistorialDocumento1Controller.cs",
-              "ToolTip": "C:\\Preacepta\\Preacepta.UI\\Controllers\\THistorialDocumento1Controller.cs",
-              "RelativeToolTip": "Preacepta.UI\\Controllers\\THistorialDocumento1Controller.cs",
-              "ViewState": "AgIAAMAAAAAAAAAAAAAAACUBAAAJAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-21T02:21:59.326Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "FormularioCaso.cshtml",
-              "DocumentMoniker": "C:\\Preacepta\\Preacepta.UI\\Views\\Caso\\FormularioCaso.cshtml",
-              "RelativeDocumentMoniker": "Preacepta.UI\\Views\\Caso\\FormularioCaso.cshtml",
-              "ToolTip": "C:\\Preacepta\\Preacepta.UI\\Views\\Caso\\FormularioCaso.cshtml",
-              "RelativeToolTip": "Preacepta.UI\\Views\\Caso\\FormularioCaso.cshtml",
-              "ViewState": "AgIAACQAAAAAAAAAAAAAAEAAAAB/AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-11-21T02:49:00.222Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "SweetAlertUsuarioGestor.js",
-              "DocumentMoniker": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lyso\\js\\SweetAlertUsuarioGestor.js",
-              "RelativeDocumentMoniker": "Preacepta.UI\\wwwroot\\lyso\\js\\SweetAlertUsuarioGestor.js",
-              "ToolTip": "C:\\Preacepta\\Preacepta.UI\\wwwroot\\lyso\\js\\SweetAlertUsuarioGestor.js",
-              "RelativeToolTip": "Preacepta.UI\\wwwroot\\lyso\\js\\SweetAlertUsuarioGestor.js",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABoAAAAHAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
-              "WhenOpened": "2025-11-21T03:30:10.496Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 13,
-              "Title": "CitasTipoController.cs",
-              "DocumentMoniker": "C:\\Preacepta\\Preacepta.UI\\Controllers\\CitasTipoController.cs",
-              "RelativeDocumentMoniker": "Preacepta.UI\\Controllers\\CitasTipoController.cs",
-              "ToolTip": "C:\\Preacepta\\Preacepta.UI\\Controllers\\CitasTipoController.cs",
-              "RelativeToolTip": "Preacepta.UI\\Controllers\\CitasTipoController.cs",
-              "ViewState": "AgIAAGAAAAAAAAAAAAAYwAwAAAAEAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-21T02:15:49.456Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 10,
-              "Title": "TTestimoniosController.cs",
-              "DocumentMoniker": "C:\\Preacepta\\Preacepta.UI\\Controllers\\TTestimoniosController.cs",
-              "RelativeDocumentMoniker": "Preacepta.UI\\Controllers\\TTestimoniosController.cs",
-              "ToolTip": "C:\\Preacepta\\Preacepta.UI\\Controllers\\TTestimoniosController.cs",
-              "RelativeToolTip": "Preacepta.UI\\Controllers\\TTestimoniosController.cs",
-              "ViewState": "AgIAAHwBAAAAAAAAAAAiwCAAAAAzAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-21T02:18:01.897Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 14,
-              "Title": "DocsCombustiblesController.cs",
-              "DocumentMoniker": "C:\\Preacepta\\Preacepta.UI\\Controllers\\DocsCombustiblesController.cs",
-              "RelativeDocumentMoniker": "Preacepta.UI\\Controllers\\DocsCombustiblesController.cs",
-              "ToolTip": "C:\\Preacepta\\Preacepta.UI\\Controllers\\DocsCombustiblesController.cs",
-              "RelativeToolTip": "Preacepta.UI\\Controllers\\DocsCombustiblesController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABQAAAAhAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-21T02:12:58Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 15,
-              "Title": "DocsMarcaVehiculoController.cs",
-              "DocumentMoniker": "C:\\Preacepta\\Preacepta.UI\\Controllers\\DocsMarcaVehiculoController.cs",
-              "RelativeDocumentMoniker": "Preacepta.UI\\Controllers\\DocsMarcaVehiculoController.cs",
-              "ToolTip": "C:\\Preacepta\\Preacepta.UI\\Controllers\\DocsMarcaVehiculoController.cs",
-              "RelativeToolTip": "Preacepta.UI\\Controllers\\DocsMarcaVehiculoController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABQAAAAhAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-21T02:11:27.198Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 11,
-              "Title": "AbogadoController.cs",
-              "DocumentMoniker": "C:\\Preacepta\\Preacepta.UI\\Controllers\\AbogadoController.cs",
-              "RelativeDocumentMoniker": "Preacepta.UI\\Controllers\\AbogadoController.cs",
-              "ToolTip": "C:\\Preacepta\\Preacepta.UI\\Controllers\\AbogadoController.cs",
-              "RelativeToolTip": "Preacepta.UI\\Controllers\\AbogadoController.cs",
-              "ViewState": "AgIAAEkAAAAAAAAAAAAowAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-21T00:20:20.915Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 12,
-              "Title": "CitasController.cs",
-              "DocumentMoniker": "C:\\Preacepta\\Preacepta.UI\\Controllers\\CitasController.cs",
-              "RelativeDocumentMoniker": "Preacepta.UI\\Controllers\\CitasController.cs",
-              "ToolTip": "C:\\Preacepta\\Preacepta.UI\\Controllers\\CitasController.cs",
-              "RelativeToolTip": "Preacepta.UI\\Controllers\\CitasController.cs",
-              "ViewState": "AgIAAKUAAAAAAAAAAAAIwAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-21T00:20:20.915Z",
-              "EditorCaption": ""
-            }
-          ]
-        },
-        {
-          "DockedWidth": 200,
-          "SelectedChildIndex": 2,
-          "Children": [
-            {
-              "$type": "Bookmark",
-              "Name": "ST:15:0:{e8034f19-ab72-4f06-83fd-f6832b41aa63}"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "CreateDocsCompraventaFincas.cshtml",
-              "DocumentMoniker": "C:\\Preacepta\\Preacepta.UI\\Views\\DocsCompraventaFincas\\CreateDocsCompraventaFincas.cshtml",
-              "RelativeDocumentMoniker": "Preacepta.UI\\Views\\DocsCompraventaFincas\\CreateDocsCompraventaFincas.cshtml",
-              "ToolTip": "C:\\Preacepta\\Preacepta.UI\\Views\\DocsCompraventaFincas\\CreateDocsCompraventaFincas.cshtml",
-              "RelativeToolTip": "Preacepta.UI\\Views\\DocsCompraventaFincas\\CreateDocsCompraventaFincas.cshtml",
-              "ViewState": "AgIAADYAAAAAAAAAAAAAADsAAAAiAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-11-22T18:06:16.795Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "DocsCompraventaFincasController.cs",
-              "DocumentMoniker": "C:\\Preacepta\\Preacepta.UI\\Controllers\\DocsCompraventaFincasController.cs",
-              "RelativeDocumentMoniker": "Preacepta.UI\\Controllers\\DocsCompraventaFincasController.cs",
-              "ToolTip": "C:\\Preacepta\\Preacepta.UI\\Controllers\\DocsCompraventaFincasController.cs",
-              "RelativeToolTip": "Preacepta.UI\\Controllers\\DocsCompraventaFincasController.cs",
-              "ViewState": "AgIAACUBAAAAAAAAAAApwDoBAABBAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-22T17:53:32.803Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "TDocsPoderesEspecialesJudicialesController.cs",
-              "DocumentMoniker": "C:\\Preacepta\\Preacepta.UI\\Controllers\\TDocsPoderesEspecialesJudicialesController.cs",
-              "RelativeDocumentMoniker": "Preacepta.UI\\Controllers\\TDocsPoderesEspecialesJudicialesController.cs",
-              "ToolTip": "C:\\Preacepta\\Preacepta.UI\\Controllers\\TDocsPoderesEspecialesJudicialesController.cs",
-              "RelativeToolTip": "Preacepta.UI\\Controllers\\TDocsPoderesEspecialesJudicialesController.cs",
-              "ViewState": "AgIAANwAAAAAAAAAAAAywP4AAAAJAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-21T02:31:12.811Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "CreateDocsPoderesEspecialesJudiciales.cshtml",
-              "DocumentMoniker": "C:\\Preacepta\\Preacepta.UI\\Views\\TDocsPoderesEspecialesJudiciales\\CreateDocsPoderesEspecialesJudiciales.cshtml",
-              "RelativeDocumentMoniker": "Preacepta.UI\\Views\\TDocsPoderesEspecialesJudiciales\\CreateDocsPoderesEspecialesJudiciales.cshtml",
-              "ToolTip": "C:\\Preacepta\\Preacepta.UI\\Views\\TDocsPoderesEspecialesJudiciales\\CreateDocsPoderesEspecialesJudiciales.cshtml",
-              "RelativeToolTip": "Preacepta.UI\\Views\\TDocsPoderesEspecialesJudiciales\\CreateDocsPoderesEspecialesJudiciales.cshtml",
-              "ViewState": "AgIAAB4AAAAAAAAAAAAAADgAAABgAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-11-21T02:46:07.405Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
               "Title": "PersonasController.cs",
               "DocumentMoniker": "C:\\Preacepta\\Preacepta.UI\\Controllers\\PersonasController.cs",
               "RelativeDocumentMoniker": "Preacepta.UI\\Controllers\\PersonasController.cs",
               "ToolTip": "C:\\Preacepta\\Preacepta.UI\\Controllers\\PersonasController.cs",
               "RelativeToolTip": "Preacepta.UI\\Controllers\\PersonasController.cs",
-              "ViewState": "AgIAANgBAAAAAAAAAAApwP4BAAAIAAAAAAAAAA==",
+              "ViewState": "AgIAAEMAAAAAAAAAAAAowP4BAAAIAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-21T01:53:53.529Z",
+              "WhenOpened": "2025-11-27T02:58:42.183Z",
               "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "CrearCasosLN.cs",
+              "DocumentMoniker": "C:\\Preacepta\\Preacepta.LN\\Casos\\Crear\\CrearCasosLN.cs",
+              "RelativeDocumentMoniker": "Preacepta.LN\\Casos\\Crear\\CrearCasosLN.cs",
+              "ToolTip": "C:\\Preacepta\\Preacepta.LN\\Casos\\Crear\\CrearCasosLN.cs",
+              "RelativeToolTip": "Preacepta.LN\\Casos\\Crear\\CrearCasosLN.cs",
+              "ViewState": "AgIAAAUAAAAAAAAAAAAywBAAAAAIAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-27T02:58:42.249Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "Login.cshtml.cs",
+              "DocumentMoniker": "C:\\Preacepta\\Preacepta.UI\\Areas\\Identity\\Pages\\Account\\Login.cshtml.cs",
+              "RelativeDocumentMoniker": "Preacepta.UI\\Areas\\Identity\\Pages\\Account\\Login.cshtml.cs",
+              "ToolTip": "C:\\Preacepta\\Preacepta.UI\\Areas\\Identity\\Pages\\Account\\Login.cshtml.cs",
+              "RelativeToolTip": "Preacepta.UI\\Areas\\Identity\\Pages\\Account\\Login.cshtml.cs",
+              "ViewState": "AgIAAIoAAAAAAAAAAAAywKEAAAAMAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-27T02:58:42.255Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "HomeController.cs",
+              "DocumentMoniker": "C:\\Preacepta\\Preacepta.UI\\Controllers\\HomeController.cs",
+              "RelativeDocumentMoniker": "Preacepta.UI\\Controllers\\HomeController.cs",
+              "ToolTip": "C:\\Preacepta\\Preacepta.UI\\Controllers\\HomeController.cs",
+              "RelativeToolTip": "Preacepta.UI\\Controllers\\HomeController.cs",
+              "ViewState": "AgIAAJMAAAAAAAAAAAAywPQAAAAQAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-27T02:58:42.261Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "CasoController.cs",
+              "DocumentMoniker": "C:\\Preacepta\\Preacepta.UI\\Controllers\\CasoController.cs",
+              "RelativeDocumentMoniker": "Preacepta.UI\\Controllers\\CasoController.cs",
+              "ToolTip": "C:\\Preacepta\\Preacepta.UI\\Controllers\\CasoController.cs",
+              "RelativeToolTip": "Preacepta.UI\\Controllers\\CasoController.cs",
+              "ViewState": "AgIAAEAAAAAAAAAAAAAowKgBAAAIAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-27T02:40:36.307Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "CasoHandler.cs",
+              "DocumentMoniker": "C:\\Preacepta\\Preacepta.UI\\Authorization\\Handlers\\CasoHandler.cs",
+              "RelativeDocumentMoniker": "Preacepta.UI\\Authorization\\Handlers\\CasoHandler.cs",
+              "ToolTip": "C:\\Preacepta\\Preacepta.UI\\Authorization\\Handlers\\CasoHandler.cs",
+              "RelativeToolTip": "Preacepta.UI\\Authorization\\Handlers\\CasoHandler.cs",
+              "ViewState": "AgIAAAwAAAAAAAAAAAAAABsAAAAIAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-27T02:13:59.699Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "CasoRequisito.cs",
+              "DocumentMoniker": "C:\\Preacepta\\Preacepta.UI\\Authorization\\Requirements\\CasoRequisito.cs",
+              "RelativeDocumentMoniker": "Preacepta.UI\\Authorization\\Requirements\\CasoRequisito.cs",
+              "ToolTip": "C:\\Preacepta\\Preacepta.UI\\Authorization\\Requirements\\CasoRequisito.cs",
+              "RelativeToolTip": "Preacepta.UI\\Authorization\\Requirements\\CasoRequisito.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAA6AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-27T02:11:21.957Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Preacepta\\Preacepta.UI\\Program.cs",
+              "RelativeDocumentMoniker": "Preacepta.UI\\Program.cs",
+              "ToolTip": "C:\\Preacepta\\Preacepta.UI\\Program.cs",
+              "RelativeToolTip": "Preacepta.UI\\Program.cs",
+              "ViewState": "AgIAAC0BAAAAAAAAAAAuwMACAAAaAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-27T02:02:34.245Z"
+            }
+          ]
+        },
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": -1,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:15:0:{e8034f19-ab72-4f06-83fd-f6832b41aa63}"
             }
           ]
         }

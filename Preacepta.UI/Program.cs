@@ -286,6 +286,9 @@ using Preacepta.LN.HistorialDocumentos.Eliminar;
 using Preacepta.UI.Services.MensajesPersonalizados;
 using Serilog;
 using System.Security.Claims;
+using Microsoft.AspNetCore.Authorization;
+using Preacepta.UI.Authorization.Requirements;
+using Preacepta.UI.Authorization.Handlers;
 #endregion
 
 
@@ -689,6 +692,20 @@ DinkToPdfAll.LibraryLoader.Load();
 builder.Services.AddDataProtection()
     .PersistKeysToFileSystem(new DirectoryInfo(@"C:\AppKeys\DataProtection"))
     .SetApplicationName("Preacepta");
+#endregion
+
+#region Authorizations
+//En esta parte se colocan las autorizaciones personalizadas para acceso a los metodos de los controllers
+builder.Services.AddAuthorization(options =>
+{
+    options.AddPolicy("AccesoCaso", policy =>
+    policy.Requirements.Add(new CasoRequisito()));
+});
+
+builder.Services.AddScoped<IAuthorizationHandler, CasoHandler>();
+
+
+
 #endregion
 
 var app = builder.Build();
