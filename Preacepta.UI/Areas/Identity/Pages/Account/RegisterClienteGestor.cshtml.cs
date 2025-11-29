@@ -122,27 +122,9 @@ namespace Praecepta.UI.Areas.Identity.Pages.Account
             ReturnUrl = returnUrl;
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
 
-            EstadoCivil = new List<SelectListItem>
-            {
-                new SelectListItem { Text = "Soltero", Value = "Soltero" },
-                new SelectListItem { Text = "Casado", Value = "Casado" },
-                new SelectListItem { Text = "Divorciado", Value = "Divorciado" },
-                new SelectListItem { Text = "Viudo", Value = "Viudo" }
-            };
-
-            Genero = new List<SelectListItem>
-            {
-                new SelectListItem { Text = "Femenino", Value = "Femenino" },
-                new SelectListItem { Text = "Masculino", Value = "Masculino" }
-            };
-
-            TipoIdentificacion = new List<SelectListItem>
-            {
-                new SelectListItem { Text = "Cédula física", Value = "Cedula" },
-                new SelectListItem { Text = "DIMEX", Value = "DIMEX" },
-                new SelectListItem { Text = "Pasaporte", Value = "Pasaporte" },
-                new SelectListItem { Text = "Sin documento de identificación", Value = "SinDocumento" },
-            };
+            EstadoCivil = SelectListPersonas.EstadoCivil;
+            Genero = SelectListPersonas.Genero;
+            TipoIdentificacion = SelectListPersonas.TipoIdentificacion;            
         }
 
 
@@ -172,29 +154,10 @@ namespace Praecepta.UI.Areas.Identity.Pages.Account
                 var existe = await _buscarPersona.buscarXnumCedula(personaDTO.NumCedula);
                 if (existe != null)//valida si hay un cedula igual registrada
                 {
-                    //ViewData["Direccion1"] = new SelectList(_listarDireccion.listarDistritos().Result, "IdDistrito", "NombreDistrito", tGePersona.Direccion1);
-
-                    EstadoCivil = new List<SelectListItem>
-                    {
-                        new SelectListItem { Text = "Soltero", Value = "Soltero" },
-                        new SelectListItem { Text = "Casado", Value = "Casado" },
-                        new SelectListItem { Text = "Divorciado", Value = "Divorciado" },
-                        new SelectListItem { Text = "Viudo", Value = "Viudo" }
-                    };
-
-                    Genero = new List<SelectListItem>
-                    {
-                        new SelectListItem { Text = "Femenino", Value = "Femenino" },
-                        new SelectListItem { Text = "Masculino", Value = "Masculino" }
-                    };
+                    EstadoCivil = SelectListPersonas.EstadoCivil;
+                    Genero = SelectListPersonas.Genero;
+                    TipoIdentificacion = SelectListPersonas.TipoIdentificacion;
                    
-                    TipoIdentificacion = new List<SelectListItem>
-                    {
-                        new SelectListItem { Text = "Cédula física", Value = "Cedula" },
-                        new SelectListItem { Text = "DIMEX", Value = "DIMEX" },
-                        new SelectListItem { Text = "Pasaporte", Value = "Pasaporte" },
-                        new SelectListItem { Text = "Sin documento de identificación", Value = "SinDocumento" },
-                    };
                     TempData["ErrorCedula"] = "Cedula ya registrada en el sistema";
                     return Page();
                 }
@@ -204,29 +167,10 @@ namespace Praecepta.UI.Areas.Identity.Pages.Account
                 var correo = await _buscarPersona.buscarXcorreo(personaDTO.Email);
                 if (correo != null)//valida si hay un correo igual registrado
                 {
-                    //ViewData["Direccion1"] = new SelectList(_listarDireccion.listarDistritos().Result, "IdDistrito", "NombreDistrito", tGePersona.Direccion1);
-
-                    EstadoCivil = new List<SelectListItem>
-                    {
-                        new SelectListItem { Text = "Soltero", Value = "Soltero" },
-                        new SelectListItem { Text = "Casado", Value = "Casado" },
-                        new SelectListItem { Text = "Divorciado", Value = "Divorciado" },
-                        new SelectListItem { Text = "Viudo", Value = "Viudo" }
-                    };
-
-                    Genero = new List<SelectListItem>
-                    {
-                        new SelectListItem { Text = "Femenino", Value = "Femenino" },
-                        new SelectListItem { Text = "Masculino", Value = "Masculino" }
-                    };
-                    
-                    TipoIdentificacion = new List<SelectListItem>
-                    {
-                        new SelectListItem { Text = "Cédula física", Value = "Cedula" },
-                        new SelectListItem { Text = "DIMEX", Value = "DIMEX" },
-                        new SelectListItem { Text = "Pasaporte", Value = "Pasaporte" },
-                        new SelectListItem { Text = "Sin documento de identificación", Value = "SinDocumento" },
-                    };
+                    EstadoCivil = SelectListPersonas.EstadoCivil;
+                    Genero = SelectListPersonas.Genero;
+                    TipoIdentificacion = SelectListPersonas.TipoIdentificacion;
+                   
                     TempData["ErrorEmail"] = "Correo Electronico ya registrado en el sistema";
                     return Page();
                 }
@@ -237,29 +181,10 @@ namespace Praecepta.UI.Areas.Identity.Pages.Account
                 
                 if (telefono1 != null)
                 {
-                    //ViewData["Direccion1"] = new SelectList(_listarDireccion.listarDistritos().Result, "IdDistrito", "NombreDistrito", tGePersona.Direccion1);
-
-                    EstadoCivil = new List<SelectListItem>
-                    {
-                        new SelectListItem { Text = "Soltero", Value = "Soltero" },
-                        new SelectListItem { Text = "Casado", Value = "Casado" },
-                        new SelectListItem { Text = "Divorciado", Value = "Divorciado" },
-                        new SelectListItem { Text = "Viudo", Value = "Viudo" }
-                    };
-
-                    Genero = new List<SelectListItem>
-                    {
-                        new SelectListItem { Text = "Femenino", Value = "Femenino" },
-                        new SelectListItem { Text = "Masculino", Value = "Masculino" }
-                    };
-
-                    TipoIdentificacion = new List<SelectListItem>
-                    {
-                        new SelectListItem { Text = "Cédula física", Value = "Cedula" },
-                        new SelectListItem { Text = "DIMEX", Value = "DIMEX" },
-                        new SelectListItem { Text = "Pasaporte", Value = "Pasaporte" },
-                        new SelectListItem { Text = "Sin documento de identificación", Value = "SinDocumento" },
-                    };
+                    EstadoCivil = SelectListPersonas.EstadoCivil;
+                    Genero = SelectListPersonas.Genero;
+                    TipoIdentificacion = SelectListPersonas.TipoIdentificacion;
+                   
                     TempData["ErrorTelefono1"] = $"El telefono {personaDTO.Telefono1} ya esta registrado";
                     return Page();
 
@@ -321,29 +246,10 @@ namespace Praecepta.UI.Areas.Identity.Pages.Account
                 }
                 #endregion
             }
-            EstadoCivil = new List<SelectListItem>
-                    {
-                        new SelectListItem { Text = "Soltero", Value = "Soltero" },
-                        new SelectListItem { Text = "Casado", Value = "Casado" },
-                        new SelectListItem { Text = "Divorciado", Value = "Divorciado" },
-                        new SelectListItem { Text = "Viudo", Value = "Viudo" }
-                    };
-
-            Genero = new List<SelectListItem>
-                    {
-                        new SelectListItem { Text = "Femenino", Value = "Femenino" },
-                        new SelectListItem { Text = "Masculino", Value = "Masculino" }
-                    };
+            EstadoCivil = SelectListPersonas.EstadoCivil;
+            Genero = SelectListPersonas.Genero;
+            TipoIdentificacion = SelectListPersonas.TipoIdentificacion;
             
-            TipoIdentificacion = new List<SelectListItem>
-                    {
-                        new SelectListItem { Text = "Cédula física", Value = "Cedula" },
-                        new SelectListItem { Text = "DIMEX", Value = "DIMEX" },
-                        new SelectListItem { Text = "Pasaporte", Value = "Pasaporte" },
-                        new SelectListItem { Text = "Sin documento de identificación", Value = "SinDocumento" },
-                    };         
-
-            // If we got this far, something failed, redisplay form
             return Page();
         }
 

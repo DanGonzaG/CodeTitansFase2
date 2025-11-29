@@ -425,13 +425,15 @@ namespace Preacepta.UI.Controllers
         #region Decargar Caso Completo
 
         [HttpGet]
+        [Authorize(Policy = "AccesoCaso")]
         [Authorize(Roles = "Gestor, Abogado, Cliente")]
         public async Task<IActionResult> DescargarCasoCompleto(int IdCaso)
-        {           
+        {
+            var casoEncontrado = await _buscar.buscar(IdCaso);
             var imagenPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "lyso", "img", "PreaceptaLogoColorNegro.png");
             var imagenlogo = System.IO.File.ReadAllBytes(imagenPath);
             var base64 = Convert.ToBase64String(imagenlogo);
-            var casoEncontrado = await _buscar.buscar(IdCaso);
+           
             var templatePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "lyso", "DescargaCasos", "CasoPlantillaPrincipalFem.html");
             if (casoEncontrado == null)
             {

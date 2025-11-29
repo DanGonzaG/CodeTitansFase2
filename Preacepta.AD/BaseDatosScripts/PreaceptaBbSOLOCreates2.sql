@@ -323,7 +323,7 @@ CREATE TABLE [dbo].[T_CasosTipos](
 ) ON [PRIMARY]
 GO
 
-/****** TABLAS MODULO DE CITAS ******/
+/****** TABLAS CATALOGO MODULO DE CITAS ******/
 /****** Object:  Table [dbo].[T_CitasTipos]    Script Date: 03-Oct-25 6:30:16 PM ******/
 SET ANSI_NULLS ON
 GO
@@ -342,7 +342,6 @@ CREATE TABLE [dbo].[T_CitasTipos](
 GO
 
 /****** TABLAS CATALOGO MODULO DE DOCS LEGALES AUTOMATIZADOS ******/
-
 /****** Object:  Table [dbo].[T_DocsMarcaVehiculos]    Script Date: 03-Oct-25 6:35:45 PM ******/
 SET ANSI_NULLS ON
 GO
@@ -713,7 +712,7 @@ GO
 ALTER TABLE [dbo].[T_CitasClientes] CHECK CONSTRAINT [FK_T_CitasClientes_T_GePersonas]
 GO
 
-/****** Object:  Table [dbo].[T_DocumentosCita]    Script Date: 04-Oct-25 3:54:47 PM ******/
+/****** Object:  Table [dbo].[T_DocumentosCita]    Script Date: 29-Nov-25 12:51:30 PM ******/
 SET ANSI_NULLS ON
 GO
 
@@ -728,11 +727,16 @@ CREATE TABLE [dbo].[T_DocumentosCita](
 	[FechaSubida] [datetime] NULL,
 	[Descargar] [bit] NOT NULL,
 	[Activo] [bit] NOT NULL,
+	[OwnerId] [nvarchar](450) NOT NULL,
+	[IV] [nvarchar](256) NOT NULL,
+	[Algoritmo] [nvarchar](100) NOT NULL,
+	[ContentType] [nvarchar](200) NOT NULL,
+	[ArchivoCifrado] [varbinary](max) NOT NULL,
 PRIMARY KEY CLUSTERED 
 (
 	[Id] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
-) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 GO
 
 ALTER TABLE [dbo].[T_DocumentosCita] ADD  DEFAULT (getdate()) FOR [FechaSubida]
@@ -747,6 +751,76 @@ GO
 ALTER TABLE [dbo].[T_DocumentosCita]  WITH CHECK ADD FOREIGN KEY([IdCita])
 REFERENCES [dbo].[T_Citas] ([Id_Cita])
 GO
+
+
+/****** Object:  Table [dbo].[T_DocumentoKey]    Script Date: 29-Nov-25 12:52:08 PM ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[T_DocumentoKey](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[DocumentoId] [int] NOT NULL,
+	[UsuarioId] [nvarchar](450) NOT NULL,
+	[EncryptedKeyBase64] [nvarchar](max) NOT NULL,
+	[IV] [nvarchar](256) NOT NULL,
+	[Activo] [bit] NOT NULL,
+	[FechaCreacion] [datetime2](7) NOT NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
+
+ALTER TABLE [dbo].[T_DocumentoKey] ADD  DEFAULT ((1)) FOR [Activo]
+GO
+
+ALTER TABLE [dbo].[T_DocumentoKey] ADD  DEFAULT (sysutcdatetime()) FOR [FechaCreacion]
+GO
+
+ALTER TABLE [dbo].[T_DocumentoKey]  WITH CHECK ADD  CONSTRAINT [FK_T_DocumentoKey_TDocumentosCita] FOREIGN KEY([DocumentoId])
+REFERENCES [dbo].[T_DocumentosCita] ([Id])
+ON DELETE CASCADE
+GO
+
+ALTER TABLE [dbo].[T_DocumentoKey] CHECK CONSTRAINT [FK_T_DocumentoKey_TDocumentosCita]
+GO
+
+CREATE INDEX IX_T_DocumentoKey_DocumentoId ON T_DocumentoKey (DocumentoId);
+CREATE INDEX IX_T_DocumentoKey_UsuarioId ON T_DocumentoKey (UsuarioId);
+
+
+/****** Object:  Table [dbo].[TClavePublica]    Script Date: 29-Nov-25 12:55:31 PM ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[TClavePublica](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[UsuarioId] [nvarchar](450) NOT NULL,
+	[ClavePublica] [nvarchar](max) NOT NULL,
+	[FechaCreacion] [datetime] NOT NULL,
+	[Activo] [bit] NOT NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
+
+ALTER TABLE [dbo].[TClavePublica] ADD  DEFAULT (getdate()) FOR [FechaCreacion]
+GO
+
+ALTER TABLE [dbo].[TClavePublica] ADD  DEFAULT ((1)) FOR [Activo]
+GO
+
+CREATE INDEX IX_TClavePublica_UsuarioId_Activo ON TClavePublica(UsuarioId, Activo);
+
 
 /****** TABLAS MODULO DE GENERADOR DE DOCUMENTOS AUTOMATIZADOS ******/
 /****** Object:  Table [dbo].[HistorialDocumentos]    Script Date: 03-Oct-25 6:34:37 PM ******/
@@ -1298,5 +1372,7 @@ GO
 
 ALTER TABLE [dbo].[T_BitacoraEventos] ADD  DEFAULT (getdate()) FOR [Fecha_Hora]
 GO
+
+
 
 
