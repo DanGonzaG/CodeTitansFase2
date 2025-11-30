@@ -6,10 +6,23 @@
 Create database PreaceptaBD;
 Use PreaceptaBD;
 
-/*Creacion de rol y asignacion de privilegios NO APLICAR DE NO SE NECESARIO*/
-CREATE USER [PreaceptaApp] FROM EXTERNAL PROVIDER;
+/*Creacion de rol y asignacion de privilegios esto se usa para crear un acceso a la BD por medio de ADD si uso de password no usar para este entorno de desarrollo 
+NO APLICAR DE NO SE NECESARIO*/
+/*CREATE USER [PreaceptaApp] FROM EXTERNAL PROVIDER;
 ALTER ROLE db_datareader ADD MEMBER [PreaceptaApp];
-ALTER ROLE db_datawriter ADD MEMBER [PreaceptaApp];
+ALTER ROLE db_datawriter ADD MEMBER [PreaceptaApp];*/
+
+/*El create login se aplica si la base de datos no un login ya creado, es comando se aplica a la Instancia de la base de datos y no a la Base de datos como tal*/
+CREATE LOGIN [PreaceptaRootBD]
+WITH PASSWORD = 'TuPasswordSeguro123!',
+     CHECK_POLICY = ON,
+     CHECK_EXPIRATION = OFF;
+
+/*Este comando es indispensable para que el entorno de desarrollo pueda conectarse con la base de datos*/
+CREATE USER [PreaceptaRootBD] FOR LOGIN [PreaceptaRootBD];
+ALTER ROLE [db_owner] ADD MEMBER [PreaceptaRootBD];
+
+ 
 
 
 /****** MODULO DE AUTENTICACION ******/
@@ -605,10 +618,10 @@ GO
 
 /*ALTER TABLE [dbo].[T_CasosEvidencias]  WITH CHECK ADD  CONSTRAINT [FK_T_CasosEvidencias_T_CasosEtapas] FOREIGN KEY([Id_caso])
 REFERENCES [dbo].[T_CasosEtapas] ([Id_EtapaPL])
-GO*/
+GO
 
 ALTER TABLE [dbo].[T_CasosEvidencias] CHECK CONSTRAINT [FK_T_CasosEvidencias_T_CasosEtapas]
-GO
+GO*/
 
 /****** Object:  Table [dbo].[T_CasosEtapas]    Script Date: 03-Oct-25 6:24:20 PM ******/
 SET ANSI_NULLS ON
