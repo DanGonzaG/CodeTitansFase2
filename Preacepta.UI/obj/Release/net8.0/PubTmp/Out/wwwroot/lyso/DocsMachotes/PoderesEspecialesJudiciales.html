@@ -1,58 +1,126 @@
 ﻿<!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
     <meta charset="utf-8" />
     <title>Poder Especial Judicial</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            font-size: 12pt;
-            line-height: 1.5;
+        @page {
             margin: 40px;
         }
 
+        body {
+            font-family: Arial, sans-serif;
+            font-size: 12pt;
+            line-height: 1.55;
+            color: #111;
+        }
+
+        .header {
+            display: table;
+            width: 100%;
+            border-bottom: 1px solid #000;
+            padding-bottom: 10px;
+            margin-bottom: 22px;
+        }
+
+        .h-left {
+            display: table-cell;
+            vertical-align: middle;
+            width: 110px;
+        }
+
+        .h-right {
+            display: table-cell;
+            vertical-align: middle;
+            text-align: right;
+        }
+
+        .logo {
+            height: 58px;
+        }
+
+        .h-title {
+            font-size: 18pt;
+            margin: 0;
+            font-weight: bold;
+        }
+
+        .h-sub {
+            margin: 0;
+            font-size: 10pt;
+        }
+
         h4 {
-            margin-top: 20px;
             text-align: center;
             text-decoration: underline;
+            margin: 18px 0 14px;
+        }
+
+        .section {
+            margin: 12px 0;
         }
 
         .firmas {
-            margin-top: 60px;
+            margin-top: 46px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 28px;
+        }
+
+        .block {
             text-align: center;
+        }
+
+        .line {
+            border-top: 1px solid #000;
+            height: 50px;
+            margin: 40px 0 8px;
+        }
+
+        .small {
+            font-size: 10pt;
         }
     </style>
 </head>
 <body>
-    <p><strong>FECHA:</strong> {{FECHA}}</p>
-    <p><strong>CÉDULA ABOGADO:</strong> {{ID_ABOGADO}}</p>
-    <p><strong>CÉDULA PODERDANTE:</strong> {{ID_CLIENTE}}</p>
 
     <h4>PODER ESPECIAL JUDICIAL</h4>
 
-    <p>
-        El suscrito {{ID_CLIENTE}}, mayor, costarricense, casado, abogado, vecino de Santa Ana, portador de la cédula de identidad número {{ID_CLIENTE}},
-        confiere PODER ESPECIAL JUDICIAL, al licenciado César Emanuel Torres Ospino, mayor, costarricense, portador de la cédula de identidad número {{ID_ABOGADO}},
-        soltero, abogado portador del carné profesional número veintiún mil novecientos cuarenta y uno, vecino de Escazú, San Rafael, con oficina en Escazú,
-        San Rafael, Edificio Terraforte, cuarto piso. El apoderado queda plenamente autorizado para gestionar y atender las diligencias judiciales y extrajudiciales,
-        medidas alternas, audiencias, conciliaciones, y todas aquellas diligencias que sean propias para la consecución de los fines del proceso y la defensa
-        de los intereses del poderdante, dentro del proceso judicial con número de causa {{ID_DOC}}.
-    </p>
+    <div class="section">
+        <p>
+            El suscrito <strong>{{NOMBRE_PODERDANTE}}</strong>, {{CONDICION_MAYOR_PODERDANTE}}, costarricense,
+            {{ESTADO_CIVIL_PODERDANTE}}, {{OFICIO_PODERDANTE}}, vecino de {{DIRECCION_PODERDANTE}},
+            portador de la cédula de identidad número {{CEDULA_PODERDANTE_LETRAS}},
+            confiere <strong>{{PODER_ESPECIAL_JUDICIAL}}</strong>, al licenciado <strong>{{NOMBRE_APODERADO}}</strong>,
+            {{CONDICION_MAYOR_APODERADO}}, costarricense, portador de la cédula de identidad número
+            {{CEDULA_APODERADO_LETRAS}}, {{ESTADO_CIVIL_APODERADO}}, abogado portador del carné profesional número
+            {{CARNE_PROFESIONAL_LETRAS}}, vecino de {{DIRECCION_APODERADO}}, con oficina en {{OFICINA_APODERADO}}.
+            El apoderado queda plenamente autorizado para gestionar y atender las diligencias judiciales y extrajudiciales,
+            medidas alternas, audiencias, conciliaciones, y todas aquellas diligencias que sean propias para la consecución de
+            los fines del proceso y la defensa de los intereses del poderdante, dentro del proceso judicial con número de causa
+            <strong>{{NUMERO_CAUSA}}</strong>.
+        </p>
 
-    <p>
-        Así mismo, el apoderado está autorizado para negociar arreglos extrajudiciales, y aplicar cualquier otro tipo de resolución alterna en beneficio de su poderdante.
-    </p>
+        <p>
+            Así mismo, el apoderado, está autorizado para negociar arreglos extrajudiciales, y aplicar cualquier otro tipo de
+            resolución alterna en beneficio de su poderdante.
+        </p>
+    </div>
 
-    <p>Escazú, San Rafael, {{FECHA}}.</p>
+    <p class="section">
+        {{LUGAR_DOCUMENTO}}, {{FECHA}}.
+    </p>
 
     <div class="firmas">
-        <p>__________________________________________</p>
-        <p>PODERDANTE<br />{{ID_CLIENTE}}</p>
-        <br />
-        <p>__________________________________________</p>
-        <p>APODERADO<br />{{ID_ABOGADO}}</p>
+        <div class="block">
+            <div class="line"></div>
+            <div><strong>{{NOMBRE_PODERDANTE}}</strong><br /><span class="small">PODERDANTE — Cédula: {{CEDULA_PODERDANTE}}</span></div>
+        </div>
+        <div class="block">
+            <div class="line"></div>
+            <div><strong>{{NOMBRE_APODERADO}}</strong><br /><span class="small">APODERADO — Cédula: {{CEDULA_APODERADO}}</span></div>
+        </div>
     </div>
 
 </body>
 </html>
-

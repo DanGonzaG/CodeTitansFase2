@@ -1154,7 +1154,7 @@ button {
 }
 
 .location-bg {
-    background-image: url('../img/home-one/location-bg.jpg');
+    background-image: url('../img/home-one/location-bg.jpg');    
     background-size: cover;
     background-position: center center;
     background-repeat: no-repeat;
@@ -1376,31 +1376,37 @@ button {
 .contact-btn--primario {
     @extend .contact-btn;
     @include variacionBtnColores($botonPrimario); //Crear, descargar, modificar
+    text-align:center
 }
 
 .contact-btn--secundario {
     @extend .contact-btn;
     @include variacionBtnColores($botonSecundario); //filtrar, buscar, previsualizar
+    text-align: center
 }
 
 .contact-btn--revision {
     @extend .contact-btn;
     @include variacionBtnColores($botonRevision); //revisar, detalles,
+    text-align: center
 }
 
 .contact-btn--tercero {
     @extend .contact-btn;
     @include variacionBtnColores($botonTerciario); //Cancelar
+    text-align: center
 }
 
 .contact-btn--navegacion {
     @extend .contact-btn;
-    @include variacionBtnColores($botonNavegacion);//Retrocesos, volver
+    @include variacionBtnColores($botonNavegacion); //Retrocesos, volver
+    text-align: center
 }
 
 .contact-btn--eliminacion {
     @extend .contact-btn;
     @include variacionBtnColores($botonEliminacion); //Eliminar
+    text-align: center
 }
 
 
@@ -4043,4 +4049,16 @@ footer {
         color: $white-color;
         background-color: #94be5d;
     }
+}
+#crearCitaModal .select2-container--default .select2-selection--single {
+    background-color: #fff;
+    color: #000;
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+    height: 38px;
+}
+
+#crearCitaModal .select2-container--default .select2-selection--single .select2-selection__rendered {
+    line-height: 38px;
+    color: #000;
 }

@@ -1,12 +1,17 @@
 #region Dependencias
 using DinkToPdf;
 using DinkToPdf.Contracts;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.DataProtection;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
 using Microsoft.VisualStudio.Web.CodeGenerators.Mvc.Templates.General;
 using Preacepta.AD;
+using Preacepta.AD.BitacoraEventos.BuscarXid;
+using Preacepta.AD.BitacoraEventos.Crear;
+using Preacepta.AD.BitacoraEventos.Listar;
 using Preacepta.AD.Casos.BuscarXid;
 using Preacepta.AD.Casos.Crear;
 using Preacepta.AD.Casos.Editar;
@@ -32,9 +37,6 @@ using Preacepta.AD.Citas.Crear;
 using Preacepta.AD.Citas.Editar;
 using Preacepta.AD.Citas.Eliminar;
 using Preacepta.AD.Citas.Listar;
-using Preacepta.AD.BitacoraEventos.BuscarXid;
-using Preacepta.AD.BitacoraEventos.Crear;
-using Preacepta.AD.BitacoraEventos.Listar;
 using Preacepta.AD.CitasTipo.BuscarXid;
 using Preacepta.AD.CitasTipo.Crear;
 using Preacepta.AD.CitasTipo.Editar;
@@ -121,11 +123,20 @@ using Preacepta.AD.GeRedesSociales.Crear;
 using Preacepta.AD.GeRedesSociales.Editar;
 using Preacepta.AD.GeRedesSociales.Eliminar;
 using Preacepta.AD.GeRedesSociales.Listar;
+using Preacepta.AD.HistorialDocumentos.BuscarXid;
+using Preacepta.AD.HistorialDocumentos.Crear;
+using Preacepta.AD.HistorialDocumentos.Editar;
+using Preacepta.AD.HistorialDocumentos.Eliminar;
+using Preacepta.AD.HistorialDocumentos.Listar;
 using Preacepta.AD.Testimonios.Buscar;
 using Preacepta.AD.Testimonios.Crear;
 using Preacepta.AD.Testimonios.Editar;
 using Preacepta.AD.Testimonios.Eliminar;
 using Preacepta.AD.Testimonios.Listar;
+using Preacepta.LN.BitacoraEventos.BuscarXid;
+using Preacepta.LN.BitacoraEventos.Crear;
+using Preacepta.LN.BitacoraEventos.Listar;
+using Preacepta.LN.BitacoraEventos.ObtenerDatos;
 using Preacepta.LN.Casos.BuscarXid;
 using Preacepta.LN.Casos.Crear;
 using Preacepta.LN.Casos.Editar;
@@ -156,10 +167,6 @@ using Preacepta.LN.Citas.Editar;
 using Preacepta.LN.Citas.Eliminar;
 using Preacepta.LN.Citas.Listar;
 using Preacepta.LN.Citas.ObtenerDatos;
-using Preacepta.LN.BitacoraEventos.BuscarXid;
-using Preacepta.LN.BitacoraEventos.Crear;
-using Preacepta.LN.BitacoraEventos.Listar;
-using Preacepta.LN.BitacoraEventos.ObtenerDatos;
 using Preacepta.LN.CitasTipo.BuscarXid;
 using Preacepta.LN.CitasTipo.Crear;
 using Preacepta.LN.CitasTipo.Editar;
@@ -263,6 +270,12 @@ using Preacepta.LN.GeRedesSociales.Editar;
 using Preacepta.LN.GeRedesSociales.Eliminar;
 using Preacepta.LN.GeRedesSociales.Listar;
 using Preacepta.LN.GeRedesSociales.ObtenerDatos;
+using Preacepta.LN.HistorialDocumentos.BuscarXid;
+using Preacepta.LN.HistorialDocumentos.Crear;
+using Preacepta.LN.HistorialDocumentos.Editar;
+using Preacepta.LN.HistorialDocumentos.Eliminar; 
+using Preacepta.LN.HistorialDocumentos.Listar;
+using Preacepta.LN.HistorialDocumentos.ObtenerDatos;
 using Preacepta.LN.Testimonios.Buscar;
 using Preacepta.LN.Testimonios.Crear;
 using Preacepta.LN.Testimonios.Editar;
@@ -270,33 +283,26 @@ using Preacepta.LN.Testimonios.Eliminar;
 using Preacepta.LN.Testimonios.Listar;
 using Preacepta.LN.Testimonios.ObtenerDatos;
 using Preacepta.UI.Areas.Identity; 
+using Preacepta.UI.Authorization.Handlers;
+using Preacepta.UI.Authorization.Requirements;
 using Preacepta.UI.Data;
 using Preacepta.UI.Services;
-using Preacepta.AD.HistorialDocumentos.Listar;
-using Preacepta.LN.HistorialDocumentos.Listar;
-using Preacepta.AD.HistorialDocumentos.Crear;
-using Preacepta.LN.HistorialDocumentos.Crear;
-using Preacepta.LN.HistorialDocumentos.ObtenerDatos;
-using Preacepta.AD.HistorialDocumentos.BuscarXid;
-using Preacepta.LN.HistorialDocumentos.BuscarXid;
-using Preacepta.AD.HistorialDocumentos.Editar;
-using Preacepta.LN.HistorialDocumentos.Editar;
-using Preacepta.AD.HistorialDocumentos.Eliminar;
-using Preacepta.LN.HistorialDocumentos.Eliminar; 
 using Preacepta.UI.Services.MensajesPersonalizados;
 using Serilog;
 using System.Security.Claims;
-using Microsoft.AspNetCore.Authorization;
-using Preacepta.UI.Authorization.Requirements;
-using Preacepta.UI.Authorization.Handlers;
 #endregion
 
 
 #region Sercicio de archivos Log
 Log.Logger = new LoggerConfiguration()
-    .WriteTo.File("Logs/log-.txt", rollingInterval: RollingInterval.Day)
+    .MinimumLevel.Information()
+    .WriteTo.Console()
+    .WriteTo.Debug()
+    .WriteTo.File("Logs/log-.txt", rollingInterval: RollingInterval.Day, outputTemplate: "{Timestamp:yyyy-MM-dd HH:mm:ss} [{Level:u3}] {Message}{NewLine}{Exception}")
     .CreateLogger();
 #endregion
+
+
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -707,6 +713,13 @@ builder.Services.AddScoped<IAuthorizationHandler, CasoHandler>();
 
 
 #endregion
+
+builder.Host.UseSerilog();
+builder.Logging.ClearProviders();
+builder.Logging.AddConsole();
+builder.Logging.AddDebug();
+
+
 
 var app = builder.Build();
 

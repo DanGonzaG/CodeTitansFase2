@@ -16,7 +16,7 @@ document.getElementById('btnPrevisualizar').addEventListener('click', () => {
     const fechaFinal = document.getElementById('idFechaFinal').value;
     const montoHonorarios = document.getElementById('idMontoHonorarios').value;
     const informacionConfidencial = document.getElementById('idInformacionConfidencial').value;
-    const ciudadFirma = document.getElementById('idCiudadFirma').value;
+    const ciudadFirma = document.getElementById('distrito2').value;
     const horaFirma = document.getElementById('idHoraFirma').value;
     const fechaFirma = document.getElementById('idFechaFirma').value;
 

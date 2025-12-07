@@ -14,7 +14,7 @@
 }
 
 .MarcoIdentiy {
-    padding-left: 500px; 
+    padding-left: 500px;
     padding-right: 500px;
 }
 
@@ -25,9 +25,9 @@
 
 
 /*Vista FormTesmonials*/
-.clasificacion{
-     direction: rtl;
-  unicode-bidi: bidi-override;
+.clasificacion {
+    direction: rtl;
+    unicode-bidi: bidi-override;
 }
 
 .InputCalficacion {
@@ -39,8 +39,8 @@
     font-size: 40px;
 }
 
-.LabelCalificacion:hover,
-.LabelCalificacion:hover ~ label {
+    .LabelCalificacion:hover,
+    .LabelCalificacion:hover ~ label {
         color: orange;
     }
 
@@ -117,9 +117,9 @@
 }
 
 
-ul{
+ul {
     list-style-type: none;
-    padding-left:0;
+    padding-left: 0;
 }
 
 .seccion-tituloMenuGestor {
@@ -167,8 +167,6 @@ ul{
 .secciontActividaesRecientes {
     padding-bottom: 60px;
     padding-top: 60px;
-
-    
 }
 
 .secciontActividaesRecientesAbogados {
@@ -201,18 +199,19 @@ ul{
     align-items: center;
     justify-content: center;
 }
+
 .documento-item {
     display: flex;
     align-items: center;
     gap: 1rem;
     flex-wrap: nowrap;
-    width: 100%; 
+    width: 100%;
 }
 
     .documento-item .documento-info {
-        flex: 1 1 auto; 
-        min-width: 0; 
-        display: flex; 
+        flex: 1 1 auto;
+        min-width: 0;
+        display: flex;
         align-items: center;
         gap: 0.5rem;
         overflow: hidden;
@@ -230,24 +229,28 @@ ul{
     .documento-item .fecha {
         white-space: nowrap;
         font-size: 0.85rem;
-        flex-shrink: 0; 
+        flex-shrink: 0;
     }
+
     .documento-item .estado {
         display: inline-flex;
         align-items: center;
-        line-height: 1; 
+        line-height: 1;
         font-size: 0.85rem;
         flex-shrink: 0;
         white-space: nowrap;
     }
+
     .documento-item .btnEliminarDoc {
         flex-shrink: 0;
     }
+
 #modalListarDocumentos .documento-item .estado.text-danger {
-    margin-top: 0; 
+    margin-top: 0;
 }
+
 #modalListarDocumentos ul li.documento-item {
-    margin-bottom: 0.75rem; 
+    margin-bottom: 0.75rem;
 }
 
 
@@ -317,10 +320,11 @@ ul{
 .switch input:focus + .slider {
     box-shadow: 0 0 2px #b69d74;
 }
+
 .text-success-light {
     color: #4CAF50;
-    font-weight: 400; 
-    font-size: 0.95rem; 
+    font-weight: 400;
+    font-size: 0.95rem;
 }
 
 /*Estilos para los radio en Testimonio*/
@@ -389,6 +393,7 @@ input:checked + .slider-activo {
     padding: 2px 8px !important;
     font-size: 0.7rem !important;
 }
+
 .btn-descargar-link {
     background: none;
     border: none;
@@ -400,11 +405,12 @@ input:checked + .slider-activo {
     color: #d9c6a3 !important; /* ajustable si el beige es otro */
 }
 
-    .btn-descargar-link:hover {
+.btn-descargar-link:hover {
         color: #cbb892 !important;
-    }
+
+}
 /* Oculta el botón nativo del input file en todos los navegadores */
-input[type="file"]::file-selector-button {
+/*input[type="file"]::file-selector-button {
     display: none !important;
 }
 
@@ -414,19 +420,21 @@ input[type="file"]::-webkit-file-upload-button {
 
 input[type="file"]::-ms-browse {
     display: none !important;
-}
+}*/
+
 .fila-archivo {
     display: flex;
     align-items: center;
     gap: 12px;
 }
-
+/*
 .nombreArchivo {
     font-weight: bold;
     color: #333;
-    max-width: 260px; 
+    max-width: 260px;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
     display: inline-block;
 }
+    */

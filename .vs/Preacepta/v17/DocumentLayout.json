@@ -1,14 +1,10 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\CodeTitansFase2-develop\\",
+  "WorkspaceRootPath": "C:\\CodeTitansFase3\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{18AD59F4-3C32-4F5A-9C07-4B4448F18661}|Preacepta.UI\\Preacepta.UI.csproj|c:\\codetitansfase2-develop\\preacepta.ui\\views\\documentoscita\\_listarpartial.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{18AD59F4-3C32-4F5A-9C07-4B4448F18661}|Preacepta.UI\\Preacepta.UI.csproj|solutionrelative:preacepta.ui\\views\\documentoscita\\_listarpartial.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{18AD59F4-3C32-4F5A-9C07-4B4448F18661}|Preacepta.UI\\Preacepta.UI.csproj|c:\\codetitansfase2-develop\\preacepta.ui\\wwwroot\\lyso\\js\\calendar-init.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
-      "RelativeMoniker": "D:0:0:{18AD59F4-3C32-4F5A-9C07-4B4448F18661}|Preacepta.UI\\Preacepta.UI.csproj|solutionrelative:preacepta.ui\\wwwroot\\lyso\\js\\calendar-init.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+      "AbsoluteMoniker": "D:0:0:{18AD59F4-3C32-4F5A-9C07-4B4448F18661}|Preacepta.UI\\Preacepta.UI.csproj|c:\\codetitansfase3\\preacepta.ui\\areas\\identity\\pages\\account\\manage\\index.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{18AD59F4-3C32-4F5A-9C07-4B4448F18661}|Preacepta.UI\\Preacepta.UI.csproj|solutionrelative:preacepta.ui\\areas\\identity\\pages\\account\\manage\\index.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -18,8 +14,21 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 4,
+          "SelectedChildIndex": 0,
           "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Index.cshtml.cs",
+              "DocumentMoniker": "C:\\CodeTitansFase3\\Preacepta.UI\\Areas\\Identity\\Pages\\Account\\Manage\\Index.cshtml.cs",
+              "RelativeDocumentMoniker": "Preacepta.UI\\Areas\\Identity\\Pages\\Account\\Manage\\Index.cshtml.cs",
+              "ToolTip": "C:\\CodeTitansFase3\\Preacepta.UI\\Areas\\Identity\\Pages\\Account\\Manage\\Index.cshtml.cs",
+              "RelativeToolTip": "Preacepta.UI\\Areas\\Identity\\Pages\\Account\\Manage\\Index.cshtml.cs",
+              "ViewState": "AgIAABUAAAAAAAAAAAAAwNUAAAASAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-07T03:40:55.67Z",
+              "EditorCaption": ""
+            },
             {
               "$type": "Bookmark",
               "Name": "ST:129:0:{75188d03-9892-4ae2-abf1-207126247ce5}"
@@ -35,32 +44,6 @@
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{aa2115a1-9712-457b-9047-dbb71ca2cdd2}"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "_ListarPartial.cshtml",
-              "DocumentMoniker": "C:\\CodeTitansFase2-develop\\Preacepta.UI\\Views\\DocumentosCita\\_ListarPartial.cshtml",
-              "RelativeDocumentMoniker": "Preacepta.UI\\Views\\DocumentosCita\\_ListarPartial.cshtml",
-              "ToolTip": "C:\\CodeTitansFase2-develop\\Preacepta.UI\\Views\\DocumentosCita\\_ListarPartial.cshtml",
-              "RelativeToolTip": "Preacepta.UI\\Views\\DocumentosCita\\_ListarPartial.cshtml",
-              "ViewState": "AgIAADkAAAAAAAAAAAAAAEkAAABfAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-12-07T01:09:36.107Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "Calendar-init.js",
-              "DocumentMoniker": "C:\\CodeTitansFase2-develop\\Preacepta.UI\\wwwroot\\lyso\\js\\Calendar-init.js",
-              "RelativeDocumentMoniker": "Preacepta.UI\\wwwroot\\lyso\\js\\Calendar-init.js",
-              "ToolTip": "C:\\CodeTitansFase2-develop\\Preacepta.UI\\wwwroot\\lyso\\js\\Calendar-init.js",
-              "RelativeToolTip": "Preacepta.UI\\wwwroot\\lyso\\js\\Calendar-init.js",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAMAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
-              "WhenOpened": "2025-12-07T00:34:04.399Z",
-              "EditorCaption": ""
             }
           ]
         },

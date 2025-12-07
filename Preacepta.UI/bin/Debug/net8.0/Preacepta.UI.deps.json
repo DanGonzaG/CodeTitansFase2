@@ -2916,7 +2916,7 @@
         },
         "runtime": {
           "Preacepta.AD.dll": {
-            "assemblyVersion": "1.0.0",
+            "assemblyVersion": "1.0.0.0",
             "fileVersion": "1.0.0.0"
           }
         }
@@ -2929,7 +2929,7 @@
         },
         "runtime": {
           "Preacepta.LN.dll": {
-            "assemblyVersion": "1.0.0",
+            "assemblyVersion": "1.0.0.0",
             "fileVersion": "1.0.0.0"
           }
         }
@@ -2940,7 +2940,7 @@
         },
         "runtime": {
           "Preacepta.Modelos.dll": {
-            "assemblyVersion": "1.0.0",
+            "assemblyVersion": "1.0.0.0",
             "fileVersion": "1.0.0.0"
           }
         }

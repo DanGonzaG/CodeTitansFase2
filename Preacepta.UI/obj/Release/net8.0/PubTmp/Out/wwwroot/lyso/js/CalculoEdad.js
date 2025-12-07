@@ -1,11 +1,16 @@
 ﻿document.addEventListener('DOMContentLoaded', function () {
-    let valor1 = null;
     const campoFecha = document.getElementById('InputFechaNacimiento');
     const campoEdad = document.getElementById('InputEdad');
+    let valor1 = null;
+
+    /*if (campoFecha) {
+        const hoy = new Date().toISOString().split("T")[0];
+        campoFecha.setAttribute("max", hoy);
+    }*/
 
     if (campoFecha == null) {
         return
-    }
+    }  
 
     campoFecha.addEventListener('input', function (evento) {
         const fecha = evento.target.value;
@@ -36,6 +41,12 @@
         if (mesActual < mesNacimiento || (mesActual === mesNacimiento && diaActual < diaNacimiento)) {
             Edad--; // Restar un año si el cumpleaños aún no ha pasado
         }
+
+        if (Edad < 1)
+        {
+            Edad = 0
+        }
+
         console.log('Edad:', Edad);
         campoEdad.value = Edad;
     }

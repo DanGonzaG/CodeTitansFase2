@@ -14,6 +14,7 @@ using Preacepta.Modelos.AbstraccionesFrond;
 using Preacepta.Modelos.AbstraccionesFrond.ViewModelsFront;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
+using System.Globalization;
 
 namespace Praecepta.UI.Areas.Identity.Pages.Account.Manage
 {
@@ -210,7 +211,8 @@ namespace Praecepta.UI.Areas.Identity.Pages.Account.Manage
                 Nombre = persona.Nombre;
                 Apellido1 = persona.Apellido1;
                 Apellido2 = persona.Apellido2;
-                FechaNacimiento = DateTime.Parse(persona.FechaNacimiento).ToString("yyyy-MM-dd");
+                //FechaNacimiento = DateTime.Parse(persona.FechaNacimiento).ToString("yyyy-MM-dd");
+                FechaNacimiento = DateTime.ParseExact(persona.FechaNacimiento,"dd/MM/yyyy",CultureInfo.InvariantCulture).ToString("yyyy-MM-dd");
                 Edad = (int)persona.Edad;
                 EstadoCivil = persona.EstadoCivil;
                 Oficio = persona.Oficio;
