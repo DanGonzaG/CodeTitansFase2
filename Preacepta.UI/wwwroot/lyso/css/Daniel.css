@@ -380,3 +380,53 @@ input:checked + .slider-activo {
     input:checked + .slider-activo:before {
         content: "Habilitado";
     }
+
+.input-archivo {
+    display: none !important;
+}
+
+.btn-descargar {
+    padding: 2px 8px !important;
+    font-size: 0.7rem !important;
+}
+.btn-descargar-link {
+    background: none;
+    border: none;
+    padding: 0;
+    font-size: inherit;
+    cursor: pointer;
+    text-decoration: underline;
+    /* BEIGE, mismo estilo del link de video */
+    color: #d9c6a3 !important; /* ajustable si el beige es otro */
+}
+
+    .btn-descargar-link:hover {
+        color: #cbb892 !important;
+    }
+/* Oculta el botón nativo del input file en todos los navegadores */
+input[type="file"]::file-selector-button {
+    display: none !important;
+}
+
+input[type="file"]::-webkit-file-upload-button {
+    display: none !important;
+}
+
+input[type="file"]::-ms-browse {
+    display: none !important;
+}
+.fila-archivo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.nombreArchivo {
+    font-weight: bold;
+    color: #333;
+    max-width: 260px; 
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: inline-block;
+}

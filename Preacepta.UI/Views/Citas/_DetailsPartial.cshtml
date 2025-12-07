@@ -89,12 +89,11 @@
                             <li style="word-break: break-word; overflow-wrap: anywhere; margin-bottom: 0.5rem;">
                                 @if (doc.Descargar)
                                 {
-                                    <button type="button"
-                                            class="btn btn-link p-0 text-primary"
-                                            style="word-break: break-word; overflow-wrap: anywhere; max-width:100%;"
-                                            onclick="procesoCompletoDescifrado(@doc.Id)">
+                                    <a href="#" class="link-descargable"
+                                       onclick="event.preventDefault(); procesoCompletoDescifrado(@doc.Id)">
                                         @doc.NombreArchivo
-                                    </button>
+                                    </a>
+                                        
                                 }
 
                                 else

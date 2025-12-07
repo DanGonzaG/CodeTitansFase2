@@ -24,7 +24,7 @@ namespace Preacepta.Web.Controllers
         private readonly UserManager<IdentityUser> _userManager;
 
 
-        public DocumentosCitaController(UserManager<IdentityUser> userManager,IDocumentosCitaLN documentosLN, ICrearEventosLN bitacoraLN)
+        public DocumentosCitaController(UserManager<IdentityUser> userManager, IDocumentosCitaLN documentosLN, ICrearEventosLN bitacoraLN)
         {
             _documentosLN = documentosLN;
             _bitacoraLN = bitacoraLN;
@@ -57,7 +57,7 @@ namespace Preacepta.Web.Controllers
 
             ViewBag.IdCita = idCita;
             ViewBag.UsuarioId = usuarioId;
-            ViewBag.PublicKeyPem = clavePublica?.PublicKeyPem ?? ""; 
+            ViewBag.PublicKeyPem = clavePublica?.PublicKeyPem ?? "";
 
             return PartialView("_ListarPartial", documentos);
         }
@@ -190,7 +190,7 @@ namespace Preacepta.Web.Controllers
         public async Task<IActionResult> DescargarCifrado(
      int id,
      [FromServices] IDocumentosCitaAD documentosCitaAD,
-     [FromServices] IDocumentosCitaLN documentosLN) 
+     [FromServices] IDocumentosCitaLN documentosLN)
         {
             var usuarioId = User.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier)?.Value;
             if (string.IsNullOrEmpty(usuarioId))
@@ -340,12 +340,12 @@ namespace Preacepta.Web.Controllers
 
             try
             {
-             
+
                 await _bitacoraLN.RegistrarBitacoraAsync(usuario, "T_DocumentosCita", accion, documento.Id);
             }
             catch (Exception ex)
             {
-              
+
                 Console.WriteLine($"Error al registrar bitácora: {ex.Message}");
             }
 
@@ -353,7 +353,7 @@ namespace Preacepta.Web.Controllers
             Response.Headers.Add("Pragma", "no-cache");
             Response.Headers.Add("Expires", "0");
 
-            
+
             var stream = new FileStream(rutaFisica, FileMode.Open, FileAccess.Read);
             return File(stream, "application/octet-stream", documento.NombreArchivo);
         }
@@ -469,7 +469,7 @@ namespace Preacepta.Web.Controllers
             }
             catch (Exception ex)
             {
-             
+
                 return Json(new { success = false, error = ex.Message, detalle = ex.StackTrace });
             }
         }

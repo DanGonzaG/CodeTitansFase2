@@ -226,7 +226,7 @@ namespace Praecepta.UI.Controllers
             {
                 Port = 587,
 
-                Credentials = new NetworkCredential("d.gon.guerrero@gmail.com", "oiup tfoc roio sbei"), 
+                Credentials = new NetworkCredential("d.gon.guerrero@gmail.com", "oiup tfoc roio sbei"),
 
                 EnableSsl = true
             };
@@ -246,15 +246,15 @@ namespace Praecepta.UI.Controllers
         $"Equipo Praecepta";
 
                     var mail = new MailMessage("d.gon.guerrero@gmail.com", correo)
-                {
+                    {
 
-                    Subject = "Confirmación de cita agendada",
-                    Body = cuerpo,
-                    IsBodyHtml = false
-                };
+                        Subject = "Confirmación de cita agendada",
+                        Body = cuerpo,
+                        IsBodyHtml = false
+                    };
 
-                await smtp.SendMailAsync(mail);
-            }
+                    await smtp.SendMailAsync(mail);
+                }
                 catch (Exception ex)
                 {
                     Console.WriteLine($"Error enviando correo a {correo}: {ex.Message}");
@@ -280,7 +280,7 @@ namespace Praecepta.UI.Controllers
             }
             else
             {
-                citas = await _listarCitasLN.listar(); 
+                citas = await _listarCitasLN.listar();
             }
 
             var resultado = citas.Select(c => new
@@ -410,7 +410,7 @@ namespace Praecepta.UI.Controllers
             var fechaAnterior = citaOriginal.Fecha.ToDateTime(citaOriginal.Hora);
 
             cita.Anfitrion = citaOriginal.Anfitrion;
-            cita.IdCliente = citaOriginal.IdCliente; 
+            cita.IdCliente = citaOriginal.IdCliente;
             cita.NombresClientes = citaOriginal.NombresClientes;
             cita.TCitasClientes = citaOriginal.TCitasClientes;
 
@@ -442,7 +442,7 @@ namespace Praecepta.UI.Controllers
                     var zoomResult = await servicio.CrearReunionProgramadaAsync(token, cita.FechaHora, 60, "Cita con cliente");
                     cita.LinkVideo = zoomResult.JoinUrl;
 
-                } 
+                }
                 else if (nombreTipoCita != "Virtual" && !string.IsNullOrEmpty(citaOriginal.LinkVideo))
                 {
                     cita.LinkVideo = null;
@@ -463,7 +463,7 @@ namespace Praecepta.UI.Controllers
                 if (ModelState.IsValid)
                 {
                     var estadoAnterior = citaOriginal.Estado;
-                    await _editarCitasLN.editar(cita); 
+                    await _editarCitasLN.editar(cita);
 
                     // Enviar correo si cambió a "Terminada"
                     if (estadoAnterior != 1 && cita.Estado == 1)
@@ -557,7 +557,7 @@ namespace Praecepta.UI.Controllers
                                                            || n.Contains(persona.Apellido1)
                                                            || n.Contains(persona.Apellido2));
                 if (!pertenece)
-                    return Forbid(); 
+                    return Forbid();
             }
 
 
@@ -597,7 +597,7 @@ namespace Praecepta.UI.Controllers
             }
             else if (roles.Contains("Abogado") || roles.Contains("Gestor"))
             {
-                citas = await _listarCitasLN.listar(); 
+                citas = await _listarCitasLN.listar();
             }
             else
             {
@@ -619,7 +619,7 @@ namespace Praecepta.UI.Controllers
 
             var persona = await _buscarXidGePersonaLN.buscarXcorreo(emailUsuario);
             if (persona == null)
-        return new List<CitasDTO>();
+                return new List<CitasDTO>();
 
 
             return await _listarCitasLN.ListarPorIdCliente(persona.Cedula);
@@ -628,19 +628,19 @@ namespace Praecepta.UI.Controllers
 
         [Authorize(Roles = "Cliente,Abogado,Gestor")]
         public async Task<IActionResult> CalendarPasado()
-{
-    var lista = await ObtenerCitasClienteActual();
-    var citasPasadas = lista.Where(c => c.FechaHora < DateTime.Now).ToList();
-    return View(citasPasadas);
-}
+        {
+            var lista = await ObtenerCitasClienteActual();
+            var citasPasadas = lista.Where(c => c.FechaHora < DateTime.Now).ToList();
+            return View(citasPasadas);
+        }
 
         [Authorize(Roles = "Cliente,Abogado,Gestor")]
         public async Task<IActionResult> _CitaFuturo()
-{
-    var lista = await ObtenerCitasPorRol();
-    var citasFuturas = lista.Where(c => c.FechaHora > DateTime.Now).ToList();
-    return View(citasFuturas);
-}
+        {
+            var lista = await ObtenerCitasPorRol();
+            var citasFuturas = lista.Where(c => c.FechaHora > DateTime.Now).ToList();
+            return View(citasFuturas);
+        }
 
 
         [HttpGet]
@@ -689,7 +689,7 @@ namespace Praecepta.UI.Controllers
             return await _listarCitasLN.ListarPorIdCliente(persona.Cedula);
 
         }
-           
+
 
         [Authorize(Roles = "Gestor, Abogado")]
         public async Task<JsonResult> IdExiste(int id)
@@ -709,18 +709,18 @@ namespace Praecepta.UI.Controllers
         [HttpPost]
         public async Task<IActionResult> MarcarComoTerminada(int idCita)
         {
-           
+
             var cita = await _listarCitasLN.ObtenerPorId(idCita);
             if (cita == null)
                 return NotFound("Cita no encontrada.");
 
-         
+
             cita.Estado = 1;
 
-           
+
             await _editarCitasLN.editar(cita);
 
-           
+
             await EnviarCorreoAlTerminarCita(cita);
 
             return Ok(new { success = true, message = "Cita marcada como terminada y correo enviado." });
@@ -744,7 +744,7 @@ namespace Praecepta.UI.Controllers
 
             try
             {
-                
+
                 var clienteRelacion = cita.TCitasClientes?.FirstOrDefault();
                 if (clienteRelacion == null)
                 {
@@ -752,7 +752,7 @@ namespace Praecepta.UI.Controllers
                 }
 
                 var cliente = clienteRelacion.IdClienteNavigation;
-                    if (cliente == null || string.IsNullOrWhiteSpace(cliente.Email))
+                if (cliente == null || string.IsNullOrWhiteSpace(cliente.Email))
                 {
                     return false;
                 }
@@ -821,27 +821,27 @@ namespace Praecepta.UI.Controllers
         [HttpPost]
         public async Task<IActionResult> CambiarEstadoEnviarCorreo([FromBody] dynamic payload)
         {
-             try
-                {
-                  int idCita = (int)payload.idCita;
-                  int nuevoEstado = (int)payload.nuevoEstado;
+            try
+            {
+                int idCita = (int)payload.idCita;
+                int nuevoEstado = (int)payload.nuevoEstado;
 
-                  var cita = await _listarCitasLN.ObtenerPorId(idCita);
-                    if (cita == null)
+                var cita = await _listarCitasLN.ObtenerPorId(idCita);
+                if (cita == null)
                     return Json(new { success = false, message = "Cita no encontrada" });
 
-                    cita.Estado = nuevoEstado;
-                    await _editarCitasLN.editar(cita);
+                cita.Estado = nuevoEstado;
+                await _editarCitasLN.editar(cita);
 
-                    if (nuevoEstado == 1) 
-                        await EnviarCorreoAlTerminarCita(cita);
+                if (nuevoEstado == 1)
+                    await EnviarCorreoAlTerminarCita(cita);
 
-                    return Json(new { success = true });
-                    }
-                catch (Exception ex)
-                {
-                    return Json(new { success = false, message = ex.Message });
-             }
+                return Json(new { success = true });
+            }
+            catch (Exception ex)
+            {
+                return Json(new { success = false, message = ex.Message });
+            }
         }
 
 

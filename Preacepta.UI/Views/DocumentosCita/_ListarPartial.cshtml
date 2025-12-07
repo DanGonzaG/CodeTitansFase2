@@ -31,7 +31,7 @@
                                 @(doc.Descargar ? "Descarga Autorizada" : "Descarga sin Autorización")
                             </span>
 
-                            <button onclick="procesoCompletoDescifrado(@doc.Id)">Descargar</button>
+                            <button onclick="procesoCompletoDescifrado(@doc.Id)" class="contact-btn--primario btn-descargar">Descargar</button>
 
                             <span class="fecha text-muted">(subido el @doc.FechaSubida.ToShortDateString())</span>
                         </div>
@@ -66,7 +66,13 @@
               enctype="multipart/form-data"
               data-id-cita="@ViewBag.IdCita"
               action="/SubirCifrado">
-            <input type="file" id="archivo" name="ArchivoCifrado" accept=".pdf,.docx,.jpg,.png" />
+            <!--<div class="fila-archivo">
+                <label for="archivo" class="contact-btn--navegacion">Seleccionar archivo</label>
+                <span id="nombreArchivo" class="nombreArchivo"></span>
+            </div>-->
+
+            <input type="file" id="archivo" name="ArchivoCifrado" accept=".pdf,.docx,.jpg,.png"/>
+
 
             <input type="hidden" id="publicKeyPem" value="@ViewBag.PublicKeyPem" />
             <input type="hidden" id="OwnerId" value="@ViewBag.UsuarioId" />
@@ -118,4 +124,10 @@
             await inicializarClavePrivadaUsuario();
         }
     });
+</script>
+<script>
+document.getElementById("archivo").addEventListener("change", function () {
+    const span = document.getElementById("nombreArchivo");
+    span.textContent = this.files.length > 0 ? this.files[0].name : "";
+});
 </script>
